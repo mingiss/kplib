@@ -25,7 +25,7 @@
 
 
 // ----------------------------------
-#ifdef WIN32
+#ifdef __WIN32__
 HINSTANCE KpCommonApp::m_hInstance = NULL;
 #endif
 
@@ -36,7 +36,7 @@ KpLang KpCommonApp::m_iMsgLangOff = KpLangEn;
 KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
 {
     m_iMsgLangOff = KpLangEn;
-#ifdef WIN32
+#ifdef __WIN32__
     m_hInstance = 0L;
     KpInitWindows();
 #endif
@@ -57,7 +57,7 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
 // ----------------------------------
 void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine)
 {
-#ifdef WIN32
+#ifdef __WIN32__
     if(hInstance != 0L) m_hInstance = hInstance;
 #endif
 }

@@ -9,7 +9,21 @@
  */
 
 
-#ifdef WIN32
+#ifdef __WIN32__
+
+#include "envir.h"
+
+#include <iostream>
+#ifdef __WIN32__
+#include <windows.h>
+#endif
+
+#include "kperrno.h"
+#include "kpstdlib.h"
+#include "kpmsg.h"
+#include "kperr.h"
+#include "kpcapp.h"
+
 
 // ------------------------------------------
 void KpCommonApp::KpInitWindows(void)
@@ -70,7 +84,7 @@ DWORD val_type;
 
 #endif // #ifdef MsgLang
 
-    KP_ASSERT((m_iMsgLangOff >= 0) && (m_iMsgLangOff < KpNumOfLangs), KP_E_SYSTEM_ERROR, null, True);
+    KP_ASSERT((m_iMsgLangOff >= 0) && (m_iMsgLangOff < KpNumOfLangs), KP_E_SYSTEM_ERROR, null);
 }
 
-#endif // #ifdef WIN32
+#endif // #ifdef __WIN32__

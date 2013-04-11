@@ -1,4 +1,5 @@
-../kplib/src/kpcapp.o: ../kplib/src/kpcapp.cpp ../kplib/include/envir.h \
+../kplib/src/kpwindow.o: ../kplib/src/kpwindow.cpp \
+ ../kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/os_defines.h \
@@ -124,8 +125,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
  ../kplib/include/kperrno.h ../kplib/include/kpstdlib.h \
- ../kplib/src/kpstring.h ../kplib/src/kpmsg.h ../kplib/include/kperr.h \
- ../kplib/src/kpcapp.h ../kplib/src/kpcurdat.h
+ ../kplib/src/kpmsg.h ../kplib/include/kperr.h ../kplib/src/kpcapp.h
 
 ../kplib/include/envir.h:
 
@@ -381,12 +381,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
 ../kplib/include/kpstdlib.h:
 
-../kplib/src/kpstring.h:
-
 ../kplib/src/kpmsg.h:
 
 ../kplib/include/kperr.h:
 
 ../kplib/src/kpcapp.h:
-
-../kplib/src/kpcurdat.h:
