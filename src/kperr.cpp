@@ -26,10 +26,18 @@
 #include "kpstdio.h"
 #include "kpmsg.h"
 #include "kpmsg_en.h"
-#include "kpmsg_lt.h"
-#include "kpmsg_pl_1250.h"
-#include "kpmsg_pl_1257.h"
-#include "kpmsg_ru.h"
+#if (MsgLang == KpLangLt_p) || (MsgLang == KpLangSel_p)
+#   include "kpmsg_lt.h"
+#endif
+#if (MsgLang == KpLangPl_1250_p) || (MsgLang == KpLangPl_p)
+#   include "kpmsg_pl_1250.h"
+#endif
+#if (MsgLang == KpLangPl_1257_p) || (MsgLang == KpLangPl_p)
+#   include "kpmsg_pl_1257.h"
+#endif
+#if (MsgLang == KpLangRu_1251_p) || (MsgLang == KpLangRu_0_p) || (MsgLang == KpLangRu_p)
+#   include "kpmsg_ru.h"
+#endif
 #include "kperr.h"
 #include "kpcapp.h"
 
@@ -274,13 +282,13 @@ void KpException::Constructor
 // ---------------------
 KpErrorClass::KpErrorClass(void)
 {
-   m_iInsideOfStackDump = 0;
-   m_iInsideOfPutLogMessage = 0;
+    m_iInsideOfStackDump = 0;
+    m_iInsideOfPutLogMessage = 0;
    
-   m_lhLastRetc = S_OK;
-   m_lpszLastMessageText[0] = Nul;
-   m_lpszLastSourceFile[0] = Nul;
-   m_iLastSourceLine = 0;
+    m_lhLastRetc = S_OK;
+    m_lpszLastMessageText[0] = Nul;
+    m_lpszLastSourceFile[0] = Nul;
+    m_iLastSourceLine = 0;
 }
 
 
@@ -433,7 +441,6 @@ void KpErrorClass::StackDump(void)
 {
    if(m_iInsideOfStackDump++ == 0)
    {
-   
 // --------------------
       KP_ASSERT(sizeof(int) == sizeof(unsigned int *), KP_E_SYSTEM_ERROR, null);
 unsigned int *stack_top = NULL;
@@ -468,15 +475,18 @@ NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
 UCHAR *out_buf = null;
          KP_NEWA(out_buf, UCHAR, KP_MAX_FILE_LIN_LEN + 1);
 
-         out_buf[0] = Nul;
+         strcpy(out_buf, "Stack call trace: ");
 const unsigned int *stack_ptr = (const unsigned int *)ebp_buf;
-         while((stack_ptr < stack_top - 0x40) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
+
+         while((stack_ptr < stack_top - 4 /* 0x40 */) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
          {
 UCHAR hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
             sprintf((CHAR *)hex_buf, "%08x ", stack_ptr[1]);
             strcat(out_buf, hex_buf);
             stack_ptr = (const unsigned int *)(*stack_ptr);
+            if (stack_ptr == NULL) break;
          }
+
          KpError.PutLogMessage(out_buf);
 
          KP_DELETEA(out_buf);
@@ -555,6 +565,7 @@ int out_str_len = strlen(out_str);
 #  ifdef ENCODE_LOG
       if(SUCCEEDED(retc)) retc = EncodeLogBuf(out_str, out_str_len);
 #  endif
+
 // --------------------
 static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
       GetLogFileName(log_fname);

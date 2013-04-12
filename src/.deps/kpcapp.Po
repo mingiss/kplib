@@ -1,4 +1,9 @@
 ../kplib/src/kpcapp.o: ../kplib/src/kpcapp.cpp ../kplib/include/envir.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/os_defines.h \
@@ -10,11 +15,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/postypes.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwchar \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wchar.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wctype.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdint.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdint.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/exception \
@@ -129,6 +130,16 @@
 
 ../kplib/include/envir.h:
 
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h:
+
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h:
@@ -151,15 +162,7 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwchar:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wchar.h:
 
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h:
-
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wctype.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdint.h:
 

@@ -10,6 +10,7 @@
  
 #include "envir.h"
 
+#include <stdio.h>
 #include <iostream>
 #ifdef __WIN32__
 #include <windows.h>
@@ -60,6 +61,10 @@ void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine)
 #ifdef __WIN32__
     if(hInstance != 0L) m_hInstance = hInstance;
 #endif
+
+static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
+    KpError.GetLogFileName(log_fname);
+    remove((const char *)log_fname);
 }
 
 
