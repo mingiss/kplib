@@ -2,7 +2,7 @@
  *
  * kpstdlib.h
  *
- *    common definitions for all Kp C++ projects
+ *    common definitions for all KpLib driven projects
  *
  * 2013-02-22  mp  initial creation
  *
@@ -10,6 +10,19 @@
 
 #ifndef kpstdlib_included
 #define kpstdlib_included
+
+
+
+// ========================================= KpLib 
+// KpLib initialization/destruction procedures for plain C projects
+#ifdef __cplusplus
+#define PLAIN_C "C"
+#else 
+#define PLAIN_C
+#endif
+
+extern PLAIN_C void KpInit(void);
+extern PLAIN_C void KpClose(void);
 
 
 // ========================================= data types
@@ -86,6 +99,8 @@ typedef enum
 
 
 // ========================================= malloc
+#ifdef __cplusplus
+
 #ifdef KP_ALLOC_TRACE
 #define KP_ALLOC_SAFE
 #endif
@@ -126,6 +141,7 @@ public:
 extern KpHeapClass KpHeap;
 
 #endif // #ifdef KP_ALLOC_SAFE
+
 
 // -------------
 #ifdef KP_ALLOC_SAFE
@@ -200,6 +216,8 @@ extern KpHeapClass KpHeap;
          (ptr) = NULL; \
 	  } \
    }}
+
+#endif // #ifdef __cplusplus
 
 
 // ================================================== integer types and constants, math

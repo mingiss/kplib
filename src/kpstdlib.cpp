@@ -21,8 +21,49 @@
 #include "kpstdlib.h"
 #include "kpmsg.h"
 #include "kperr.h"
+#include "kpcapp.h"
 
-// ----------------------------------------- malloc
+using namespace std;
+
+
+// ========================================= KpLib 
+void KpInit(const UCHAR *ProdName)
+{
+    try
+    {
+        KP_NEW(KpApp, KpCommonApp(ProdName, 0));
+        KpApp->Init(GetModuleHandle(NULL), (const UCHAR *)GetCommandLine());
+    }
+    catch(const exception &e)
+    {
+        KP_CATCH(e);
+    }
+    catch(...)
+    {
+        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+    }
+}
+
+
+void KpClose(void)
+{
+    try
+    {
+        KpApp->Close();
+        KP_DELETE(KpApp);
+    }
+    catch(const exception &e)
+    {
+        KP_CATCH(e);
+    }
+    catch(...)
+    {
+        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+    }
+}
+
+
+// ========================================= malloc
 
 // -----------------------------
 // memory allocation control
