@@ -21,7 +21,7 @@
 #define PLAIN_C
 #endif
 
-extern PLAIN_C void KpInit(void);
+extern PLAIN_C void KpInit(const UCHAR *ProdName);
 extern PLAIN_C void KpClose(void);
 
 
