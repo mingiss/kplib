@@ -32,5 +32,19 @@ extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
+
+// -------------------------
+// Nul-terminated KpChar character array
+class KpChStr
+{
+public:
+    KpChar *m_iazStr;
+    
+    KpChStr();
+    ~KpChStr();
+    
+    int Len(void) const; // returns number of KpChar characters in m_iazStr[] 
+};
+
 #endif // #ifdef __cplusplus
 #endif // #ifndef kpstring_included

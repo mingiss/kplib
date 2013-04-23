@@ -84,9 +84,10 @@ extern PLAIN_C void KpClose(void);                  // usually pointer to some l
 
 #ifdef __MINGW32__
 #define va_list __VALIST 
-#endif
-#ifdef __GNUC__
+#else
+#   ifdef __GNUC__
 #define va_list __gnuc_va_list 
+#   endif
 #endif
 #ifndef va_start
 #define va_start __builtin_va_start
@@ -97,6 +98,24 @@ typedef unsigned long HINSTANCE;
 typedef long LONG;
 #endif
 
+
+//--------------------------- pointer processing
+typedef void (*FuncPtr)(void);    /* funkcijos rodykles tipas */ // former Funpnt
+#define Null ((FuncPtr)0)         /* nuline funkcijos rodykle */
+
+typedef int (*CompareFuncPtr)(const void *pVal1, const void *pVal2);
+      // lyginimo funkcijos rodyklės tipas, parametrai – lyginamų objektų adresai
+      // naudojama, pvz., SearchTreeEntry(); pvz. – TvStrCmpStrict_(), KpCompareLong()
+      // 0: *pVal1 == *pVal2
+      // 1: *pVal1 > *pVal2
+      // -1: *pVal1 > *pVal2
+
+typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
+      // lyginimo funkcijos rodykles tipas, parametrai - lyginamų objektų adresų adresai
+      // pvz. – TvStrPtrCmpStrict(), TvStrPtrCmpStrictRev()
+      // 0: **ppVal1 == **ppVal2
+      // 1: **ppVal1 > **ppVal2
+      // -1: **ppVal1 > **ppVal2
 
 // ========================================= file I/O
 #define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis

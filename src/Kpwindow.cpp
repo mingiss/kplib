@@ -20,6 +20,7 @@
 
 #include "kperrno.h"
 #include "kpstdlib.h"
+#include "kptt.h"
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"

@@ -1,6 +1,6 @@
 /* ----------------------------------------------------
  *
- * kptree.h
+ * kptree.cpp
  *  
  *    realization of KpTreeEntry 
  *
@@ -20,8 +20,12 @@
 
 using namespace std;
 
-#include "kpstdlib.h"
 #include "kperrno.h"
+#include "kpstdlib.h"
+#include "kptt.h"
+#include "kpstring.h"
+#include "kpmsg.h"
+#include "kperr.h"
 #include "kptree.h"
 
 
@@ -51,7 +55,7 @@ KpTreeEntry::KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath, Kp
 // ----------------------
 KpTreeEntry::KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath)
 {
-   KP_ASSERT(lpszString != null, E_INVALIDARG, null, True);
+   KP_ASSERT(lpszString != null, E_INVALIDARG, null);
    Constructor(lpszString, strlen(lpszString) + 1, pFath, KpRecType_Text);
 }
 
@@ -59,16 +63,16 @@ KpTreeEntry::KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath)
 // ----------------------
 KpTreeEntry::KpTreeEntry(const char *lpszString, KpTreeEntry *pFath)
 {
-   KP_ASSERT(lpszString != NULL, E_INVALIDARG, null, True);
+   KP_ASSERT(lpszString != NULL, E_INVALIDARG, null);
    Constructor(lpszString, strlen(lpszString) + 1, pFath, KpRecType_Text);
 }
 
 
 // ----------------------
-KpTreeEntry::KpTreeEntry(const KpChar *iazKpStr, KpTreeEntry *pFath)
+KpTreeEntry::KpTreeEntry(const KpChStr *pKpStr, KpTreeEntry *pFath)
 {
-   KP_ASSERT(iazKpStr != NULL, E_INVALIDARG, null, True);
-   Constructor(iazKpStr, (TvKpStrLen(iazKpStr) + 1) * sizeof(*iazKpStr), pFath, KpRecType_KpText);
+   KP_ASSERT(pKpStr != NULL, E_INVALIDARG, null);
+   Constructor(pKpStr, (pKpStr->Len() + 1) * sizeof(*pKpStr), pFath, KpRecType_KpText);
 }
 
 
@@ -100,15 +104,15 @@ KpTreeEntry::~KpTreeEntry()
 {
 KpTreeEntry *next_br = NULL;
 
-    while(m_pNextBrother != NULL)
+    while (m_pNextBrother != NULL)
     {
         next_br = NULL;
-        m_pNextBrother->GetNextBrother(&next_br);
+        next_br = m_pNextBrother->GetNextBrother();
         m_pNextBrother->SetNextBrother(NULL);
         m_pNextBrother->SetPrevBrother(NULL);
 
         KP_DELETE(m_pNextBrother);
-        if(next_br != NULL) next_br->SetPrevBrother(this);
+        if (next_br != NULL) next_br->SetPrevBrother(this);
         SetNextBrother(next_br);
     }
 
@@ -126,9 +130,9 @@ KpTreeEntry *next_entry;
 
     do
     {
-        cur_entry->GetFirstChild(&next_entry);
-        if(next_entry != NULL) cur_entry = next_entry;
-    } while(next_entry!=NULL);
+        next_entry = cur_entry->GetFirstChild();
+        if (next_entry != NULL) cur_entry = next_entry;
+    } while (next_entry!=NULL);
 
     KP_NEW(next_entry, KpTreeEntry(lpRecord, iSize, cur_entry, iRecType));
 
@@ -153,18 +157,10 @@ void KpTreeEntry::PutToEnd(const char *lpszString)
 
 
 // ----------------------
-void KpTreeEntry::PutToEnd(const KpChar *iazKpStr)
+void KpTreeEntry::PutToEnd(const KpChStr *pKpStr)
 {
-    KP_ASSERT(iazKpStr != NULL, E_INVALIDARG, null, True);
-    PutToEnd(iazKpStr, (TvKpStrLen(iazKpStr) + 1) * sizeof(*iazKpStr), KpRecType_KpText);
-}
-
-
-//-----------------------------------
-void KpTreeEntry::GetFather(KpTreeEntry **ppFath) const
-{
-    KP_ASSERT(ppFath != NULL, E_INVALIDARG, null);
-    *ppFath = m_pFather;
+    KP_ASSERT(pKpStr != NULL, E_INVALIDARG, null);
+    PutToEnd(pKpStr, (pKpStr->Len() + 1) * sizeof(*pKpStr), KpRecType_KpText);
 }
 
 
@@ -174,7 +170,7 @@ void KpTreeEntry::SetFather0(KpTreeEntry *pFath)
    m_pFather = pFath;
 
 // recursion
-   if(m_pNextBrother != NULL) m_pNextBrother->SetFather0(pFath);
+   if (m_pNextBrother != NULL) m_pNextBrother->SetFather0(pFath);
 }
 
 
@@ -192,12 +188,12 @@ void KpTreeEntry::SetFirstChild(KpTreeEntry *pChild)
 KpTreeEntry *father = NULL;
 KpTreeEntry *prev_brother = NULL;
     
-    if(pChild != NULL)
+    if (pChild != NULL)
     {
-        pChild->GetFather(&father);
+        father = pChild->GetFather();
         KP_ASSERT(father == this, KP_E_SYSTEM_ERROR, null);
 
-        pChild->GetPrevBrother(&prev_brother);
+        prev_brother = pChild->GetPrevBrother();
         KP_ASSERT(prev_brother == NULL, KP_E_SYSTEM_ERROR, null);
     }
 
@@ -208,7 +204,7 @@ KpTreeEntry *prev_brother = NULL;
 //-----------------------------------
 void KpTreeEntry::ConnectChild(KpTreeEntry *pChild)
 {
-    if(pChild != NULL)
+    if (pChild != NULL)
     {
         pChild->SetPrevBrother(NULL);
         pChild->SetFather(this);
@@ -219,21 +215,13 @@ void KpTreeEntry::ConnectChild(KpTreeEntry *pChild)
 
 
 //-----------------------------------
-void KpTreeEntry::GetPrevBrother(KpTreeEntry **ppPrevBr) const
-{
-    KP_ASSERT(ppPrevBr != NULL, E_INVALIDARG, null);
-    *ppPrevBr = m_pPrevBrother;
-}
-
-
-//-----------------------------------
 void KpTreeEntry::SetPrevBrother(KpTreeEntry *pPrevBr)
 {
 KpTreeEntry *father = NULL;
 
-    if(pPrevBr != NULL)
+    if (pPrevBr != NULL)
     {
-        pPrevBr->GetFather(&father);
+        father = pPrevBr->GetFather();
         KP_ASSERT(father == m_pFather, KP_E_SYSTEM_ERROR, null);
     }
 
@@ -242,21 +230,13 @@ KpTreeEntry *father = NULL;
 
 
 //-----------------------------------
-void KpTreeEntry::GetNextBrother(KpTreeEntry **ppNextBr) const
-{
-   KP_ASSERT(ppNextBr != NULL, E_INVALIDARG, null);
-   *ppNextBr = m_pNextBrother;
-}
-
-
-//-----------------------------------
 void KpTreeEntry::SetNextBrother(KpTreeEntry *pNextBr)
 {
 KpTreeEntry *father = NULL;
 
-    if(pNextBr != NULL)
+    if (pNextBr != NULL)
     {
-        pNextBr->GetFather(&father);
+        father = pNextBr->GetFather();
         KP_ASSERT(father == m_pFather, KP_E_SYSTEM_ERROR, null);
     }
 
@@ -267,7 +247,7 @@ KpTreeEntry *father = NULL;
 //-----------------------------------
 void KpTreeEntry::ConnectBrother(KpTreeEntry *pNextBr)
 {
-    if(pNextBr != NULL)
+    if (pNextBr != NULL)
     {
         pNextBr->SetPrevBrother(NULL);
         pNextBr->SetFather(m_pFather);
@@ -286,8 +266,8 @@ KpTreeEntry *next_brother = NULL;
 
     KP_ASSERT(pChild != NULL, E_INVALIDARG, null);
     pChild->SetFather(this);
-    pChild->GetPrevBrother(&prev_brother);
-    pChild->GetNextBrother(&next_brother);
+    prev_brother = pChild->GetPrevBrother();
+    next_brother = pChild->GetNextBrother();
     KP_ASSERT((prev_brother == NULL) && (next_brother == NULL), E_INVALIDARG, null);
 
     pChild->ConnectBrother(m_pFirstChild);
@@ -302,23 +282,23 @@ KpTreeEntry *prev_brother = NULL;
 KpTreeEntry *cur_brother = NULL;
 KpTreeEntry *next_brother = NULL;
 
-    KP_ASSERT(pChild != NULL, E_INVALIDARG, null, True);
+    KP_ASSERT(pChild != NULL, E_INVALIDARG, null);
 
     pChild->SetFather(this);
 
-    pChild->GetPrevBrother(&prev_brother);
-    pChild->GetNextBrother(&next_brother);
+    prev_brother = pChild->GetPrevBrother();
+    next_brother = pChild->GetNextBrother();
     KP_ASSERT((prev_brother == NULL) && (next_brother == NULL), E_INVALIDARG, null);
 
-    if(m_pFirstChild == NULL) retc = ConnectChild(pChild);
+    if (m_pFirstChild == NULL) ConnectChild(pChild);
     else
     {
         next_brother = m_pFirstChild;
         do
         {
             cur_brother = next_brother;
-            cur_brother->GetNextBrother(&next_brother);
-        } while(next_brother != NULL);
+            next_brother = cur_brother->GetNextBrother();
+        } while (next_brother != NULL);
 
         cur_brother->ConnectBrother(pChild);
     }
@@ -334,16 +314,16 @@ KpTreeEntry *next_brother = NULL;
 
     KP_ASSERT(pBrother != NULL, E_INVALIDARG, null);
 
-    pBrother->GetPrevBrother(&prev_brother);
-    pBrother->GetNextBrother(&next_brother);
+    prev_brother = pBrother->GetPrevBrother();
+    next_brother = pBrother->GetNextBrother();
     KP_ASSERT((prev_brother == NULL) && (next_brother == NULL), E_INVALIDARG, null);
 
     next_brother = this;
     do
     {
         cur_brother = next_brother;
-        cur_brother->GetNextBrother(&next_brother);
-    } while(next_brother != NULL);
+        next_brother = cur_brother->GetNextBrother();
+    } while (next_brother != NULL);
 
     cur_brother->ConnectBrother(pBrother);
 }
@@ -356,22 +336,22 @@ KpTreeEntry *list_ptr = NULL;
 
     KP_ASSERT(ppEntryPtr != NULL, E_INVALIDARG, null);
 
-    if(ppFatherPtr != NULL) *ppFatherPtr = NULL;
+    if (ppFatherPtr != NULL) *ppFatherPtr = NULL;
 
     *ppEntryPtr = NULL;
     list_ptr = this;
-    while(list_ptr != NULL)
+    while (list_ptr != NULL)
     {
-        if(pfCompare(list_ptr->GetValue(), pPattern) == 0)
+        if (pfCompare(list_ptr->GetValue(), pPattern) == 0)
         {
             *ppEntryPtr = list_ptr;
             break;
         }
-        if(ppFatherPtr) *ppFatherPtr = list_ptr;
+        if (ppFatherPtr) *ppFatherPtr = list_ptr;
 
-        if(list_ptr->m_pFirstChild != NULL) 
+        if (list_ptr->m_pFirstChild != NULL) 
             list_ptr->m_pFirstChild->SearchTreeEntry(pPattern, pfCompare, ppEntryPtr, ppFatherPtr);
-        if(*ppEntryPtr != NULL) break;
+        if (*ppEntryPtr != NULL) break;
 
         list_ptr = list_ptr->m_pNextBrother;
     }
@@ -391,13 +371,13 @@ int status = 0;
     *ppEntryPtr = NULL;
 
     loop_brother = this;
-    if(loop_brother != NULL) do
+    if (loop_brother != NULL) do
     {
         status = loop_brother->m_iStatus >> (KpNodeLevelShift * iLevel);
 
-        if((status & KpNodeVisible) != 0) (*piSel)--;
+        if ((status & KpNodeVisible) != 0) (*piSel)--;
 
-        if(*piSel == (-1))
+        if (*piSel == (-1))
         {
             *ppEntryPtr = loop_brother;
             break;
@@ -405,23 +385,23 @@ int status = 0;
         else
         {
 // recursion through children of children
-            if(
+            if (
                 (status & KpNodeExpanded) &&
                 (((status & KpNodeVisible) != 0) || (loop_brother==pCurGrandFather))
               )
             {
-                loop_brother->GetFirstChild(&first_child);
-                if(first_child != NULL) first_child->GetEntryPtr(piSel, ppEntryPtr, iLevel, pCurGrandFather);
+                first_child = loop_brother->GetFirstChild();
+                if (first_child != NULL) first_child->GetEntryPtr(piSel, ppEntryPtr, iLevel, pCurGrandFather);
             }
         }
 
-        if(loop_brother == pCurGrandFather) loop_brother = NULL;
-        else loop_brother->GetNextBrother((KpTreeEntry **)&loop_brother);
+        if (loop_brother == pCurGrandFather) loop_brother = NULL;
+        else loop_brother = loop_brother->GetNextBrother();
 
-   } while(loop_brother && (*piSel>=0) && SUCCEEDED(retc));
+   } while (loop_brother && (*piSel >= 0));
 
 // recursion on brothers
-// if(pNextBrother != NULL) pNextBrother->GetEntryPtr(piSel, ppEntryPtr, iLevel, pCurGrandFather);
+// if (pNextBrother != NULL) pNextBrother->GetEntryPtr(piSel, ppEntryPtr, iLevel, pCurGrandFather);
 }
 
 
@@ -430,39 +410,37 @@ void KpTreeEntry::DeleteChild(void)
 {
 KpTreeEntry *child_child_ptr = NULL;
 
-    if(m_pFirstChild != NULL)
+    if (m_pFirstChild != NULL)
     {
-        m_pFirstChild->GetFirstChild(&child_child_ptr);
+        child_child_ptr = m_pFirstChild->GetFirstChild();
 
         m_pFirstChild->SetFirstChild(NULL);
         KP_DELETE(m_pFirstChild);
         m_pFirstChild = child_child_ptr;
-        if(m_pFirstChild !-= NULL) m_pFirstChild->SetFather(this);
+        if (m_pFirstChild != NULL) m_pFirstChild->SetFather(this);
     }
-
-return(retc);
 }
 
 
 // ----------------------
 void DeleteKpTreeEntry(KpTreeEntry *pEntryPtr)
 {
-    KP_ASSERT(pEntryPtr != NULL, E_POINTER, null, True);
+    KP_ASSERT(pEntryPtr != NULL, E_POINTER, null);
 
 KpTreeEntry *next_brother = NULL;
-    pEntryPtr->GetNextBrother(&next_brother);
+    next_brother = pEntryPtr->GetNextBrother();
 
 KpTreeEntry *prev_brother = NULL;
-    pEntryPtr->GetPrevBrother(&prev_brother);
+    prev_brother = pEntryPtr->GetPrevBrother();
 
 KpTreeEntry *father = NULL;
-    pEntryPtr->GetFather(&father);
+    father = pEntryPtr->GetFather();
 
-    if(next_brother != NULL) next_brother->SetPrevBrother(prev_brother);
-    if(prev_brother != NULL) prev_brother->SetNextBrother(next_brother);
+    if (next_brother != NULL) next_brother->SetPrevBrother(prev_brother);
+    if (prev_brother != NULL) prev_brother->SetNextBrother(next_brother);
 
 // pirmas vaikas – nustatom naujà tëvo pirmà vaikà
-   if((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(next_brother);
+   if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(next_brother);
 
    pEntryPtr->SetNextBrother(NULL);
    pEntryPtr->SetPrevBrother(NULL);
@@ -471,25 +449,11 @@ KpTreeEntry *father = NULL;
 
 
 // ----------------------
-KpRecType KpTreeEntry::GetRecType(void) const
-{
-return(m_iRecType);
-}
-
-
-// ----------------------
-void *KpTreeEntry::GetValue(void) const
-{
-return(m_lpRecord);
-}
-
-
-// ----------------------
 int KpTreeEntry::GetValSize(void) const
 {
 int size = m_iRecSize;
    
-   if(size > 0) size--;
+   if (size > 0) size--;
     
 return(size);
 }
@@ -498,10 +462,10 @@ return(size);
 // ----------------------
 void KpTreeEntry::SetValue(const void *pValue, int iValSize)
 {
-   KP_ASSERT(pValue != NULL, E_INVALIDARG, null, True);
-   KP_ASSERT(iValSize >= 0, E_INVALIDARG, null, True);
+   KP_ASSERT(pValue != NULL, E_INVALIDARG, null);
+   KP_ASSERT(iValSize >= 0, E_INVALIDARG, null);
    
-   KP_ASSERT(iValSize < m_iRecSize, KP_E_BUFFER_OVERFLOW, null, True); // vienas baitas gale nuliui
+   KP_ASSERT(iValSize < m_iRecSize, KP_E_BUFFER_OVERFLOW, null); // vienas baitas gale nuliui
 
    memcpy(m_lpRecord, pValue, iValSize);
    m_lpRecord[iValSize] = Nul;
@@ -559,34 +523,33 @@ KpTreeEntry *loop_brother = NULL;
 KpTreeEntry *first_child = NULL;
 int status = 0;
 
-    if((piCnt != NULL) && (iLevel >= 0) && (iLevel < KpNodeNumOfLevels), E_INVALIDARG, null);
+    if ((piCnt != NULL) && (iLevel >= 0) && (iLevel < KpNodeNumOfLevels), E_INVALIDARG, null);
 
     loop_brother = this;
-    if(loop_brother != NULL) do
+    if (loop_brother != NULL) do
     {
         status = loop_brother->m_iStatus >> (KpNodeLevelShift * iLevel);
 
-        if((status & KpNodeVisible) != 0)
+        if ((status & KpNodeVisible) != 0)
             (*piCnt)++;
 
 // recursion through children of children
-        if(
+        if (
             (status & KpNodeExpanded) &&
             (((status & KpNodeVisible) != 0) || (loop_brother==pCurGrandFather))
           )
         {
-            loop_brother->GetFirstChild(&first_child);
-
-            if(first_child != NULL) first_child->CountEntries(piCnt, iLevel, pCurGrandFather);
+            first_child = loop_brother->GetFirstChild();
+            if (first_child != NULL) first_child->CountEntries(piCnt, iLevel, pCurGrandFather);
         }
 
-        if(loop_brother == pCurGrandFather) loop_brother = NULL;
-        else loop_brother->GetNextBrother(&loop_brother);
+        if (loop_brother == pCurGrandFather) loop_brother = NULL;
+        else loop_brother = loop_brother->GetNextBrother();
 
-    } while(loop_brother != NULL);
+    } while (loop_brother != NULL);
 
 // recursion on brothers
-// if(pNextBrother != NULL) pNextBrother->CountEntries(piCnt, iLevel, pCurGrandFather);
+// if (pNextBrother != NULL) pNextBrother->CountEntries(piCnt, iLevel, pCurGrandFather);
 }
 
 
@@ -598,19 +561,18 @@ KpTreeEntry *pt2 = NULL;
 KpTreeEntry *next_entry = NULL;
 
     pt1 = this;
-    while(pt1 != NULL)
+    while (pt1 != NULL)
     {
-        pt1->GetFirstChild(&pt2);
-
-        while(pt2 != NULL)
+        pt2 = pt1->GetFirstChild();
+        while (pt2 != NULL)
         {
-            if((*pfCompare)(pt1->GetValue(), pt2->GetValue()) > 0)
+            if ((*pfCompare)(pt1->GetValue(), pt2->GetValue()) > 0)
                 ChangeKpTreeNodes(pt1, pt2);
 
-            pt2->GetFirstChild(&next_entry);
+            next_entry = pt2->GetFirstChild();
             pt2 = next_entry;
         }
-        pt1->GetFirstChild(&next_entry);
+        next_entry = pt1->GetFirstChild();
         pt1 = next_entry;
     }
 }
@@ -625,21 +587,21 @@ void *val_ptr_1 = NULL;
 void *val_ptr_2 = NULL;
 
     pt1 = this;
-    while(pt1 != NULL)
+    while (pt1 != NULL)
     {
-        pt1->GetFirstChild(&pt2);
+        pt2 = pt1->GetFirstChild();
 
-        while(pt2 != NULL)
+        while (pt2 != NULL)
         {
             val_ptr_1 = pt1->GetValue();
             val_ptr_2 = pt2->GetValue();
-            if((*pfCompare)(&val_ptr_1, &val_ptr_2) > 0)
+            if ((*pfCompare)(&val_ptr_1, &val_ptr_2) > 0)
                 ChangeKpTreeNodes(pt1, pt2);
 
-            pt2->GetFirstChild(&next_entry);
+            next_entry = pt2->GetFirstChild();
             pt2 = next_entry;
         }
-        pt1->GetFirstChild(&next_entry);
+        next_entry = pt1->GetFirstChild();
         pt1 = next_entry;
     }
 }
@@ -656,25 +618,25 @@ int ii;
 
 // loop on brothers
     loop_brother = this;
-    while(loop_brother != NULL)
+    while (loop_brother != NULL)
     {
-        for(ii = 0; (ii < *piNumOfNodes); ii++)
+        for (ii = 0; (ii < *piNumOfNodes); ii++)
             KP_ASSERT(apNodesArray[ii] != loop_brother, KP_E_SYSTEM_ERROR, null);
 
         KP_ASSERT(*piNumOfNodes < XL_ND_MaxNumOfNodes, KP_E_BUFFER_OVERFLOW, null);
         apNodesArray[(*piNumOfNodes)++] = loop_brother;
 
-        loop_brother->GetFirstChild(&cur_node);
+        cur_node = loop_brother->GetFirstChild();
 
 // recursion through children of children first
-        if(cur_node != NULL) cur_node->TestNodeLoop(apNodesArray, piNumOfNodes);
+        if (cur_node != NULL) cur_node->TestNodeLoop(apNodesArray, piNumOfNodes);
 
-        loop_brother->GetNextBrother(&loop_brother);
+        loop_brother = loop_brother->GetNextBrother();
 
-   } // while(loop_brother != NULL)
+   } // while (loop_brother != NULL)
 
 // recursion on brothers
-// if(pNextBrother != NULL) pNextBrother->TestNodeLoop();
+// if (pNextBrother != NULL) pNextBrother->TestNodeLoop();
 }
 
 
@@ -701,26 +663,26 @@ const UCHAR *cur_str = null;
 int retv;
 
     loop_brother = this;
-    while(loop_brother != NULL)
+    while (loop_brother != NULL)
     {
         cur_str = (const UCHAR *)loop_brother->GetValue();
-        if(cur_str == NULL) cur_str = (const UCHAR *)"";
+        if (cur_str == NULL) cur_str = (const UCHAR *)"";
 
         retv = SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)cur_str);
         KP_ASSERT(retv != CB_ERR, KP_E_SYSTEM_ERROR, null);
         KP_ASSERT(retv != CB_ERRSPACE, KP_E_OUTOFMEM, null); 
 
 // recursion through children of children
-        loop_brother->GetFirstChild(&first_child);
+        first_child = loop_brother->GetFirstChild();
 
-        if(first_child != NULL) first_child->FormListBox(hListBox);
+        if (first_child != NULL) first_child->FormListBox(hListBox);
 
-        loop_brother->GetNextBrother(&loop_brother);
+        loop_brother = loop_brother->GetNextBrother();
 
-    } // while(loop_brother != NULL)
+    } // while (loop_brother != NULL)
 
 // recursion on brothers
-//  if(pNextBrother != NULL) pNextBrother->FormListBox(hListBox);
+//  if (pNextBrother != NULL) pNextBrother->FormListBox(hListBox);
 }
 
 
@@ -732,20 +694,20 @@ KpTreeEntry *loop_brother = NULL;
 
 // loop on brothers
     loop_brother = this;
-    while(loop_brother != NULL)
+    while (loop_brother != NULL)
     {
-        loop_brother->GetFirstChild(&first_child);
+        first_child = loop_brother->GetFirstChild();
         loop_brother->m_iStatus = 0;
 
-        for(int ii = 0; ii < KpNodeNumOfLevels; ii++)
+        for (int ii = 0; ii < KpNodeNumOfLevels; ii++)
         {
             loop_brother->m_iStatus |= KpNodeVisible << (KpNodeLevelShift * ii);
-            if(first_child != NULL) loop_brother->m_iStatus |= (KpNodeHasChildren | KpNodeExpanded) << (KpNodeLevelShift * ii);
+            if (first_child != NULL) loop_brother->m_iStatus |= (KpNodeHasChildren | KpNodeExpanded) << (KpNodeLevelShift * ii);
         }
 
 // recursion on children
-        if(first_child != NULL) first_child->InitNodeStatus();
-        loop_brother->GetNextBrother(&loop_brother);
+        if (first_child != NULL) first_child->InitNodeStatus();
+        loop_brother = loop_brother->GetNextBrother();
     }
 }
 
@@ -759,22 +721,22 @@ KpTreeEntry *loop_brother = NULL;
 // loop on brothers
 // ðiaip nereikëtø – chekboxiniai listai linijiniai (StartGrp)
     loop_brother = this;
-    while(loop_brother != NULL)
+    while (loop_brother != NULL)
     {
-        KP_ASSERT(m_iRecType == KpRecType_TextChk, E_UNEXPECTED, null, True);
+        KP_ASSERT(m_iRecType == KpRecType_TextChk, E_UNEXPECTED, null);
 
 // recursion on children
-        loop_brother->GetFirstChild(&first_child);
+        first_child = loop_brother->GetFirstChild();
 
-        if(first_child != NULL) first_child->Deselect();
+        if (first_child != NULL) first_child->Deselect();
 
 KpTextChk *val_ptr = NULL;
         val_ptr = (KpTextChk *)loop_brother->GetValue();
-        KP_ASSERT(val_ptr != NULL, E_POINTER, null, True);
-        KP_ASSERT(loop_brother->GetValSize() >= sizeof(KpTextChk), KP_E_SYSTEM_ERROR, null, True);
+        KP_ASSERT(val_ptr != NULL, E_POINTER, null);
+        KP_ASSERT(loop_brother->GetValSize() >= sizeof(KpTextChk), KP_E_SYSTEM_ERROR, null);
         val_ptr->m_bChecked = False;
 
-        loop_brother->GetNextBrother(&loop_brother);
+        loop_brother = loop_brother->GetNextBrother();
     }
 }
 
@@ -822,7 +784,7 @@ KpTreeEntry *father = NULL;
 
     KP_DELETEA(pNodeDst->m_lpRecord);
 
-    pNodeDst->GetFather(&father);
+    father = pNodeDst->GetFather();
     pNodeDst->Constructor(pNodeSrc->GetValue(), pNodeSrc->GetValSize(), father);
 
     pNodeDst->m_iRecType = pNodeSrc->m_iRecType;
@@ -834,7 +796,6 @@ KpTreeEntry *father = NULL;
 KpTextChk::KpTextChk()
 {
     m_lpszText[0] = Nul;
-    m_iazText[0] = C_Nul;
     m_bChecked = True; // varniukë paþymëta
 }
 
@@ -842,18 +803,18 @@ KpTextChk::KpTextChk()
 // -----------------------------------------
 void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pList)
 {
-    KP_ASSERT(piFullContLen != NULL, E_INVALIDARG, null, True);
+    KP_ASSERT(piFullContLen != NULL, E_INVALIDARG, null);
     *piFullContLen = 0;
 
 KpTreeEntry *cur_node = pList;
-    while(cur_node != NULL)
+    while (cur_node != NULL)
     {
 unsigned char *val_buf = (unsigned char *)cur_node->GetValue();
-        KP_ASSERT(val_buf != null, KP_E_SYSTEM_ERROR, null, True);
+        KP_ASSERT(val_buf != null, KP_E_SYSTEM_ERROR, null);
 
         *piFullContLen += strlen(val_buf);
 
-        cur_node->GetFirstChild(&cur_node);
+        cur_node = cur_node->GetFirstChild();
     }
 }
 
@@ -861,17 +822,17 @@ unsigned char *val_buf = (unsigned char *)cur_node->GetValue();
 // -----------------------------------------
 void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pList)
 {
-    KP_ASSERT(piFullContLen != NULL, E_INVALIDARG, null, True);
+    KP_ASSERT(piFullContLen != NULL, E_INVALIDARG, null);
     *piFullContLen = 0;
 
 KpTreeEntry *cur_node = pList;
-    while(cur_node != NULL)
+    while (cur_node != NULL)
     {
-KpChar *val_buf = (KpChar *)cur_node->GetValue();
-        KP_ASSERT(val_buf != NULL, KP_E_SYSTEM_ERROR, null, True);
+KpChStr *val_buf = (KpChStr *)cur_node->GetValue();
+        KP_ASSERT(val_buf != NULL, KP_E_SYSTEM_ERROR, null);
 
-        *piFullContLen += TvKpStrLen(val_buf);
+        *piFullContLen += val_buf->Len();
 
-        cur_node->GetFirstChild(&cur_node);
+        cur_node = cur_node->GetFirstChild();
     }
 }

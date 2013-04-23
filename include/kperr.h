@@ -92,7 +92,7 @@ public:
 
     static const unsigned char *m_lpszaKpMessages[NumOfKpMessages][KpNumOfLangs];
 
-    volatile int m_iInsideOfStackDump; // StackDump() recursion avoiding semaphore
+//  volatile int m_iInsideOfStackDump; // StackDump() recursion avoiding semaphore
     volatile int m_iInsideOfPutLogMessage; // PutLogMessage() recursion avoiding semaphore
     
     HRESULT m_lhLastRetc;
@@ -104,7 +104,7 @@ public:
     
     void GetProdName(UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
 
-    void StackDump(void);
+//  void StackDump(void);
     
     void GetLogFileName(UCHAR *lpszLogFNameBuf); // lpszFNameBuf[KP_MAX_FNAME_LEN + 1];
     void EncodeLogBuf(UCHAR *pBuffer, int iDataLen);

@@ -15,6 +15,8 @@
 #include <windows.h>
 #endif
 
+#include "kpstdlib.h"
+#include "kptt.h"
 #include "kpstring.h"
 
 // -----------------------------
@@ -38,3 +40,32 @@ UCHAR *strcat(UCHAR *dest, const CHAR *src)
 
 int strcmp(const UCHAR *str1, const UCHAR *str2)
    { return(strcmp((const CHAR *)str1, (const CHAR *)str2)); }
+
+
+// -----------------------------
+KpChStr::KpChStr(void)
+{
+    m_iazStr = NULL;
+}
+
+
+// -----------------------------
+KpChStr::~KpChStr(void)
+{
+    KP_DELETEA(m_iazStr);
+}
+
+
+// --------------------------------------------------
+int KpChStr::Len(void) const
+{
+int chr_cnt = 0;
+
+    if(m_iazStr != NULL)
+    {
+const KpChar *pnts = m_iazStr;
+        while(*pnts++ != C_Nul) chr_cnt++;
+    }
+
+return(chr_cnt);
+}

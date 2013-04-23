@@ -32,7 +32,7 @@ public:
 
 // --------------   
     KpCommonApp(const UCHAR *lpszProdName, int iProdVer);
-    virtual ~KpCommonApp(void) = {};
+    virtual ~KpCommonApp(void);
 
     virtual void Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void *pStackTop);  // pStackTop – caller stack top pointer,
     virtual void Close(void){}                                  // usually pointer to some local variable of the main() function

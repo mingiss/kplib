@@ -11,6 +11,10 @@
 #ifndef kpstdio_included
 #define kpstdio_included
 
+// ------------------------
+#define KP_LOG_EXT ((const UCHAR *)".log")
+
+// --------------------------
 #ifdef __cplusplus
 
 class KpStdIo

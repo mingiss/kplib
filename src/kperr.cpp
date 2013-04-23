@@ -22,6 +22,7 @@
 
 #include "kperrno.h"
 #include "kpstdlib.h"
+#include "kptt.h"
 #include "kpstring.h"
 #include "kpstdio.h"
 #include "kpmsg.h"
@@ -279,7 +280,7 @@ void KpException::Constructor
 // ---------------------
 KpErrorClass::KpErrorClass(const UCHAR *lpszProdName)
 {
-    m_iInsideOfStackDump = 0;
+//  m_iInsideOfStackDump = 0;
     m_iInsideOfPutLogMessage = 0;
    
     m_lhLastRetc = S_OK;
@@ -439,7 +440,7 @@ int msg_tail_pos = ll = strlen(out_text);
       
 // ----------------------
       PutLogMessage(out_text);
-      if(bSevereError) StackDump();
+//    if(bSevereError) StackDump();
 
       if(bSevereError || (lhRetc == KP_S_DIAG_MSG))
       {
@@ -453,6 +454,7 @@ int msg_tail_pos = ll = strlen(out_text);
 
 
 // ---------------------
+#if FALSE
 void KpErrorClass::StackDump(void)
 {
     if(m_iInsideOfStackDump++ == 0)
@@ -517,6 +519,7 @@ UCHAR hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
     m_iInsideOfStackDump--;
     if(m_iInsideOfStackDump < 0) m_iInsideOfStackDump = 0;
 }
+#endif
 
 
 // ----------------------------------------------
@@ -575,9 +578,9 @@ time_t ltime;
 tm *tm_ptr = NULL;
         tm_ptr = gmtime(&ltime);
         KP_ASSERT(tm_ptr != NULL, KP_E_SYSTEM_ERROR, null);
-UCHAR *prod_name = "kperr";
+const UCHAR *prod_name = (const UCHAR *)"kperr";
 int prod_ver = 0;
-UCHAR *prod_date = ltime;
+const UCHAR *prod_date = (const UCHAR *)"0000-00-00";
         if(KpApp != NULL)
         {
             prod_name = KpApp->m_lpszProdName;

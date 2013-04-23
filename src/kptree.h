@@ -19,7 +19,7 @@
 
 typedef struct
 {
-   unsigned char m_lpszText[KP_MAX_FILE_LIN_WDT + 1];
+   unsigned char m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
    HBITMAP m_hBmp;
 } KpTextBmp;
 
@@ -32,8 +32,8 @@ typedef struct
 class KpTextChk
 {
 public:
-   unsigned char m_lpszText[KP_MAX_FILE_LIN_WDT + 1];
-   KpChar m_iazText[KP_MAX_FILE_LIN_WDT + 1];
+   unsigned char m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
+   KpChStr m_KpStr;
    bool m_bChecked;
 
    KpTextChk(void);
@@ -46,7 +46,7 @@ typedef enum
    KpRecType_TextBmp,   // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
    KpRecType_BmpBmp,    // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
    KpRecType_TextChk,   // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
-   KpRecType_KpText,    // KpChar * - iaz wide character array, any length
+   KpRecType_KpText,    // KpChStr - wide character array, any length
 
 } KpRecType; 
 
@@ -99,7 +99,7 @@ public:
    KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // create new record entry, iSize - size in bytes of the record
    KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
    KpTreeEntry(const char *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
-   KpTreeEntry(const KpChar *iazKpStr, KpTreeEntry *pFath); // iazKpStr - wide text string to initialize
+   KpTreeEntry(const KpChStr *pKpStr, KpTreeEntry *pFath); // iazKpStr - wide text string to initialize
    void Constructor(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // *lpRecord po gráþimo galima sunaikinti
 
    virtual ~KpTreeEntry();
@@ -113,7 +113,7 @@ public:
                                              // pChild cannot be deleted after successfull SetFirstChild()
                                              // pChild->m_pFather turi sutapti su this
                                              // pChild->m_pPrevBrother turi buti NULL
-   void GetFirstChild(KpTreeEntry **ppChild) const;
+   KpTreeEntry *GetFirstChild(void) const { return(m_pFirstChild); }
                                              // gets value of m_pFirstChild
                                              // gets pointer to next entry of the linear list
                                              // NULL - last entry
@@ -124,15 +124,15 @@ public:
       // lpszString - text string as new entry (after the deepest child)
    void PutToEnd(const char *lpszString);
       // lpszString - text string as new entry (after the deepest child)
-   void PutToEnd(const KpChar *iazKpStr);
+   void PutToEnd(const KpChStr *pKpStr);
       // iazKpStr - text wide string as new entry (after the deepest child)
 
    void DeleteChild(void);
       // ismeta viena vaika, anukus pastumia i vaiko vieta
 
-   KpRecType GetRecType(void) const; // get record type identifier m_iRecType
+   KpRecType GetRecType(void) const { return(m_iRecType); } // get record type identifier m_iRecType
 
-   void *GetValue(void) const; // get record buffer pointer m_lpRecord
+   void *GetValue(void) const { return(m_lpRecord); } // get record buffer pointer m_lpRecord
    int GetValSize(void) const; // get count of bytes of record value
 
    void SetValue(const void *pValue, int iValSize);
@@ -159,8 +159,8 @@ public:
    // check <this> for existence before calling
 
    void GetEntryPtr(int *piSel, KpTreeEntry **ppEntryPtr, int iLevel, const KpTreeEntry *pCurGrandFather);
-   // *piSel - iraso numeris nuo saknies (pirma vaikai, po to broliai - kaip katalogu medzio ListBox'o vaizde
-   // *piSel gadinamas - naudojamas kaip darbinis kintamasis
+   // *piSel - áraðo numeris nuo ðaknies (pirma vaikai, po to broliai - kaip katalogø medþio ListBox'o vaizde
+   // *piSel áeinant turi bûti -1; gadinamas - naudojamas kaip darbinis kintamasis
    // *ppEntryPtr==NULL - iSel exceeded real count of entries in pStartEntry
    // iLevel: 0 - low level KP_LISTBOX, 1 - high
    // pCurGrandFather - top level node - for tree branches, NULL - whole tree
@@ -192,7 +192,7 @@ public:
 // ------------------------------
 // tree management methods
 
-   void GetFather(KpTreeEntry **ppFath) const;
+   KpTreeEntry *GetFather(void) const { return(m_pFather); };
 
    void SetFather0(KpTreeEntry *pFath);         // recursive entry
    void SetFather(KpTreeEntry *pFath);          // main entry
@@ -204,11 +204,11 @@ public:
    void ConnectChild(KpTreeEntry *pChild);      // pChild cannot be deleted after successfull ConnectChild()
                                                    // nustato pChild->pFather i this, pChild->pPrevBrother i NULL
 
-   void GetPrevBrother(KpTreeEntry **ppPrevBr) const;
+   KpTreeEntry *GetPrevBrother(void) const { return(m_pPrevBrother); }
    void SetPrevBrother(KpTreeEntry *pPrevBr);   // pPrevBr cannnot be deleted after successfull SetPrevBrother()
                                                    // pPrevBr->pFather turi sutapti su this->pFather
 
-   void GetNextBrother(KpTreeEntry **ppNextBr) const;
+   KpTreeEntry *GetNextBrother(void) const { return(m_pNextBrother); }
    void SetNextBrother(KpTreeEntry *pNextBr);   // nustato sekantá brolá ðiam mazgui (this)
                                                    // pNextBr cannnot be deleted after successfull SetNextBrother()
                                                    // pNextBr->pFather turi sutapti su this->pFather
@@ -258,7 +258,7 @@ extern void CopyKpTreeNodeAllocate(KpTreeEntry *pNodeDst, /* const */ KpTreeEntr
 
 // ------------------- suskaièiuoja teksto eiluèiø sàraðo bendrà ilgá
 extern void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pCharList); // *pList – char[] stringø sàraðas
-extern void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pKpCharList); // *pList – KpChar[] stringø sàraðas
+extern void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pKpCharList); // *pList – KpChStr stringø sàraðas
 
 #endif // #ifndef kptree_included
 

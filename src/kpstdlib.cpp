@@ -19,6 +19,7 @@
 
 #include "kperrno.h"
 #include "kpstdlib.h"
+#include "kptt.h"
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
@@ -134,7 +135,7 @@ UCHAR msg_out[MAX_LONG_HEX_DIGITS + 5];
 int ix = SearchHeapEntry(pDelPtr);
    KP_ASSERTW(ix >= 0, KP_E_SYSTEM_ERROR, msg_out);
    KP_ASSERTW(m_KpHeapArray[ix].m_bArrayFl == bArrayFl, KP_E_SYSTEM_ERROR, msg_out);
-   if(FAILED(retc)) KpError.StackDump();
+// if(FAILED(retc)) KpError.StackDump();
 
    if((ix >= 0) /* SUCCEEDED(retc) */)
    {
