@@ -17,6 +17,7 @@
 
 #include "kpstring.h"
 
+// -----------------------------
 size_t strlen(const UCHAR *src){ return(strlen((const CHAR *)src)); }
 
 UCHAR *strcpy(UCHAR *dest, const UCHAR *src)

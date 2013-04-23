@@ -11,6 +11,8 @@
 #ifndef kpstdio_included
 #define kpstdio_included
 
+#ifdef __cplusplus
+
 class KpStdIo
 {
 public:
@@ -23,5 +25,7 @@ public:
       const UCHAR *lpszFullName      
    );
 };
+
+#endif // #ifdef __cplusplus
 
 #endif // #ifndef kpstdio_included

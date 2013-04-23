@@ -19,10 +19,70 @@
 
 #include "kperrno.h"
 #include "kpstdlib.h"
+#include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
+#include "kpcapp.h"
 
-// ----------------------------------------- malloc
+using namespace std;
+
+
+// ========================================= KpLib 
+KpCommonApp *KpAppAlloc = NULL; // pointer to dynamycally allocated KpApp 
+
+void KpInit(const UCHAR *ProdName, const void *pStackTop)
+{
+    try
+    {
+        if (KpApp == NULL) // allocate just in case of non static *KpApp object
+        {
+            KP_NEW(KpAppAlloc, KpCommonApp(ProdName, 0));
+            KpApp = KpAppAlloc;
+        }
+        KpApp->Init(GetModuleHandle(NULL), 
+#ifdef WIN32
+            (const UCHAR *)GetCommandLine(),
+#else
+// TODO Linux: get cmd line
+            ProdName,
+#endif             
+            pStackTop);
+    }
+    catch(const exception &e)
+    {
+        KP_CATCH(e);
+    }
+    catch(...)
+    {
+        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+    }
+}
+
+
+void KpClose(void)
+{
+    try
+    {
+        KP_ASSERT(KpApp != NULL, E_POINTER, null);
+        KpApp->Close();
+        if(KpAppAlloc != NULL)
+        {
+            KP_DELETE(KpAppAlloc /* KpApp */); // delete just dynamically allocated *KpApp object
+            KpApp = KpAppAlloc;
+        }
+    }
+    catch(const exception &e)
+    {
+        KP_CATCH(e);
+    }
+    catch(...)
+    {
+        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+    }
+}
+
+
+// ========================================= malloc
 
 // -----------------------------
 // memory allocation control

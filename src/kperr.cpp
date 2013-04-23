@@ -26,17 +26,22 @@
 #include "kpstdio.h"
 #include "kpmsg.h"
 #include "kpmsg_en.h"
-#include "kpmsg_lt.h"
-#include "kpmsg_pl_1250.h"
-#include "kpmsg_pl_1257.h"
-#include "kpmsg_ru.h"
+#if (MsgLang == KpLangLt_p) || (MsgLang == KpLangSel_p)
+#   include "kpmsg_lt.h"
+#endif
+#if (MsgLang == KpLangPl_1250_p) || (MsgLang == KpLangPl_p)
+#   include "kpmsg_pl_1250.h"
+#endif
+#if (MsgLang == KpLangPl_1257_p) || (MsgLang == KpLangPl_p)
+#   include "kpmsg_pl_1257.h"
+#endif
+#if (MsgLang == KpLangRu_1251_p) || (MsgLang == KpLangRu_0_p) || (MsgLang == KpLangRu_p)
+#   include "kpmsg_ru.h"
+#endif
 #include "kperr.h"
 #include "kpcapp.h"
 
 using namespace std;
-
-// ---------------------
-KpErrorClass KpError;
 
 
 // ------------------------------------ bendri kp programų pranešimai
@@ -272,15 +277,31 @@ void KpException::Constructor
    
 
 // ---------------------
-KpErrorClass::KpErrorClass(void)
+KpErrorClass::KpErrorClass(const UCHAR *lpszProdName)
 {
-   m_iInsideOfStackDump = 0;
-   m_iInsideOfPutLogMessage = 0;
+    m_iInsideOfStackDump = 0;
+    m_iInsideOfPutLogMessage = 0;
    
-   m_lhLastRetc = S_OK;
-   m_lpszLastMessageText[0] = Nul;
-   m_lpszLastSourceFile[0] = Nul;
-   m_iLastSourceLine = 0;
+    m_lhLastRetc = S_OK;
+    m_lpszLastMessageText[0] = Nul;
+    m_lpszLastSourceFile[0] = Nul;
+    m_iLastSourceLine = 0;
+
+    m_lpszProdName[0] = Nul;
+   
+    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
+    strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
+    m_lpszProdName[KP_MAX_FNAME_LEN] = Nul;
+}
+
+
+
+
+// ----------------------------------
+void KpErrorClass::GetProdName(UCHAR *lpszNameBuf)
+{
+    KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
+    strcpy(lpszNameBuf, m_lpszProdName);
 }
 
 
@@ -354,7 +375,8 @@ const UCHAR *msgptr = (const UCHAR *)"";
 void KpErrorClass::SendDiagMsg(const UCHAR *lpszMessageText, bool bSevereError, const UCHAR *lpszAddMessage) 
 {
 #ifdef KP_CONSOLE
-   cout << lpszMessageText << endl;
+// cout << lpszMessageText << endl;
+   printf((const CHAR *)lpszMessageText); printf("\n");
 #else
 #error Not yet implemented
 #endif
@@ -421,7 +443,9 @@ int msg_tail_pos = ll = strlen(out_text);
 
       if(bSevereError || (lhRetc == KP_S_DIAG_MSG))
       {
-         out_text[msg_tail_pos] = Nul;
+#ifndef Debug
+//       out_text[msg_tail_pos] = Nul;
+#endif         
          SendDiagMsg(out_text, bSevereError, out_text + msg_tail_pos + 1);
       }
    }
@@ -431,61 +455,67 @@ int msg_tail_pos = ll = strlen(out_text);
 // ---------------------
 void KpErrorClass::StackDump(void)
 {
-   if(m_iInsideOfStackDump++ == 0)
-   {
-   
+    if(m_iInsideOfStackDump++ == 0)
+    {
 // --------------------
-      KP_ASSERT(sizeof(int) == sizeof(unsigned int *), KP_E_SYSTEM_ERROR, null);
-unsigned int *stack_top = NULL;
+        KP_ASSERT(sizeof(int) == sizeof(unsigned int *), KP_E_SYSTEM_ERROR, null);
+
+// --------------------
 unsigned int ebp_buf = 0;
-
-// --------------------
 #ifdef __MINGW32__
-      asm("movl %%ebp, %0\n":"=r"(ebp_buf));
-      KP_ASSERT(ebp_buf != 0, KP_E_SYSTEM_ERROR, null);
+        asm("movl %%ebp, %0\n":"=r"(ebp_buf));
+        KP_ASSERT(ebp_buf != 0, KP_E_SYSTEM_ERROR, null);
 #endif
+const unsigned int *stack_ptr = (const unsigned int *)ebp_buf;
 
 // --------------------
+const unsigned int *stack_top = NULL;
+const unsigned int *stack_top_os = NULL;
 #ifdef __MINGW32__
 THREAD_BASIC_INFORMATION basicInfo;
 NT_TIB *tib_ptr = NULL;
 NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
  
-      retw = NtQueryInformationThread(GetCurrentThread(), 
-         ThreadBasicInformation, &basicInfo, sizeof(THREAD_BASIC_INFORMATION), NULL);
-      KP_ASSERT(retw == STATUS_SEVERITY_SUCCESS, KP_E_SYSTEM_ERROR, retw);
+        retw = NtQueryInformationThread(GetCurrentThread(), 
+            ThreadBasicInformation, &basicInfo, sizeof(THREAD_BASIC_INFORMATION), NULL);
+        KP_ASSERT(retw == STATUS_SEVERITY_SUCCESS, KP_E_SYSTEM_ERROR, retw);
       
-      tib_ptr = (NT_TIB *)basicInfo.TebBaseAddress;
-      KP_ASSERT(tib_ptr != NULL, KP_E_SYSTEM_ERROR, null);
+        tib_ptr = (NT_TIB *)basicInfo.TebBaseAddress;
+        KP_ASSERT(tib_ptr != NULL, KP_E_SYSTEM_ERROR, null);
    
-      stack_top = (unsigned int *)tib_ptr->StackBase;
-      KP_ASSERT(stack_top != NULL, KP_E_SYSTEM_ERROR, null);
+        stack_top = stack_top_os = (unsigned int *)tib_ptr->StackBase;
+        KP_ASSERT(stack_top != NULL, KP_E_SYSTEM_ERROR, null);
 #endif
+        if (KpApp != NULL) if (KpApp->m_pStackTop != NULL)
+            stack_top = (const unsigned int *)KpApp->m_pStackTop;
+        
+        KpError.PutLogMessage("Stack ptr: %lx  Stack top: %lx  Stack top local: %lx\n", stack_ptr, stack_top_os, stack_top);
 
 // --------------------
-      if((ebp_buf != 0) && (stack_top != NULL))
-      {
+        if((ebp_buf != 0) && (stack_top != NULL))
+        {   
 UCHAR *out_buf = null;
-         KP_NEWA(out_buf, UCHAR, KP_MAX_FILE_LIN_LEN + 1);
+            KP_NEWA(out_buf, UCHAR, KP_MAX_FILE_LIN_LEN + 1);
 
-         out_buf[0] = Nul;
-const unsigned int *stack_ptr = (const unsigned int *)ebp_buf;
-         while((stack_ptr < stack_top - 0x40) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
-         {
+            strcpy(out_buf, "Stack call trace: ");
+            while((stack_ptr < stack_top - 4 /* 0x40 */) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
+            {
 UCHAR hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
-            sprintf((CHAR *)hex_buf, "%08x ", stack_ptr[1]);
-            strcat(out_buf, hex_buf);
-            stack_ptr = (const unsigned int *)(*stack_ptr);
-         }
-         KpError.PutLogMessage(out_buf);
+                sprintf((CHAR *)hex_buf, "%08x ", stack_ptr[1]);
+                strcat(out_buf, hex_buf);
+                stack_ptr = (const unsigned int *)(*stack_ptr);
+                if (stack_ptr == NULL) break;
+            }
 
-         KP_DELETEA(out_buf);
-      }
+            KpError.PutLogMessage(out_buf);
+
+            KP_DELETEA(out_buf);
+        }
 
 // --------------------
-   }
-   m_iInsideOfStackDump--;
-   if(m_iInsideOfStackDump < 0) m_iInsideOfStackDump = 0;
+    }
+    m_iInsideOfStackDump--;
+    if(m_iInsideOfStackDump < 0) m_iInsideOfStackDump = 0;
 }
 
 
@@ -500,88 +530,112 @@ void KpErrorClass::EncodeLogBuf(UCHAR *pBuffer, int iDataLen)
 // ----------------------------------------------
 void KpErrorClass::GetLogFileName(UCHAR *lpszLogFNameBuf)
 {
-   KP_ASSERT(lpszLogFNameBuf != null, E_INVALIDARG, null);
+    KP_ASSERT(lpszLogFNameBuf != null, E_INVALIDARG, null);
    
 const UCHAR *temp_dir = null;
-   temp_dir = (UCHAR *)getenv("TEMP");
-   KP_ASSERT(temp_dir != null, KP_E_SYSTEM_ERROR, null);
+#ifdef WIN32
+    temp_dir = (const UCHAR *)getenv("TEMP");
+    KP_ASSERT(temp_dir != null, KP_E_SYSTEM_ERROR, null);
+#else
+    temp_dir = (const UCHAR *)".";
+#endif   
 
 static UCHAR app_name[KP_MAX_FNAME_LEN + 1];
-   KP_ASSERT(KpApp != NULL, KP_E_SYSTEM_ERROR, null);
-   KpApp->GetAppName(app_name);
+    GetProdName(app_name);
+    if(KpApp != NULL) KpApp->GetAppName(app_name);
 
 static UCHAR app_disk[KP_MAX_FNAME_LEN + 1];
 static UCHAR app_path[KP_MAX_FNAME_LEN + 1];
 static UCHAR app_fname[KP_MAX_FNAME_LEN + 1];
 static UCHAR app_ftype[KP_MAX_FNAME_LEN + 1];
-   KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
+    KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
 
 const UCHAR *log_ftype = (const UCHAR *)".log";   
-   KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-   strcpy(lpszLogFNameBuf, temp_dir);
-   strcat(lpszLogFNameBuf, "/");
-   strcat(lpszLogFNameBuf, app_fname);
-   strcat(lpszLogFNameBuf, log_ftype);
+    KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+    strcpy(lpszLogFNameBuf, temp_dir);
+    strcat(lpszLogFNameBuf, "/");
+    strcat(lpszLogFNameBuf, app_fname);
+    strcat(lpszLogFNameBuf, log_ftype);
 }
 
 
 // ----------------------------------------------
 void KpErrorClass::PutLogMessage(const UCHAR *lpszFmt, va_list Args)
 {
-   if(m_iInsideOfPutLogMessage++ == 0)
-   {
+    if(m_iInsideOfPutLogMessage++ == 0)
+    {
 // --------------------
+
 UCHAR *out_str = null;   
-      KP_NEWA(out_str, UCHAR, KP_MAX_FILE_LIN_LEN + strlen(lpszFmt) * 10 + 1);
+        KP_NEWA(out_str, UCHAR, KP_MAX_FILE_LIN_LEN + strlen(lpszFmt) * 10 + 1);
 
 // --------------------
 time_t ltime;
-      time(&ltime);
+        time(&ltime);
 tm *tm_ptr = NULL;
-      tm_ptr = gmtime(&ltime);
-      KP_ASSERT(tm_ptr != NULL, KP_E_SYSTEM_ERROR, null);
-      KP_ASSERT(KpApp != NULL, KP_E_SYSTEM_ERROR, null);
-      sprintf((CHAR *)out_str, "%04d.%02d.%02d %02d:%02d:%02d %s[%05d:%s] %ld ",
-         1900 + tm_ptr->tm_year, 1 + tm_ptr->tm_mon, tm_ptr->tm_mday, tm_ptr->tm_hour + 2, tm_ptr->tm_min, tm_ptr->tm_sec,
-         KpApp->m_lpszProdName, KpApp->m_iProdVer, KpApp->m_lpszProdDate, ltime);
+        tm_ptr = gmtime(&ltime);
+        KP_ASSERT(tm_ptr != NULL, KP_E_SYSTEM_ERROR, null);
+UCHAR *prod_name = "kperr";
+int prod_ver = 0;
+UCHAR *prod_date = ltime;
+        if(KpApp != NULL)
+        {
+            prod_name = KpApp->m_lpszProdName;
+            prod_ver = KpApp->m_iProdVer;
+            prod_date = KpApp->m_lpszProdDate;
+        }
+        sprintf((CHAR *)out_str, "%04d.%02d.%02d %02d:%02d:%02d %s[%05d:%s] %ld ",
+            1900 + tm_ptr->tm_year, 1 + tm_ptr->tm_mon, tm_ptr->tm_mday, tm_ptr->tm_hour + 2, tm_ptr->tm_min, tm_ptr->tm_sec,
+            prod_name, prod_ver, prod_date, ltime);
 
 // --------------------
-      if(lpszFmt != null)
-         vsprintf((CHAR *)out_str + strlen(out_str), (const CHAR *)lpszFmt, Args);
-      strcat(out_str, "\n");
+        if(lpszFmt != null)
+            vsprintf((CHAR *)out_str + strlen(out_str), (const CHAR *)lpszFmt, Args);
+        strcat(out_str, "\n");
 
 // --------------------
 int out_str_len = strlen(out_str);
 #  ifdef ENCODE_LOG
-      if(SUCCEEDED(retc)) retc = EncodeLogBuf(out_str, out_str_len);
+        if(SUCCEEDED(retc)) retc = EncodeLogBuf(out_str, out_str_len);
 #  endif
+
+// --------------------
+#if TRUE // #ifdef Debug
+//      cout << out_str;
+        printf((const CHAR *)out_str);
+
+#else // #ifdef Debug        
 // --------------------
 static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
-      GetLogFileName(log_fname);
+        GetLogFileName(log_fname);
+
+// --------------------
 FILE *log_file = NULL;
-      log_file = fopen((const CHAR *)log_fname, 
+        log_file = fopen((const CHAR *)log_fname, 
 #  ifdef KP_ENCODE_LOG
-         "ab"
+            "ab"
 #  else
-         "a"
+            "a"
 #  endif         
-         );
-      KP_ASSERT(log_file != NULL, KP_E_DIR_ERROR, log_fname);
+            );
+        KP_ASSERT(log_file != NULL, KP_E_DIR_ERROR, log_fname);
 
 // --------------------
-      fwrite(out_str, out_str_len, 1, log_file);
-      KP_ASSERT((!feof(log_file)) && (!ferror(log_file)), KP_E_FERROR, log_fname);
+        fwrite(out_str, out_str_len, 1, log_file);
+        KP_ASSERT((!feof(log_file)) && (!ferror(log_file)), KP_E_FERROR, log_fname);
 
 // --------------------
-      KP_ASSERT(fclose(log_file) == 0, KP_E_FERROR, log_fname);
+        KP_ASSERT(fclose(log_file) == 0, KP_E_FERROR, log_fname);
+
+#endif // #ifdef Debug
 
 // --------------------
-      KP_DELETEA(out_str);
+        KP_DELETEA(out_str);
   
 // --------------------
-   }
-   m_iInsideOfPutLogMessage--;
-   if(m_iInsideOfPutLogMessage < 0) m_iInsideOfPutLogMessage = 0;
+    }
+    m_iInsideOfPutLogMessage--;
+    if(m_iInsideOfPutLogMessage < 0) m_iInsideOfPutLogMessage = 0;
 }
 
 

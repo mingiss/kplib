@@ -2,7 +2,7 @@
  *
  * kpstdlib.h
  *
- *    common definitions for all Kp C++ projects
+ *    common definitions for all KpLib driven projects
  *
  * 2013-02-22  mp  initial creation
  *
@@ -12,39 +12,13 @@
 #define kpstdlib_included
 
 
-// ========================================= data types
-typedef UCHAR * KpStrPtr;
-#define null ((const KpStrPtr)NULL) // null pointer to the string
-
-#ifndef TRUE
-#define TRUE (~0)
-#endif
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#define True ((bool)TRUE)
-#define False ((bool)FALSE)
-
-#ifdef __MINGW32__
-#define va_list __VALIST 
-#ifndef va_start
-#define va_start __builtin_va_start
-#endif
-#endif
-
-#ifndef WIN32
-typedef unsigned long HINSTANCE;
-#endif
-
-
-// ========================================= file I/O
-#define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis
-#define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist – pasikeis kpstart.ini dydis
-#define KP_MAX_FILE_LIN_LEN 4096
-
 
 // ========================================= kptt
+#ifndef WIN32
+typedef char CHAR;
+typedef unsigned char UCHAR;
+typedef unsigned long DWORD;
+#endif
 #define Nul ((UCHAR)0)
 #define Spc ((UCHAR)(' '))
 
@@ -85,7 +59,54 @@ typedef enum
 #define KpNumOfLangs_2 KpNumOfLangs // masyvų riboms, padidinti kiekvieną kartą, pasikeitus kalbų skaičiui
 
 
+// ========================================= KpLib 
+// KpLib initialization/destruction procedures for plain C projects
+#ifdef __cplusplus
+#define PLAIN_C "C"
+#else 
+#define PLAIN_C
+#endif
+
+extern PLAIN_C void KpInit(const UCHAR *ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer, 
+extern PLAIN_C void KpClose(void);                  // usually pointer to some local variable of the main() function
+                                                    // could be NULL
+
+// ========================================= data types
+#ifndef TRUE
+#define TRUE (~0)
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#define True ((bool)TRUE)
+#define False ((bool)FALSE)
+
+#ifdef __MINGW32__
+#define va_list __VALIST 
+#endif
+#ifdef __GNUC__
+#define va_list __gnuc_va_list 
+#endif
+#ifndef va_start
+#define va_start __builtin_va_start
+#endif
+
+#ifndef WIN32
+typedef unsigned long HINSTANCE;
+typedef long LONG;
+#endif
+
+
+// ========================================= file I/O
+#define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis
+#define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist – pasikeis kpstart.ini dydis
+#define KP_MAX_FILE_LIN_LEN 4096
+
+
 // ========================================= malloc
+#ifdef __cplusplus
+
 #ifdef KP_ALLOC_TRACE
 #define KP_ALLOC_SAFE
 #endif
@@ -126,6 +147,7 @@ public:
 extern KpHeapClass KpHeap;
 
 #endif // #ifdef KP_ALLOC_SAFE
+
 
 // -------------
 #ifdef KP_ALLOC_SAFE
@@ -200,6 +222,8 @@ extern KpHeapClass KpHeap;
          (ptr) = NULL; \
 	  } \
    }}
+
+#endif // #ifdef __cplusplus
 
 
 // ================================================== integer types and constants, math
