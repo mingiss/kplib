@@ -11,6 +11,8 @@
 #ifndef kperr_included
 #define kperr_included
 
+#ifdef __cplusplus
+
 // ---------------------------------------- assertions
 // KP_ASSERT[W[0]](bool bCond, HRESULT lhErrCode, UCHAR *Msg);
 //    assertion, whether bCond is kept
@@ -86,6 +88,8 @@ public:
 class KpErrorClass
 {
 public:
+    UCHAR m_lpszProdName[KP_MAX_FNAME_LEN + 1];
+
     static const unsigned char *m_lpszaKpMessages[NumOfKpMessages][KpNumOfLangs];
 
     volatile int m_iInsideOfStackDump; // StackDump() recursion avoiding semaphore
@@ -96,8 +100,10 @@ public:
     UCHAR m_lpszLastSourceFile[KP_MAX_FNAME_LEN + 1];
     int m_iLastSourceLine;
     
-    KpErrorClass(void);
+    KpErrorClass(const UCHAR *lpszProdName);
     
+    void GetProdName(UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+
     void StackDump(void);
     
     void GetLogFileName(UCHAR *lpszLogFNameBuf); // lpszFNameBuf[KP_MAX_FNAME_LEN + 1];
@@ -183,4 +189,5 @@ va_list argptr;
 extern KpErrorClass KpError;
 
 // ----------------------------------------
+#endif // #ifdef __cplusplus
 #endif // #ifndef kperr_included

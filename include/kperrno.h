@@ -14,10 +14,28 @@
 
 
 // ================================================== return codes
-#if ((CompilerGr!=Msvc) && (Compiler!=Watcom) && (Compiler!=Mingw))
+#ifndef WIN32
+
+typedef long HRESULT;
+
+#define SUCCEEDED(Status) ((HRESULT)(Status) >= 0)
+#define FAILED(Status) ((HRESULT)(Status)<0)
+
+#define MAKE_HRESULT(s,f,c) ((HRESULT)(((unsigned long)(s)<<31)|((unsigned long)(f)<<16)|((unsigned long)(c))))
+
+#define SEVERITY_SUCCESS 0
+#define SEVERITY_ERROR 1
+#define FACILITY_WINDOWS 8
+#define FACILITY_STORAGE 3
+#define FACILITY_RPC 1
+#define FACILITY_WIN32 7
+#define FACILITY_CONTROL 10
+#define FACILITY_NULL 0
+#define FACILITY_ITF 4
+#define FACILITY_DISPATCH 2
 
 // ok
-#define S_OK         0
+#define S_OK         0 // (MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0))
 // invalid parameter
 #define E_INVALIDARG (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 1))
 // feature not implemented yet
@@ -141,7 +159,7 @@ E_DEVICE_IN_USE 0x80070964    Driver error. Exclusive access.
 E_HTTP_ERROR 0x80070965    Driver error. Exclusive access.
 */
 
-#endif // #if ((CompilerGr!=Msvc) && (Compiler!=Watcom) && (Compiler!=Mingw))
+#endif // #ifndef WIN32
 
 // --------------------------------------------------------
 // out of memory
@@ -216,13 +234,13 @@ E_HTTP_ERROR 0x80070965    Driver error. Exclusive access.
 // file changed // pvz., uþsikrëtë virusu
 #define KP_E_FILE_CHANGED     (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 + 0x023))
 // formuojamas diagnostinis praneðimas
-#define KP_S_DIAG_MSG         (MAKE_HRESULT(0,              FACILITY_ITF, 0x200 + 0x100 + 0x024))
+#define KP_S_DIAG_MSG         (MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_ITF, 0x200 + 0x100 + 0x024))
 // Neteisingas e-paðto adresas
 #define KP_E_BAD_EMAIL        (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 + 0x025))
 // programa baigta iðsiloginimo procedûra
-#define KP_S_LOGOFF           (MAKE_HRESULT(0, FACILITY_ITF, 0x200 + 0x100 + 0x026))
+#define KP_S_LOGOFF           (MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_ITF, 0x200 + 0x100 + 0x026))
 // operacija atlikta sëkmingai (naudojama iðëjimui ið dialogø)
-#define KP_S_DONE             (MAKE_HRESULT(0, FACILITY_ITF, 0x200 + 0x100 + 0x027))
+#define KP_S_DONE             (MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_ITF, 0x200 + 0x100 + 0x027))
 // licence expired
 #define KP_E_EXPIRED          (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 + 0x028))
 // memory fault

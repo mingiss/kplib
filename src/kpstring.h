@@ -11,6 +11,13 @@
 #ifndef kpstring_included
 #define kpstring_included
 
+// -------------------------
+typedef UCHAR * KpStrPtr;
+#define null ((const KpStrPtr)NULL) // null pointer to the string
+
+#ifdef __cplusplus
+
+// -------------------------
 extern size_t strlen(const UCHAR *src);
 
 extern UCHAR *strcpy(UCHAR *dest, const UCHAR *src);
@@ -25,4 +32,5 @@ extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
+#endif // #ifdef __cplusplus
 #endif // #ifndef kpstring_included

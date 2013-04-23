@@ -24,6 +24,8 @@
 #include "kpcapp.h"
 #include "kpcurdat.h"
 
+using namespace std;
+
 
 // ----------------------------------
 #ifdef __WIN32__
@@ -43,6 +45,7 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
 #endif
 
     m_lpszAppName[0] = Nul;
+    m_lpszProdName[0] = Nul;
    
     KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
     strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
@@ -52,15 +55,23 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
    
     strncpy(m_lpszProdDate, CUR_DATE, KP_MAX_FNAME_LEN);
     m_lpszProdDate[KP_MAX_FNAME_LEN] = Nul;
+    
+    m_pStackTop = NULL;
 }
 
 
 // ----------------------------------
-void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine)
+void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void *pStackTop)
 {
-#ifdef __WIN32__
+#ifdef WIN32
     if(hInstance != 0L) m_hInstance = hInstance;
 #endif
+
+    KP_ASSERT(lpszCmdLine != NULL, E_POINTER, null);
+    strncpy(m_lpszCmdLine, lpszCmdLine, KP_MAX_FNAME_LEN);
+    m_lpszCmdLine[KP_MAX_FNAME_LEN] = Nul;
+
+    m_pStackTop = pStackTop;
 
 static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
     KpError.GetLogFileName(log_fname);
@@ -77,9 +88,7 @@ void KpCommonApp::GetAppName(UCHAR *lpszNameBuf)
         strcpy(lpszNameBuf, m_lpszAppName); // tik pirmą kartą būna teisingas kelias, paskui nustatau SetCurrentDirectory() ir santykinis kelias išsiderina
     else
     {
-UCHAR *pnts = null;
-        pnts = (UCHAR *)GetCommandLine();
-        KP_ASSERT(pnts != null, E_INVALIDARG, null);
+UCHAR *pnts = m_lpszCmdLine;
 
 static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         if(*pnts != '\"')
@@ -97,12 +106,16 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         }
         if(pnts != null) *pnts = Nul;
 
+#ifdef WIN32
 DWORD ll = 0L;
         ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)lpszNameBuf, NULL);
         KP_ASSERT(ll != 0L, KP_E_SYSTEM_ERROR, GetLastError());
         KP_ASSERTW0(ll < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;
-        
+#else
+// TODO Linux: get full path
+        strcpy(lpszNameBuf, name_buf_tmp);
+#endif        
         strcpy(m_lpszAppName, lpszNameBuf);
     }
 }
