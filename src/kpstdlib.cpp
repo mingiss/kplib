@@ -49,9 +49,9 @@ void KpInit(const UCHAR *ProdName, const void *pStackTop)
 #endif             
             pStackTop);
     }
-    catch(const KpException &e)
+    catch(const KpException *e)
     {
-        KP_CATCH(e);
+        KP_CATCH(*e);
     }
     catch(const exception &e)
     {
@@ -76,9 +76,9 @@ void KpClose(void)
             KpApp = KpAppAlloc;
         }
     }
-    catch(const KpException &e)
+    catch(const KpException *e)
     {
-        KP_CATCH(e);
+        KP_CATCH(*e);
     }
     catch(const exception &e)
     {
