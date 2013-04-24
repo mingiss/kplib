@@ -53,7 +53,7 @@ KpTreeEntry::KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath, Kp
 
 
 // ----------------------
-KpTreeEntry::KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath)
+KpTreeEntry::KpTreeEntry(const UCHAR *lpszString, KpTreeEntry *pFath)
 {
    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
    Constructor(lpszString, strlen(lpszString) + 1, pFath, KpRecType_Text);
@@ -61,7 +61,7 @@ KpTreeEntry::KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath)
 
 
 // ----------------------
-KpTreeEntry::KpTreeEntry(const char *lpszString, KpTreeEntry *pFath)
+KpTreeEntry::KpTreeEntry(const CHAR *lpszString, KpTreeEntry *pFath)
 {
    KP_ASSERT(lpszString != NULL, E_INVALIDARG, null);
    Constructor(lpszString, strlen(lpszString) + 1, pFath, KpRecType_Text);
@@ -93,7 +93,7 @@ void KpTreeEntry::Constructor(const void *lpRecord, int iSize, KpTreeEntry *pFat
    KP_ASSERT(lpRecord != NULL, E_INVALIDARG, null);
 
    m_iRecSize = iSize + 1;
-   KP_NEWA(m_lpRecord, unsigned char, m_iRecSize);
+   KP_NEWA(m_lpRecord, UCHAR, m_iRecSize);
    memcpy(m_lpRecord, lpRecord, m_iRecSize - 1);
    m_lpRecord[m_iRecSize - 1] = Nul;
 }
@@ -106,7 +106,6 @@ KpTreeEntry *next_br = NULL;
 
     while (m_pNextBrother != NULL)
     {
-        next_br = NULL;
         next_br = m_pNextBrother->GetNextBrother();
         m_pNextBrother->SetNextBrother(NULL);
         m_pNextBrother->SetPrevBrother(NULL);
@@ -123,25 +122,37 @@ KpTreeEntry *next_br = NULL;
 
 
 // ----------------------
-void KpTreeEntry::PutToEnd(const void *lpRecord, int iSize, KpRecType iRecType)
+void KpTreeEntry::PutToEnd(KpTreeEntry *lpNode)
 {
-KpTreeEntry *cur_entry=this;
-KpTreeEntry *next_entry;
+KpTreeEntry *cur_entry = this;
+KpTreeEntry *next_entry = NULL;
+
+    KP_ASSERT(lpNode != NULL, E_INVALIDARG, null);
 
     do
     {
         next_entry = cur_entry->GetFirstChild();
         if (next_entry != NULL) cur_entry = next_entry;
-    } while (next_entry!=NULL);
+    } while (next_entry != NULL);
 
-    KP_NEW(next_entry, KpTreeEntry(lpRecord, iSize, cur_entry, iRecType));
-
-    cur_entry->SetFirstChild(next_entry);
+    lpNode->SetFather(cur_entry);
+    cur_entry->SetFirstChild(lpNode);
 }
 
 
 // ----------------------
-void KpTreeEntry::PutToEnd(const unsigned char *lpszString)
+void KpTreeEntry::PutToEnd(const void *lpRecord, int iSize, KpRecType iRecType)
+{
+    KP_ASSERT((lpRecord != NULL) && (iSize > 0), E_INVALIDARG, null);
+    
+KpTreeEntry *next_entry = NULL;
+    KP_NEW(next_entry, KpTreeEntry(lpRecord, iSize, NULL, iRecType));
+    PutToEnd(next_entry);
+}
+
+
+// ----------------------
+void KpTreeEntry::PutToEnd(const UCHAR *lpszString)
 {
     KP_ASSERT(lpszString != NULL, E_INVALIDARG, null);
     PutToEnd(lpszString, strlen(lpszString) + 1, KpRecType_Text);
@@ -149,7 +160,7 @@ void KpTreeEntry::PutToEnd(const unsigned char *lpszString)
 
 
 // ----------------------
-void KpTreeEntry::PutToEnd(const char *lpszString)
+void KpTreeEntry::PutToEnd(const CHAR *lpszString)
 {
     KP_ASSERT(lpszString != NULL, E_INVALIDARG, null);
     PutToEnd(lpszString, strlen(lpszString) + 1, KpRecType_Text);
@@ -480,14 +491,14 @@ void KpTreeEntry::SetNewValue(const void *pValue, int iValSize)
    KP_DELETEA(m_lpRecord);
 
    m_iRecSize = iValSize + 1;
-   KP_NEWA(m_lpRecord, unsigned char, m_iRecSize);
+   KP_NEWA(m_lpRecord, UCHAR, m_iRecSize);
 
    SetValue(pValue, iValSize);
 }
 
 
 // ----------------------
-void KpTreeEntry::SetNewValue(const unsigned char *lpszValue)
+void KpTreeEntry::SetNewValue(const UCHAR *lpszValue)
 {
    KP_ASSERT(lpszValue != NULL, E_INVALIDARG, null);
 
@@ -809,7 +820,7 @@ void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pList)
 KpTreeEntry *cur_node = pList;
     while (cur_node != NULL)
     {
-unsigned char *val_buf = (unsigned char *)cur_node->GetValue();
+UCHAR *val_buf = (UCHAR *)cur_node->GetValue();
         KP_ASSERT(val_buf != null, KP_E_SYSTEM_ERROR, null);
 
         *piFullContLen += strlen(val_buf);

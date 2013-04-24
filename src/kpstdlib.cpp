@@ -49,13 +49,17 @@ void KpInit(const UCHAR *ProdName, const void *pStackTop)
 #endif             
             pStackTop);
     }
+    catch(const KpException &e)
+    {
+        KP_CATCH(e);
+    }
     catch(const exception &e)
     {
         KP_CATCH(e);
     }
     catch(...)
     {
-        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+        KP_ERROR(KP_E_UNHANDLED_EXCEPTION, null);
     }
 }
 
@@ -72,13 +76,17 @@ void KpClose(void)
             KpApp = KpAppAlloc;
         }
     }
+    catch(const KpException &e)
+    {
+        KP_CATCH(e);
+    }
     catch(const exception &e)
     {
         KP_CATCH(e);
     }
     catch(...)
     {
-        KP_ERROR(KP_E_SYSTEM_ERROR, "Unhandled exception");
+        KP_ERROR(KP_E_UNHANDLED_EXCEPTION, null);
     }
 }
 

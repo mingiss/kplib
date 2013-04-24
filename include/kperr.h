@@ -39,7 +39,7 @@
 #define KP_WARNING(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, False, (const UCHAR *)__FILE__, __LINE__); }}
 
 
-class KpException : std::exception
+class KpException : public std::exception
 {
 public:
    // KpErrorClass::OutputErrorMessage() parametrai

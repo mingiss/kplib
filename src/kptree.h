@@ -19,7 +19,7 @@
 
 typedef struct
 {
-   unsigned char m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
+   UCHAR m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
    HBITMAP m_hBmp;
 } KpTextBmp;
 
@@ -32,7 +32,7 @@ typedef struct
 class KpTextChk
 {
 public:
-   unsigned char m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
+   UCHAR m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
    KpChStr m_KpStr;
    bool m_bChecked;
 
@@ -42,7 +42,7 @@ public:
 typedef enum
 {
    KpRecType_Unknown,   // void * record
-   KpRecType_Text,      // unsigned char * - lpsz character array, any length
+   KpRecType_Text,      // UCHAR * - lpsz character array, any length
    KpRecType_TextBmp,   // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
    KpRecType_BmpBmp,    // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
    KpRecType_TextChk,   // KpTextBmp structure, m_lpRecord = sizeof(KpTextBmp)
@@ -71,7 +71,7 @@ class KpTreeEntry
 //    simply text representation of contents - for sorting and listing purposes
 //    (KpCreateListBox()
 public:
-   unsigned char /* void */ *m_lpRecord;
+   UCHAR /* void */ *m_lpRecord; // should be allocated as an array – destructor deletes it with delete []
 
    int m_iRecSize; // size of m_lpRecord in bytes
 
@@ -96,9 +96,11 @@ public:
 
    KpTreeEntry(KpTreeEntry *pFath);
 
-   KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // create new record entry, iSize - size in bytes of the record
-   KpTreeEntry(const unsigned char *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
-   KpTreeEntry(const char *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
+   KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); 
+    // create new record entry, iSize - size in bytes of the record
+    // *lpRecord could be deleted after return (value of *lpRecord is copied to new created CHAR array m_lpRecord[])
+   KpTreeEntry(const UCHAR *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
+   KpTreeEntry(const CHAR *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
    KpTreeEntry(const KpChStr *pKpStr, KpTreeEntry *pFath); // iazKpStr - wide text string to initialize
    void Constructor(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // *lpRecord po gráþimo galima sunaikinti
 
@@ -118,14 +120,20 @@ public:
                                              // gets pointer to next entry of the linear list
                                              // NULL - last entry
 
+   void PutToEnd(KpTreeEntry *lpNode);
+        // uses the object *lpNode itself, don't delete it after return 
    void PutToEnd(const void *lpRecord, int iSize, KpRecType iRecType = KpRecType_Unknown);
       // puts new entry after last entry (deepest child) of the list
-   void PutToEnd(const unsigned char *lpszString);
+      // *lpRecord could be deleted after return
+   void PutToEnd(const UCHAR *lpszString);
       // lpszString - text string as new entry (after the deepest child)
-   void PutToEnd(const char *lpszString);
+      // could be deleted after return
+   void PutToEnd(const CHAR *lpszString);
       // lpszString - text string as new entry (after the deepest child)
+      // could be deleted after return
    void PutToEnd(const KpChStr *pKpStr);
       // iazKpStr - text wide string as new entry (after the deepest child)
+      // could be deleted after return
 
    void DeleteChild(void);
       // ismeta viena vaika, anukus pastumia i vaiko vieta
@@ -141,7 +149,7 @@ public:
       // does not change original m_iRecSize
 
    void SetNewValue(const void *pValue, int iValSize);
-   void SetNewValue(const unsigned char *lpszValue);
+   void SetNewValue(const UCHAR *lpszValue);
 
    void SetNewValue(const KpTextBmp *pValue);
    void SetNewValue(const KpBmpBmp *pValue);
@@ -257,7 +265,7 @@ extern void CopyKpTreeNodeAllocate(KpTreeEntry *pNodeDst, /* const */ KpTreeEntr
    // like CopyKpTreeNode(), but allocates new space for pNodeDst->m_lpRecord
 
 // ------------------- suskaièiuoja teksto eiluèiø sàraðo bendrà ilgá
-extern void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pCharList); // *pList – char[] stringø sàraðas
+extern void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pCharList); // *pList – CHAR[] stringø sàraðas
 extern void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pKpCharList); // *pList – KpChStr stringø sàraðas
 
 #endif // #ifndef kptree_included
