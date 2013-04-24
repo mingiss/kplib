@@ -18,6 +18,7 @@ typedef UCHAR * KpStrPtr;
 #ifdef __cplusplus
 
 // -------------------------
+// TODO: kelt į KpPlainStr klasę?
 extern size_t strlen(const UCHAR *src);
 
 extern UCHAR *strcpy(UCHAR *dest, const UCHAR *src);
@@ -34,20 +35,27 @@ extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 
 // -------------------------
-// TODO: kelt į KpPlainString klasę
-void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *spcs = lpszSpcEol);
+// TODO: kelt į KpPlainStr klasę
+void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol);
 
 // -------------------------
-// Nul-terminated KpChar character array
-class KpChStr
+// static C_Nul-terminated KpChar character array, no deletion required
+class KpChStrStatic
 {
 public:
     KpChar *m_iazStr;
     
-    KpChStr();
-    ~KpChStr();
+    KpChStrStatic();
+    KpChStrStatic(KpChar *iazKpChArr);
     
     int Len(void) const; // returns number of KpChar characters in m_iazStr[] 
+};
+
+// dynamically allocated C_Nul-terminated KpChar character array
+class KpChStr : public KpChStrStatic 
+{
+public:
+    ~KpChStr();
 };
 
 #endif // #ifdef __cplusplus

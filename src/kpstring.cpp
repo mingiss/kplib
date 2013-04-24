@@ -53,7 +53,7 @@ int strcmp(const UCHAR *str1, const UCHAR *str2)
 
 
 // --------------------------------------------------
-void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *spcs)
+void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
 {
 UCHAR *pnts = null;
 
@@ -63,7 +63,7 @@ UCHAR *pnts = null;
     while(pnts > lpszString)
     {
         --pnts;
-        if(strchr(spcs, *pnts) == null) // TODO: TvStrChr()
+        if(strchr(lpszSpcs, *pnts) == null) // TODO: TvStrChr()
         {
             pnts++;
             break;
@@ -75,9 +75,15 @@ UCHAR *pnts = null;
 
 
 // -----------------------------
-KpChStr::KpChStr(void)
+KpChStrStatic::KpChStrStatic(void)
 {
     m_iazStr = NULL;
+}
+
+
+KpChStrStatic::KpChStrStatic(KpChar *iazKpChArr)
+{
+    m_iazStr = iazKpChArr;
 }
 
 
@@ -89,7 +95,7 @@ KpChStr::~KpChStr(void)
 
 
 // --------------------------------------------------
-int KpChStr::Len(void) const
+int KpChStrStatic::Len(void) const
 {
 int chr_cnt = 0;
 
