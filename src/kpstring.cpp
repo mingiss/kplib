@@ -10,14 +10,24 @@
 
 #include "envir.h"
 
+#include <stdlib.h>
 #include <string.h>
+#include <string>
+#include <stdio.h>
+#include <fstream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
 
+using namespace std;
+
 #include "kpstdlib.h"
 #include "kptt.h"
+#include "kpctype.h"
 #include "kpstring.h"
+#include "kpmsg.h"
+#include "kperr.h"
+
 
 // -----------------------------
 size_t strlen(const UCHAR *src){ return(strlen((const CHAR *)src)); }
@@ -40,6 +50,28 @@ UCHAR *strcat(UCHAR *dest, const CHAR *src)
 
 int strcmp(const UCHAR *str1, const UCHAR *str2)
    { return(strcmp((const CHAR *)str1, (const CHAR *)str2)); }
+
+
+// --------------------------------------------------
+void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *spcs)
+{
+UCHAR *pnts = null;
+
+    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+
+    pnts = lpszString + strlen(lpszString);
+    while(pnts > lpszString)
+    {
+        --pnts;
+        if(strchr(spcs, *pnts) == null) // TODO: TvStrChr()
+        {
+            pnts++;
+            break;
+        }
+    }
+
+    *pnts = Nul;
+}
 
 
 // -----------------------------

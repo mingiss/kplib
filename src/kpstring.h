@@ -34,6 +34,10 @@ extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 
 // -------------------------
+// TODO: kelt į KpPlainString klasę
+void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *spcs = lpszSpcEol);
+
+// -------------------------
 // Nul-terminated KpChar character array
 class KpChStr
 {
