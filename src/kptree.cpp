@@ -456,14 +456,14 @@ KpTreeEntry *father = NULL;
     }
     if (prev_brother != NULL) prev_brother->SetNextBrother(first_child);
 
-// pirmas vaikas – nustatom naujà tëvo pirmà vaikà
-   if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(first_child);
-
    (*ppEntryPtr)->SetFirstChild(NULL);
 // (*ppEntryPtr)->SetPrevBrother(NULL);
    KP_DELETE(*ppEntryPtr);
    
    *ppEntryPtr = first_child;
+
+// pirmas vaikas – nustatom naujà tëvo pirmà vaikà
+   if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(first_child);
 }
  
 
