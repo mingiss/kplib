@@ -109,7 +109,7 @@ KpTreeEntry *next_br = NULL;
     {
         next_br = m_pNextBrother->GetNextBrother();
         m_pNextBrother->SetNextBrother(NULL);
-        m_pNextBrother->SetPrevBrother(NULL);
+//      m_pNextBrother->SetPrevBrother(NULL);
 
         KP_DELETE(m_pNextBrother);
         if (next_br != NULL) next_br->SetPrevBrother(this);
@@ -435,6 +435,39 @@ KpTreeEntry *child_child_ptr = NULL;
 
 
 // ----------------------
+void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr)
+{
+    KP_ASSERT(ppEntryPtr != NULL, E_POINTER, null);
+    KP_ASSERT(*ppEntryPtr != NULL, E_POINTER, null);
+
+KpTreeEntry *first_child = NULL;
+    first_child = (*ppEntryPtr)->GetFirstChild();
+
+KpTreeEntry *prev_brother = NULL;
+    prev_brother = (*ppEntryPtr)->GetPrevBrother();
+
+KpTreeEntry *father = NULL;
+    father = (*ppEntryPtr)->GetFather();
+
+    if (first_child != NULL) 
+    {
+        first_child->SetPrevBrother(prev_brother);
+        first_child->SetFather0(father);
+    }
+    if (prev_brother != NULL) prev_brother->SetNextBrother(first_child);
+
+// pirmas vaikas – nustatom naujà tëvo pirmà vaikà
+   if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(first_child);
+
+   (*ppEntryPtr)->SetFirstChild(NULL);
+// (*ppEntryPtr)->SetPrevBrother(NULL);
+   KP_DELETE(*ppEntryPtr);
+   
+   *ppEntryPtr = first_child;
+}
+ 
+
+// ----------------------
 void DeleteKpTreeEntry(KpTreeEntry *pEntryPtr)
 {
     KP_ASSERT(pEntryPtr != NULL, E_POINTER, null);
@@ -455,7 +488,7 @@ KpTreeEntry *father = NULL;
    if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(next_brother);
 
    pEntryPtr->SetNextBrother(NULL);
-   pEntryPtr->SetPrevBrother(NULL);
+// pEntryPtr->SetPrevBrother(NULL);
    KP_DELETE(pEntryPtr);
 }
 

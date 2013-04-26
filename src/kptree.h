@@ -79,17 +79,20 @@ public:
 // XmlNode_tag **iaNodesArray;
 
 public:
-   KpRecType m_iRecType;
+    KpRecType m_iRecType;
 
-   KpTreeEntry *m_pFirstChild;
-   KpTreeEntry *m_pPrevBrother;
-   KpTreeEntry *m_pNextBrother;
-   KpTreeEntry *m_pFather;
+    // paprastas listas per ðitas rodykles, broliø tada nëra
+    KpTreeEntry *m_pFirstChild; 
+    KpTreeEntry *m_pFather;
 
-   int m_iStatus;
-      // flag of node with hidden children (for output to KP_LISTBOX)
-      // levels in XmlNode_tag:  1 - group tags (nodes)
-      //                         0 - simply tags
+    // o èia jau medþio ðakos 
+    KpTreeEntry *m_pPrevBrother;
+    KpTreeEntry *m_pNextBrother;
+
+    int m_iStatus;
+        // flag of node with hidden children (for output to KP_LISTBOX)
+        // levels in XmlNode_tag:  1 - group tags (nodes)
+        //                         0 - simply tags
 
 // constructors
    KpTreeEntry(void);
@@ -137,6 +140,9 @@ public:
 
    void DeleteChild(void);
       // ismeta viena vaika, anukus pastumia i vaiko vieta
+
+   void DeleteBrother(void);
+      // TODO: iðmesti pirmà brolá, tolesnius brolius pastumti vietoj jo
 
    KpRecType GetRecType(void) const { return(m_iRecType); } // get record type identifier m_iRecType
 
@@ -251,7 +257,20 @@ public:
 
 };
 
-extern void DeleteKpTreeEntry(KpTreeEntry *pEntryPtr); // iðtrina *pEntryPtr su visais vaikais, pastumdydamas brolius
+
+// TODO: toliau viskà kelti á KpTreeEntry klasës statinius metodus
+
+extern void DeleteKpTreeEntry(KpTreeEntry *pEntryPtr); 
+    // iðtrina *pEntryPtr su visais vaikais, pastumdydamas brolius
+    // TODO: negerai, jeigu èia vyriausias tëvas – pamesim medþio ðaknies rodyklæ
+    // TODO: reikia perduot parametrà KpTreeEntry **ppEntryPtr ir atnaujint rodyklæ *ppEntryPtr->m_pNextBrother reikðme 
+    // DeleteBrother() papildymas
+
+extern void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr); 
+    // TODO: panaðiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
+    // TODO: elementà trina su visais broliais
+    // tinka paprasto listo tvarkymui  
+    // DeleteChild() papildymas
 
 extern void ChangeKpTreeNodes(KpTreeEntry *pNode1, KpTreeEntry *pNode2);
    // changes VALUES (*m_lpRecord) of two tree entries, relationship is not changed
