@@ -19,7 +19,41 @@ typedef char CHAR;
 typedef unsigned char UCHAR;
 typedef unsigned long DWORD;
 #endif
+
+// ------------------------------
 #define Nul ((UCHAR)0)
+#define Soh ((UCHAR)1)
+#define Stx ((UCHAR)2)
+#define Etx ((UCHAR)3)
+#define Eot ((UCHAR)4)
+#define Enq ((UCHAR)5)
+#define Ack ((UCHAR)6)
+#define Bel ((UCHAR)7)
+#define Bs  ((UCHAR)('\b'))
+#define Ht  ((UCHAR)('\t'))
+#define Tab Ht
+#define Lf  ((UCHAR)('\n'))
+#define Vt ((UCHAR)('\v'))
+#define Ff ((UCHAR)('\f'))
+#define Cr ((UCHAR)('\r')) // 0x0D
+#define So  ((UCHAR)016)
+#define Si  ((UCHAR)017)
+#define Dle ((UCHAR)020)
+#define Dc1 ((UCHAR)021)
+#define Dc2 ((UCHAR)022)
+#define Dc3 ((UCHAR)023)
+#define Dc4 ((UCHAR)024)
+#define Nak ((UCHAR)025)
+#define Syn ((UCHAR)026)
+#define Etb ((UCHAR)027)
+#define Can ((UCHAR)030)
+#define Em  ((UCHAR)031) // 0x19
+#define Sub ((UCHAR)032)
+#define Esc ((UCHAR)033)
+#define Fs  ((UCHAR)034)
+#define Gs  ((UCHAR)035)
+#define Rs  ((UCHAR)036)
+#define Us  ((UCHAR)037)
 #define Spc ((UCHAR)(' '))
 
 // ----------------------------------
