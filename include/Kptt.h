@@ -43,6 +43,9 @@
 
 // -----------------------
 // typedef unsigned short UniChar; // WCHAR
+#ifndef WIN32
+typedef short WCHAR;
+#endif
 typedef WCHAR UniChar;
 
 // -----------------------

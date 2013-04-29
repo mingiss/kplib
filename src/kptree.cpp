@@ -542,6 +542,7 @@ void KpTreeEntry::SetNewValue(const UCHAR *lpszValue)
 
 
 // ----------------------
+#ifdef WIN32
 void KpTreeEntry::SetNewValue(const KpTextBmp *pValue)
 {
     KP_ASSERT(pValue != NULL, E_INVALIDARG, null);
@@ -549,9 +550,11 @@ void KpTreeEntry::SetNewValue(const KpTextBmp *pValue)
     SetNewValue(pValue, sizeof(KpTextBmp));
     m_iRecType = KpRecType_TextBmp;
 }
+#endif
 
 
 // ----------------------
+#ifdef WIN32
 void KpTreeEntry::SetNewValue(const KpBmpBmp *pValue)
 {
     KP_ASSERT(pValue != NULL, E_INVALIDARG, null);
@@ -559,6 +562,7 @@ void KpTreeEntry::SetNewValue(const KpBmpBmp *pValue)
     SetNewValue(pValue, sizeof(KpTextBmp));
     m_iRecType = KpRecType_BmpBmp;
 }
+#endif
 
 
 // ----------------------
@@ -700,6 +704,7 @@ KpTreeEntry **nodes_array = NULL;
 
 
 // --------------------------------------------------
+#ifdef WIN32
 void KpTreeEntry::FormListBox(HWND hListBox)
 {
 KpTreeEntry *loop_brother = NULL;
@@ -729,6 +734,7 @@ int retv;
 // recursion on brothers
 //  if (pNextBrother != NULL) pNextBrother->FormListBox(hListBox);
 }
+#endif
 
 
 // --------------------------------------------------

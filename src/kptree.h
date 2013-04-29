@@ -17,6 +17,7 @@
 #define KP_MAX_TREE_DEPTH 50 // max level of descendants
 
 
+#ifdef WIN32
 typedef struct
 {
    UCHAR m_lpszText[KP_MAX_FILE_LIN_LEN + 1];
@@ -28,6 +29,7 @@ typedef struct
    HBITMAP m_hBmp;
    HBITMAP m_hTextBmp;
 } KpBmpBmp;
+#endif
 
 class KpTextChk
 {
@@ -157,11 +159,13 @@ public:
    void SetNewValue(const void *pValue, int iValSize);
    void SetNewValue(const UCHAR *lpszValue);
 
+#ifdef WIN32
    void SetNewValue(const KpTextBmp *pValue);
    void SetNewValue(const KpBmpBmp *pValue);
       // deletes former allocation of m_lpRecord
       // allocates new buffer for m_lpRecord
       // sets new contents of record buffer m_lpRecord
+#endif
 
    virtual void InitNodeStatus(void); // initialize value of m_iStatus
 
@@ -249,7 +253,9 @@ public:
    void TestNode(void);
 
 // ---------------------------------
+#ifdef WIN32
    void FormListBox(HWND hListBox); // SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)m_lpRecord); recursively through all children and brothers
+#endif
 
 // ---------------------------------
 // KpTextChk metodai
