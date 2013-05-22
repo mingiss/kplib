@@ -537,7 +537,7 @@ void KpErrorClass::GetLogFileName(UCHAR *lpszLogFNameBuf)
     KP_ASSERT(lpszLogFNameBuf != null, E_INVALIDARG, null);
    
 const UCHAR *temp_dir = null;
-#ifdef WIN32
+#ifdef __WIN32__
     temp_dir = (const UCHAR *)getenv("TEMP");
     KP_ASSERT(temp_dir != null, KP_E_SYSTEM_ERROR, null);
 #else

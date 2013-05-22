@@ -11,6 +11,7 @@
 #include "envir.h"
 
 #include <stdlib.h>
+#include <string.h>
 #include <string>
 #include <stdio.h>
 #include <fstream>
@@ -542,7 +543,7 @@ void KpTreeEntry::SetNewValue(const UCHAR *lpszValue)
 
 
 // ----------------------
-#ifdef WIN32
+#ifdef __WIN32__
 void KpTreeEntry::SetNewValue(const KpTextBmp *pValue)
 {
     KP_ASSERT(pValue != NULL, E_INVALIDARG, null);
@@ -554,7 +555,7 @@ void KpTreeEntry::SetNewValue(const KpTextBmp *pValue)
 
 
 // ----------------------
-#ifdef WIN32
+#ifdef __WIN32__
 void KpTreeEntry::SetNewValue(const KpBmpBmp *pValue)
 {
     KP_ASSERT(pValue != NULL, E_INVALIDARG, null);
@@ -704,7 +705,7 @@ KpTreeEntry **nodes_array = NULL;
 
 
 // --------------------------------------------------
-#ifdef WIN32
+#ifdef __WIN32__
 void KpTreeEntry::FormListBox(HWND hListBox)
 {
 KpTreeEntry *loop_brother = NULL;

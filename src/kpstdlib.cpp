@@ -12,6 +12,7 @@
 #include "envir.h"
 
 #include <stdio.h>
+#include <string.h>
 #include <iostream>
 #ifdef __WIN32__
 #include <windows.h>
@@ -41,12 +42,12 @@ void KpInit(const UCHAR *ProdName, const void *pStackTop)
             KP_NEW(KpAppAlloc, KpCommonApp(ProdName, 0));
             KpApp = KpAppAlloc;
         }
-        KpApp->Init(GetModuleHandle(NULL), 
-#ifdef WIN32
-            (const UCHAR *)GetCommandLine(),
+        KpApp->Init(
+#ifdef __WIN32__
+            GetModuleHandle(NULL), (const UCHAR *)GetCommandLine(),
 #else
 // TODO Linux: get cmd line
-            ProdName,
+            0, ProdName,
 #endif             
             pStackTop);
     }

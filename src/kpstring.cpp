@@ -21,6 +21,7 @@
 
 using namespace std;
 
+#include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
 #include "kpctype.h"

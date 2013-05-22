@@ -32,7 +32,12 @@
 void KpCommonApp::KpInitWindows(void)
 {
 // -----------------
-    m_hInstance = GetModuleHandle(NULL);
+    m_hInstance = 
+#ifdef __WIN32__
+        GetModuleHandle(NULL);
+#else
+        0;
+#endif
 
 // -----------------
 #ifdef MsgLang
@@ -46,11 +51,13 @@ void KpCommonApp::KpInitWindows(void)
         m_iMsgLangOff = (KpLang)MsgLang;
 
 #   elif ((MsgLang == KpLangPl_p) || (MsgLang == KpLangRu_p))
+#       ifdef __WIN32__
 HRESULT retc = S_OK;
 HKEY key = NULL;
 LONG retw = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage", 0, KEY_QUERY_VALUE, &key);
         KP_ASSERTW(retw == ERROR_SUCCESS, KP_E_KWD_NOT_FOUND, retw);
         KP_ASSERTW(key != NULL, KP_E_SYSTEM_ERROR, null);
+
 DWORD buf_len = KP_KWD_LEN;
 unsigned char key_buf[KP_KWD_LEN + 1];
         if(SUCCEEDED(retc))
@@ -78,6 +85,9 @@ DWORD val_type;
         }
         if(key != NULL) RegCloseKey(key);
         key = NULL;
+#       else // #       ifdef __WIN32__
+        KP_THROW(E_INVALIDARG, null); 
+#       endif
 
 #   else
         KP_THROW(E_INVALIDARG, null); 

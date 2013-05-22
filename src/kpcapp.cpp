@@ -69,7 +69,7 @@ KpCommonApp::~KpCommonApp(void){}
 // ----------------------------------
 void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void *pStackTop)
 {
-#ifdef WIN32
+#ifdef __WIN32__
     if(hInstance != 0L) m_hInstance = hInstance;
 #endif
 
@@ -112,7 +112,7 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         }
         if(pnts != null) *pnts = Nul;
 
-#ifdef WIN32
+#ifdef __WIN32__
 DWORD ll = 0L;
         ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)lpszNameBuf, NULL);
         KP_ASSERT(ll != 0L, KP_E_SYSTEM_ERROR, GetLastError());

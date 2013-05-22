@@ -15,6 +15,11 @@
 typedef UCHAR * KpStrPtr;
 #define null ((const KpStrPtr)NULL) // null pointer to the string
 
+// #ifdef __GNUC__
+// #define memmove memcpy
+// #endif
+
+// -------------------------
 #ifdef __cplusplus
 
 // -------------------------
