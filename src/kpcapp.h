@@ -41,6 +41,7 @@ public:
     static void KpInitWindows(void); // iškviečiamas konstruktoriaus
 #endif
    
+    void SetProd(const UCHAR *lpszProdName, int iProdVer); // sets value of m_lpszProdName[] and m_iProdVer
     void GetAppName(UCHAR *lpszNameBuf);
                      // gets filename of application currently running
                      // lpszNameBuf[KP_MAX_FNAME_LEN + 1]

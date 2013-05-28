@@ -49,11 +49,7 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
     m_lpszAppName[0] = Nul;
     m_lpszProdName[0] = Nul;
    
-    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
-    strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
-    m_lpszProdName[KP_MAX_FNAME_LEN] = Nul;
-   
-    m_iProdVer = iProdVer;
+    SetProd(lpszProdName, iProdVer);
    
     strncpy(m_lpszProdDate, CUR_DATE, KP_MAX_FNAME_LEN);
     m_lpszProdDate[KP_MAX_FNAME_LEN] = Nul;
@@ -82,6 +78,17 @@ void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void
 static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
     KpError.GetLogFileName(log_fname);
     remove((const char *)log_fname);
+}
+
+
+// ----------------------------------
+void KpCommonApp::SetProd(const UCHAR *lpszProdName, int iProdVer)
+{
+    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
+    strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
+    m_lpszProdName[KP_MAX_FNAME_LEN] = Nul;
+   
+    m_iProdVer = iProdVer;
 }
 
 
