@@ -307,6 +307,15 @@ void KpErrorClass::GetProdName(UCHAR *lpszNameBuf)
 }
 
 
+// ----------------------------------
+void KpErrorClass::SetProdName(const UCHAR *lpszNameBuf)
+{
+    KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
+    KP_ASSERT(strlen(lpszNameBuf) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+    strcpy(m_lpszProdName, lpszNameBuf);
+}
+
+
 // ---------------------
 HRESULT KpErrorClass::FormatErrorMessage
 (
@@ -370,6 +379,187 @@ const UCHAR *msgptr = (const UCHAR *)"";
       strncpy(lpszMsg, msgptr, KP_MAX_FILE_LIN_LEN);
       lpszMsg[KP_MAX_FILE_LIN_LEN] = Nul; 
    }
+}
+
+
+// ---------------------
+HRESULT KpErrorClass::FormatSystemErrorMessage
+(
+long lWindowsErrorCode,
+unsigned char *lpszMsg,
+bool bFullFormat
+)
+{
+HRESULT retc = S_OK;
+const unsigned char *pszMsg0 = null;
+unsigned char *pszMsg1 = null;
+const unsigned char *pszMsg = null;
+unsigned char *pnts;
+unsigned char str_buf[MAX_LONG_DIGITS + 20];
+    str_buf[0] = Nul;
+int ii;
+
+    KP_ASSERT(lpszMsg != null, E_INVALIDARG, null);
+    
+    if(SUCCEEDED(retc)) lpszMsg[0] = Nul;
+    
+    if(lWindowsErrorCode != 0)
+    {
+        switch(lWindowsErrorCode)
+        {
+        case WSAEACCES:               pszMsg0=KP_MSG_WSAEACCES; break;
+        case WSAEADDRINUSE:           pszMsg0=KP_MSG_WSAEADDRINUSE; break;
+        case WSAEADDRNOTAVAIL:        pszMsg0=KP_MSG_WSAEADDRNOTAVAIL; break;
+        case WSAEAFNOSUPPORT:         pszMsg0=KP_MSG_WSAEAFNOSUPPORT; break;
+        case WSAEALREADY:             pszMsg0=KP_MSG_WSAEALREADY; break;
+        case WSAECONNABORTED:         pszMsg0=KP_MSG_WSAECONNABORTED; break;
+        case WSAECONNREFUSED:         pszMsg0=KP_MSG_WSAECONNREFUSED; break;
+        case WSAECONNRESET:           pszMsg0=KP_MSG_WSAECONNRESET; break;
+        case WSAEDESTADDRREQ:         pszMsg0=KP_MSG_WSAEDESTADDRREQ; break;
+        case WSAEFAULT:               pszMsg0=KP_MSG_WSAEFAULT; break;
+        case WSAEHOSTDOWN:            pszMsg0=KP_MSG_WSAEHOSTDOWN; break;
+        case WSAEHOSTUNREACH:         pszMsg0=KP_MSG_WSAEHOSTUNREACH; break;
+        case WSAEINPROGRESS:          pszMsg0=KP_MSG_WSAEINPROGRESS; break;
+        case WSAEINTR:                pszMsg0=KP_MSG_WSAEINTR; break;
+        case WSAEINVAL:               pszMsg0=KP_MSG_WSAEINVAL; break;
+        case WSAEISCONN:              pszMsg0=KP_MSG_WSAEISCONN; break;
+        case WSAEMFILE:               pszMsg0=KP_MSG_WSAEMFILE; break;
+        case WSAEMSGSIZE:             pszMsg0=KP_MSG_WSAEMSGSIZE; break;
+        case WSAENETDOWN:             pszMsg0=KP_MSG_WSAENETDOWN; break;
+        case WSAENETRESET:            pszMsg0=KP_MSG_WSAENETRESET; break;
+        case WSAENETUNREACH:          pszMsg0=KP_MSG_WSAENETUNREACH; break;
+        case WSAENOBUFS:              pszMsg0=KP_MSG_WSAENOBUFS; break;
+        case WSAENOPROTOOPT:          pszMsg0=KP_MSG_WSAENOPROTOOPT; break;
+        case WSAENOTCONN:             pszMsg0=KP_MSG_WSAENOTCONN; break;
+        case WSAENOTSOCK:             pszMsg0=KP_MSG_WSAENOTSOCK; break;
+        case WSAEOPNOTSUPP:           pszMsg0=KP_MSG_WSAEOPNOTSUPP; break;
+        case WSAEPFNOSUPPORT:         pszMsg0=KP_MSG_WSAEPFNOSUPPORT; break;
+        case WSAEPROCLIM:             pszMsg0=KP_MSG_WSAEPROCLIM; break;
+        case WSAEPROTONOSUPPORT:      pszMsg0=KP_MSG_WSAEPROTONOSUPPORT; break;
+        case WSAEPROTOTYPE:           pszMsg0=KP_MSG_WSAEPROTOTYPE; break;
+        case WSAESHUTDOWN:            pszMsg0=KP_MSG_WSAESHUTDOWN; break;
+        case WSAESOCKTNOSUPPORT:      pszMsg0=KP_MSG_WSAESOCKTNOSUPPORT; break;
+        case WSAETIMEDOUT:            pszMsg0=KP_MSG_WSAETIMEDOUT; break;
+        case WSATYPE_NOT_FOUND:       pszMsg0=KP_MSG_WSATYPE_NOT_FOUND; break;
+        case WSAEWOULDBLOCK:          pszMsg0=KP_MSG_WSAEWOULDBLOCK; break;
+        case WSAHOST_NOT_FOUND:       pszMsg0=KP_MSG_WSAHOST_NOT_FOUND; break;
+        case WSA_INVALID_HANDLE:      pszMsg0=KP_MSG_WSA_INVALID_HANDLE; break;
+        case WSA_INVALID_PARAMETER:   pszMsg0=KP_MSG_WSA_INVALID_PARAMETER; break;
+//      case WSAINVALIDPROCTABLE:     pszMsg0=KP_MSG_WSAINVALIDPROCTABLE; break;
+//      case WSAINVALIDPROVIDER:      pszMsg0=KP_MSG_WSAINVALIDPROVIDER; break;
+        case WSA_IO_INCOMPLETE:       pszMsg0=KP_MSG_WSA_IO_INCOMPLETE; break;
+        case WSA_IO_PENDING:          pszMsg0=KP_MSG_WSA_IO_PENDING; break;
+// tas pat, kaip SE_ERR_OOM
+//      case WSA_NOT_ENOUGH_MEMORY:   pszMsg0=KP_MSG_WSA_NOT_ENOUGH_MEMORY; break;
+        case WSANOTINITIALISED:       pszMsg0=KP_MSG_WSANOTINITIALISED; break;
+        case WSANO_DATA:              pszMsg0=KP_MSG_WSANO_DATA; break;
+        case WSANO_RECOVERY:          pszMsg0=KP_MSG_WSANO_RECOVERY; break;
+//      case WSAPROVIDERFAILEDINIT:   pszMsg0=KP_MSG_WSAPROVIDERFAILEDINIT; break;
+        case WSASYSCALLFAILURE:       pszMsg0=KP_MSG_WSASYSCALLFAILURE; break;
+        case WSASYSNOTREADY:          pszMsg0=KP_MSG_WSASYSNOTREADY; break;
+        case WSATRY_AGAIN:            pszMsg0=KP_MSG_WSATRY_AGAIN; break;
+        case WSAVERNOTSUPPORTED:      pszMsg0=KP_MSG_WSAVERNOTSUPPORTED; break;
+        case WSAEDISCON:              pszMsg0=KP_MSG_WSAEDISCON; break;
+        case WSA_OPERATION_ABORTED:   pszMsg0=KP_MSG_WSA_OPERATION_ABORTED; break;
+       
+//      switch((int)hErrorCode)
+//      {
+// !!! case 0:                      pszMsg0=KP_MSG_OUT_OF_MEM_RES; break;
+        case ERROR_FILE_NOT_FOUND:    pszMsg0=KP_MSG_ERROR_FILE_NOT_FOUND; break;
+        case ERROR_PATH_NOT_FOUND:    pszMsg0=KP_MSG_ERROR_PATH_NOT_FOUND; break;
+        case ERROR_BAD_FORMAT:        pszMsg0=KP_MSG_ERROR_BAD_FORMAT; break;
+        case SE_ERR_ACCESSDENIED:     pszMsg0=KP_MSG_SE_ERR_ACCESSDENIED; break;
+        case SE_ERR_ASSOCINCOMPLETE:  pszMsg0=KP_MSG_SE_ERR_ASSOCINCOMPLETE; break;
+        case SE_ERR_DDEBUSY:          pszMsg0=KP_MSG_SE_ERR_DDEBUSY; break;
+        case SE_ERR_DDEFAIL:          pszMsg0=KP_MSG_SE_ERR_DDEFAIL; break;
+        case SE_ERR_DDETIMEOUT:       pszMsg0=KP_MSG_SE_ERR_DDETIMEOUT; break;
+        case SE_ERR_DLLNOTFOUND:      pszMsg0=KP_MSG_SE_ERR_DLLNOTFOUND; break;
+//      case SE_ERR_FNF:              pszMsg1=KP_MSG_SE_ERR_FNF; break;
+        case SE_ERR_NOASSOC:          pszMsg0=KP_MSG_SE_ERR_NOASSOC; break;
+        case SE_ERR_OOM:              pszMsg0=KP_MSG_SE_ERR_OOM; break;
+//      case SE_ERR_PNF:              pszMsg0=KP_MSG_SE_ERR_PNF; break;
+        case SE_ERR_SHARE:            pszMsg0=KP_MSG_SE_ERR_SHARE; break;
+    
+// klaidos i­ GetAdaptersAddresses(), naudojama KpSocket::Bind()
+//      case ERROR_ADDRESS_NOT_ASSOCIATED:  "DHCP lease information was available."
+//      case ERROR_BUFFER_OVERFLOW:         "The buffer size indicated by the SizePointer parameter is too small to hold the adapter information or the AdapterAddresses parameter is NULL. The SizePointer parameter returned points to the required size of the buffer to hold the adapter information."
+//      case ERROR_INVALID_PARAMETER:       "One of the parameters is invalid. This error is returned for any of the following conditions: the SizePointer parameter is NULL, the Address parameter is not AF_INET, AF_INET6, or AF_UNSPEC, or the address information for the parameters requested is greater than ULONG_MAX."
+//      case ERROR_NOT_ENOUGH_MEMORY:       "Insufficient memory resources are available to complete the operation."
+//      case ERROR_NO_DATA:                 "No addresses were found for the requested parameters."
+
+// FindFirstFile(), FindNextFile(), FindClose()                     
+//      case ERROR_NO_MORE_FILES:
+        
+        default: pszMsg0 = null; break;
+        }
+
+        pszMsg = null;
+        if((pszMsg0 == null) || bFullFormat) if(FormatMessage(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER |
+            FORMAT_MESSAGE_IGNORE_INSERTS |
+            FORMAT_MESSAGE_FROM_SYSTEM,
+            NULL, lWindowsErrorCode, 0,
+            (char *)&pszMsg, 0, NULL)==0)
+        {
+            pszMsg = null; // nesuformavo
+        }
+       
+//      if((pszMsg0 == null) && (pszMsg == null))
+        {
+            sprintf((char *)str_buf, " %ld", lWindowsErrorCode);
+//          pszMsg0 = str_buf;
+        }
+    
+    } // if(lWindowsErrorCode != 0)
+    
+    if(((pszMsg0 != null) || (pszMsg != null) || (str_buf[0] != Nul)) && SUCCEEDED(retc))
+    {
+        ii = 20;
+        if(pszMsg0 != null) ii += strlen(pszMsg0);
+        if(pszMsg != null) ii += strlen(pszMsg);
+        ii += strlen(str_buf);
+    
+//      KP_NEWA(pszMsg1, unsigned char, ii + 1); // isvieciamas ir is KP_NEWA(), gali uzsiciklint
+        pszMsg1 = new UCHAR[ii + 1];
+    
+        if((pszMsg1 != null) && SUCCEEDED(retc))
+        {
+            pszMsg1[0] = Nul;
+            if(pszMsg0 != null)
+            {
+                strcat(pszMsg1, pszMsg0);
+                if(pszMsg != null) strcat(pszMsg1, "; ");
+            }
+    
+            if(pszMsg != null) strcat(pszMsg1, pszMsg);
+    
+            pnts = pszMsg1 + strlen(pszMsg1);
+            if(pnts > pszMsg1) if(*(--pnts)==Lf) *pnts=Nul;
+            if(pnts > pszMsg1) if(*(--pnts)==Cr) *pnts=Nul;
+            if(pnts > pszMsg1) if(*(--pnts)=='.') *pnts=Nul;
+    
+            if((pszMsg1[0] != Nul) && (str_buf[0] != Nul)) strcat(pszMsg1, "; ");
+            strcat(pszMsg1, str_buf);
+        }
+    }
+    
+    if((pszMsg1 != NULL) && SUCCEEDED(retc))
+    {
+        if(strlen(pszMsg1) > KP_MAX_FILE_LIN_LEN)
+        {
+            pszMsg1[KP_MAX_FILE_LIN_LEN] = Nul;
+            KP_WARNING(KP_E_BUFFER_OVERFLOW, null);
+        }
+        strcpy(lpszMsg, pszMsg1);
+    }
+    
+//  KP_DELETEA(pszMsg1); // siaip iskvieciamas ir is KP_DELETE(), gali ir uzsiciklint
+    if(pszMsg1 != null) delete [] pszMsg1;
+    pszMsg1 = null;
+    
+    if(pszMsg!=null) LocalFree((HLOCAL)pszMsg);
+    
+return(S_OK);
 }
 
 
@@ -674,4 +864,24 @@ const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
    {
       KP_ERROR(KP_E_UNHANDLED_EXCEPTION, Exc.what());
    } 
+}
+
+// --------------------------------------------------
+void KpOutputErrorMessage
+(
+    HRESULT lhRetc,
+    const UCHAR *lpszMessageText,
+    bool bSevereError,
+    const UCHAR *lpszSourceFile,
+    int iSourceLine
+)
+{
+    KpError.OutputErrorMessage(lhRetc, lpszMessageText, bSevereError, lpszSourceFile, iSourceLine);
+}
+
+UCHAR sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
+UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
+{
+    KpError.FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
+return(sys_err_msg);
 }

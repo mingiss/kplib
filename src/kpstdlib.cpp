@@ -31,13 +31,15 @@ using namespace std;
 
 
 // ========================================= KpLib 
-KpCommonApp *KpAppAlloc = NULL; // pointer to dynamycally allocated KpApp 
+KpErrorClass KpError((const UCHAR *)"kplib");
+KpCommonApp *KpApp = NULL;
+KpCommonApp *KpAppAlloc = NULL; // pointer to locally here allocated KpApp 
 
 void KpInit(const UCHAR *ProdName, const void *pStackTop)
 {
     try
     {
-        if (KpApp == NULL) // allocate just in case of non static *KpApp object
+        if (KpApp == NULL) // allocate just in case when not allocated in the main application
         {
             KP_NEW(KpAppAlloc, KpCommonApp(ProdName, 0));
             KpApp = KpAppAlloc;
@@ -74,7 +76,7 @@ void KpClose(void)
         KpApp->Close();
         if(KpAppAlloc != NULL)
         {
-            KP_DELETE(KpAppAlloc /* KpApp */); // delete just dynamically allocated *KpApp object
+            KP_DELETE(KpAppAlloc /* KpApp */); // delete just in case when allocated not in the main application
             KpApp = KpAppAlloc;
         }
     }

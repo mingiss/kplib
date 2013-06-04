@@ -11,34 +11,41 @@
 #ifndef kperr_included
 #define kperr_included
 
-#ifdef __cplusplus
-
 // ---------------------------------------- assertions
 // KP_ASSERT[W[0]](bool bCond, HRESULT lhErrCode, UCHAR *Msg);
 //    assertion, whether bCond is kept
 //    Msg could be null
 //
 // severe error – throws an exception if bCond not kept
+#ifdef __cplusplus
 #define KP_ASSERT(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_THROW(lhErrCode, Msg); } }}
+#endif
+
 // local fault – puts warning to the log file and sets local variable retc (HRESULT retc)
 #define KP_ASSERTW(bCond, lhErrCode, Msg) {{ if(SUCCEEDED(retc)) if(!(bCond)){ KP_WARNING(lhErrCode, Msg); retc = lhErrCode; } }}
 // the same as KP_ASSERTW, but does not bother with retc
 #define KP_ASSERTW0(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_WARNING(lhErrCode, Msg); } }}
 
 
+#ifdef __cplusplus
 // ---------------------------------------- exceptions
 #define KP_THROW(lhErrCode, Msg) {{ throw(new KpException(lhErrCode, Msg, (const UCHAR *)__FILE__, __LINE__)); }}
 
 // KP_CATCH(const std::exception &e);
 // KP_CATCH(KpException &e);
 #define KP_CATCH(e) {{ KpError.Catch(e); }}
-
+#endif
 
 // ---------------------------------------- error messages
+#ifdef __cplusplus
 #define KP_ERROR(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, True, (const UCHAR *)__FILE__, __LINE__); }}
 #define KP_WARNING(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, False, (const UCHAR *)__FILE__, __LINE__); }}
+#else
+#define KP_ERROR(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, True, (const UCHAR *)__FILE__, __LINE__); }}
+#define KP_WARNING(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, False, (const UCHAR *)__FILE__, __LINE__); }}
+#endif
 
-
+#ifdef __cplusplus
 class KpException : public std::exception
 {
 public:
@@ -102,6 +109,7 @@ public:
     
     KpErrorClass(const UCHAR *lpszProdName);
     
+    void SetProdName(const UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
     void GetProdName(UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
 
 //  void StackDump(void);
@@ -143,11 +151,10 @@ va_list argptr;
                                // lpszMsg is used to return back the error text, must
                                //    be not shorter, than KP_MAX_FILE_LIN_LEN bytes
                                // must be defined locally for processing special errors of application
-                               // usually calls FormatErrorMessageMain()
 
-    static HRESULT FormatErrorMessageSystem
+    static HRESULT FormatSystemErrorMessage
     (
-        long lWindowsErrorCode,
+        LONG lWindowsErrorCode,
         UCHAR *lpszMsg,
         bool bFullFormat
     );                         // formats windows system error message
@@ -188,6 +195,20 @@ va_list argptr;
 
 extern KpErrorClass KpError;
 
-// ----------------------------------------
 #endif // #ifdef __cplusplus
+
+// call to KpError.OutputErrorMessage()
+extern PLAIN_C void KpOutputErrorMessage
+(
+    HRESULT lhRetc,
+    const UCHAR *lpszMessageText,
+    bool bSevereError,
+    const UCHAR *lpszSourceFile,
+    int iSourceLine
+);
+
+// call to KpError.FormatSystemErrorMessage()
+extern PLAIN_C UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode);
+
+// ----------------------------------------
 #endif // #ifndef kperr_included

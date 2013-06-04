@@ -27,6 +27,19 @@
 #include "kperr.h"
 
 
+void FnameSplit
+(
+    UCHAR *lpszDiskBuf,
+    UCHAR *lpszPathBuf,
+    UCHAR *lpszFNameBuf,
+    UCHAR *lpszFTypeBuf,
+    const UCHAR *lpszFullName
+)
+{
+    KpStdIo::TvFnameSplit(lpszDiskBuf, lpszPathBuf, lpszFNameBuf, lpszFTypeBuf, lpszFullName);
+}
+
+
 void KpStdIo::TvFnameSplit
 (
 UCHAR *lpszDiskBuf,

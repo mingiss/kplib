@@ -15,6 +15,16 @@
 #define KP_LOG_EXT ((const UCHAR *)".log")
 
 // --------------------------
+extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
+(
+    UCHAR *lpszDiskBuf,
+    UCHAR *lpszPathBuf,
+    UCHAR *lpszFNameBuf,
+    UCHAR *lpszFTypeBuf,
+    const UCHAR *lpszFullName
+);
+
+// --------------------------
 #ifdef __cplusplus
 
 class KpStdIo

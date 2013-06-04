@@ -1,1 +1,1 @@
-#define CUR_DATE (const UCHAR *)"2013-04-05"
+#define CUR_DATE (const UCHAR *)"2013-06-04"
