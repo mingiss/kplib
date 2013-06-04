@@ -35,6 +35,20 @@
 // KP_CATCH(KpException &e);
 #define KP_CATCH(e) {{ KpError.Catch(e); }}
 #endif
+#define KP_CATCH_ALL \
+    catch(const KpException *exc) \
+    { \
+        KP_CATCH(*exc); \
+    } \
+    catch(const exception &exc) \
+    { \
+        KP_CATCH(exc); \
+    } \
+    catch(...) \
+    { \
+        KP_ERROR(KP_E_UNHANDLED_EXCEPTION, null); \
+    }
+
 
 // ---------------------------------------- error messages
 #ifdef __cplusplus
