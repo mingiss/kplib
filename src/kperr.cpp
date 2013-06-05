@@ -386,16 +386,16 @@ const UCHAR *msgptr = (const UCHAR *)"";
 HRESULT KpErrorClass::FormatSystemErrorMessage
 (
 long lWindowsErrorCode,
-unsigned char *lpszMsg,
+UCHAR *lpszMsg,
 bool bFullFormat
 )
 {
 HRESULT retc = S_OK;
-const unsigned char *pszMsg0 = null;
-unsigned char *pszMsg1 = null;
-const unsigned char *pszMsg = null;
-unsigned char *pnts;
-unsigned char str_buf[MAX_LONG_DIGITS + 20];
+const UCHAR *pszMsg0 = null;
+UCHAR *pszMsg1 = null;
+const UCHAR *pszMsg = null;
+UCHAR *pnts;
+UCHAR str_buf[MAX_LONG_DIGITS + 20];
     str_buf[0] = Nul;
 int ii;
 
@@ -560,6 +560,14 @@ int ii;
     if(pszMsg!=null) LocalFree((HLOCAL)pszMsg);
     
 return(S_OK);
+}
+
+
+UCHAR *KpErrorClass::FormatSystemErrorMessage(long lWindowsErrorCode)
+{
+static UCHAR sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
+    FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
+return(sys_err_msg);
 }
 
 
@@ -794,7 +802,7 @@ int out_str_len = strlen(out_str);
 #  endif
 
 // --------------------
-#if TRUE // #ifdef Debug
+#ifdef Debug
 //      cout << out_str;
         printf((const CHAR *)out_str);
 
@@ -879,9 +887,7 @@ void KpOutputErrorMessage
     KpError.OutputErrorMessage(lhRetc, lpszMessageText, bSevereError, lpszSourceFile, iSourceLine);
 }
 
-UCHAR sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
 UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
 {
-    KpError.FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
-return(sys_err_msg);
+return(KpError.FormatSystemErrorMessage(lWindowsErrorCode));
 }

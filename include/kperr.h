@@ -17,8 +17,10 @@
 //    Msg could be null
 //
 // severe error – throws an exception if bCond not kept
-#ifdef __cplusplus
+#ifdef KP_CPP
 #define KP_ASSERT(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_THROW(lhErrCode, Msg); } }}
+#else
+#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_ERROR(lhErrCode, Msg); exit(lhErrCode); } }}
 #endif
 
 // local fault – puts warning to the log file and sets local variable retc (HRESULT retc)
@@ -171,10 +173,13 @@ va_list argptr;
         LONG lWindowsErrorCode,
         UCHAR *lpszMsg,
         bool bFullFormat
-    );                         // formats windows system error message
+    );
+    static UCHAR *FormatSystemErrorMessage(LONG lWindowsErrorCode);
+                               // formats windows system error message
                                // bFullFormat == False - tik lietuviškas pranešimas
                                // lpszMsg is used to return back the error text, must
                                //    be not shorter, than KP_MAX_FILE_LIN_LEN bytes
+
 // --------------------   
     void OutputErrorMessage          // outputs error message; calls FormatErrorMessage()
     (
@@ -201,7 +206,7 @@ va_list argptr;
         bool bSevereError,
         const UCHAR *lpszSourceFile,
         int iSourceLine
-    );
+    ){ OutputErrorMessage(lhRetc, FormatSystemErrorMessage(lWindowsErrorCode), bSevereError, lpszSourceFile, iSourceLine); };
     
 // --------------------   
     void Catch(const std::exception &e);
