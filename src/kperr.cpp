@@ -641,13 +641,18 @@ int msg_tail_pos = ll = strlen(out_text);
       PutLogMessage(out_text);
 //    if(bSevereError) StackDump();
 
-      if(bSevereError || (lhRetc == KP_S_DIAG_MSG))
-      {
 #ifndef Debug
 //       out_text[msg_tail_pos] = Nul;
 #endif         
+      if(bSevereError || (lhRetc == KP_S_DIAG_MSG))
          SendDiagMsg(out_text, bSevereError, out_text + msg_tail_pos + 1);
-      }
+#ifdef KP_CONSOLE
+      else
+      {
+//      cout << out_str;
+        printf((const CHAR *)out_text);
+    }
+#endif
    }
 }
 
@@ -802,12 +807,6 @@ int out_str_len = strlen(out_str);
 #  endif
 
 // --------------------
-#ifdef Debug
-//      cout << out_str;
-        printf((const CHAR *)out_str);
-
-#else // #ifdef Debug        
-// --------------------
 static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
         GetLogFileName(log_fname);
 
@@ -828,8 +827,6 @@ FILE *log_file = NULL;
 
 // --------------------
         KP_ASSERT(fclose(log_file) == 0, KP_E_FERROR, log_fname);
-
-#endif // #ifdef Debug
 
 // --------------------
         KP_DELETEA(out_str);
