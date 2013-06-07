@@ -14,7 +14,7 @@
 
 
 // ========================================= kptt
-#ifndef WIN32
+#ifndef __WIN32__
 typedef char CHAR;
 typedef unsigned char UCHAR;
 typedef unsigned long DWORD;

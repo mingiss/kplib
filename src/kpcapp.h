@@ -16,7 +16,6 @@
 class KpCommonApp
 {
 public:
-    UCHAR m_lpszProdName[KP_MAX_FNAME_LEN + 1];
     int m_iProdVer;
     UCHAR m_lpszProdDate[KP_MAX_FNAME_LEN + 1];
 
@@ -41,9 +40,11 @@ public:
     static void KpInitWindows(void); // iškviečiamas konstruktoriaus
 #endif
    
-    void SetProd(const UCHAR *lpszProdName, int iProdVer); // sets value of m_lpszProdName[] and m_iProdVer
+    void SetProd(const UCHAR *lpszProdName, int iProdVer); // sets value of KpError.m_lpszProdName[] and m_iProdVer
+    
     void GetAppName(UCHAR *lpszNameBuf);
                      // gets filename of application currently running
+                     // at first call sets m_lpszAppName[]
                      // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
 };
 

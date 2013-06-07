@@ -127,6 +127,7 @@ public:
     
     void SetProdName(const UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
     void GetProdName(UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+    const UCHAR *GetProdNamePtr(void); // grąžina m_lpszProdName, taigi, ne ilgesnis už KP_MAX_FNAME_LEN 
 
 //  void StackDump(void);
     
@@ -228,6 +229,12 @@ extern PLAIN_C void KpOutputErrorMessage
 
 // call to KpError.FormatSystemErrorMessage()
 extern PLAIN_C UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode);
+
+// call to KpError.GetProdName() and KpApp->GetAppName()
+// returns char string not longer than KP_MAX_FNAME_LEN
+extern PLAIN_C const UCHAR *KpGetProdName(void);
+// extern String program;  /* name of dvread program */
+#define program KpGetProdName() // definition for dvread.c, etc.
 
 // ----------------------------------------
 #endif // #ifndef kperr_included

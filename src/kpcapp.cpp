@@ -47,7 +47,6 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
 #endif
 
     m_lpszAppName[0] = Nul;
-    m_lpszProdName[0] = Nul;
    
     SetProd(lpszProdName, iProdVer);
    
@@ -85,9 +84,7 @@ static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
 void KpCommonApp::SetProd(const UCHAR *lpszProdName, int iProdVer)
 {
     KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
-    strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
-    m_lpszProdName[KP_MAX_FNAME_LEN] = Nul;
-   
+    KpError.SetProdName(lpszProdName);
     m_iProdVer = iProdVer;
 }
 

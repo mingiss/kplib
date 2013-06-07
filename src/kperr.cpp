@@ -306,6 +306,16 @@ void KpErrorClass::GetProdName(UCHAR *lpszNameBuf)
     strcpy(lpszNameBuf, m_lpszProdName);
 }
 
+const UCHAR *KpErrorClass::GetProdNamePtr(void)
+{
+return(m_lpszProdName);
+}
+
+const UCHAR *KpGetProdName(void)
+{
+return(KpError.GetProdNamePtr());
+}
+
 
 // ----------------------------------
 void KpErrorClass::SetProdName(const UCHAR *lpszNameBuf)
@@ -748,7 +758,7 @@ const UCHAR *temp_dir = null;
 #endif   
 
 static UCHAR app_name[KP_MAX_FNAME_LEN + 1];
-    GetProdName(app_name);
+    KpError.GetProdName(app_name);
     if(KpApp != NULL) KpApp->GetAppName(app_name);
 
 static UCHAR app_disk[KP_MAX_FNAME_LEN + 1];
@@ -787,7 +797,7 @@ int prod_ver = 0;
 const UCHAR *prod_date = (const UCHAR *)"0000-00-00";
         if(KpApp != NULL)
         {
-            prod_name = KpApp->m_lpszProdName;
+            prod_name = m_lpszProdName;
             prod_ver = KpApp->m_iProdVer;
             prod_date = KpApp->m_lpszProdDate;
         }
