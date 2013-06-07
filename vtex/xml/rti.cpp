@@ -30,6 +30,89 @@ using namespace std;
 
 
 // -----------------------------
+UCHAR grp_list_e[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];
+int grp_list_n = 0;
+
+
+// ---------------------------
+rti InfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti SettingsRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti RunToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti SomeToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti ImsRefRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti StructPybRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+rti PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+
+
+// ------------------------------------  
+void scan_kwd_list(UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdListSize, const UCHAR *p_lpszKwdStr)
+{ 
+HRESULT retc = S_OK;
+const UCHAR *temp;
+    
+    KP_ASSERTW((p_szaKwdList != NULL) && (p_piKwdListSize != NULL) && (p_lpszKwdStr != null),
+        E_INVALIDARG, null);
+    if (SUCCEEDED(retc))
+    {
+        *p_piKwdListSize = 0;
+        if (p_lpszKwdStr[0] != Nul)
+        {
+            KP_ASSERTW(strlen(p_lpszKwdStr) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
+            if (SUCCEEDED(retc))
+            { 
+                strcpy(p_szaKwdList[0], p_lpszKwdStr);
+                temp = (const UCHAR *)strtok((CHAR *)p_szaKwdList[0], ",");
+            }
+                
+            KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
+            if (SUCCEEDED(retc)) (*p_piKwdListSize)++;
+
+            while ((temp != null) && SUCCEEDED(retc))
+            {
+                temp = (const UCHAR *)strtok(NULL, ",");
+                if(temp != null)
+                {
+                    KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
+                    if (SUCCEEDED(retc)) 
+                    {
+                        strcpy(p_szaKwdList[*p_piKwdListSize], temp);
+                        (*p_piKwdListSize)++;
+                    }
+                }
+            }
+  
+        } // if (p_lpszKwdStr[0] != Nul)
+    
+    } // if (SUCCEEDED(retc))
+}
+
+
+
+bool kwd_in_list(/* const */ UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const UCHAR *p_lpszKwd) 
+{
+HRESULT retc = S_OK;
+bool retv = False;
+int ii;
+
+    KP_ASSERTW((p_szaKwdList != NULL) && (p_lpszKwd != null), E_INVALIDARG, null);
+    if(SUCCEEDED(retc))
+    {
+        for (ii = 0; ii < p_iKwdListSize; ii++)
+        {
+	        // if (stricmp(p_lpszKwd, p_szaKwdList[ii]) == 0)
+	        if (strcmp(p_lpszKwd, p_szaKwdList[ii]) == 0)
+            {
+                retv = True;
+                break;
+            }
+        }
+    }
+          
+return(retv);
+}
+
+
+// -----------------------------
 void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
 {
   int iC, iB; 

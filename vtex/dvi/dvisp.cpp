@@ -36,10 +36,6 @@ using namespace std;
 #include "dvi.h"
 #include "rti.h"
 #include "dvread.h"
-
-// TODO: po pilno atskyrimo išmest 
-#include "drtim.h"
-
 #include "dvisp.h"
 
 
@@ -417,10 +413,8 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 str_del(dst_buf, src_buf, head);
                 add_to_rti(dst_buf, rti_ptr);
 
-                if(rti_ptr == rti_arr) // main tags
-                    if (kwd_in_list(output_list_e, output_list_n, rti_ptr->name) || (output_list_n == 0))
-                        printoutput(rti_ptr, output_format /* , dtl */, &output_empty, null); 
-
+                if(rti_ptr == rti_arr) // main tags -- immediate output
+                    OutputRtiArr(rti_ptr);
             }
         }            
 #ifdef DRTIM_DEBUG
