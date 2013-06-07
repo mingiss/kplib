@@ -5,7 +5,7 @@
  *
  *
  *  Changelog:
- *      2013-06-07  mp  split from drti.c
+ *      2013-06-07  mp  split off from drti.c
  *
  */
 

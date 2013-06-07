@@ -1,8 +1,7 @@
 /* ----------------
  * dvread.c
- *      reading of .dvi file
+ *      reading DVI file
  *      implementation 
- *
  *
  *  Changelog:
  *      2013-06-07  mp  split from drti.c
@@ -26,6 +25,7 @@
 #include "kpstring.h"
 
 #include "dvi.h"
+#include "rti.h"
 #include "dvread.h"
 
 // TODO: po pilno atskyrimo išmest 
@@ -618,16 +618,16 @@ xxxferstring
   int ii, j;
   bool hd_found = False;
   int ch; 
-// int s[KP_MAX_FILE_LIN_LEN];
-  char src_buf[KP_MAX_FILE_LIN_LEN + 1];
-  char dst_buf[KP_MAX_FILE_LIN_LEN + 1];
+// int s[RTI_KWD_LEN];
+  char src_buf[RTI_KWD_LEN + 1];
+  char dst_buf[RTI_KWD_LEN + 1];
 // int *pts = s;
   char *src_ptr = src_buf;
-  static rti rti_arr[DRTI_MAX_NUM_OF_RTIS + 1] = {{"", ""}};
+  static rti rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
   prti rti_ptr = NULL;
-  const char *head = DRTI_SPEC_RTI_HEAD;
+  const char *head = DVISP_SPEC_RTI_HEAD;
 
-    KP_ASSERT(k < KP_MAX_FILE_LIN_LEN, KP_E_BUFFER_OVERFLOW, null);
+    KP_ASSERT(k < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
     rti_arr[0].name[0] = Nul;
 
@@ -658,14 +658,14 @@ xxxferstring
         rti_ptr = NULL;
         
 // "vtex:info.runtime."
-        head = DRTI_SPEC_RTI_HEAD;
+        head = DVISP_SPEC_RTI_HEAD;
         hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
         if (hd_found) rti_ptr = rti_arr;
 
 // "papersize="
         if (!hd_found)
         {
-            head = DRTI_SPEC_PAPERSIZE_HEAD;
+            head = DVISP_SPEC_PAPERSIZE_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
             {
@@ -677,7 +677,7 @@ xxxferstring
 // "header="
         if (!hd_found)
         {
-            head = DRTI_SPEC_HEADER_HEAD;
+            head = DVISP_SPEC_HEADER_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
             {
@@ -689,49 +689,49 @@ xxxferstring
         if (!hd_found)
         {
 // "mt:hproof"
-            head = DRTI_SPEC_STAGE_HPROOF_HEAD;
+            head = DVISP_SPEC_STAGE_HPROOF_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
         
             if (!hd_found)
             {
 // "mt:proof"            
-                head = DRTI_SPEC_STAGE_PROOF_HEAD;
+                head = DVISP_SPEC_STAGE_PROOF_HEAD;
                 hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             }
 
             if (!hd_found)
             {
 // "mt:pproof"            
-                head = DRTI_SPEC_STAGE_PPROOF_HEAD;
+                head = DVISP_SPEC_STAGE_PPROOF_HEAD;
                 hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             }
 
             if (!hd_found)
             {
 // "mt:crc"            
-                head = DRTI_SPEC_STAGE_CRC_HEAD;
+                head = DVISP_SPEC_STAGE_CRC_HEAD;
                 hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             }
 
             if (!hd_found)
             {
 // "mt:s" // "mt:s250"            
-                head = DRTI_SPEC_STAGE_PRECRC_HEAD;
+                head = DVISP_SPEC_STAGE_PRECRC_HEAD;
                 hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             }
 
             if (hd_found)
             {
-                head = DRTI_SPEC_STAGE_HEAD;
-                KP_ASSERTW(strlen(src_buf) + strlen(DRTI_STAGE_TAG) + 3 < KP_MAX_FILE_LIN_LEN,
+                head = DVISP_SPEC_STAGE_HEAD;
+                KP_ASSERTW(strlen(src_buf) + strlen(DRTI_STAGE_TAG) + 3 < RTI_KWD_LEN,
                     KP_E_BUFFER_OVERFLOW, null);
                 if(SUCCEEDED(retc))
                 {
                     strcpy(dst_buf, head);
                     strcat(dst_buf, DRTI_STAGE_TAG);
-                    strcat(dst_buf, "={"); // DVISP_EQ_SIGN, DVISP_OPENING_BRACE
+                    strcat(dst_buf, "={"); // RTI_EQ_SIGN, RTI_OPENING_BRACE
                     strcat(dst_buf, src_buf + strlen(head));
-                    strcat(dst_buf, "}"); // DVISP_CLOSING_BRACE
+                    strcat(dst_buf, "}"); // RTI_CLOSING_BRACE
                     strcpy(src_buf, dst_buf);
     
                     rti_ptr = rti_arr;
@@ -742,7 +742,7 @@ xxxferstring
 // "mt:" // "mt:badrefs"
         if (!hd_found)
         {
-            head = DRTI_SPEC_MT_HEAD;
+            head = DVISP_SPEC_MT_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             { 
@@ -754,7 +754,7 @@ xxxferstring
 // "vtex:info."
         if(!hd_found)
         {
-            head = DRTI_SPEC_INFO_HEAD;
+            head = DVISP_SPEC_INFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -768,7 +768,7 @@ xxxferstring
 // "vtex:settings.imsref={"
         if(!hd_found)
         {
-            head = DRTI_SPEC_IMSREF_HEAD;
+            head = DVISP_SPEC_IMSREF_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -783,7 +783,7 @@ xxxferstring
 // "vtex:settings.runtool={"
         if(!hd_found)
         {
-            head = DRTI_SPEC_RUNTOOL_HEAD;
+            head = DVISP_SPEC_RUNTOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -798,7 +798,7 @@ xxxferstring
 // "vtex:settings.sometool={"
         if(!hd_found)
         {
-            head = DRTI_SPEC_SOMETOOL_HEAD;
+            head = DVISP_SPEC_SOMETOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -813,7 +813,7 @@ xxxferstring
 // "vtex:settings.structpyb={"
         if(!hd_found)
         {
-            head = DRTI_SPEC_STRUCTPYB_HEAD;
+            head = DVISP_SPEC_STRUCTPYB_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -828,7 +828,7 @@ xxxferstring
 // "vtex:settings."
         if(!hd_found)
         {
-            head = DRTI_SPEC_SETTINGS_HEAD;
+            head = DVISP_SPEC_SETTINGS_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -842,7 +842,7 @@ xxxferstring
 // MC:PageInfo voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}
         if(!hd_found)
         {
-            head = DRTI_SPEC_PAGEINFO_HEAD;
+            head = DVISP_SPEC_PAGEINFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
@@ -857,12 +857,12 @@ xxxferstring
         if (hd_found)
         {
 const CHAR *pnt_rest = src_buf + strlen(head);
-            if (strchr(pnt_rest, DVISP_EQ_SIGN) == NULL)
+            if (strchr(pnt_rest, RTI_EQ_SIGN) == NULL)
             {
 // pridedam <option> prie visų "vtex:settings." tagų be "="
-                if ((strncmp(src_buf, DRTI_SPEC_SETTINGS_HEAD, strlen(DRTI_SPEC_SETTINGS_HEAD)) == 0))
+                if ((strncmp(src_buf, DVISP_SPEC_SETTINGS_HEAD, strlen(DVISP_SPEC_SETTINGS_HEAD)) == 0))
                 {
-                    KP_ASSERTW(strlen(src_buf) + strlen(DRTI_OPTION_TAG) + 2 < KP_MAX_FILE_LIN_LEN,
+                    KP_ASSERTW(strlen(src_buf) + strlen(DRTI_OPTION_TAG) + 2 < RTI_KWD_LEN,
                         KP_E_BUFFER_OVERFLOW, null);
                     if(SUCCEEDED(retc))
                     {
@@ -876,7 +876,7 @@ const CHAR *pnt_rest = src_buf + strlen(head);
                 else
                 {
 // kitiems pridedam gale "="
-                    KP_ASSERTW(strlen(src_buf) + 1 < KP_MAX_FILE_LIN_LEN, KP_E_BUFFER_OVERFLOW, null);
+                    KP_ASSERTW(strlen(src_buf) + 1 < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
                     if(SUCCEEDED(retc)) strcat(src_buf, "=");
                 }
             }
