@@ -1,7 +1,7 @@
 /* ----------------
  * rti.h
  *      {keyword, value} (DVI runtime info) tag processing
- *      definitions
+ *      control callback definitions for (DVI) converters (drti, etc.0 
  *
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
@@ -44,5 +44,17 @@ extern PLAIN_C void add_to_rti(const UCHAR *p_lpszKwdStr, prti p_pRti);
 
 // split 's' into 't' and 'tt'
 extern int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s);
+
+// --------------------------- converter callbacks
+extern PLAIN_C void RtiCmdOpen(void);   /* start of command and parameters */
+extern PLAIN_C void RtiCmdClose(void);  /* end of command and parameters */
+
+extern PLAIN_C void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile);
+extern PLAIN_C void RtiTransFontDef(int p_iNumOfBytes, FILE *p_pDviFile);
+extern PLAIN_C void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile);
+
+// skips p_iNumOfBytes of p_pDviFile
+// can be used as void substitutes for other RtiTrans*() 
+extern PLAIN_C void RtiSkipInBytes(int p_iNumOfBytes, FILE *p_pDviFile);
 
 #endif // #ifndef rti_included

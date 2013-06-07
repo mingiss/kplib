@@ -38,6 +38,7 @@ extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
+extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę

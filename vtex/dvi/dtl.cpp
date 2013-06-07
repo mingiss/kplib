@@ -1,182 +1,119 @@
 /* ----------------
- * dvisp.cpp
- *      reading special tags of DVI file
- *      implementation (of the class DviSp) 
+ * dtl.cpp
+ *      DTL file I/O
  *
- *  Changelog:
- *      2013-06-07  mp  split from drti.c
+ *      2013-06-07  mp  split off from drti.cpp 
  *
- *  TODO: perdaryt į XML medį XmlNode su išvedimo draiveriais KpFile
- *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
- *                 
  */
 
-#include "envir.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <iostream>
-#ifdef __WIN32__
-#include <windows.h>
-#endif
-
-using namespace std;
-
-#include "kperrno.h"
-#include "kpstdlib.h"
-#include "kptt.h"
-#include "kpctype.h"
-#include "kpstring.h"
-#include "kpmsg.h"
-#include "kperr.h"
-
-#include "dvi.h"
+#include "dtl.h"
 #include "rti.h"
-#include "dvread.h"
-
-// TODO: po pilno atskyrimo išmest 
-#include "drtim.h"
-
-#include "dvisp.h"
 
 
-// -----------------------------
-const UCHAR *lpszaIgnoreSpecList[] =
-{
-    (const UCHAR *)"\" ",
-    (const UCHAR *)"!", 
-    (const UCHAR *)"ps:", 
-    (const UCHAR *)"PSfile=",
+// ---------------------------
+/* Is each DTL command parenthesised by a BCOM and an ECOM? */
+int group = 0;  /* by default, no grouping */
 
-    (const UCHAR *)"color ",
-    (const UCHAR *)"background ",
-    
-    (const UCHAR *)"em: graph ",
-    (const UCHAR *)"mt:destination",
-
-    (const UCHAR *)"vtex:bmc.artifact.",
-    (const UCHAR *)"vtex:emc.artifact.",
-
-    (const UCHAR *)"fp",
-    (const UCHAR *)"bk",
-    (const UCHAR *)"sp",
-    (const UCHAR *)"pn ", // "pn 5"
-    (const UCHAR *)"pa ", // "pa 639 -2122"
-    (const UCHAR *)"ar ", // "ar 0 0 26 26 0 6.2832"
-    
-    null
-};
-
-const UCHAR *lpszaIgnoreFullSpecList[] =
-{
-    (const UCHAR *)"MC:Contents",
-    
-    (const UCHAR *)"BMC:Book/SpringerURL",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightHolderName",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightYear",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightYearFormerEditions",
-    (const UCHAR *)"BMC:Contents",
-    (const UCHAR *)"BMC:MyCopy/Intro",
-    (const UCHAR *)"BMC:MyCopy/SpringerURL",
-    (const UCHAR *)"BMC:text",
-    (const UCHAR *)"BMC:VTEX/LCCN",
-    (const UCHAR *)"EMC:Book/SpringerURL",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightHolderName",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightYear",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightYearFormerEditions",
-    (const UCHAR *)"EMC:Contents",
-    (const UCHAR *)"EMC:MyCopy/Intro",
-    (const UCHAR *)"EMC:MyCopy/SpringerURL",
-    (const UCHAR *)"EMC:text",
-    (const UCHAR *)"EMC:VTEX/LCCN",
-
-    (const UCHAR *)"BMC:BookInfo/BookDOI",
-    (const UCHAR *)"BMC:BookInfo/BookElectronicISBN",
-    (const UCHAR *)"BMC:BookInfo/BookPrintISBN",
-    (const UCHAR *)"EMC:BookInfo/BookDOI",
-    (const UCHAR *)"EMC:BookInfo/BookElectronicISBN",
-    (const UCHAR *)"EMC:BookInfo/BookPrintISBN",
-    (const UCHAR *)"BMC:SeriesInfo/SeriesElectronicISSN",
-    (const UCHAR *)"BMC:SeriesInfo/SeriesPrintISSN",
-    (const UCHAR *)"EMC:SeriesInfo/SeriesElectronicISSN",
-    (const UCHAR *)"EMC:SeriesInfo/SeriesPrintISSN",
-    
-    null
-};
-
-
-// -------------------------
-const UCHAR *input_file = null;
-
-
-// -------------------------
-bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd) 
-{
-HRESULT retc = S_OK;
-bool retv = False;
-const UCHAR **list_ptr = p_lpszaKwdList;
-
-    KP_ASSERTW((p_lpszaKwdList != NULL) && (p_lpszKwd != null), E_INVALIDARG, null);
-    if(SUCCEEDED(retc))
-    {
-        while (*list_ptr != null)
-        {
-            if (p_lpszaKwdList == lpszaIgnoreSpecList)
-                retv = (strncmp(p_lpszKwd, *list_ptr, strlen(*list_ptr)) == 0);
-            else
-	           retv = (strcmp(p_lpszKwd, *list_ptr) == 0);
-            
-            if (retv) break;
-            
-            list_ptr++;
-        }
-    }
-          
-return(retv);
-}
-
+// output file
+FILE * dtl = stdout;
 
 // --------------------------- converter callbacks
-void RtiCmdOpen(void){}
-void RtiCmdClose(void){}
+void RtiCmdOpen(void)
+{
+    PRINT_BCOM;
+}
 
+void RtiCmdClose(void)
+{
+    PRINT_ECOM;
+}
 
 // ----------------------------
 void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile)
 {
-RtiSkipInBytes(p_iNumOfBytes, p_pDviFile);
+RtiSkipinBytes(p_iNumOfBytes, p_pDviFile);
 }
 
-void RtiTransFontDef(int p_iNumOfBytes, FILE *p_pDviFile)
+Void
+RtiTransFontDef // xferstring
+#ifdef STDC
+  (int k, FILE * dvi /* , FILE * dtl */)
+#else
+  (k, dvi /* , dtl */)
+  int k;
+  FILE * dvi;
+// FILE * dtl;
+#endif
+/* copy string of k characters from dvi file to dtl file */
 {
-RtiSkipInBytes(p_iNumOfBytes, p_pDviFile);
+  int i;
+  int ch;
+  //  fprintf (dtl, "\n");
+  //  fprintf (dtl, " ");
+  //  fprintf (dtl, "'");
+  for (i=0; i < k; i++)
+  {
+    ch = fgetc (dvi);
+    if (ch == ESC_CHAR || ch == EMES_CHAR)
+    {
+      //      fprintf (dtl, "%c", ESC_CHAR);
+    }
+    //    fprintf (dtl, "%c", ch);
+  }
+  //  fprintf (dtl, "'");
 }
+/* xferstring */
 
 
-// ----------------------------
-void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile)
+Void
+RtiTransSpec // xxxferstring
+#ifdef STDC
+  (int k, FILE * dvi /* , FILE * dtl */)
+#else
+  (k, dvi /* , dtl */)
+  int k;
+  FILE * dvi;
+// FILE * dtl;
+#endif
+/* copy string of k characters from dvi file to dtl file */
 {
-HRESULT retc = S_OK;
+  HRESULT retc = S_OK;
   
-int ii;
-bool hd_found = False;
-int ch; 
-UCHAR src_buf[RTI_KWD_LEN + 1];
-UCHAR dst_buf[RTI_KWD_LEN + 1];
-UCHAR *src_ptr = src_buf;
-static rti rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-prti rti_ptr = NULL;
-const UCHAR *head = DVISP_SPEC_RTI_HEAD;
+  int ii, j;
+  bool hd_found = False;
+  int ch; 
+// int s[RTI_KWD_LEN];
+  char src_buf[RTI_KWD_LEN + 1];
+  char dst_buf[RTI_KWD_LEN + 1];
+// int *pts = s;
+  char *src_ptr = src_buf;
+  static rti rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+  prti rti_ptr = NULL;
+  const char *head = DVISP_SPEC_RTI_HEAD;
 
-    KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
+    KP_ASSERT(k < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
     rti_arr[0].name[0] = Nul;
 
-    for (ii = 0; ii < p_iNumOfBytes; ii++)
-        *src_ptr++ = fgetc(p_pDviFile);
+  //  fprintf (dtl, "\n");
+  //  fprintf (dtl, " ");
+  //  fprintf (dtl, "'");
+    for (ii = 0; ii < k; ii++)
+    {
+//      ch = fgetc (dvi);
+    /*  if (ch == ESC_CHAR || ch == EMES_CHAR)
+        {
+            fprintf (dtl, "%c", ESC_CHAR);
+        }
+        fprintf (dtl, "%c", ch);
+    */
+//      s[i] = ch;
+
+//      *src_ptr++ = *pts++;
+
+        *src_ptr++ = fgetc(dvi);
+    }
+
     *src_ptr++ = '\0';
 
     if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
@@ -197,7 +134,7 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             if (hd_found) 
             {
                 rti_ptr = rti_arr;
-                head = (const UCHAR *)"";
+                head = "";
             }
         }
 
@@ -209,7 +146,7 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             if (hd_found) 
             {
                 rti_ptr = rti_arr;
-                head = (const UCHAR *)"";
+                head = "";
             }
         }
 
@@ -274,7 +211,7 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             if (hd_found)
             { 
                 rti_ptr = rti_arr;
-                head = (const UCHAR *)"";
+                head = "";
             }
         }
         
@@ -383,7 +320,7 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
 // tagai be reikšmių (nėra "=")
         if (hd_found)
         {
-/* const */ UCHAR *pnt_rest = src_buf + strlen(head);
+const CHAR *pnt_rest = src_buf + strlen(head);
             if (strchr(pnt_rest, RTI_EQ_SIGN) == NULL)
             {
 // pridedam <option> prie visų "vtex:settings." tagų be "="
@@ -418,14 +355,27 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 add_to_rti(dst_buf, rti_ptr);
 
                 if(rti_ptr == rti_arr) // main tags
+                {
                     if (kwd_in_list(output_list_e, output_list_n, rti_ptr->name) || (output_list_n == 0))
+                    {
                         printoutput(rti_ptr, output_format /* , dtl */, &output_empty, null); 
+    
+                    }// end of j;
+                    //          printf("%s\n\n", rti_ptr->name);
+                    //          printf("%s\n\n", rti_ptr->value);
+                }
 
-            }
+            } // end og i;
         }            
 #ifdef DRTIM_DEBUG
         else printf("[%s]\n", src_buf);
 #endif
 
+    //  fprintf (dtl, "%s\n", dst_buf);
+   
+    // kaka
+    //  fprintf (stderr, "kaka\n");
+    
     } // if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
 }
+/* xferstring */

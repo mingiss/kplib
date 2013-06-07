@@ -60,8 +60,7 @@
  ../kplib/include/kpstdlib.h ../kplib/include/kperrno.h \
  ../kplib/include/kperr.h ../kplib/include/kptt.h ../kplib/src/kpstring.h \
  ../kplib/vtex/dvi/dvi.h ../kplib/vtex/xml/rti.h \
- ../kplib/vtex/dvi/dvread.h ../kplib/vtex/dvi/dtl.h drtim.h \
- ../kplib/vtex/dvi/dvisp.h
+ ../kplib/vtex/dvi/dvread.h
 
 ../kplib/include/envir.h:
 
@@ -194,9 +193,3 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 ../kplib/vtex/xml/rti.h:
 
 ../kplib/vtex/dvi/dvread.h:
-
-../kplib/vtex/dvi/dtl.h:
-
-drtim.h:
-
-../kplib/vtex/dvi/dvisp.h:

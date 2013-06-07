@@ -37,27 +37,6 @@ extern int group;
 #define PRINT_BCOM   if (group) fprintf (dtl, "%s", BCOM)
 #define PRINT_ECOM   if (group) fprintf (dtl, "%s", ECOM)
 
-/* beginning and end of a message string */
-#define  BMES  "'"
-
-#define  EMES  BMES
-
-#define  BMES_CHAR  '\''
-#define  EMES_CHAR  BMES_CHAR
-
-/* beginning and end of sequence of font characters */
-
-#define  BSEQ  "("
-#define  ESEQ  ")"
-
-#define  BSEQ_CHAR  '('
-#define  ESEQ_CHAR  ')'
-
-/* escape and quote characters */
-
-#define  ESC_CHAR  '\\'
-#define  QUOTE_CHAR  '\"'
-
 /* command names in DTL */
 
 #define  SETCHAR  "\\"
@@ -128,5 +107,7 @@ extern int group;
 /* string s of length l and maximum length m */
 typedef struct {int l; int m; char * s;} Lstring;
 
+// output file
+// FILE * dtl;
 
 /* end dtl.h */

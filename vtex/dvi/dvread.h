@@ -44,25 +44,25 @@ extern op_table  fnt;
 /* function prototypes */
 
 extern PLAIN_C int open_dvi ARGS((const UCHAR * dvi_file, FILE ** dvi));
-extern PLAIN_C int dvread ARGS((FILE * dvi, FILE * dtl));
+extern PLAIN_C int dvread ARGS((FILE * dvi /* , FILE * dtl */));
 
-extern PLAIN_C COUNT wunsigned ARGS((int n,  FILE * dvi,  FILE * dtl));
-extern PLAIN_C COUNT wsigned   ARGS((int n,  FILE * dvi,  FILE * dtl));
+extern PLAIN_C COUNT wunsigned ARGS((int n,  FILE * dvi /* , FILE * dtl */));
+extern PLAIN_C COUNT wsigned   ARGS((int n,  FILE * dvi /* , FILE * dtl */));
 extern PLAIN_C S4 rsigned   ARGS((int n,  FILE * dvi));
 extern PLAIN_C U4 runsigned ARGS((int n,  FILE * dvi));
 
-extern PLAIN_C COUNT wtable ARGS((op_table table, int opcode, FILE * dvi, FILE * dtl));
+extern PLAIN_C COUNT wtable ARGS((op_table table, int opcode, FILE * dvi /* , FILE * dtl */));
 
-extern PLAIN_C COUNT setseq ARGS((int opcode, FILE * dvi, FILE * dtl));
-extern PLAIN_C Void setpchar ARGS((int charcode, FILE * dtl));
-extern PLAIN_C Void xferstring ARGS((int k, FILE * dvi, FILE * dtl));
-extern PLAIN_C Void xxxferstring ARGS((int k, FILE * dvi, FILE * dtl));
+extern PLAIN_C COUNT setseq ARGS((int opcode, FILE * dvi /* , FILE * dtl */));
+extern PLAIN_C Void setpchar ARGS((int charcode /* , FILE * dtl */));
+// extern PLAIN_C Void xferstring ARGS((int k, FILE * dvi /* , FILE * dtl */));
+// extern PLAIN_C Void xxxferstring ARGS((int k, FILE * dvi /* , FILE * dtl */));
 
-extern PLAIN_C COUNT special ARGS((FILE * dvi,  FILE * dtl,  int n));
-extern PLAIN_C COUNT fontdef ARGS((FILE * dvi,  FILE * dtl,  int n));
-extern PLAIN_C COUNT preamble  ARGS((FILE * dvi,  FILE * dtl));
-extern PLAIN_C COUNT postamble ARGS((FILE * dvi,  FILE * dtl));
-extern PLAIN_C COUNT postpost  ARGS((FILE * dvi,  FILE * dtl));
+extern PLAIN_C COUNT special ARGS((FILE * dvi /* , FILE * dtl */, int n));
+extern PLAIN_C COUNT fontdef ARGS((FILE * dvi /* , FILE * dtl */, int n));
+extern PLAIN_C COUNT preamble  ARGS((FILE * dvi /* , FILE * dtl */));
+extern PLAIN_C COUNT postamble ARGS((FILE * dvi /* , FILE * dtl */));
+extern PLAIN_C COUNT postpost  ARGS((FILE * dvi /* , FILE * dtl */));
 
 
 #endif // #ifndef dvread_included

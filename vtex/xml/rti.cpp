@@ -125,3 +125,10 @@ int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s)
   return 0;
 }
 
+
+// ----------------------------
+void RtiSkipInBytes(int p_iNumOfBytes, FILE *p_pDviFile)
+{
+int ii;
+    for (ii=0; ii < p_iNumOfBytes; ii++) fgetc(p_pDviFile);
+}

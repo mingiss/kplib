@@ -66,3 +66,22 @@ typedef long int word_t;
 #define MAXSTRLEN 256
 typedef char String[MAXSTRLEN+1];
 
+
+/* beginning and end of a message string */
+#define  BMES  "'"
+
+#define  EMES  BMES
+
+#define  BMES_CHAR  '\''
+#define  EMES_CHAR  BMES_CHAR
+
+/* escape and quote characters */
+#define  ESC_CHAR  '\\'
+#define  QUOTE_CHAR  '\"'
+
+/* beginning and end of sequence of font characters */
+#define  BSEQ  "("
+#define  ESEQ  ")"
+
+#define  BSEQ_CHAR  '('
+#define  ESEQ_CHAR  ')'
