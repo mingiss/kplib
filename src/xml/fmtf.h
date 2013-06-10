@@ -21,6 +21,8 @@ public:
     bool m_bOutputEmpty; 
     int m_iIndent;
     
+    XmlNode *FileNode; // suparsintas failo įrašas, gali būti ir visas failas
+    
     FmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode);
     ~FmtFile();
     

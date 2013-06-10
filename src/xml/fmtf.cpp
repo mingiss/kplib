@@ -35,6 +35,7 @@ FmtFile::FmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
     m_lpszFileName[0] = Nul;
     m_lpszFileMode[0] = Nul;
     m_pFileObj = NULL;
+    FileNode = NULL;
 
     m_bOutputEmpty = True; 
     m_iIndent = 0;
