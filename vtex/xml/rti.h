@@ -48,12 +48,6 @@ typedef rti *prti;
 #define DRTI_ALL_GRP_TAG (const UCHAR *)"all"
 
 
-// -----------------------------
-// list of group tags processed (possible values -- DRTI_*_GRP_TAG) 
-extern UCHAR grp_list_e[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];
-extern int grp_list_n;
-
-
 // --------------------------
 extern rti InfoRtiArr[RTI_NUM_OF_KWDS + 1]; // papildomi vtex:info grupės tagai
 extern rti SettingsRtiArr[RTI_NUM_OF_KWDS + 1]; // palaidi vtex:settings grupės tagai
@@ -64,11 +58,41 @@ extern rti StructPybRtiArr[RTI_NUM_OF_KWDS + 1]; // vtex:settings.structpyb grup
 extern rti PageInfoRtiArr[RTI_NUM_OF_KWDS + 1]; // MC:PageInfo grupės tagai
 
 
+#ifdef __cplusplus
+
+// -----------------------------
+class RtiClass
+{
+public:
+    UCHAR m_lpszOutFileName[KP_MAX_FNAME_LEN + 1]; // output RTI file name
+    FILE *m_pOutFile; // output RTI file object
+
+    UCHAR m_szaOutputList[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];  // išvedamų žemutinio lygio tagų sąrašas
+    int m_iOutputListSize;  // m_szaOutputList[] elementų skaičius, jei m_szaOutputList[] tuščias -- išvedam viską
+
+    // list of group tags processed (possible values -- DRTI_*_GRP_TAG) 
+    UCHAR m_szaGrpList[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];
+    int m_iGrpListSize;
+    
+    RtiClass(void);
+    void OpenOutFile(const UCHAR *lpszOutFileName); // opens output RTI file
+    
+    void ScanOutputList(const UCHAR *p_lpszKwdStr); // fills m_szaOutputList[] from comma-separated keyword list 
+    void ScanGrpList(const UCHAR *p_lpszKwdStr); // fills m_szaGrpList[] from comma-separated keyword list
+};
+
+
+extern RtiClass *pRtiObjPtr; // pointer to current RtiClass object for plain C callback RtiTransSpec()
+
+
 // -----------------------------
 // parse comma separated keyword list p_lpszKwdStr to array of strings 
 // p_szaKwdList[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1] 
 extern void scan_kwd_list(UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdListSize, const UCHAR *p_lpszKwdStr); 
 
+#endif // #ifdef __cplusplus
+
+// -----------------------------
 // checks presence of p_lpszKwd in list p_szaKwdList
 // p_szaKwdList[p_iKwdListSize][RTI_KWD_LEN + 1] 
 extern PLAIN_C bool kwd_in_list(/* const */ UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const UCHAR *p_lpszKwd); 
@@ -84,8 +108,10 @@ extern PLAIN_C void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead);
 //  "voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}"
 extern PLAIN_C void add_to_rti(const UCHAR *p_lpszKwdStr, prti p_pRti);
 
+#ifdef __cplusplus
 // split 's' into 't' and 'tt'
 extern int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s);
+#endif // #ifdef __cplusplus
 
 
 // --------------------------- converter callbacks
@@ -100,8 +126,10 @@ extern PLAIN_C void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile);
 // can be used as void substitutes for other RtiTrans*() 
 extern PLAIN_C void RtiSkipInBytes(int p_iNumOfBytes, FILE *p_pDviFile);
 
+#ifdef __cplusplus
 // prints array of low level tags 
 // with checking for corespondence to the list of output tags (drtim option "-e")
 extern void OutputRtiArr(const prti p_pRti); 
+#endif // #ifdef __cplusplus
 
 #endif // #ifndef rti_included

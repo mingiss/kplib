@@ -118,7 +118,7 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
 
 #ifdef __WIN32__
 DWORD ll = 0L;
-        ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)lpszNameBuf, NULL);
+        ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (CHAR *)lpszNameBuf, NULL);
         KP_ASSERT(ll != 0L, KP_E_SYSTEM_ERROR, GetLastError());
         KP_ASSERTW0(ll < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;

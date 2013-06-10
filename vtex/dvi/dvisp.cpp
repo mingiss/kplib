@@ -105,7 +105,24 @@ const UCHAR *lpszaIgnoreFullSpecList[] =
 
 
 // -------------------------
-const UCHAR *input_file = null;
+DviSpClass::DviSpClass(void)
+{
+    m_lpszInFileName[0] = Nul;
+    m_pInFile = stdin;
+}
+
+
+// -------------------------
+void DviSpClass::OpenInFile(const UCHAR *lpszInFileName)
+{
+    if(lpszInFileName != null) if(lpszInFileName[0] != Nul)
+    {
+        KP_ASSERT(strlen(lpszInFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+        strcpy(m_lpszInFileName, lpszInFileName);
+         
+        open_dvi(m_lpszInFileName, &m_pInFile);
+    }
+}
 
 
 // -------------------------
@@ -167,6 +184,7 @@ static rti rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 prti rti_ptr = NULL;
 const UCHAR *head = DVISP_SPEC_RTI_HEAD;
 
+    KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
     KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
     rti_arr[0].name[0] = Nul;
@@ -281,8 +299,8 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_INFO_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_INFO_GRP_TAG))
                         rti_ptr = InfoRtiArr;
 //              else hd_found = False;
             }
@@ -295,9 +313,9 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_IMSREF_GRP_TAG) ||
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SETTINGS_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_IMSREF_GRP_TAG) ||
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         rti_ptr = ImsRefRtiArr;
 //              else hd_found = False;
             }
@@ -310,9 +328,9 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_RUNTOOL_GRP_TAG) ||
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SETTINGS_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_RUNTOOL_GRP_TAG) ||
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         rti_ptr = RunToolRtiArr;
 //              else hd_found = False;
             }
@@ -325,9 +343,9 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SOMETOOL_GRP_TAG) ||
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SETTINGS_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SOMETOOL_GRP_TAG) ||
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         rti_ptr = SomeToolRtiArr;
 //              else hd_found = False;
             }
@@ -340,9 +358,9 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_STRUCTPYB_GRP_TAG) ||
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SETTINGS_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_STRUCTPYB_GRP_TAG) ||
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         rti_ptr = StructPybRtiArr;
 //              else hd_found = False;
             }
@@ -355,8 +373,8 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_SETTINGS_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         rti_ptr = SettingsRtiArr;
 //              else hd_found = False;
             }
@@ -369,8 +387,8 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
             {
-                if (kwd_in_list(grp_list_e, grp_list_n, DRTI_ALL_GRP_TAG) || 
-                    kwd_in_list(grp_list_e, grp_list_n, DRTI_PAGEINFO_GRP_TAG))
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_PAGEINFO_GRP_TAG))
                         rti_ptr = PageInfoRtiArr;
 //              else hd_found = False;
             }

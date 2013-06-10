@@ -29,9 +29,8 @@ using namespace std;
 #include "rti.h"
 
 
-// -----------------------------
-UCHAR grp_list_e[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];
-int grp_list_n = 0;
+// ---------------------------
+RtiClass *pRtiObjPtr = NULL;
 
 
 // ---------------------------
@@ -42,6 +41,43 @@ rti SomeToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 rti ImsRefRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 rti StructPybRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 rti PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+
+
+// ------------------------------------  
+RtiClass::RtiClass(void)
+{
+    m_lpszOutFileName[0] = Nul;
+    m_pOutFile = stdout;
+    m_iOutputListSize = 0;
+    m_iGrpListSize = 0;
+}
+
+
+// ------------------------------------  
+void RtiClass::OpenOutFile(const UCHAR *lpszOutFileName)
+{
+    if(lpszOutFileName != null) if (lpszOutFileName[0] != Nul)
+    {
+        KP_ASSERT(strlen(lpszOutFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+        strcpy(m_lpszOutFileName, lpszOutFileName);
+
+        m_pOutFile = fopen((const CHAR *)m_lpszOutFileName, "w");
+        KP_ASSERT(m_pOutFile != NULL, KP_E_DIR_ERROR, lpszOutFileName);
+    }
+}
+
+
+// ------------------------------------  
+void RtiClass::ScanOutputList(const UCHAR *p_lpszKwdStr)
+{
+    scan_kwd_list(m_szaOutputList, &m_iOutputListSize, p_lpszKwdStr); 
+} 
+
+
+void RtiClass::ScanGrpList(const UCHAR *p_lpszKwdStr)
+{
+    scan_kwd_list(m_szaGrpList, &m_iGrpListSize, p_lpszKwdStr);
+}
 
 
 // ------------------------------------  

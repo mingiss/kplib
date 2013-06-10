@@ -47,16 +47,26 @@
 #define DVISP_SPEC_PAGEINFO_HEAD (const UCHAR *)"MC:PageInfo "
 
 
-// -----------------------
-extern const UCHAR *input_file;
-
-
 // -----------------------------
 // list of \special tag headers to ignore tags 
 extern const UCHAR *lpszaIgnoreSpecList[];
 // list of full \special tags to ignore 
 extern const UCHAR *lpszaIgnoreFullSpecList[];
 
+// -----------------------------
+class DviSpClass
+{
+public:
+    UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
+    FILE *m_pInFile; // input DVI file object
+
+    DviSpClass(void);
+
+    void OpenInFile(const UCHAR *lpszInFileName);
+};
+
+
+// -----------------------------
 // checks presence of p_lpszKwd in list p_lpszaKwdList
 // p_lpszaKwdList should be terminated by null entry
 extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
