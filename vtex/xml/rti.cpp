@@ -27,6 +27,8 @@ using namespace std;
 #include "kperr.h"
 
 #include "rti.h"
+#include "fmtf.h"
+#include "rtif.h"
 
 
 // ---------------------------
@@ -46,34 +48,72 @@ RtInfo PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 // ------------------------------------  
 RtiClass::RtiClass(void)
 {
-    m_lpszFileName[0] = Nul;
-    m_pOutFile = stdout;
+    m_pFmtFileObj = NULL;
     m_iOutputListSize = 0;
     m_iGrpListSize = 0;
 }
 
 
-// ------------------------------------  
-void RtiClass::OpenOutFile(const UCHAR *lpszOutFileName)
+RtiClass::~RtiClass()
 {
-    if(lpszOutFileName != null) if (lpszOutFileName[0] != Nul)
-    {
-        KP_ASSERT(strlen(lpszOutFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-        strcpy(m_lpszFileName, lpszOutFileName);
+    CloseOutFile();
+}
 
-        m_pOutFile = fopen((const CHAR *)m_lpszFileName, "w");
-        KP_ASSERT(m_pOutFile != NULL, KP_E_DIR_ERROR, lpszOutFileName);
-    }
+
+// ------------------------------------  
+void RtiClass::OpenOutFile(const UCHAR *p_lpszOutFileName, FmtFileForgeFptr p_FmtFileForge)
+{
+    KP_ASSERT(m_pFmtFileObj == NULL, KP_E_DOUBLE_CALL, null);
+    m_pFmtFileObj = (*p_FmtFileForge)(p_lpszOutFileName, (const UCHAR *)"w");
+    KP_ASSERT(m_pFmtFileObj != NULL, KP_E_DIR_ERROR, p_lpszOutFileName);
 }
 
 
 // ------------------------------------  
 void RtiClass::CloseOutFile(void)
 {
-    if(m_pOutFile == stdout)
-        KP_ASSERT(fflush(m_pOutFile) != EOF, KP_E_FERROR, null)
-    else
-        KP_ASSERT(fclose(m_pOutFile) != EOF, KP_E_FERROR, m_lpszFileName);
+    if(m_pFmtFileObj != NULL)
+    {
+        m_pFmtFileObj->CloseOutFile();
+        KP_DELETE(m_pFmtFileObj);
+    }
+}
+
+
+// ---------------------------------
+void RtiClass::PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
+{
+    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
+    m_pFmtFileObj->PrintOutput(p_pRti, p_pbOutputEmpty, p_lpszGrpTagName);
+}
+
+
+
+void RtiClass::PrintOutputHead(void)
+{
+    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
+    m_pFmtFileObj->PrintOutputHead();
+}
+
+
+void RtiClass::PrintOutputTail(void)
+{
+    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
+    m_pFmtFileObj->PrintOutputTail();
+}
+
+
+void RtiClass::OpenGrTag(const UCHAR *p_lpszGrpTagName)
+{
+    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
+    m_pFmtFileObj->OpenGrTag(p_lpszGrpTagName);
+}
+
+
+void RtiClass::CloseGrTag(const UCHAR *p_lpszGrpTagName)
+{
+    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
+    m_pFmtFileObj->CloseGrTag(p_lpszGrpTagName);
 }
 
 

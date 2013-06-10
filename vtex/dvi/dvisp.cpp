@@ -35,8 +35,10 @@ using namespace std;
 
 #include "dvi.h"
 #include "rti.h"
+#include "fmtf.h"
 #include "dvread.h"
 #include "dvisp.h"
+#include "rtif.h"
 
 
 // -----------------------------

@@ -1,14 +1,10 @@
-../kplib/vtex/dvi/dvisp.o: ../kplib/vtex/dvi/dvisp.cpp \
+../kplib/vtex/xml/xmlff.o: ../kplib/vtex/xml/xmlff.cpp \
  ../kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdbool.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/os_defines.h \
@@ -43,6 +39,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/clocale \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/locale.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cctype \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ios_base.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/atomicity.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/gthr.h \
@@ -81,6 +78,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winerror.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/basetsd.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/pshpack4.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/poppack.h \
@@ -118,6 +116,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/rpcndr.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/rpcnsip.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/objfwd.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wtypes.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/unknwn.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/objidl.h \
@@ -128,10 +127,8 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
  ../kplib/include/kperrno.h ../kplib/include/kpstdlib.h \
  ../kplib/include/kptt.h ../kplib/src/kpctype.h ../kplib/src/kpstring.h \
- ../kplib/src/kpmsg.h ../kplib/include/kperr.h ../kplib/vtex/dvi/dvi.h \
- ../kplib/vtex/xml/rti.h ../kplib/vtex/xml/fmtf.h \
- ../kplib/vtex/dvi/dvread.h ../kplib/vtex/dvi/dvisp.h \
- ../kplib/vtex/xml/rtif.h
+ ../kplib/src/kpmsg.h ../kplib/include/kperr.h ../kplib/vtex/xml/rti.h \
+ ../kplib/vtex/xml/fmtf.h ../kplib/vtex/xml/xmlff.h
 
 ../kplib/include/envir.h:
 
@@ -144,14 +141,6 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdbool.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream:
 
@@ -220,6 +209,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/clocale:
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/locale.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cctype:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ios_base.h:
 
@@ -297,6 +288,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winerror.h:
 
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h:
+
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/basetsd.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/pshpack4.h:
@@ -371,6 +364,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/rpcnsip.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/objfwd.h:
 
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h:
+
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wtypes.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/unknwn.h:
@@ -401,14 +396,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
 ../kplib/include/kperr.h:
 
-../kplib/vtex/dvi/dvi.h:
-
 ../kplib/vtex/xml/rti.h:
 
 ../kplib/vtex/xml/fmtf.h:
 
-../kplib/vtex/dvi/dvread.h:
-
-../kplib/vtex/dvi/dvisp.h:
-
-../kplib/vtex/xml/rtif.h:
+../kplib/vtex/xml/xmlff.h:
