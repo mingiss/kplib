@@ -34,19 +34,19 @@ RtiClass *pRtiObjPtr = NULL;
 
 
 // ---------------------------
-rti InfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti SettingsRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti RunToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti SomeToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti ImsRefRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti StructPybRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-rti PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo InfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo SettingsRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo RunToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo SomeToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo ImsRefRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo StructPybRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+RtInfo PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 
 
 // ------------------------------------  
 RtiClass::RtiClass(void)
 {
-    m_lpszOutFileName[0] = Nul;
+    m_lpszFileName[0] = Nul;
     m_pOutFile = stdout;
     m_iOutputListSize = 0;
     m_iGrpListSize = 0;
@@ -59,11 +59,21 @@ void RtiClass::OpenOutFile(const UCHAR *lpszOutFileName)
     if(lpszOutFileName != null) if (lpszOutFileName[0] != Nul)
     {
         KP_ASSERT(strlen(lpszOutFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-        strcpy(m_lpszOutFileName, lpszOutFileName);
+        strcpy(m_lpszFileName, lpszOutFileName);
 
-        m_pOutFile = fopen((const CHAR *)m_lpszOutFileName, "w");
+        m_pOutFile = fopen((const CHAR *)m_lpszFileName, "w");
         KP_ASSERT(m_pOutFile != NULL, KP_E_DIR_ERROR, lpszOutFileName);
     }
+}
+
+
+// ------------------------------------  
+void RtiClass::CloseOutFile(void)
+{
+    if(m_pOutFile == stdout)
+        KP_ASSERT(fflush(m_pOutFile) != EOF, KP_E_FERROR, null)
+    else
+        KP_ASSERT(fclose(m_pOutFile) != EOF, KP_E_FERROR, m_lpszFileName);
 }
 
 
@@ -161,10 +171,10 @@ void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
 }
 
 
-void add_to_rti(const UCHAR *p_lpszKwdStr, prti p_pRti)
+void add_to_rti(const UCHAR *p_lpszKwdStr, pRtInfo p_pRti)
 {
 HRESULT retc = S_OK;
-prti rti_ptr = p_pRti;
+pRtInfo rti_ptr = p_pRti;
 UCHAR kwd_str_buf[RTI_KWD_LEN + 1];
 /* const */ UCHAR *cur_kwd = null;
 UCHAR tag_name[RTI_KWD_LEN + 1];

@@ -126,6 +126,13 @@ void DviSpClass::OpenInFile(const UCHAR *lpszInFileName)
 
 
 // -------------------------
+void DviSpClass::ReadFile(void)
+{
+    dvread(m_pInFile);
+}
+
+
+// -------------------------
 bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd) 
 {
 HRESULT retc = S_OK;
@@ -180,8 +187,8 @@ int ch;
 UCHAR src_buf[RTI_KWD_LEN + 1];
 UCHAR dst_buf[RTI_KWD_LEN + 1];
 UCHAR *src_ptr = src_buf;
-static rti rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-prti rti_ptr = NULL;
+static RtInfo rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
+pRtInfo rti_ptr = NULL;
 const UCHAR *head = DVISP_SPEC_RTI_HEAD;
 
     KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);

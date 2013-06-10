@@ -63,6 +63,7 @@ public:
     DviSpClass(void);
 
     void OpenInFile(const UCHAR *lpszInFileName);
+    void ReadFile(void);
 };
 
 
