@@ -26,6 +26,8 @@ using namespace std;
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "rtif.h"
@@ -257,6 +259,15 @@ UCHAR tag_val[RTI_KWD_LEN + 1];
                 // add empty delimiter record
                 rti_ptr->name[0] = Nul;
                 rti_ptr->value[0] = Nul;
+
+            // ------------------ pildom XML struktūrą
+                KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
+                KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+            
+            TiXmlElement *element = new TiXmlElement((const CHAR *)tag_name);
+            TiXmlText *text = new TiXmlText((const CHAR *)tag_val);
+                element->LinkEndChild(text);
+                pRtiObjPtr->m_pFmtFileObj->m_XmlDoc.LinkEndChild(element);
             }
         }
         

@@ -14,9 +14,11 @@
 class XmlFmtFile: public FmtFile
 {
 public:
-    XmlFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
-        : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
-        {}
+    UCHAR m_lpszXmlFileName[KP_MAX_FNAME_LEN + 100]; // TODO: kelti į FmtFile::m_lpszFileName[] ir FmtFile::m_pFileObj 
+
+    XmlFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode);
+
+    void ExportDoc(void);  
 
     void PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
     void PrintOutputHead(void);

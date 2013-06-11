@@ -1,0 +1,34 @@
+../kplib/src/tinyxml/tinyxml.o: ../kplib/src/tinyxml/tinyxml.cpp \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
+ ../kplib/src/tinyxml/tinyxml.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h \
+ ../kplib/src/tinyxml/tinystr.h
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
+
+../kplib/src/tinyxml/tinyxml.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdlib.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
+
+../kplib/src/tinyxml/tinystr.h:

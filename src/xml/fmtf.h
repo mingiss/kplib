@@ -21,12 +21,19 @@ public:
     bool m_bOutputEmpty; 
     int m_iIndent;
     
-    XmlNode *FileNode; // suparsintas failo įrašas, gali būti ir visas failas
+//  XmlTree *m_pXmlDoc; // suparsintas failo įrašas, gali būti ir visas failas
+    TiXmlDocument m_XmlDoc;
     
     FmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode);
     ~FmtFile();
     
     void CloseOutFile(void); // close output file m_pFileObj
+
+// ------------------------------
+    virtual void ExportDoc(void) = 0; // išveda m_XmlDoc į m_pFileObj  
+
+// ------------------------------
+// seni drti related metodai
 
     // p_pbOutputEmpty == True -- first tag in the group, opening tag p_lpszGrpTagName should be output
     // in case of top level ungrouped tags p_lpszGrpTagName and p_pbOutputEmpty both should be NULL 
@@ -46,6 +53,7 @@ public:
 
 // puts out indent spaces according to m_iIndent value
     virtual void MakeIndent(void) = 0;
+// ------------------------------
 };
 
 

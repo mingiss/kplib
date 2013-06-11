@@ -26,6 +26,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "csvff.h"
@@ -76,3 +78,8 @@ void CsvFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName){}
 void CsvFmtFile::MakeIndent(void){}        
 
 
+// ---------------------------------
+void CsvFmtFile::ExportDoc(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}

@@ -1,6 +1,6 @@
 /* ----------------
  * dvisp.h
- *      reading of .dvi file special tags
+ *      reading of .dvi and .special file \special tags
  *      definitions (of the class DviSp) 
  *
  *  Changelog:
@@ -59,7 +59,7 @@ class DviSpClass
 public:
     UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
     FILE *m_pInFile; // input DVI file object
-
+    
     DviSpClass(void);
 
     void OpenInFile(const UCHAR *lpszInFileName);
@@ -70,7 +70,7 @@ public:
 // -----------------------------
 // checks presence of p_lpszKwd in list p_lpszaKwdList
 // p_lpszaKwdList should be terminated by null entry
-extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
+// extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
 
 
 #endif // #ifndef dvisp_included

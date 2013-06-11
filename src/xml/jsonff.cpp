@@ -25,6 +25,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "jsonff.h"
@@ -123,3 +125,8 @@ int ii;
 }        
 
 
+// ---------------------------------
+void JsonFmtFile::ExportDoc(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}

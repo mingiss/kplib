@@ -40,6 +40,20 @@ extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
 
+// ------------------------- UTF-8 functions
+// compares UTF-8 strings using certain sorting order
+// TODO: accented letters are treated as normal, and Y treated as I
+// p_bSkipSpc - ignore all spaces
+// TODO: p_iSortLng - letter order (look envir.h for SortMode)
+// p_bCaseSens - case sensitivity flag
+// TODO: p_bCaseSens for UTF-8
+// TODO: if p_bRoundFlg == False, accented letters and Y are theyr own wage and are sorted separatelly
+// 0: p_lpszStr1 == p_lpszStr2
+// 1: p_lpszStr1 > p_lpszStr2
+// -1: p_lpszStr1 > p_lpszStr2
+extern int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc, 
+    int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg);
+
 // -------------------------
 // TODO: kelt į KpPlainStr klasę
 void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol);

@@ -26,6 +26,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "yamlff.h"
@@ -104,3 +106,8 @@ int ii;
 }        
 
 
+// ---------------------------------
+void YamlFmtFile::ExportDoc(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}

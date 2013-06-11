@@ -25,6 +25,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "plainff.h"
@@ -56,3 +58,10 @@ void PlainFmtFile::PrintOutputTail(void){}
 void PlainFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName){}
 void PlainFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName){}
 void PlainFmtFile::MakeIndent(void){}        
+
+
+// ---------------------------------
+void PlainFmtFile::ExportDoc(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}

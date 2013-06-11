@@ -17,6 +17,8 @@ public:
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
+    void ExportDoc(void);  
+
     void PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
     void PrintOutputHead(void);
     void PrintOutputTail(void);

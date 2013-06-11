@@ -284,5 +284,9 @@ extern KpHeapClass KpHeap;
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 
 
+// ================================================== searching and sorting
+#define KP_KWD_LEN 400 // negalima keist – pasikeis susijusiø failø layout
+
+
 // ----------------------------------------
 #endif // #ifndef kpstdlib_included

@@ -1,4 +1,4 @@
-../kplib/vtex/dvi/dvread.o: ../kplib/vtex/dvi/dvread.c \
+../kplib/src/dvi/dvread.o: ../kplib/src/dvi/dvread.c \
  ../kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
@@ -59,8 +59,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
  ../kplib/include/kpstdlib.h ../kplib/include/kperrno.h \
  ../kplib/include/kperr.h ../kplib/include/kptt.h ../kplib/src/kpstring.h \
- ../kplib/vtex/dvi/dvi.h ../kplib/vtex/xml/rti.h \
- ../kplib/vtex/dvi/dvread.h
+ ../kplib/src/dvi/dvi.h ../kplib/src/xml/rti.h ../kplib/src/dvi/dvread.h
 
 ../kplib/include/envir.h:
 
@@ -188,8 +187,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
 ../kplib/src/kpstring.h:
 
-../kplib/vtex/dvi/dvi.h:
+../kplib/src/dvi/dvi.h:
 
-../kplib/vtex/xml/rti.h:
+../kplib/src/xml/rti.h:
 
-../kplib/vtex/dvi/dvread.h:
+../kplib/src/dvi/dvread.h:

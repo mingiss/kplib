@@ -25,6 +25,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "xmlff.h"
@@ -38,6 +40,15 @@ FmtFile *fmt_file = NULL;
     KP_NEW(fmt_file, XmlFmtFile(p_lpszFileName, p_lpszFileMode));
 
 return(fmt_file);
+}
+
+
+// ---------------------------------
+XmlFmtFile::XmlFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+        : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
+{
+    strcpy(m_lpszXmlFileName, m_lpszFileName);
+    strcat(m_lpszXmlFileName, ".xml");
 }
 
 
@@ -107,3 +118,8 @@ int ii;
 }        
 
 
+void XmlFmtFile::ExportDoc(void)
+{
+//  dump_to_stdout(&m_XmlDoc);
+    m_XmlDoc.SaveFile((const CHAR *)m_lpszXmlFileName);
+}

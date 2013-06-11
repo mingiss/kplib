@@ -25,6 +25,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "binff.h"
@@ -42,32 +44,39 @@ return(fmt_file);
 
 
 // ---------------------------------
-void PlainFmtFile::PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
+void BinFmtFile::PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
 {
     KP_ERROR(E_NOTIMPL, null);
 }
 
-void PlainFmtFile::PrintOutputHead(void)
+void BinFmtFile::PrintOutputHead(void)
 {
     KP_ERROR(E_NOTIMPL, null);
 }
 
-void PlainFmtFile::PrintOutputTail(void)
+void BinFmtFile::PrintOutputTail(void)
 {
     KP_ERROR(E_NOTIMPL, null);
 }
 
-void PlainFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
+void BinFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
 {
     KP_ERROR(E_NOTIMPL, null);
 }
 
-void PlainFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
+void BinFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
 {
     KP_ERROR(E_NOTIMPL, null);
 }
 
-void PlainFmtFile::MakeIndent(void)
+void BinFmtFile::MakeIndent(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}
+
+
+// ---------------------------------
+void BinFmtFile::ExportDoc(void)
 {
     KP_ERROR(E_NOTIMPL, null);
 }

@@ -26,6 +26,8 @@
 #include "kpmsg.h"
 #include "kperr.h"
 
+#include "tinyxml.h"
+
 #include "rti.h"
 #include "fmtf.h"
 #include "plistff.h"
@@ -111,3 +113,10 @@ int ii;
     for(ii = 0; ii < m_iIndent; ii++)
         fprintf(m_pFileObj, "    ");
 }        
+
+
+// ---------------------------------
+void PlistFmtFile::ExportDoc(void)
+{
+    KP_ERROR(E_NOTIMPL, null);
+}

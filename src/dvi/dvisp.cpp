@@ -1,6 +1,6 @@
 /* ----------------
  * dvisp.cpp
- *      reading special tags of DVI file
+ *      reading special tags of DVI and .special file
  *      implementation (of the class DviSp) 
  *
  *  Changelog:
@@ -8,7 +8,7 @@
  *
  *  TODO: perdaryt į XML medį XmlNode su išvedimo draiveriais KpFile
  *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
- *                 
+ *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį                 
  */
 
 #include "envir.h"
@@ -30,8 +30,11 @@ using namespace std;
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
+#include "kpsort.h"
 #include "kpmsg.h"
 #include "kperr.h"
+
+#include "tinyxml.h"
 
 #include "dvi.h"
 #include "rti.h"
@@ -203,7 +206,9 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
     *src_ptr++ = '\0';
 
     if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
-        if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf)) 
+        if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
+//  if(GetKwrdIndex(src_buf, lpszaIgnoreSpecList, -1, True, False) == TV_TG_NoKey)
+//      if(GetKwrdIndex(src_buf, lpszaIgnoreFullSpecList, -1, True, True) == TV_TG_NoKey)
     {
         rti_ptr = NULL;
         

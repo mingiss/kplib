@@ -17,6 +17,8 @@
 class RtiClass
 {
 public:
+// TODO: viską iš InfoRtiArr, SettingsRtiArr, RunToolRtiArr, SomeToolRtiArr, ImsRefRtiArr, StructPybRtiArr, PageInfoRtiArr
+//          perkelti į m_pFmtFileObj->m_XmlDoc
     FmtFile *m_pFmtFileObj; // output RTI file object
 
     UCHAR m_szaOutputList[RTI_NUM_OF_KWDS][RTI_KWD_LEN + 1];  // išvedamų žemutinio lygio tagų sąrašas
@@ -44,6 +46,7 @@ public:
 };
 
 
+// TODO: globalų pointerį naikint, perdaryt per parametrą
 extern RtiClass *pRtiObjPtr; // pointer to current RtiClass object for plain C callback RtiTransSpec()
 
 
