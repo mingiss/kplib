@@ -1,4 +1,5 @@
-../kplib/src/xml/rti.o: ../kplib/src/xml/rti.cpp ../kplib/include/envir.h \
+../kplib/src/xml/txml.o: ../kplib/src/xml/txml.cpp \
+ ../kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
@@ -129,8 +130,7 @@
  ../kplib/src/kpmsg.h ../kplib/include/kperr.h \
  ../kplib/src/tinyxml/tinyxml.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h \
- ../kplib/src/tinyxml/tinystr.h ../kplib/src/xml/rti.h \
- ../kplib/src/xml/fmtf.h ../kplib/src/xml/rtif.h
+ ../kplib/src/tinyxml/tinystr.h ../kplib/src/xml/txml.h
 
 ../kplib/include/envir.h:
 
@@ -404,8 +404,4 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
 
 ../kplib/src/tinyxml/tinystr.h:
 
-../kplib/src/xml/rti.h:
-
-../kplib/src/xml/fmtf.h:
-
-../kplib/src/xml/rtif.h:
+../kplib/src/xml/txml.h:

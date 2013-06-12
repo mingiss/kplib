@@ -28,7 +28,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "csvff.h"
 
@@ -56,6 +56,8 @@ void CsvFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCH
             OpenGrTag(p_lpszGrpTagName);
 
     fprintf(m_pFileObj, "%s,%s\n", p_pRti->name, p_pRti->value);
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 

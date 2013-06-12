@@ -27,7 +27,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "binff.h"
 
@@ -62,6 +62,8 @@ void BinFmtFile::PrintOutputTail(void)
 void BinFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
 {
     KP_ERROR(E_NOTIMPL, null);
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 void BinFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)

@@ -32,6 +32,7 @@ typedef RtInfo *pRtInfo;
 
 
 // --------------------------
+#define DRTI_XML_GRP_TAG (const UCHAR *)"xml"
 #define DRTI_STAGE_TAG (const UCHAR *)"mt:stage"
 #define DRTI_INFO_GRP_TAG (const UCHAR *)"vtex:info"
 #define DRTI_SETTINGS_GRP_TAG (const UCHAR *)"vtex:settings"

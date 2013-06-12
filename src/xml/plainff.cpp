@@ -27,7 +27,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "plainff.h"
 
@@ -55,7 +55,14 @@ void PlainFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const U
 
 void PlainFmtFile::PrintOutputHead(void){}
 void PlainFmtFile::PrintOutputTail(void){}
-void PlainFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName){}
+
+#if FALSE
+void PlainFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
+{
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
+}
+#endif
+
 void PlainFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName){}
 void PlainFmtFile::MakeIndent(void){}        
 

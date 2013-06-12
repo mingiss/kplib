@@ -28,7 +28,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "yamlff.h"
 
@@ -87,6 +87,8 @@ void YamlFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
     MakeIndent(); 
     fprintf(m_pFileObj, "%s:\n", p_lpszGrpTagName); 
     m_iIndent++;
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 

@@ -23,6 +23,13 @@ distribution.
 */
 
 
+/*
+ *
+ *  2013-06-12  mp  TiXmlNode::FindNodeByName() added
+ *
+ */   
+
+
 #ifndef TINYXML_INCLUDED
 #define TINYXML_INCLUDED
 
@@ -574,6 +581,14 @@ public:
 	const TiXmlNode* IterateChildren( const std::string& _value, const TiXmlNode* previous ) const	{	return IterateChildren (_value.c_str (), previous);	}	///< STL std::string form.
 	TiXmlNode* IterateChildren( const std::string& _value, const TiXmlNode* previous ) {	return IterateChildren (_value.c_str (), previous);	}	///< STL std::string form.
 	#endif
+
+
+    // -----------------------------
+    // mp 2013-06-12
+    // The first child of this node with the matching tag name. Will be null if none found.
+    // Searches through all grandchildren
+    TiXmlNode* FindNodeByName(const char *p_lpszTagName);
+    // -----------------------------
 
 	/** Add a new node related to this. Adds a child past the LastChild.
 		Returns a pointer to the new object or NULL if an error occured.

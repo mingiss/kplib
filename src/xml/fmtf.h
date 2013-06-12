@@ -30,6 +30,12 @@ public:
     void CloseOutFile(void); // close output file m_pFileObj
 
 // ------------------------------
+    // sukuria m_XmlDoc grupinį tagą vardu p_lpszTagName, tago p_lpszGrpTagName vaiką
+    // jei p_lpszGrpTagName == null, kuria tagą dokumento šaknyje
+    // jei tokiu vardu tagas jau yra, tada nekuria
+    void CreateGrpNode(const UCHAR *p_lpszTagName, const UCHAR *p_lpszGrpTagName);
+
+// ------------------------------
     virtual void ExportDoc(void) = 0; // išveda m_XmlDoc į m_pFileObj  
 
 // ------------------------------
@@ -46,7 +52,7 @@ public:
     virtual void PrintOutputTail(void) = 0;
 
     // puts out opening group tag
-    virtual void OpenGrTag(const UCHAR *p_lpszGrpTagName) = 0;
+    virtual void OpenGrTag(const UCHAR *p_lpszGrpTagName);
 
     // puts out closing group tag
     virtual void CloseGrTag(const UCHAR *p_lpszGrpTagName) = 0;

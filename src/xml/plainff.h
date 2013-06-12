@@ -23,7 +23,7 @@ public:
     void PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
     void PrintOutputHead(void);
     void PrintOutputTail(void);
-    void OpenGrTag(const UCHAR *p_lpszGrpTagName);
+//  void OpenGrTag(const UCHAR *p_lpszGrpTagName);
     void CloseGrTag(const UCHAR *p_lpszGrpTagName);
     void MakeIndent(void);
 };

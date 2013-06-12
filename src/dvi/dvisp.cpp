@@ -37,7 +37,7 @@ using namespace std;
 #include "tinyxml.h"
 
 #include "dvi.h"
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "dvread.h"
 #include "dvisp.h"
@@ -195,6 +195,8 @@ UCHAR *src_ptr = src_buf;
 static RtInfo rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 pRtInfo rti_ptr = NULL;
 const UCHAR *head = DVISP_SPEC_RTI_HEAD;
+const UCHAR *grp_tag_name = null;
+const UCHAR *grp_grp_tag_name = null;
 
     KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
     KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
@@ -211,6 +213,8 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
 //      if(GetKwrdIndex(src_buf, lpszaIgnoreFullSpecList, -1, True, True) == TV_TG_NoKey)
     {
         rti_ptr = NULL;
+        grp_tag_name = null;
+        grp_grp_tag_name = null;
         
 // "vtex:info.runtime."
         head = DVISP_SPEC_RTI_HEAD;
@@ -315,7 +319,10 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_INFO_GRP_TAG))
-                        rti_ptr = InfoRtiArr;
+                {
+                    rti_ptr = InfoRtiArr;
+                    grp_tag_name = DRTI_INFO_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -330,7 +337,11 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_IMSREF_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                        rti_ptr = ImsRefRtiArr;
+                {
+                    rti_ptr = ImsRefRtiArr;
+                    grp_tag_name = DRTI_IMSREF_GRP_TAG;
+                    grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -345,7 +356,11 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_RUNTOOL_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                        rti_ptr = RunToolRtiArr;
+                {
+                    rti_ptr = RunToolRtiArr;
+                    grp_tag_name = DRTI_RUNTOOL_GRP_TAG;
+                    grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -360,7 +375,11 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SOMETOOL_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                        rti_ptr = SomeToolRtiArr;
+                {
+                    rti_ptr = SomeToolRtiArr;
+                    grp_tag_name = DRTI_SOMETOOL_GRP_TAG;
+                    grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -375,7 +394,11 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_STRUCTPYB_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                        rti_ptr = StructPybRtiArr;
+                {
+                    rti_ptr = StructPybRtiArr;
+                    grp_tag_name = DRTI_STRUCTPYB_GRP_TAG;
+                    grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -389,7 +412,10 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                        rti_ptr = SettingsRtiArr;
+                {
+                    rti_ptr = SettingsRtiArr;
+                    grp_tag_name = DRTI_SETTINGS_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -403,7 +429,10 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_PAGEINFO_GRP_TAG))
-                        rti_ptr = PageInfoRtiArr;
+                {
+                    rti_ptr = PageInfoRtiArr;
+                    grp_tag_name = DRTI_PAGEINFO_GRP_TAG;
+                }
 //              else hd_found = False;
             }
         }
@@ -443,7 +472,7 @@ const UCHAR *head = DVISP_SPEC_RTI_HEAD;
             if (rti_ptr != NULL)
             {
                 str_del(dst_buf, src_buf, head);
-                add_to_rti(dst_buf, rti_ptr);
+                add_to_rti(dst_buf, rti_ptr, grp_tag_name, grp_grp_tag_name);
 
                 if(rti_ptr == rti_arr) // main tags -- immediate output
                     OutputRtiArr(rti_ptr);

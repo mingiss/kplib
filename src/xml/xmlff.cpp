@@ -27,7 +27,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "xmlff.h"
 
@@ -95,6 +95,8 @@ void XmlFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
     MakeIndent(); 
     fprintf(m_pFileObj, "<%s>\n", p_lpszGrpTagName); 
     m_iIndent++;
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 

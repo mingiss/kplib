@@ -130,7 +130,7 @@
  ../kplib/src/kpmsg.h ../kplib/include/kperr.h \
  ../kplib/src/tinyxml/tinyxml.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h \
- ../kplib/src/tinyxml/tinystr.h ../kplib/src/xml/rti.h \
+ ../kplib/src/tinyxml/tinystr.h ../kplib/src/xml/rtid.h \
  ../kplib/src/xml/fmtf.h
 
 ../kplib/include/envir.h:
@@ -405,6 +405,6 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
 
 ../kplib/src/tinyxml/tinystr.h:
 
-../kplib/src/xml/rti.h:
+../kplib/src/xml/rtid.h:
 
 ../kplib/src/xml/fmtf.h:

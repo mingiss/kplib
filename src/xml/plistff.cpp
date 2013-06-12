@@ -28,7 +28,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "plistff.h"
 
@@ -92,6 +92,8 @@ void PlistFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
     MakeIndent(); 
     fprintf(m_pFileObj, "<dict>\n"); 
     m_iIndent++;
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 

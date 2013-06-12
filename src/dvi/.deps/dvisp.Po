@@ -132,8 +132,9 @@
  ../kplib/src/tinyxml/tinyxml.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h \
  ../kplib/src/tinyxml/tinystr.h ../kplib/src/dvi/dvi.h \
- ../kplib/src/xml/rti.h ../kplib/src/xml/fmtf.h ../kplib/src/dvi/dvread.h \
- ../kplib/src/dvi/dvisp.h ../kplib/src/xml/rtif.h
+ ../kplib/src/xml/rtid.h ../kplib/src/xml/fmtf.h \
+ ../kplib/src/dvi/dvread.h ../kplib/src/dvi/dvisp.h \
+ ../kplib/src/xml/rtif.h
 
 ../kplib/include/envir.h:
 
@@ -413,7 +414,7 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
 
 ../kplib/src/dvi/dvi.h:
 
-../kplib/src/xml/rti.h:
+../kplib/src/xml/rtid.h:
 
 ../kplib/src/xml/fmtf.h:
 

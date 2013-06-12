@@ -25,7 +25,7 @@
 #include "kpstring.h"
 
 #include "dvi.h"
-#include "rti.h"
+#include "rtid.h"
 #include "dvread.h"
 
 

@@ -28,7 +28,7 @@ using namespace std;
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "rtif.h"
 
@@ -213,7 +213,7 @@ void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
 }
 
 
-void add_to_rti(const UCHAR *p_lpszKwdStr, pRtInfo p_pRti)
+void add_to_rti(const UCHAR *p_lpszKwdStr, pRtInfo p_pRti, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
 {
 HRESULT retc = S_OK;
 pRtInfo rti_ptr = p_pRti;
@@ -221,8 +221,21 @@ UCHAR kwd_str_buf[RTI_KWD_LEN + 1];
 /* const */ UCHAR *cur_kwd = null;
 UCHAR tag_name[RTI_KWD_LEN + 1];
 UCHAR tag_val[RTI_KWD_LEN + 1];
-
+const UCHAR *grp_tag_name = p_lpszGrpTagName;
+    
     KP_ASSERT((p_lpszKwdStr != null) && (p_pRti != NULL), E_INVALIDARG, null);
+
+    KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+
+    pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(DRTI_XML_GRP_TAG, null);
+    if(p_lpszGrpGrpTagName != null)
+        pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpGrpTagName, DRTI_XML_GRP_TAG);
+    if(p_lpszGrpTagName != null)
+        pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpTagName, 
+            (p_lpszGrpGrpTagName != null)?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
+
+    if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
 
 // ieškom p_pRti galo
     rti_ptr = p_pRti;
@@ -261,13 +274,16 @@ UCHAR tag_val[RTI_KWD_LEN + 1];
                 rti_ptr->value[0] = Nul;
 
             // ------------------ pildom XML struktūrą
-                KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
-                KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+            TiXmlNode *grp_node = NULL;
+                if (grp_tag_name != null)
+                    grp_node = pRtiObjPtr->m_pFmtFileObj->m_XmlDoc.FindNodeByName((const CHAR *)grp_tag_name);
+                if (grp_node == NULL)            
+                    grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
             
             TiXmlElement *element = new TiXmlElement((const CHAR *)tag_name);
             TiXmlText *text = new TiXmlText((const CHAR *)tag_val);
                 element->LinkEndChild(text);
-                pRtiObjPtr->m_pFmtFileObj->m_XmlDoc.LinkEndChild(element);
+                grp_node->LinkEndChild(element);
             }
         }
         

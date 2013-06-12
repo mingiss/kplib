@@ -27,7 +27,7 @@
 
 #include "tinyxml.h"
 
-#include "rti.h"
+#include "rtid.h"
 #include "fmtf.h"
 #include "jsonff.h"
 
@@ -95,6 +95,8 @@ void JsonFmtFile::OpenGrTagLocal(const UCHAR *p_lpszGrpTagName)
     fprintf(m_pFileObj, "\n");
     MakeIndent();
     fprintf(m_pFileObj, "\"%s\":\n", p_lpszGrpTagName);
+    
+    FmtFile::OpenGrTag(p_lpszGrpTagName);
 }
 
 
