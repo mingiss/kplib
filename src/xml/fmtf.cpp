@@ -113,16 +113,20 @@ TiXmlNode *cur_node = NULL;
 
     if(cur_node == NULL)
     {            
-    TiXmlElement *element = new TiXmlElement((const CHAR *)p_lpszTagName);
+    TiXmlElement *element = NULL;
+        KP_NEW(element, TiXmlElement((const CHAR *)p_lpszTagName));
         grp_node->LinkEndChild(element);
+        element = NULL;
     }
 }
 
 // ---------------------------------
 void FmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
 {
-// TiXmlElement *element = new TiXmlElement((const CHAR *)p_lpszGrpTagName);
-//     m_XmlDoc.LinkEndChild(element);
+// TiXmlElement *element = NULL;
+//      KP_NEW(element, TiXmlElement((const CHAR *)p_lpszGrpTagName));
+//      m_XmlDoc.LinkEndChild(element);
+//      element = NULL;
 }
 
 

@@ -22,6 +22,15 @@ must not be misrepresented as being the original software.
 distribution.
 */
 
+/*
+ *
+ *  2013-06-12  mp  TiXmlAttribute::Print(), TiXmlAttributeSet::FindOrCreate(), 
+ *                      TiXmlAttributeSet::Add() and TiXmlElement::Print()
+ *                      adapted to support <!DOCTYPE> output specific
+ *
+ *
+ */    
+
 #include <ctype.h>
 
 #ifdef TIXML_USE_STL
@@ -821,7 +830,10 @@ void TiXmlElement::Print( FILE* cfile, int depth ) const
 	TiXmlNode* node;
 	if ( !firstChild )
 	{
-		fprintf( cfile, " />" );
+        if (strcmp(value.c_str(), "!DOCTYPE") == 0)
+		  fprintf( cfile, ">" );
+        else
+		  fprintf( cfile, " />" );
 	}
 	else if ( firstChild == lastChild && firstChild->ToText() )
 	{
@@ -1213,21 +1225,51 @@ void TiXmlAttribute::Print( FILE* cfile, int /*depth*/, TIXML_STRING* str ) cons
 
 	EncodeString( name, &n );
 	EncodeString( value, &v );
-
+    
+    bool n_nempty = (n.c_str()[0] != 0);
+    bool v_nempty = (v.c_str()[0] != 0);
+    
+    char fmt[100];
+    char eq[2];
+    char quot[2];
+    eq[0] = 0; 
+    if (n_nempty && v_nempty){ eq[0] = '='; eq[1] = 0; }
+    quot[0] = 0; quot[1] = 0;
+    
 	if (value.find ('\"') == TIXML_STRING::npos) {
+        if (v_nempty) quot[0] = '\"';
+        strcpy(fmt, "%s");
+        strcat(fmt, eq);
+        strcat(fmt, quot);
+        strcat(fmt, "%s");
+        strcat(fmt, quot);
+        
 		if ( cfile ) {
-			fprintf (cfile, "%s=\"%s\"", n.c_str(), v.c_str() );
+			fprintf (cfile, fmt /* "%s=\"%s\"" */, n.c_str(), v.c_str() );
 		}
 		if ( str ) {
-			(*str) += n; (*str) += "=\""; (*str) += v; (*str) += "\"";
+			(*str) += n; 
+            (*str) += eq; (*str) += quot; // (*str) += "=\""; 
+            (*str) += v; 
+            (*str) += quot; // (*str) += "\"";
 		}
 	}
 	else {
+        if (v_nempty) quot[0] = '\'';
+        strcpy(fmt, "%s");
+        strcat(fmt, eq);
+        strcat(fmt, quot);
+        strcat(fmt, "%s");
+        strcat(fmt, quot);
+        
 		if ( cfile ) {
-			fprintf (cfile, "%s='%s'", n.c_str(), v.c_str() );
+			fprintf (cfile, fmt /* "%s='%s'" */, n.c_str(), v.c_str() );
 		}
 		if ( str ) {
-			(*str) += n; (*str) += "='"; (*str) += v; (*str) += "'";
+			(*str) += n; 
+            (*str) += eq; (*str) += quot; // (*str) += "='"; 
+            (*str) += v; 
+            (*str) += quot; // (*str) += "'";
 		}
 	}
 }
@@ -1514,9 +1556,9 @@ TiXmlAttributeSet::~TiXmlAttributeSet()
 void TiXmlAttributeSet::Add( TiXmlAttribute* addMe )
 {
     #ifdef TIXML_USE_STL
-	assert( !Find( TIXML_STRING( addMe->Name() ) ) );	// Shouldn't be multiply adding to the set.
+	assert( (!Find( TIXML_STRING( addMe->Name() )) ) || (addMe->Name().len == 0) );	// Shouldn't be multiply adding to the set.
 	#else
-	assert( !Find( addMe->Name() ) );	// Shouldn't be multiply adding to the set.
+	assert( (!Find( addMe->Name() )) || (addMe->Name()[0] == 0) );	// Shouldn't be multiply adding to the set.
 	#endif
 
 	addMe->next = &sentinel;
@@ -1558,7 +1600,8 @@ TiXmlAttribute* TiXmlAttributeSet::Find( const std::string& name ) const
 
 TiXmlAttribute* TiXmlAttributeSet::FindOrCreate( const std::string& _name )
 {
-	TiXmlAttribute* attrib = Find( _name );
+	TiXmlAttribute* attrib = NULL;
+    if(_name.len > 0) attrib = Find( _name );
 	if ( !attrib ) {
 		attrib = new TiXmlAttribute();
 		Add( attrib );
@@ -1582,7 +1625,8 @@ TiXmlAttribute* TiXmlAttributeSet::Find( const char* name ) const
 
 TiXmlAttribute* TiXmlAttributeSet::FindOrCreate( const char* _name )
 {
-	TiXmlAttribute* attrib = Find( _name );
+	TiXmlAttribute* attrib = NULL;
+    if(_name[0] != 0) attrib = Find( _name );
 	if ( !attrib ) {
 		attrib = new TiXmlAttribute();
 		Add( attrib );

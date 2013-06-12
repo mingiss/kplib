@@ -18,6 +18,8 @@
 #include <windows.h>
 #endif
 
+#include "tinyxml.h"
+
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -25,9 +27,7 @@
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
-
-#include "tinyxml.h"
-
+#include "txml.h"
 #include "rtid.h"
 #include "fmtf.h"
 #include "plistff.h"
@@ -37,10 +37,18 @@
 FmtFile *CreatePlistFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
-
     KP_NEW(fmt_file, PlistFmtFile(p_lpszFileName, p_lpszFileMode));
 
 return(fmt_file);
+}
+
+
+// ---------------------------------
+PlistFmtFile::PlistFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
+{
+    strcpy(m_lpszPlistFileName, m_lpszFileName);
+    strcat(m_lpszPlistFileName, ".plist");
 }
 
 
@@ -118,7 +126,86 @@ int ii;
 
 
 // ---------------------------------
+void PlistFmtFile::TransferNode(TiXmlNode *p_pSrcNode, TiXmlNode *p_pDestParNode)
+{
+    KP_ASSERT((p_pSrcNode != NULL) && (p_pDestParNode != NULL), E_INVALIDARG, null);
+
+TiXmlElement *dest_child = NULL;
+
+    if(p_pSrcNode->Type() == TiXmlNode::TINYXML_ELEMENT)
+    {
+    const UCHAR *tag_name = (const UCHAR *)p_pSrcNode->Value();
+        KP_ASSERT(tag_name != null, E_POINTER, null);
+
+        if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
+        {
+            KP_NEW(dest_child, TiXmlElement("key"));
+
+TiXmlText *text = NULL;
+            KP_NEW(text, TiXmlText((const CHAR *)tag_name));
+            dest_child->LinkEndChild(text);
+            text = NULL;
+
+            p_pDestParNode->LinkEndChild(dest_child);
+            dest_child = NULL;
+
+const UCHAR *value = GetNodeVal(p_pSrcNode);
+            if(value != null)
+            {
+                KP_NEW(dest_child, TiXmlElement("string"));
+                
+                KP_NEW(text, TiXmlText((const CHAR *)value));
+                dest_child->LinkEndChild(text);
+                text = NULL;
+                
+                p_pDestParNode->LinkEndChild(dest_child);
+                dest_child = NULL;
+            }
+        }
+    }
+    
+    dest_child = NULL;
+TiXmlNode* cur_child = NULL;
+    for (cur_child = p_pSrcNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
+        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+        {
+            if(dest_child == NULL)
+            {
+                KP_NEW(dest_child, TiXmlElement("dict"));
+                p_pDestParNode->LinkEndChild(dest_child);
+            }
+            TransferNode(cur_child, dest_child);
+        }
+}
+
+
+// ---------------------------------
 void PlistFmtFile::ExportDoc(void)
 {
-    KP_ERROR(E_NOTIMPL, null);
+// <?xml version="1.0" encoding="UTF-8"?>
+TiXmlDeclaration *dest_decl = NULL;
+    KP_NEW(dest_decl, TiXmlDeclaration("1.0", "UTF-8", ""));  
+	m_PlistDoc.LinkEndChild(dest_decl);
+    dest_decl = NULL; 
+    
+// <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+TiXmlElement* dest_child = NULL;
+    KP_NEW(dest_child, TiXmlElement("!DOCTYPE"));
+    dest_child->SetAttribute("plist", "");
+    dest_child->SetAttribute("PUBLIC", "");
+    dest_child->SetAttribute("", "-//Apple Computer//DTD PLIST 1.0//EN");
+    dest_child->SetAttribute("", "http://www.apple.com/DTDs/PropertyList-1.0.dtd");
+    m_PlistDoc.LinkEndChild(dest_child);
+    dest_child = NULL;
+
+// <plist version="1.0">
+    KP_NEW(dest_child, TiXmlElement("plist"));
+    dest_child->SetAttribute("version", "1.0");
+    m_PlistDoc.LinkEndChild(dest_child);
+    
+TiXmlNode *xml_node = FindNodeByName(DRTI_XML_GRP_TAG, &m_XmlDoc);
+    TransferNode(xml_node, dest_child);
+    dest_child = NULL;
+
+    m_PlistDoc.SaveFile((const CHAR *)m_lpszPlistFileName);
 }

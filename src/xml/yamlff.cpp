@@ -152,7 +152,7 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
     
     m_iIndent += indent;
     
-    TiXmlNode* cur_child = NULL;
+    TiXmlNode *cur_child = NULL;
     for (cur_child = p_pCurNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
         if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
             ExportNode(cur_child, p_pOutFile);

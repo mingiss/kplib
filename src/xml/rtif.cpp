@@ -281,10 +281,16 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
                 if (grp_node == NULL)            
                     grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
             
-            TiXmlElement *element = new TiXmlElement((const CHAR *)tag_name);
-            TiXmlText *text = new TiXmlText((const CHAR *)tag_val);
+            TiXmlElement *element = NULL;
+                KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
+                
+            TiXmlText *text = NULL;
+                KP_NEW(text, TiXmlText((const CHAR *)tag_val));
                 element->LinkEndChild(text);
+                text = NULL;
+                
                 grp_node->LinkEndChild(element);
+                element = NULL;
             }
         }
         
