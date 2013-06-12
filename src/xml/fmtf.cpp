@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-12  mp  tinyxml implemented
  *       
  */  
 
@@ -17,6 +18,8 @@
 #include <windows.h>
 #endif
 
+#include "tinyxml.h"
+
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -24,9 +27,7 @@
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
-
-#include "tinyxml.h"
-
+#include "txml.h"
 #include "rtid.h"
 #include "fmtf.h"
 
@@ -102,13 +103,13 @@ TiXmlNode *cur_node = NULL;
 
     if (p_lpszGrpTagName != null)
     {
-        grp_node = m_XmlDoc.FindNodeByName((const CHAR *)p_lpszGrpTagName);
+        grp_node = FindNodeByName(p_lpszGrpTagName, &m_XmlDoc);
     }
     if (grp_node == NULL)            
         grp_node = &m_XmlDoc;
 
     // tikrinam, gal jau toks yra
-    cur_node = grp_node->FindNodeByName((const CHAR *)p_lpszTagName);
+    cur_node = FindNodeByName(p_lpszTagName, grp_node);
 
     if(cur_node == NULL)
     {            

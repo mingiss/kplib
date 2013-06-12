@@ -1,10 +1,11 @@
 /* ----------------
- * rti.cpp
+ * rtif.cpp
  *      {keyword, value} (runtime info) tag processing
  *      implementation
  *
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
+ *      2013-06-12  mp  tinyxml implemented
  *
  */
 
@@ -18,6 +19,8 @@
 
 using namespace std;
 
+#include "tinyxml.h"
+
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -25,9 +28,7 @@ using namespace std;
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
-
-#include "tinyxml.h"
-
+#include "txml.h"
 #include "rtid.h"
 #include "fmtf.h"
 #include "rtif.h"
@@ -276,7 +277,7 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
             // ------------------ pildom XML struktūrą
             TiXmlNode *grp_node = NULL;
                 if (grp_tag_name != null)
-                    grp_node = pRtiObjPtr->m_pFmtFileObj->m_XmlDoc.FindNodeByName((const CHAR *)grp_tag_name);
+                    grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
                 if (grp_node == NULL)            
                     grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
             

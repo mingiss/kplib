@@ -8,7 +8,8 @@
  *
  *  TODO: perdaryt į XML medį XmlNode su išvedimo draiveriais KpFile
  *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
- *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį                 
+ *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį
+ *                    
  */
 
 #include "envir.h"

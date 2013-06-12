@@ -30,21 +30,41 @@ using namespace std;
 #include "txml.h"
 
 
-TiXmlNode *TiXmlNode::FindNodeByName(const CHAR *p_lpszTagName)
+TiXmlNode *FindNodeByName(const UCHAR *p_lpszTagName, TiXmlNode *p_pCurNode)
 {
 TiXmlNode *retv = NULL;
 
-    TiXmlNode* node;
-    for (node = firstChild; (node != NULL) && (retv == NULL); node = node->next)
+    KP_ASSERT(p_pCurNode != NULL, E_INVALIDARG, null);
+    
+    TiXmlNode* cur_child = NULL;
+    for (cur_child = p_pCurNode->FirstChild() /* firstChild */; 
+        (cur_child != NULL) && (retv == NULL); 
+        cur_child = cur_child->NextSibling() /* next */)
     {
-        if(node->type == TINYXML_ELEMENT)
+        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-            if (strcmp(node->Value(), p_lpszTagName) == 0)
-                retv = node;
+            if (strcmp((const UCHAR *)cur_child->Value(), p_lpszTagName) == 0)
+                retv = cur_child;
             else
-                retv = node->FindNodeByName(p_lpszTagName);
+                retv = FindNodeByName(p_lpszTagName, cur_child);
         }
     }
+
+return (retv);
+}
+
+
+// ---------------------------------
+const UCHAR *GetNodeVal(TiXmlNode *p_pNode)
+{
+const UCHAR *retv = null;
+
+    TiXmlNode* cur_child = NULL;
+    for (cur_child = p_pNode->FirstChild(); 
+        (cur_child != NULL) && (retv == NULL); 
+        cur_child = cur_child->NextSibling())
+            if(cur_child->Type() == TiXmlNode::TINYXML_TEXT)
+                retv = (const UCHAR *)cur_child->Value();
 
 return (retv);
 }

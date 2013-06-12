@@ -1,5 +1,5 @@
 /* ----------------
- * rti.h
+ * rtid.h
  *      {keyword, value} (DVI runtime info) tag processing
  *      control callback definitions for (DVI) converters (drti, etc.)
  *

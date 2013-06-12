@@ -6,6 +6,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-12  mp  tinyxml implemented
  *       
  */  
 
