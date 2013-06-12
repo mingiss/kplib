@@ -161,7 +161,6 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
 }
 
 
-
 void YamlFmtFile::ExportDoc(void)
 {
 FILE *out_file = fopen((const CHAR *)m_lpszYamlFileName, "w");
