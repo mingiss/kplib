@@ -33,14 +33,6 @@
 #include "csvff.h"
 
 
-CsvFmtFile::CsvFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
-    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
-{
-    strcpy(m_lpszCsvFileName, m_lpszFileName);
-    strcat(m_lpszCsvFileName, ".csv");
-}
-
-
 // ---------------------------------
 FmtFile *CreateCsvFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
 {
@@ -49,6 +41,15 @@ FmtFile *fmt_file = NULL;
     KP_NEW(fmt_file, CsvFmtFile(p_lpszFileName, p_lpszFileMode));
 
 return(fmt_file);
+}
+
+
+// ---------------------------------
+CsvFmtFile::CsvFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
+{
+    strcpy(m_lpszCsvFileName, m_lpszFileName);
+    strcat(m_lpszCsvFileName, ".csv");
 }
 
 
@@ -122,6 +123,7 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
         if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
             ExportNode(cur_child, p_pOutFile, bLowest, p_pBaseNode);
 }
+
 
 void CsvFmtFile::ExportDoc(void)
 {
