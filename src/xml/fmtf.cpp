@@ -7,8 +7,6 @@
  *      2013-06-12  mp  tinyxml implemented
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
- *  TODO: neveikia I/O su stdin/stdout: ExportDoc() pats failą ir atsidaro, ir uždaro pagal vardą m_lpszFileName
- *         
  */  
 
 
@@ -54,13 +52,14 @@ FmtFile::FmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
         strcpy(m_lpszFileMode, p_lpszFileMode);
     }
 
-#if FALSE
     if(strchr(m_lpszFileMode, 'b') == null)
     {
+#if FALSE
         if(strchr(m_lpszFileMode, 'w') != null) m_pFileObj = stdout;
         if(strchr(m_lpszFileMode, 'r') != null) m_pFileObj = stdin;
-    }
 #endif
+        strcpy(m_lpszFileName, (const UCHAR *)"con");
+    }
     
     if(p_lpszFileName != null) if (p_lpszFileName[0] != Nul)
     {

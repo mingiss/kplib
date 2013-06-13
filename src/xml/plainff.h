@@ -15,6 +15,7 @@
 class PlainFmtFile: public FmtFile
 {
 public:
+    bool m_bOutputEmpty; // paskutinio \n suvalgymui
     PlainFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}

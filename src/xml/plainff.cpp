@@ -53,7 +53,12 @@ void PlainFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile)
     if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
     const UCHAR *value = GetNodeVal(p_pCurNode);
-        if(value != null) fprintf(p_pOutFile, "%s\n", value);
+        if(value != null)
+        { 
+            if(!m_bOutputEmpty) fprintf(p_pOutFile, "\n");
+            m_bOutputEmpty = False;
+            fprintf(p_pOutFile, "%s", value);
+        }
     }
     
     TiXmlNode *cur_child = NULL;
@@ -68,6 +73,7 @@ void PlainFmtFile::ExportDoc(void)
 FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
     KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
+    m_bOutputEmpty = True;
     ExportNode(&m_XmlDoc, out_file);
 
     KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszFileName);
