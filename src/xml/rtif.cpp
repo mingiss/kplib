@@ -210,23 +210,27 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
         {
             split_strings(tag_name, tag_val, cur_kwd);
  
-        // ------------------ pildom XML struktūrą
-        TiXmlNode *grp_node = NULL;
-            if (grp_tag_name != null)
-                grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
-            if (grp_node == NULL)            
-                grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
-        
-        TiXmlElement *element = NULL;
-            KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
+            if(kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, tag_name) ||
+                (pRtiObjPtr->m_iOutputListSize == 0))
+            {            
+            // ------------------ pildom XML struktūrą
+            TiXmlNode *grp_node = NULL;
+                if (grp_tag_name != null)
+                    grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
+                if (grp_node == NULL)            
+                    grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
             
-        TiXmlText *text = NULL;
-            KP_NEW(text, TiXmlText((const CHAR *)tag_val));
-            element->LinkEndChild(text);
-            text = NULL;
-            
-            grp_node->LinkEndChild(element);
-            element = NULL;
+            TiXmlElement *element = NULL;
+                KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
+                
+            TiXmlText *text = NULL;
+                KP_NEW(text, TiXmlText((const CHAR *)tag_val));
+                element->LinkEndChild(text);
+                text = NULL;
+                
+                grp_node->LinkEndChild(element);
+                element = NULL;
+            }
         }
         
         // continue scanning
@@ -276,20 +280,25 @@ const UCHAR *val_ptr = null;
                 KP_WARNING(KP_E_FILE_FORMAT, p_psKwdStr->c_str());
                 name_ptr = (const UCHAR *)"key";
             }
-            val_ptr = GetNodeVal(cur_node);
-            if(val_ptr == null)
-                val_ptr = (const UCHAR *)"";
-
-        TiXmlElement *element = NULL;
-            KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
             
-        TiXmlText *text = NULL;
-            KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
-            element->LinkEndChild(text);
-            text = NULL;
-            
-            grp_node->LinkEndChild(element);
-            element = NULL;
+            if(kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, name_ptr) ||
+                (pRtiObjPtr->m_iOutputListSize == 0))
+            {            
+                val_ptr = GetNodeVal(cur_node);
+                if(val_ptr == null)
+                    val_ptr = (const UCHAR *)"";
+    
+            TiXmlElement *element = NULL;
+                KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
+                
+            TiXmlText *text = NULL;
+                KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
+                element->LinkEndChild(text);
+                text = NULL;
+                
+                grp_node->LinkEndChild(element);
+                element = NULL;
+            }
         }
         
         cur_node = cur_node->NextSibling();

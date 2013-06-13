@@ -380,7 +380,7 @@ bool xml_fl = False;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_INFO_GRP_TAG))
                         grp_tag_name = DRTI_INFO_GRP_TAG;
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -398,7 +398,7 @@ bool xml_fl = False;
                     grp_tag_name = DRTI_IMSREF_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -416,7 +416,7 @@ bool xml_fl = False;
                     grp_tag_name = DRTI_RUNTOOL_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -434,7 +434,7 @@ bool xml_fl = False;
                     grp_tag_name = DRTI_SOMETOOL_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -452,7 +452,7 @@ bool xml_fl = False;
                     grp_tag_name = DRTI_STRUCTPYB_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -466,7 +466,7 @@ bool xml_fl = False;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                         grp_tag_name = DRTI_SETTINGS_GRP_TAG;
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -481,7 +481,7 @@ bool xml_fl = False;
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_PAGEINFO_GRP_TAG))
                         grp_tag_name = DRTI_PAGEINFO_GRP_TAG;
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -500,7 +500,7 @@ bool xml_fl = False;
                     xml_fl = True;
                     head = DVISP_SPEC_XML_HEAD;
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 
@@ -520,7 +520,7 @@ bool xml_fl = False;
                     xml_fl = True;
                     head = (const UCHAR *)"";
                 }
-//              else hd_found = False;
+                else hd_found = False;
             }
         }
 

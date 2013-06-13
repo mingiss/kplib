@@ -9,9 +9,6 @@
  *      2013-06-12  mp  tinyxml implemented
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
- *  TODO: implement checking for corespondence to the list of output tags (rti option "-e")
- *          into ExportDoc() (or may be into add_to_rti()) 
- *        
  */  
 
 #ifndef fmtf_included

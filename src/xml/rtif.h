@@ -7,8 +7,6 @@
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *      2013-06-13  mp  pridėtas .special failo parsinimas
  *
- *  TODO: implement checking for corespondence to the list of output tags (rti option "-e")
- *          into add_to_rti() (or may be into FmtFile::ExportDoc()) 
  */
 
 #ifndef rtif_included
