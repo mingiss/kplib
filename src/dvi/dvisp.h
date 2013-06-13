@@ -48,6 +48,7 @@
 
 #define DVISP_SPEC_PAGEINFO_HEAD (const UCHAR *)"MC:PageInfo "
 
+#define DVISP_SPEC_XML_HEAD (const UCHAR *)"vtex:xml "
 #define DVISP_SPEC_INFO_XML_HEAD (const UCHAR *)"vtex:xml <sec name=\"TeX info\">"
 #define DVISP_SPEC_XML_KEY_HEAD (const UCHAR *)"<key name=\""
 

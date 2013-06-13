@@ -254,63 +254,46 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
 
     if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
 
-// pradedam tagų skanavimą    
-UCHAR *pnts = p_lpszKwdStr;
-
-const UCHAR *name_head = DVISP_SPEC_XML_KEY_HEAD;
-int name_head_len = strlen(name_head);                    
-const UCHAR *val_head = (const UCHAR *)"\">";
-int val_head_len = strlen(val_head);                    
-const UCHAR *val_end = (const UCHAR *)"</key>";
-int val_end_len = strlen(val_end);                    
-
-UCHAR *name_ptr = null;
-UCHAR *val_ptr = null;
-UCHAR *val_end_ptr = null;
-
-    do
-    {
-        name_ptr = pnts = strstr(pnts, name_head);
-        if (name_ptr != null)
-        {
-            name_ptr += name_head_len;
-            pnts = name_ptr;
-             
-            val_ptr = strstr(name_ptr, val_head);
-            if (val_ptr != null)
-            {
-                *val_ptr = Nul;
-                val_ptr += val_head_len;                             
-                pnts = val_ptr;
-            
-                val_end_ptr = strstr(val_ptr, val_end);
-                if(val_end_ptr != null)
-                {
-                    *val_end_ptr = Nul;
-                    pnts = val_end_ptr + val_end_len;                                    
-
-                // ------------------ pildom XML struktūrą
-                TiXmlNode *grp_node = NULL;
-                    if (grp_tag_name != null)
-                        grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
-                    if (grp_node == NULL)            
-                        grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
+TiXmlNode *grp_node = NULL;
+    if (grp_tag_name != null)
+        grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
+    if (grp_node == NULL)            
+        grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
                 
-                TiXmlElement *element = NULL;
-                    KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
-                    
-                TiXmlText *text = NULL;
-                    KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
-                    element->LinkEndChild(text);
-                    text = NULL;
-                    
-                    grp_node->LinkEndChild(element);
-                    element = NULL;
-                }
+TiXmlDocument xml_doc;
+    xml_doc.Parse((const CHAR *)p_lpszKwdStr);
+TiXmlNode *cur_node = FindNodeByName((const UCHAR *)"key", &xml_doc);
+
+const UCHAR *name_ptr = null;
+const UCHAR *val_ptr = null;
+    while(cur_node != NULL)
+    {
+        if(cur_node->Type() == TiXmlNode::TINYXML_ELEMENT)
+        {
+            name_ptr = (const UCHAR *)((TiXmlElement *)cur_node)->Attribute("name");
+            if(name_ptr == null)
+            {
+                KP_WARNING(KP_E_FILE_FORMAT, p_lpszKwdStr);
+                name_ptr = (const UCHAR *)"key";
             }
+            val_ptr = GetNodeVal(cur_node);
+            if(val_ptr == null)
+                val_ptr = (const UCHAR *)"";
+
+        TiXmlElement *element = NULL;
+            KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
+            
+        TiXmlText *text = NULL;
+            KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
+            element->LinkEndChild(text);
+            text = NULL;
+            
+            grp_node->LinkEndChild(element);
+            element = NULL;
         }
         
-    } while (name_ptr != null);
+        cur_node = cur_node->NextSibling();
+    }
 }
 
 

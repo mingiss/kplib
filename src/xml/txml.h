@@ -17,4 +17,6 @@ extern TiXmlNode* FindNodeByName(const UCHAR *p_lpszTagName, TiXmlNode *p_pCurNo
 // Searches for text child, returns its value
 extern const UCHAR *GetNodeVal(TiXmlNode *p_pNode);
 
+extern void dump_to_stdout( TiXmlNode* pParent, unsigned int indent = 0 );
+
 #endif // #ifndef txml_included

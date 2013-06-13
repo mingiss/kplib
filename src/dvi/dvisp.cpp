@@ -164,7 +164,6 @@ FILE *in_file = NULL;
     strcat(in_fname, ".specials");
     
     in_file = fopen((const CHAR *)in_fname, "r");
-printf("--------- %s %lx\n", in_fname, in_file);      
     if(in_file != NULL)
     {
         SpecRead(in_file);
@@ -496,6 +495,7 @@ bool xml_fl = False;
                 {
                     prev_grp_tag = grp_tag_name = DRTI_INFO_GRP_TAG;
                     xml_fl = True;
+                    head = DVISP_SPEC_XML_HEAD;
                 }
 //              else hd_found = False;
             }
@@ -515,6 +515,7 @@ bool xml_fl = False;
                 {
                     grp_tag_name = prev_grp_tag;
                     xml_fl = True;
+                    head = (const UCHAR *)"";
                 }
 //              else hd_found = False;
             }

@@ -30,6 +30,7 @@ using namespace std;
 #include "txml.h"
 
 
+// -----------------------------
 TiXmlNode *FindNodeByName(const UCHAR *p_lpszTagName, TiXmlNode *p_pCurNode)
 {
 TiXmlNode *retv = NULL;
@@ -117,7 +118,7 @@ int dump_attribs_to_stdout(TiXmlElement* pElement, unsigned int indent)
 	return i;	
 }
 
-void dump_to_stdout( TiXmlNode* pParent, unsigned int indent = 0 )
+void dump_to_stdout( TiXmlNode* pParent, unsigned int indent)
 {
 	if ( !pParent ) return;
 
