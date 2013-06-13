@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -40,40 +41,6 @@ FmtFile *fmt_file = NULL;
     KP_NEW(fmt_file, BinFmtFile(p_lpszFileName, p_lpszFileMode));
 
 return(fmt_file);
-}
-
-
-// ---------------------------------
-void BinFmtFile::PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ERROR(E_NOTIMPL, null);
-}
-
-void BinFmtFile::PrintOutputHead(void)
-{
-    KP_ERROR(E_NOTIMPL, null);
-}
-
-void BinFmtFile::PrintOutputTail(void)
-{
-    KP_ERROR(E_NOTIMPL, null);
-}
-
-void BinFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ERROR(E_NOTIMPL, null);
-    
-    FmtFile::OpenGrTag(p_lpszGrpTagName);
-}
-
-void BinFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ERROR(E_NOTIMPL, null);
-}
-
-void BinFmtFile::MakeIndent(void)
-{
-    KP_ERROR(E_NOTIMPL, null);
 }
 
 

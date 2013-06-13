@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -41,30 +42,6 @@ FmtFile *fmt_file = NULL;
 
 return(fmt_file);
 }
-
-
-// ---------------------------------
-void PlainFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(p_pRti != NULL, E_INVALIDARG, null);
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    fprintf(m_pFileObj, "%s", p_pRti->value);
-}
-
-
-void PlainFmtFile::PrintOutputHead(void){}
-void PlainFmtFile::PrintOutputTail(void){}
-
-#if FALSE
-void PlainFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    FmtFile::OpenGrTag(p_lpszGrpTagName);
-}
-#endif
-
-void PlainFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName){}
-void PlainFmtFile::MakeIndent(void){}        
 
 
 // ---------------------------------

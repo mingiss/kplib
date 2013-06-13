@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -14,21 +15,14 @@
 class CsvFmtFile: public FmtFile
 {
 public:
-    UCHAR m_lpszCsvFileName[KP_MAX_FNAME_LEN + 100]; // TODO: kelti į FmtFile::m_lpszFileName[] ir FmtFile::m_pFileObj 
-
-    CsvFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode);
+    CsvFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+        : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
+        {}
 
     // p_bLowest: True -- išvedinėti tik žemiausio lygio tagus, p_pBaseNode vaikus
     //            False -- tik gilesnius
     void ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool bLowest, TiXmlNode *p_pBaseNode);
     void ExportDoc(void);  
-
-    void PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
-    void PrintOutputHead(void);
-    void PrintOutputTail(void);
-    void OpenGrTag(const UCHAR *p_lpszGrpTagName);
-    void CloseGrTag(const UCHAR *p_lpszGrpTagName);
-    void MakeIndent(void);
 };
 
 

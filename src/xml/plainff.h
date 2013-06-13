@@ -5,6 +5,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -19,13 +20,6 @@ public:
         {}
 
     void ExportDoc(void);  
-
-    void PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
-    void PrintOutputHead(void);
-    void PrintOutputTail(void);
-//  void OpenGrTag(const UCHAR *p_lpszGrpTagName);
-    void CloseGrTag(const UCHAR *p_lpszGrpTagName);
-    void MakeIndent(void);
 };
 
 

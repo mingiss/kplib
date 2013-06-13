@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -41,88 +42,6 @@ FmtFile *fmt_file = NULL;
 
 return(fmt_file);
 }
-
-
-// ---------------------------------
-PlistFmtFile::PlistFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
-    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
-{
-    strcpy(m_lpszPlistFileName, m_lpszFileName);
-    strcat(m_lpszPlistFileName, ".plist");
-}
-
-
-// ---------------------------------
-void PlistFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(p_pRti != NULL, E_INVALIDARG, null);
-    KP_ASSERT(p_pbOutputEmpty != NULL, E_INVALIDARG, null);
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    if (m_bOutputEmpty) PrintOutputHead();
-
-    if (p_lpszGrpTagName != null)
-        if (*p_pbOutputEmpty) 
-            OpenGrTag(p_lpszGrpTagName);
-
-    MakeIndent();
-    fprintf(m_pFileObj, "<key>%s</key>\n", p_pRti->name); 
-    
-    MakeIndent(); 
-    fprintf(m_pFileObj, "<string>%s</string>\n", p_pRti->value);
-}
-
-
-void PlistFmtFile::PrintOutputHead(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    fprintf(m_pFileObj, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n"); 
-    m_iIndent++;
-}
-
-
-void PlistFmtFile::PrintOutputTail(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    fprintf(m_pFileObj, "</dict>\n</plist>\n");
-}
-
-
-void PlistFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    
-    if (m_bOutputEmpty) PrintOutputHead();  
-    m_bOutputEmpty = False; // Do not print OUPUT_HEAD
-
-    MakeIndent(); 
-    fprintf(m_pFileObj, "<key>%s</key>\n", p_lpszGrpTagName); 
-    MakeIndent(); 
-    fprintf(m_pFileObj, "<dict>\n"); 
-    m_iIndent++;
-    
-    FmtFile::OpenGrTag(p_lpszGrpTagName);
-}
-
-
-void PlistFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    m_iIndent--; 
-    MakeIndent(); 
-    fprintf(m_pFileObj, "</dict>\n");
-}
-
-
-// ---------------------------------
-void PlistFmtFile::MakeIndent(void)
-{
-int ii;
-
-    for(ii = 0; ii < m_iIndent; ii++)
-        fprintf(m_pFileObj, "    ");
-}        
 
 
 // ---------------------------------
@@ -207,5 +126,5 @@ TiXmlNode *xml_node = FindNodeByName(DRTI_XML_GRP_TAG, &m_XmlDoc);
     TransferNode(xml_node, dest_child);
     dest_child = NULL;
 
-    m_PlistDoc.SaveFile((const CHAR *)m_lpszPlistFileName);
+    m_PlistDoc.SaveFile((const CHAR *)m_lpszFileName);
 }

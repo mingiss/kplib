@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -45,81 +46,12 @@ return(fmt_file);
 
 
 // ---------------------------------
-YamlFmtFile::YamlFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
-    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
-{
-    strcpy(m_lpszYamlFileName, m_lpszFileName);
-    strcat(m_lpszYamlFileName, ".yaml");
-}
-
-
-// ---------------------------------
-void YamlFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(p_pRti != NULL, E_INVALIDARG, null);
-    KP_ASSERT(p_pbOutputEmpty != NULL, E_INVALIDARG, null);
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    // printf("m_bOutputEmpty = %i\n", m_bOutputEmpty);
-    if (m_bOutputEmpty) PrintOutputHead();
-
-    if (p_lpszGrpTagName != null)
-        if (*p_pbOutputEmpty) 
-            OpenGrTag(p_lpszGrpTagName);
-
-    MakeIndent(); 
-    fprintf(m_pFileObj, "%s: %s\n", p_pRti->name, p_pRti->value);
-}
-
-
-void YamlFmtFile::PrintOutputHead(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    fprintf(m_pFileObj, "---\n");
-}
-
-
-void YamlFmtFile::PrintOutputTail(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    fprintf(m_pFileObj, "\n");
-}
-
-
-void YamlFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    
-    if (m_bOutputEmpty) PrintOutputHead();  
-    m_bOutputEmpty = False; // Do not print OUPUT_HEAD
-
-    MakeIndent(); 
-    fprintf(m_pFileObj, "%s:\n", p_lpszGrpTagName); 
-    m_iIndent++;
-    
-    FmtFile::OpenGrTag(p_lpszGrpTagName);
-}
-
-
-void YamlFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    m_iIndent--; 
-}
-
-
-// ---------------------------------
 void YamlFmtFile::MakeIndent(FILE *p_pOutFile)
 {
 int ii;
 
     for(ii = 0; ii < m_iIndent; ii++)
         fprintf(p_pOutFile, "    ");
-}        
-
-
-void YamlFmtFile::MakeIndent(void)
-{
-    MakeIndent(m_pFileObj);
 }        
 
 
@@ -163,12 +95,12 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
 
 void YamlFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszYamlFileName, "w");
-    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszYamlFileName);
+FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
     fprintf(out_file, "---\n");
 
     ExportNode(&m_XmlDoc, out_file);
 
-    KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszYamlFileName);
+    KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszFileName);
 }

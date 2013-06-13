@@ -5,6 +5,7 @@
  *
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
  * TODO: po pilno atskyrimo išmest visus PLAIN_C
  *  
@@ -70,7 +71,7 @@ public:
 // -----------------------------
 // checks presence of p_lpszKwd in list p_lpszaKwdList
 // p_lpszaKwdList should be terminated by null entry
-// extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
+extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
 
 
 #endif // #ifndef dvisp_included

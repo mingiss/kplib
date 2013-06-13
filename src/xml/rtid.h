@@ -5,6 +5,7 @@
  *
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
  */
 
@@ -21,14 +22,6 @@
 // -----------------------------
 #define RTI_KWD_LEN KP_MAX_FILE_LIN_LEN // 200
 #define RTI_NUM_OF_KWDS 500 // max size of rti array
-
-typedef struct runtimeinfo
-{
-  UCHAR name[RTI_KWD_LEN + 1];
-  UCHAR value[RTI_KWD_LEN + 1];
-} RtInfo;
-
-typedef RtInfo *pRtInfo;
 
 
 // --------------------------
@@ -47,16 +40,6 @@ typedef RtInfo *pRtInfo;
 #define DRTI_CHKSUM_GRP_TAG (const UCHAR *)"chksums"
 
 #define DRTI_ALL_GRP_TAG (const UCHAR *)"all"
-
-
-// --------------------------
-extern RtInfo InfoRtiArr[RTI_NUM_OF_KWDS + 1]; // papildomi vtex:info grupės tagai
-extern RtInfo SettingsRtiArr[RTI_NUM_OF_KWDS + 1]; // palaidi vtex:settings grupės tagai
-extern RtInfo RunToolRtiArr[RTI_NUM_OF_KWDS + 1]; // vtex:settings.runtool grupės tagai
-extern RtInfo SomeToolRtiArr[RTI_NUM_OF_KWDS + 1]; // vtex:settings.sometool grupės tagai
-extern RtInfo ImsRefRtiArr[RTI_NUM_OF_KWDS + 1]; // vtex:settings.imsref grupės tagai
-extern RtInfo StructPybRtiArr[RTI_NUM_OF_KWDS + 1]; // vtex:settings.structpyb grupės tagai
-extern RtInfo PageInfoRtiArr[RTI_NUM_OF_KWDS + 1]; // MC:PageInfo grupės tagai
 
 
 #endif // #ifndef rti_included

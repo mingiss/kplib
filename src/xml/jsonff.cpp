@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -44,100 +45,12 @@ return(fmt_file);
 
 
 // ---------------------------------
-JsonFmtFile::JsonFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
-    : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
-{
-    strcpy(m_lpszJsonFileName, m_lpszFileName);
-    strcat(m_lpszJsonFileName, ".json");
-}
-
-
-// ---------------------------------
-// char jsonsep = ',';
-void JsonFmtFile::PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(p_pRti != NULL, E_INVALIDARG, null);
-    KP_ASSERT(p_pbOutputEmpty != NULL, E_INVALIDARG, null);
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    if (m_bOutputEmpty) PrintOutputHead();
-
-    if (p_lpszGrpTagName != null)
-        if (*p_pbOutputEmpty)
-        { 
-            OpenGrTagLocal(p_lpszGrpTagName);
-            PrintOutputHead();
-        }
-
-//  fprintf(m_pFileObj, "%c-%i\n  \"%s\":\"%s\"", jsonsep, m_bOutputEmpty, p_pRti->name, p_pRti->value);
-
-    if (!*p_pbOutputEmpty) fprintf(m_pFileObj, ",");
-    fprintf(m_pFileObj, "\n"); 
-    MakeIndent(); 
-    fprintf(m_pFileObj, "\"%s\": \"%s\"", p_pRti->name, p_pRti->value);
-}
-
-
-void JsonFmtFile::PrintOutputHead(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    MakeIndent(); 
-    fprintf(m_pFileObj, "{"); 
-    m_iIndent++;
-}
-
-
-void JsonFmtFile::PrintOutputTail(void)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-    CloseGrTag(null); 
-    fprintf(m_pFileObj, "\n");
-}
-
-
-void JsonFmtFile::OpenGrTagLocal(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    if (!m_bOutputEmpty) fprintf(m_pFileObj, ",");
-    fprintf(m_pFileObj, "\n");
-    MakeIndent();
-    fprintf(m_pFileObj, "\"%s\":\n", p_lpszGrpTagName);
-    
-    FmtFile::OpenGrTag(p_lpszGrpTagName);
-}
-
-
-void JsonFmtFile::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    OpenGrTagLocal(p_lpszGrpTagName);
-    m_bOutputEmpty = True;
-}
-
-void JsonFmtFile::CloseGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFileObj != NULL, KP_E_NO_FILE, null);
-
-    m_iIndent--; 
-    fprintf(m_pFileObj, "\n"); 
-    MakeIndent(); 
-    fprintf(m_pFileObj, "}");
-}
-
-
-// ---------------------------------
 void JsonFmtFile::MakeIndent(FILE *p_pOutFile)
 {
 int ii;
 
     for(ii = 0; ii < m_iIndent; ii++)
         fprintf(p_pOutFile, "    ");
-}        
-
-
-void JsonFmtFile::MakeIndent(void)
-{
-    MakeIndent(m_pFileObj);
 }        
 
 
@@ -204,8 +117,8 @@ bool make_indent = (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT); // dokume
 
 void JsonFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszJsonFileName, "w");
-    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszJsonFileName);
+FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
     m_iIndent = 0;
 
@@ -214,5 +127,5 @@ bool output_empty = True;
 
     fprintf(out_file, "\n");
 
-    KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszJsonFileName);
+    KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszFileName);
 }

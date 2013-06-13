@@ -5,8 +5,8 @@
  *
  *  Changelog:
  *      2013-06-07  mp  split from drti.c
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
- *  TODO: perdaryt į XML medį XmlNode su išvedimo draiveriais KpFile
  *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
  *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį
  *                    
@@ -191,10 +191,8 @@ int ii;
 bool hd_found = False;
 int ch; 
 UCHAR src_buf[RTI_KWD_LEN + 1];
-UCHAR dst_buf[RTI_KWD_LEN + 1];
 UCHAR *src_ptr = src_buf;
-static RtInfo rti_arr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-pRtInfo rti_ptr = NULL;
+UCHAR dst_buf[RTI_KWD_LEN + 1];
 const UCHAR *head = DVISP_SPEC_RTI_HEAD;
 const UCHAR *grp_tag_name = null;
 const UCHAR *grp_grp_tag_name = null;
@@ -202,25 +200,21 @@ const UCHAR *grp_grp_tag_name = null;
     KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
     KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
-    rti_arr[0].name[0] = Nul;
-
     for (ii = 0; ii < p_iNumOfBytes; ii++)
         *src_ptr++ = fgetc(p_pDviFile);
     *src_ptr++ = '\0';
 
-    if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
-        if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
-//  if(GetKwrdIndex(src_buf, lpszaIgnoreSpecList, -1, True, False) == TV_TG_NoKey)
-//      if(GetKwrdIndex(src_buf, lpszaIgnoreFullSpecList, -1, True, True) == TV_TG_NoKey)
+    if (!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
+        if (!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
+//  if (GetKwrdIndex(src_buf, lpszaIgnoreSpecList, -1, True, False) == TV_TG_NoKey)
+//      if (GetKwrdIndex(src_buf, lpszaIgnoreFullSpecList, -1, True, True) == TV_TG_NoKey)
     {
-        rti_ptr = NULL;
         grp_tag_name = null;
         grp_grp_tag_name = null;
         
 // "vtex:info.runtime."
         head = DVISP_SPEC_RTI_HEAD;
         hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
-        if (hd_found) rti_ptr = rti_arr;
 
 // "papersize="
         if (!hd_found)
@@ -228,10 +222,7 @@ const UCHAR *grp_grp_tag_name = null;
             head = DVISP_SPEC_PAPERSIZE_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
-            {
-                rti_ptr = rti_arr;
                 head = (const UCHAR *)"";
-            }
         }
 
 // "header="
@@ -240,10 +231,7 @@ const UCHAR *grp_grp_tag_name = null;
             head = DVISP_SPEC_HEADER_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
-            {
-                rti_ptr = rti_arr;
                 head = (const UCHAR *)"";
-            }
         }
 
         if (!hd_found)
@@ -293,8 +281,6 @@ const UCHAR *grp_grp_tag_name = null;
                     strcat(dst_buf, src_buf + strlen(head));
                     strcat(dst_buf, "}"); // RTI_CLOSING_BRACE
                     strcpy(src_buf, dst_buf);
-    
-                    rti_ptr = rti_arr;
                 }
             }
         }
@@ -305,10 +291,7 @@ const UCHAR *grp_grp_tag_name = null;
             head = DVISP_SPEC_MT_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
-            { 
-                rti_ptr = rti_arr;
                 head = (const UCHAR *)"";
-            }
         }
         
 // "vtex:info."
@@ -320,10 +303,7 @@ const UCHAR *grp_grp_tag_name = null;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_INFO_GRP_TAG))
-                {
-                    rti_ptr = InfoRtiArr;
-                    grp_tag_name = DRTI_INFO_GRP_TAG;
-                }
+                        grp_tag_name = DRTI_INFO_GRP_TAG;
 //              else hd_found = False;
             }
         }
@@ -339,7 +319,6 @@ const UCHAR *grp_grp_tag_name = null;
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_IMSREF_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                 {
-                    rti_ptr = ImsRefRtiArr;
                     grp_tag_name = DRTI_IMSREF_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
@@ -358,7 +337,6 @@ const UCHAR *grp_grp_tag_name = null;
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_RUNTOOL_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                 {
-                    rti_ptr = RunToolRtiArr;
                     grp_tag_name = DRTI_RUNTOOL_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
@@ -377,7 +355,6 @@ const UCHAR *grp_grp_tag_name = null;
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SOMETOOL_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                 {
-                    rti_ptr = SomeToolRtiArr;
                     grp_tag_name = DRTI_SOMETOOL_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
@@ -396,7 +373,6 @@ const UCHAR *grp_grp_tag_name = null;
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_STRUCTPYB_GRP_TAG) ||
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
                 {
-                    rti_ptr = StructPybRtiArr;
                     grp_tag_name = DRTI_STRUCTPYB_GRP_TAG;
                     grp_grp_tag_name = DRTI_SETTINGS_GRP_TAG;
                 }
@@ -413,10 +389,7 @@ const UCHAR *grp_grp_tag_name = null;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_SETTINGS_GRP_TAG))
-                {
-                    rti_ptr = SettingsRtiArr;
-                    grp_tag_name = DRTI_SETTINGS_GRP_TAG;
-                }
+                        grp_tag_name = DRTI_SETTINGS_GRP_TAG;
 //              else hd_found = False;
             }
         }
@@ -430,10 +403,7 @@ const UCHAR *grp_grp_tag_name = null;
             {
                 if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
                     kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_PAGEINFO_GRP_TAG))
-                {
-                    rti_ptr = PageInfoRtiArr;
-                    grp_tag_name = DRTI_PAGEINFO_GRP_TAG;
-                }
+                        grp_tag_name = DRTI_PAGEINFO_GRP_TAG;
 //              else hd_found = False;
             }
         }
@@ -470,16 +440,11 @@ const UCHAR *grp_grp_tag_name = null;
 // -------------        
         if (hd_found)
         {
-            if (rti_ptr != NULL)
-            {
-                str_del(dst_buf, src_buf, head);
-                add_to_rti(dst_buf, rti_ptr, grp_tag_name, grp_grp_tag_name);
-
-                if(rti_ptr == rti_arr) // main tags -- immediate output
-                    OutputRtiArr(rti_ptr);
-            }
+            str_del(dst_buf, src_buf, head);
+            add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
         }            
 #ifdef DRTIM_DEBUG
+        // loginam neatpažintus tagus
         else printf("[%s]\n", src_buf);
 #endif
 

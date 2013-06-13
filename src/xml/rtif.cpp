@@ -6,6 +6,7 @@
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
  *      2013-06-12  mp  tinyxml implemented
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *
  */
 
@@ -36,16 +37,6 @@ using namespace std;
 
 // ---------------------------
 RtiClass *pRtiObjPtr = NULL;
-
-
-// ---------------------------
-RtInfo InfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo SettingsRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo RunToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo SomeToolRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo ImsRefRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo StructPybRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
-RtInfo PageInfoRtiArr[RTI_NUM_OF_KWDS + 1] = {{"", ""}};
 
 
 // ------------------------------------  
@@ -80,43 +71,6 @@ void RtiClass::CloseOutFile(void)
         m_pFmtFileObj->CloseOutFile();
         KP_DELETE(m_pFmtFileObj);
     }
-}
-
-
-// ---------------------------------
-void RtiClass::PrintOutput(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
-    m_pFmtFileObj->PrintOutput(p_pRti, p_pbOutputEmpty, p_lpszGrpTagName);
-}
-
-
-
-void RtiClass::PrintOutputHead(void)
-{
-    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
-    m_pFmtFileObj->PrintOutputHead();
-}
-
-
-void RtiClass::PrintOutputTail(void)
-{
-    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
-    m_pFmtFileObj->PrintOutputTail();
-}
-
-
-void RtiClass::OpenGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
-    m_pFmtFileObj->OpenGrTag(p_lpszGrpTagName);
-}
-
-
-void RtiClass::CloseGrTag(const UCHAR *p_lpszGrpTagName)
-{
-    KP_ASSERT(m_pFmtFileObj != NULL, E_POINTER, null);
-    m_pFmtFileObj->CloseGrTag(p_lpszGrpTagName);
 }
 
 
@@ -214,17 +168,16 @@ void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
 }
 
 
-void add_to_rti(const UCHAR *p_lpszKwdStr, pRtInfo p_pRti, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
+void add_to_rti(const UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
 {
 HRESULT retc = S_OK;
-pRtInfo rti_ptr = p_pRti;
 UCHAR kwd_str_buf[RTI_KWD_LEN + 1];
 /* const */ UCHAR *cur_kwd = null;
 UCHAR tag_name[RTI_KWD_LEN + 1];
 UCHAR tag_val[RTI_KWD_LEN + 1];
 const UCHAR *grp_tag_name = p_lpszGrpTagName;
-    
-    KP_ASSERT((p_lpszKwdStr != null) && (p_pRti != NULL), E_INVALIDARG, null);
+
+    KP_ASSERT(p_lpszKwdStr != null, E_INVALIDARG, null);
 
     KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
     KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
@@ -238,10 +191,6 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
 
     if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
 
-// ieškom p_pRti galo
-    rti_ptr = p_pRti;
-    while (rti_ptr->name[0] != Nul) rti_ptr++;
-    
 // pradedam tagų skanavimą    
     KP_ASSERTW(strlen(p_lpszKwdStr) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
     if (SUCCEEDED(retc))
@@ -258,46 +207,32 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
         // ar ne tuščia eilutė?
         if(*cur_kwd != Nul)
         {
-            KP_ASSERTW(rti_ptr - p_pRti < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
-            if(SUCCEEDED(retc))
-            {
-                split_strings(tag_name, tag_val, cur_kwd);
-                // printf("RTI:%s:\n", tag_name);
+            split_strings(tag_name, tag_val, cur_kwd);
  
-                strcpy(rti_ptr->name, tag_name); 
-                strcpy(rti_ptr->value, tag_val);
-                //  printf("RTI:%s:%s\n", tag_val, tag_val);
-
-                rti_ptr++;
+        // ------------------ pildom XML struktūrą
+        TiXmlNode *grp_node = NULL;
+            if (grp_tag_name != null)
+                grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
+            if (grp_node == NULL)            
+                grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
         
-                // add empty delimiter record
-                rti_ptr->name[0] = Nul;
-                rti_ptr->value[0] = Nul;
-
-            // ------------------ pildom XML struktūrą
-            TiXmlNode *grp_node = NULL;
-                if (grp_tag_name != null)
-                    grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
-                if (grp_node == NULL)            
-                    grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
+        TiXmlElement *element = NULL;
+            KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
             
-            TiXmlElement *element = NULL;
-                KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
-                
-            TiXmlText *text = NULL;
-                KP_NEW(text, TiXmlText((const CHAR *)tag_val));
-                element->LinkEndChild(text);
-                text = NULL;
-                
-                grp_node->LinkEndChild(element);
-                element = NULL;
-            }
+        TiXmlText *text = NULL;
+            KP_NEW(text, TiXmlText((const CHAR *)tag_val));
+            element->LinkEndChild(text);
+            text = NULL;
+            
+            grp_node->LinkEndChild(element);
+            element = NULL;
         }
         
         // continue scanning
         cur_kwd = (/* const */ UCHAR *)strtok(NULL, "}"); // RTI_CLOSING_BRACE
     }
 }
+
 
 int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s)
 {

@@ -4,6 +4,7 @@
  *      
  *  Changelog:
  *      2013-06-10  mp  initial creation
+ *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *       
  */  
 
@@ -14,24 +15,16 @@
 class JsonFmtFile: public FmtFile
 {
 public:
-    UCHAR m_lpszJsonFileName[KP_MAX_FNAME_LEN + 100]; // TODO: kelti į FmtFile::m_lpszFileName[] ir FmtFile::m_pFileObj 
-
-    JsonFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode);
+    JsonFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+        : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
+        {}
 
     // p_pbOutputEmpty -- išorinė vėliavėlė, kad prieš pirmą eilutę nebūtų tuščios
     // įeinant į rekursiją *p_pbOutputEmpty turi būti True
     void ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool *p_pbOutputEmpty);
     void ExportDoc(void);  
 
-    void PrintOutputLow(pRtInfo p_pRti, bool *p_pbOutputEmpty, const UCHAR *p_lpszGrpTagName);
-    void PrintOutputHead(void);
-    void PrintOutputTail(void);
-    void OpenGrTagLocal(const UCHAR *p_lpszGrpTagName); // kad nebūtų kablelių po PrintOutputLow() išvedamų OpenGrTagLocal() 
-    void OpenGrTag(const UCHAR *p_lpszGrpTagName);
-    void CloseGrTag(const UCHAR *p_lpszGrpTagName);
-
     void MakeIndent(FILE *p_pOutFile);
-    void MakeIndent(void);
 };
 
 
