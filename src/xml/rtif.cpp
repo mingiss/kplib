@@ -7,6 +7,7 @@
  *      2013-06-07  mp  split off from drti.c
  *      2013-06-12  mp  tinyxml implemented
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
+ *      2013-06-13  mp  pridėtas .special failo parsinimas
  *
  */
 
@@ -33,6 +34,7 @@ using namespace std;
 #include "rtid.h"
 #include "fmtf.h"
 #include "rtif.h"
+#include "dvisp.h"
 
 
 // ---------------------------
@@ -199,7 +201,6 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
         cur_kwd = (/* const */ UCHAR *)strtok((CHAR *)kwd_str_buf, "}"); // RTI_CLOSING_BRACE
     }
         
-// pildom p_pRti
     while ((cur_kwd != null) && SUCCEEDED(retc))
     {
         // valom tarpus pradžioj
@@ -231,6 +232,85 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
         // continue scanning
         cur_kwd = (/* const */ UCHAR *)strtok(NULL, "}"); // RTI_CLOSING_BRACE
     }
+}
+
+
+void add_xml_to_rti(/* const */ UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
+{
+HRESULT retc = S_OK;
+const UCHAR *grp_tag_name = p_lpszGrpTagName;
+
+    KP_ASSERT(p_lpszKwdStr != null, E_INVALIDARG, null);
+
+    KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+
+    pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(DRTI_XML_GRP_TAG, null);
+    if(p_lpszGrpGrpTagName != null)
+        pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpGrpTagName, DRTI_XML_GRP_TAG);
+    if(p_lpszGrpTagName != null)
+        pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpTagName, 
+            (p_lpszGrpGrpTagName != null)?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
+
+    if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
+
+// pradedam tagų skanavimą    
+UCHAR *pnts = p_lpszKwdStr;
+
+const UCHAR *name_head = DVISP_SPEC_XML_KEY_HEAD;
+int name_head_len = strlen(name_head);                    
+const UCHAR *val_head = (const UCHAR *)"\">";
+int val_head_len = strlen(val_head);                    
+const UCHAR *val_end = (const UCHAR *)"</key>";
+int val_end_len = strlen(val_end);                    
+
+UCHAR *name_ptr = null;
+UCHAR *val_ptr = null;
+UCHAR *val_end_ptr = null;
+
+    do
+    {
+        name_ptr = pnts = strstr(pnts, name_head);
+        if (name_ptr != null)
+        {
+            name_ptr += name_head_len;
+            pnts = name_ptr;
+             
+            val_ptr = strstr(name_ptr, val_head);
+            if (val_ptr != null)
+            {
+                *val_ptr = Nul;
+                val_ptr += val_head_len;                             
+                pnts = val_ptr;
+            
+                val_end_ptr = strstr(val_ptr, val_end);
+                if(val_end_ptr != null)
+                {
+                    *val_end_ptr = Nul;
+                    pnts = val_end_ptr + val_end_len;                                    
+
+                // ------------------ pildom XML struktūrą
+                TiXmlNode *grp_node = NULL;
+                    if (grp_tag_name != null)
+                        grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
+                    if (grp_node == NULL)            
+                        grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
+                
+                TiXmlElement *element = NULL;
+                    KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
+                    
+                TiXmlText *text = NULL;
+                    KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
+                    element->LinkEndChild(text);
+                    text = NULL;
+                    
+                    grp_node->LinkEndChild(element);
+                    element = NULL;
+                }
+            }
+        }
+        
+    } while (name_ptr != null);
 }
 
 

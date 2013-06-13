@@ -36,6 +36,8 @@ extern UCHAR *strcat(UCHAR *dest, const CHAR *src);
    
 extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
 
+extern /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd);
+
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);

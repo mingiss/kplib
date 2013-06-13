@@ -6,6 +6,7 @@
  *  Changelog:
  *      2013-06-07  mp  split from drti.c
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
+ *      2013-06-13  mp  pridėtas .special failo parsinimas
  *
  *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
  *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį
@@ -114,7 +115,7 @@ const UCHAR *lpszaIgnoreFullSpecList[] =
 DviSpClass::DviSpClass(void)
 {
     m_lpszInFileName[0] = Nul;
-    m_pInFile = stdin;
+//  m_pInFile = stdin;
 }
 
 
@@ -126,7 +127,8 @@ void DviSpClass::OpenInFile(const UCHAR *lpszInFileName)
         KP_ASSERT(strlen(lpszInFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszInFileName, lpszInFileName);
          
-        open_dvi(m_lpszInFileName, &m_pInFile);
+// ReadFile() pats atsidaro ir vėėl užsidaro reikiamus failus
+//      open_dvi(m_lpszInFileName, &m_pInFile);
     }
 }
 
@@ -134,8 +136,64 @@ void DviSpClass::OpenInFile(const UCHAR *lpszInFileName)
 // -------------------------
 void DviSpClass::ReadFile(void)
 {
-    dvread(m_pInFile);
+UCHAR in_fname[KP_MAX_FNAME_LEN + 100];
+FILE *in_file = NULL;
+
+// ------------ .dvi
+    strcpy(in_fname, m_lpszInFileName);
+    strcat(in_fname, ".dvi");
+    
+    in_file = fopen((const CHAR *)in_fname, "rb");
+    if(in_file != NULL)
+    {
+        fclose(in_file);
+        in_file = NULL;    
+    
+        if (strcmp(m_lpszInFileName, (const UCHAR *)"") != 0)
+            open_dvi(in_fname, &in_file);
+
+        if(in_file != NULL)
+        {
+            dvread(in_file);
+            fclose(in_file);
+        }
+    }
+    
+// --------------  .specials    
+    strcpy(in_fname, m_lpszInFileName);
+    strcat(in_fname, ".specials");
+    
+    in_file = fopen((const CHAR *)in_fname, "r");
+printf("--------- %s %lx\n", in_fname, in_file);      
+    if(in_file != NULL)
+    {
+        SpecRead(in_file);
+        fclose(in_file);
+    }
 }
+
+
+// ---------------------------
+void DviSpClass::SpecRead(FILE *p_pInFile)
+{
+    KP_ASSERT(p_pInFile != NULL, E_INVALIDARG, null);
+    
+    while(!feof(p_pInFile))
+    {
+UCHAR in_line[KP_MAX_FILE_LIN_LEN + 1];    
+        if(fgets((CHAR *)in_line, KP_MAX_FILE_LIN_LEN, p_pInFile) != NULL)
+        {
+int ll = strlen(in_line);
+int ii;
+            for(ii = 0; ((ii < 2) && (ll > 0)); ii++)
+                if ((in_line[ll - 1] == Cr) || (in_line[ll - 1] == Lf)) ll--; 
+            in_line[ll] = Nul;        
+            ProcessSpecial(in_line);
+        }
+        else break;
+    }
+}
+
 
 
 // -------------------------
@@ -185,25 +243,39 @@ RtiSkipInBytes(p_iNumOfBytes, p_pDviFile);
 // ----------------------------
 void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile)
 {
-HRESULT retc = S_OK;
-  
-int ii;
-bool hd_found = False;
-int ch; 
 UCHAR src_buf[RTI_KWD_LEN + 1];
 UCHAR *src_ptr = src_buf;
-UCHAR dst_buf[RTI_KWD_LEN + 1];
-const UCHAR *head = DVISP_SPEC_RTI_HEAD;
-const UCHAR *grp_tag_name = null;
-const UCHAR *grp_grp_tag_name = null;
 
-    KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
     KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
-    for (ii = 0; ii < p_iNumOfBytes; ii++)
+    for (int ii = 0; ii < p_iNumOfBytes; ii++)
         *src_ptr++ = fgetc(p_pDviFile);
     *src_ptr++ = '\0';
 
+    ProcessSpecial(src_buf);
+}
+
+
+void ProcessSpecial(UCHAR *p_lpszSrcBuf)
+{
+HRESULT retc = S_OK;
+const UCHAR *head = DVISP_SPEC_RTI_HEAD;
+bool hd_found = False;
+UCHAR src_buf[RTI_KWD_LEN + 1];
+UCHAR dst_buf[RTI_KWD_LEN + 1];
+const UCHAR *grp_tag_name = null;
+const UCHAR *grp_grp_tag_name = null;
+// xml tęsinių eilutėms
+const UCHAR *prev_grp_tag = DRTI_INFO_GRP_TAG;
+bool xml_fl = False;
+
+    KP_ASSERT(p_lpszSrcBuf != NULL, E_INVALIDARG, null);
+    KP_ASSERT(strlen(p_lpszSrcBuf) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
+
+    KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
+
+    strcpy(src_buf, p_lpszSrcBuf);
+    
     if (!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
         if (!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
 //  if (GetKwrdIndex(src_buf, lpszaIgnoreSpecList, -1, True, False) == TV_TG_NoKey)
@@ -211,6 +283,8 @@ const UCHAR *grp_grp_tag_name = null;
     {
         grp_tag_name = null;
         grp_grp_tag_name = null;
+        prev_grp_tag = DRTI_INFO_GRP_TAG;
+        xml_fl = False;
         
 // "vtex:info.runtime."
         head = DVISP_SPEC_RTI_HEAD;
@@ -395,6 +469,7 @@ const UCHAR *grp_grp_tag_name = null;
         }
 
 // MC:PageInfo voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}
+// "MC:PageInfo "
         if(!hd_found)
         {
             head = DVISP_SPEC_PAGEINFO_HEAD;
@@ -408,11 +483,49 @@ const UCHAR *grp_grp_tag_name = null;
             }
         }
 
+// vtex:xml <sec name="TeX info"><key name="voffset">-72.26999pt</key><key name="hoffset">-72.26999pt</key><key name="topmargin">36.0pt</key><key name="headheight">11.0pt</key><key name="headsep">12.0pt</key><key name="textheight">560.51929pt</key><key name="textwidth">364.19527pt</key><key name="oddsidemargin">39.83386pt</key><key name="evensidemargin">36.98859pt</key><key name="footskip">12.0pt</key><key name="columnwidth">364.19527pt</key><key name="baselineskip">13.0pt plus 0.1pt minus 0.1pt</key>
+// "vtex:xml <sec name="TeX info">"
+        if(!hd_found)
+        {
+            head = DVISP_SPEC_INFO_XML_HEAD;
+            hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
+            if (hd_found)
+            {
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_INFO_GRP_TAG))
+                {
+                    prev_grp_tag = grp_tag_name = DRTI_INFO_GRP_TAG;
+                    xml_fl = True;
+                }
+//              else hd_found = False;
+            }
+        }
+
+// ankstesnio vtex:xml tęsinys
+// <key name="trimwidth">6in</key><key name="trimheight">9in</key><key name="headmargin">36.0pt</key><key name="backmargin">39.83386pt</key></sec>
+// "<key name=\""
+        if(!hd_found)
+        {
+            head = DVISP_SPEC_XML_KEY_HEAD;
+            hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
+            if (hd_found)
+            {
+                if (kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, DRTI_ALL_GRP_TAG) || 
+                    kwd_in_list(pRtiObjPtr->m_szaGrpList, pRtiObjPtr->m_iGrpListSize, prev_grp_tag))
+                {
+                    grp_tag_name = prev_grp_tag;
+                    xml_fl = True;
+                }
+//              else hd_found = False;
+            }
+        }
+
 // tagai be reikšmių (nėra "=")
         if (hd_found)
         {
 /* const */ UCHAR *pnt_rest = src_buf + strlen(head);
-            if (strchr(pnt_rest, RTI_EQ_SIGN) == NULL)
+
+            if (strchr(pnt_rest, RTI_EQ_SIGN) == null)
             {
 // pridedam <option> prie visų "vtex:settings." tagų be "="
                 if ((strncmp(src_buf, DVISP_SPEC_SETTINGS_HEAD, strlen(DVISP_SPEC_SETTINGS_HEAD)) == 0))
@@ -441,7 +554,9 @@ const UCHAR *grp_grp_tag_name = null;
         if (hd_found)
         {
             str_del(dst_buf, src_buf, head);
-            add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
+
+            if (xml_fl) add_xml_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
+            else add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
         }            
 #ifdef DRTIM_DEBUG
         // loginam neatpažintus tagus

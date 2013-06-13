@@ -6,6 +6,7 @@
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
+ *      2013-06-13  mp  pridėtas .special failo parsinimas
  *
  * TODO: po pilno atskyrimo išmest visus PLAIN_C
  *  
@@ -47,6 +48,8 @@
 
 #define DVISP_SPEC_PAGEINFO_HEAD (const UCHAR *)"MC:PageInfo "
 
+#define DVISP_SPEC_INFO_XML_HEAD (const UCHAR *)"vtex:xml <sec name=\"TeX info\">"
+#define DVISP_SPEC_XML_KEY_HEAD (const UCHAR *)"<key name=\""
 
 // -----------------------------
 // list of \special tag headers to ignore tags 
@@ -59,12 +62,20 @@ class DviSpClass
 {
 public:
     UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
-    FILE *m_pInFile; // input DVI file object
+
+// ReadFile() pats atsidaro ir vėėl užsidaro reikiamus failus
+// pranyksta galimybė skaityt iš stdin, ir nereikia
+//  FILE *m_pInFile; // input DVI file object
     
     DviSpClass(void);
 
     void OpenInFile(const UCHAR *lpszInFileName);
+    
+    // skaito darbiniam aplanke rastą failą -- m_lpszInFileName[] + ".dvi" arba m_lpszInFileName[] + ".specials"
+    // iškviečia dviread() arba SpecRead() 
     void ReadFile(void);
+
+    void SpecRead(FILE *p_pInFile);
 };
 
 
@@ -73,5 +84,9 @@ public:
 // p_lpszaKwdList should be terminated by null entry
 extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
 
+    
+// -----------------------------
+// parsina \special{} turinį p_lpszSrcBuf[] ir prideda prie pRtiObjPtr->m_pFmtFileObj->m_XmlDoc
+extern void ProcessSpecial(UCHAR *p_lpszSrcBuf);
 
 #endif // #ifndef dvisp_included
