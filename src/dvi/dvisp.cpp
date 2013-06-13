@@ -169,6 +169,8 @@ FILE *in_file = NULL;
         SpecRead(in_file);
         fclose(in_file);
     }
+
+    ProcessSpecial((const UCHAR *)""); // kad išsiflushintų sukauptas XML-as last_xml_str
 }
 
 
@@ -255,7 +257,9 @@ UCHAR *src_ptr = src_buf;
 }
 
 
-void ProcessSpecial(UCHAR *p_lpszSrcBuf)
+const UCHAR *prev_grp_tag = DRTI_INFO_GRP_TAG;
+string last_xml_str = ""; // xml-as būna per kelias eilutes, į add_xml_to_rti() perduodam per kelis iškvietimus sukauptą stringą  
+void ProcessSpecial(const UCHAR *p_lpszSrcBuf)
 {
 HRESULT retc = S_OK;
 const UCHAR *head = DVISP_SPEC_RTI_HEAD;
@@ -265,7 +269,6 @@ UCHAR dst_buf[RTI_KWD_LEN + 1];
 const UCHAR *grp_tag_name = null;
 const UCHAR *grp_grp_tag_name = null;
 // xml tęsinių eilutėms
-const UCHAR *prev_grp_tag = DRTI_INFO_GRP_TAG;
 bool xml_fl = False;
 
     KP_ASSERT(p_lpszSrcBuf != NULL, E_INVALIDARG, null);
@@ -552,12 +555,21 @@ bool xml_fl = False;
         }
         
 // -------------        
+        if ((!hd_found) || (!xml_fl))
+            if (last_xml_str.length() > 0)
+            {
+                add_xml_to_rti(&last_xml_str, prev_grp_tag, null);
+                last_xml_str = "";
+            }
+
         if (hd_found)
         {
             str_del(dst_buf, src_buf, head);
 
-            if (xml_fl) add_xml_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
-            else add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
+            if (xml_fl)
+                last_xml_str += (const CHAR *)dst_buf;
+            else 
+                add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
         }            
 #ifdef DRTIM_DEBUG
         // loginam neatpažintus tagus

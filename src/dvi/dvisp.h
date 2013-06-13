@@ -88,6 +88,9 @@ extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_l
     
 // -----------------------------
 // parsina \special{} turinį p_lpszSrcBuf[] ir prideda prie pRtiObjPtr->m_pFmtFileObj->m_XmlDoc
-extern void ProcessSpecial(UCHAR *p_lpszSrcBuf);
+// XML-iniai tagai būna per kelias eilutes, todėl iškart į m_XmlDoc neperkeliami, kaupiami stringe,
+//      o apdorojami tik gavus ne xml-inį \special-ą. Todėl failo parsinimo pabaigoje dar reikia 
+//      iškviesti tuščią ProcessSpecial((const UCHAR *)""), kad išsiflushintų sukauptas XML-as
+extern void ProcessSpecial(const UCHAR *p_lpszSrcBuf);
 
 #endif // #ifndef dvisp_included

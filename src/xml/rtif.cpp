@@ -235,12 +235,12 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
 }
 
 
-void add_xml_to_rti(/* const */ UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
+void add_xml_to_rti(const string *p_psKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
 {
 HRESULT retc = S_OK;
 const UCHAR *grp_tag_name = p_lpszGrpTagName;
 
-    KP_ASSERT(p_lpszKwdStr != null, E_INVALIDARG, null);
+    KP_ASSERT(p_psKwdStr != NULL, E_INVALIDARG, null);
 
     KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
     KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
@@ -261,7 +261,7 @@ TiXmlNode *grp_node = NULL;
         grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
                 
 TiXmlDocument xml_doc;
-    xml_doc.Parse((const CHAR *)p_lpszKwdStr);
+    xml_doc.Parse(p_psKwdStr->c_str());
 TiXmlNode *cur_node = FindNodeByName((const UCHAR *)"key", &xml_doc);
 
 const UCHAR *name_ptr = null;
@@ -273,7 +273,7 @@ const UCHAR *val_ptr = null;
             name_ptr = (const UCHAR *)((TiXmlElement *)cur_node)->Attribute("name");
             if(name_ptr == null)
             {
-                KP_WARNING(KP_E_FILE_FORMAT, p_lpszKwdStr);
+                KP_WARNING(KP_E_FILE_FORMAT, p_psKwdStr->c_str());
                 name_ptr = (const UCHAR *)"key";
             }
             val_ptr = GetNodeVal(cur_node);

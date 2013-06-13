@@ -73,7 +73,7 @@ extern PLAIN_C void add_to_rti(const UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrp
 // like add_to_rti() adds xml formatted parameter string to pRtiObjPtr->m_pFmtFileObj->m_XmlDoc
 // <key name="voffset">-72.26999pt</key><key name="hoffset">-72.26999pt</key><key name="topmargin">36.0pt</key><key name="headheight">11.0pt</key><key name="headsep">12.0pt</key><key name="textheight">560.51929pt</key><key name="textwidth">364.19527pt</key><key name="oddsidemargin">39.83386pt</key><key name="evensidemargin">36.98859pt</key><key name="footskip">12.0pt</key><key name="columnwidth">364.19527pt</key><key name="baselineskip">13.0pt plus 0.1pt minus 0.1pt</key>
 // destroys p_lpszKwdStr[]
-void add_xml_to_rti(/* const */ UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName);
+void add_xml_to_rti(const string *p_psKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName);
 
 #ifdef __cplusplus
 // split 's' into 't' and 'tt'
