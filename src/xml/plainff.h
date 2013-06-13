@@ -19,6 +19,7 @@ public:
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
+    void ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile);
     void ExportDoc(void);  
 };
 

@@ -18,6 +18,8 @@
 #include <windows.h>
 #endif
 
+#include "tinyxml.h"
+
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -25,9 +27,7 @@
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
-
-#include "tinyxml.h"
-
+#include "txml.h"
 #include "rtid.h"
 #include "fmtf.h"
 #include "plainff.h"
@@ -45,7 +45,30 @@ return(fmt_file);
 
 
 // ---------------------------------
+void PlainFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile)
+{
+    KP_ASSERT(p_pCurNode != NULL, E_INVALIDARG, null);
+    KP_ASSERT(p_pOutFile != NULL, KP_E_NO_FILE, null);
+
+    if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
+    {
+    const UCHAR *value = GetNodeVal(p_pCurNode);
+        if(value != null) fprintf(p_pOutFile, "%s\n", value);
+    }
+    
+    TiXmlNode *cur_child = NULL;
+    for (cur_child = p_pCurNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
+        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+            ExportNode(cur_child, p_pOutFile);
+}
+
+
 void PlainFmtFile::ExportDoc(void)
 {
-    KP_ERROR(E_NOTIMPL, null);
+FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
+
+    ExportNode(&m_XmlDoc, out_file);
+
+    KP_ASSERT(fclose(out_file) != EOF, KP_E_FERROR, m_lpszFileName);
 }
