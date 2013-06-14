@@ -11,37 +11,29 @@
 #ifndef kptree_included
 #define kptree_included
 
-
-// abstrakti visu KpTree objektu motinine klase
-class KpTreeRec
-{
-public:
-    virtual ~KpTreeRec(){}
-};
-
-
+template <class KpTreeRecType> 
 class KpTreeEntry
 {
 private:
-    KpTreeRec *m_lpRecord;
+    KpTreeRecType *m_lpRecord;
 
 public:
-    KpTreeEntry *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
+    KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
 private:
-    KpTreeEntry *m_pPrevBrother;
-    KpTreeEntry *m_pNextBrother;
-    KpTreeEntry *m_pFather;
+    KpTreeEntry<KpTreeRecType> *m_pPrevBrother;
+    KpTreeEntry<KpTreeRecType> *m_pNextBrother;
+    KpTreeEntry<KpTreeRecType> *m_pFather;
 
 public:
     // create new record entry
     // stores allocated object pointer lpRecord to m_lpRecord
     // don't delete it after return
-    KpTreeEntry(KpTreeRec *lpRecord, KpTreeEntry *pFath); 
+    KpTreeEntry(KpTreeRecType *lpRecord, KpTreeEntry<KpTreeRecType> *pFath); 
 
-   virtual ~KpTreeEntry();
+    virtual ~KpTreeEntry();
    
     // get record object pointer m_lpRecord
-    KpTreeRec *GetValue(void){ return(m_lpRecord); } 
+    KpTreeRecType *GetValue(void){ return(m_lpRecord); } 
     
 // ------------------------------
 // simply linear list methods
@@ -51,52 +43,47 @@ public:
     // pChild cannot be deleted after successfull SetFirstChild()
     // pChild->m_pFather turi sutapti su this
     // pChild->m_pPrevBrother turi buti NULL
-    void SetFirstChild(KpTreeEntry *pChild);
+    void SetFirstChild(KpTreeEntry<KpTreeRecType> *pChild);
 
     // gets value of m_pFirstChild
     // gets pointer to next entry of the linear list
     // NULL - last entry
-    KpTreeEntry *GetFirstChild(void) const { return(m_pFirstChild); }
+    KpTreeEntry<KpTreeRecType> *GetFirstChild(void) const { return(m_pFirstChild); }
 
     // uses the object *lpNode itself, don't delete it after return 
-    void PutToEnd(KpTreeEntry *lpNode);
+    void PutToEnd(KpTreeEntry<KpTreeRecType> *lpNode);
     
 
 // ------------------------------
 // tree management methods
 
-    KpTreeEntry *GetFather(void) const { return(m_pFather); };
+    KpTreeEntry<KpTreeRecType> *GetFather(void) const { return(m_pFather); };
 
     // nustato teva ir visiems tolimesniems broliams
     // pPrevBrother turi buti NULL
     // pFath cannnot be deleted after successfull SetFather()
-    void SetFather0(KpTreeEntry *pFath); // recursive entry
-    void SetFather(KpTreeEntry *pFath);  // main entry
+    void SetFather0(KpTreeEntry<KpTreeRecType> *pFath); // recursive entry
+    void SetFather(KpTreeEntry<KpTreeRecType> *pFath);  // main entry
 
-    KpTreeEntry *GetPrevBrother(void) const { return(m_pPrevBrother); }
+    KpTreeEntry<KpTreeRecType> *GetPrevBrother(void) const { return(m_pPrevBrother); }
 
     // pPrevBr cannnot be deleted after successfull SetPrevBrother()
     // pPrevBr->pFather turi sutapti su this->pFather
-    void SetPrevBrother(KpTreeEntry *pPrevBr);
+    void SetPrevBrother(KpTreeEntry<KpTreeRecType> *pPrevBr);
 
-    KpTreeEntry *GetNextBrother(void) const { return(m_pNextBrother); }
+    KpTreeEntry<KpTreeRecType> *GetNextBrother(void) const { return(m_pNextBrother); }
     
     // nustato sekantá brolá ðiam mazgui (this)
     // pNextBr cannnot be deleted after successfull SetNextBrother()
     // pNextBr->pFather turi sutapti su this->pFather
-    void SetNextBrother(KpTreeEntry *pNextBr);  
-
-};
-
-
-// TODO: toliau viskà kelti á KpTreeEntry klasës statinius metodus
+    void SetNextBrother(KpTreeEntry<KpTreeRecType> *pNextBr);  
 
 // TODO: panaðiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
 // TODO: elementà trina su visais broliais
 // tinka paprasto listo tvarkymui  
 // DeleteChild() papildymas
-extern void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr); 
-
+    static void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr); 
+};
 
 #endif // #ifndef kptree_included
 

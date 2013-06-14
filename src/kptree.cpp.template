@@ -32,9 +32,10 @@ using namespace std;
 
 
 // --------------------------
-KpTreeEntry::KpTreeEntry(KpTreeRec *lpRecord, KpTreeEntry *pFath)
+template <class KpTreeRecType>
+KpTreeEntry<KpTreeRecType>::KpTreeEntry(KpTreeRecType *lpRecord, KpTreeEntry<KpTreeRecType> *pFath)
 {
-   KP_ASSERT(lpRecord != NULL, E_INVALIDARG, null);
+// KP_ASSERT(lpRecord != NULL, E_INVALIDARG, null);
    m_lpRecord = lpRecord;
 
    m_pFather = pFath;
@@ -45,9 +46,10 @@ KpTreeEntry::KpTreeEntry(KpTreeRec *lpRecord, KpTreeEntry *pFath)
 
 
 // ----------------------
-KpTreeEntry::~KpTreeEntry()
+template <class KpTreeRecType>
+KpTreeEntry<KpTreeRecType>::~KpTreeEntry()
 {
-KpTreeEntry *next_br = NULL;
+KpTreeEntry<KpTreeRecType> *next_br = NULL;
 
     while (m_pNextBrother != NULL)
     {
@@ -67,10 +69,11 @@ KpTreeEntry *next_br = NULL;
 
 
 // ----------------------
-void KpTreeEntry::PutToEnd(KpTreeEntry *lpNode)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::PutToEnd(KpTreeEntry<KpTreeRecType> *lpNode)
 {
-KpTreeEntry *cur_entry = this;
-KpTreeEntry *next_entry = NULL;
+KpTreeEntry<KpTreeRecType> *cur_entry = this;
+KpTreeEntry<KpTreeRecType> *next_entry = NULL;
 
     KP_ASSERT(lpNode != NULL, E_INVALIDARG, null);
 
@@ -86,9 +89,10 @@ KpTreeEntry *next_entry = NULL;
 
 
 //-----------------------------------
-void KpTreeEntry::SetPrevBrother(KpTreeEntry *pPrevBr)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::SetPrevBrother(KpTreeEntry<KpTreeRecType> *pPrevBr)
 {
-KpTreeEntry *father = NULL;
+KpTreeEntry<KpTreeRecType> *father = NULL;
 
     if (pPrevBr != NULL)
     {
@@ -101,9 +105,10 @@ KpTreeEntry *father = NULL;
 
 
 //-----------------------------------
-void KpTreeEntry::SetNextBrother(KpTreeEntry *pNextBr)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::SetNextBrother(KpTreeEntry<KpTreeRecType> *pNextBr)
 {
-KpTreeEntry *father = NULL;
+KpTreeEntry<KpTreeRecType> *father = NULL;
 
     if (pNextBr != NULL)
     {
@@ -116,7 +121,8 @@ KpTreeEntry *father = NULL;
 
 
 //-----------------------------------
-void KpTreeEntry::SetFather0(KpTreeEntry *pFath)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::SetFather0(KpTreeEntry<KpTreeRecType> *pFath)
 {
    m_pFather = pFath;
 
@@ -126,7 +132,8 @@ void KpTreeEntry::SetFather0(KpTreeEntry *pFath)
 
 
 //-----------------------------------
-void KpTreeEntry::SetFather(KpTreeEntry *pFath)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::SetFather(KpTreeEntry<KpTreeRecType> *pFath)
 {
     KP_ASSERT(m_pPrevBrother == NULL, KP_E_SYSTEM_ERROR, null);
     SetFather0(pFath);
@@ -134,10 +141,11 @@ void KpTreeEntry::SetFather(KpTreeEntry *pFath)
 
 
 //-----------------------------------
-void KpTreeEntry::SetFirstChild(KpTreeEntry *pChild)
+template <class KpTreeRecType>
+void KpTreeEntry<KpTreeRecType>::SetFirstChild(KpTreeEntry<KpTreeRecType> *pChild)
 {
-KpTreeEntry *father = NULL;
-KpTreeEntry *prev_brother = NULL;
+KpTreeEntry<KpTreeRecType> *father = NULL;
+KpTreeEntry<KpTreeRecType> *prev_brother = NULL;
     
     if (pChild != NULL)
     {
@@ -153,18 +161,19 @@ KpTreeEntry *prev_brother = NULL;
 
 
 // ----------------------
-void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr)
+template <class KpTreeRecType>
+void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
 {
     KP_ASSERT(ppEntryPtr != NULL, E_POINTER, null);
     KP_ASSERT(*ppEntryPtr != NULL, E_POINTER, null);
 
-KpTreeEntry *first_child = NULL;
+KpTreeEntry<KpTreeRecType> *first_child = NULL;
     first_child = (*ppEntryPtr)->GetFirstChild();
 
-KpTreeEntry *prev_brother = NULL;
+KpTreeEntry<KpTreeRecType> *prev_brother = NULL;
     prev_brother = (*ppEntryPtr)->GetPrevBrother();
 
-KpTreeEntry *father = NULL;
+KpTreeEntry<KpTreeRecType> *father = NULL;
     father = (*ppEntryPtr)->GetFather();
 
     if (first_child != NULL) 

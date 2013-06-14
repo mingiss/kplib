@@ -417,6 +417,7 @@ int ii;
     {
         switch(lWindowsErrorCode)
         {
+#ifdef __WIN32__
         case WSAEACCES:               pszMsg0=KP_MSG_WSAEACCES; break;
         case WSAEADDRINUSE:           pszMsg0=KP_MSG_WSAEADDRINUSE; break;
         case WSAEADDRNOTAVAIL:        pszMsg0=KP_MSG_WSAEADDRNOTAVAIL; break;
@@ -499,11 +500,12 @@ int ii;
 
 // FindFirstFile(), FindNextFile(), FindClose()                     
 //      case ERROR_NO_MORE_FILES:
-        
+#endif        
         default: pszMsg0 = null; break;
         }
 
         pszMsg = null;
+#ifdef __WIN32__
         if((pszMsg0 == null) || bFullFormat) if(FormatMessage(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_IGNORE_INSERTS |
@@ -513,7 +515,7 @@ int ii;
         {
             pszMsg = null; // nesuformavo
         }
-       
+#endif
 //      if((pszMsg0 == null) && (pszMsg == null))
         {
             sprintf((char *)str_buf, " %ld", lWindowsErrorCode);
@@ -567,7 +569,9 @@ int ii;
     if(pszMsg1 != null) delete [] pszMsg1;
     pszMsg1 = null;
     
+#ifdef __WIN32__
     if(pszMsg!=null) LocalFree((HLOCAL)pszMsg);
+#endif
     
 return(S_OK);
 }
@@ -586,7 +590,7 @@ void KpErrorClass::SendDiagMsg(const UCHAR *lpszMessageText, bool bSevereError, 
 {
 #ifdef KP_CONSOLE
 // cout << lpszMessageText << endl;
-   printf((const CHAR *)lpszMessageText); printf("\n");
+   printf("%s\n", lpszMessageText);
 #else
 #error Not yet implemented
 #endif
@@ -660,7 +664,7 @@ int msg_tail_pos = ll = strlen(out_text);
       else
       {
 //      cout << out_str;
-        printf((const CHAR *)out_text);
+        printf("%s", out_text);
     }
 #endif
    }

@@ -15,7 +15,7 @@
 
 #define KP_CONSOLE          // console application
 
-// #define KP_CPP              // C++ aplication (uses exceptions)
+#define KP_CPP              // C++ aplication (uses exceptions)
 
 // #define KP_ALLOC_TRACE   // memory leak tracing
 #define KP_ALLOC_SAFE       // memory allocation control

@@ -142,7 +142,7 @@ HRESULT KpHeapClass::RemoveHeapPtr(const void *pDelPtr, bool bArrayFl)
 HRESULT retc = S_OK;
 
 UCHAR msg_out[MAX_LONG_HEX_DIGITS + 5];
-   sprintf((CHAR *)msg_out, "%x", pDelPtr);
+   sprintf((CHAR *)msg_out, "%lx", (DWORD)pDelPtr);
 
 int ix = SearchHeapEntry(pDelPtr);
    KP_ASSERTW(ix >= 0, KP_E_SYSTEM_ERROR, msg_out);
