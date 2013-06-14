@@ -11,26 +11,18 @@
 #ifndef kptree_included
 #define kptree_included
 
-class KpTreeRec
-{
-virtual ~KpTreeRec(){}
-}
-
-
+template <class KpTreeRecType> 
 class KpTreeEntry
 {
 public:
-   KpTreeRec *m_lpRecord;
+   KpTreeRecType *m_lpRecord;
 
    KpTreeEntry *m_pFirstChild;
    KpTreeEntry *m_pPrevBrother;
    KpTreeEntry *m_pNextBrother;
    KpTreeEntry *m_pFather;
 
-   KpTreeEntry(const void *lpRecord, int iSize, KpTreeEntry *pFath); // create new record entry, iSize - size in bytes of the record
-
-
-
+   KpTreeEntry(<KpTreeRecType> *lpRecord, KpTreeEntry *pFath); // create new record entry, iSize - size in bytes of the record
 };
 
 #endif // #ifndef kptree_included
