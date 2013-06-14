@@ -274,7 +274,10 @@ const UCHAR *val_ptr = null;
     {
         if(cur_node->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-            name_ptr = (const UCHAR *)((TiXmlElement *)cur_node)->Attribute("name");
+        TiXmlElement *elem = cur_node->ToElement();
+            KP_ASSERT(elem != NULL, E_POINTER, null);
+            // name_ptr = (const UCHAR *)((TiXmlElement *)cur_node)->Attribute("name");
+            name_ptr = (const UCHAR *)elem->Attribute("name");
             if(name_ptr == null)
             {
                 KP_WARNING(KP_E_FILE_FORMAT, p_psKwdStr->c_str());
