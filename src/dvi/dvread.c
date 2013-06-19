@@ -634,8 +634,10 @@ fontdef
 //DG  fprintf (dtl, UF4, l);
 
   /* n[a+l] = font pathname string => area (directory) + font */
-  RtiTransFontDef /* xferstring */ (a, dvi /* , dtl */);
-  RtiTransFontDef /* xferstring */ (l, dvi /* , dtl */);
+// xferstring (a, dvi /* , dtl */);
+// xferstring (l, dvi /* , dtl */);
+  
+  RtiTransFontDef(n, (n == 4)?ks:ku, c, s, d, a, l, dvi);
 
   return (1 + n + 4 + 4 + 4 + 1 + 1 + a + l);
 }

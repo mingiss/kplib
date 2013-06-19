@@ -85,3 +85,93 @@ typedef char String[MAXSTRLEN+1];
 
 #define  BSEQ_CHAR  '('
 #define  ESEQ_CHAR  ')'
+
+
+// DVI commands
+typedef enum
+{
+    DVI_set_char,   // 0...127     set_char_i         typeset a character and move right
+        DVI_set_char_last = 127,   
+    DVI_set,        // 128     set1     c[1]     typeset a character and move right
+                    // 129     set2     c[2]
+                    // 130     set3     c[3]
+                    // 131     set4     c[4]
+        DVI_set_last = 131,                
+    DVI_set_rule,   // 132     set_rule     a[4], b[4]     typeset a rule and move right
+    DVI_put,        // 133     put1     c[1]     typeset a character
+                    // 134     put2     c[2]
+                    // 135     put3     c[3]
+                    // 136     put4     c[4]
+        DVI_put_last = 136,
+    DVI_put_rule,   // 137     put_rule     a[4], b[4]     typeset a rule
+    DVI_nop,        // 138     nop         no operation
+    DVI_bop,        // 139     bop     c_0[4]..c_9[4], p[4]     beginning of page
+    DVI_eop,        // 140     eop         ending of page
+    DVI_push,       // 141     push         save the current positions
+    DVI_pop,        // 142     pop         restore previous positions
+    DVI_right,      // 143     right1     b[1]     move right
+                    // 144     right2     b[2]
+                    // 145     right3     b[3]
+                    // 146     right4     b[4]
+        DVI_right_last = 146,   
+    DVI_w,          // 147     w0         move right by w
+                    // 148     w1     b[1]     move right and set w
+                    // 149     w2     b[2]
+                    // 150     w3     b[3]
+                    // 151     w4     b[4]
+        DVI_w_last = 151,
+    DVI_x,          // 152     x0         move right by x
+                    // 153     x1     b[1]     move right and set x
+                    // 154     x2     b[2]
+                    // 155     x3     b[3]
+                    // 156     x4     b[4]
+        DVI_x_last = 156,                 
+    DVI_down,       // 157     down1     a[1]     move down
+                    // 158     down2     a[2]
+                    // 159     down3     a[3]
+                    // 160     down4     a[4]
+        DVI_down_last = 160,                    
+    DVI_y,          // 161     y0         move down by y
+                    // 162     y1     a[1]     move down and set y
+                    // 163     y2     a[2]
+                    // 164     y3     a[3]
+                    // 165     y4     a[4]
+        DVI_y_last = 165,                    
+    DVI_z,          // 166     z0         move down by z
+                    // 167     z1     a[1]     move down and set z
+                    // 168     z2     a[2]
+                    // 169     z3     a[3]
+                    // 170     z4     a[4]
+        DVI_z_last = 170,
+    DVI_fnt_num,    // 171...234     fnt_num_i         set current font to i
+        DVI_fnt_num_last = 234, 
+    DVI_fnt,        // 235     fnt1     k[1]     set current font
+                    // 236     fnt2     k[2]
+                    // 237     fnt3     k[3]
+                    // 238     fnt4     k[4]
+        DVI_fnt_end = 238,                    
+    DVI_xxx,        // 239     xxx1     k[1], x[k]     extension to DVI primitives
+                    // 240     xxx2     k[2], x[k]
+                    // 241     xxx3     k[3], x[k]
+                    // 242     xxx4     k[4], x[k]
+        DVI_xxx_end = 242,                    
+
+    // define the meaning of a font number      
+    //  k -- font number                       
+    //  c -- check sum                         
+    //  s -- scale factor                      
+    //  d -- font size                         
+    //  a -- font area (path, dirname) length, first portion of n[] 
+    //  l -- font name length, second portion of n[]                                         
+    DVI_fnt_def,    // 243     fnt_def1     k[1], c[4], s[4], d[4], a[1], l[1], n[a+l]
+                    // 244     fnt_def2     k[2], c[4], s[4], d[4], a[1], l[1], n[a+l]
+                    // 245     fnt_def3     k[3], c[4], s[4], d[4], a[1], l[1], n[a+l]
+                    // 246     fnt_def4     k[4], c[4], s[4], d[4], a[1], l[1], n[a+l]
+        DVI_fnt_def_last = 246,                                                       
+                                                                                     
+    DVI_pre,        // 247     pre     i[1], num[4], den[4], mag[4], k[1], x[k]     preamble
+    DVI_post,       // 248     post     p[4], num[4], den[4], mag[4], l[4], u[4], s[2], t[2] < font definitions >     postamble beginning
+    DVI_post_post,  // 249     post_post     q[4], i[1]; 223's    postamble ending
+    DVI_undefined,  // 250...255     undefined     
+} DviCmds;
+     
