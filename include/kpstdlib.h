@@ -155,7 +155,15 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis
 #define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist – pasikeis kpstart.ini dydis
 #define KP_MAX_FILE_LIN_LEN 4096
-
+#ifdef __WIN32__
+#define KP_DIR_SEP '\\'
+#define KP_DIR_SEP_STR (const UCHAR *)"\\"
+#define KP_EXE_EXT (const UCHAR *)"exe"
+#else
+#define KP_DIR_SEP '/'
+#define KP_DIR_SEP_STR (const UCHAR *)"/"
+#define KP_EXE_EXT (const UCHAR *)""
+#endif
 
 // ========================================= malloc
 #ifdef __cplusplus

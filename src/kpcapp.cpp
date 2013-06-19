@@ -49,6 +49,16 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
     m_lpszAppName[0] = Nul;
    
     SetProd(lpszProdName, iProdVer);
+    
+    m_lpszCmdLine[0] = Nul;
+    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
+    KP_ASSERT(strlen(lpszProdName) + 1 + strlen(KP_DIR_SEP_STR) + 1 + strlen(KP_EXE_EXT) 
+        <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, lpszProdName);
+    strcpy(m_lpszCmdLine, "."); 
+    strcat(m_lpszCmdLine, KP_DIR_SEP_STR); 
+    strcat(m_lpszCmdLine, lpszProdName);
+    strcat(m_lpszCmdLine, "."); 
+    strcat(m_lpszCmdLine, KP_EXE_EXT);
    
     strncpy(m_lpszProdDate, CUR_DATE, KP_MAX_FNAME_LEN);
     m_lpszProdDate[KP_MAX_FNAME_LEN] = Nul;
@@ -119,7 +129,7 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
 #ifdef __WIN32__
 DWORD ll = 0L;
         ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (CHAR *)lpszNameBuf, NULL);
-        KP_ASSERT(ll != 0L, KP_E_SYSTEM_ERROR, GetLastError());
+//      KP_ASSERT(ll > 0L, KP_E_SYSTEM_ERROR, GetLastError());
         KP_ASSERTW0(ll < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;
 #else

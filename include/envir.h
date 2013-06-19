@@ -20,4 +20,4 @@
 // #define KP_ALLOC_TRACE   // memory leak tracing
 #define KP_ALLOC_SAFE       // memory allocation control
 
-// #define KP_ENCODE_LOG
+// #define KP_ENCODE_LOG    // encode log file
