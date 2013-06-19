@@ -84,8 +84,16 @@ extern PLAIN_C void RtiCmdOpen(void);   /* start of command and parameters */
 extern PLAIN_C void RtiCmdClose(void);  /* end of command and parameters */
 
 extern PLAIN_C void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile);
-extern PLAIN_C void RtiTransFontDef(int p_iNumOfBytes, FILE *p_pDviFile);
+
+// p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
+// dar reikia iš failo p_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
+// font area (path, dirname) ir font name
+extern PLAIN_C void RtiTransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
+    int p_iScaleFactor, int p_iFontSize, 
+    int p_iFontDirLen, int p_iFontNameLen, FILE *p_pDviFile);
+
 // \special{} tag processing
+// dar reikia iš failo p_pDviFile perskaityt p_iNumOfBytes baitų -- \special komandos kūną 
 extern PLAIN_C void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile);
 
 // skips p_iNumOfBytes of p_pDviFile
