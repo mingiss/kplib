@@ -106,11 +106,11 @@ extern PLAIN_C void KpClose(void);                  // usually pointer to some l
                                                     // could be NULL
 
 // ========================================= data types
-#ifndef TRUE
-#define TRUE (~0)
-#endif
 #ifndef FALSE
 #define FALSE 0
+#endif
+#ifndef TRUE
+#define TRUE (!FALSE)
 #endif
 
 #define True ((bool)TRUE)
