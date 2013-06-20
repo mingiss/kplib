@@ -11,7 +11,7 @@
  
 // -----------------------------------------
 
-// #define Debug
+#define Debug
 
 #define KP_CONSOLE          // console application
 

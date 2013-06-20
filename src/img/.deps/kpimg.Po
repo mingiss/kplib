@@ -1,13 +1,13 @@
-../kplib/src/kpctype.o: ../kplib/src/kpctype.cpp ../kplib/include/envir.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
+../kplib/src/img/kpimg.o: ../kplib/src/img/kpimg.cpp \
+ ../kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winerror.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/basetsd.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/pshpack4.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/poppack.h \
@@ -54,16 +54,10 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleauto.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
- ../kplib/include/kperrno.h ../kplib/include/kpstdlib.h \
- ../kplib/include/kptt.h ../kplib/src/kpctype.h
+ ../kplib/include/kpstdlib.h ../kplib/include/kptt.h \
+ ../kplib/src/kpctype.h ../kplib/src/kpstring.h ../kplib/src/img/kpimg.h
 
 ../kplib/include/envir.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
-
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h:
 
@@ -76,6 +70,10 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h:
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winerror.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/string.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/basetsd.h:
 
@@ -169,10 +167,12 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
-../kplib/include/kperrno.h:
-
 ../kplib/include/kpstdlib.h:
 
 ../kplib/include/kptt.h:
 
 ../kplib/src/kpctype.h:
+
+../kplib/src/kpstring.h:
+
+../kplib/src/img/kpimg.h:

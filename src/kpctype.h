@@ -18,5 +18,8 @@ extern UCHAR lpszSpcEol[];
 extern UCHAR lpszSpcEolNotNBSP[];
 extern UCHAR lpszSpcEolNotTabNotFF[];
 
+extern unsigned char lpszSpCharsSpcEol[]; // "/.,- \t\r\n"  // characters ignored by sorting/searching
+                                                            //    former lpszSpChars
+
 #endif // #ifndef kpctype_included
 

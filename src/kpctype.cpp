@@ -26,3 +26,5 @@ UCHAR lpszEols[] =   "\r\n";      // "\r\n\f";
 UCHAR lpszSpcEol[] = " \t\xA0\r\n"; // C_NBSP // " \t\r\n\f";
 UCHAR lpszSpcEolNotNBSP[] = " \t\r\n";
 UCHAR lpszSpcEolNotTabNotFF[] = " \r\n";
+
+UCHAR lpszSpCharsSpcEol[] = "/.,- \t\r\n";

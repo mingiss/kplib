@@ -814,6 +814,10 @@ const UCHAR *prod_date = (const UCHAR *)"0000-00-00";
             vsprintf((CHAR *)out_str + strlen(out_str), (const CHAR *)lpszFmt, Args);
         strcat(out_str, "\n");
 
+#if (defined Debug) && (defined KP_CONSOLE)
+        cout << out_str;
+#endif
+
 // --------------------
 int out_str_len = strlen(out_str);
 #  ifdef ENCODE_LOG

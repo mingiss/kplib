@@ -56,6 +56,10 @@ typedef unsigned long DWORD;
 #define Us  ((UCHAR)037)
 #define Spc ((UCHAR)(' '))
 
+
+// ----------------------------------
+// TODO: apjungti abejus kalb¯ kodus
+
 // ----------------------------------
 // Languages for messages
 // #define MsgLang ‚Äì constant defined during compilation 
@@ -91,6 +95,23 @@ typedef enum
 } KpLang;
 
 #define KpNumOfLangs_2 KpNumOfLangs // masyv≈≥ riboms, padidinti kiekvienƒÖ kartƒÖ, pasikeitus kalb≈≥ skaiƒçiui
+
+
+// ----------------------------------
+// Languages for SortMode
+#define KP_LNG_LIT ('l')       // lithuanian, former TV_XE_LIT, (former #define Lit 1)
+#define KP_LNG_LIX ('x')       // lithuanian sorting regardless of diacrytics, i.e., Ë==c, ==s, ˛==z (for lzdsh.exe and main index generation)
+#define KP_LNG_LIS ('s')       // lithuanian straigth sorting according to exact weights (for irregular form table generator - tvxmlecm.exe)
+#define KP_LNG_ENG ('e')       // english, former TV_XE_ENG, (former #define Eng 0)
+#define KP_LNG_GER ('v')       // german, former TV_XE_GER, former 'g'
+#define KP_LNG_FRE ('f')       // french, former KP_LNG_FRA, TV_XE_FRA
+#define KP_LNG_RUS ('r')       // russian, former TV_XE_RUS
+#define KP_LNG_POL ('p')       // polish
+#define KP_LNG_LAT ('n')       // latin
+
+#define KP_LNG_NO  ('-')       // not applicable: text without any language specified, former TV_XE_NO
+#define KP_LNG_UP  ('^')       // xml tags: language of the father tag should be inherited
+#define KP_LNG_NA  ('@')       // not applicable: text not allowed; used for xml tags, excluded from index creation or non-text tags
 
 
 // ========================================= KpLib 

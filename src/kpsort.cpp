@@ -8,6 +8,32 @@
  */  
 
 
+#include "envir.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+#ifdef __WIN32__
+#include <windows.h>
+#endif
+
+#include "kpstdlib.h"
+#include "kperrno.h"
+#include "kptt.h"
+#include "kpctype.h"
+#include "kpstring.h"
+#include "kpsort.h"
+#include "kpmsg.h"
+#include "kperr.h"
+
+
+// ================================================== sort order definition
+int iCharWeigths[C_CharArrSize44] =
+{
+#include "KpCharWgt.cpp"
+};
+
+
 // --------------------------------------------------
 int GetKwrdIndex
 (
@@ -34,7 +60,7 @@ int retv = TV_TG_NoKey;
         (retv == TV_TG_NoKey)
     )
     {
-        strcpy(kwd_str, lpszKeywrd);
+        strcpy(kwd_str, p_lpszKeywrd);
         if(p_plpszKeytable[ix] != null)
         {
             if(!p_bWholeWords)

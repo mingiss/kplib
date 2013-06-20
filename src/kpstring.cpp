@@ -26,6 +26,7 @@ using namespace std;
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
+#include "kpsort.h"
 #include "kpmsg.h"
 #include "kperr.h"
 
@@ -46,9 +47,6 @@ UCHAR *strcat(UCHAR *dest, const UCHAR *src)
 UCHAR *strcat(UCHAR *dest, const CHAR *src)
    { return ((UCHAR *)strcat((CHAR *)dest, src)); }
    
-/* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch)
-   { return((/* const */ UCHAR *)strchr((/* const */ CHAR *)src, ch)); }
-
 /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd)
     { return ((/* const */ UCHAR *)strstr((/* const */ CHAR *)src, (const CHAR *)kwrd)); }
 
@@ -57,6 +55,21 @@ int strcmp(const UCHAR *str1, const UCHAR *str2)
 
 int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes)
    { return (strncmp((const CHAR *)str1, (const CHAR *)str2, nbytes)); }
+
+
+// --------------------------------------------------
+// /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch)
+//    { return((/* const */ UCHAR *)strchr((/* const */ CHAR *)src, ch)); }
+
+const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh)
+{
+const UCHAR *str_ptr = p_lpszString;
+
+    while((*str_ptr != Nul) && (*str_ptr != iCh)) str_ptr++;
+    if(*str_ptr == Nul) str_ptr = null;
+
+return(str_ptr);
+}
 
 
 // --------------------------------------------------
@@ -82,7 +95,6 @@ UCHAR *pnts = null;
 
 
 // --------------------------------------------------
-#if FALSE
 int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc, 
     int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg)
 {
@@ -97,7 +109,7 @@ int wgt1, wgt2;
     pnts1 = p_lpszStr1;
     pnts2 = p_lpszStr2;
 
-    while((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
+    while(((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
     {
 // TODO: išmest, kai perkonvertuosiu
 KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL, "UTF-8 character");    
@@ -105,10 +117,10 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
         if(p_bSkipSpc)
         {
             if(*pnts1 != C_Nul) 
-                while(((TvStrChr(lpszSpCharsSpcEol, *pnts1) != null) || (*pnts1 == '\'')) && 
+                while(((strchr(lpszSpCharsSpcEol, *pnts1) != null) || (*pnts1 == '\'')) && 
                        (*pnts1 != C_Nul)) pnts1++;
             if(*pnts2 != C_Nul) 
-                while(((TvStrChr(lpszSpCharsSpcEol, *pnts2) != null) || (*pnts2 == '\'')) && 
+                while(((strchr(lpszSpCharsSpcEol, *pnts2) != null) || (*pnts2 == '\'')) && 
                     (*pnts2 != C_Nul)) pnts2++;
         }
 
@@ -117,7 +129,7 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
             wgt1 = iCharWeigths[*pnts1];
             wgt2 = iCharWeigths[*pnts2];
 
-            if((iSortLng==KP_LNG_LIT) || (iSortLng==KP_LNG_LIX) || (iSortLng==KP_LNG_LIS))
+            if((p_iSortLng == KP_LNG_LIT) || (p_iSortLng == KP_LNG_LIX) || (p_iSortLng == KP_LNG_LIS))
             {
                 if(wgt1 / 10000 == C_Y) wgt1 = C_I * 10000 + wgt1 % 10000;
                 if(wgt1 / 10000 == C_y) wgt1 = C_i * 10000 + wgt1 % 10000;
@@ -138,7 +150,7 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
                     wgt1 = RoundChWgt(wgt1);
                     wgt2 = RoundChWgt(wgt2);
 
-                    if(iSortLng == KP_LNG_LIX)
+                    if(p_iSortLng == KP_LNG_LIX)
                     {
                         wgt1 -= wgt1 % 10000;
                         wgt2 -= wgt2 % 10000;
@@ -163,7 +175,6 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
 
 return(retv);
 }
-#endif
 
 
 // -----------------------------

@@ -34,13 +34,15 @@ extern UCHAR *strncpy(UCHAR *dest, const UCHAR *src, size_t nbytes);
 extern UCHAR *strcat(UCHAR *dest, const UCHAR *src);
 extern UCHAR *strcat(UCHAR *dest, const CHAR *src);
    
-extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
+// extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
+extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh);
 
 extern /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
+
 
 // ------------------------- UTF-8 functions
 // compares UTF-8 strings using certain sorting order
