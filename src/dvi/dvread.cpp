@@ -74,10 +74,10 @@ using namespace std;
 
 op_info  op_info_128_170 [] =
 {
-  {DVI_set,     "s1",   1,  "1",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},
-  {DVI_set + 1, "s2",   1,  "2",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},
-  {DVI_set + 2, "s3",   1,  "3",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},
-  {DVI_set + 3, "s4",   1,  "-4", /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},
+  {DVI_set,     "s1",   1,  "1",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 128
+  {DVI_set + 1, "s2",   1,  "2",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 129
+  {DVI_set + 2, "s3",   1,  "3",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 130
+  {DVI_set + 3, "s4",   1,  "-4", /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 131
   {132,         "sr",   2,  "-4 -4", /* DVREAD_TransExtChar_NoIx, */ NULL, 132},
   {133,         "p1",   1,  "1",    NULL,   133},
   {134,         "p2",   1,  "2",    NULL,   134},
@@ -92,31 +92,31 @@ op_info  op_info_128_170 [] =
   {143,         "r1",   1,  "1",    NULL,   143},
   {144,         "r2",   1,  "2",    NULL,   144},
   {145,         "r3",   1,  "3",    NULL,   145},
-  {146,         "r4",   1,  "4",    NULL,   146},
+  {146,         "r4",   1,  "-4",    NULL,   146},
   {147,         "w0",   0,  "",     NULL,   147},
   {148,         "w1",   1,  "1",    NULL,   148},
   {149,         "w2",   1,  "2",    NULL,   149},
   {150,         "w3",   1,  "3",    NULL,   150},
-  {151,         "w4",   1,  "4",    NULL,   151},
+  {151,         "w4",   1,  "-4",    NULL,   151},
   {152,         "x0",   0,  "",     NULL,   152},
   {153,         "x1",   1,  "1",    NULL,   153},
   {154,         "x2",   1,  "2",    NULL,   154},
   {155,         "x3",   1,  "3",    NULL,   155},
-  {156,         "x4",   1,  "4",    NULL,   156},
+  {156,         "x4",   1,  "-4",    NULL,   156},
   {157,         "d1",   1,  "1",    NULL,   157},
   {158,         "d2",   1,  "2",    NULL,   158},
   {159,         "d3",   1,  "3",    NULL,   159},
-  {160,         "d4",   1,  "4",    NULL,   160},
+  {160,         "d4",   1,  "-4",    NULL,   160},
   {161,         "y0",   0,  "",     NULL,   161},
   {162,         "y1",   1,  "1",    NULL,   162},
   {163,         "y2",   1,  "2",    NULL,   163},
   {164,         "y3",   1,  "3",    NULL,   164},
-  {165,         "y4",   1,  "4",    NULL,   165},
+  {165,         "y4",   1,  "-4",    NULL,   165},
   {166,         "z0",   0,  "",     NULL,   166},
   {167,         "z1",   1,  "1",    NULL,   167},
   {168,         "z2",   1,  "2",    NULL,   168},
   {169,         "z3",   1,  "3",    NULL,   169},
-  {170,         "z4",   1,  "4",    NULL,   170}
+  {170,         "z4",   1,  "-4",    NULL,   170}
 };  /* op_info  op_info_128_170 [] */
                             
                        
@@ -125,16 +125,30 @@ op_table  op_128_170  =  {"op_128_170", 128, 170, op_info_128_170};
                        
 /* Table for font with 1 to 4 bytes (opcodes 235 to 238) inclusive. */
                        
-op_info  fnt_n [] =    
+op_info op_info_235_247[] =
+// op_info  fnt_n [] =    
 {                      
   {235,         "f1", 1, "1",   NULL, 235},
   {236,         "f2", 1, "2",   NULL, 236},
   {237,         "f3", 1, "3",   NULL, 237},
-  {238,         "f4", 1, "-4",  NULL, 238}
-};  /* op_info  fnt_n [] */
+  {238,         "f4", 1, "-4",  NULL, 238},
+// };  /* op_info  fnt_n [] */
                        
-op_table  fnt  =  {"f", 235, 238, fnt_n};
+// op_table  fnt  =  {"f", 235, 238, fnt_n};
+
+    { DVI_xxx,      "xxx1", 1,  "1",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 239
+    { DVI_xxx + 1,  "xxx1", 1,  "2",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 240
+    { DVI_xxx + 2,  "xxx1", 1,  "3",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 241
+    { DVI_xxx + 3,  "xxx1", 1,  "-4",  (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 242
+    { DVI_fnt_def,      "fnt_def1", 6,  "1 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 243
+    { DVI_fnt_def + 1,  "fnt_def2", 6,  "2 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 244
+    { DVI_fnt_def + 2,  "fnt_def3", 6,  "3 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 245
+    { DVI_fnt_def + 3,  "fnt_def4", 6,  "-4 -4 -4 -4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 246
+    { DVI_pre,          "pre",      5,  "1 -4 -4 -4 1", (DvTransFunPtr)&DviRead::TransPreamble, DVI_pre } // 247
+};
                        
+op_table op_235_247 = { "op_235_247", 235, 247, op_info_235_247 };
+
                        
 // ------------------------------------  
 DviRead::DviRead(void) 
@@ -218,6 +232,7 @@ int DviRead::dvread(void)
       count += 1;
 //DG      fprintf (dtl, "%s%d", FONTNUM, opcode - 171);
     }
+#if FALSE
     else if (opcode >= 235 && opcode <= 238)
     {
       count +=
@@ -236,8 +251,11 @@ int DviRead::dvread(void)
     else if (opcode == DVI_pre) // 247
     {
       count +=
-      preamble ();
+        preamble ();
     }
+#endif
+    else if (opcode >= 235 && opcode <= 247)
+      count += wtable(op_235_247, opcode);
     else if (opcode == 248)
     {
       count +=
@@ -436,7 +454,7 @@ COUNT DviRead::wtable(op_table table, int opcode)
 #endif
 
 // calling virtual callback method through the pointer in op.m_pTransFun
-    if (op.m_pTransFun != NULL) 
+    if (op.m_pTransFun != NULL) bcount +=  
         (this->*op.m_pTransFun)(op.code - op.m_iFirstGrpOpcode + 1, argt);
     
 #if FALSE
@@ -444,11 +462,11 @@ COUNT DviRead::wtable(op_table table, int opcode)
 // totally non portable 
     if (op.m_iCallbackIx != DVREAD_TransExtChar_NoIx)
     { 
-        // assume pointer to the vtable is in the very first word of the object
+        // assume pointer to the vtable is in the very first hidden word in the body of the object
         KP_ASSERT(m_lpszInFileName - (const UCHAR *)this == sizeof(TransFunPtr), 
             E_NOTIMPL, "Wrong offset of the vtable");
 TransFunPtr *vtable = *(TransFunPtr **)this;  
-        vtable[
+        bcount += vtable[
             op.m_iCallbackIx]( // vtable index of the callback corresponding to the opcode
             this,   // this -- first parameter to the class methods 
             op.code - op.m_iFirstGrpOpcode + 1,
@@ -556,6 +574,7 @@ Void DviRead::setpchar(int charcode)
 /* setpchar */
 
 
+#if FALSE
 COUNT DviRead::special(int n)
 /* read special 1 .. 4 from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
@@ -577,8 +596,10 @@ COUNT DviRead::special(int n)
   return (1 + n + k);
 }
 /* end special */
+#endif
 
 
+#if FALSE
 COUNT DviRead::fontdef(int n)
 /* read fontdef 1 .. 4 from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
@@ -626,8 +647,10 @@ COUNT DviRead::fontdef(int n)
   return (1 + n + 4 + 4 + 4 + 1 + 1 + a + l);
 }
 /* end fontdef */
+#endif
 
 
+#if FALSE
 COUNT DviRead::preamble(void)
 /* read preamble from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
@@ -652,11 +675,12 @@ COUNT DviRead::preamble(void)
   k = runsigned (1);
 
   /* x[k] = comment string */
-  TransPreamble(id, num, den, mag, k);
+  TransPreamble(1, id, num, den, mag, k);
 
   return (1 + 1 + 4 + 4 + 4 + 1 + k);
 }
 /* end preamble */
+#endif
 
 
 COUNT DviRead::postamble(void)
