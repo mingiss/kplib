@@ -771,7 +771,7 @@ static UCHAR app_fname[KP_MAX_FNAME_LEN + 1];
 static UCHAR app_ftype[KP_MAX_FNAME_LEN + 1];
     KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
 
-const UCHAR *log_ftype = (const UCHAR *)".log";   
+const UCHAR *log_ftype = (const UCHAR *)".log";
     KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
     strcpy(lpszLogFNameBuf, temp_dir);
     strcat(lpszLogFNameBuf, "/");
@@ -882,7 +882,7 @@ const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
    catch(exception& Exc)
    {
       KP_ERROR(KP_E_UNHANDLED_EXCEPTION, Exc.what());
-   } 
+   }
 }
 
 // --------------------------------------------------
