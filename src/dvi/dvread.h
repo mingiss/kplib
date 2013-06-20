@@ -13,20 +13,44 @@
 #ifndef dvread_included
 #define dvread_included
 
+
+// ---------------------------
+class DviRead;
+
+typedef void (DviRead::*DvTransFunPtr)(
+    int p_iFirstArglen, // (op_info_st.code - m_iFirstGrpOpcode + 1) 
+    ...);               // the rest -- variable amount of int's, depending on DVI opcode
+
+#if FALSE
+// vtable entry to the virtual callback method
+typedef void (*TransFunPtr)(
+    DviRead *p_pThisPtr,    // this -- first parameter to the class methods 
+    int p_iFirstArglen,
+    ...); 
+#endif
+
 // -----------------------------
 #define DVREAD_MAX_NUM_OF_ARGS 11 // max value of op_info_st.nargs
 
+#if FALSE
 typedef enum
 {
     DVREAD_TransExtChar_NoIx = -1, // no processing of the opcode
     
     DVREAD_TransExtChar_Ix = 3,
+...
     
 } TransFunIxes;
-
+#endif
 
 struct op_info_st {int code; const char * name; int nargs; const char * args; 
-    TransFunIxes m_iCallbackIx; // index of the callback method in the vtable 
+//  TransFunIxes m_iCallbackIx; // index of the callback method in the vtable, DVREAD_TransExtChar_NoIx -- no callback
+    DvTransFunPtr m_pTransFun;  // pointer to the callback methodm, NULL -- no callback
+    int m_iFirstGrpOpcode;      // first opcode of the group, 
+                                //      (code - m_iFirstGrpOpcode + 1) is passed as the first 
+                                //      argument to the TransFunPtr callback
+                                //      number of bytes in the very first argument in the commands 
+                                //      of variable length argument as well (set1..set4, fnt1..fnt4, etc.)   
     };
 
 typedef  struct op_info_st  op_info;
@@ -96,7 +120,7 @@ public:
     // --------------------------
     // variable args callbacks, starting from the 2-nd (3-d?) record of vtable (after ~DviRead() and Open())
     // order of appearance should correspond to entries of TransFunIxes 
-    virtual void TransExtChar(int p_iCharCode) {};
+    virtual void TransExtChar(int p_iCharCodeLen, int p_iCharCode) {};
 
     // --------------------------
     // other callbacks
@@ -110,7 +134,8 @@ public:
     // dar reikia iš failo m_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
     // font area (path, dirname) ir font name
     // former RtiTransFontDef()
-    virtual void TransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
+    virtual void TransFontDef(int p_iFontNumLen /* p_iFirstArglen */, 
+        int p_iFontNum, int p_iCheckSum, 
         int p_iScaleFactor, int p_iFontSize, 
         int p_iFontDirLen, int p_iFontNameLen){ SkipInBytes(p_iFontDirLen + p_iFontNameLen); }
 
@@ -121,10 +146,5 @@ public:
     // former RtiTransSpec() 
     virtual void TransSpec(int p_iNumOfBytes){ SkipInBytes(p_iNumOfBytes); }
 };
-
-// vtable entry to the virtual callback method
-typedef void (*TransFunPtr)(
-    DviRead *p_pThisPtr,    // this -- first parameter to the class methods 
-    ...);                   // the rest -- variable amount of int's, depending on DVI opcode 
 
 #endif // #ifndef dvread_included
