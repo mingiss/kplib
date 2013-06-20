@@ -9,6 +9,38 @@
  *
  */
 
+#if FALSE
+// TODO:
+    DVI_set_rule,   // 132     set_rule     a[4], b[4]     typeset a rule and move right
+    DVI_put,        // 133     put1     c[1]     typeset a character
+        DVI_put_last = 136,
+    DVI_put_rule,   // 137     put_rule     a[4], b[4]     typeset a rule
+    DVI_nop,        // 138     nop         no operation
+    DVI_bop,        // 139     bop     c_0[4]..c_9[4], p[4]     beginning of page
+    DVI_eop,        // 140     eop         ending of page
+    DVI_push,       // 141     push         save the current positions
+    DVI_pop,        // 142     pop         restore previous positions
+    DVI_right,      // 143     right1     b[1]     move right
+        DVI_right_last = 146,   
+    DVI_w,          // 147     w0         move right by w
+        DVI_w_last = 151,
+    DVI_x,          // 152     x0         move right by x
+        DVI_x_last = 156,                 
+    DVI_down,       // 157     down1     a[1]     move down
+        DVI_down_last = 160,                    
+    DVI_y,          // 161     y0         move down by y
+        DVI_y_last = 165,                    
+    DVI_z,          // 166     z0         move down by z
+        DVI_z_last = 170,
+    DVI_fnt_num,    // 171...234     fnt_num_i         set current font to i
+        DVI_fnt_num_last = 234, 
+    DVI_fnt,        // 235     fnt1     k[1]     set current font
+        DVI_fnt_last = 238,                    
+    DVI_post,       // 248     post     p[4], num[4], den[4], mag[4], l[4], u[4], s[2], t[2] < font definitions >     postamble beginning
+    DVI_post_post,  // 249     post_post     q[4], i[1]; 223's    postamble ending
+    DVI_undefined,  // 250...255     undefined     
+#endif
+
 
 // -------------------------
 #include "envir.h"
@@ -19,6 +51,8 @@
 #ifdef __WIN32__
 #include <windows.h>
 #endif
+
+using namespace std;
 
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -40,49 +74,49 @@
 
 op_info  op_info_128_170 [] =
 {
-  {128, "s1", 1, "1"},
-  {129, "s2", 1, "2"},
-  {130, "s3", 1, "3"},
-  {131, "s4", 1, "-4"},
-  {132, "sr", 2, "-4 -4"},
-  {133, "p1", 1, "1"},
-  {134, "p2", 1, "2"},
-  {135, "p3", 1, "3"},
-  {136, "p4", 1, "-4"},
-  {137, "pr", 2, "-4 -4"},
-  {138, "nop", 0, ""},
-  {139, "bop", 11, "-4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4"},
-  {140, "eop", 0, ""},
-  {141, "[", 0, ""},
-  {142, "]", 0, ""},
-  {143, "r1", 1, "-1"},
-  {144, "r2", 1, "-2"},
-  {145, "r3", 1, "-3"},
-  {146, "r4", 1, "-4"},
-  {147, "w0", 0, ""},
-  {148, "w1", 1, "-1"},
-  {149, "w2", 1, "-2"},
-  {150, "w3", 1, "-3"},
-  {151, "w4", 1, "-4"},
-  {152, "x0", 0, ""},
-  {153, "x1", 1, "-1"},
-  {154, "x2", 1, "-2"},
-  {155, "x3", 1, "-3"},
-  {156, "x4", 1, "-4"},
-  {157, "d1", 1, "-1"},
-  {158, "d2", 1, "-2"},
-  {159, "d3", 1, "-3"},
-  {160, "d4", 1, "-4"},
-  {161, "y0", 0, ""},
-  {162, "y1", 1, "-1"},
-  {163, "y2", 1, "-2"},
-  {164, "y3", 1, "-3"},
-  {165, "y4", 1, "-4"},
-  {166, "z0", 0, ""},
-  {167, "z1", 1, "-1"},
-  {168, "z2", 1, "-2"},
-  {169, "z3", 1, "-3"},
-  {170, "z4", 1, "-4"}
+  {128, "s1", 1, "1", DVREAD_TransExtChar_Ix},
+  {129, "s2", 1, "2", DVREAD_TransExtChar_Ix},
+  {130, "s3", 1, "3", DVREAD_TransExtChar_Ix},
+  {131, "s4", 1, "-4", DVREAD_TransExtChar_Ix},
+  {132, "sr", 2, "-4 -4", DVREAD_TransExtChar_NoIx},
+  {133, "p1", 1, "1", DVREAD_TransExtChar_NoIx},
+  {134, "p2", 1, "2", DVREAD_TransExtChar_NoIx},
+  {135, "p3", 1, "3", DVREAD_TransExtChar_NoIx},
+  {136, "p4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {137, "pr", 2, "-4 -4", DVREAD_TransExtChar_NoIx},
+  {138, "nop", 0, "", DVREAD_TransExtChar_NoIx},
+  {139, "bop", 11, "-4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4", DVREAD_TransExtChar_NoIx},
+  {140, "eop", 0, "", DVREAD_TransExtChar_NoIx},
+  {141, "[", 0, "", DVREAD_TransExtChar_NoIx},
+  {142, "]", 0, "", DVREAD_TransExtChar_NoIx},
+  {143, "r1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {144, "r2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {145, "r3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {146, "r4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {147, "w0", 0, "", DVREAD_TransExtChar_NoIx},
+  {148, "w1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {149, "w2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {150, "w3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {151, "w4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {152, "x0", 0, "", DVREAD_TransExtChar_NoIx},
+  {153, "x1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {154, "x2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {155, "x3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {156, "x4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {157, "d1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {158, "d2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {159, "d3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {160, "d4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {161, "y0", 0, "", DVREAD_TransExtChar_NoIx},
+  {162, "y1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {163, "y2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {164, "y3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {165, "y4", 1, "-4", DVREAD_TransExtChar_NoIx},
+  {166, "z0", 0, "", DVREAD_TransExtChar_NoIx},
+  {167, "z1", 1, "-1", DVREAD_TransExtChar_NoIx},
+  {168, "z2", 1, "-2", DVREAD_TransExtChar_NoIx},
+  {169, "z3", 1, "-3", DVREAD_TransExtChar_NoIx},
+  {170, "z4", 1, "-4", DVREAD_TransExtChar_NoIx}
 };  /* op_info  op_info_128_170 [] */
 
 
@@ -93,10 +127,10 @@ op_table  op_128_170  =  {"op_128_170", 128, 170, op_info_128_170};
 
 op_info  fnt_n [] =
 {
-  {235, "f1", 1, "1"},
-  {236, "f2", 1, "2"},
-  {237, "f3", 1, "3"},
-  {238, "f4", 1, "-4"}
+  {235, "f1", 1, "1", DVREAD_TransExtChar_NoIx},
+  {236, "f2", 1, "2", DVREAD_TransExtChar_NoIx},
+  {237, "f3", 1, "3", DVREAD_TransExtChar_NoIx},
+  {238, "f4", 1, "-4", DVREAD_TransExtChar_NoIx}
 };  /* op_info  fnt_n [] */
 
 op_table  fnt  =  {"f", 235, 238, fnt_n};
@@ -166,7 +200,7 @@ int DviRead::dvread(void)
       fprintf (stderr, "%s:  Non-byte from \"fgetc()\"!\n", program);
       exit (1);
     }
-    else if (opcode <= 127)
+    else if (opcode <= DVI_set_char_last) // (opcode <= 127)
     {
       /* setchar commands */
       /* count += 1; */
@@ -189,17 +223,17 @@ int DviRead::dvread(void)
       count +=
       wtable (fnt, opcode);
     }
-    else if (opcode >= 239 && opcode <= 242)
+    else if (opcode >= DVI_xxx && opcode <= DVI_xxx_last) // (opcode >= 239 && opcode <= 242)
     {
       count +=
-      special (opcode - 238);
+      special (opcode - DVI_xxx + 1);
     }
-    else if (opcode >= 243 && opcode <= 246)
+    else if (opcode >= DVI_fnt_def && opcode <= DVI_fnt_def_last) // (opcode >= 243 && opcode <= 246)
     {
       count +=
-      fontdef (opcode - 242);
+      fontdef (opcode - DVI_fnt_def + 1);
     }
-    else if (opcode == 247)
+    else if (opcode == DVI_pre) // 247
     {
       count +=
       preamble ();
@@ -326,6 +360,12 @@ COUNT DviRead::wtable(op_table table, int opcode)
   String args;  /* arguments string */
   int i;  /* count of arguments read from args */
   int pos;  /* position in args */
+  
+  // parametrai callback funkcijoms
+  // struct -- kad masyvą perduotų by value 
+  struct { int val[DVREAD_MAX_NUM_OF_ARGS]; } argt; 
+  
+  for(int ii = 0; ii < DVREAD_MAX_NUM_OF_ARGS; ii++) argt.val[ii] = 0;
 
   /* Defensive programming. */
   if (opcode < table.first || opcode > table.last)
@@ -344,6 +384,7 @@ COUNT DviRead::wtable(op_table table, int opcode)
     fprintf (stderr, "%s: internal table %s wrong!\n", program, table.name);
     exit (1);
   }
+  KP_ASSERT(op.nargs <= DVREAD_MAX_NUM_OF_ARGS, KP_E_SYSTEM_ERROR, "internal table wrong!"); 
 
   bcount = 1;
 //DG  fprintf (dtl, "%s", op.name);
@@ -372,11 +413,40 @@ COUNT DviRead::wtable(op_table table, int opcode)
 
     pos += nread;
 
-    bcount += ( argtype < 0 ?
-               wsigned  (-argtype) :
-               wunsigned (argtype)  ) ;
+//  bcount += ( argtype < 0 ?
+//             wsigned  (-argtype) :
+//             wunsigned (argtype)  ) ;
+    argt.val[i] = (argtype < 0) ? rsigned(-argtype) : runsigned(argtype);
+    bcount += abs(argtype);
+
   } /* end for */
 
+// --------------------------------
+#if FALSE
+    if ((opcode >= DVI_set) && (opcode <= DVI_set_last)) // ((opcode >= 128) && (opcode <= 131))
+    {
+        KP_ASSERT(op.nargs == 1, KP_E_SYSTEM_ERROR, null);
+        TransExtChar(argt.val[0]); 
+    }
+    
+    switch(opcode)
+    {
+    case : 
+    }
+#endif
+
+// calling virtual callback method through the pointer in vtable
+// totally non portable 
+    if (op.m_iCallbackIx != DVREAD_TransExtChar_NoIx)
+    { 
+TransFunPtr *vtable = *(TransFunPtr **)this; // assume pointer to the vtable is in the very first word of the object 
+        vtable[
+            op.m_iCallbackIx]( // vtable index of the callback corresponding to the opcode
+            this,   // first parameter to the class methods 
+            argt);  // passing all argt.val[DVREAD_MAX_NUM_OF_ARGS] values as parameters
+                    // callback function will evaluate some first of them  
+    }
+    
   return bcount;
 
 }
@@ -389,37 +459,43 @@ COUNT DviRead::setseq(int opcode)
 {
   int charcode = opcode;  /* fortuitous */
   int ccount = 0;
+  
+  string out_str;
 
-  if (!isprint (charcode))
-  {
-    ccount = 1;
+// if (!isprint (charcode))
+// {
+//  ccount = 1;
 //DG    fprintf (dtl, "%s%02X", SETCHAR, opcode);
-  }
-  else
+// }
+// else
   {
     /* start of sequence of font characters */
 //DG    fprintf (dtl, BSEQ);
 
     /* first character */
     ccount = 1;
-    setpchar (charcode /* , dtl */);
+    setpchar (charcode);
+    
+    out_str += charcode;
 
     /* subsequent characters */
     while ((opcode = fgetc (m_pDviFile)) != EOF)
     {
-      if (opcode < 0 || opcode > 127)
+      if (opcode < DVI_set_char || opcode > DVI_set_char_last) // (opcode < 0 || opcode > 127)
       {
         break;  /* not a setchar command, so sequence has ended */
       }
       charcode = opcode;  /* fortuitous */
-      if (!isprint (charcode))  /* not printable ascii */
-      {
-        break;  /* end of font character sequence, as for other commands */
-      }
-      else  /* printable ASCII */
+//    if (!isprint (charcode))  /* not printable ascii */
+//    {
+//      break;  /* end of font character sequence, as for other commands */
+//    }
+//    else  /* printable ASCII */
       {
         ccount += 1;
-        setpchar (charcode /* , dtl */);
+        setpchar (charcode);
+
+        out_str += charcode;
       }
     }  /* end for loop */
 
@@ -433,6 +509,9 @@ COUNT DviRead::setseq(int opcode)
     /* end of sequence of font characters */
 //DG    fprintf (dtl, ESEQ);
   }
+  
+  TransText((const UCHAR *)(out_str.c_str()));
+  
   return ccount;
 }
 /* setseq */
@@ -563,7 +642,7 @@ COUNT DviRead::preamble(void)
   k = runsigned (1);
 
   /* x[k] = comment string */
-  TransPreamble(k);
+  TransPreamble(id, num, den, mag, k);
 
   return (1 + 1 + 4 + 4 + 4 + 1 + k);
 }

@@ -14,7 +14,20 @@
 #define dvread_included
 
 // -----------------------------
-struct op_info_st {int code; const char * name; int nargs; const char * args; };
+#define DVREAD_MAX_NUM_OF_ARGS 11 // max value of op_info_st.nargs
+
+typedef enum
+{
+    DVREAD_TransExtChar_NoIx = -1, // no processing of the opcode
+    
+    DVREAD_TransExtChar_Ix = 3,
+    
+} TransFunIxes;
+
+
+struct op_info_st {int code; const char * name; int nargs; const char * args; 
+    TransFunIxes m_iCallbackIx; // index of the callback method in the vtable 
+    };
 
 typedef  struct op_info_st  op_info;
 
@@ -79,10 +92,19 @@ public:
     
     // ------------------------
     // dvread() callbacks of the inherited parser
+    
+    // --------------------------
+    // variable args callbacks, starting from the 2-nd (3-d?) record of vtable (after ~DviRead() and Open())
+    // order of appearance should correspond to entries of TransFunIxes 
+    virtual void TransExtChar(int p_iCharCode) {};
+
+    // --------------------------
+    // other callbacks
     virtual void CmdOpen(void){}   /* start of command and parameters */ // former RtiCmdOpen()
     virtual void CmdClose(void){}  /* end of command and parameters */ // former RtiCmdClose()
     
-    virtual void TransPreamble(int p_iNumOfBytes){ SkipInBytes(p_iNumOfBytes); } // former RtiTransPreamble()
+    virtual void TransPreamble(int p_iDviId, int p_iDviNum, int p_iDviDenom, int p_iMagn, int p_iNumOfBytes)\
+        { SkipInBytes(p_iNumOfBytes); } // former RtiTransPreamble()
     
     // p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
     // dar reikia iš failo m_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
@@ -91,11 +113,18 @@ public:
     virtual void TransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
         int p_iScaleFactor, int p_iFontSize, 
         int p_iFontDirLen, int p_iFontNameLen){ SkipInBytes(p_iFontDirLen + p_iFontNameLen); }
+
+    virtual void TransText(const UCHAR *p_lpszStr) {};
     
     // \special{} tag processing
     // dar reikia iš failo m_pDviFile perskaityt p_iNumOfBytes baitų -- \special komandos kūną
     // former RtiTransSpec() 
     virtual void TransSpec(int p_iNumOfBytes){ SkipInBytes(p_iNumOfBytes); }
 };
+
+// vtable entry to the virtual callback method
+typedef void (*TransFunPtr)(
+    DviRead *p_pThisPtr,    // this -- first parameter to the class methods 
+    ...);                   // the rest -- variable amount of int's, depending on DVI opcode 
 
 #endif // #ifndef dvread_included
