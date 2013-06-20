@@ -7,6 +7,7 @@
  *      2013-06-07  mp  split from drti.c
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *      2013-06-13  mp  pridėtas .special failo parsinimas
+ *      2013-06-20  mp  DviRead class implemented 
  *
  *  TODO: "vtex:settings.sometool" opcijas kaupt dinamiškai kuriant grupinius tagus bet kokioms "sometool"
  *  TODO: pRtiObjPtr perdaryt per parametrą, ne globalų pointerį
@@ -114,21 +115,20 @@ const UCHAR *lpszaIgnoreFullSpecList[] =
 // -------------------------
 DviSpClass::DviSpClass(void)
 {
-    m_lpszInFileName[0] = Nul;
 //  m_pInFile = stdin;
 }
 
 
 // -------------------------
-void DviSpClass::OpenInFile(const UCHAR *lpszInFileName)
+void DviSpClass::Open(const UCHAR *p_lpszInFileName)
 {
     if(lpszInFileName != null) if(lpszInFileName[0] != Nul)
     {
         KP_ASSERT(strlen(lpszInFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszInFileName, lpszInFileName);
          
-// ReadFile() pats atsidaro ir vėėl užsidaro reikiamus failus
-//      open_dvi(m_lpszInFileName, &m_pInFile);
+// ReadFile() pats atsidaro ir vėl užsidaro reikiamus failus
+//      DviRead::Open(m_lpszInFileName);
     }
 }
 
@@ -224,36 +224,20 @@ return(retv);
 }
 
 
-// --------------------------- converter callbacks
-void RtiCmdOpen(void){}
-void RtiCmdClose(void){}
-
-
 // ----------------------------
-void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile)
+void DviSpClass::TransSpec(int p_iNumOfBytes)
 {
-RtiSkipInBytes(p_iNumOfBytes, p_pDviFile);
-}
-
-void RtiTransFontDef(int p_iNumOfBytes, FILE *p_pDviFile)
-{
-RtiSkipInBytes(p_iNumOfBytes, p_pDviFile);
-}
-
-
-// ----------------------------
-void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile)
-{
-UCHAR src_buf[RTI_KWD_LEN + 1];
+UCHAR *src_buf = null;
+    KP_NEWA(src_buf, UCHAR, p_iNumOfBytes + 1);
 UCHAR *src_ptr = src_buf;
 
-    KP_ASSERT(p_iNumOfBytes < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
-
     for (int ii = 0; ii < p_iNumOfBytes; ii++)
-        *src_ptr++ = fgetc(p_pDviFile);
+        *src_ptr++ = fgetc(m_pDviFile);
     *src_ptr++ = '\0';
 
     ProcessSpecial(src_buf);
+
+    KP_DELETEA(src_buf);
 }
 
 

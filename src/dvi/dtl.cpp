@@ -1,8 +1,9 @@
-/* ----------------
+/*
  * dtl.cpp
  *      DTL file I/O
  *
- *      2013-06-07  mp  split off from drti.cpp 
+ *  2013-06-07  mp  split off from drti.cpp 
+ *  2013-06-20  mp  DtlClass implementation  
  *
  */
 
@@ -10,40 +11,32 @@
 #include "rtid.h"
 
 
-// ---------------------------
-/* Is each DTL command parenthesised by a BCOM and an ECOM? */
-int group = 0;  /* by default, no grouping */
+// ----------------------------
+DtlClass::DtlClass(void)
+{
+    group = 0;  /* by default, no grouping */
+    dtl = stdout;
+}
 
-// output file
-FILE * dtl = stdout;
 
 // --------------------------- converter callbacks
-void RtiCmdOpen(void)
+void DtlClass::CmdOpen(void)
 {
     PRINT_BCOM;
 }
 
-void RtiCmdClose(void)
+
+void DtlClass::CmdClose(void)
 {
     PRINT_ECOM;
 }
 
-// ----------------------------
-void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile)
-{
-RtiSkipinBytes(p_iNumOfBytes, p_pDviFile);
-}
 
-Void
-RtiTransFontDef // xferstring
-#ifdef STDC
-  (int k, FILE * dvi /* , FILE * dtl */)
-#else
-  (k, dvi /* , dtl */)
-  int k;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+// ----------------------------
+// xferstring
+void DtlClass::TransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
+        int p_iScaleFactor, int p_iFontSize, 
+        int p_iFontDirLen, int p_iFontNameLen)
 /* copy string of k characters from dvi file to dtl file */
 {
   int i;
@@ -51,9 +44,9 @@ RtiTransFontDef // xferstring
   //  fprintf (dtl, "\n");
   //  fprintf (dtl, " ");
   //  fprintf (dtl, "'");
-  for (i=0; i < k; i++)
+  for (i=0; i < p_iFontDirLen + p_iFontNameLen; i++)
   {
-    ch = fgetc (dvi);
+    ch = fgetc (m_pDviFile);
     if (ch == ESC_CHAR || ch == EMES_CHAR)
     {
       //      fprintf (dtl, "%c", ESC_CHAR);
@@ -65,16 +58,8 @@ RtiTransFontDef // xferstring
 /* xferstring */
 
 
-Void
-RtiTransSpec // xxxferstring
-#ifdef STDC
-  (int k, FILE * dvi /* , FILE * dtl */)
-#else
-  (k, dvi /* , dtl */)
-  int k;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+// xxxferstring
+void DtlClass::TransSpec(int p_iNumOfBytes)
 /* copy string of k characters from dvi file to dtl file */
 {
   HRESULT retc = S_OK;
@@ -98,7 +83,7 @@ RtiTransSpec // xxxferstring
   //  fprintf (dtl, "\n");
   //  fprintf (dtl, " ");
   //  fprintf (dtl, "'");
-    for (ii = 0; ii < k; ii++)
+    for (ii = 0; ii < p_iNumOfBytes; ii++)
     {
 //      ch = fgetc (dvi);
     /*  if (ch == ESC_CHAR || ch == EMES_CHAR)
@@ -111,7 +96,7 @@ RtiTransSpec // xxxferstring
 
 //      *src_ptr++ = *pts++;
 
-        *src_ptr++ = fgetc(dvi);
+        *src_ptr++ = fgetc(m_pDviFile);
     }
 
     *src_ptr++ = '\0';

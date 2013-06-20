@@ -1,10 +1,11 @@
 /* ----------------
- * dvread.c
+ * dvread.cpp
  *      reading DVI file
  *      implementation 
  *
  *  Changelog:
  *      2013-06-07  mp  split from drti.c
+ *      2013-06-20  mp  DviRead class implemented 
  *
  */
 
@@ -14,12 +15,17 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <iostream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
 
 #include "kpstdlib.h"
+#include "kptt.h"
+#include "kpctype.h"
+#include "kpstring.h"
 #include "kperrno.h"
+#include "kpmsg.h"
 #include "kperr.h"
 #include "kptt.h"
 #include "kpstring.h"
@@ -97,67 +103,62 @@ op_table  fnt  =  {"f", 235, 238, fnt_n};
 
 
 // ------------------------------------  
-int
-open_dvi
-#ifdef STDC
-  (const UCHAR * dvi_file, FILE ** pdvi)
-#else
-  (dvi_file, pdvi)
-  const UCHAR * dvi_file;
-  FILE ** pdvi;
-#endif
-/* I:  dvi_file;  I:  pdvi;  O:  *pdvi. */
+DviRead::DviRead(void)
 {
-  if (pdvi == NULL)
-  {
-    fprintf (stderr, "%s:  address of dvi variable is NULL.\n", program);
-    exit (1);
-  }
-
-  *pdvi = fopen (dvi_file, "rb");
-
-  if (*pdvi == NULL)
-  {
-    fprintf (stderr, "%s:  Cannot open \"%s\" for binary reading.\n",
-      program, dvi_file);
-    exit (1);
-  }
-
-  return 1;  /* OK */
+    m_lpszInFileName[0] = Nul;
+    m_pDviFile = stdin;
 }
-/* open_dvi */
+
+
+DviRead::~DviRead()
+{
+    Close();
+}
+
+
+// ------------------------------------  
+void DviRead::Open(const UCHAR *p_lpszDviFileName)
+{
+    if(p_lpszDviFileName != null) if(p_lpszDviFileName[0] != Nul)
+    {
+        KP_ASSERT(strlen(p_lpszDviFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+        strcpy(m_lpszInFileName, p_lpszDviFileName);
+         
+        KP_ASSERT(m_pDviFile == stdin, KP_E_DOUBLE_CALL, p_lpszDviFileName);
+     
+        m_pDviFile = fopen((const CHAR *)p_lpszDviFileName, "rb");
+        KP_ASSERT(m_pDviFile != NULL, KP_E_FILE_NOT_FOUND, p_lpszDviFileName);
+    } 
+}
+
+
+void DviRead::Close(void)
+{
+    if(m_pDviFile != stdin) fclose(m_pDviFile);
+    m_pDviFile = stdin;
+}
 
 
 // ----------------------------------
-int
-dvread
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */)
-#else
-  (dvi /* , dtl */)
-  FILE * dvi;
-// FILE * dtl;
-#endif
+int DviRead::dvread(void)
 {
   int opcode;
   COUNT count;  /* intended to count bytes to DVI file; as yet unused. */
 
-  RtiCmdOpen(); // PRINT_BCOM;
+  CmdOpen(); // PRINT_BCOM;
 
 //DG  fprintf (dtl, "variety ");
 /*  fprintf (dtl, BMES); */
 //DG  fprintf (dtl, VARIETY);
 /*  fprintf (dtl, EMES); */
 
-  RtiCmdClose(); // PRINT_ECOM;
+  CmdClose(); // PRINT_ECOM;
   
-//DG  fprintf (dtl, "\n");
-
   /* start counting DVI bytes */
   count = 0;
-  while ((opcode = fgetc (dvi)) != EOF)
+  while ((opcode = fgetc (m_pDviFile)) != EOF)
   {
-    RtiCmdOpen(); // PRINT_BCOM;  /* start of command and parameters */
+    CmdOpen(); // PRINT_BCOM;  /* start of command and parameters */
     
     if (opcode < 0 || opcode > 255)
     {
@@ -171,12 +172,12 @@ dvread
       /* count += 1; */
       /* fprintf (dtl, "%s%d", SETCHAR, opcode); */
       count +=
-      setseq (opcode, dvi /* , dtl */);
+      setseq (opcode);
     }
     else if (opcode >= 128 && opcode <= 170)
     {
       count +=
-      wtable (op_128_170, opcode, dvi /* , dtl */);
+      wtable (op_128_170, opcode);
     }
     else if (opcode >= 171 && opcode <= 234)
     {
@@ -186,32 +187,32 @@ dvread
     else if (opcode >= 235 && opcode <= 238)
     {
       count +=
-      wtable (fnt, opcode, dvi /* , dtl */);
+      wtable (fnt, opcode);
     }
     else if (opcode >= 239 && opcode <= 242)
     {
       count +=
-      special (dvi /* , dtl */, opcode - 238);
+      special (opcode - 238);
     }
     else if (opcode >= 243 && opcode <= 246)
     {
       count +=
-      fontdef (dvi /* , dtl */, opcode - 242);
+      fontdef (opcode - 242);
     }
     else if (opcode == 247)
     {
       count +=
-      preamble (dvi /* , dtl */);
+      preamble ();
     }
     else if (opcode == 248)
     {
       count +=
-      postamble (dvi /* , dtl */);
+      postamble ();
     }
     else if (opcode == 249)
     {
       count +=
-      postpost (dvi /* , dtl */);
+      postpost ();
     }
     else if (opcode >= 250 && opcode <= 255)
     {
@@ -224,15 +225,8 @@ dvread
 //DG      fprintf (stderr, "%s:  unknown byte.\n", program);
       exit (1);
     }
-      RtiCmdClose();  // PRINT_ECOM; /* end of command and parameters */
-//DG    fprintf (dtl, "\n");
-/*
-    if (fflush (dtl) == EOF)
-    {
-      fprintf (stderr, "%s:  fflush on dtl file gave write error!\n", program);
-      exit (1);
-    }
-*/
+      CmdClose();  // PRINT_ECOM; /* end of command and parameters */
+
   } /* end while */
 
   return 1;  /* OK */
@@ -240,55 +234,27 @@ dvread
 /* dvread */
 
 
-COUNT
-wunsigned
-#ifdef STDC
-  (int n, FILE * dvi /* , FILE * dtl */)
-#else
-  (n, dvi /* , dtl */)
-  int n;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+COUNT DviRead::wunsigned(int n)
 {
   U4 unum;
 
-//DG  fprintf (dtl, " ");
-  unum = runsigned (n, dvi);
-//DG  fprintf (dtl, UF4, unum);
+  unum = runsigned (n);
   return n;
 }
 /* end wunsigned */
 
-COUNT
-wsigned
-#ifdef STDC
-  (int n, FILE * dvi /* , FILE * dtl */)
-#else
-  (n, dvi /* , dtl */)
-  int n;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::wsigned(int n)
 {
   S4 snum;
 
-//DG  fprintf (dtl, " ");
-  snum = rsigned (n, dvi);
-//DG  fprintf (dtl, SF4, snum);
+  snum = rsigned (n);
   return n;
 }
 /* end wsigned */
 
-U4
-runsigned
-#ifdef STDC
-  (int n,  FILE * dvi)
-#else
-  (n, dvi)
-  int n;
-  FILE * dvi;
-#endif
+
+U4 DviRead::runsigned(int n)
 /* read 1 <= n <= 4 bytes for an unsigned integer from dvi file */
 /* DVI format uses Big-endian storage of numbers. */
 {
@@ -308,7 +274,7 @@ runsigned
   for (i = 0; i < n; i++)
   {
     integer *= 256;
-    ibyte = fgetc (dvi);
+    ibyte = fgetc (m_pDviFile);
     integer += ibyte;
   }
 
@@ -316,15 +282,8 @@ runsigned
 }
 /* end runsigned */
 
-S4
-rsigned
-#ifdef STDC
-  (int n,  FILE * dvi)
-#else
-  (n, dvi)
-  int n;
-  FILE * dvi;
-#endif
+
+S4 DviRead::rsigned(int n)
 /* read 1 <= n <= 4 bytes for a signed integer from dvi file */
 /* DVI format uses Big-endian storage of numbers. */
 {
@@ -344,7 +303,7 @@ rsigned
   for (i = 0; i < n; i++)
   {
     integer *= 256;
-    ibyte = fgetc (dvi);
+    ibyte = fgetc (m_pDviFile);
     /* Big-endian implies sign byte is first byte. */
     if (i == 0 && ibyte >= 128)
     {
@@ -357,17 +316,8 @@ rsigned
 }
 /* end rsigned */
 
-COUNT
-wtable
-#ifdef STDC
-  (op_table table, int opcode, FILE * dvi /* , FILE * dtl */)
-#else
-  (table, opcode, dvi /* , dtl */)
-  op_table table;
-  int opcode;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::wtable(op_table table, int opcode)
 /* write command with given opcode in given table */
 /* return number of DVI bytes in this command */
 {
@@ -423,8 +373,8 @@ wtable
     pos += nread;
 
     bcount += ( argtype < 0 ?
-               wsigned  (-argtype, dvi /* , dtl */) :
-               wunsigned (argtype, dvi /* , dtl */)  ) ;
+               wsigned  (-argtype) :
+               wunsigned (argtype)  ) ;
   } /* end for */
 
   return bcount;
@@ -432,16 +382,8 @@ wtable
 }
 /* wtable */
 
-COUNT
-setseq
-#ifdef STDC
-  (int opcode, FILE * dvi /* , FILE * dtl */)
-#else
-  (opcode, dvi /* , dtl */)
-  int opcode;
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::setseq(int opcode)
 /* write a sequence of setchar commands */
 /* return count of DVI bytes interpreted into DTL */
 {
@@ -463,7 +405,7 @@ setseq
     setpchar (charcode /* , dtl */);
 
     /* subsequent characters */
-    while ((opcode = fgetc (dvi)) != EOF)
+    while ((opcode = fgetc (m_pDviFile)) != EOF)
     {
       if (opcode < 0 || opcode > 127)
       {
@@ -482,7 +424,7 @@ setseq
     }  /* end for loop */
 
     /* prepare to reread opcode of next DVI command */
-    if (ungetc (opcode, dvi) == EOF)
+    if (ungetc (opcode, m_pDviFile) == EOF)
     {
       fprintf (stderr, "setseq:  cannot push back a byte\n");
       exit (1);
@@ -495,15 +437,8 @@ setseq
 }
 /* setseq */
 
-Void
-setpchar
-#ifdef STDC
-  (int charcode /* , FILE * dtl */)
-#else
-  (charcode /* , dtl */)
-  int charcode;
-// FILE * dtl;
-#endif
+
+Void DviRead::setpchar(int charcode)
 /* set printable character */
 {
   switch (charcode)
@@ -531,16 +466,8 @@ setpchar
 }
 /* setpchar */
 
-COUNT
-special
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */, int n)
-#else
-  (dvi /* , dtl */ , n)
-  FILE * dvi;
-// FILE * dtl;
-  int n;
-#endif
+
+COUNT DviRead::special(int n)
 /* read special 1 .. 4 from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
 {
@@ -552,30 +479,18 @@ special
     exit (1);
   }
 
-//DG  fprintf (dtl, "%s%d", SPECIAL, n);
-
   /* k[n] = length of special string */
-//DG  fprintf (dtl, " ");
-  k = runsigned (n, dvi);
-//DG  fprintf (dtl, UF4, k);
+  k = runsigned (n);
 
   /* x[k] = special string */
-  RtiTransSpec /* xxxferstring */ (k, dvi /* , dtl */);
+  TransSpec /* xxxferstring */ (k);
 
   return (1 + n + k);
 }
 /* end special */
 
-COUNT
-fontdef
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */,  int n)
-#else
-  (dvi /* , dtl */,  n)
-  FILE * dvi;
-// FILE * dtl;
-  int n;
-#endif
+
+COUNT DviRead::fontdef(int n)
 /* read fontdef 1 .. 4 from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
 {
@@ -594,64 +509,37 @@ fontdef
 //DG  fprintf (dtl, " ");
   if (n == 4)
   {
-    ks = rsigned (n, dvi);
-//DG    fprintf (dtl, SF4, ks);
+    ks = rsigned (n);
   }
   else
   {
-    ku = runsigned (n, dvi);
-//DG    fprintf (dtl, UF4, ku);
+    ku = runsigned (n);
   }
 
   /* c[4] = checksum */
-//DG  fprintf (dtl, " ");
-  c = runsigned (4, dvi);
-#ifdef HEX_CHECKSUM
-//DG  fprintf (dtl, XF4, c);
-#else /* NOT HEX_CHECKSUM */
-  /* write in octal, to allow quick comparison with tftopl's output */
-//DG  fprintf (dtl, OF4, c);
-#endif
+  c = runsigned (4);
 
   /* s[4] = scale factor */
-//DG  fprintf (dtl, " ");
-  s = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, s);
+  s = runsigned (4);
 
   /* d[4] = design size */
-//DG  fprintf (dtl, " ");
-  d = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, d);
+  d = runsigned (4);
 
   /* a[1] = length of area (directory) name */
-  a = runsigned (1, dvi);
-//DG  fprintf (dtl, " ");
-//DG  fprintf (dtl, UF4, a);
+  a = runsigned (1);
 
   /* l[1] = length of font name */
-  l = runsigned (1, dvi);
-//DG  fprintf (dtl, " ");
-//DG  fprintf (dtl, UF4, l);
+  l = runsigned (1);
 
   /* n[a+l] = font pathname string => area (directory) + font */
-// xferstring (a, dvi /* , dtl */);
-// xferstring (l, dvi /* , dtl */);
-  
-  RtiTransFontDef(n, (n == 4)?ks:ku, c, s, d, a, l, dvi);
+  TransFontDef(n, (n == 4)?ks:ku, c, s, d, a, l);
 
   return (1 + n + 4 + 4 + 4 + 1 + 1 + a + l);
 }
 /* end fontdef */
 
-COUNT
-preamble
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */)
-#else
-  (dvi /* , dtl */)
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::preamble(void)
 /* read preamble from dvi and write in dtl */
 /* return number of DVI bytes interpreted into DTL */
 {
@@ -660,46 +548,29 @@ preamble
 //DG  fprintf (dtl, "pre");
 
   /* i[1] = DVI format identification */
-//DG  fprintf (dtl, " ");
-  id = runsigned (1, dvi);
-//DG  fprintf (dtl, UF4, id);
+  id = runsigned (1);
 
   /* num[4] = numerator of DVI unit */
-//DG  fprintf (dtl, " ");
-  num = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, num);
+  num = runsigned (4);
 
   /* den[4] = denominator of DVI unit */
-//DG  fprintf (dtl, " ");
-  den = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, den);
+  den = runsigned (4);
 
   /* mag[4] = 1000 x magnification */
-//DG  fprintf (dtl, " ");
-  mag = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, mag);
+  mag = runsigned (4);
 
   /* k[1] = length of comment */
-//DG  fprintf (dtl, " ");
-  k = runsigned (1, dvi);
-//DG  fprintf (dtl, UF4, k);
+  k = runsigned (1);
 
   /* x[k] = comment string */
-  RtiTransPreamble /* xferstring */ (k, dvi /* , dtl */);
+  TransPreamble(k);
 
   return (1 + 1 + 4 + 4 + 4 + 1 + k);
 }
 /* end preamble */
 
-COUNT
-postamble
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */)
-#else
-  (dvi /* , dtl */)
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::postamble(void)
 /* read postamble from dvi and write in dtl */
 /* return number of bytes */
 {
@@ -708,59 +579,36 @@ postamble
 //DG  fprintf (dtl, "post");
 
   /* p[4] = pointer to final bop */
-//DG  fprintf (dtl, " ");
-  p = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, p);
+  p = runsigned (4);
 
   /* num[4] = numerator of DVI unit */
-//DG  fprintf (dtl, " ");
-  num = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, num);
+  num = runsigned (4);
 
   /* den[4] = denominator of DVI unit */
-//DG  fprintf (dtl, " ");
-  den = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, den);
+  den = runsigned (4);
 
   /* mag[4] = 1000 x magnification */
-//DG  fprintf (dtl, " ");
-  mag = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, mag);
+  mag = runsigned (4);
 
   /* l[4] = height + depth of tallest page */
-//DG  fprintf (dtl, " ");
-  l = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, l);
+  l = runsigned (4);
 
   /* u[4] = width of widest page */
-//DG  fprintf (dtl, " ");
-  u = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, u);
+  u = runsigned (4);
 
   /* s[2] = maximum stack depth */
-//DG  fprintf (dtl, " ");
-  s = runsigned (2, dvi);
-//DG  fprintf (dtl, UF4, s);
+  s = runsigned (2);
 
   /* t[2] = total number of pages (bop commands) */
-//DG  fprintf (dtl, " ");
-  t = runsigned (2, dvi);
-//DG  fprintf (dtl, UF4, t);
+  t = runsigned (2);
 
 /*  return (29);  */
   return (1 + 4 + 4 + 4 + 4 + 4 + 4 + 2 + 2);
 }
 /* end postamble */
 
-COUNT
-postpost
-#ifdef STDC
-  (FILE * dvi /* , FILE * dtl */)
-#else
-  (dvi /* , dtl */)
-  FILE * dvi;
-// FILE * dtl;
-#endif
+
+COUNT DviRead::postpost(void)
 /* read post_post from dvi and write in dtl */
 /* return number of bytes */
 {
@@ -771,21 +619,15 @@ postpost
 //DG  fprintf (dtl, "post_post");
 
   /* q[4] = pointer to post command */
-//DG  fprintf (dtl, " ");
-  q = runsigned (4, dvi);
-//DG  fprintf (dtl, UF4, q);
+  q = runsigned (4);
 
   /* i[1] = DVI identification byte */
-//DG  fprintf (dtl, " ");
-  id = runsigned (1, dvi);
-//DG  fprintf (dtl, UF4, id);
+  id = runsigned (1);
 
   /* final padding by "223" bytes */
   /* hope this way of obtaining b223 is 8-bit clean */
-  for (n223 = 0; (b223 = fgetc (dvi)) == 223; n223++)
+  for (n223 = 0; (b223 = fgetc (m_pDviFile)) == 223; n223++)
   {
-//DG    fprintf (dtl, " ");
-//DG    fprintf (dtl, "%d", 223);
   }
   if (n223 < 4)
   {
@@ -803,3 +645,10 @@ postpost
   return (1 + 4 + 1 + n223);
 }
 /* end postpost */
+
+
+// ----------------------------
+void DviRead::SkipInBytes(int p_iNumOfBytes)
+{
+    for (int ii = 0; ii < p_iNumOfBytes; ii++) fgetc(m_pDviFile);
+}

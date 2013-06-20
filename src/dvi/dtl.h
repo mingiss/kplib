@@ -16,7 +16,8 @@
 */
 
 /*
- *  2013-06-07  mp  common dvi file definitions split off to dvi.h 
+ *  2013-06-07  mp  common dvi file definitions split off to dvi.h
+ *  2013-06-20  mp  DtlClass implementation  
  *
  */
  
@@ -111,3 +112,24 @@ typedef struct {int l; int m; char * s;} Lstring;
 // FILE * dtl;
 
 /* end dtl.h */
+
+class DtlClass: public DviRead
+{
+/* Is each DTL command parenthesised by a BCOM and an ECOM? */
+/* by default, no grouping */
+    int group;
+
+// output file
+    FILE * dtl;
+
+public:
+    DtlClass(void);
+    
+    // DviRead::dvread() callbackai
+    virtual void CmdOpen(void);
+    virtual void CmdClose(void);
+    virtual void TransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
+        int p_iScaleFactor, int p_iFontSize, 
+        int p_iFontDirLen, int p_iFontNameLen);
+    virtual void TransSpec(int p_iNumOfBytes);
+}

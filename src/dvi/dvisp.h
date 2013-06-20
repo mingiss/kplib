@@ -8,8 +8,6 @@
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *      2013-06-13  mp  pridėtas .special failo parsinimas
  *
- * TODO: po pilno atskyrimo išmest visus PLAIN_C
- *  
  */
 
 #ifndef dvisp_included
@@ -59,31 +57,33 @@ extern const UCHAR *lpszaIgnoreSpecList[];
 extern const UCHAR *lpszaIgnoreFullSpecList[];
 
 // -----------------------------
-class DviSpClass
+class DviSpClass: public DviRead
 {
-public:
-    UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
-
-// ReadFile() pats atsidaro ir vėėl užsidaro reikiamus failus
+// ReadFile() pats atsidaro ir vėl užsidaro reikiamus failus
 // pranyksta galimybė skaityt iš stdin, ir nereikia
-//  FILE *m_pInFile; // input DVI file object
+//  FILE *m_pInFile;
     
+public:
     DviSpClass(void);
 
-    void OpenInFile(const UCHAR *lpszInFileName);
+    virtual void Open(const UCHAR *p_lpszInFileName); // former OpenInFile()
     
     // skaito darbiniam aplanke rastą failą -- m_lpszInFileName[] + ".dvi" arba m_lpszInFileName[] + ".specials"
-    // iškviečia dviread() arba SpecRead() 
+    // iškviečia DviRead::dvread() arba SpecRead() 
     void ReadFile(void);
 
+    // process .specials file
     void SpecRead(FILE *p_pInFile);
+
+    // DviRead::dvread() callbackai
+    virtual void TransSpec(int p_iNumOfBytes);
 };
 
 
 // -----------------------------
 // checks presence of p_lpszKwd in list p_lpszaKwdList
 // p_lpszaKwdList should be terminated by null entry
-extern PLAIN_C bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
+extern bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd); 
 
     
 // -----------------------------

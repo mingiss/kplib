@@ -34,6 +34,8 @@ using namespace std;
 #include "rtid.h"
 #include "fmtf.h"
 #include "rtif.h"
+#include "dvi.h"
+#include "dvread.h"
 #include "dvisp.h"
 
 
@@ -336,12 +338,4 @@ int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s)
     if(m > 0) if(tt[m - 1] == RTI_CLOSING_BRACE) tt[m - 1] = Nul; // '}' 
   
   return 0;
-}
-
-
-// ----------------------------
-void RtiSkipInBytes(int p_iNumOfBytes, FILE *p_pDviFile)
-{
-int ii;
-    for (ii=0; ii < p_iNumOfBytes; ii++) fgetc(p_pDviFile);
 }

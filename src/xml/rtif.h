@@ -1,11 +1,13 @@
 /* ----------------
  * rtif.h
+ *      Runtime info, DVI parser output end 
  *      RtiClass definition
  *
  *  Changelog:
  *      2013-06-10  mp  split off from rti.h
  *      2013-06-13  mp  išmesti RtInfo related drti daiktai
  *      2013-06-13  mp  pridėtas .special failo parsinimas
+ *      2013-06-20  mp  DVI parserio callbackai perkelti į DviRead
  *
  */
 
@@ -54,11 +56,11 @@ extern void scan_kwd_list(UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdLis
 // -----------------------------
 // checks presence of p_lpszKwd in list p_szaKwdList
 // p_szaKwdList[p_iKwdListSize][RTI_KWD_LEN + 1] 
-extern PLAIN_C bool kwd_in_list(/* const */ UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const UCHAR *p_lpszKwd); 
+extern bool kwd_in_list(/* const */ UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const UCHAR *p_lpszKwd); 
 
 
 // -----------------------------
-extern PLAIN_C void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead);
+extern void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead);
 
 // kuria pRtiObjPtr->m_pFmtFileObj->m_XmlDoc tagus, p_lpszGrpTagName vaikus
 // jei p_lpszGrpTagName, kuria m_XmlDoc šaknies vaikus
@@ -66,7 +68,7 @@ extern PLAIN_C void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead);
 // jei p_lpszGrpGrpTagName != null, grupinį tagą p_lpszGrpTagName kuria jame
 // multiple tag string is split into individual tags:
 //  "voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}"
-extern PLAIN_C void add_to_rti(const UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName);
+extern void add_to_rti(const UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName);
 
 // like add_to_rti() adds xml formatted parameter string to pRtiObjPtr->m_pFmtFileObj->m_XmlDoc
 // <key name="voffset">-72.26999pt</key><key name="hoffset">-72.26999pt</key><key name="topmargin">36.0pt</key><key name="headheight">11.0pt</key><key name="headsep">12.0pt</key><key name="textheight">560.51929pt</key><key name="textwidth">364.19527pt</key><key name="oddsidemargin">39.83386pt</key><key name="evensidemargin">36.98859pt</key><key name="footskip">12.0pt</key><key name="columnwidth">364.19527pt</key><key name="baselineskip">13.0pt plus 0.1pt minus 0.1pt</key>
@@ -77,27 +79,5 @@ void add_xml_to_rti(const string *p_psKwdStr, const UCHAR *p_lpszGrpTagName, con
 // split 's' into 't' and 'tt'
 extern int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s);
 #endif // #ifdef __cplusplus
-
-
-// --------------------------- converter callbacks
-extern PLAIN_C void RtiCmdOpen(void);   /* start of command and parameters */
-extern PLAIN_C void RtiCmdClose(void);  /* end of command and parameters */
-
-extern PLAIN_C void RtiTransPreamble(int p_iNumOfBytes, FILE *p_pDviFile);
-
-// p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
-// dar reikia iš failo p_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
-// font area (path, dirname) ir font name
-extern PLAIN_C void RtiTransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
-    int p_iScaleFactor, int p_iFontSize, 
-    int p_iFontDirLen, int p_iFontNameLen, FILE *p_pDviFile);
-
-// \special{} tag processing
-// dar reikia iš failo p_pDviFile perskaityt p_iNumOfBytes baitų -- \special komandos kūną 
-extern PLAIN_C void RtiTransSpec(int p_iNumOfBytes, FILE *p_pDviFile);
-
-// skips p_iNumOfBytes of p_pDviFile
-// can be used as void substitutes for other RtiTrans*() 
-extern PLAIN_C void RtiSkipInBytes(int p_iNumOfBytes, FILE *p_pDviFile);
 
 #endif // #ifndef rtif_included

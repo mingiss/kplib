@@ -1,11 +1,12 @@
 /* ----------------
  * dvread.h
  *      reading of .dvi file
- *      definitions 
+ *      definition of DviRead class 
  *
  *
  *  Changelog:
  *      2013-06-07  mp  split off from drti.c
+ *      2013-06-20  mp  DviRead class implemented 
  *
  */
 
@@ -13,7 +14,7 @@
 #define dvread_included
 
 // -----------------------------
-struct op_info_st {int code; char * name; int nargs; char * args; };
+struct op_info_st {int code; const char * name; int nargs; const char * args; };
 
 typedef  struct op_info_st  op_info;
 
@@ -26,7 +27,7 @@ typedef  struct op_info_st  op_info;
      last opcode,
      pointer to opcode info.
 */
-typedef struct {char * name; int first; int last; op_info * list; } op_table;
+typedef struct {const char * name; int first; int last; op_info * list; } op_table;
 
 /* Table for opcodes 128 to 170 inclusive. */
 extern op_info  op_info_128_170 [];
@@ -41,28 +42,60 @@ extern op_table  fnt;
 
 
 // ---------------------------
-/* function prototypes */
+class DviRead
+{
+    UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
+public:
+    FILE *m_pDviFile; // input DVI file object
 
-extern PLAIN_C int open_dvi ARGS((const UCHAR * dvi_file, FILE ** dvi));
-extern PLAIN_C int dvread ARGS((FILE * dvi /* , FILE * dtl */));
+    DviRead(void);
+    virtual ~DviRead();
+    
+    virtual void Open(const UCHAR *p_lpszDviFileName);
+    void Close(void);
+    
+    int dvread(void);
 
-extern PLAIN_C COUNT wunsigned ARGS((int n,  FILE * dvi /* , FILE * dtl */));
-extern PLAIN_C COUNT wsigned   ARGS((int n,  FILE * dvi /* , FILE * dtl */));
-extern PLAIN_C S4 rsigned   ARGS((int n,  FILE * dvi));
-extern PLAIN_C U4 runsigned ARGS((int n,  FILE * dvi));
+    COUNT wunsigned(int n);
+    COUNT wsigned(int n);
+    S4 rsigned(int n);
+    U4 runsigned(int n);
+    
+    COUNT wtable(op_table table, int opcode);
+    
+    COUNT setseq(int opcode);
+    Void setpchar(int charcode);
+    
+    COUNT special(int n);
+    COUNT fontdef(int n);
+    COUNT preamble(void);
+    COUNT postamble(void);
+    COUNT postpost(void);
 
-extern PLAIN_C COUNT wtable ARGS((op_table table, int opcode, FILE * dvi /* , FILE * dtl */));
-
-extern PLAIN_C COUNT setseq ARGS((int opcode, FILE * dvi /* , FILE * dtl */));
-extern PLAIN_C Void setpchar ARGS((int charcode /* , FILE * dtl */));
-// extern PLAIN_C Void xferstring ARGS((int k, FILE * dvi /* , FILE * dtl */));
-// extern PLAIN_C Void xxxferstring ARGS((int k, FILE * dvi /* , FILE * dtl */));
-
-extern PLAIN_C COUNT special ARGS((FILE * dvi /* , FILE * dtl */, int n));
-extern PLAIN_C COUNT fontdef ARGS((FILE * dvi /* , FILE * dtl */, int n));
-extern PLAIN_C COUNT preamble  ARGS((FILE * dvi /* , FILE * dtl */));
-extern PLAIN_C COUNT postamble ARGS((FILE * dvi /* , FILE * dtl */));
-extern PLAIN_C COUNT postpost  ARGS((FILE * dvi /* , FILE * dtl */));
-
+    // skips p_iNumOfBytes of m_pDviFile
+    // can be used as void substitutes for other RtiTrans*()
+    // former RtiSkipInBytes() 
+    void SkipInBytes(int p_iNumOfBytes); 
+    
+    // ------------------------
+    // dvread() callbacks of the inherited parser
+    virtual void CmdOpen(void){}   /* start of command and parameters */ // former RtiCmdOpen()
+    virtual void CmdClose(void){}  /* end of command and parameters */ // former RtiCmdClose()
+    
+    virtual void TransPreamble(int p_iNumOfBytes){ SkipInBytes(p_iNumOfBytes); } // former RtiTransPreamble()
+    
+    // p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
+    // dar reikia iš failo m_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
+    // font area (path, dirname) ir font name
+    // former RtiTransFontDef()
+    virtual void TransFontDef(int p_iFontNumLen, int p_iFontNum, int p_iCheckSum, 
+        int p_iScaleFactor, int p_iFontSize, 
+        int p_iFontDirLen, int p_iFontNameLen){ SkipInBytes(p_iFontDirLen + p_iFontNameLen); }
+    
+    // \special{} tag processing
+    // dar reikia iš failo m_pDviFile perskaityt p_iNumOfBytes baitų -- \special komandos kūną
+    // former RtiTransSpec() 
+    virtual void TransSpec(int p_iNumOfBytes){ SkipInBytes(p_iNumOfBytes); }
+};
 
 #endif // #ifndef dvread_included
