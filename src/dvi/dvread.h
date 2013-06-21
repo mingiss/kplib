@@ -78,9 +78,9 @@ extern op_table  op_128_170;
 // extern op_table  fnt;
 
 
-/* Table for opcodes 235 to 247 inclusive. */
-extern op_info op_info_235_247[];
-extern op_table op_235_247;
+/* Table for opcodes 235 to 248 inclusive. */
+extern op_info op_info_235_248[];
+extern op_table op_235_248;
 
 
 // ---------------------------
@@ -128,8 +128,9 @@ public:
     // both, set and put, come here, distinguish by value of the p_iOpCode
     virtual COUNT TransExtChar(int p_iOpCode, int p_iCharCodeLen, int p_iCharCode) { return (0); }
 
-    virtual COUNT TransPreamble(int p_iOpCode, int p_iDviIdLen,
-        int p_iDviId, int p_iDviNum, int p_iDviDenom, int p_iMagn, int p_iNumOfBytes)
+    virtual COUNT TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId, 
+        int p_iDviNum, int p_iDviDenom, int p_iMagn, 
+        int p_iNumOfBytes)
             { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); } // former RtiTransPreamble()
     
     // p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
@@ -161,6 +162,14 @@ public:
 
     // right, w, x, down, y and z all come here, distinguish by value of the p_iOpCode
     virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff) { return (0); }
+
+    virtual COUNT TransSetFont(int p_iOpCode, int p_iFontNumLen, int p_iFontNum)
+            { return (0); }
+
+    virtual COUNT TransPost(int p_iOpCode, int p_iFirstArgLen, int p_iLastBopPos, 
+        int p_iDviNum, int p_iDviDenom, int p_iMagn,
+        int p_iMaxHeight, int p_iMaxWidth, int p_iMaxStack,
+        int p_iNumOfPages) { return (0); }
 
     // --------------------------
     // other callbacks

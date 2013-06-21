@@ -9,17 +9,6 @@
  *
  */
 
-#if FALSE
-// TODO:
-    DVI_fnt_num,    // 171...234     fnt_num_i         set current font to i
-        DVI_fnt_num_last = 234, 
-    DVI_fnt,        // 235     fnt1     k[1]     set current font
-        DVI_fnt_last = 238,                    
-    DVI_post,       // 248     post     p[4], num[4], den[4], mag[4], l[4], u[4], s[2], t[2] < font definitions >     postamble beginning
-    DVI_post_post,  // 249     post_post     q[4], i[1]; 223's    postamble ending
-    DVI_undefined,  // 250...255     undefined     
-#endif
-
 
 // -------------------------
 #include "envir.h"
@@ -104,17 +93,15 @@ op_table  op_128_170  =  {"op_128_170", 128, 170, op_info_128_170};
                        
 /* Table for font with 1 to 4 bytes (opcodes 235 to 238) inclusive. */
                        
-op_info op_info_235_247[] =
+op_info op_info_235_248[] =
 // op_info  fnt_n [] =    
 {                      
-  {235,         "f1", 1, "1",   NULL, 235},
-  {236,         "f2", 1, "2",   NULL, 236},
-  {237,         "f3", 1, "3",   NULL, 237},
-  {238,         "f4", 1, "-4",  NULL, 238},
+    { DVI_fnt,      "f1", 1, "1",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 235
+    { DVI_fnt + 1,  "f2", 1, "2",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 236
+    { DVI_fnt + 2,  "f3", 1, "3",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 237
+    { DVI_fnt + 3,  "f4", 1, "-4",  (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 238
 // };  /* op_info  fnt_n [] */
-                       
 // op_table  fnt  =  {"f", 235, 238, fnt_n};
-
     { DVI_xxx,      "xxx1", 1,  "1",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 239
     { DVI_xxx + 1,  "xxx1", 1,  "2",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 240
     { DVI_xxx + 2,  "xxx1", 1,  "3",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 241
@@ -123,10 +110,11 @@ op_info op_info_235_247[] =
     { DVI_fnt_def + 1,  "fnt_def2", 6,  "2 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 244
     { DVI_fnt_def + 2,  "fnt_def3", 6,  "3 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 245
     { DVI_fnt_def + 3,  "fnt_def4", 6,  "-4 -4 -4 -4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 246
-    { DVI_pre,          "pre",      5,  "1 -4 -4 -4 1", (DvTransFunPtr)&DviRead::TransPreamble, DVI_pre } // 247
+    { DVI_pre,          "pre",      5,  "1 -4 -4 -4 1", (DvTransFunPtr)&DviRead::TransPreamble, DVI_pre },  // 247
+    { DVI_post,         "post",     8,  "4 4 4 4 4 4 2 2", (DvTransFunPtr)&DviRead::TransPost, DVI_post }   // 248
 };
                        
-op_table op_235_247 = { "op_235_247", 235, 247, op_info_235_247 };
+op_table op_235_248 = { "op_235_248", 235, 248, op_info_235_248 };
 
                        
 // ------------------------------------  
@@ -206,10 +194,11 @@ int DviRead::dvread(void)
       count +=
       wtable (op_128_170, opcode);
     }
-    else if (opcode >= 171 && opcode <= 234)
+    else if (opcode >= DVI_fnt_num && opcode <= DVI_fnt_num_last) // (opcode >= 171 && opcode <= 234)
     {
       count += 1;
-//DG      fprintf (dtl, "%s%d", FONTNUM, opcode - 171);
+//DG      fprintf (dtl, "%s%d", FONTNUM, opcode - DVI_fnt_num);
+      count += TransSetFont(opcode, opcode - DVI_fnt_num + 1, opcode - DVI_fnt_num);
     }
 #if FALSE
     else if (opcode >= 235 && opcode <= 238)
@@ -232,20 +221,20 @@ int DviRead::dvread(void)
       count +=
         preamble ();
     }
-#endif
-    else if (opcode >= 235 && opcode <= 247)
-      count += wtable(op_235_247, opcode);
-    else if (opcode == 248)
+    else if (opcode == DVI_post) // 248
     {
       count +=
       postamble ();
     }
-    else if (opcode == 249)
+#endif
+    else if (opcode >= 235 && opcode <= 248)
+      count += wtable(op_235_248, opcode);
+    else if (opcode == DVI_post_post) // 249
     {
       count +=
       postpost ();
     }
-    else if (opcode >= 250 && opcode <= 255)
+    else if (opcode >= DVI_undefined && opcode <= DVI_undefined_last) // (opcode >= 250 && opcode <= 255)
     {
       count += 1;
 //DG      fprintf (dtl, "opcode%d", opcode);
@@ -571,7 +560,7 @@ COUNT DviRead::special(int n)
   k = runsigned (n);
 
   /* x[k] = special string */
-  TransSpec /* xxxferstring */ (k);
+  TransSpec /* xxxferstring */ (DVI_xxx, n, k);
 
   return (1 + n + k);
 }
@@ -622,7 +611,7 @@ COUNT DviRead::fontdef(int n)
   l = runsigned (1);
 
   /* n[a+l] = font pathname string => area (directory) + font */
-  TransFontDef(n, (n == 4)?ks:ku, c, s, d, a, l);
+  TransFontDef(DVI_fnt_def, n, (n == 4)?ks:ku, c, s, d, a, l);
 
   return (1 + n + 4 + 4 + 4 + 1 + 1 + a + l);
 }
@@ -655,7 +644,7 @@ COUNT DviRead::preamble(void)
   k = runsigned (1);
 
   /* x[k] = comment string */
-  TransPreamble(1, id, num, den, mag, k);
+  TransPreamble(DVI_pre, 1, id, num, den, mag, k);
 
   return (1 + 1 + 4 + 4 + 4 + 1 + k);
 }
@@ -663,6 +652,7 @@ COUNT DviRead::preamble(void)
 #endif
 
 
+#if FALSE
 COUNT DviRead::postamble(void)
 /* read postamble from dvi and write in dtl */
 /* return number of bytes */
@@ -695,10 +685,13 @@ COUNT DviRead::postamble(void)
   /* t[2] = total number of pages (bop commands) */
   t = runsigned (2);
 
+  TransPost(DVI_post, 1, p, num, den, mag, l, u, s, t);
+
 /*  return (29);  */
   return (1 + 4 + 4 + 4 + 4 + 4 + 4 + 2 + 2);
 }
 /* end postamble */
+#endif
 
 
 COUNT DviRead::postpost(void)
@@ -719,7 +712,7 @@ COUNT DviRead::postpost(void)
 
   /* final padding by "223" bytes */
   /* hope this way of obtaining b223 is 8-bit clean */
-  for (n223 = 0; (b223 = fgetc (m_pDviFile)) == 223; n223++)
+  for (n223 = 0; (b223 = fgetc (m_pDviFile)) == DVI_POST_SIGNATURE; n223++) // 223
   {
   }
   if (n223 < 4)
