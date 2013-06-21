@@ -18,6 +18,7 @@
 class DviRead;
 
 typedef COUNT (DviRead::*DvTransFunPtr)(
+    int p_iOpCode,      // DVI op. code (op_info_st.code)
     int p_iFirstArgLen, // (op_info_st.code - m_iFirstGrpOpcode + 1) 
     ...);               // the rest -- variable amount of int's, depending on DVI opcode
 
@@ -25,6 +26,7 @@ typedef COUNT (DviRead::*DvTransFunPtr)(
 // vtable entry to the virtual callback method
 typedef COUNT (*TransFunPtr)(
     DviRead *p_pThisPtr,    // this -- very first hidden parameter to class methods 
+    int p_iOpCode,
     int p_iFirstArgLen,
     ...); 
 #endif
@@ -35,7 +37,7 @@ typedef COUNT (*TransFunPtr)(
 #if FALSE
 typedef enum
 {
-    DVREAD_TransExtChar_NoIx = -1, // no processing of the opcode
+    DVREAD_Trans_NoIx = -1, // no processing of the opcode
     
     DVREAD_TransExtChar_Ix = 3,
 ...
@@ -44,7 +46,7 @@ typedef enum
 #endif
 
 struct op_info_st {int code; const char * name; int nargs; const char * args; 
-//  TransFunIxes m_iCallbackIx; // index of the callback method in the vtable, DVREAD_TransExtChar_NoIx -- no callback
+//  TransFunIxes m_iCallbackIx; // index of the callback method in the vtable, DVREAD_Trans_NoIx -- no callback
     DvTransFunPtr m_pTransFun;  // pointer to the callback methodm, NULL -- no callback
     int m_iFirstGrpOpcode;      // first opcode of the group, 
                                 //      (code - m_iFirstGrpOpcode + 1) is passed as the first 
@@ -123,9 +125,10 @@ public:
     // --------------------------
     // variable args callbacks, starting from the 2-nd (3-d?) record of vtable (after ~DviRead() and Open())
     // order of appearance should correspond to entries of TransFunIxes 
-    virtual COUNT TransExtChar(int p_iCharCodeLen, int p_iCharCode) { return (0); };
+    // both, set and put, come here, distinguish by value of the p_iOpCode
+    virtual COUNT TransExtChar(int p_iOpCode, int p_iCharCodeLen, int p_iCharCode) { return (0); }
 
-    virtual COUNT TransPreamble(int p_iDviIdLen,
+    virtual COUNT TransPreamble(int p_iOpCode, int p_iDviIdLen,
         int p_iDviId, int p_iDviNum, int p_iDviDenom, int p_iMagn, int p_iNumOfBytes)
             { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); } // former RtiTransPreamble()
     
@@ -133,7 +136,7 @@ public:
     // dar reikia iš failo m_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
     // font area (path, dirname) ir font name
     // former RtiTransFontDef()
-    virtual COUNT TransFontDef(int p_iFontNumLen, 
+    virtual COUNT TransFontDef(int p_iOpCode, int p_iFontNumLen, 
         int p_iFontNum, int p_iCheckSum, 
         int p_iScaleFactor, int p_iFontSize, 
         int p_iFontDirLen, int p_iFontNameLen)
@@ -142,15 +145,30 @@ public:
     // \special{} tag processing
     // dar reikia iš failo m_pDviFile perskaityt p_iNumOfBytes baitų -- \special komandos kūną
     // former RtiTransSpec() 
-    virtual COUNT TransSpec(int p_iNumOfBytesLen, int p_iNumOfBytes)
+    virtual COUNT TransSpec(int p_iOpCode, int p_iNumOfBytesLen, int p_iNumOfBytes)
         { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); }
+
+    // both, set_rule and put_rule, come here, distinguish by value of the p_iOpCode
+    virtual COUNT TransRule(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB) { return (0); }
+
+    virtual COUNT TransPage(int p_iOpCode, int p_iFirstArgLen, 
+        int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
+        int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos)
+            { return (0); }
+
+    virtual COUNT TransPush(int p_iOpCode, int p_iFirstArgLen) { return (0); }
+    virtual COUNT TransPop(int p_iOpCode, int p_iFirstArgLen) { return (0); }
+
+    // right, w, x, down, y and z all come here, distinguish by value of the p_iOpCode
+    virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff) { return (0); }
 
     // --------------------------
     // other callbacks
     virtual void CmdOpen(void){}   /* start of command and parameters */ // former RtiCmdOpen()
     virtual void CmdClose(void){}  /* end of command and parameters */ // former RtiCmdClose()
     
-    virtual void TransText(const UCHAR *p_lpszStr) {};
+    // accumulated set_char's into a string
+    virtual void TransText(const UCHAR *p_lpszStr) {}
 };
 
 #endif // #ifndef dvread_included

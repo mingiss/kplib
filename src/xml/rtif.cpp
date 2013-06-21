@@ -313,7 +313,7 @@ const UCHAR *val_ptr = null;
 
 int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s)
 {
-/* const */ UCHAR *ps; 
+  const UCHAR *ps; 
   ps = strchr(s, RTI_EQ_SIGN); // '='
   int l, m;
   if (ps == NULL)

@@ -11,27 +11,6 @@
 
 #if FALSE
 // TODO:
-    DVI_set_rule,   // 132     set_rule     a[4], b[4]     typeset a rule and move right
-    DVI_put,        // 133     put1     c[1]     typeset a character
-        DVI_put_last = 136,
-    DVI_put_rule,   // 137     put_rule     a[4], b[4]     typeset a rule
-    DVI_nop,        // 138     nop         no operation
-    DVI_bop,        // 139     bop     c_0[4]..c_9[4], p[4]     beginning of page
-    DVI_eop,        // 140     eop         ending of page
-    DVI_push,       // 141     push         save the current positions
-    DVI_pop,        // 142     pop         restore previous positions
-    DVI_right,      // 143     right1     b[1]     move right
-        DVI_right_last = 146,   
-    DVI_w,          // 147     w0         move right by w
-        DVI_w_last = 151,
-    DVI_x,          // 152     x0         move right by x
-        DVI_x_last = 156,                 
-    DVI_down,       // 157     down1     a[1]     move down
-        DVI_down_last = 160,                    
-    DVI_y,          // 161     y0         move down by y
-        DVI_y_last = 165,                    
-    DVI_z,          // 166     z0         move down by z
-        DVI_z_last = 170,
     DVI_fnt_num,    // 171...234     fnt_num_i         set current font to i
         DVI_fnt_num_last = 234, 
     DVI_fnt,        // 235     fnt1     k[1]     set current font
@@ -74,49 +53,49 @@ using namespace std;
 
 op_info  op_info_128_170 [] =
 {
-  {DVI_set,     "s1",   1,  "1",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 128
-  {DVI_set + 1, "s2",   1,  "2",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 129
-  {DVI_set + 2, "s3",   1,  "3",  /* DVREAD_TransExtChar_Ix, */  (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 130
-  {DVI_set + 3, "s4",   1,  "-4", /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set}, // 131
-  {132,         "sr",   2,  "-4 -4", /* DVREAD_TransExtChar_NoIx, */ NULL, 132},
-  {133,         "p1",   1,  "1",    NULL,   133},
-  {134,         "p2",   1,  "2",    NULL,   134},
-  {135,         "p3",   1,  "3",    NULL,   135},
-  {136,         "p4",   1,  "-4",   NULL,   136},
-  {137,         "pr",   2,  "-4 -4", NULL,  137},
-  {138,         "nop",  0,  "",     NULL,   138},
-  {139,         "bop",  11, "-4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4", NULL, 139},
-  {140,         "eop",  0,  "",     NULL,   140},
-  {141,         "[",    0,  "",     NULL,   141},
-  {142,         "]",    0,  "",     NULL,   142},
-  {143,         "r1",   1,  "1",    NULL,   143},
-  {144,         "r2",   1,  "2",    NULL,   144},
-  {145,         "r3",   1,  "3",    NULL,   145},
-  {146,         "r4",   1,  "-4",    NULL,   146},
-  {147,         "w0",   0,  "",     NULL,   147},
-  {148,         "w1",   1,  "1",    NULL,   148},
-  {149,         "w2",   1,  "2",    NULL,   149},
-  {150,         "w3",   1,  "3",    NULL,   150},
-  {151,         "w4",   1,  "-4",    NULL,   151},
-  {152,         "x0",   0,  "",     NULL,   152},
-  {153,         "x1",   1,  "1",    NULL,   153},
-  {154,         "x2",   1,  "2",    NULL,   154},
-  {155,         "x3",   1,  "3",    NULL,   155},
-  {156,         "x4",   1,  "-4",    NULL,   156},
-  {157,         "d1",   1,  "1",    NULL,   157},
-  {158,         "d2",   1,  "2",    NULL,   158},
-  {159,         "d3",   1,  "3",    NULL,   159},
-  {160,         "d4",   1,  "-4",    NULL,   160},
-  {161,         "y0",   0,  "",     NULL,   161},
-  {162,         "y1",   1,  "1",    NULL,   162},
-  {163,         "y2",   1,  "2",    NULL,   163},
-  {164,         "y3",   1,  "3",    NULL,   164},
-  {165,         "y4",   1,  "-4",    NULL,   165},
-  {166,         "z0",   0,  "",     NULL,   166},
-  {167,         "z1",   1,  "1",    NULL,   167},
-  {168,         "z2",   1,  "2",    NULL,   168},
-  {169,         "z3",   1,  "3",    NULL,   169},
-  {170,         "z4",   1,  "-4",    NULL,   170}
+  {DVI_set,     "s1",   1,  "1",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 128
+  {DVI_set + 1, "s2",   1,  "2",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 129
+  {DVI_set + 2, "s3",   1,  "3",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 130
+  {DVI_set + 3, "s4",   1,  "-4", /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 131
+  {DVI_set_rule, "sr",  2,  "-4 -4", /* DVREAD_Trans_NoIx, */   (DvTransFunPtr)&DviRead::TransRule, DVI_set_rule},  // 132
+  {DVI_put,     "p1",   1,  "1",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 133
+  {DVI_put + 1, "p2",   1,  "2",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 134
+  {DVI_put + 2, "p3",   1,  "3",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 135
+  {DVI_put + 3, "p4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 136
+  {DVI_put_rule,"pr",   2,  "-4 -4", (DvTransFunPtr)&DviRead::TransRule, DVI_put_rule}, // 137
+  {DVI_nop,     "nop",  0,  "",     NULL,   DVI_nop}, // 138
+  {DVI_bop,     "bop",  11, "-4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4", (DvTransFunPtr)&DviRead::TransPage, DVI_bop}, // 139
+  {DVI_eop,     "eop",  0,  "",     NULL,   DVI_eop}, // 140
+  {DVI_push,    "[",    0,  "",     (DvTransFunPtr)&DviRead::TransPush, DVI_push},      // 141
+  {DVI_pop,     "]",    0,  "",     (DvTransFunPtr)&DviRead::TransPop,  DVI_pop},       // 142
+  {DVI_right,   "r1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 143
+  {DVI_right + 1, "r2", 1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 144
+  {DVI_right + 2, "r3", 1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 145
+  {DVI_right + 3, "r4", 1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 146
+  {DVI_w,       "w0",   0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 147
+  {DVI_w + 1,   "w1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 148
+  {DVI_w + 2,   "w2",   1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 149
+  {DVI_w + 3,   "w3",   1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 150
+  {DVI_w + 4,   "w4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 151
+  {DVI_x,       "x0",   0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 152
+  {DVI_x + 1,   "x1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 153
+  {DVI_x + 2,   "x2",   1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 154
+  {DVI_x + 3,   "x3",   1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 155
+  {DVI_x + 4,   "x4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 156
+  {DVI_down,    "d1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 157
+  {DVI_down + 1, "d2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 158
+  {DVI_down + 2, "d3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 159
+  {DVI_down + 3, "d4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 160
+  {DVI_y,        "y0",  0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 161
+  {DVI_y + 1,    "y1",  1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 162
+  {DVI_y + 2,    "y2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 163
+  {DVI_y + 3,    "y3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 164
+  {DVI_y + 4,    "y4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 165
+  {DVI_z,        "z0",  0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 166
+  {DVI_z + 1,    "z1",  1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 167
+  {DVI_z + 2,    "z2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 168
+  {DVI_z + 3,    "z3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 169
+  {DVI_z + 4,    "z4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1}    // 170
 };  /* op_info  op_info_128_170 [] */
                             
                        
@@ -455,12 +434,15 @@ COUNT DviRead::wtable(op_table table, int opcode)
 
 // calling virtual callback method through the pointer in op.m_pTransFun
     if (op.m_pTransFun != NULL) bcount +=  
-        (this->*op.m_pTransFun)(op.code - op.m_iFirstGrpOpcode + 1, argt);
+        (this->*op.m_pTransFun)(opcode, 
+            op.code - op.m_iFirstGrpOpcode + 1, // offset in the group of opcode's
+            argt);  // passing all argt.val[DVREAD_MAX_NUM_OF_ARGS] values as parameters
+                    // callback function will evaluate some first of them
     
 #if FALSE
 // calling virtual callback method through the pointer in vtable
 // totally non portable 
-    if (op.m_iCallbackIx != DVREAD_TransExtChar_NoIx)
+    if (op.m_iCallbackIx != DVREAD_Trans_NoIx)
     { 
         // assume pointer to the vtable is in the very first hidden word in the body of the object
         KP_ASSERT(m_lpszInFileName - (const UCHAR *)this == sizeof(TransFunPtr), 
@@ -468,10 +450,8 @@ COUNT DviRead::wtable(op_table table, int opcode)
 TransFunPtr *vtable = *(TransFunPtr **)this;  
         bcount += vtable[
             op.m_iCallbackIx]( // vtable index of the callback corresponding to the opcode
-            this,   // this -- first parameter to the class methods 
-            op.code - op.m_iFirstGrpOpcode + 1,
-            argt);  // passing all argt.val[DVREAD_MAX_NUM_OF_ARGS] values as parameters
-                    // callback function will evaluate some first of them  
+            this,   // this -- first parameter to the class methods
+            opcode, op.code - op.m_iFirstGrpOpcode + 1, argt);   
     }
 #endif
 
