@@ -85,7 +85,7 @@ UCHAR *pnts;
    strcpy(lpszFNameBuf, fnam_ptr);
 
 // path
-   if(fnam_ptr == path_ptr) strcpy(lpszPathBuf, ".");
+   if(fnam_ptr == path_ptr) strcpy(lpszPathBuf, KP_CUR_DIR_STR);
    else /* if(fnam_ptr > path_ptr) */
    {
       *fnam_ptr-- = Nul;

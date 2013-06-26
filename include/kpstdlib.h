@@ -185,6 +185,9 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #define KP_DIR_SEP_STR (const UCHAR *)"/"
 #define KP_EXE_EXT (const UCHAR *)""
 #endif
+#define KP_EXT_SEP '.'
+#define KP_EXT_SEP_STR (const UCHAR *)"."
+#define KP_CUR_DIR_STR (const UCHAR *)"."
 
 // ========================================= malloc
 #ifdef __cplusplus
@@ -262,6 +265,14 @@ extern KpHeapClass KpHeap;
       KP_ALLOC_INSERT_HEAP_PTR(ptr, False); \
    }}
 
+// without consistency check
+#define KP_NEW0(ptr, constr) \
+   {{ \
+      KP_ALLOC_CHECK_DOUBLE_CALL(ptr); \
+      (ptr) = new constr; \
+      KP_ASSERT((ptr) != NULL, KP_E_OUTOFMEM, null); \
+   }}
+
 // -------------------------------------
 // object deleting
 // KP_DELETE(void &*ptr)
@@ -272,6 +283,16 @@ extern KpHeapClass KpHeap;
       { \
          KP_ALLOC_TRACE_NEW_PTR(ptr, "del"); \
          KP_ALLOC_CHECK_REMOVE_HEAP_PTR(ptr, False) delete (ptr); \
+         (ptr) = NULL; \
+	  } \
+   }}
+
+// without consistency check
+#define KP_DELETE0(ptr) \
+   {{ \
+      if((ptr) != NULL) \
+      { \
+         delete (ptr); \
          (ptr) = NULL; \
 	  } \
    }}
@@ -309,6 +330,8 @@ extern KpHeapClass KpHeap;
 
 
 // ================================================== integer types and constants, math
+#define MAX_UCHAR 0xFF
+#define MAX_INT 0x7FFFFFFF
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 

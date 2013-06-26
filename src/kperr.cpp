@@ -758,7 +758,7 @@ const UCHAR *temp_dir = null;
     temp_dir = (const UCHAR *)getenv("TEMP");
     KP_ASSERT(temp_dir != null, KP_E_SYSTEM_ERROR, null);
 #else
-    temp_dir = (const UCHAR *)".";
+    temp_dir = KP_CUR_DIR_STR;
 #endif   
 
 static UCHAR app_name[KP_MAX_FNAME_LEN + 1];

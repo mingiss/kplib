@@ -52,12 +52,12 @@ KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
     
     m_lpszCmdLine[0] = Nul;
     KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
-    KP_ASSERT(strlen(lpszProdName) + 1 + strlen(KP_DIR_SEP_STR) + 1 + strlen(KP_EXE_EXT) 
+    KP_ASSERT(strlen(KP_CUR_DIR_STR) + strlen(KP_DIR_SEP_STR) + strlen(lpszProdName) + strlen(KP_EXT_SEP_STR) + strlen(KP_EXE_EXT) 
         <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, lpszProdName);
-    strcpy(m_lpszCmdLine, "."); 
+    strcpy(m_lpszCmdLine, KP_CUR_DIR_STR); 
     strcat(m_lpszCmdLine, KP_DIR_SEP_STR); 
     strcat(m_lpszCmdLine, lpszProdName);
-    strcat(m_lpszCmdLine, "."); 
+    strcat(m_lpszCmdLine, KP_EXT_SEP_STR); 
     strcat(m_lpszCmdLine, KP_EXE_EXT);
    
     strncpy(m_lpszProdDate, CUR_DATE, KP_MAX_FNAME_LEN);

@@ -122,6 +122,12 @@ DviRead::DviRead(void)
 {                      
     m_lpszInFileName[0] = Nul;
     m_pDviFile = stdin;
+
+    m_iHorStepW = 0;
+    m_iHorStepX = 0;
+    
+    m_iVertStepY = 0;
+    m_iVertStepZ = 0;
 }                      
                        
                        
@@ -731,6 +737,59 @@ COUNT DviRead::postpost(void)
   return (1 + 4 + 1 + n223);
 }
 /* end postpost */
+
+
+    
+// ----------------------------
+COUNT DviRead::TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff)
+{
+int offset = p_iOff;
+
+    switch(p_iOpCode)
+    {
+    case DVI_w:
+        offset = m_iHorStepW;
+        break; 
+    case DVI_w + 1:
+    case DVI_w + 2:
+    case DVI_w + 3:
+    case DVI_w + 4:
+        m_iHorStepW = p_iOff;
+        break;
+        
+    case DVI_x:
+        offset = m_iHorStepX;
+        break; 
+    case DVI_x + 1:
+    case DVI_x + 2:
+    case DVI_x + 3:
+    case DVI_x + 4:
+        m_iHorStepX = p_iOff;
+        break;
+        
+    case DVI_y:
+        offset = m_iVertStepY;
+        break; 
+    case DVI_y + 1:
+    case DVI_y + 2:
+    case DVI_y + 3:
+    case DVI_y + 4:
+        m_iVertStepY = p_iOff;
+        break;
+        
+    case DVI_z:
+        offset = m_iVertStepZ;
+        break; 
+    case DVI_z + 1:
+    case DVI_z + 2:
+    case DVI_z + 3:
+    case DVI_z + 4:
+        m_iVertStepZ = p_iOff;
+        break;
+    }
+    
+return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset)); 
+}
 
 
 // ----------------------------

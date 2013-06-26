@@ -90,6 +90,12 @@ class DviRead
 public:
     FILE *m_pDviFile; // input DVI file object
 
+    int m_iHorStepW; // horizontal steps
+    int m_iHorStepX;
+    
+    int m_iVertStepY; // vertyical steps
+    int m_iVertStepZ;
+
     DviRead(void);
     virtual ~DviRead();
     
@@ -161,7 +167,10 @@ public:
     virtual COUNT TransPop(int p_iOpCode, int p_iFirstArgLen) { return (0); }
 
     // right, w, x, down, y and z all come here, distinguish by value of the p_iOpCode
-    virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff) { return (0); }
+    // fills values of m_iHorStepW, m_iHorStepX, m_iVertStepY and m_iVertStepZ
+    virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff);
+    // supplement to TransMove() in inherited class
+    virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff) { return (0); }
 
     virtual COUNT TransSetFont(int p_iOpCode, int p_iFontNumLen, int p_iFontNum)
             { return (0); }

@@ -90,6 +90,9 @@ typedef char String[MAXSTRLEN+1];
 #define  ESEQ_CHAR  ')'
 
 
+// approximate space width in DVI units
+#define DVI_SPACE_WDT 100000
+
 // DVI commands
 typedef enum
 {
