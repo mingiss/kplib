@@ -335,6 +335,10 @@ extern KpHeapClass KpHeap;
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 
+// formats p_iVal as 16 bytes binary string
+// p_lpszBinStrBuf[16 + 1]
+void I2BinStr(UCHAR *p_lpszBinStrBuf, int p_iVal);  
+
 
 // ================================================== searching and sorting
 #define KP_KWD_LEN 400 // negalima keist – pasikeis susijusiø failø layout

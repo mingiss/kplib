@@ -46,7 +46,7 @@ UCHAR *strcat(UCHAR *dest, const UCHAR *src)
    { return ((UCHAR *)strcat((CHAR *)dest, (const CHAR *)src)); }
 UCHAR *strcat(UCHAR *dest, const CHAR *src)
    { return ((UCHAR *)strcat((CHAR *)dest, src)); }
-   
+
 /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd)
     { return ((/* const */ UCHAR *)strstr((/* const */ CHAR *)src, (const CHAR *)kwrd)); }
 
@@ -55,6 +55,10 @@ int strcmp(const UCHAR *str1, const UCHAR *str2)
 
 int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes)
    { return (strncmp((const CHAR *)str1, (const CHAR *)str2, nbytes)); }
+
+// --------------------------------------------------
+UCHAR *strlwr(UCHAR *str)
+    { return((UCHAR *)strlwr((CHAR *)str)); }
 
 
 // --------------------------------------------------
@@ -73,7 +77,7 @@ return(str_ptr);
 
 
 // --------------------------------------------------
-void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+void KpStripTrailing(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
 {
 UCHAR *pnts = null;
 
@@ -94,8 +98,46 @@ UCHAR *pnts = null;
 }
 
 
+void KpStripLeading(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+{
+UCHAR *pnts = null;
+UCHAR *pntd = null;
+
+    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+
+    pntd = pnts = lpszString;
+    while(strchr(lpszSpcs, *pnts) != null) pnts++;
+    while(*pnts != Nul) *pntd++ = *pnts++;
+    *pntd = Nul;
+}
+
+
+void KpStrip(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+{
+    KpStripLeading(lpszString, lpszSpcs);
+    KpStripTrailing(lpszString, lpszSpcs);
+}
+
+
+void KpStripAll(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+{
+UCHAR *pnts = null;
+UCHAR *pntd = null;
+
+    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+
+    pntd = pnts = lpszString;
+    while(*pnts != Nul)
+    {
+        while(strchr(lpszSpcs, *pnts) != null) pnts++;
+        *pntd++ = *pnts++;
+    }
+    *pntd = Nul;
+}
+
+
 // --------------------------------------------------
-int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc, 
+int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc,
     int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg)
 {
 int retv = 0;
@@ -105,22 +147,22 @@ int wgt1, wgt2;
 
     KP_ASSERT((p_lpszStr1 != null) && (p_lpszStr2 != null), E_INVALIDARG, null);
 
-// TODO: convert p_lpszStr1 and p_lpszStr2 to KpChar* 
+// TODO: convert p_lpszStr1 and p_lpszStr2 to KpChar*
     pnts1 = p_lpszStr1;
     pnts2 = p_lpszStr2;
 
     while(((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
     {
 // TODO: išmest, kai perkonvertuosiu
-KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL, "UTF-8 character");    
-   
+KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL, "UTF-8 character");
+
         if(p_bSkipSpc)
         {
-            if(*pnts1 != C_Nul) 
-                while(((strchr(lpszSpCharsSpcEol, *pnts1) != null) || (*pnts1 == '\'')) && 
+            if(*pnts1 != C_Nul)
+                while(((strchr(lpszSpCharsSpcEol, *pnts1) != null) || (*pnts1 == '\'')) &&
                        (*pnts1 != C_Nul)) pnts1++;
-            if(*pnts2 != C_Nul) 
-                while(((strchr(lpszSpCharsSpcEol, *pnts2) != null) || (*pnts2 == '\'')) && 
+            if(*pnts2 != C_Nul)
+                while(((strchr(lpszSpCharsSpcEol, *pnts2) != null) || (*pnts2 == '\'')) &&
                     (*pnts2 != C_Nul)) pnts2++;
         }
 

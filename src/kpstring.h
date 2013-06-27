@@ -43,6 +43,8 @@ extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 
 extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
 
+extern UCHAR *strlwr(UCHAR *str);
+
 
 // ------------------------- UTF-8 functions
 // compares UTF-8 strings using certain sorting order
@@ -60,7 +62,11 @@ extern int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSk
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę
-void CutTrailSpcs(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol);
+void KpStripTrailing(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus gale // former CutTrailSpcs
+void KpStripLeading(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj
+void KpStrip(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj ir gale 
+void KpStripAll(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // išmeta visus tarpus
+
 
 // -------------------------
 // static C_Nul-terminated KpChar character array, no deletion required

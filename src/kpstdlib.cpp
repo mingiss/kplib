@@ -158,3 +158,18 @@ int ix = SearchHeapEntry(pDelPtr);
 return(retc);
 }
 #endif // #ifdef KP_ALLOC_SAFE
+
+
+// ----------------------------------
+void I2BinStr(UCHAR *p_lpszBinStrBuf, int p_iVal)
+{
+    KP_ASSERT(p_lpszBinStrBuf != null, E_INVALIDARG, null);
+UCHAR *pntd = p_lpszBinStrBuf + 16;
+    *pntd = Nul;
+int val = p_iVal;     
+    for (int ii = 0; ii < 16; ii++)
+    {
+        *(--pntd) = ((val & 1) != 0)?'1':'0';
+        val >>= 1;         
+    }         
+}
