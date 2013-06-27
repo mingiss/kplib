@@ -14,10 +14,9 @@
 template <class KpTreeRecType> 
 class KpTreeEntry
 {
-private:
+public:
     KpTreeRecType *m_lpRecord;
 
-public:
     KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
 private:
     KpTreeEntry<KpTreeRecType> *m_pPrevBrother;

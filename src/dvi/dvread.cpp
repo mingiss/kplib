@@ -23,12 +23,13 @@
 using namespace std;
 
 #include "kpstdlib.h"
+#include "kperrno.h"
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
-#include "kperrno.h"
 #include "kpmsg.h"
 #include "kperr.h"
+#include "kptree.h"
 #include "kptt.h"
 #include "kpstring.h"
 
@@ -116,24 +117,100 @@ op_info op_info_235_248[] =
                        
 op_table op_235_248 = { "op_235_248", 235, 248, op_info_235_248 };
 
-                       
+
+// ------------------------------------  
+DviSteps::DviSteps(void)
+{
+    m_iHorStepW = 0;
+    m_iHorStepX = 0;
+    m_iVertStepY = 0;
+    m_iVertStepZ = 0;
+}
+
+
+// ------------------------------------  
+void DviRead::SetHorStepW(int p_iHorStepW)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iHorStepW = p_iHorStepW;
+}
+
+
+int DviRead::GetHorStepW(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iHorStepW);
+}
+
+
+void DviRead::SetHorStepX(int p_iHorStepX)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iHorStepX = p_iHorStepX;
+}
+
+
+int DviRead::GetHorStepX(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iHorStepX);
+}
+
+
+void DviRead::SetVertStepY(int p_iVertStepY)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iVertStepY = p_iVertStepY;
+}
+
+
+int DviRead::GetVertStepY(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iVertStepY);
+}
+
+
+void DviRead::SetVertStepZ(int p_iVertStepZ)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iVertStepZ = p_iVertStepZ;
+}
+
+
+int DviRead::GetVertStepZ(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iVertStepZ);
+}
+
+
 // ------------------------------------  
 DviRead::DviRead(void) 
 {                      
     m_lpszInFileName[0] = Nul;
     m_pDviFile = stdin;
 
-    m_iHorStepW = 0;
-    m_iHorStepX = 0;
-    
-    m_iVertStepY = 0;
-    m_iVertStepZ = 0;
+    m_pCurSteps = NULL;
+DviSteps *dvi_steps = NULL;
+    KP_NEW(dvi_steps, DviSteps); 
+    KP_NEW(m_pCurSteps, KpTreeEntry<DviSteps>(dvi_steps, NULL));
 }                      
                        
                        
 DviRead::~DviRead()
 {
     Close();
+    KP_ASSERT(m_pCurSteps->GetFather() == NULL, E_POINTER, "Stack m_pCurSteps leakage");
+    KP_DELETE(m_pCurSteps);
 }
 
 
@@ -748,47 +825,47 @@ int offset = p_iOff;
     switch(p_iOpCode)
     {
     case DVI_w:
-        offset = m_iHorStepW;
+        offset = GetHorStepW();
         break; 
     case DVI_w + 1:
     case DVI_w + 2:
     case DVI_w + 3:
     case DVI_w + 4:
-        m_iHorStepW = p_iOff;
+        SetHorStepW(p_iOff);
         break;
         
     case DVI_x:
-        offset = m_iHorStepX;
+        offset = GetHorStepX();
         break; 
     case DVI_x + 1:
     case DVI_x + 2:
     case DVI_x + 3:
     case DVI_x + 4:
-        m_iHorStepX = p_iOff;
+        SetHorStepX(p_iOff);
         break;
         
     case DVI_y:
-        offset = m_iVertStepY;
+        offset = GetVertStepY();
         break; 
     case DVI_y + 1:
     case DVI_y + 2:
     case DVI_y + 3:
     case DVI_y + 4:
-        m_iVertStepY = p_iOff;
+        SetVertStepY(p_iOff);
         break;
         
     case DVI_z:
-        offset = m_iVertStepZ;
+        offset = GetVertStepZ();
         break; 
     case DVI_z + 1:
     case DVI_z + 2:
     case DVI_z + 3:
     case DVI_z + 4:
-        m_iVertStepZ = p_iOff;
+        SetVertStepZ(p_iOff);
         break;
     }
     
-return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset)); 
+return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset, p_iOff)); 
 }
 
 

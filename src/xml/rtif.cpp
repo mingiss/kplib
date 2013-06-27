@@ -30,6 +30,7 @@ using namespace std;
 #include "kpstring.h"
 #include "kpmsg.h"
 #include "kperr.h"
+#include "kptree.h"
 #include "txml.h"
 #include "rtid.h"
 #include "fmtf.h"

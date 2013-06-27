@@ -83,6 +83,19 @@ extern op_info op_info_235_248[];
 extern op_table op_235_248;
 
 
+class DviSteps
+{
+public:
+    int m_iHorStepW; // horizontal steps
+    int m_iHorStepX;
+    
+    int m_iVertStepY; // vertyical steps
+    int m_iVertStepZ;
+    
+    DviSteps(void);
+};
+
+
 // ---------------------------
 class DviRead
 {
@@ -90,11 +103,7 @@ class DviRead
 public:
     FILE *m_pDviFile; // input DVI file object
 
-    int m_iHorStepW; // horizontal steps
-    int m_iHorStepX;
-    
-    int m_iVertStepY; // vertyical steps
-    int m_iVertStepZ;
+    KpTreeEntry<DviSteps> *m_pCurSteps; // top of the stack
 
     DviRead(void);
     virtual ~DviRead();
@@ -102,6 +111,15 @@ public:
     virtual void Open(const UCHAR *p_lpszDviFileName);
     void Close(void);
     
+    void SetHorStepW(int p_iHorStepW);
+    int GetHorStepW(void);
+    void SetHorStepX(int p_iHorStepX);
+    int GetHorStepX(void);
+    void SetVertStepY(int p_iVertStepY);
+    int GetVertStepY(void);
+    void SetVertStepZ(int p_iVertStepZ);
+    int GetVertStepZ(void);
+
     int dvread(void);
 
     COUNT wunsigned(int n);
@@ -170,7 +188,7 @@ public:
     // fills values of m_iHorStepW, m_iHorStepX, m_iVertStepY and m_iVertStepZ
     virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff);
     // supplement to TransMove() in inherited class
-    virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff) { return (0); }
+    virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff, int p_iOrigOff) { return (0); }
 
     virtual COUNT TransSetFont(int p_iOpCode, int p_iFontNumLen, int p_iFontNum)
             { return (0); }
