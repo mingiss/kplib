@@ -194,6 +194,7 @@ void TiXmlNode::Clear()
 
 TiXmlNode* TiXmlNode::LinkEndChild( TiXmlNode* node )
 {
+    assert( node != NULL );
 	assert( node->parent == 0 || node->parent == this );
 	assert( node->GetDocument() == 0 || node->GetDocument() == this->GetDocument() );
 

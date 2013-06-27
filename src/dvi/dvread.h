@@ -89,9 +89,12 @@ public:
     int m_iHorStepW; // horizontal steps
     int m_iHorStepX;
     
-    int m_iVertStepY; // vertyical steps
+    int m_iVertStepY; // vertical steps
     int m_iVertStepZ;
     
+    int m_iCurHorPos;
+    int m_iCurVertPos;
+
     DviSteps(void);
 };
 
@@ -119,6 +122,13 @@ public:
     int GetVertStepY(void);
     void SetVertStepZ(int p_iVertStepZ);
     int GetVertStepZ(void);
+
+    void SetCurHorPos(int p_iHorPos);
+    void IncCurHorPos(int p_iOffset);
+    int GetCurHorPos(void);
+    void SetCurVertPos(int p_iVertPos);
+    void IncCurVertPos(int p_iOffset);
+    int GetCurVertPos(void);
 
     int dvread(void);
 
@@ -176,17 +186,22 @@ public:
     // both, set_rule and put_rule, come here, distinguish by value of the p_iOpCode
     virtual COUNT TransRule(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB) { return (0); }
 
-    virtual COUNT TransPage(int p_iOpCode, int p_iFirstArgLen, 
+    COUNT TransPage(int p_iOpCode, int p_iFirstArgLen, 
+        int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
+        int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos);
+    virtual COUNT TransPageLocal(int p_iOpCode, int p_iFirstArgLen, 
         int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
         int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos)
             { return (0); }
 
-    virtual COUNT TransPush(int p_iOpCode, int p_iFirstArgLen) { return (0); }
-    virtual COUNT TransPop(int p_iOpCode, int p_iFirstArgLen) { return (0); }
+    COUNT TransPush(int p_iOpCode, int p_iFirstArgLen);
+    virtual COUNT TransPushLocal(int p_iOpCode, int p_iFirstArgLen) { return (0); }
+    COUNT TransPop(int p_iOpCode, int p_iFirstArgLen);
+    virtual COUNT TransPopLocal(int p_iOpCode, int p_iFirstArgLen) { return (0); }
 
     // right, w, x, down, y and z all come here, distinguish by value of the p_iOpCode
     // fills values of m_iHorStepW, m_iHorStepX, m_iVertStepY and m_iVertStepZ
-    virtual COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff);
+    COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff);
     // supplement to TransMove() in inherited class
     virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff, int p_iOrigOff) { return (0); }
 

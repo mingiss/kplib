@@ -89,9 +89,14 @@ typedef char String[MAXSTRLEN+1];
 #define  BSEQ_CHAR  '('
 #define  ESEQ_CHAR  ')'
 
+// --------------------------------
+#define DVI_HOR_PIX_PER_PAGE 1500
+#define DVI_VERT_PIX_PER_PAGE 2000
 
 // approximate space width in DVI units
 #define DVI_SPACE_WDT 100000
+#define DVI_LINE_HGT 200000
+#define DVI_UNITS_PER_PIX 30000
 
 // DVI commands
 typedef enum

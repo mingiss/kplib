@@ -46,45 +46,45 @@ op_info  op_info_128_170 [] =
   {DVI_set,     "s1",   1,  "1",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 128
   {DVI_set + 1, "s2",   1,  "2",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 129
   {DVI_set + 2, "s3",   1,  "3",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 130
-  {DVI_set + 3, "s4",   1,  "-4", /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 131
+  {DVI_set + 3, "s4",   1,  "4",  /* DVREAD_TransExtChar_Ix, */ (DvTransFunPtr)&DviRead::TransExtChar, DVI_set},    // 131
   {DVI_set_rule, "sr",  2,  "-4 -4", /* DVREAD_Trans_NoIx, */   (DvTransFunPtr)&DviRead::TransRule, DVI_set_rule},  // 132
   {DVI_put,     "p1",   1,  "1",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 133
   {DVI_put + 1, "p2",   1,  "2",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 134
   {DVI_put + 2, "p3",   1,  "3",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 135
-  {DVI_put + 3, "p4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 136
+  {DVI_put + 3, "p4",   1,  "4",    (DvTransFunPtr)&DviRead::TransExtChar,   DVI_put},  // 136
   {DVI_put_rule,"pr",   2,  "-4 -4", (DvTransFunPtr)&DviRead::TransRule, DVI_put_rule}, // 137
   {DVI_nop,     "nop",  0,  "",     NULL,   DVI_nop}, // 138
   {DVI_bop,     "bop",  11, "-4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4", (DvTransFunPtr)&DviRead::TransPage, DVI_bop}, // 139
   {DVI_eop,     "eop",  0,  "",     NULL,   DVI_eop}, // 140
   {DVI_push,    "[",    0,  "",     (DvTransFunPtr)&DviRead::TransPush, DVI_push},      // 141
   {DVI_pop,     "]",    0,  "",     (DvTransFunPtr)&DviRead::TransPop,  DVI_pop},       // 142
-  {DVI_right,   "r1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 143
-  {DVI_right + 1, "r2", 1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 144
-  {DVI_right + 2, "r3", 1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 145
+  {DVI_right,   "r1",   1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 143
+  {DVI_right + 1, "r2", 1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 144
+  {DVI_right + 2, "r3", 1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 145
   {DVI_right + 3, "r4", 1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_right},   // 146
   {DVI_w,       "w0",   0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 147
-  {DVI_w + 1,   "w1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 148
-  {DVI_w + 2,   "w2",   1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 149
-  {DVI_w + 3,   "w3",   1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 150
+  {DVI_w + 1,   "w1",   1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 148
+  {DVI_w + 2,   "w2",   1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 149
+  {DVI_w + 3,   "w3",   1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 150
   {DVI_w + 4,   "w4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_w + 1},   // 151
   {DVI_x,       "x0",   0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 152
-  {DVI_x + 1,   "x1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 153
-  {DVI_x + 2,   "x2",   1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 154
-  {DVI_x + 3,   "x3",   1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 155
+  {DVI_x + 1,   "x1",   1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 153
+  {DVI_x + 2,   "x2",   1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 154
+  {DVI_x + 3,   "x3",   1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 155
   {DVI_x + 4,   "x4",   1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_x + 1},   // 156
-  {DVI_down,    "d1",   1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 157
-  {DVI_down + 1, "d2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 158
-  {DVI_down + 2, "d3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 159
+  {DVI_down,    "d1",   1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 157
+  {DVI_down + 1, "d2",  1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 158
+  {DVI_down + 2, "d3",  1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 159
   {DVI_down + 3, "d4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_down},    // 160
   {DVI_y,        "y0",  0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 161
-  {DVI_y + 1,    "y1",  1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 162
-  {DVI_y + 2,    "y2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 163
-  {DVI_y + 3,    "y3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 164
+  {DVI_y + 1,    "y1",  1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 162
+  {DVI_y + 2,    "y2",  1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 163
+  {DVI_y + 3,    "y3",  1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 164
   {DVI_y + 4,    "y4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_y + 1},   // 165
   {DVI_z,        "z0",  0,  "",     (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 166
-  {DVI_z + 1,    "z1",  1,  "1",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 167
-  {DVI_z + 2,    "z2",  1,  "2",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 168
-  {DVI_z + 3,    "z3",  1,  "3",    (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 169
+  {DVI_z + 1,    "z1",  1,  "-1",   (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 167
+  {DVI_z + 2,    "z2",  1,  "-2",   (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 168
+  {DVI_z + 3,    "z3",  1,  "-3",   (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1},   // 169
   {DVI_z + 4,    "z4",  1,  "-4",   (DvTransFunPtr)&DviRead::TransMove,   DVI_z + 1}    // 170
 };  /* op_info  op_info_128_170 [] */
                             
@@ -125,6 +125,9 @@ DviSteps::DviSteps(void)
     m_iHorStepX = 0;
     m_iVertStepY = 0;
     m_iVertStepZ = 0;
+
+    m_iCurHorPos = 0;
+    m_iCurVertPos = 0;
 }
 
 
@@ -193,6 +196,54 @@ return(m_pCurSteps->m_lpRecord->m_iVertStepZ);
 }
 
 
+void DviRead::IncCurHorPos(int p_iOffset)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iCurHorPos += p_iOffset;
+}
+
+
+void DviRead::SetCurHorPos(int p_iCurHorPos)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iCurHorPos = p_iCurHorPos;
+}
+
+
+int DviRead::GetCurHorPos(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iCurHorPos);
+}
+
+
+void DviRead::SetCurVertPos(int p_iCurVertPos)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iCurVertPos += p_iCurVertPos;
+}
+
+
+void DviRead::IncCurVertPos(int p_iOffset)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iCurVertPos += p_iOffset;
+}
+
+
+int DviRead::GetCurVertPos(void)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+return(m_pCurSteps->m_lpRecord->m_iCurVertPos);
+}
+
+
 // ------------------------------------  
 DviRead::DviRead(void) 
 {                      
@@ -237,11 +288,13 @@ void DviRead::Close(void)
 }
 
 
+COUNT count;  /* intended to count bytes to DVI file; as yet unused. */
+
+
 // ----------------------------------
 int DviRead::dvread(void)
 {
   int opcode;
-  COUNT count;  /* intended to count bytes to DVI file; as yet unused. */
 
   CmdOpen(); // PRINT_BCOM;
 
@@ -378,9 +431,11 @@ U4 DviRead::runsigned(int n)
   {
     integer *= 256;
     ibyte = fgetc (m_pDviFile);
+// if(count == 27132) printf("%x ", ibyte);
     integer += ibyte;
   }
 
+// if(count == 27132) printf("%x\n", integer);
   return integer;
 }
 /* end runsigned */
@@ -407,6 +462,7 @@ S4 DviRead::rsigned(int n)
   {
     integer *= 256;
     ibyte = fgetc (m_pDviFile);
+// if(count == 27132) printf("%x ", ibyte);
     /* Big-endian implies sign byte is first byte. */
     if (i == 0 && ibyte >= 128)
     {
@@ -415,6 +471,7 @@ S4 DviRead::rsigned(int n)
     integer += ibyte;
   }
 
+// if(count == 27132) printf("%x\n", integer);
   return integer;
 }
 /* end rsigned */
@@ -826,46 +883,94 @@ int offset = p_iOff;
     {
     case DVI_w:
         offset = GetHorStepW();
+        IncCurHorPos(offset);
         break; 
     case DVI_w + 1:
     case DVI_w + 2:
     case DVI_w + 3:
     case DVI_w + 4:
         SetHorStepW(p_iOff);
+        IncCurHorPos(offset);
         break;
         
     case DVI_x:
         offset = GetHorStepX();
+        IncCurHorPos(offset);
         break; 
     case DVI_x + 1:
     case DVI_x + 2:
     case DVI_x + 3:
     case DVI_x + 4:
         SetHorStepX(p_iOff);
+        IncCurHorPos(offset);
         break;
         
     case DVI_y:
         offset = GetVertStepY();
+        IncCurVertPos(offset);
         break; 
     case DVI_y + 1:
     case DVI_y + 2:
     case DVI_y + 3:
     case DVI_y + 4:
         SetVertStepY(p_iOff);
+        IncCurVertPos(offset);
         break;
         
     case DVI_z:
         offset = GetVertStepZ();
+        IncCurVertPos(offset);
         break; 
     case DVI_z + 1:
     case DVI_z + 2:
     case DVI_z + 3:
     case DVI_z + 4:
         SetVertStepZ(p_iOff);
+        IncCurVertPos(offset);
         break;
     }
     
-return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset, p_iOff)); 
+return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset, count /* p_iOff */)); 
+}
+
+
+COUNT DviRead::TransPush(int p_iOpCode, int p_iFirstArgLen)
+{
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+int cur_x = GetCurHorPos();
+int cur_y = GetCurVertPos();
+
+DviSteps *dvi_steps = NULL;
+    KP_NEW(dvi_steps, DviSteps); 
+KpTreeEntry<DviSteps> *new_steps = NULL;
+    KP_NEW(new_steps, KpTreeEntry<DviSteps>(dvi_steps, m_pCurSteps));
+    m_pCurSteps = new_steps;
+
+    SetCurHorPos(cur_x);
+    SetCurVertPos(cur_y);
+
+return (TransPushLocal(p_iOpCode, p_iFirstArgLen)); 
+}
+
+
+COUNT DviRead::TransPop(int p_iOpCode, int p_iFirstArgLen)
+{
+KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    m_pCurSteps = m_pCurSteps->GetFather();
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, "Stack m_pCurSteps underflow");
+    old_steps->SetFather(NULL);
+    KP_DELETE(old_steps);
+
+return (TransPopLocal(p_iOpCode, p_iFirstArgLen));
+}
+
+
+COUNT DviRead::TransPage(int p_iOpCode, int p_iFirstArgLen, 
+        int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
+        int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos)
+{
+    SetCurVertPos(DVI_VERT_PIX_PER_PAGE * DVI_UNITS_PER_PIX * p_iPageNum);
 }
 
 
