@@ -9,6 +9,9 @@
  *     
  */
 
+#ifndef dvi_included
+#define dvi_included
+
 /* variety of DTL produced */
 #define  VARIETY  "sequences-6"
 
@@ -234,3 +237,5 @@ typedef enum
 } DviCmds;
      
 #define DVI_POST_SIGNATURE 223
+
+#endif // #ifndef dvi_included

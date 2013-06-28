@@ -86,12 +86,15 @@ extern op_table op_235_248;
 class DviSteps
 {
 public:
-    int m_iHorStepW; // horizontal steps
+    // horizontal steps in DVI units
+    int m_iHorStepW; 
     int m_iHorStepX;
     
-    int m_iVertStepY; // vertical steps
+    // vertical steps in DVI units
+    int m_iVertStepY; 
     int m_iVertStepZ;
     
+    // current position in the document in DVI units
     int m_iCurHorPos;
     int m_iCurVertPos;
 
@@ -109,6 +112,8 @@ public:
     KpTreeEntry<DviSteps> *m_pCurSteps; // top of the stack
 
     int m_iUnitsPerPt;
+    
+    // page size
     int m_iHorPtPerPage;
     int m_iVertPtPerPage;
 

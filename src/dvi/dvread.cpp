@@ -34,6 +34,7 @@ using namespace std;
 #include "kpstring.h"
 
 #include "dvi.h"
+#include "pdf.h"
 #include "rtid.h"
 #include "dvread.h"
 
@@ -258,8 +259,8 @@ DviSteps *dvi_steps = NULL;
     m_iUnitsPerPt = 30000;
     
     // A4
-    m_iHorPtPerPage = (int)(8.27 * 72.0);
-    m_iVertPtPerPage = (int)(11.69 * 72.0);
+    m_iHorPtPerPage = (int)(8.27 * (double)PS_PT_PER_INCH);
+    m_iVertPtPerPage = (int)(11.69 * (double)PS_PT_PER_INCH);
 
     m_iSpaceThreshold = 2;
     m_iEnWdt = 6;
@@ -893,7 +894,7 @@ COUNT DviRead::TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId,
         / ((double)p_iDviNum / (double)p_iDviDenom) // numerator / denominator          // units per 0.0000001 meter 
         / 0.0000001                                 // 10^(-7) meters per num/denom     // units per meter
         * 0.0254                                    // inches per meter                 // units per inch                
-        / 72                                        // points per inch                  // units per point  
+        / (double)PS_PT_PER_INCH                    // points per inch                  // units per point  
         );
         
 return(TransPreambleLocal(p_iOpCode, p_iDviIdLen, p_iDviId, p_iDviNum, p_iDviDenom, 
