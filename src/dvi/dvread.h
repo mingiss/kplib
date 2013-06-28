@@ -108,6 +108,14 @@ public:
 
     KpTreeEntry<DviSteps> *m_pCurSteps; // top of the stack
 
+    int m_iUnitsPerPt;
+    int m_iHorPtPerPage;
+    int m_iVertPtPerPage;
+
+    int m_iSpaceThreshold; // in pt
+    int m_iEnWdt; // in pt
+    int m_iLineHgt; // in pt
+
     DviRead(void);
     virtual ~DviRead();
     
@@ -162,10 +170,13 @@ public:
     // both, set and put, come here, distinguish by value of the p_iOpCode
     virtual COUNT TransExtChar(int p_iOpCode, int p_iCharCodeLen, int p_iCharCode) { return (0); }
 
-    virtual COUNT TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId, 
+    COUNT TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId, // former RtiTransPreamble() 
+        int p_iDviNum, int p_iDviDenom, int p_iMagn, 
+        int p_iNumOfBytes);
+    virtual COUNT TransPreambleLocal(int p_iOpCode, int p_iDviIdLen, int p_iDviId, 
         int p_iDviNum, int p_iDviDenom, int p_iMagn, 
         int p_iNumOfBytes)
-            { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); } // former RtiTransPreamble()
+            { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); }
     
     // p_iFontNumLen - fonto numerio ilgis baitais, DVI komandos fnt_defK numeris
     // dar reikia iš failo m_pDviFile perskaityt p_iFontDirLen + p_iFontNameLen baitų --
@@ -203,7 +214,10 @@ public:
     // fills values of m_iHorStepW, m_iHorStepX, m_iVertStepY and m_iVertStepZ
     COUNT TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff);
     // supplement to TransMove() in inherited class
-    virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff, int p_iOrigOff) { return (0); }
+    virtual COUNT TransMoveLocal(int p_iOpCode, int p_iFirstArgLen, int p_iOff, 
+        int p_iOrigOff) // testavimo tikslais – neperskaičiuotas p_iOpCode parametras
+                        // taip pat bet koks kitas treisinimo duomenys 
+            { return (0); }
 
     virtual COUNT TransSetFont(int p_iOpCode, int p_iFontNumLen, int p_iFontNum)
             { return (0); }

@@ -100,19 +100,19 @@ op_info op_info_235_248[] =
     { DVI_fnt,      "f1", 1, "1",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 235
     { DVI_fnt + 1,  "f2", 1, "2",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 236
     { DVI_fnt + 2,  "f3", 1, "3",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 237
-    { DVI_fnt + 3,  "f4", 1, "-4",  (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 238
+    { DVI_fnt + 3,  "f4", 1, "4",   (DvTransFunPtr)&DviRead::TransSetFont, DVI_fnt}, // 238
 // };  /* op_info  fnt_n [] */
 // op_table  fnt  =  {"f", 235, 238, fnt_n};
     { DVI_xxx,      "xxx1", 1,  "1",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 239
     { DVI_xxx + 1,  "xxx1", 1,  "2",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 240
     { DVI_xxx + 2,  "xxx1", 1,  "3",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 241
-    { DVI_xxx + 3,  "xxx1", 1,  "-4",  (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 242
-    { DVI_fnt_def,      "fnt_def1", 6,  "1 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 243
-    { DVI_fnt_def + 1,  "fnt_def2", 6,  "2 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 244
-    { DVI_fnt_def + 2,  "fnt_def3", 6,  "3 -4 -4 -4 1 1",   (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 245
-    { DVI_fnt_def + 3,  "fnt_def4", 6,  "-4 -4 -4 -4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 246
-    { DVI_pre,          "pre",      5,  "1 -4 -4 -4 1", (DvTransFunPtr)&DviRead::TransPreamble, DVI_pre },  // 247
-    { DVI_post,         "post",     8,  "4 4 4 4 4 4 2 2", (DvTransFunPtr)&DviRead::TransPost, DVI_post }   // 248
+    { DVI_xxx + 3,  "xxx1", 1,  "4",   (DvTransFunPtr)&DviRead::TransSpec, DVI_xxx }, // 242
+    { DVI_fnt_def,      "fnt_def1", 6,  "1 4 4 4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 243
+    { DVI_fnt_def + 1,  "fnt_def2", 6,  "2 4 4 4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 244
+    { DVI_fnt_def + 2,  "fnt_def3", 6,  "3 4 4 4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 245
+    { DVI_fnt_def + 3,  "fnt_def4", 6,  "4 4 4 4 1 1",  (DvTransFunPtr)&DviRead::TransFontDef, DVI_fnt_def }, // 246
+    { DVI_pre,          "pre",      5,  "1 4 4 4 1",    (DvTransFunPtr)&DviRead::TransPreamble, DVI_pre },  // 247
+    { DVI_post,         "post",     8,  "4 4 4 4 4 4 2 2",  (DvTransFunPtr)&DviRead::TransPost, DVI_post }  // 248
 };
                        
 op_table op_235_248 = { "op_235_248", 235, 248, op_info_235_248 };
@@ -254,6 +254,16 @@ DviRead::DviRead(void)
 DviSteps *dvi_steps = NULL;
     KP_NEW(dvi_steps, DviSteps); 
     KP_NEW(m_pCurSteps, KpTreeEntry<DviSteps>(dvi_steps, NULL));
+
+    m_iUnitsPerPt = 30000;
+    
+    // A4
+    m_iHorPtPerPage = (int)(8.27 * 72.0);
+    m_iVertPtPerPage = (int)(11.69 * 72.0);
+
+    m_iSpaceThreshold = 2;
+    m_iEnWdt = 6;
+    m_iLineHgt = 12;
 }                      
                        
                        
@@ -873,14 +883,37 @@ COUNT DviRead::postpost(void)
 /* end postpost */
 
 
-    
 // ----------------------------
+COUNT DviRead::TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId, 
+    int p_iDviNum, int p_iDviDenom, int p_iMagn, 
+    int p_iNumOfBytes)
+{
+    m_iUnitsPerPt = (int)(1.0                       // factor                           // result
+        / ((double)p_iMagn / 1000.)                 // magnification factor             // unmagnified
+        / ((double)p_iDviNum / (double)p_iDviDenom) // numerator / denominator          // units per 0.0000001 meter 
+        / 0.0000001                                 // 10^(-7) meters per num/denom     // units per meter
+        * 0.0254                                    // inches per meter                 // units per inch                
+        / 72                                        // points per inch                  // units per point  
+        );
+        
+return(TransPreambleLocal(p_iOpCode, p_iDviIdLen, p_iDviId, p_iDviNum, p_iDviDenom, 
+    p_iMagn, p_iNumOfBytes));
+}
+
+
 COUNT DviRead::TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff)
 {
 int offset = p_iOff;
 
     switch(p_iOpCode)
     {
+    case DVI_right:
+    case DVI_right + 1:
+    case DVI_right + 2:
+    case DVI_right + 3:
+        IncCurHorPos(offset);
+        break;
+
     case DVI_w:
         offset = GetHorStepW();
         IncCurHorPos(offset);
@@ -889,7 +922,7 @@ int offset = p_iOff;
     case DVI_w + 2:
     case DVI_w + 3:
     case DVI_w + 4:
-        SetHorStepW(p_iOff);
+        SetHorStepW(offset);
         IncCurHorPos(offset);
         break;
         
@@ -901,8 +934,15 @@ int offset = p_iOff;
     case DVI_x + 2:
     case DVI_x + 3:
     case DVI_x + 4:
-        SetHorStepX(p_iOff);
+        SetHorStepX(offset);
         IncCurHorPos(offset);
+        break;
+        
+    case DVI_down:
+    case DVI_down + 1:
+    case DVI_down + 2:
+    case DVI_down + 3:
+        IncCurVertPos(offset);
         break;
         
     case DVI_y:
@@ -913,10 +953,10 @@ int offset = p_iOff;
     case DVI_y + 2:
     case DVI_y + 3:
     case DVI_y + 4:
-        SetVertStepY(p_iOff);
+        SetVertStepY(offset);
         IncCurVertPos(offset);
         break;
-        
+
     case DVI_z:
         offset = GetVertStepZ();
         IncCurVertPos(offset);
@@ -925,7 +965,7 @@ int offset = p_iOff;
     case DVI_z + 2:
     case DVI_z + 3:
     case DVI_z + 4:
-        SetVertStepZ(p_iOff);
+        SetVertStepZ(offset);
         IncCurVertPos(offset);
         break;
     }
@@ -970,7 +1010,7 @@ COUNT DviRead::TransPage(int p_iOpCode, int p_iFirstArgLen,
         int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
         int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos)
 {
-    SetCurVertPos(DVI_VERT_PIX_PER_PAGE * DVI_UNITS_PER_PIX * p_iPageNum);
+    SetCurVertPos(m_iVertPtPerPage * m_iUnitsPerPt * p_iPageNum);
 }
 
 
