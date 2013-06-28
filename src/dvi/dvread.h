@@ -111,8 +111,9 @@ public:
 
     KpTreeEntry<DviSteps> *m_pCurSteps; // top of the stack
 
+    int m_iMagn; // magnification * 1000
     int m_iUnitsPerPt;
-    
+
     // page size
     int m_iHorPtPerPage;
     int m_iVertPtPerPage;

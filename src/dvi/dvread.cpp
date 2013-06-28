@@ -259,8 +259,8 @@ DviSteps *dvi_steps = NULL;
     m_iUnitsPerPt = 30000;
     
     // A4
-    m_iHorPtPerPage = (int)(8.27 * (double)PS_PT_PER_INCH);
-    m_iVertPtPerPage = (int)(11.69 * (double)PS_PT_PER_INCH);
+    m_iHorPtPerPage = (int)(A4_INCH_PER_PAGE_WDT * (double)PS_PT_PER_INCH);
+    m_iVertPtPerPage = (int)(A4_INCH_PER_PAGE_HGT * (double)PS_PT_PER_INCH);
 
     m_iSpaceThreshold = 2;
     m_iEnWdt = 6;
@@ -889,6 +889,7 @@ COUNT DviRead::TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId,
     int p_iDviNum, int p_iDviDenom, int p_iMagn, 
     int p_iNumOfBytes)
 {
+    m_iMagn = p_iMagn;
     m_iUnitsPerPt = (int)(1.0                       // factor                           // result
         / ((double)p_iMagn / 1000.)                 // magnification factor             // unmagnified
         / ((double)p_iDviNum / (double)p_iDviDenom) // numerator / denominator          // units per 0.0000001 meter 
