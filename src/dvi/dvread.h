@@ -118,8 +118,8 @@ public:
     int m_iHorPtPerPage;
     int m_iVertPtPerPage;
 
-    int m_iSpaceThreshold; // in pt
-    int m_iEnWdt; // in pt
+//  int m_iSpaceThreshold; // in pt
+//  int m_iEnWdt; // in pt
     int m_iLineHgt; // in pt
 
     DviRead(void);

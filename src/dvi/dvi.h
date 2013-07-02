@@ -238,6 +238,6 @@ typedef enum
      
 #define DVI_POST_SIGNATURE 223
 
-#define DVI_MAIN_FONT_SIZE 12 // pt
+// #define DVI_MAIN_FONT_SIZE 12 // pt
 
 #endif // #ifndef dvi_included

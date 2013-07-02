@@ -259,11 +259,11 @@ DviSteps *dvi_steps = NULL;
     m_iUnitsPerPt = 30000;
     
     // A4
-    m_iHorPtPerPage = (int)(A4_INCH_PER_PAGE_WDT * (double)PS_PT_PER_INCH);
-    m_iVertPtPerPage = (int)(A4_INCH_PER_PAGE_HGT * (double)PS_PT_PER_INCH);
+    m_iHorPtPerPage = (int)(A4_INCH_PER_PAGE_WDT * PS_PT_PER_INCH);
+    m_iVertPtPerPage = (int)(A4_INCH_PER_PAGE_HGT * PS_PT_PER_INCH);
 
-    m_iSpaceThreshold = 2;
-    m_iEnWdt = 6;
+//  m_iSpaceThreshold = 2;
+//  m_iEnWdt = 6;
     m_iLineHgt = 12;
 }                      
                        
@@ -890,12 +890,12 @@ COUNT DviRead::TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId,
     int p_iNumOfBytes)
 {
     m_iMagn = p_iMagn;
-    m_iUnitsPerPt = (int)(1.0                       // factor                           // result
-        / ((double)p_iMagn / 1000.)                 // magnification factor             // unmagnified
-        / ((double)p_iDviNum / (double)p_iDviDenom) // numerator / denominator          // units per 0.0000001 meter 
-        / 0.0000001                                 // 10^(-7) meters per num/denom     // units per meter
-        * 0.0254                                    // inches per meter                 // units per inch                
-        / (double)PS_PT_PER_INCH                    // points per inch                  // units per point  
+    m_iUnitsPerPt = (int)(1.0               // factor                           // result
+        / (p_iMagn / 1000.)                 // magnification factor             // unmagnified
+        / ((double)p_iDviNum / p_iDviDenom) // numerator / denominator          // units per 0.0000001 meter 
+        / 0.0000001                         // 10^(-7) meters per num/denom     // units per meter
+        * 0.0254                            // inches per meter                 // units per inch                
+        / PS_PT_PER_INCH                    // points per inch                  // units per point  
         );
         
 return(TransPreambleLocal(p_iOpCode, p_iDviIdLen, p_iDviId, p_iDviNum, p_iDviDenom, 

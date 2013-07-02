@@ -42,7 +42,7 @@
     { \
         KP_CATCH(*exc); \
     } \
-    catch(const exception &exc) \
+    catch(const std::exception &exc) \
     { \
         KP_CATCH(exc); \
     } \
