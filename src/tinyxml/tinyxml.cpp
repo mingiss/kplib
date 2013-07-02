@@ -27,7 +27,7 @@ distribution.
  *  2013-06-12  mp  TiXmlAttribute::Print(), TiXmlAttributeSet::FindOrCreate(), 
  *                      TiXmlAttributeSet::Add() and TiXmlElement::Print()
  *                      adapted to support <!DOCTYPE> output specific
- *
+ *  2013-07-02  mp  removed formatting of apostrophe as an entity 
  *
  */    
 
@@ -109,11 +109,13 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 			outString->append( entity[3].str, entity[3].strLength );
 			++i;
 		}
+#if FALSE
 		else if ( c == '\'' )
 		{
 			outString->append( entity[4].str, entity[4].strLength );
 			++i;
 		}
+#endif
 		else if ( c < 32 )
 		{
 			// Easy pass at non-alpha/numeric/symbol

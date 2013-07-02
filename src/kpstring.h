@@ -34,7 +34,7 @@ extern UCHAR *strncpy(UCHAR *dest, const UCHAR *src, size_t nbytes);
 extern UCHAR *strcat(UCHAR *dest, const UCHAR *src);
 extern UCHAR *strcat(UCHAR *dest, const CHAR *src);
    
-// extern /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch);
+extern UCHAR *strchr(UCHAR *src, KpChar iCh);
 extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh);
 
 extern /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd);

@@ -122,7 +122,7 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         {
             strncpy(name_buf_tmp, pnts + 1, KP_MAX_FNAME_LEN);
             name_buf_tmp[KP_MAX_FNAME_LEN] = Nul;
-            pnts = const_cast<UCHAR *>(strchr(name_buf_tmp, '\"'));
+            pnts = strchr(name_buf_tmp, '\"');
         }
         if(pnts != null) *pnts = Nul;
 

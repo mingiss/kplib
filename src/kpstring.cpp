@@ -62,8 +62,8 @@ UCHAR *strlwr(UCHAR *str)
 
 
 // --------------------------------------------------
-// /* const */ UCHAR *strchr(/* const */ UCHAR *src, UCHAR ch)
-//    { return((/* const */ UCHAR *)strchr((/* const */ CHAR *)src, ch)); }
+UCHAR *strchr(UCHAR *src, KpChar iCh)
+    { return((UCHAR *)strchr((CHAR *)src, iCh)); }
 
 const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh)
 {
