@@ -59,7 +59,7 @@ public:
 
         KP_DELETE(m_pFirstChild);
 
-	    KP_DELETE(m_lpRecord);
+        KP_DELETE(m_lpRecord);
     }
 
 
