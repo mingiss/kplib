@@ -40,6 +40,7 @@ extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh);
 extern /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
+extern int strcmp(const UCHAR *str1, const CHAR *str2);
 
 extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
 

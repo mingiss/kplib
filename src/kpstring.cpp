@@ -53,6 +53,9 @@ UCHAR *strcat(UCHAR *dest, const CHAR *src)
 int strcmp(const UCHAR *str1, const UCHAR *str2)
    { return (strcmp((const CHAR *)str1, (const CHAR *)str2)); }
 
+int strcmp(const UCHAR *str1, const CHAR *str2)
+   { return (strcmp((const CHAR *)str1, str2)); }
+
 int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes)
    { return (strncmp((const CHAR *)str1, (const CHAR *)str2, nbytes)); }
 
