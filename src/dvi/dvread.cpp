@@ -221,19 +221,19 @@ return(m_pCurSteps->m_lpRecord->m_iCurHorPos);
 }
 
 
-void DviRead::SetCurVertPos(int p_iCurVertPos)
-{                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
-    m_pCurSteps->m_lpRecord->m_iCurVertPos += p_iCurVertPos;
-}
-
-
 void DviRead::IncCurVertPos(int p_iOffset)
 {                       
     KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
     KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iCurVertPos += p_iOffset;
+}
+
+
+void DviRead::SetCurVertPos(int p_iCurVertPos)
+{                       
+    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    m_pCurSteps->m_lpRecord->m_iCurVertPos = p_iCurVertPos;
 }
 
 
@@ -982,8 +982,14 @@ return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset, count /* p_iOff */));
 COUNT DviRead::TransPush(int p_iOpCode, int p_iFirstArgLen)
 {
     KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    
 int cur_x = GetCurHorPos();
 int cur_y = GetCurVertPos();
+
+int hor_step_w = GetHorStepW();
+int hor_step_x = GetHorStepX();
+int vert_step_y = GetVertStepY();
+int vert_step_z = GetVertStepZ();
 
 DviSteps *dvi_steps = NULL;
     KP_NEW(dvi_steps, DviSteps); 
@@ -994,18 +1000,30 @@ KpTreeEntry<DviSteps> *new_steps = NULL;
     SetCurHorPos(cur_x);
     SetCurVertPos(cur_y);
 
+    SetHorStepW(hor_step_w);
+    SetHorStepX(hor_step_x);
+    SetVertStepY(vert_step_y);
+    SetVertStepZ(vert_step_z);
+
 return (TransPushLocal(p_iOpCode, p_iFirstArgLen)); 
 }
 
 
 COUNT DviRead::TransPop(int p_iOpCode, int p_iFirstArgLen)
 {
+int cur_x = GetCurHorPos();
+int cur_y = GetCurVertPos();
+
 KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
     KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
     m_pCurSteps = m_pCurSteps->GetFather();
     KP_ASSERT(m_pCurSteps != NULL, E_POINTER, "Stack m_pCurSteps underflow");
     old_steps->SetFather(NULL);
     KP_DELETE(old_steps);
+
+// fiktyvus move
+    TransMoveLocal(DVI_right, 1, GetCurHorPos() - cur_x, count /* p_iOff */);
+    TransMoveLocal(DVI_down, 1, GetCurVertPos() - cur_x, count /* p_iOff */);
 
 return (TransPopLocal(p_iOpCode, p_iFirstArgLen));
 }
