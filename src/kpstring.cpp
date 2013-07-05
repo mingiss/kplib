@@ -47,9 +47,6 @@ UCHAR *strcat(UCHAR *dest, const UCHAR *src)
 UCHAR *strcat(UCHAR *dest, const CHAR *src)
    { return ((UCHAR *)strcat((CHAR *)dest, src)); }
 
-/* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd)
-    { return ((/* const */ UCHAR *)strstr((/* const */ CHAR *)src, (const CHAR *)kwrd)); }
-
 int strcmp(const UCHAR *str1, const UCHAR *str2)
    { return (strcmp((const CHAR *)str1, (const CHAR *)str2)); }
 
@@ -60,23 +57,47 @@ int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes)
    { return (strncmp((const CHAR *)str1, (const CHAR *)str2, nbytes)); }
 
 // --------------------------------------------------
-UCHAR *strlwr(UCHAR *str)
-    { return((UCHAR *)strlwr((CHAR *)str)); }
+UCHAR *strchr(UCHAR *p_lpszString, KpChar p_iCh)
+    { return((UCHAR *)strchr((CHAR *)p_lpszString, p_iCh)); }
 
-
-// --------------------------------------------------
-UCHAR *strchr(UCHAR *src, KpChar iCh)
-    { return((UCHAR *)strchr((CHAR *)src, iCh)); }
-
-const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh)
+const UCHAR *strchr(const UCHAR *p_lpszString, KpChar p_iCh)
 {
 const UCHAR *str_ptr = p_lpszString;
 
-    while((*str_ptr != Nul) && (*str_ptr != iCh)) str_ptr++;
+    while((*str_ptr != Nul) && (*str_ptr != p_iCh)) str_ptr++;
     if(*str_ptr == Nul) str_ptr = null;
 
 return(str_ptr);
 }
+
+// --------------------------------------------------
+UCHAR *strstr(UCHAR *p_lpszString, const CHAR *p_lpszPattern)
+    { return ((UCHAR *)strstr((CHAR *)p_lpszString, p_lpszPattern)); }
+    
+const UCHAR *strstr(const UCHAR *p_lpszString, const CHAR *p_lpszPattern)
+    {
+        KP_ASSERT(p_lpszString != null, E_INVALIDARG, null);
+    UCHAR *str = null;
+        KP_NEWA(str, UCHAR, strlen(p_lpszString) + 1);
+        strcpy(str, p_lpszString);
+
+    const UCHAR *retv = null;
+        retv = strstr(str, p_lpszPattern);
+        if(retv != null) retv = p_lpszString + (retv - str);
+        
+        KP_DELETEA(str);
+     return (retv); 
+     }
+
+UCHAR *strstr(UCHAR *p_lpszString, const UCHAR *p_lpszPattern)
+    { return(strstr(p_lpszString, (const CHAR *)p_lpszPattern)); }
+    
+const UCHAR *strstr(const UCHAR *p_lpszString, const UCHAR *p_lpszPattern)
+    { return(strstr(p_lpszString, (const CHAR *)p_lpszPattern)); }
+
+// --------------------------------------------------
+UCHAR *strlwr(UCHAR *str)
+    { return((UCHAR *)strlwr((CHAR *)str)); }
 
 
 // --------------------------------------------------

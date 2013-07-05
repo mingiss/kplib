@@ -240,4 +240,6 @@ typedef enum
 
 // #define DVI_MAIN_FONT_SIZE 12 // pt
 
+#define DVI_DEF_UNITS_PER_PT 30000
+
 #endif // #ifndef dvi_included

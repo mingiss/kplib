@@ -127,8 +127,8 @@ DviSteps::DviSteps(void)
     m_iVertStepY = 0;
     m_iVertStepZ = 0;
 
-    m_iCurHorPos = 0;
-    m_iCurVertPos = 0;
+    m_iCurHorPos = PS_HOR_MARGIN * DVI_DEF_UNITS_PER_PT;
+    m_iCurVertPos = PS_VERT_MARGIN * DVI_DEF_UNITS_PER_PT;
 }
 
 
@@ -256,7 +256,7 @@ DviSteps *dvi_steps = NULL;
     KP_NEW(dvi_steps, DviSteps); 
     KP_NEW(m_pCurSteps, KpTreeEntry<DviSteps>(dvi_steps, NULL));
 
-    m_iUnitsPerPt = 30000;
+    m_iUnitsPerPt = DVI_DEF_UNITS_PER_PT;
     
     // A4
     m_iHorPtPerPage = (int)(A4_INCH_PER_PAGE_WDT * PS_PT_PER_INCH);
@@ -897,6 +897,9 @@ COUNT DviRead::TransPreamble(int p_iOpCode, int p_iDviIdLen, int p_iDviId,
         * 0.0254                            // inches per meter                 // units per inch                
         / PS_PT_PER_INCH                    // points per inch                  // units per point  
         );
+
+    SetCurHorPos(PS_HOR_MARGIN * m_iUnitsPerPt);
+    SetCurVertPos(PS_VERT_MARGIN * m_iUnitsPerPt);
         
 return(TransPreambleLocal(p_iOpCode, p_iDviIdLen, p_iDviId, p_iDviNum, p_iDviDenom, 
     p_iMagn, p_iNumOfBytes));
@@ -1012,7 +1015,8 @@ COUNT DviRead::TransPage(int p_iOpCode, int p_iFirstArgLen,
         int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
         int p_iC5, int p_iC6, int p_iC7, int p_iC8, int p_iC9, int p_iPrevBopPos)
 {
-    SetCurVertPos(m_iVertPtPerPage * m_iUnitsPerPt * p_iPageNum);
+    SetCurVertPos((m_iVertPtPerPage * (p_iPageNum - 1) + PS_VERT_MARGIN) * m_iUnitsPerPt);
+    SetCurHorPos(PS_HOR_MARGIN * m_iUnitsPerPt);
 }
 
 

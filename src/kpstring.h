@@ -34,10 +34,13 @@ extern UCHAR *strncpy(UCHAR *dest, const UCHAR *src, size_t nbytes);
 extern UCHAR *strcat(UCHAR *dest, const UCHAR *src);
 extern UCHAR *strcat(UCHAR *dest, const CHAR *src);
    
-extern UCHAR *strchr(UCHAR *src, KpChar iCh);
-extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar iCh);
+extern UCHAR *strchr(UCHAR *p_lpszString, KpChar p_iCh);
+extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar p_iCh);
 
-extern /* const */ UCHAR *strstr(/* const */ UCHAR *src, const UCHAR *kwrd);
+extern UCHAR *strstr(UCHAR *p_lpszString, const CHAR *p_lpszPattern);
+extern const UCHAR *strstr(const UCHAR *p_lpszString, const CHAR *p_lpszPattern);
+extern UCHAR *strstr(UCHAR *p_lpszString, const UCHAR *p_lpszPattern);
+extern const UCHAR *strstr(const UCHAR *p_lpszString, const UCHAR *p_lpszPattern);
 
 extern int strcmp(const UCHAR *str1, const UCHAR *str2);
 extern int strcmp(const UCHAR *str1, const CHAR *str2);
