@@ -264,7 +264,7 @@ DviSteps *dvi_steps = NULL;
 
 //  m_iSpaceThreshold = 2;
 //  m_iEnWdt = 6;
-    m_iLineHgt = 12;
+    m_iLineHgt = 12; // TODO: eilutės aukštį skaičiuot dinamiškai
 }                      
                        
                        
@@ -1014,16 +1014,18 @@ COUNT DviRead::TransPop(int p_iOpCode, int p_iFirstArgLen)
 int cur_x = GetCurHorPos();
 int cur_y = GetCurVertPos();
 
-KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
+// traukiam steką
     KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    m_pCurSteps = m_pCurSteps->GetFather();
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, "Stack m_pCurSteps underflow");
+KpTreeEntry<DviSteps> *father = m_pCurSteps->GetFather(); 
+    KP_ASSERT(father != NULL, E_POINTER, "Stack m_pCurSteps underflow"); 
+KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
+    m_pCurSteps = father;
     old_steps->SetFather(NULL);
     KP_DELETE(old_steps);
 
 // fiktyvus move
     TransMoveLocal(DVI_right, 1, GetCurHorPos() - cur_x, count /* p_iOff */);
-    TransMoveLocal(DVI_down, 1, GetCurVertPos() - cur_x, count /* p_iOff */);
+    TransMoveLocal(DVI_down, 1, GetCurVertPos() - cur_y, count /* p_iOff */);
 
 return (TransPopLocal(p_iOpCode, p_iFirstArgLen));
 }
