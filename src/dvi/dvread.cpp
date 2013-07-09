@@ -264,7 +264,7 @@ DviSteps *dvi_steps = NULL;
 
 //  m_iSpaceThreshold = 2;
 //  m_iEnWdt = 6;
-    m_iLineHgt = 12; // TODO: eilutės aukštį skaičiuot dinamiškai
+//  m_iLineHgt = 12;
 }                      
                        
                        
@@ -906,6 +906,15 @@ return(TransPreambleLocal(p_iOpCode, p_iDviIdLen, p_iDviId, p_iDviNum, p_iDviDen
 }
 
 
+COUNT DviRead::TransRule(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB)
+{
+    if ((p_iOpCode == DVI_set_rule) && (p_iB >= 0))
+        IncCurHorPos(p_iB);
+    
+return (TransRuleLocal(p_iOpCode, p_iFirstArgLen, p_iA, p_iB)); 
+}
+
+
 COUNT DviRead::TransMove(int p_iOpCode, int p_iFirstArgLen, int p_iOff)
 {
 int offset = p_iOff;
@@ -1024,8 +1033,8 @@ KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
     KP_DELETE(old_steps);
 
 // fiktyvus move
-    TransMoveLocal(DVI_right, 1, GetCurHorPos() - cur_x, count /* p_iOff */);
-    TransMoveLocal(DVI_down, 1, GetCurVertPos() - cur_y, count /* p_iOff */);
+    TransMoveLocal(DVI_right, 0, GetCurHorPos() - cur_x, count /* p_iOff */);
+    TransMoveLocal(DVI_down, 0, GetCurVertPos() - cur_y, count /* p_iOff */);
 
 return (TransPopLocal(p_iOpCode, p_iFirstArgLen));
 }

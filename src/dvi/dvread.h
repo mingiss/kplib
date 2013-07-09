@@ -120,7 +120,7 @@ public:
 
 //  int m_iSpaceThreshold; // in pt
 //  int m_iEnWdt; // in pt
-    int m_iLineHgt; // in pt
+//  int m_iLineHgt; // in pt
 
     DviRead(void);
     virtual ~DviRead();
@@ -201,7 +201,9 @@ public:
         { SkipInBytes(p_iNumOfBytes); return (p_iNumOfBytes); }
 
     // both, set_rule and put_rule, come here, distinguish by value of the p_iOpCode
-    virtual COUNT TransRule(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB) { return (0); }
+    COUNT TransRule(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB);
+    virtual COUNT TransRuleLocal(int p_iOpCode, int p_iFirstArgLen, int p_iA, int p_iB)
+        { return (0); }
 
     COUNT TransPage(int p_iOpCode, int p_iFirstArgLen, 
         int p_iPageNum /* p_iC0 */, int p_iC1, int p_iC2, int p_iC3, int p_iC4, 
