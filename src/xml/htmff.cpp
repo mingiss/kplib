@@ -68,23 +68,33 @@ TiXmlDeclaration *dest_decl = NULL;
 	m_XmlDoc.LinkEndChild(dest_decl);
     dest_decl = NULL; 
     
+TiXmlElement* dest_node = NULL;
+
+#if FALSE // neveikia pitstop.js: proc_resize()
 // <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-TiXmlElement* dest_child = NULL;
-    KP_NEW(dest_child, TiXmlElement("!DOCTYPE"));
-    dest_child->SetAttribute("html", "");
-    dest_child->SetAttribute("PUBLIC", "");
-    dest_child->SetAttribute("", "-//W3C//DTD XHTML 1.0 Strict//EN");
-    dest_child->SetAttribute("", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
-    m_XmlDoc.LinkEndChild(dest_child);
-    dest_child = NULL;
+    KP_NEW(dest_node, TiXmlElement("!DOCTYPE"));
+    dest_node->SetAttribute("html", "");
+    dest_node->SetAttribute("PUBLIC", "");
+    dest_node->SetAttribute("", "-//W3C//DTD XHTML 1.0 Strict//EN");
+    dest_node->SetAttribute("", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
+    m_XmlDoc.LinkEndChild(dest_node);
+    dest_node = NULL;
+#endif
 
-    if(p_HeadNode != NULL) m_XmlDoc.LinkEndChild(p_HeadNode);
-
-    KP_NEW(dest_child, TiXmlElement("html"));
-    dest_child->SetAttribute("xmlns", "http://www.w3.org/1999/xhtml");
-    dest_child->SetAttribute("xml:lang", "en");
-    dest_child->SetAttribute("lang", "en");
-    m_XmlDoc.LinkEndChild(dest_child);
+    KP_NEW(dest_node, TiXmlElement("html"));
+    dest_node->SetAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+    dest_node->SetAttribute("xml:lang", "en");
+    dest_node->SetAttribute("lang", "en");
+    m_XmlDoc.LinkEndChild(dest_node);
     
-return(dest_child);
+// <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-8">
+TiXmlElement* dest_child = NULL;
+    KP_NEW(dest_child, TiXmlElement("META"));
+    dest_child->SetAttribute("HTTP-EQUIV", "CONTENT-TYPE");
+    dest_child->SetAttribute("CONTENT", "text/html; charset=UTF-8");
+    dest_node->LinkEndChild(dest_child);
+
+    if(p_HeadNode != NULL) dest_node->LinkEndChild(p_HeadNode);
+
+return(dest_node);
 }
