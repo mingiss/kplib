@@ -664,7 +664,7 @@ int msg_tail_pos = ll = strlen(out_text);
       else
       {
 //      cout << out_str;
-        printf("%s", out_text);
+        printf("%s\n", out_text);
     }
 #endif
    }
