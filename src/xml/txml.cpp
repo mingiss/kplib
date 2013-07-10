@@ -55,6 +55,33 @@ return (retv);
 }
 
 
+// -----------------------------
+TiXmlNode *FindNodeById(const UCHAR *p_lpszId, TiXmlNode *p_pCurNode)
+{
+TiXmlNode *retv = NULL;
+
+    KP_ASSERT(p_pCurNode != NULL, E_INVALIDARG, null);
+    
+    TiXmlNode* cur_child = NULL;
+    for (cur_child = p_pCurNode->FirstChild() /* firstChild */; 
+        (cur_child != NULL) && (retv == NULL); 
+        cur_child = cur_child->NextSibling() /* next */)
+    {
+        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+        {
+        const UCHAR *id_str = (const UCHAR *)(dynamic_cast<TiXmlElement *>(cur_child)->Attribute("id"));
+            if (id_str != null)
+                if (strcmp(id_str, p_lpszId) == 0)
+                    retv = cur_child;
+            
+            if (retv == NULL) retv = FindNodeById(p_lpszId, cur_child);
+        }
+    }
+
+return (retv);
+}
+
+
 // ---------------------------------
 const UCHAR *GetNodeVal(TiXmlNode *p_pNode)
 {
