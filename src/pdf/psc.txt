@@ -1,0 +1,4286 @@
+ 	 	 	&#160;	&#x00A0;	&nbsp;	nbspace
+nonbreakingspace	no-break space = non-breaking space, U+00A0 ISOnum
+¡	¡	¡	&#161;	&#x00A1;	&iexcl;	exclamdown	inverted exclamation mark, U+00A1 ISOnum
+¢	¢	¢	&#162;	&#x00A2;	&cent;	cent	cent sign, U+00A2 ISOnum
+£	£	£	&#163;	&#x00A3;	&pound;	sterling	pound sign, U+00A3 ISOnum
+¤	¤	¤	&#164;	&#x00A4;	&curren;	currency	currency sign, U+00A4 ISOnum
+¥	¥	¥	&#165;	&#x00A5;	&yen;	yen	yen sign = yuan sign, U+00A5 ISOnum
+¦	¦	¦	&#166;	&#x00A6;	&brvbar;	brokenbar	broken bar = broken vertical bar, U+00A6 ISOnum
+§	§	§	&#167;	&#x00A7;	&sect;	section	section sign, U+00A7 ISOnum
+¨	¨	¨	&#168;	&#x00A8;	&uml;	dieresis	diaeresis = spacing diaeresis, U+00A8 ISOdia
+©	©	©	&#169;	&#x00A9;	&copy;	copyright	copyright sign, U+00A9 ISOnum
+ª	ª	ª	&#170;	&#x00AA;	&ordf;	ordfeminine	feminine ordinal indicator, U+00AA ISOnum
+«	«	«	&#171;	&#x00AB;	&laquo;	guillemotleft	left-pointing double angle quotation mark = left pointing guillemet, U+00AB ISOnum
+¬	¬	¬	&#172;	&#x00AC;	&not;	logicalnot	not sign, U+00AC ISOnum
+­	­	­	&#173;	&#x00AD;	&shy;	sfthyphen
+softhyphen	soft hyphen = discretionary hyphen, U+00AD ISOnum
+®	®	®	&#174;	&#x00AE;	&reg;	registered	registered sign = registered trade mark sign, U+00AE ISOnum
+¯	¯	¯	&#175;	&#x00AF;	&macr;	macron
+overscore	macron = spacing macron = overline = APL overbar, U+00AF ISOdia
+°	°	°	&#176;	&#x00B0;	&deg;	degree	degree sign, U+00B0 ISOnum
+±	±	±	&#177;	&#x00B1;	&plusmn;	plusminus	plus-minus sign = plus-or-minus sign, U+00B1 ISOnum
+²	²	²	&#178;	&#x00B2;	&sup2;	twosuperior	superscript two = superscript digit two = squared, U+00B2 ISOnum
+³	³	³	&#179;	&#x00B3;	&sup3;	threesuperior	superscript three = superscript digit three = cubed, U+00B3 ISOnum
+´	´	´	&#180;	&#x00B4;	&acute;	acute	acute accent = spacing acute, U+00B4 ISOdia
+µ	µ	µ	&#181;	&#x00B5;	&micro;	mu
+mu1	micro sign, U+00B5 ISOnum
+¶	¶	¶	&#182;	&#x00B6;	&para;	paragraph	pilcrow sign = paragraph sign, U+00B6 ISOnum
+·	·	·	&#183;	&#x00B7;	&middot;	middot
+periodcentered	middle dot = Georgian comma = Greek middle dot, U+00B7 ISOnum
+¸	¸	¸	&#184;	&#x00B8;	&cedil;	cedilla	cedilla = spacing cedilla, U+00B8 ISOdia
+¹	¹	¹	&#185;	&#x00B9;	&sup1;	onesuperior	superscript one = superscript digit one, U+00B9 ISOnum
+º	º	º	&#186;	&#x00BA;	&ordm;	ordmasculine	masculine ordinal indicator, U+00BA ISOnum
+»	»	»	&#187;	&#x00BB;	&raquo;	guillemotright	right-pointing double angle quotation mark = right pointing guillemet, U+00BB ISOnum
+¼	¼	¼	&#188;	&#x00BC;	&frac14;	onequarter	vulgar fraction one quarter = fraction one quarter, U+00BC ISOnum
+½	½	½	&#189;	&#x00BD;	&frac12;	onehalf	vulgar fraction one half = fraction one half, U+00BD ISOnum
+¾	¾	¾	&#190;	&#x00BE;	&frac34;	threequarters	vulgar fraction three quarters = fraction three quarters, U+00BE ISOnum
+¿	¿	¿	&#191;	&#x00BF;	&iquest;	questiondown	inverted question mark = turned question mark, U+00BF ISOnum
+À	À	À	&#192;	&#x00C0;	&Agrave;	Agrave	latin capital letter A with grave = latin capital letter A grave, U+00C0 ISOlat1
+Á	Á	Á	&#193;	&#x00C1;	&Aacute;	Aacute	latin capital letter A with acute, U+00C1 ISOlat1
+Â	Â	Â	&#194;	&#x00C2;	&Acirc;	Acircumflex	latin capital letter A with circumflex, U+00C2 ISOlat1
+Ã	Ã	Ã	&#195;	&#x00C3;	&Atilde;	Atilde	latin capital letter A with tilde, U+00C3 ISOlat1
+Ä	Ä	Ä	&#196;	&#x00C4;	&Auml;	Adieresis	latin capital letter A with diaeresis, U+00C4 ISOlat1
+Å	Å	Å	&#197;	&#x00C5;	&Aring;	Aring	latin capital letter A with ring above = latin capital letter A ring, U+00C5 ISOlat1
+Æ	Æ	Æ	&#198;	&#x00C6;	&AElig;	AE	latin capital letter AE = latin capital ligature AE, U+00C6 ISOlat1
+Ç	Ç	Ç	&#199;	&#x00C7;	&Ccedil;	Ccedilla	latin capital letter C with cedilla, U+00C7 ISOlat1
+È	È	È	&#200;	&#x00C8;	&Egrave;	Egrave	latin capital letter E with grave, U+00C8 ISOlat1
+É	É	É	&#201;	&#x00C9;	&Eacute;	Eacute	latin capital letter E with acute, U+00C9 ISOlat1
+Ê	Ê	Ê	&#202;	&#x00CA;	&Ecirc;	Ecircumflex	latin capital letter E with circumflex, U+00CA ISOlat1
+Ë	Ë	Ë	&#203;	&#x00CB;	&Euml;	Edieresis	latin capital letter E with diaeresis, U+00CB ISOlat1
+Ì	Ì	Ì	&#204;	&#x00CC;	&Igrave;	Igrave	latin capital letter I with grave, U+00CC ISOlat1
+Í	Í	Í	&#205;	&#x00CD;	&Iacute;	Iacute	latin capital letter I with acute, U+00CD ISOlat1
+Î	Î	Î	&#206;	&#x00CE;	&Icirc;	Icircumflex	latin capital letter I with circumflex, U+00CE ISOlat1
+Ï	Ï	Ï	&#207;	&#x00CF;	&Iuml;	Idieresis	latin capital letter I with diaeresis, U+00CF ISOlat1
+Ð	Ð	Ð	&#208;	&#x00D0;	&ETH;	Eth	latin capital letter ETH, U+00D0 ISOlat1
+Ñ	Ñ	Ñ	&#209;	&#x00D1;	&Ntilde;	Ntilde	latin capital letter N with tilde, U+00D1 ISOlat1
+Ò	Ò	Ò	&#210;	&#x00D2;	&Ograve;	Ograve	latin capital letter O with grave, U+00D2 ISOlat1
+Ó	Ó	Ó	&#211;	&#x00D3;	&Oacute;	Oacute	latin capital letter O with acute, U+00D3 ISOlat1
+Ô	Ô	Ô	&#212;	&#x00D4;	&Ocirc;	Ocircumflex	latin capital letter O with circumflex, U+00D4 ISOlat1
+Õ	Õ	Õ	&#213;	&#x00D5;	&Otilde;	Otilde	latin capital letter O with tilde, U+00D5 ISOlat1
+Ö	Ö	Ö	&#214;	&#x00D6;	&Ouml;	Odieresis	latin capital letter O with diaeresis, U+00D6 ISOlat1
+×	×	×	&#215;	&#x00D7;	&times;	multiply	multiplication sign, U+00D7 ISOnum
+Ø	Ø	Ø	&#216;	&#x00D8;	&Oslash;	Oslash	latin capital letter O with stroke = latin capital letter O slash, U+00D8 ISOlat1
+Ù	Ù	Ù	&#217;	&#x00D9;	&Ugrave;	Ugrave	latin capital letter U with grave, U+00D9 ISOlat1
+Ú	Ú	Ú	&#218;	&#x00DA;	&Uacute;	Uacute	latin capital letter U with acute, U+00DA ISOlat1
+Û	Û	Û	&#219;	&#x00DB;	&Ucirc;	Ucircumflex	latin capital letter U with circumflex, U+00DB ISOlat1
+Ü	Ü	Ü	&#220;	&#x00DC;	&Uuml;	Udieresis	latin capital letter U with diaeresis, U+00DC ISOlat1
+Ý	Ý	Ý	&#221;	&#x00DD;	&Yacute;	Yacute	latin capital letter Y with acute, U+00DD ISOlat1
+Þ	Þ	Þ	&#222;	&#x00DE;	&THORN;	Thorn	latin capital letter THORN, U+00DE ISOlat1
+ß	ß	ß	&#223;	&#x00DF;	&szlig;	germandbls	latin small letter sharp s = ess-zed, U+00DF ISOlat1
+à	à	à	&#224;	&#x00E0;	&agrave;	agrave	latin small letter a with grave = latin small letter a grave, U+00E0 ISOlat1
+á	á	á	&#225;	&#x00E1;	&aacute;	aacute	latin small letter a with acute, U+00E1 ISOlat1
+â	â	â	&#226;	&#x00E2;	&acirc;	acircumflex	latin small letter a with circumflex, U+00E2 ISOlat1
+ã	ã	ã	&#227;	&#x00E3;	&atilde;	atilde	latin small letter a with tilde, U+00E3 ISOlat1
+ä	ä	ä	&#228;	&#x00E4;	&auml;	adieresis	latin small letter a with diaeresis, U+00E4 ISOlat1
+å	å	å	&#229;	&#x00E5;	&aring;	aring	latin small letter a with ring above = latin small letter a ring, U+00E5 ISOlat1
+æ	æ	æ	&#230;	&#x00E6;	&aelig;	ae	latin small letter ae = latin small ligature ae, U+00E6 ISOlat1
+ç	ç	ç	&#231;	&#x00E7;	&ccedil;	ccedilla	latin small letter c with cedilla, U+00E7 ISOlat1
+è	è	è	&#232;	&#x00E8;	&egrave;	egrave	latin small letter e with grave, U+00E8 ISOlat1
+é	é	é	&#233;	&#x00E9;	&eacute;	eacute	latin small letter e with acute, U+00E9 ISOlat1
+ê	ê	ê	&#234;	&#x00EA;	&ecirc;	ecircumflex	latin small letter e with circumflex, U+00EA ISOlat1
+ë	ë	ë	&#235;	&#x00EB;	&euml;	edieresis	latin small letter e with diaeresis, U+00EB ISOlat1
+ì	ì	ì	&#236;	&#x00EC;	&igrave;	igrave	latin small letter i with grave, U+00EC ISOlat1
+í	í	í	&#237;	&#x00ED;	&iacute;	iacute	latin small letter i with acute, U+00ED ISOlat1
+î	î	î	&#238;	&#x00EE;	&icirc;	icircumflex	latin small letter i with circumflex, U+00EE ISOlat1
+ï	ï	ï	&#239;	&#x00EF;	&iuml;	idieresis	latin small letter i with diaeresis, U+00EF ISOlat1
+ð	ð	ð	&#240;	&#x00F0;	&eth;	eth	latin small letter eth, U+00F0 ISOlat1
+ñ	ñ	ñ	&#241;	&#x00F1;	&ntilde;	ntilde	latin small letter n with tilde, U+00F1 ISOlat1
+ò	ò	ò	&#242;	&#x00F2;	&ograve;	ograve	latin small letter o with grave, U+00F2 ISOlat1
+ó	ó	ó	&#243;	&#x00F3;	&oacute;	oacute	latin small letter o with acute, U+00F3 ISOlat1
+ô	ô	ô	&#244;	&#x00F4;	&ocirc;	ocircumflex	latin small letter o with circumflex, U+00F4 ISOlat1
+õ	õ	õ	&#245;	&#x00F5;	&otilde;	otilde	latin small letter o with tilde, U+00F5 ISOlat1
+ö	ö	ö	&#246;	&#x00F6;	&ouml;	odieresis	latin small letter o with diaeresis, U+00F6 ISOlat1
+÷	÷	÷	&#247;	&#x00F7;	&divide;	divide	division sign, U+00F7 ISOnum
+ø	ø	ø	&#248;	&#x00F8;	&oslash;	oslash	latin small letter o with stroke, = latin small letter o slash, U+00F8 ISOlat1
+ù	ù	ù	&#249;	&#x00F9;	&ugrave;	ugrave	latin small letter u with grave, U+00F9 ISOlat1
+ú	ú	ú	&#250;	&#x00FA;	&uacute;	uacute	latin small letter u with acute, U+00FA ISOlat1
+û	û	û	&#251;	&#x00FB;	&ucirc;	ucircumflex	latin small letter u with circumflex, U+00FB ISOlat1
+ü	ü	ü	&#252;	&#x00FC;	&uuml;	udieresis	latin small letter u with diaeresis, U+00FC ISOlat1
+ý	ý	ý	&#253;	&#x00FD;	&yacute;	yacute	latin small letter y with acute, U+00FD ISOlat1
+þ	þ	þ	&#254;	&#x00FE;	&thorn;	thorn	latin small letter thorn, U+00FE ISOlat1
+ÿ	ÿ	ÿ	&#255;	&#x00FF;	&yuml;	ydieresis	latin small letter y with diaeresis, U+00FF ISOlat1
+ƒ	ƒ	ƒ	&#402;	&#x0192;	&fnof;	florin	latin small f with hook = function = florin, U+0192 ISOtech
+Α	Α	Α	&#913;	&#x0391;	&Alpha;	Alpha	greek capital letter alpha, U+0391
+Β	Β	Β	&#914;	&#x0392;	&Beta;	Beta	greek capital letter beta, U+0392
+Γ	Γ	Γ	&#915;	&#x0393;	&Gamma;	Gamma	greek capital letter gamma, U+0393 ISOgrk3
+Δ	Δ	Δ	&#916;	&#x0394;	&Delta;	Deltagreek	greek capital letter delta, U+0394 ISOgrk3
+Ε	Ε	Ε	&#917;	&#x0395;	&Epsilon;	Epsilon	greek capital letter epsilon, U+0395
+Ζ	Ζ	Ζ	&#918;	&#x0396;	&Zeta;	Zeta	greek capital letter zeta, U+0396
+Η	Η	Η	&#919;	&#x0397;	&Eta;	Eta	greek capital letter eta, U+0397
+Θ	Θ	Θ	&#920;	&#x0398;	&Theta;	Theta	greek capital letter theta, U+0398 ISOgrk3
+Ι	Ι	Ι	&#921;	&#x0399;	&Iota;	Iota	greek capital letter iota, U+0399
+Κ	Κ	Κ	&#922;	&#x039A;	&Kappa;	Kappa	greek capital letter kappa, U+039A
+Λ	Λ	Λ	&#923;	&#x039B;	&Lambda;	Lambda	greek capital letter lambda, U+039B ISOgrk3
+Μ	Μ	Μ	&#924;	&#x039C;	&Mu;	Mu	greek capital letter mu, U+039C
+Ν	Ν	Ν	&#925;	&#x039D;	&Nu;	Nu	greek capital letter nu, U+039D
+Ξ	Ξ	Ξ	&#926;	&#x039E;	&Xi;	Xi	greek capital letter xi, U+039E ISOgrk3
+Ο	Ο	Ο	&#927;	&#x039F;	&Omicron;	Omicron	greek capital letter omicron, U+039F
+Π	Π	Π	&#928;	&#x03A0;	&Pi;	Pi	greek capital letter pi, U+03A0 ISOgrk3
+Ρ	Ρ	Ρ	&#929;	&#x03A1;	&Rho;	Rho	greek capital letter rho, U+03A1
+Σ	Σ	Σ	&#931;	&#x03A3;	&Sigma;	Sigma	greek capital letter sigma, U+03A3 ISOgrk3
+Τ	Τ	Τ	&#932;	&#x03A4;	&Tau;	Tau	greek capital letter tau, U+03A4
+Υ	Υ	Υ	&#933;	&#x03A5;	&Upsilon;	Upsilon	greek capital letter upsilon, U+03A5 ISOgrk3
+Φ	Φ	Φ	&#934;	&#x03A6;	&Phi;	Phi	greek capital letter phi, U+03A6 ISOgrk3
+Χ	Χ	Χ	&#935;	&#x03A7;	&Chi;	Chi	greek capital letter chi, U+03A7
+Ψ	Ψ	Ψ	&#936;	&#x03A8;	&Psi;	Psi	greek capital letter psi, U+03A8 ISOgrk3
+Ω	Ω	Ω	&#937;	&#x03A9;	&Omega;	Omegagreek	greek capital letter omega, U+03A9 ISOgrk3
+α	α	α	&#945;	&#x03B1;	&alpha;	alpha	greek small letter alpha, U+03B1 ISOgrk3
+β	β	β	&#946;	&#x03B2;	&beta;	beta	greek small letter beta, U+03B2 ISOgrk3
+γ	γ	γ	&#947;	&#x03B3;	&gamma;	gamma	greek small letter gamma, U+03B3 ISOgrk3
+δ	δ	δ	&#948;	&#x03B4;	&delta;	delta	greek small letter delta, U+03B4 ISOgrk3
+ε	ε	ε	&#949;	&#x03B5;	&epsilon;	epsilon	greek small letter epsilon, U+03B5 ISOgrk3
+ζ	ζ	ζ	&#950;	&#x03B6;	&zeta;	zeta	greek small letter zeta, U+03B6 ISOgrk3
+η	η	η	&#951;	&#x03B7;	&eta;	eta	greek small letter eta, U+03B7 ISOgrk3
+θ	θ	θ	&#952;	&#x03B8;	&theta;	theta	greek small letter theta, U+03B8 ISOgrk3
+ι	ι	ι	&#953;	&#x03B9;	&iota;	iota	greek small letter iota, U+03B9 ISOgrk3
+κ	κ	κ	&#954;	&#x03BA;	&kappa;	kappa	greek small letter kappa, U+03BA ISOgrk3
+λ	λ	λ	&#955;	&#x03BB;	&lambda;	lambda	greek small letter lambda, U+03BB ISOgrk3
+μ	μ	μ	&#956;	&#x03BC;	&mu;	mugreek	greek small letter mu, U+03BC ISOgrk3
+ν	ν	ν	&#957;	&#x03BD;	&nu;	nu	greek small letter nu, U+03BD ISOgrk3
+ξ	ξ	ξ	&#958;	&#x03BE;	&xi;	xi	greek small letter xi, U+03BE ISOgrk3
+ο	ο	ο	&#959;	&#x03BF;	&omicron;	omicron	greek small letter omicron, U+03BF NEW
+π	π	π	&#960;	&#x03C0;	&pi;	pi	greek small letter pi, U+03C0 ISOgrk3
+ρ	ρ	ρ	&#961;	&#x03C1;	&rho;	rho	greek small letter rho, U+03C1 ISOgrk3
+ς	ς	ς	&#962;	&#x03C2;	&sigmaf;	sigma1
+sigmafinal	greek small letter final sigma, U+03C2 ISOgrk3
+σ	σ	σ	&#963;	&#x03C3;	&sigma;	sigma	greek small letter sigma, U+03C3 ISOgrk3
+τ	τ	τ	&#964;	&#x03C4;	&tau;	tau	greek small letter tau, U+03C4 ISOgrk3
+υ	υ	υ	&#965;	&#x03C5;	&upsilon;	upsilon	greek small letter upsilon, U+03C5 ISOgrk3
+φ	φ	φ	&#966;	&#x03C6;	&phi;	phi	greek small letter phi, U+03C6 ISOgrk3
+χ	χ	χ	&#967;	&#x03C7;	&chi;	chi	greek small letter chi, U+03C7 ISOgrk3
+ψ	ψ	ψ	&#968;	&#x03C8;	&psi;	psi	greek small letter psi, U+03C8 ISOgrk3
+ω	ω	ω	&#969;	&#x03C9;	&omega;	omega	greek small letter omega, U+03C9 ISOgrk3
+ϑ	ϑ	ϑ	&#977;	&#x03D1;	&thetasym;	theta1
+thetasymbolgreek	greek small letter theta symbol, U+03D1 NEW
+ϒ	ϒ	ϒ	&#978;	&#x03D2;	&upsih;	Upsilon1
+Upsilonhooksymbol	greek upsilon with hook symbol, U+03D2 NEW
+ϖ	ϖ	ϖ	&#982;	&#x03D6;	&piv;	omega1
+pisymbolgreek	greek pi symbol, U+03D6 ISOgrk3
+•	•	•	&#8226;	&#x2022;	&bull;	bullet	bullet = black small circle, U+2022 ISOpub [bullet is NOT the same as bullet operator, U+2219]
+…	…	…	&#8230;	&#x2026;	&hellip;	ellipsis	horizontal ellipsis = three dot leader, U+2026 ISOpub
+′	′	′	&#8242;	&#x2032;	&prime;	minute	prime = minutes = feet, U+2032 ISOtech
+″	″	″	&#8243;	&#x2033;	&Prime;	second	double prime = seconds = inches, U+2033 ISOtech
+‾	‾	‾	&#8254;	&#x203E;	&oline;	overline	overline = spacing overscore, U+203E NEW
+⁄	⁄	⁄	&#8260;	&#x2044;	&frasl;	fraction	fraction slash, U+2044 NEW
+℘	℘	℘	&#8472;	&#x2118;	&weierp;	weierstrass	script capital P = power set = Weierstrass p, U+2118 ISOamso
+ℑ	ℑ	ℑ	&#8465;	&#x2111;	&image;	Ifraktur	blackletter capital I = imaginary part, U+2111 ISOamso
+ℜ	ℜ	ℜ	&#8476;	&#x211C;	&real;	Rfraktur	blackletter capital R = real part symbol, U+211C ISOamso
+™	™	™	&#8482;	&#x2122;	&trade;	trademark	trade mark sign, U+2122 ISOnum
+ℵ	ℵ	ℵ	&#8501;	&#x2135;	&alefsym;	aleph	alef symbol = first transfinite cardinal, U+2135 NEW [alef symbol is NOT the same as hebrew letter alef, U+05D0 although the same glyph could be used to depict both characters]
+←	←	←	&#8592;	&#x2190;	&larr;	arrowleft	leftwards arrow, U+2190 ISOnum
+↑	↑	↑	&#8593;	&#x2191;	&uarr;	arrowup	upwards arrow, U+2191 ISOnum
+→	→	→	&#8594;	&#x2192;	&rarr;	arrowright	rightwards arrow, U+2192 ISOnum
+↓	↓	↓	&#8595;	&#x2193;	&darr;	arrowdown	downwards arrow, U+2193 ISOnum
+↔	↔	↔	&#8596;	&#x2194;	&harr;	arrowboth	left right arrow, U+2194 ISOamsa
+↵	↵	↵	&#8629;	&#x21B5;	&crarr;	carriagereturn	downwards arrow with corner leftwards = carriage return, U+21B5 NEW
+⇐	⇐	⇐	&#8656;	&#x21D0;	&lArr;	arrowdblleft
+arrowleftdbl	leftwards double arrow, U+21D0 ISOtech [ISO 10646 does not say that lArr is the same as the 'is implied by' arrow but also does not have any other character for that function. So ? lArr can be used for 'is implied by' as ISOtech suggests]
+⇑	⇑	⇑	&#8657;	&#x21D1;	&uArr;	arrowdblup	upwards double arrow, U+21D1 ISOamsa
+⇒	⇒	⇒	&#8658;	&#x21D2;	&rArr;	arrowdblright
+dblarrowright	rightwards double arrow, U+21D2 ISOtech [ISO 10646 does not say this is the 'implies' character but does not have another character with this function so ? rArr can be used for 'implies' as ISOtech suggests]
+⇓	⇓	⇓	&#8659;	&#x21D3;	&dArr;	arrowdbldown	downwards double arrow, U+21D3 ISOamsa
+⇔	⇔	⇔	&#8660;	&#x21D4;	&hArr;	arrowdblboth
+dblarrowleft	left right double arrow, U+21D4 ISOamsa <!-- Mathematical Operators
+∀	∀	∀	&#8704;	&#x2200;	&forall;	forall
+universal	for all, U+2200 ISOtech
+∂	∂	∂	&#8706;	&#x2202;	&part;	partialdiff	partial differential, U+2202 ISOtech
+∃	∃	∃	&#8707;	&#x2203;	&exist;	existential
+thereexists	there exists, U+2203 ISOtech
+∅	∅	∅	&#8709;	&#x2205;	&empty;	emptyset	empty set = null set = diameter, U+2205 ISOamso
+∇	∇	∇	&#8711;	&#x2207;	&nabla;	gradient
+nabla	nabla = backward difference, U+2207 ISOtech
+∈	∈	∈	&#8712;	&#x2208;	&isin;	element	element of, U+2208 ISOtech
+∉	∉	∉	&#8713;	&#x2209;	&notin;	notelement
+notelementof	not an element of, U+2209 ISOtech
+∋	∋	∋	&#8715;	&#x220B;	&ni;	suchthat	contains as member, U+220B ISOtech [should there be a more memorable name than 'ni'?]
+∏	∏	∏	&#8719;	&#x220F;	&prod;	product	n-ary product = product sign, U+220F ISOamsb [prod is NOT the same character as U+03A0 'greek capital letter pi' though the same glyph might be used for both]
+∑	∑	∑	&#8721;	&#x2211;	&sum;	summation	n-ary sumation, U+2211 ISOamsb [sum is NOT the same character as U+03A3 'greek capital letter sigma' though the same glyph might be used for both]
+−	−	−	&#8722;	&#x2212;	&minus;	minus	minus sign, U+2212 ISOtech
+∗	∗	∗	&#8727;	&#x2217;	&lowast;	asteriskmath	asterisk operator, U+2217 ISOtech
+√	√	√	&#8730;	&#x221A;	&radic;	radical	square root = radical sign, U+221A ISOtech
+∝	∝	∝	&#8733;	&#x221D;	&prop;	proportional	proportional to, U+221D ISOtech
+∞	∞	∞	&#8734;	&#x221E;	&infin;	infinity	infinity, U+221E ISOtech
+∠	∠	∠	&#8736;	&#x2220;	&ang;	angle	angle, U+2220 ISOamso
+∧	∧	∧	&#8743;	&#x2227;	&and;	logicaland	logical and = wedge, U+2227 ISOtech
+∨	∨	∨	&#8744;	&#x2228;	&or;	logicalor	logical or = vee, U+2228 ISOtech
+∩	∩	∩	&#8745;	&#x2229;	&cap;	intersection	intersection = cap, U+2229 ISOtech
+∪	∪	∪	&#8746;	&#x222A;	&cup;	union	union = cup, U+222A ISOtech
+∫	∫	∫	&#8747;	&#x222B;	&int;	integral	integral, U+222B ISOtech
+∴	∴	∴	&#8756;	&#x2234;	&there4;	therefore	therefore, U+2234 ISOtech
+∼	∼	∼	&#8764;	&#x223C;	&sim;	similar
+tildeoperator	tilde operator = varies with = similar to, U+223C ISOtech [tilde operator is NOT the same character as the tilde, U+007E, although the same glyph might be used to represent both]
+≅	≅	≅	&#8773;	&#x2245;	&cong;	approximatelyequal
+congruent	approximately equal to, U+2245 ISOtech
+≈	≈	≈	&#8776;	&#x2248;	&asymp;	approxequal	almost equal to = asymptotic to, U+2248 ISOamsr
+≠	≠	≠	&#8800;	&#x2260;	&ne;	notequal	not equal to, U+2260 ISOtech
+≡	≡	≡	&#8801;	&#x2261;	&equiv;	equivalence	identical to, U+2261 ISOtech
+≤	≤	≤	&#8804;	&#x2264;	&le;	lessequal	less-than or equal to, U+2264 ISOtech
+≥	≥	≥	&#8805;	&#x2265;	&ge;	greaterequal	greater-than or equal to, U+2265 ISOtech
+⊂	⊂	⊂	&#8834;	&#x2282;	&sub;	propersubset
+subset	subset of, U+2282 ISOtech
+⊃	⊃	⊃	&#8835;	&#x2283;	&sup;	propersuperset
+superset	superset of, U+2283 ISOtech [note that nsup, 'not a superset of, U+2283' is not covered by the Symbol font encoding and is not included. Should it be, for symmetry? It is in ISOamsn]
+⊄	⊄	⊄	&#8836;	&#x2284;	&nsub;	notsubset	not a subset of, U+2284 ISOamsn
+⊆	⊆	⊆	&#8838;	&#x2286;	&sube;	reflexsubset
+subsetorequal	subset of or equal to, U+2286 ISOtech
+⊇	⊇	⊇	&#8839;	&#x2287;	&supe;	reflexsuperset
+supersetorequal	superset of or equal to, U+2287 ISOtech
+⊕	⊕	⊕	&#8853;	&#x2295;	&oplus;	circleplus
+pluscircle	circled plus = direct sum, U+2295 ISOamsb
+⊗	⊗	⊗	&#8855;	&#x2297;	&otimes;	circlemultiply
+timescircle	circled times = vector product, U+2297 ISOamsb
+⊥	⊥	⊥	&#8869;	&#x22A5;	&perp;	perpendicular	up tack = orthogonal to = perpendicular, U+22A5 ISOtech
+⋅	⋅	⋅	&#8901;	&#x22C5;	&sdot;	dotmath	dot operator, U+22C5 ISOamsb [dot operator is NOT the same character as U+00B7 middle dot]
+⌈	⌈	⌈	&#8968;	&#x2308;	&lceil;		left ceiling = apl upstile, U+2308 ISOamsc
+⌉	⌉	⌉	&#8969;	&#x2309;	&rceil;		right ceiling, U+2309 ISOamsc
+⌊	⌊	⌊	&#8970;	&#x230A;	&lfloor;		left floor = apl downstile, U+230A ISOamsc
+⌋	⌋	⌋	&#8971;	&#x230B;	&rfloor;		right floor, U+230B ISOamsc
+〈	〈	⟨	&#9001;	&#x2329;	&lang;	angleleft	left-pointing angle bracket = bra, U+2329 ISOtech [lang is NOT the same character as U+003C 'less than' or U+2039 'single left-pointing angle quotation mark']
+〉	〉	⟩	&#9002;	&#x232A;	&rang;	angleright	right-pointing angle bracket = ket, U+232A ISOtech [rang is NOT the same character as U+003E 'greater than' or U+203A 'single right-pointing angle quotation mark']
+◊	◊	◊	&#9674;	&#x25CA;	&loz;	lozenge	lozenge, U+25CA ISOpub <!-- Miscellaneous Symbols
+♠	♠	♠	&#9824;	&#x2660;	&spades;	spade
+spadesuitblack	black spade suit, U+2660 ISOpub [black here seems to mean filled as opposed to hollow]
+♣	♣	♣	&#9827;	&#x2663;	&clubs;	club
+clubsuitblack	black club suit = shamrock, U+2663 ISOpub [black here seems to mean filled as opposed to hollow]
+♥	♥	♥	&#9829;	&#x2665;	&hearts;	heart
+heartsuitblack	black heart suit = valentine, U+2665 ISOpub [black here seems to mean filled as opposed to hollow]
+♦	♦	♦	&#9830;	&#x2666;	&diams;	diamond	black diamond suit, U+2666 ISOpub [black here seems to mean filled as opposed to hollow]
+"	"	"	&#34;	&#x0022;	&quot;	quotedbl	quotation mark = APL quote, U+0022 ISOnum
+&	&	&	&#38;	&#x0026;	&amp;	ampersand	ampersand, U+0026 ISOnum
+<	<	<	&#60;	&#x003C;	&lt;	less	less-than sign, U+003C ISOnum
+>	>	>	&#62;	&#x003E;	&gt;	greater	greater-than sign, U+003E ISOnum
+Œ	Œ	Œ	&#338;	&#x0152;	&OElig;	OE	latin capital ligature OE, U+0152 ISOlat2
+œ	œ	œ	&#339;	&#x0153;	&oelig;	oe	latin small ligature oe, U+0153 ISOlat2 [ligature is a misnomer, this is a separate character in some languages]
+Š	Š	Š	&#352;	&#x0160;	&Scaron;	Scaron	latin capital letter S with caron, U+0160 ISOlat2
+š	š	š	&#353;	&#x0161;	&scaron;	scaron	latin small letter s with caron, U+0161 ISOlat2
+Ÿ	Ÿ	Ÿ	&#376;	&#x0178;	&Yuml;	Ydieresis	latin capital letter Y with diaeresis, U+0178 ISOlat2
+ˆ	ˆ	ˆ	&#710;	&#x02C6;	&circ;	circumflex	modifier letter circumflex accent, U+02C6 ISOpub
+˜	˜	˜	&#732;	&#x02DC;	&tilde;	ilde
+tilde	small tilde, U+02DC ISOdia
+ 	 	 	&#8194;	&#x2002;	&ensp;	enspace	en space, U+2002 ISOpub
+ 	 	 	&#8195;	&#x2003;	&emsp;		em space, U+2003 ISOpub
+ 	 	 	&#8201;	&#x2009;	&thinsp;		thin space, U+2009 ISOpub
+‌	‌	‌	&#8204;	&#x200C;	&zwnj;	afii61664
+zerowidthnonjoiner	zero width non-joiner, U+200C NEW RFC 2070
+‍	‍	‍	&#8205;	&#x200D;	&zwj;	afii301	zero width joiner, U+200D NEW RFC 2070
+‎	‎	‎	&#8206;	&#x200E;	&lrm;	afii299	left-to-right mark, U+200E NEW RFC 2070
+‏	‏	‏	&#8207;	&#x200F;	&rlm;	afii300	right-to-left mark, U+200F NEW RFC 2070
+–	–	–	&#8211;	&#x2013;	&ndash;	endash	en dash, U+2013 ISOpub
+—	—	—	&#8212;	&#x2014;	&mdash;	emdash	em dash, U+2014 ISOpub
+‘	‘	‘	&#8216;	&#x2018;	&lsquo;	quoteleft	left single quotation mark, U+2018 ISOnum
+’	’	’	&#8217;	&#x2019;	&rsquo;	quoteright	right single quotation mark, U+2019 ISOnum
+‚	‚	‚	&#8218;	&#x201A;	&sbquo;	quotesinglbase	single low-9 quotation mark, U+201A NEW
+“	“	“	&#8220;	&#x201C;	&ldquo;	quotedblleft	left double quotation mark, U+201C ISOnum
+”	”	”	&#8221;	&#x201D;	&rdquo;	quotedblright	right double quotation mark, U+201D ISOnum
+„	„	„	&#8222;	&#x201E;	&bdquo;	quotedblbase	double low-9 quotation mark, U+201E NEW
+†	†	†	&#8224;	&#x2020;	&dagger;	dagger	dagger, U+2020 ISOpub
+‡	‡	‡	&#8225;	&#x2021;	&Dagger;	daggerdbl	double dagger, U+2021 ISOpub
+‰	‰	‰	&#8240;	&#x2030;	&permil;	perthousand	per mille sign, U+2030 ISOtech
+‹	‹	‹	&#8249;	&#x2039;	&lsaquo;	guilsinglleft	single left-pointing angle quotation mark, U+2039 ISO proposed [lsaquo is proposed but not yet ISO standardized]
+›	›	›	&#8250;	&#x203A;	&rsaquo;	guilsinglright	single right-pointing angle quotation mark, U+203A ISO proposed [rsaquo is proposed but not yet ISO standardized]
+€	€	€	&#8364;	&#x20AC;	&euro;	Euro	euro sign, U+20AC NEW
+			&#1;	&#x0001;		controlSTX	
+			&#2;	&#x0002;		controlSOT	
+			&#3;	&#x0003;		controlETX	
+			&#4;	&#x0004;		controlEOT	
+			&#5;	&#x0005;		controlENQ	
+			&#6;	&#x0006;		controlACK	
+			&#7;	&#x0007;		controlBEL	
+			&#8;	&#x0008;		controlBS	
+			&#9;	&#x0009;		controlHT	
+			&#10;	&#x000A;		controlLF	
+			&#11;	&#x000B;		controlVT	
+			&#12;	&#x000C;		controlFF	
+			&#13;	&#x000D;		controlCR	
+			&#14;	&#x000E;		controlSO	
+			&#15;	&#x000F;		controlSI	
+			&#16;	&#x0010;		controlDLE	
+			&#17;	&#x0011;		controlDC1	
+			&#18;	&#x0012;		controlDC2	
+			&#19;	&#x0013;		controlDC3	
+			&#20;	&#x0014;		controlDC4	
+			&#21;	&#x0015;		controlNAK	
+			&#22;	&#x0016;		controlSYN	
+			&#23;	&#x0017;		controlETB	
+			&#24;	&#x0018;		controlCAN	
+			&#25;	&#x0019;		controlEM	
+->	->		&#26;	&#x001A;		controlSUB	
+			&#27;	&#x001B;		controlESC	
+			&#28;	&#x001C;		controlFS	
+			&#29;	&#x001D;		controlGS	
+			&#30;	&#x001E;		controlRS	
+			&#31;	&#x001F;		controlUS	
+			&#32;	&#x0020;		space
+spacehackarabic	
+!	!		&#33;	&#x0021;		exclam	
+#	#		&#35;	&#x0023;		numbersign	
+$	$		&#36;	&#x0024;		dollar	
+%	%		&#37;	&#x0025;		percent	
+'	'		&#39;	&#x0027;		quotesingle	
+(	(		&#40;	&#x0028;		parenleft	
+)	)		&#41;	&#x0029;		parenright	
+*	*		&#42;	&#x002A;		asterisk	
++	+		&#43;	&#x002B;		plus	
+,	,		&#44;	&#x002C;		comma	
+-	-		&#45;	&#x002D;		hyphen	
+.	.		&#46;	&#x002E;		period	
+/	/		&#47;	&#x002F;		slash	
+0	0		&#48;	&#x0030;		zero	
+1	1		&#49;	&#x0031;		one	
+2	2		&#50;	&#x0032;		two	
+3	3		&#51;	&#x0033;		three	
+4	4		&#52;	&#x0034;		four	
+5	5		&#53;	&#x0035;		five	
+6	6		&#54;	&#x0036;		six	
+7	7		&#55;	&#x0037;		seven	
+8	8		&#56;	&#x0038;		eight	
+9	9		&#57;	&#x0039;		nine	
+:	:		&#58;	&#x003A;		colon	
+;	;		&#59;	&#x003B;		semicolon	
+=	=		&#61;	&#x003D;		equal	
+?	?		&#63;	&#x003F;		question	
+@	@		&#64;	&#x0040;		at	
+A	A		&#65;	&#x0041;		A	
+B	B		&#66;	&#x0042;		B	
+C	C		&#67;	&#x0043;		C	
+D	D		&#68;	&#x0044;		D	
+E	E		&#69;	&#x0045;		E	
+F	F		&#70;	&#x0046;		F	
+G	G		&#71;	&#x0047;		G	
+H	H		&#72;	&#x0048;		H	
+I	I		&#73;	&#x0049;		I	
+J	J		&#74;	&#x004A;		J	
+K	K		&#75;	&#x004B;		K	
+L	L		&#76;	&#x004C;		L	
+M	M		&#77;	&#x004D;		M	
+N	N		&#78;	&#x004E;		N	
+O	O		&#79;	&#x004F;		O	
+P	P		&#80;	&#x0050;		P	
+Q	Q		&#81;	&#x0051;		Q	
+R	R		&#82;	&#x0052;		R	
+S	S		&#83;	&#x0053;		S	
+T	T		&#84;	&#x0054;		T	
+U	U		&#85;	&#x0055;		U	
+V	V		&#86;	&#x0056;		V	
+W	W		&#87;	&#x0057;		W	
+X	X		&#88;	&#x0058;		X	
+Y	Y		&#89;	&#x0059;		Y	
+Z	Z		&#90;	&#x005A;		Z	
+[	[		&#91;	&#x005B;		bracketleft	
+\	\		&#92;	&#x005C;		backslash	
+]	]		&#93;	&#x005D;		bracketright	
+^	^		&#94;	&#x005E;		asciicircum	
+_	_		&#95;	&#x005F;		underscore	
+`	`		&#96;	&#x0060;		grave	
+a	a		&#97;	&#x0061;		a	
+b	b		&#98;	&#x0062;		b	
+c	c		&#99;	&#x0063;		c	
+d	d		&#100;	&#x0064;		d	
+e	e		&#101;	&#x0065;		e	
+f	f		&#102;	&#x0066;		f	
+g	g		&#103;	&#x0067;		g	
+h	h		&#104;	&#x0068;		h	
+i	i		&#105;	&#x0069;		i	
+j	j		&#106;	&#x006A;		j	
+k	k		&#107;	&#x006B;		k	
+l	l		&#108;	&#x006C;		l	
+m	m		&#109;	&#x006D;		m	
+n	n		&#110;	&#x006E;		n	
+o	o		&#111;	&#x006F;		o	
+p	p		&#112;	&#x0070;		p	
+q	q		&#113;	&#x0071;		q	
+r	r		&#114;	&#x0072;		r	
+s	s		&#115;	&#x0073;		s	
+t	t		&#116;	&#x0074;		t	
+u	u		&#117;	&#x0075;		u	
+v	v		&#118;	&#x0076;		v	
+w	w		&#119;	&#x0077;		w	
+x	x		&#120;	&#x0078;		x	
+y	y		&#121;	&#x0079;		y	
+z	z		&#122;	&#x007A;		z	
+{	{		&#123;	&#x007B;		braceleft	
+|	|		&#124;	&#x007C;		bar
+verticalbar	
+}	}		&#125;	&#x007D;		braceright	
+~	~		&#126;	&#x007E;		asciitilde	
+			&#127;	&#x007F;		controlDEL	
+Ā	Ā		&#256;	&#x0100;		Amacron	
+ā	ā		&#257;	&#x0101;		amacron	
+Ă	Ă		&#258;	&#x0102;		Abreve	
+ă	ă		&#259;	&#x0103;		abreve	
+Ą	Ą		&#260;	&#x0104;		Aogonek	
+ą	ą		&#261;	&#x0105;		aogonek	
+Ć	Ć		&#262;	&#x0106;		Cacute	
+ć	ć		&#263;	&#x0107;		cacute	
+Ĉ	Ĉ		&#264;	&#x0108;		Ccircumflex	
+ĉ	ĉ		&#265;	&#x0109;		ccircumflex	
+Ċ	Ċ		&#266;	&#x010A;		Cdot
+Cdotaccent	
+ċ	ċ		&#267;	&#x010B;		cdot
+cdotaccent	
+Č	Č		&#268;	&#x010C;		Ccaron	
+č	č		&#269;	&#x010D;		ccaron	
+Ď	Ď		&#270;	&#x010E;		Dcaron	
+ď	ď		&#271;	&#x010F;		dcaron	
+Đ	Đ		&#272;	&#x0110;		Dcroat
+Dslash	
+đ	đ		&#273;	&#x0111;		dcroat
+dmacron	
+Ē	Ē		&#274;	&#x0112;		Emacron	
+ē	ē		&#275;	&#x0113;		emacron	
+Ĕ	Ĕ		&#276;	&#x0114;		Ebreve	
+ĕ	ĕ		&#277;	&#x0115;		ebreve	
+Ė	Ė		&#278;	&#x0116;		Edot
+Edotaccent	
+ė	ė		&#279;	&#x0117;		edot
+edotaccent	
+Ę	Ę		&#280;	&#x0118;		Eogonek	
+ę	ę		&#281;	&#x0119;		eogonek	
+Ě	Ě		&#282;	&#x011A;		Ecaron	
+ě	ě		&#283;	&#x011B;		ecaron	
+Ĝ	Ĝ		&#284;	&#x011C;		Gcircumflex	
+ĝ	ĝ		&#285;	&#x011D;		gcircumflex	
+Ğ	Ğ		&#286;	&#x011E;		Gbreve	
+ğ	ğ		&#287;	&#x011F;		gbreve	
+Ġ	Ġ		&#288;	&#x0120;		Gdot
+Gdotaccent	
+ġ	ġ		&#289;	&#x0121;		gdot
+gdotaccent	
+Ģ	Ģ		&#290;	&#x0122;		Gcedilla
+Gcommaaccent	
+ģ	ģ		&#291;	&#x0123;		gcedilla
+gcommaaccent	
+Ĥ	Ĥ		&#292;	&#x0124;		Hcircumflex	
+ĥ	ĥ		&#293;	&#x0125;		hcircumflex	
+Ħ	Ħ		&#294;	&#x0126;		Hbar	
+ħ	ħ		&#295;	&#x0127;		hbar	
+Ĩ	Ĩ		&#296;	&#x0128;		Itilde	
+ĩ	ĩ		&#297;	&#x0129;		itilde	
+Ī	Ī		&#298;	&#x012A;		Imacron	
+ī	ī		&#299;	&#x012B;		imacron	
+Ĭ	Ĭ		&#300;	&#x012C;		Ibreve	
+ĭ	ĭ		&#301;	&#x012D;		ibreve	
+Į	Į		&#302;	&#x012E;		Iogonek	
+į	į		&#303;	&#x012F;		iogonek	
+İ	İ		&#304;	&#x0130;		Idot
+Idotaccent	
+ı	ı		&#305;	&#x0131;		dotlessi	
+Ĳ	Ĳ		&#306;	&#x0132;		IJ	
+ĳ	ĳ		&#307;	&#x0133;		ij	
+Ĵ	Ĵ		&#308;	&#x0134;		Jcircumflex	
+ĵ	ĵ		&#309;	&#x0135;		jcircumflex	
+Ķ	Ķ		&#310;	&#x0136;		Kcedilla
+Kcommaaccent	
+ķ	ķ		&#311;	&#x0137;		kcedilla
+kcommaaccent	
+ĸ	ĸ		&#312;	&#x0138;		kgreenlandic	
+Ĺ	Ĺ		&#313;	&#x0139;		Lacute	
+ĺ	ĺ		&#314;	&#x013A;		lacute	
+Ļ	Ļ		&#315;	&#x013B;		Lcedilla
+Lcommaaccent	
+ļ	ļ		&#316;	&#x013C;		lcedilla
+lcommaaccent	
+Ľ	Ľ		&#317;	&#x013D;		Lcaron	
+ľ	ľ		&#318;	&#x013E;		lcaron	
+Ŀ	Ŀ		&#319;	&#x013F;		Ldot
+Ldotaccent	
+ŀ	ŀ		&#320;	&#x0140;		ldot
+ldotaccent	
+Ł	Ł		&#321;	&#x0141;		Lslash	
+ł	ł		&#322;	&#x0142;		lslash	
+Ń	Ń		&#323;	&#x0143;		Nacute	
+ń	ń		&#324;	&#x0144;		nacute	
+Ņ	Ņ		&#325;	&#x0145;		Ncedilla
+Ncommaaccent	
+ņ	ņ		&#326;	&#x0146;		ncedilla
+ncommaaccent	
+Ň	Ň		&#327;	&#x0147;		Ncaron	
+ň	ň		&#328;	&#x0148;		ncaron	
+ŉ	ŉ		&#329;	&#x0149;		napostrophe
+quoterightn	
+Ŋ	Ŋ		&#330;	&#x014A;		Eng	
+ŋ	ŋ		&#331;	&#x014B;		eng	
+Ō	Ō		&#332;	&#x014C;		Omacron	
+ō	ō		&#333;	&#x014D;		omacron	
+Ŏ	Ŏ		&#334;	&#x014E;		Obreve	
+ŏ	ŏ		&#335;	&#x014F;		obreve	
+Ő	Ő		&#336;	&#x0150;		Odblacute
+Ohungarumlaut	
+ő	ő		&#337;	&#x0151;		odblacute
+ohungarumlaut	
+Ŕ	Ŕ		&#340;	&#x0154;		Racute	
+ŕ	ŕ		&#341;	&#x0155;		racute	
+Ŗ	Ŗ		&#342;	&#x0156;		Rcedilla
+Rcommaaccent	
+ŗ	ŗ		&#343;	&#x0157;		rcedilla
+rcommaaccent	
+Ř	Ř		&#344;	&#x0158;		Rcaron	
+ř	ř		&#345;	&#x0159;		rcaron	
+Ś	Ś		&#346;	&#x015A;		Sacute	
+ś	ś		&#347;	&#x015B;		sacute	
+Ŝ	Ŝ		&#348;	&#x015C;		Scircumflex	
+ŝ	ŝ		&#349;	&#x015D;		scircumflex	
+Ş	Ş		&#350;	&#x015E;		Scedilla	
+ş	ş		&#351;	&#x015F;		scedilla	
+Ţ	Ţ		&#354;	&#x0162;		Tcedilla
+Tcommaaccent	
+ţ	ţ		&#355;	&#x0163;		tcedilla
+tcommaaccent	
+Ť	Ť		&#356;	&#x0164;		Tcaron	
+ť	ť		&#357;	&#x0165;		tcaron	
+Ŧ	Ŧ		&#358;	&#x0166;		Tbar	
+ŧ	ŧ		&#359;	&#x0167;		tbar	
+Ũ	Ũ		&#360;	&#x0168;		Utilde	
+ũ	ũ		&#361;	&#x0169;		utilde	
+Ū	Ū		&#362;	&#x016A;		Umacron	
+ū	ū		&#363;	&#x016B;		umacron	
+Ŭ	Ŭ		&#364;	&#x016C;		Ubreve	
+ŭ	ŭ		&#365;	&#x016D;		ubreve	
+Ů	Ů		&#366;	&#x016E;		Uring	
+ů	ů		&#367;	&#x016F;		uring	
+Ű	Ű		&#368;	&#x0170;		Udblacute
+Uhungarumlaut	
+ű	ű		&#369;	&#x0171;		udblacute
+uhungarumlaut	
+Ų	Ų		&#370;	&#x0172;		Uogonek	
+ų	ų		&#371;	&#x0173;		uogonek	
+Ŵ	Ŵ		&#372;	&#x0174;		Wcircumflex	
+ŵ	ŵ		&#373;	&#x0175;		wcircumflex	
+Ŷ	Ŷ		&#374;	&#x0176;		Ycircumflex	
+ŷ	ŷ		&#375;	&#x0177;		ycircumflex	
+Ź	Ź		&#377;	&#x0179;		Zacute	
+ź	ź		&#378;	&#x017A;		zacute	
+Ż	Ż		&#379;	&#x017B;		Zdot
+Zdotaccent	
+ż	ż		&#380;	&#x017C;		zdot
+zdotaccent	
+Ž	Ž		&#381;	&#x017D;		Zcaron	
+ž	ž		&#382;	&#x017E;		zcaron	
+ſ	ſ		&#383;	&#x017F;		longs
+slong	
+ƀ	ƀ		&#384;	&#x0180;		bstroke	
+Ɓ	Ɓ		&#385;	&#x0181;		Bhook	
+Ƃ	Ƃ		&#386;	&#x0182;		Btopbar	
+ƃ	ƃ		&#387;	&#x0183;		btopbar	
+Ƅ	Ƅ		&#388;	&#x0184;		Tonesix	
+ƅ	ƅ		&#389;	&#x0185;		tonesix	
+Ɔ	Ɔ		&#390;	&#x0186;		Oopen	
+Ƈ	Ƈ		&#391;	&#x0187;		Chook	
+ƈ	ƈ		&#392;	&#x0188;		chook	
+Ɖ	Ɖ		&#393;	&#x0189;		Dafrican	
+Ɗ	Ɗ		&#394;	&#x018A;		Dhook	
+Ƌ	Ƌ		&#395;	&#x018B;		Dtopbar	
+ƌ	ƌ		&#396;	&#x018C;		dtopbar	
+ƍ	ƍ		&#397;	&#x018D;		deltaturned	
+Ǝ	Ǝ		&#398;	&#x018E;		Ereversed	
+Ə	Ə		&#399;	&#x018F;		Schwa	
+Ɛ	Ɛ		&#400;	&#x0190;		Eopen	
+Ƒ	Ƒ		&#401;	&#x0191;		Fhook	
+Ɠ	Ɠ		&#403;	&#x0193;		Ghook	
+Ɣ	Ɣ		&#404;	&#x0194;		Gammaafrican	
+ƕ	ƕ		&#405;	&#x0195;		hv	
+Ɩ	Ɩ		&#406;	&#x0196;		Iotaafrican	
+Ɨ	Ɨ		&#407;	&#x0197;		Istroke	
+Ƙ	Ƙ		&#408;	&#x0198;		Khook	
+ƙ	ƙ		&#409;	&#x0199;		khook	
+ƚ	ƚ		&#410;	&#x019A;		lbar	
+ƛ	ƛ		&#411;	&#x019B;		lambdastroke	
+Ɯ	Ɯ		&#412;	&#x019C;		Mturned	
+Ɲ	Ɲ		&#413;	&#x019D;		Nhookleft	
+ƞ	ƞ		&#414;	&#x019E;		nlegrightlong	
+Ɵ	Ɵ		&#415;	&#x019F;		Ocenteredtilde	
+Ơ	Ơ		&#416;	&#x01A0;		Ohorn	
+ơ	ơ		&#417;	&#x01A1;		ohorn	
+Ƣ	Ƣ		&#418;	&#x01A2;		Oi	
+ƣ	ƣ		&#419;	&#x01A3;		oi	
+Ƥ	Ƥ		&#420;	&#x01A4;		Phook	
+ƥ	ƥ		&#421;	&#x01A5;		phook	
+Ʀ	Ʀ		&#422;	&#x01A6;		yr	
+Ƨ	Ƨ		&#423;	&#x01A7;		Tonetwo	
+ƨ	ƨ		&#424;	&#x01A8;		tonetwo	
+Ʃ	Ʃ		&#425;	&#x01A9;		Esh	
+ƪ	ƪ		&#426;	&#x01AA;		eshreversedloop	
+ƫ	ƫ		&#427;	&#x01AB;		tpalatalhook	
+Ƭ	Ƭ		&#428;	&#x01AC;		Thook	
+ƭ	ƭ		&#429;	&#x01AD;		thook	
+Ʈ	Ʈ		&#430;	&#x01AE;		Tretroflexhook	
+Ư	Ư		&#431;	&#x01AF;		Uhorn	
+ư	ư		&#432;	&#x01B0;		uhorn	
+Ʊ	Ʊ		&#433;	&#x01B1;		Upsilonafrican	
+Ʋ	Ʋ		&#434;	&#x01B2;		Vhook	
+Ƴ	Ƴ		&#435;	&#x01B3;		Yhook	
+ƴ	ƴ		&#436;	&#x01B4;		yhook	
+Ƶ	Ƶ		&#437;	&#x01B5;		Zstroke	
+ƶ	ƶ		&#438;	&#x01B6;		zstroke	
+Ʒ	Ʒ		&#439;	&#x01B7;		Ezh	
+Ƹ	Ƹ		&#440;	&#x01B8;		Ezhreversed	
+ƹ	ƹ		&#441;	&#x01B9;		ezhreversed	
+ƺ	ƺ		&#442;	&#x01BA;		ezhtail	
+ƻ	ƻ		&#443;	&#x01BB;		twostroke	
+Ƽ	Ƽ		&#444;	&#x01BC;		Tonefive	
+ƽ	ƽ		&#445;	&#x01BD;		tonefive	
+ƾ	ƾ		&#446;	&#x01BE;		glottalinvertedstroke	
+ƿ	ƿ		&#447;	&#x01BF;		wynn	
+ǀ	ǀ		&#448;	&#x01C0;		clickdental	
+ǁ	ǁ		&#449;	&#x01C1;		clicklateral	
+ǂ	ǂ		&#450;	&#x01C2;		clickalveolar	
+ǃ	ǃ		&#451;	&#x01C3;		clickretroflex	
+Ǆ	Ǆ		&#452;	&#x01C4;		DZcaron	
+ǅ	ǅ		&#453;	&#x01C5;		Dzcaron	
+ǆ	ǆ		&#454;	&#x01C6;		dzcaron	
+Ǉ	Ǉ		&#455;	&#x01C7;		LJ	
+ǈ	ǈ		&#456;	&#x01C8;		Lj	
+ǉ	ǉ		&#457;	&#x01C9;		lj	
+Ǌ	Ǌ		&#458;	&#x01CA;		NJ	
+ǋ	ǋ		&#459;	&#x01CB;		Nj	
+ǌ	ǌ		&#460;	&#x01CC;		nj	
+Ǎ	Ǎ		&#461;	&#x01CD;		Acaron	
+ǎ	ǎ		&#462;	&#x01CE;		acaron	
+Ǐ	Ǐ		&#463;	&#x01CF;		Icaron	
+ǐ	ǐ		&#464;	&#x01D0;		icaron	
+Ǒ	Ǒ		&#465;	&#x01D1;		Ocaron	
+ǒ	ǒ		&#466;	&#x01D2;		ocaron	
+Ǔ	Ǔ		&#467;	&#x01D3;		Ucaron	
+ǔ	ǔ		&#468;	&#x01D4;		ucaron	
+Ǖ	Ǖ		&#469;	&#x01D5;		Udieresismacron	
+ǖ	ǖ		&#470;	&#x01D6;		udieresismacron	
+Ǘ	Ǘ		&#471;	&#x01D7;		Udieresisacute	
+ǘ	ǘ		&#472;	&#x01D8;		udieresisacute	
+Ǚ	Ǚ		&#473;	&#x01D9;		Udieresiscaron	
+ǚ	ǚ		&#474;	&#x01DA;		udieresiscaron	
+Ǜ	Ǜ		&#475;	&#x01DB;		Udieresisgrave	
+ǜ	ǜ		&#476;	&#x01DC;		udieresisgrave	
+ǝ	ǝ		&#477;	&#x01DD;		eturned	
+Ǟ	Ǟ		&#478;	&#x01DE;		Adieresismacron	
+ǟ	ǟ		&#479;	&#x01DF;		adieresismacron	
+Ǡ	Ǡ		&#480;	&#x01E0;		Adotmacron	
+ǡ	ǡ		&#481;	&#x01E1;		adotmacron	
+Ǣ	Ǣ		&#482;	&#x01E2;		AEmacron	
+ǣ	ǣ		&#483;	&#x01E3;		aemacron	
+Ǥ	Ǥ		&#484;	&#x01E4;		Gstroke	
+ǥ	ǥ		&#485;	&#x01E5;		gstroke	
+Ǧ	Ǧ		&#486;	&#x01E6;		Gcaron	
+ǧ	ǧ		&#487;	&#x01E7;		gcaron	
+Ǩ	Ǩ		&#488;	&#x01E8;		Kcaron	
+ǩ	ǩ		&#489;	&#x01E9;		kcaron	
+Ǫ	Ǫ		&#490;	&#x01EA;		Oogonek	
+ǫ	ǫ		&#491;	&#x01EB;		oogonek	
+Ǭ	Ǭ		&#492;	&#x01EC;		Oogonekmacron	
+ǭ	ǭ		&#493;	&#x01ED;		oogonekmacron	
+Ǯ	Ǯ		&#494;	&#x01EE;		Ezhcaron	
+ǯ	ǯ		&#495;	&#x01EF;		ezhcaron	
+ǰ	ǰ		&#496;	&#x01F0;		jcaron	
+Ǳ	Ǳ		&#497;	&#x01F1;		DZ	
+ǲ	ǲ		&#498;	&#x01F2;		Dz	
+ǳ	ǳ		&#499;	&#x01F3;		dz	
+Ǵ	Ǵ		&#500;	&#x01F4;		Gacute	
+ǵ	ǵ		&#501;	&#x01F5;		gacute	
+Ǻ	Ǻ		&#506;	&#x01FA;		Aringacute	
+ǻ	ǻ		&#507;	&#x01FB;		aringacute	
+Ǽ	Ǽ		&#508;	&#x01FC;		AEacute	
+ǽ	ǽ		&#509;	&#x01FD;		aeacute	
+Ǿ	Ǿ		&#510;	&#x01FE;		Oslashacute
+Ostrokeacute	
+ǿ	ǿ		&#511;	&#x01FF;		oslashacute
+ostrokeacute	
+Ȁ	Ȁ		&#512;	&#x0200;		Adblgrave	
+ȁ	ȁ		&#513;	&#x0201;		adblgrave	
+Ȃ	Ȃ		&#514;	&#x0202;		Ainvertedbreve	
+ȃ	ȃ		&#515;	&#x0203;		ainvertedbreve	
+Ȅ	Ȅ		&#516;	&#x0204;		Edblgrave	
+ȅ	ȅ		&#517;	&#x0205;		edblgrave	
+Ȇ	Ȇ		&#518;	&#x0206;		Einvertedbreve	
+ȇ	ȇ		&#519;	&#x0207;		einvertedbreve	
+Ȉ	Ȉ		&#520;	&#x0208;		Idblgrave	
+ȉ	ȉ		&#521;	&#x0209;		idblgrave	
+Ȋ	Ȋ		&#522;	&#x020A;		Iinvertedbreve	
+ȋ	ȋ		&#523;	&#x020B;		iinvertedbreve	
+Ȍ	Ȍ		&#524;	&#x020C;		Odblgrave	
+ȍ	ȍ		&#525;	&#x020D;		odblgrave	
+Ȏ	Ȏ		&#526;	&#x020E;		Oinvertedbreve	
+ȏ	ȏ		&#527;	&#x020F;		oinvertedbreve	
+Ȑ	Ȑ		&#528;	&#x0210;		Rdblgrave	
+ȑ	ȑ		&#529;	&#x0211;		rdblgrave	
+Ȓ	Ȓ		&#530;	&#x0212;		Rinvertedbreve	
+ȓ	ȓ		&#531;	&#x0213;		rinvertedbreve	
+Ȕ	Ȕ		&#532;	&#x0214;		Udblgrave	
+ȕ	ȕ		&#533;	&#x0215;		udblgrave	
+Ȗ	Ȗ		&#534;	&#x0216;		Uinvertedbreve	
+ȗ	ȗ		&#535;	&#x0217;		uinvertedbreve	
+Ș	Ș		&#536;	&#x0218;		Scommaaccent	
+ș	ș		&#537;	&#x0219;		scommaaccent	
+ɐ	ɐ		&#592;	&#x0250;		aturned	
+ɑ	ɑ		&#593;	&#x0251;		ascript	
+ɒ	ɒ		&#594;	&#x0252;		ascriptturned	
+ɓ	ɓ		&#595;	&#x0253;		bhook	
+ɔ	ɔ		&#596;	&#x0254;		oopen	
+ɕ	ɕ		&#597;	&#x0255;		ccurl	
+ɖ	ɖ		&#598;	&#x0256;		dtail	
+ɗ	ɗ		&#599;	&#x0257;		dhook	
+ɘ	ɘ		&#600;	&#x0258;		ereversed	
+ə	ə		&#601;	&#x0259;		schwa	
+ɚ	ɚ		&#602;	&#x025A;		schwahook	
+ɛ	ɛ		&#603;	&#x025B;		eopen	
+ɜ	ɜ		&#604;	&#x025C;		eopenreversed	
+ɝ	ɝ		&#605;	&#x025D;		eopenreversedhook	
+ɞ	ɞ		&#606;	&#x025E;		eopenreversedclosed	
+ɟ	ɟ		&#607;	&#x025F;		jdotlessstroke	
+ɠ	ɠ		&#608;	&#x0260;		ghook	
+ɡ	ɡ		&#609;	&#x0261;		gscript	
+ɣ	ɣ		&#611;	&#x0263;		gammalatinsmall	
+ɤ	ɤ		&#612;	&#x0264;		ramshorn	
+ɥ	ɥ		&#613;	&#x0265;		hturned	
+ɦ	ɦ		&#614;	&#x0266;		hhook	
+ɧ	ɧ		&#615;	&#x0267;		henghook	
+ɨ	ɨ		&#616;	&#x0268;		istroke	
+ɩ	ɩ		&#617;	&#x0269;		iotalatin	
+ɫ	ɫ		&#619;	&#x026B;		lmiddletilde	
+ɬ	ɬ		&#620;	&#x026C;		lbelt	
+ɭ	ɭ		&#621;	&#x026D;		lhookretroflex	
+ɮ	ɮ		&#622;	&#x026E;		lezh	
+ɯ	ɯ		&#623;	&#x026F;		mturned	
+ɰ	ɰ		&#624;	&#x0270;		mlonglegturned	
+ɱ	ɱ		&#625;	&#x0271;		mhook	
+ɲ	ɲ		&#626;	&#x0272;		nhookleft	
+ɳ	ɳ		&#627;	&#x0273;		nhookretroflex	
+ɵ	ɵ		&#629;	&#x0275;		obarred	
+ɷ	ɷ		&#631;	&#x0277;		omegalatinclosed	
+ɸ	ɸ		&#632;	&#x0278;		philatin	
+ɹ	ɹ		&#633;	&#x0279;		rturned	
+ɺ	ɺ		&#634;	&#x027A;		rlonglegturned	
+ɻ	ɻ		&#635;	&#x027B;		rhookturned	
+ɼ	ɼ		&#636;	&#x027C;		rlongleg	
+ɽ	ɽ		&#637;	&#x027D;		rhook	
+ɾ	ɾ		&#638;	&#x027E;		rfishhook	
+ɿ	ɿ		&#639;	&#x027F;		rfishhookreversed	
+ʁ	ʁ		&#641;	&#x0281;		Rsmallinverted	
+ʂ	ʂ		&#642;	&#x0282;		shook	
+ʃ	ʃ		&#643;	&#x0283;		esh	
+ʄ	ʄ		&#644;	&#x0284;		dotlessjstrokehook	
+ʅ	ʅ		&#645;	&#x0285;		eshsquatreversed	
+ʆ	ʆ		&#646;	&#x0286;		eshcurl	
+ʇ	ʇ		&#647;	&#x0287;		tturned	
+ʈ	ʈ		&#648;	&#x0288;		tretroflexhook	
+ʉ	ʉ		&#649;	&#x0289;		ubar	
+ʊ	ʊ		&#650;	&#x028A;		upsilonlatin	
+ʋ	ʋ		&#651;	&#x028B;		vhook	
+ʌ	ʌ		&#652;	&#x028C;		vturned	
+ʍ	ʍ		&#653;	&#x028D;		wturned	
+ʎ	ʎ		&#654;	&#x028E;		yturned	
+ʐ	ʐ		&#656;	&#x0290;		zretroflexhook	
+ʑ	ʑ		&#657;	&#x0291;		zcurl	
+ʒ	ʒ		&#658;	&#x0292;		ezh	
+ʓ	ʓ		&#659;	&#x0293;		ezhcurl	
+ʔ	ʔ		&#660;	&#x0294;		glottalstop	
+ʕ	ʕ		&#661;	&#x0295;		glottalstopreversed	
+ʖ	ʖ		&#662;	&#x0296;		glottalstopinverted	
+ʗ	ʗ		&#663;	&#x0297;		cstretched	
+ʘ	ʘ		&#664;	&#x0298;		bilabialclick	
+ʚ	ʚ		&#666;	&#x029A;		eopenclosed	
+ʛ	ʛ		&#667;	&#x029B;		Gsmallhook	
+ʝ	ʝ		&#669;	&#x029D;		jcrossedtail	
+ʞ	ʞ		&#670;	&#x029E;		kturned	
+ʠ	ʠ		&#672;	&#x02A0;		qhook	
+ʡ	ʡ		&#673;	&#x02A1;		glottalstopstroke	
+ʢ	ʢ		&#674;	&#x02A2;		glottalstopstrokereversed	
+ʣ	ʣ		&#675;	&#x02A3;		dzaltone	
+ʤ	ʤ		&#676;	&#x02A4;		dezh	
+ʥ	ʥ		&#677;	&#x02A5;		dzcurl	
+ʦ	ʦ		&#678;	&#x02A6;		ts	
+ʧ	ʧ		&#679;	&#x02A7;		tesh	
+ʨ	ʨ		&#680;	&#x02A8;		tccurl	
+ʰ	ʰ		&#688;	&#x02B0;		hsuperior	
+ʱ	ʱ		&#689;	&#x02B1;		hhooksuperior	
+ʲ	ʲ		&#690;	&#x02B2;		jsuperior	
+ʴ	ʴ		&#692;	&#x02B4;		rturnedsuperior	
+ʵ	ʵ		&#693;	&#x02B5;		rhookturnedsuperior	
+ʶ	ʶ		&#694;	&#x02B6;		Rsmallinvertedsuperior	
+ʷ	ʷ		&#695;	&#x02B7;		wsuperior	
+ʸ	ʸ		&#696;	&#x02B8;		ysuperior	
+ʹ	ʹ		&#697;	&#x02B9;		primemod	
+ʺ	ʺ		&#698;	&#x02BA;		dblprimemod	
+ʻ	ʻ		&#699;	&#x02BB;		commaturnedmod	
+ʼ	ʼ		&#700;	&#x02BC;		afii57929
+apostrophemod	
+ʽ	ʽ		&#701;	&#x02BD;		afii64937
+commareversedmod	
+ʾ	ʾ		&#702;	&#x02BE;		ringhalfright	
+ʿ	ʿ		&#703;	&#x02BF;		ringhalfleft	
+ˀ	ˀ		&#704;	&#x02C0;		glottalstopmod	
+ˁ	ˁ		&#705;	&#x02C1;		glottalstopreversedmod	
+˂	˂		&#706;	&#x02C2;		arrowheadleftmod	
+˃	˃		&#707;	&#x02C3;		arrowheadrightmod	
+˄	˄		&#708;	&#x02C4;		arrowheadupmod	
+˅	˅		&#709;	&#x02C5;		arrowheaddownmod	
+ˇ	ˇ		&#711;	&#x02C7;		caron	
+ˈ	ˈ		&#712;	&#x02C8;		verticallinemod	
+ˉ	ˉ		&#713;	&#x02C9;		firsttonechinese	
+ˊ	ˊ		&#714;	&#x02CA;		secondtonechinese	
+ˋ	ˋ		&#715;	&#x02CB;		fourthtonechinese	
+ˌ	ˌ		&#716;	&#x02CC;		verticallinelowmod	
+ˍ	ˍ		&#717;	&#x02CD;		macronlowmod	
+ˎ	ˎ		&#718;	&#x02CE;		gravelowmod	
+ˏ	ˏ		&#719;	&#x02CF;		acutelowmod	
+ː	ː		&#720;	&#x02D0;		colontriangularmod	
+ˑ	ˑ		&#721;	&#x02D1;		colontriangularhalfmod	
+˒	˒		&#722;	&#x02D2;		ringhalfrightcentered	
+˓	˓		&#723;	&#x02D3;		ringhalfleftcentered	
+˔	˔		&#724;	&#x02D4;		uptackmod	
+˕	˕		&#725;	&#x02D5;		downtackmod	
+˖	˖		&#726;	&#x02D6;		plusmod	
+˗	˗		&#727;	&#x02D7;		minusmod	
+˘	˘		&#728;	&#x02D8;		breve	
+˙	˙		&#729;	&#x02D9;		dotaccent	
+˚	˚		&#730;	&#x02DA;		ring	
+˛	˛		&#731;	&#x02DB;		ogonek	
+˝	˝		&#733;	&#x02DD;		hungarumlaut	
+˞	˞		&#734;	&#x02DE;		rhotichookmod	
+ˠ	ˠ		&#736;	&#x02E0;		gammasuperior	
+ˣ	ˣ		&#739;	&#x02E3;		xsuperior	
+ˤ	ˤ		&#740;	&#x02E4;		glottalstopreversedsuperior	
+˥	˥		&#741;	&#x02E5;		tonebarextrahighmod	
+˦	˦		&#742;	&#x02E6;		tonebarhighmod	
+˧	˧		&#743;	&#x02E7;		tonebarmidmod	
+˨	˨		&#744;	&#x02E8;		tonebarlowmod	
+˩	˩		&#745;	&#x02E9;		tonebarextralowmod	
+̀	̀		&#768;	&#x0300;		gravecmb
+gravecomb	
+́	́		&#769;	&#x0301;		acutecmb
+acutecomb	
+̂	̂		&#770;	&#x0302;		circumflexcmb	
+̃	̃		&#771;	&#x0303;		tildecmb
+tildecomb	
+̄	̄		&#772;	&#x0304;		macroncmb	
+̅	̅		&#773;	&#x0305;		overlinecmb	
+̆	̆		&#774;	&#x0306;		brevecmb	
+̇	̇		&#775;	&#x0307;		dotaccentcmb	
+̈	̈		&#776;	&#x0308;		dieresiscmb	
+̉	̉		&#777;	&#x0309;		hookabovecomb
+hookcmb	
+̊	̊		&#778;	&#x030A;		ringcmb	
+̋	̋		&#779;	&#x030B;		hungarumlautcmb	
+̌	̌		&#780;	&#x030C;		caroncmb	
+̍	̍		&#781;	&#x030D;		verticallineabovecmb	
+̎	̎		&#782;	&#x030E;		dblverticallineabovecmb	
+̏	̏		&#783;	&#x030F;		dblgravecmb	
+̐	̐		&#784;	&#x0310;		candrabinducmb	
+̑	̑		&#785;	&#x0311;		breveinvertedcmb	
+̒	̒		&#786;	&#x0312;		commaturnedabovecmb	
+̓	̓		&#787;	&#x0313;		commaabovecmb	
+̔	̔		&#788;	&#x0314;		commareversedabovecmb	
+̕	̕		&#789;	&#x0315;		commaaboverightcmb	
+̖	̖		&#790;	&#x0316;		gravebelowcmb	
+̗	̗		&#791;	&#x0317;		acutebelowcmb	
+̘	̘		&#792;	&#x0318;		lefttackbelowcmb	
+̙	̙		&#793;	&#x0319;		righttackbelowcmb	
+̚	̚		&#794;	&#x031A;		leftangleabovecmb	
+̛	̛		&#795;	&#x031B;		horncmb	
+̜	̜		&#796;	&#x031C;		ringhalfleftbelowcmb	
+̝	̝		&#797;	&#x031D;		uptackbelowcmb	
+̞	̞		&#798;	&#x031E;		downtackbelowcmb	
+̟	̟		&#799;	&#x031F;		plusbelowcmb	
+̠	̠		&#800;	&#x0320;		minusbelowcmb	
+̡	̡		&#801;	&#x0321;		hookpalatalizedbelowcmb	
+̢	̢		&#802;	&#x0322;		hookretroflexbelowcmb	
+̣	̣		&#803;	&#x0323;		dotbelowcmb
+dotbelowcomb	
+̤	̤		&#804;	&#x0324;		dieresisbelowcmb	
+̥	̥		&#805;	&#x0325;		ringbelowcmb	
+̧	̧		&#807;	&#x0327;		cedillacmb	
+̨	̨		&#808;	&#x0328;		ogonekcmb	
+̩	̩		&#809;	&#x0329;		verticallinebelowcmb	
+̪	̪		&#810;	&#x032A;		bridgebelowcmb	
+̫	̫		&#811;	&#x032B;		dblarchinvertedbelowcmb	
+̬	̬		&#812;	&#x032C;		caronbelowcmb	
+̭	̭		&#813;	&#x032D;		circumflexbelowcmb	
+̮	̮		&#814;	&#x032E;		brevebelowcmb	
+̯	̯		&#815;	&#x032F;		breveinvertedbelowcmb	
+̰	̰		&#816;	&#x0330;		tildebelowcmb	
+̱	̱		&#817;	&#x0331;		macronbelowcmb	
+̲	̲		&#818;	&#x0332;		lowlinecmb	
+̳	̳		&#819;	&#x0333;		dbllowlinecmb	
+̴	̴		&#820;	&#x0334;		tildeoverlaycmb	
+̵	̵		&#821;	&#x0335;		strokeshortoverlaycmb	
+̶	̶		&#822;	&#x0336;		strokelongoverlaycmb	
+̷	̷		&#823;	&#x0337;		solidusshortoverlaycmb	
+̸	̸		&#824;	&#x0338;		soliduslongoverlaycmb	
+̹	̹		&#825;	&#x0339;		ringhalfrightbelowcmb	
+̺	̺		&#826;	&#x033A;		bridgeinvertedbelowcmb	
+̻	̻		&#827;	&#x033B;		squarebelowcmb	
+̼	̼		&#828;	&#x033C;		seagullbelowcmb	
+̽	̽		&#829;	&#x033D;		xabovecmb	
+̾	̾		&#830;	&#x033E;		tildeverticalcmb	
+̿	̿		&#831;	&#x033F;		dbloverlinecmb	
+̀	̀		&#832;	&#x0340;		gravetonecmb	
+́	́		&#833;	&#x0341;		acutetonecmb	
+͂	͂		&#834;	&#x0342;		perispomenigreekcmb	
+̓	̓		&#835;	&#x0343;		koroniscmb	
+̈́	̈́		&#836;	&#x0344;		dialytikatonoscmb	
+ͅ	ͅ		&#837;	&#x0345;		ypogegrammenigreekcmb	
+͠	͠		&#864;	&#x0360;		tildedoublecmb	
+͡	͡		&#865;	&#x0361;		breveinverteddoublecmb	
+ʹ	ʹ		&#884;	&#x0374;		numeralsigngreek	
+͵	͵		&#885;	&#x0375;		numeralsignlowergreek	
+ͺ	ͺ		&#890;	&#x037A;		ypogegrammeni	
+;	;		&#894;	&#x037E;		questiongreek	
+΄	΄		&#900;	&#x0384;		tonos	
+΅	΅		&#901;	&#x0385;		dialytikatonos
+dieresistonos	
+Ά	Ά		&#902;	&#x0386;		Alphatonos	
+·	·		&#903;	&#x0387;		anoteleia	
+Έ	Έ		&#904;	&#x0388;		Epsilontonos	
+Ή	Ή		&#905;	&#x0389;		Etatonos	
+Ί	Ί		&#906;	&#x038A;		Iotatonos	
+Ό	Ό		&#908;	&#x038C;		Omicrontonos	
+Ύ	Ύ		&#910;	&#x038E;		Upsilontonos	
+Ώ	Ώ		&#911;	&#x038F;		Omegatonos	
+ΐ	ΐ		&#912;	&#x0390;		iotadieresistonos	
+Ϊ	Ϊ		&#938;	&#x03AA;		Iotadieresis	
+Ϋ	Ϋ		&#939;	&#x03AB;		Upsilondieresis	
+ά	ά		&#940;	&#x03AC;		alphatonos	
+έ	έ		&#941;	&#x03AD;		epsilontonos	
+ή	ή		&#942;	&#x03AE;		etatonos	
+ί	ί		&#943;	&#x03AF;		iotatonos	
+ΰ	ΰ		&#944;	&#x03B0;		upsilondieresistonos	
+ϊ	ϊ		&#970;	&#x03CA;		iotadieresis	
+ϋ	ϋ		&#971;	&#x03CB;		upsilondieresis	
+ό	ό		&#972;	&#x03CC;		omicrontonos	
+ύ	ύ		&#973;	&#x03CD;		upsilontonos	
+ώ	ώ		&#974;	&#x03CE;		omegatonos	
+ϐ	ϐ		&#976;	&#x03D0;		betasymbolgreek	
+ϓ	ϓ		&#979;	&#x03D3;		Upsilonacutehooksymbolgreek	
+ϔ	ϔ		&#980;	&#x03D4;		Upsilondieresishooksymbolgreek	
+ϕ	ϕ		&#981;	&#x03D5;		phi1
+phisymbolgreek	
+Ϛ	Ϛ		&#986;	&#x03DA;		Stigmagreek	
+Ϝ	Ϝ		&#988;	&#x03DC;		Digammagreek	
+Ϟ	Ϟ		&#990;	&#x03DE;		Koppagreek	
+Ϡ	Ϡ		&#992;	&#x03E0;		Sampigreek	
+Ϣ	Ϣ		&#994;	&#x03E2;		Sheicoptic	
+ϣ	ϣ		&#995;	&#x03E3;		sheicoptic	
+Ϥ	Ϥ		&#996;	&#x03E4;		Feicoptic	
+ϥ	ϥ		&#997;	&#x03E5;		feicoptic	
+Ϧ	Ϧ		&#998;	&#x03E6;		Kheicoptic	
+ϧ	ϧ		&#999;	&#x03E7;		kheicoptic	
+Ϩ	Ϩ		&#1000;	&#x03E8;		Horicoptic	
+ϩ	ϩ		&#1001;	&#x03E9;		horicoptic	
+Ϫ	Ϫ		&#1002;	&#x03EA;		Gangiacoptic	
+ϫ	ϫ		&#1003;	&#x03EB;		gangiacoptic	
+Ϭ	Ϭ		&#1004;	&#x03EC;		Shimacoptic	
+ϭ	ϭ		&#1005;	&#x03ED;		shimacoptic	
+Ϯ	Ϯ		&#1006;	&#x03EE;		Deicoptic	
+ϯ	ϯ		&#1007;	&#x03EF;		deicoptic	
+ϰ	ϰ		&#1008;	&#x03F0;		kappasymbolgreek	
+ϱ	ϱ		&#1009;	&#x03F1;		rhosymbolgreek	
+ϲ	ϲ		&#1010;	&#x03F2;		sigmalunatesymbolgreek	
+ϳ	ϳ		&#1011;	&#x03F3;		yotgreek	
+Ё	Ё		&#1025;	&#x0401;		Iocyrillic
+afii10023	
+Ђ	Ђ		&#1026;	&#x0402;		Djecyrillic
+afii10051	
+Ѓ	Ѓ		&#1027;	&#x0403;		Gjecyrillic
+afii10052	
+Є	Є		&#1028;	&#x0404;		Ecyrillic
+afii10053	
+Ѕ	Ѕ		&#1029;	&#x0405;		Dzecyrillic
+afii10054	
+І	І		&#1030;	&#x0406;		Icyrillic
+afii10055	
+Ї	Ї		&#1031;	&#x0407;		Yicyrillic
+afii10056	
+Ј	Ј		&#1032;	&#x0408;		Jecyrillic
+afii10057	
+Љ	Љ		&#1033;	&#x0409;		Ljecyrillic
+afii10058	
+Њ	Њ		&#1034;	&#x040A;		Njecyrillic
+afii10059	
+Ћ	Ћ		&#1035;	&#x040B;		Tshecyrillic
+afii10060	
+Ќ	Ќ		&#1036;	&#x040C;		Kjecyrillic
+afii10061	
+Ў	Ў		&#1038;	&#x040E;		Ushortcyrillic
+afii10062	
+Џ	Џ		&#1039;	&#x040F;		Dzhecyrillic
+afii10145	
+А	А		&#1040;	&#x0410;		Acyrillic
+afii10017	
+Б	Б		&#1041;	&#x0411;		Becyrillic
+afii10018	
+В	В		&#1042;	&#x0412;		Vecyrillic
+afii10019	
+Г	Г		&#1043;	&#x0413;		Gecyrillic
+afii10020	
+Д	Д		&#1044;	&#x0414;		Decyrillic
+afii10021	
+Е	Е		&#1045;	&#x0415;		Iecyrillic
+afii10022	
+Ж	Ж		&#1046;	&#x0416;		Zhecyrillic
+afii10024	
+З	З		&#1047;	&#x0417;		Zecyrillic
+afii10025	
+И	И		&#1048;	&#x0418;		Iicyrillic
+afii10026	
+Й	Й		&#1049;	&#x0419;		Iishortcyrillic
+afii10027	
+К	К		&#1050;	&#x041A;		Kacyrillic
+afii10028	
+Л	Л		&#1051;	&#x041B;		Elcyrillic
+afii10029	
+М	М		&#1052;	&#x041C;		Emcyrillic
+afii10030	
+Н	Н		&#1053;	&#x041D;		Encyrillic
+afii10031	
+О	О		&#1054;	&#x041E;		Ocyrillic
+afii10032	
+П	П		&#1055;	&#x041F;		Pecyrillic
+afii10033	
+Р	Р		&#1056;	&#x0420;		Ercyrillic
+afii10034	
+С	С		&#1057;	&#x0421;		Escyrillic
+afii10035	
+Т	Т		&#1058;	&#x0422;		Tecyrillic
+afii10036	
+У	У		&#1059;	&#x0423;		Ucyrillic
+afii10037	
+Ф	Ф		&#1060;	&#x0424;		Efcyrillic
+afii10038	
+Х	Х		&#1061;	&#x0425;		Khacyrillic
+afii10039	
+Ц	Ц		&#1062;	&#x0426;		Tsecyrillic
+afii10040	
+Ч	Ч		&#1063;	&#x0427;		Checyrillic
+afii10041	
+Ш	Ш		&#1064;	&#x0428;		Shacyrillic
+afii10042	
+Щ	Щ		&#1065;	&#x0429;		Shchacyrillic
+afii10043	
+Ъ	Ъ		&#1066;	&#x042A;		Hardsigncyrillic
+afii10044	
+Ы	Ы		&#1067;	&#x042B;		Yericyrillic
+afii10045	
+Ь	Ь		&#1068;	&#x042C;		Softsigncyrillic
+afii10046	
+Э	Э		&#1069;	&#x042D;		Ereversedcyrillic
+afii10047	
+Ю	Ю		&#1070;	&#x042E;		IUcyrillic
+afii10048	
+Я	Я		&#1071;	&#x042F;		IAcyrillic
+afii10049	
+а	а		&#1072;	&#x0430;		acyrillic
+afii10065	
+б	б		&#1073;	&#x0431;		afii10066
+becyrillic	
+в	в		&#1074;	&#x0432;		afii10067
+vecyrillic	
+г	г		&#1075;	&#x0433;		afii10068
+gecyrillic	
+д	д		&#1076;	&#x0434;		afii10069
+decyrillic	
+е	е		&#1077;	&#x0435;		afii10070
+iecyrillic	
+ж	ж		&#1078;	&#x0436;		afii10072
+zhecyrillic	
+з	з		&#1079;	&#x0437;		afii10073
+zecyrillic	
+и	и		&#1080;	&#x0438;		afii10074
+iicyrillic	
+й	й		&#1081;	&#x0439;		afii10075
+iishortcyrillic	
+к	к		&#1082;	&#x043A;		afii10076
+kacyrillic	
+л	л		&#1083;	&#x043B;		afii10077
+elcyrillic	
+м	м		&#1084;	&#x043C;		afii10078
+emcyrillic	
+н	н		&#1085;	&#x043D;		afii10079
+encyrillic	
+о	о		&#1086;	&#x043E;		afii10080
+ocyrillic	
+п	п		&#1087;	&#x043F;		afii10081
+pecyrillic	
+р	р		&#1088;	&#x0440;		afii10082
+ercyrillic	
+с	с		&#1089;	&#x0441;		afii10083
+escyrillic	
+т	т		&#1090;	&#x0442;		afii10084
+tecyrillic	
+у	у		&#1091;	&#x0443;		afii10085
+ucyrillic	
+ф	ф		&#1092;	&#x0444;		afii10086
+efcyrillic	
+х	х		&#1093;	&#x0445;		afii10087
+khacyrillic	
+ц	ц		&#1094;	&#x0446;		afii10088
+tsecyrillic	
+ч	ч		&#1095;	&#x0447;		afii10089
+checyrillic	
+ш	ш		&#1096;	&#x0448;		afii10090
+shacyrillic	
+щ	щ		&#1097;	&#x0449;		afii10091
+shchacyrillic	
+ъ	ъ		&#1098;	&#x044A;		afii10092
+hardsigncyrillic	
+ы	ы		&#1099;	&#x044B;		afii10093
+yericyrillic	
+ь	ь		&#1100;	&#x044C;		afii10094
+softsigncyrillic	
+э	э		&#1101;	&#x044D;		afii10095
+ereversedcyrillic	
+ю	ю		&#1102;	&#x044E;		afii10096
+iucyrillic	
+я	я		&#1103;	&#x044F;		afii10097
+iacyrillic	
+ё	ё		&#1105;	&#x0451;		afii10071
+iocyrillic	
+ђ	ђ		&#1106;	&#x0452;		afii10099
+djecyrillic	
+ѓ	ѓ		&#1107;	&#x0453;		afii10100
+gjecyrillic	
+є	є		&#1108;	&#x0454;		afii10101
+ecyrillic	
+ѕ	ѕ		&#1109;	&#x0455;		afii10102
+dzecyrillic	
+і	і		&#1110;	&#x0456;		afii10103
+icyrillic	
+ї	ї		&#1111;	&#x0457;		afii10104
+yicyrillic	
+ј	ј		&#1112;	&#x0458;		afii10105
+jecyrillic	
+љ	љ		&#1113;	&#x0459;		afii10106
+ljecyrillic	
+њ	њ		&#1114;	&#x045A;		afii10107
+njecyrillic	
+ћ	ћ		&#1115;	&#x045B;		afii10108
+tshecyrillic	
+ќ	ќ		&#1116;	&#x045C;		afii10109
+kjecyrillic	
+ў	ў		&#1118;	&#x045E;		afii10110
+ushortcyrillic	
+џ	џ		&#1119;	&#x045F;		afii10193
+dzhecyrillic	
+Ѡ	Ѡ		&#1120;	&#x0460;		Omegacyrillic	
+ѡ	ѡ		&#1121;	&#x0461;		omegacyrillic	
+Ѣ	Ѣ		&#1122;	&#x0462;		Yatcyrillic
+afii10146	
+ѣ	ѣ		&#1123;	&#x0463;		afii10194
+yatcyrillic	
+Ѥ	Ѥ		&#1124;	&#x0464;		Eiotifiedcyrillic	
+ѥ	ѥ		&#1125;	&#x0465;		eiotifiedcyrillic	
+Ѧ	Ѧ		&#1126;	&#x0466;		Yuslittlecyrillic	
+ѧ	ѧ		&#1127;	&#x0467;		yuslittlecyrillic	
+Ѩ	Ѩ		&#1128;	&#x0468;		Yuslittleiotifiedcyrillic	
+ѩ	ѩ		&#1129;	&#x0469;		yuslittleiotifiedcyrillic	
+Ѫ	Ѫ		&#1130;	&#x046A;		Yusbigcyrillic	
+ѫ	ѫ		&#1131;	&#x046B;		yusbigcyrillic	
+Ѭ	Ѭ		&#1132;	&#x046C;		Yusbigiotifiedcyrillic	
+ѭ	ѭ		&#1133;	&#x046D;		yusbigiotifiedcyrillic	
+Ѯ	Ѯ		&#1134;	&#x046E;		Ksicyrillic	
+ѯ	ѯ		&#1135;	&#x046F;		ksicyrillic	
+Ѱ	Ѱ		&#1136;	&#x0470;		Psicyrillic	
+ѱ	ѱ		&#1137;	&#x0471;		psicyrillic	
+Ѳ	Ѳ		&#1138;	&#x0472;		Fitacyrillic
+afii10147	
+ѳ	ѳ		&#1139;	&#x0473;		afii10195
+fitacyrillic	
+Ѵ	Ѵ		&#1140;	&#x0474;		Izhitsacyrillic
+afii10148	
+ѵ	ѵ		&#1141;	&#x0475;		afii10196
+izhitsacyrillic	
+Ѷ	Ѷ		&#1142;	&#x0476;		Izhitsadblgravecyrillic	
+ѷ	ѷ		&#1143;	&#x0477;		izhitsadblgravecyrillic	
+Ѹ	Ѹ		&#1144;	&#x0478;		Ukcyrillic	
+ѹ	ѹ		&#1145;	&#x0479;		ukcyrillic	
+Ѻ	Ѻ		&#1146;	&#x047A;		Omegaroundcyrillic	
+ѻ	ѻ		&#1147;	&#x047B;		omegaroundcyrillic	
+Ѽ	Ѽ		&#1148;	&#x047C;		Omegatitlocyrillic	
+ѽ	ѽ		&#1149;	&#x047D;		omegatitlocyrillic	
+Ѿ	Ѿ		&#1150;	&#x047E;		Otcyrillic	
+ѿ	ѿ		&#1151;	&#x047F;		otcyrillic	
+Ҁ	Ҁ		&#1152;	&#x0480;		Koppacyrillic	
+ҁ	ҁ		&#1153;	&#x0481;		koppacyrillic	
+҂	҂		&#1154;	&#x0482;		thousandcyrillic	
+҃	҃		&#1155;	&#x0483;		titlocyrilliccmb	
+҄	҄		&#1156;	&#x0484;		palatalizationcyrilliccmb	
+҅	҅		&#1157;	&#x0485;		dasiapneumatacyrilliccmb	
+҆	҆		&#1158;	&#x0486;		psilipneumatacyrilliccmb	
+Ґ	Ґ		&#1168;	&#x0490;		Gheupturncyrillic
+afii10050	
+ґ	ґ		&#1169;	&#x0491;		afii10098
+gheupturncyrillic	
+Ғ	Ғ		&#1170;	&#x0492;		Ghestrokecyrillic	
+ғ	ғ		&#1171;	&#x0493;		ghestrokecyrillic	
+Ҕ	Ҕ		&#1172;	&#x0494;		Ghemiddlehookcyrillic	
+ҕ	ҕ		&#1173;	&#x0495;		ghemiddlehookcyrillic	
+Җ	Җ		&#1174;	&#x0496;		Zhedescendercyrillic	
+җ	җ		&#1175;	&#x0497;		zhedescendercyrillic	
+Ҙ	Ҙ		&#1176;	&#x0498;		Zedescendercyrillic	
+ҙ	ҙ		&#1177;	&#x0499;		zedescendercyrillic	
+Қ	Қ		&#1178;	&#x049A;		Kadescendercyrillic	
+қ	қ		&#1179;	&#x049B;		kadescendercyrillic	
+Ҝ	Ҝ		&#1180;	&#x049C;		Kaverticalstrokecyrillic	
+ҝ	ҝ		&#1181;	&#x049D;		kaverticalstrokecyrillic	
+Ҟ	Ҟ		&#1182;	&#x049E;		Kastrokecyrillic	
+ҟ	ҟ		&#1183;	&#x049F;		kastrokecyrillic	
+Ҡ	Ҡ		&#1184;	&#x04A0;		Kabashkircyrillic	
+ҡ	ҡ		&#1185;	&#x04A1;		kabashkircyrillic	
+Ң	Ң		&#1186;	&#x04A2;		Endescendercyrillic	
+ң	ң		&#1187;	&#x04A3;		endescendercyrillic	
+Ҥ	Ҥ		&#1188;	&#x04A4;		Enghecyrillic	
+ҥ	ҥ		&#1189;	&#x04A5;		enghecyrillic	
+Ҧ	Ҧ		&#1190;	&#x04A6;		Pemiddlehookcyrillic	
+ҧ	ҧ		&#1191;	&#x04A7;		pemiddlehookcyrillic	
+Ҩ	Ҩ		&#1192;	&#x04A8;		Haabkhasiancyrillic	
+ҩ	ҩ		&#1193;	&#x04A9;		haabkhasiancyrillic	
+Ҫ	Ҫ		&#1194;	&#x04AA;		Esdescendercyrillic	
+ҫ	ҫ		&#1195;	&#x04AB;		esdescendercyrillic	
+Ҭ	Ҭ		&#1196;	&#x04AC;		Tedescendercyrillic	
+ҭ	ҭ		&#1197;	&#x04AD;		tedescendercyrillic	
+Ү	Ү		&#1198;	&#x04AE;		Ustraightcyrillic	
+ү	ү		&#1199;	&#x04AF;		ustraightcyrillic	
+Ұ	Ұ		&#1200;	&#x04B0;		Ustraightstrokecyrillic	
+ұ	ұ		&#1201;	&#x04B1;		ustraightstrokecyrillic	
+Ҳ	Ҳ		&#1202;	&#x04B2;		Hadescendercyrillic	
+ҳ	ҳ		&#1203;	&#x04B3;		hadescendercyrillic	
+Ҵ	Ҵ		&#1204;	&#x04B4;		Tetsecyrillic	
+ҵ	ҵ		&#1205;	&#x04B5;		tetsecyrillic	
+Ҷ	Ҷ		&#1206;	&#x04B6;		Chedescendercyrillic	
+ҷ	ҷ		&#1207;	&#x04B7;		chedescendercyrillic	
+Ҹ	Ҹ		&#1208;	&#x04B8;		Cheverticalstrokecyrillic	
+ҹ	ҹ		&#1209;	&#x04B9;		cheverticalstrokecyrillic	
+Һ	Һ		&#1210;	&#x04BA;		Shhacyrillic	
+һ	һ		&#1211;	&#x04BB;		shhacyrillic	
+Ҽ	Ҽ		&#1212;	&#x04BC;		Cheabkhasiancyrillic	
+ҽ	ҽ		&#1213;	&#x04BD;		cheabkhasiancyrillic	
+Ҿ	Ҿ		&#1214;	&#x04BE;		Chedescenderabkhasiancyrillic	
+ҿ	ҿ		&#1215;	&#x04BF;		chedescenderabkhasiancyrillic	
+Ӏ	Ӏ		&#1216;	&#x04C0;		palochkacyrillic	
+Ӂ	Ӂ		&#1217;	&#x04C1;		Zhebrevecyrillic	
+ӂ	ӂ		&#1218;	&#x04C2;		zhebrevecyrillic	
+Ӄ	Ӄ		&#1219;	&#x04C3;		Kahookcyrillic	
+ӄ	ӄ		&#1220;	&#x04C4;		kahookcyrillic	
+Ӈ	Ӈ		&#1223;	&#x04C7;		Enhookcyrillic	
+ӈ	ӈ		&#1224;	&#x04C8;		enhookcyrillic	
+Ӌ	Ӌ		&#1227;	&#x04CB;		Chekhakassiancyrillic	
+ӌ	ӌ		&#1228;	&#x04CC;		chekhakassiancyrillic	
+Ӑ	Ӑ		&#1232;	&#x04D0;		Abrevecyrillic	
+ӑ	ӑ		&#1233;	&#x04D1;		abrevecyrillic	
+Ӓ	Ӓ		&#1234;	&#x04D2;		Adieresiscyrillic	
+ӓ	ӓ		&#1235;	&#x04D3;		adieresiscyrillic	
+Ӕ	Ӕ		&#1236;	&#x04D4;		Aiecyrillic	
+ӕ	ӕ		&#1237;	&#x04D5;		aiecyrillic	
+Ӗ	Ӗ		&#1238;	&#x04D6;		Iebrevecyrillic	
+ӗ	ӗ		&#1239;	&#x04D7;		iebrevecyrillic	
+Ә	Ә		&#1240;	&#x04D8;		Schwacyrillic	
+ә	ә		&#1241;	&#x04D9;		afii10846
+schwacyrillic	
+Ӛ	Ӛ		&#1242;	&#x04DA;		Schwadieresiscyrillic	
+ӛ	ӛ		&#1243;	&#x04DB;		schwadieresiscyrillic	
+Ӝ	Ӝ		&#1244;	&#x04DC;		Zhedieresiscyrillic	
+ӝ	ӝ		&#1245;	&#x04DD;		zhedieresiscyrillic	
+Ӟ	Ӟ		&#1246;	&#x04DE;		Zedieresiscyrillic	
+ӟ	ӟ		&#1247;	&#x04DF;		zedieresiscyrillic	
+Ӡ	Ӡ		&#1248;	&#x04E0;		Dzeabkhasiancyrillic	
+ӡ	ӡ		&#1249;	&#x04E1;		dzeabkhasiancyrillic	
+Ӣ	Ӣ		&#1250;	&#x04E2;		Imacroncyrillic	
+ӣ	ӣ		&#1251;	&#x04E3;		imacroncyrillic	
+Ӥ	Ӥ		&#1252;	&#x04E4;		Idieresiscyrillic	
+ӥ	ӥ		&#1253;	&#x04E5;		idieresiscyrillic	
+Ӧ	Ӧ		&#1254;	&#x04E6;		Odieresiscyrillic	
+ӧ	ӧ		&#1255;	&#x04E7;		odieresiscyrillic	
+Ө	Ө		&#1256;	&#x04E8;		Obarredcyrillic	
+ө	ө		&#1257;	&#x04E9;		obarredcyrillic	
+Ӫ	Ӫ		&#1258;	&#x04EA;		Obarreddieresiscyrillic	
+ӫ	ӫ		&#1259;	&#x04EB;		obarreddieresiscyrillic	
+Ӯ	Ӯ		&#1262;	&#x04EE;		Umacroncyrillic	
+ӯ	ӯ		&#1263;	&#x04EF;		umacroncyrillic	
+Ӱ	Ӱ		&#1264;	&#x04F0;		Udieresiscyrillic	
+ӱ	ӱ		&#1265;	&#x04F1;		udieresiscyrillic	
+Ӳ	Ӳ		&#1266;	&#x04F2;		Uhungarumlautcyrillic	
+ӳ	ӳ		&#1267;	&#x04F3;		uhungarumlautcyrillic	
+Ӵ	Ӵ		&#1268;	&#x04F4;		Chedieresiscyrillic	
+ӵ	ӵ		&#1269;	&#x04F5;		chedieresiscyrillic	
+Ӹ	Ӹ		&#1272;	&#x04F8;		Yerudieresiscyrillic	
+ӹ	ӹ		&#1273;	&#x04F9;		yerudieresiscyrillic	
+Ա	Ա		&#1329;	&#x0531;		Aybarmenian	
+Բ	Բ		&#1330;	&#x0532;		Benarmenian	
+Գ	Գ		&#1331;	&#x0533;		Gimarmenian	
+Դ	Դ		&#1332;	&#x0534;		Daarmenian	
+Ե	Ե		&#1333;	&#x0535;		Echarmenian	
+Զ	Զ		&#1334;	&#x0536;		Zaarmenian	
+Է	Է		&#1335;	&#x0537;		Eharmenian	
+Ը	Ը		&#1336;	&#x0538;		Etarmenian	
+Թ	Թ		&#1337;	&#x0539;		Toarmenian	
+Ժ	Ժ		&#1338;	&#x053A;		Zhearmenian	
+Ի	Ի		&#1339;	&#x053B;		Iniarmenian	
+Լ	Լ		&#1340;	&#x053C;		Liwnarmenian	
+Խ	Խ		&#1341;	&#x053D;		Xeharmenian	
+Ծ	Ծ		&#1342;	&#x053E;		Caarmenian	
+Կ	Կ		&#1343;	&#x053F;		Kenarmenian	
+Հ	Հ		&#1344;	&#x0540;		Hoarmenian	
+Ձ	Ձ		&#1345;	&#x0541;		Jaarmenian	
+Ղ	Ղ		&#1346;	&#x0542;		Ghadarmenian	
+Ճ	Ճ		&#1347;	&#x0543;		Cheharmenian	
+Մ	Մ		&#1348;	&#x0544;		Menarmenian	
+Յ	Յ		&#1349;	&#x0545;		Yiarmenian	
+Ն	Ն		&#1350;	&#x0546;		Nowarmenian	
+Շ	Շ		&#1351;	&#x0547;		Shaarmenian	
+Ո	Ո		&#1352;	&#x0548;		Voarmenian	
+Չ	Չ		&#1353;	&#x0549;		Chaarmenian	
+Պ	Պ		&#1354;	&#x054A;		Peharmenian	
+Ջ	Ջ		&#1355;	&#x054B;		Jheharmenian	
+Ռ	Ռ		&#1356;	&#x054C;		Raarmenian	
+Ս	Ս		&#1357;	&#x054D;		Seharmenian	
+Վ	Վ		&#1358;	&#x054E;		Vewarmenian	
+Տ	Տ		&#1359;	&#x054F;		Tiwnarmenian	
+Ր	Ր		&#1360;	&#x0550;		Reharmenian	
+Ց	Ց		&#1361;	&#x0551;		Coarmenian	
+Ւ	Ւ		&#1362;	&#x0552;		Yiwnarmenian	
+Փ	Փ		&#1363;	&#x0553;		Piwrarmenian	
+Ք	Ք		&#1364;	&#x0554;		Keharmenian	
+Օ	Օ		&#1365;	&#x0555;		Oharmenian	
+Ֆ	Ֆ		&#1366;	&#x0556;		Feharmenian	
+ՙ	ՙ		&#1369;	&#x0559;		ringhalfleftarmenian	
+՚	՚		&#1370;	&#x055A;		apostrophearmenian	
+՛	՛		&#1371;	&#x055B;		emphasismarkarmenian	
+՜	՜		&#1372;	&#x055C;		exclamarmenian	
+՝	՝		&#1373;	&#x055D;		commaarmenian	
+՞	՞		&#1374;	&#x055E;		questionarmenian	
+՟	՟		&#1375;	&#x055F;		abbreviationmarkarmenian	
+ա	ա		&#1377;	&#x0561;		aybarmenian	
+բ	բ		&#1378;	&#x0562;		benarmenian	
+գ	գ		&#1379;	&#x0563;		gimarmenian	
+դ	դ		&#1380;	&#x0564;		daarmenian	
+ե	ե		&#1381;	&#x0565;		echarmenian	
+զ	զ		&#1382;	&#x0566;		zaarmenian	
+է	է		&#1383;	&#x0567;		eharmenian	
+ը	ը		&#1384;	&#x0568;		etarmenian	
+թ	թ		&#1385;	&#x0569;		toarmenian	
+ժ	ժ		&#1386;	&#x056A;		zhearmenian	
+ի	ի		&#1387;	&#x056B;		iniarmenian	
+լ	լ		&#1388;	&#x056C;		liwnarmenian	
+խ	խ		&#1389;	&#x056D;		xeharmenian	
+ծ	ծ		&#1390;	&#x056E;		caarmenian	
+կ	կ		&#1391;	&#x056F;		kenarmenian	
+հ	հ		&#1392;	&#x0570;		hoarmenian	
+ձ	ձ		&#1393;	&#x0571;		jaarmenian	
+ղ	ղ		&#1394;	&#x0572;		ghadarmenian	
+ճ	ճ		&#1395;	&#x0573;		cheharmenian	
+մ	մ		&#1396;	&#x0574;		menarmenian	
+յ	յ		&#1397;	&#x0575;		yiarmenian	
+ն	ն		&#1398;	&#x0576;		nowarmenian	
+շ	շ		&#1399;	&#x0577;		shaarmenian	
+ո	ո		&#1400;	&#x0578;		voarmenian	
+չ	չ		&#1401;	&#x0579;		chaarmenian	
+պ	պ		&#1402;	&#x057A;		peharmenian	
+ջ	ջ		&#1403;	&#x057B;		jheharmenian	
+ռ	ռ		&#1404;	&#x057C;		raarmenian	
+ս	ս		&#1405;	&#x057D;		seharmenian	
+վ	վ		&#1406;	&#x057E;		vewarmenian	
+տ	տ		&#1407;	&#x057F;		tiwnarmenian	
+ր	ր		&#1408;	&#x0580;		reharmenian	
+ց	ց		&#1409;	&#x0581;		coarmenian	
+ւ	ւ		&#1410;	&#x0582;		yiwnarmenian	
+փ	փ		&#1411;	&#x0583;		piwrarmenian	
+ք	ք		&#1412;	&#x0584;		keharmenian	
+օ	օ		&#1413;	&#x0585;		oharmenian	
+ֆ	ֆ		&#1414;	&#x0586;		feharmenian	
+և	և		&#1415;	&#x0587;		echyiwnarmenian	
+։	։		&#1417;	&#x0589;		periodarmenian	
+֑	֑		&#1425;	&#x0591;		etnahtafoukhhebrew
+etnahtafoukhlefthebrew
+etnahtahebrew
+etnahtalefthebrew	
+֒	֒		&#1426;	&#x0592;		segoltahebrew	
+֓	֓		&#1427;	&#x0593;		shalshelethebrew	
+֔	֔		&#1428;	&#x0594;		zaqefqatanhebrew	
+֕	֕		&#1429;	&#x0595;		zaqefgadolhebrew	
+֖	֖		&#1430;	&#x0596;		tipehahebrew
+tipehalefthebrew	
+֗	֗		&#1431;	&#x0597;		reviahebrew
+reviamugrashhebrew	
+֘	֘		&#1432;	&#x0598;		zarqahebrew	
+֙	֙		&#1433;	&#x0599;		pashtahebrew	
+֚	֚		&#1434;	&#x059A;		yetivhebrew	
+֛	֛		&#1435;	&#x059B;		tevirhebrew
+tevirlefthebrew	
+֜	֜		&#1436;	&#x059C;		gereshaccenthebrew	
+֝	֝		&#1437;	&#x059D;		gereshmuqdamhebrew	
+֞	֞		&#1438;	&#x059E;		gershayimaccenthebrew	
+֟	֟		&#1439;	&#x059F;		qarneyparahebrew	
+֠	֠		&#1440;	&#x05A0;		telishagedolahebrew	
+֡	֡		&#1441;	&#x05A1;		pazerhebrew	
+֣	֣		&#1443;	&#x05A3;		munahhebrew
+munahlefthebrew	
+֤	֤		&#1444;	&#x05A4;		mahapakhhebrew
+mahapakhlefthebrew	
+֥	֥		&#1445;	&#x05A5;		merkhahebrew
+merkhalefthebrew	
+֦	֦		&#1446;	&#x05A6;		merkhakefulahebrew
+merkhakefulalefthebrew	
+֧	֧		&#1447;	&#x05A7;		dargahebrew
+dargalefthebrew	
+֨	֨		&#1448;	&#x05A8;		qadmahebrew	
+֩	֩		&#1449;	&#x05A9;		telishaqetanahebrew	
+֪	֪		&#1450;	&#x05AA;		yerahbenyomohebrew
+yerahbenyomolefthebrew	
+֫	֫		&#1451;	&#x05AB;		olehebrew	
+֬	֬		&#1452;	&#x05AC;		iluyhebrew	
+֭	֭		&#1453;	&#x05AD;		dehihebrew	
+֮	֮		&#1454;	&#x05AE;		zinorhebrew	
+֯	֯		&#1455;	&#x05AF;		masoracirclehebrew	
+ְ	ְ		&#1456;	&#x05B0;		afii57799
+sheva
+sheva115
+sheva15
+sheva22
+sheva2e
+shevahebrew
+shevanarrowhebrew
+shevaquarterhebrew
+shevawidehebrew	
+ֱ	ֱ		&#1457;	&#x05B1;		afii57801
+hatafsegol
+hatafsegol17
+hatafsegol24
+hatafsegol30
+hatafsegolhebrew
+hatafsegolnarrowhebrew
+hatafsegolquarterhebrew
+hatafsegolwidehebrew	
+ֲ	ֲ		&#1458;	&#x05B2;		afii57800
+hatafpatah
+hatafpatah16
+hatafpatah23
+hatafpatah2f
+hatafpatahhebrew
+hatafpatahnarrowhebrew
+hatafpatahquarterhebrew
+hatafpatahwidehebrew	
+ֳ	ֳ		&#1459;	&#x05B3;		afii57802
+hatafqamats
+hatafqamats1b
+hatafqamats28
+hatafqamats34
+hatafqamatshebrew
+hatafqamatsnarrowhebrew
+hatafqamatsquarterhebrew
+hatafqamatswidehebrew	
+ִ	ִ		&#1460;	&#x05B4;		afii57793
+hiriq
+hiriq14
+hiriq21
+hiriq2d
+hiriqhebrew
+hiriqnarrowhebrew
+hiriqquarterhebrew
+hiriqwidehebrew	
+ֵ	ֵ		&#1461;	&#x05B5;		afii57794
+tsere
+tsere12
+tsere1e
+tsere2b
+tserehebrew
+tserenarrowhebrew
+tserequarterhebrew
+tserewidehebrew	
+ֶ	ֶ		&#1462;	&#x05B6;		afii57795
+segol
+segol13
+segol1f
+segol2c
+segolhebrew
+segolnarrowhebrew
+segolquarterhebrew
+segolwidehebrew	
+ַ	ַ		&#1463;	&#x05B7;		afii57798
+patah
+patah11
+patah1d
+patah2a
+patahhebrew
+patahnarrowhebrew
+patahquarterhebrew
+patahwidehebrew	
+ָ	ָ		&#1464;	&#x05B8;		afii57797
+qamats
+qamats10
+qamats1a
+qamats1c
+qamats27
+qamats29
+qamats33
+qamatsde
+qamatshebrew
+qamatsnarrowhebrew
+qamatsqatanhebrew
+qamatsqatannarrowhebrew
+qamatsqatanquarterhebrew
+qamatsqatanwidehebrew
+qamatsquarterhebrew
+qamatswidehebrew	
+ֹ	ֹ		&#1465;	&#x05B9;		afii57806
+holam
+holam19
+holam26
+holam32
+holamhebrew
+holamnarrowhebrew
+holamquarterhebrew
+holamwidehebrew	
+ֻ	ֻ		&#1467;	&#x05BB;		afii57796
+qubuts
+qubuts18
+qubuts25
+qubuts31
+qubutshebrew
+qubutsnarrowhebrew
+qubutsquarterhebrew
+qubutswidehebrew	
+ּ	ּ		&#1468;	&#x05BC;		afii57807
+dagesh
+dageshhebrew	
+ֽ	ֽ		&#1469;	&#x05BD;		afii57839
+siluqhebrew
+siluqlefthebrew	
+־	־		&#1470;	&#x05BE;		afii57645
+maqafhebrew	
+ֿ	ֿ		&#1471;	&#x05BF;		afii57841
+rafe
+rafehebrew	
+׀	׀		&#1472;	&#x05C0;		afii57842
+paseqhebrew	
+ׁ	ׁ		&#1473;	&#x05C1;		afii57804
+shindothebrew	
+ׂ	ׂ		&#1474;	&#x05C2;		afii57803
+sindothebrew	
+׃	׃		&#1475;	&#x05C3;		afii57658
+sofpasuqhebrew	
+ׄ	ׄ		&#1476;	&#x05C4;		upperdothebrew	
+א	א		&#1488;	&#x05D0;		afii57664
+alef
+alefhebrew	
+ב	ב		&#1489;	&#x05D1;		afii57665
+bet
+bethebrew	
+ג	ג		&#1490;	&#x05D2;		afii57666
+gimel
+gimelhebrew	
+ד	ד		&#1491;	&#x05D3;		afii57667
+dalet
+dalethebrew
+daletsheva
+daletshevahebrew
+dalethatafsegol
+dalethatafsegolhebrew
+dalethatafpatah
+dalethatafpatahhebrew
+dalethiriq
+dalethiriqhebrew
+dalettsere
+dalettserehebrew
+daletsegol
+daletsegolhebrew
+daletpatah
+daletpatahhebrew
+daletqamats
+daletqamatshebrew
+daletholam
+daletholamhebrew
+daletqubuts
+daletqubutshebrew	
+ה	ה		&#1492;	&#x05D4;		afii57668
+he
+hehebrew	
+ו	ו		&#1493;	&#x05D5;		afii57669
+vav
+vavhebrew	
+ז	ז		&#1494;	&#x05D6;		afii57670
+zayin
+zayinhebrew	
+ח	ח		&#1495;	&#x05D7;		afii57671
+het
+hethebrew	
+ט	ט		&#1496;	&#x05D8;		afii57672
+tet
+tethebrew	
+י	י		&#1497;	&#x05D9;		afii57673
+yod
+yodhebrew	
+ך	ך		&#1498;	&#x05DA;		afii57674
+finalkaf
+finalkafhebrew
+finalkafsheva
+finalkafshevahebrew
+finalkafqamats
+finalkafqamatshebrew	
+כ	כ		&#1499;	&#x05DB;		afii57675
+kaf
+kafhebrew	
+ל	ל		&#1500;	&#x05DC;		afii57676
+lamed
+lamedhebrew
+lamedholam
+lamedholamhebrew
+lamedholamdagesh
+lamedholamdageshhebrew	
+ם	ם		&#1501;	&#x05DD;		afii57677
+finalmem
+finalmemhebrew	
+מ	מ		&#1502;	&#x05DE;		afii57678
+mem
+memhebrew	
+ן	ן		&#1503;	&#x05DF;		afii57679
+finalnun
+finalnunhebrew	
+נ	נ		&#1504;	&#x05E0;		afii57680
+nun
+nunhebrew	
+ס	ס		&#1505;	&#x05E1;		afii57681
+samekh
+samekhhebrew	
+ע	ע		&#1506;	&#x05E2;		afii57682
+ayin
+ayinhebrew	
+ף	ף		&#1507;	&#x05E3;		afii57683
+finalpe
+finalpehebrew	
+פ	פ		&#1508;	&#x05E4;		afii57684
+pe
+pehebrew	
+ץ	ץ		&#1509;	&#x05E5;		afii57685
+finaltsadi
+finaltsadihebrew	
+צ	צ		&#1510;	&#x05E6;		afii57686
+tsadi
+tsadihebrew	
+ק	ק		&#1511;	&#x05E7;		afii57687
+qof
+qofhebrew
+qofsheva
+qofshevahebrew
+qofhatafsegol
+qofhatafsegolhebrew
+qofhatafpatah
+qofhatafpatahhebrew
+qofhiriq
+qofhiriqhebrew
+qoftsere
+qoftserehebrew
+qofsegol
+qofsegolhebrew
+qofpatah
+qofpatahhebrew
+qofqamats
+qofqamatshebrew
+qofholam
+qofholamhebrew
+qofqubuts
+qofqubutshebrew	
+ר	ר		&#1512;	&#x05E8;		afii57688
+resh
+reshhebrew
+reshsheva
+reshshevahebrew
+reshhatafsegol
+reshhatafsegolhebrew
+reshhatafpatah
+reshhatafpatahhebrew
+reshhiriq
+reshhiriqhebrew
+reshtsere
+reshtserehebrew
+reshsegol
+reshsegolhebrew
+reshpatah
+reshpatahhebrew
+reshqamats
+reshqamatshebrew
+reshholam
+reshholamhebrew
+reshqubuts
+reshqubutshebrew	
+ש	ש		&#1513;	&#x05E9;		afii57689
+shin
+shinhebrew	
+ת	ת		&#1514;	&#x05EA;		afii57690
+tav
+tavhebrew	
+װ	װ		&#1520;	&#x05F0;		afii57716
+vavvavhebrew	
+ױ	ױ		&#1521;	&#x05F1;		afii57717
+vavyodhebrew	
+ײ	ײ		&#1522;	&#x05F2;		afii57718
+yodyodhebrew	
+׳	׳		&#1523;	&#x05F3;		gereshhebrew	
+״	״		&#1524;	&#x05F4;		gershayimhebrew	
+،	،		&#1548;	&#x060C;		afii57388
+commaarabic	
+؛	؛		&#1563;	&#x061B;		afii57403
+semicolonarabic	
+؟	؟		&#1567;	&#x061F;		afii57407
+questionarabic	
+ء	ء		&#1569;	&#x0621;		afii57409
+hamzaarabic
+hamzalowarabic
+hamzafathatanarabic
+hamzadammatanarabic
+hamzalowkasratanarabic
+hamzafathaarabic
+hamzadammaarabic
+hamzalowkasraarabic
+hamzasukunarabic	
+آ	آ		&#1570;	&#x0622;		afii57410
+alefmaddaabovearabic	
+أ	أ		&#1571;	&#x0623;		afii57411
+alefhamzaabovearabic	
+ؤ	ؤ		&#1572;	&#x0624;		afii57412
+wawhamzaabovearabic	
+إ	إ		&#1573;	&#x0625;		afii57413
+alefhamzabelowarabic	
+ئ	ئ		&#1574;	&#x0626;		afii57414
+yehhamzaabovearabic	
+ا	ا		&#1575;	&#x0627;		afii57415
+alefarabic	
+ب	ب		&#1576;	&#x0628;		afii57416
+beharabic	
+ة	ة		&#1577;	&#x0629;		afii57417
+tehmarbutaarabic	
+ت	ت		&#1578;	&#x062A;		afii57418
+teharabic	
+ث	ث		&#1579;	&#x062B;		afii57419
+theharabic	
+ج	ج		&#1580;	&#x062C;		afii57420
+jeemarabic	
+ح	ح		&#1581;	&#x062D;		afii57421
+haharabic	
+خ	خ		&#1582;	&#x062E;		afii57422
+khaharabic	
+د	د		&#1583;	&#x062F;		afii57423
+dalarabic	
+ذ	ذ		&#1584;	&#x0630;		afii57424
+thalarabic	
+ر	ر		&#1585;	&#x0631;		afii57425
+reharabic
+rehyehaleflamarabic	
+ز	ز		&#1586;	&#x0632;		afii57426
+zainarabic	
+س	س		&#1587;	&#x0633;		afii57427
+seenarabic	
+ش	ش		&#1588;	&#x0634;		afii57428
+sheenarabic	
+ص	ص		&#1589;	&#x0635;		afii57429
+sadarabic	
+ض	ض		&#1590;	&#x0636;		afii57430
+dadarabic	
+ط	ط		&#1591;	&#x0637;		afii57431
+taharabic	
+ظ	ظ		&#1592;	&#x0638;		afii57432
+zaharabic	
+ع	ع		&#1593;	&#x0639;		afii57433
+ainarabic	
+غ	غ		&#1594;	&#x063A;		afii57434
+ghainarabic	
+ـ	ـ		&#1600;	&#x0640;		afii57440
+kashidaautoarabic
+kashidaautonosidebearingarabic
+tatweelarabic	
+ف	ف		&#1601;	&#x0641;		afii57441
+feharabic	
+ق	ق		&#1602;	&#x0642;		afii57442
+qafarabic	
+ك	ك		&#1603;	&#x0643;		afii57443
+kafarabic	
+ل	ل		&#1604;	&#x0644;		afii57444
+lamarabic	
+م	م		&#1605;	&#x0645;		afii57445
+meemarabic	
+ن	ن		&#1606;	&#x0646;		afii57446
+noonarabic	
+ه	ه		&#1607;	&#x0647;		afii57470
+heharabic	
+و	و		&#1608;	&#x0648;		afii57448
+wawarabic	
+ى	ى		&#1609;	&#x0649;		afii57449
+alefmaksuraarabic	
+ي	ي		&#1610;	&#x064A;		afii57450
+yeharabic	
+ً	ً		&#1611;	&#x064B;		afii57451
+fathatanarabic	
+ٌ	ٌ		&#1612;	&#x064C;		afii57452
+dammatanaltonearabic
+dammatanarabic	
+ٍ	ٍ		&#1613;	&#x064D;		afii57453
+kasratanarabic	
+َ	َ		&#1614;	&#x064E;		afii57454
+fathaarabic
+fathalowarabic	
+ُ	ُ		&#1615;	&#x064F;		afii57455
+dammaarabic
+dammalowarabic	
+ِ	ِ		&#1616;	&#x0650;		afii57456
+kasraarabic	
+ّ	ّ		&#1617;	&#x0651;		afii57457
+shaddaarabic
+shaddafathatanarabic	
+ْ	ْ		&#1618;	&#x0652;		afii57458
+sukunarabic	
+٠	٠		&#1632;	&#x0660;		afii57392
+zeroarabic
+zerohackarabic	
+١	١		&#1633;	&#x0661;		afii57393
+onearabic
+onehackarabic	
+٢	٢		&#1634;	&#x0662;		afii57394
+twoarabic
+twohackarabic	
+٣	٣		&#1635;	&#x0663;		afii57395
+threearabic
+threehackarabic	
+٤	٤		&#1636;	&#x0664;		afii57396
+fourarabic
+fourhackarabic	
+٥	٥		&#1637;	&#x0665;		afii57397
+fivearabic
+fivehackarabic	
+٦	٦		&#1638;	&#x0666;		afii57398
+sixarabic
+sixhackarabic	
+٧	٧		&#1639;	&#x0667;		afii57399
+sevenarabic
+sevenhackarabic	
+٨	٨		&#1640;	&#x0668;		afii57400
+eightarabic
+eighthackarabic	
+٩	٩		&#1641;	&#x0669;		afii57401
+ninearabic
+ninehackarabic	
+٪	٪		&#1642;	&#x066A;		afii57381
+percentarabic	
+٫	٫		&#1643;	&#x066B;		decimalseparatorarabic
+decimalseparatorpersian	
+٬	٬		&#1644;	&#x066C;		thousandsseparatorarabic
+thousandsseparatorpersian	
+٭	٭		&#1645;	&#x066D;		afii63167
+asteriskaltonearabic
+asteriskarabic	
+ٹ	ٹ		&#1657;	&#x0679;		afii57511
+tteharabic	
+پ	پ		&#1662;	&#x067E;		afii57506
+peharabic	
+چ	چ		&#1670;	&#x0686;		afii57507
+tcheharabic	
+ڈ	ڈ		&#1672;	&#x0688;		afii57512
+ddalarabic	
+ڑ	ڑ		&#1681;	&#x0691;		afii57513
+rreharabic	
+ژ	ژ		&#1688;	&#x0698;		afii57508
+jeharabic	
+ڤ	ڤ		&#1700;	&#x06A4;		afii57505
+veharabic	
+گ	گ		&#1711;	&#x06AF;		afii57509
+gafarabic	
+ں	ں		&#1722;	&#x06BA;		afii57514
+noonghunnaarabic	
+ہ	ہ		&#1729;	&#x06C1;		haaltonearabic
+hehaltonearabic	
+ۑ	ۑ		&#1745;	&#x06D1;		yehthreedotsbelowarabic	
+ے	ے		&#1746;	&#x06D2;		afii57519
+yehbarreearabic	
+ە	ە		&#1749;	&#x06D5;		afii57534	
+۰	۰		&#1776;	&#x06F0;		zeropersian	
+۱	۱		&#1777;	&#x06F1;		onepersian	
+۲	۲		&#1778;	&#x06F2;		twopersian	
+۳	۳		&#1779;	&#x06F3;		threepersian	
+۴	۴		&#1780;	&#x06F4;		fourpersian	
+۵	۵		&#1781;	&#x06F5;		fivepersian	
+۶	۶		&#1782;	&#x06F6;		sixpersian	
+۷	۷		&#1783;	&#x06F7;		sevenpersian	
+۸	۸		&#1784;	&#x06F8;		eightpersian	
+۹	۹		&#1785;	&#x06F9;		ninepersian	
+ँ	ँ		&#2305;	&#x0901;		candrabindudeva	
+ं	ं		&#2306;	&#x0902;		anusvaradeva	
+ः	ः		&#2307;	&#x0903;		visargadeva	
+अ	अ		&#2309;	&#x0905;		adeva	
+आ	आ		&#2310;	&#x0906;		aadeva	
+इ	इ		&#2311;	&#x0907;		ideva	
+ई	ई		&#2312;	&#x0908;		iideva	
+उ	उ		&#2313;	&#x0909;		udeva	
+ऊ	ऊ		&#2314;	&#x090A;		uudeva	
+ऋ	ऋ		&#2315;	&#x090B;		rvocalicdeva	
+ऌ	ऌ		&#2316;	&#x090C;		lvocalicdeva	
+ऍ	ऍ		&#2317;	&#x090D;		ecandradeva	
+ऎ	ऎ		&#2318;	&#x090E;		eshortdeva	
+ए	ए		&#2319;	&#x090F;		edeva	
+ऐ	ऐ		&#2320;	&#x0910;		aideva	
+ऑ	ऑ		&#2321;	&#x0911;		ocandradeva	
+ऒ	ऒ		&#2322;	&#x0912;		oshortdeva	
+ओ	ओ		&#2323;	&#x0913;		odeva	
+औ	औ		&#2324;	&#x0914;		audeva	
+क	क		&#2325;	&#x0915;		kadeva	
+ख	ख		&#2326;	&#x0916;		khadeva	
+ग	ग		&#2327;	&#x0917;		gadeva	
+घ	घ		&#2328;	&#x0918;		ghadeva	
+ङ	ङ		&#2329;	&#x0919;		ngadeva	
+च	च		&#2330;	&#x091A;		cadeva	
+छ	छ		&#2331;	&#x091B;		chadeva	
+ज	ज		&#2332;	&#x091C;		jadeva	
+झ	झ		&#2333;	&#x091D;		jhadeva	
+ञ	ञ		&#2334;	&#x091E;		nyadeva	
+ट	ट		&#2335;	&#x091F;		ttadeva	
+ठ	ठ		&#2336;	&#x0920;		tthadeva	
+ड	ड		&#2337;	&#x0921;		ddadeva	
+ढ	ढ		&#2338;	&#x0922;		ddhadeva	
+ण	ण		&#2339;	&#x0923;		nnadeva	
+त	त		&#2340;	&#x0924;		tadeva	
+थ	थ		&#2341;	&#x0925;		thadeva	
+द	द		&#2342;	&#x0926;		dadeva	
+ध	ध		&#2343;	&#x0927;		dhadeva	
+न	न		&#2344;	&#x0928;		nadeva	
+ऩ	ऩ		&#2345;	&#x0929;		nnnadeva	
+प	प		&#2346;	&#x092A;		padeva	
+फ	फ		&#2347;	&#x092B;		phadeva	
+ब	ब		&#2348;	&#x092C;		badeva	
+भ	भ		&#2349;	&#x092D;		bhadeva	
+म	म		&#2350;	&#x092E;		madeva	
+य	य		&#2351;	&#x092F;		yadeva	
+र	र		&#2352;	&#x0930;		radeva	
+ऱ	ऱ		&#2353;	&#x0931;		rradeva	
+ल	ल		&#2354;	&#x0932;		ladeva	
+ळ	ळ		&#2355;	&#x0933;		lladeva	
+ऴ	ऴ		&#2356;	&#x0934;		llladeva	
+व	व		&#2357;	&#x0935;		vadeva	
+श	श		&#2358;	&#x0936;		shadeva	
+ष	ष		&#2359;	&#x0937;		ssadeva	
+स	स		&#2360;	&#x0938;		sadeva	
+ह	ह		&#2361;	&#x0939;		hadeva	
+़	़		&#2364;	&#x093C;		nuktadeva	
+ऽ	ऽ		&#2365;	&#x093D;		avagrahadeva	
+ा	ा		&#2366;	&#x093E;		aavowelsigndeva	
+ि	ि		&#2367;	&#x093F;		ivowelsigndeva	
+ी	ी		&#2368;	&#x0940;		iivowelsigndeva	
+ु	ु		&#2369;	&#x0941;		uvowelsigndeva	
+ू	ू		&#2370;	&#x0942;		uuvowelsigndeva	
+ृ	ृ		&#2371;	&#x0943;		rvocalicvowelsigndeva	
+ॄ	ॄ		&#2372;	&#x0944;		rrvocalicvowelsigndeva	
+ॅ	ॅ		&#2373;	&#x0945;		ecandravowelsigndeva	
+ॆ	ॆ		&#2374;	&#x0946;		eshortvowelsigndeva	
+े	े		&#2375;	&#x0947;		evowelsigndeva	
+ै	ै		&#2376;	&#x0948;		aivowelsigndeva	
+ॉ	ॉ		&#2377;	&#x0949;		ocandravowelsigndeva	
+ॊ	ॊ		&#2378;	&#x094A;		oshortvowelsigndeva	
+ो	ो		&#2379;	&#x094B;		ovowelsigndeva	
+ौ	ौ		&#2380;	&#x094C;		auvowelsigndeva	
+्	्		&#2381;	&#x094D;		viramadeva	
+ॐ	ॐ		&#2384;	&#x0950;		omdeva	
+॑	॑		&#2385;	&#x0951;		udattadeva	
+॒	॒		&#2386;	&#x0952;		anudattadeva	
+॓	॓		&#2387;	&#x0953;		gravedeva	
+॔	॔		&#2388;	&#x0954;		acutedeva	
+क़	क़		&#2392;	&#x0958;		qadeva	
+ख़	ख़		&#2393;	&#x0959;		khhadeva	
+ग़	ग़		&#2394;	&#x095A;		ghhadeva	
+ज़	ज़		&#2395;	&#x095B;		zadeva	
+ड़	ड़		&#2396;	&#x095C;		dddhadeva	
+ढ़	ढ़		&#2397;	&#x095D;		rhadeva	
+फ़	फ़		&#2398;	&#x095E;		fadeva	
+य़	य़		&#2399;	&#x095F;		yyadeva	
+ॠ	ॠ		&#2400;	&#x0960;		rrvocalicdeva	
+ॡ	ॡ		&#2401;	&#x0961;		llvocalicdeva	
+ॢ	ॢ		&#2402;	&#x0962;		lvocalicvowelsigndeva	
+ॣ	ॣ		&#2403;	&#x0963;		llvocalicvowelsigndeva	
+।	।		&#2404;	&#x0964;		danda	
+॥	॥		&#2405;	&#x0965;		dbldanda	
+०	०		&#2406;	&#x0966;		zerodeva	
+१	१		&#2407;	&#x0967;		onedeva	
+२	२		&#2408;	&#x0968;		twodeva	
+३	३		&#2409;	&#x0969;		threedeva	
+४	४		&#2410;	&#x096A;		fourdeva	
+५	५		&#2411;	&#x096B;		fivedeva	
+६	६		&#2412;	&#x096C;		sixdeva	
+७	७		&#2413;	&#x096D;		sevendeva	
+८	८		&#2414;	&#x096E;		eightdeva	
+९	९		&#2415;	&#x096F;		ninedeva	
+॰	॰		&#2416;	&#x0970;		abbreviationsigndeva	
+ঁ	ঁ		&#2433;	&#x0981;		candrabindubengali	
+ং	ং		&#2434;	&#x0982;		anusvarabengali	
+ঃ	ঃ		&#2435;	&#x0983;		visargabengali	
+অ	অ		&#2437;	&#x0985;		abengali	
+আ	আ		&#2438;	&#x0986;		aabengali	
+ই	ই		&#2439;	&#x0987;		ibengali	
+ঈ	ঈ		&#2440;	&#x0988;		iibengali	
+উ	উ		&#2441;	&#x0989;		ubengali	
+ঊ	ঊ		&#2442;	&#x098A;		uubengali	
+ঋ	ঋ		&#2443;	&#x098B;		rvocalicbengali	
+ঌ	ঌ		&#2444;	&#x098C;		lvocalicbengali	
+এ	এ		&#2447;	&#x098F;		ebengali	
+ঐ	ঐ		&#2448;	&#x0990;		aibengali	
+ও	ও		&#2451;	&#x0993;		obengali	
+ঔ	ঔ		&#2452;	&#x0994;		aubengali	
+ক	ক		&#2453;	&#x0995;		kabengali	
+খ	খ		&#2454;	&#x0996;		khabengali	
+গ	গ		&#2455;	&#x0997;		gabengali	
+ঘ	ঘ		&#2456;	&#x0998;		ghabengali	
+ঙ	ঙ		&#2457;	&#x0999;		ngabengali	
+চ	চ		&#2458;	&#x099A;		cabengali	
+ছ	ছ		&#2459;	&#x099B;		chabengali	
+জ	জ		&#2460;	&#x099C;		jabengali	
+ঝ	ঝ		&#2461;	&#x099D;		jhabengali	
+ঞ	ঞ		&#2462;	&#x099E;		nyabengali	
+ট	ট		&#2463;	&#x099F;		ttabengali	
+ঠ	ঠ		&#2464;	&#x09A0;		tthabengali	
+ড	ড		&#2465;	&#x09A1;		ddabengali	
+ঢ	ঢ		&#2466;	&#x09A2;		ddhabengali	
+ণ	ণ		&#2467;	&#x09A3;		nnabengali	
+ত	ত		&#2468;	&#x09A4;		tabengali	
+থ	থ		&#2469;	&#x09A5;		thabengali	
+দ	দ		&#2470;	&#x09A6;		dabengali	
+ধ	ধ		&#2471;	&#x09A7;		dhabengali	
+ন	ন		&#2472;	&#x09A8;		nabengali	
+প	প		&#2474;	&#x09AA;		pabengali	
+ফ	ফ		&#2475;	&#x09AB;		phabengali	
+ব	ব		&#2476;	&#x09AC;		babengali	
+ভ	ভ		&#2477;	&#x09AD;		bhabengali	
+ম	ম		&#2478;	&#x09AE;		mabengali	
+য	য		&#2479;	&#x09AF;		yabengali	
+র	র		&#2480;	&#x09B0;		rabengali	
+ল	ল		&#2482;	&#x09B2;		labengali	
+শ	শ		&#2486;	&#x09B6;		shabengali	
+ষ	ষ		&#2487;	&#x09B7;		ssabengali	
+স	স		&#2488;	&#x09B8;		sabengali	
+হ	হ		&#2489;	&#x09B9;		habengali	
+়	়		&#2492;	&#x09BC;		nuktabengali	
+া	া		&#2494;	&#x09BE;		aavowelsignbengali	
+ি	ি		&#2495;	&#x09BF;		ivowelsignbengali	
+ী	ী		&#2496;	&#x09C0;		iivowelsignbengali	
+ু	ু		&#2497;	&#x09C1;		uvowelsignbengali	
+ূ	ূ		&#2498;	&#x09C2;		uuvowelsignbengali	
+ৃ	ৃ		&#2499;	&#x09C3;		rvocalicvowelsignbengali	
+ৄ	ৄ		&#2500;	&#x09C4;		rrvocalicvowelsignbengali	
+ে	ে		&#2503;	&#x09C7;		evowelsignbengali	
+ৈ	ৈ		&#2504;	&#x09C8;		aivowelsignbengali	
+ো	ো		&#2507;	&#x09CB;		ovowelsignbengali	
+ৌ	ৌ		&#2508;	&#x09CC;		auvowelsignbengali	
+্	্		&#2509;	&#x09CD;		viramabengali	
+ৗ	ৗ		&#2519;	&#x09D7;		aulengthmarkbengali	
+ড়	ড়		&#2524;	&#x09DC;		rrabengali	
+ঢ়	ঢ়		&#2525;	&#x09DD;		rhabengali	
+য়	য়		&#2527;	&#x09DF;		yyabengali	
+ৠ	ৠ		&#2528;	&#x09E0;		rrvocalicbengali	
+ৡ	ৡ		&#2529;	&#x09E1;		llvocalicbengali	
+ৢ	ৢ		&#2530;	&#x09E2;		lvocalicvowelsignbengali	
+ৣ	ৣ		&#2531;	&#x09E3;		llvocalicvowelsignbengali	
+০	০		&#2534;	&#x09E6;		zerobengali	
+১	১		&#2535;	&#x09E7;		onebengali	
+২	২		&#2536;	&#x09E8;		twobengali	
+৩	৩		&#2537;	&#x09E9;		threebengali	
+৪	৪		&#2538;	&#x09EA;		fourbengali	
+৫	৫		&#2539;	&#x09EB;		fivebengali	
+৬	৬		&#2540;	&#x09EC;		sixbengali	
+৭	৭		&#2541;	&#x09ED;		sevenbengali	
+৮	৮		&#2542;	&#x09EE;		eightbengali	
+৯	৯		&#2543;	&#x09EF;		ninebengali	
+ৰ	ৰ		&#2544;	&#x09F0;		ramiddlediagonalbengali	
+ৱ	ৱ		&#2545;	&#x09F1;		ralowerdiagonalbengali	
+৲	৲		&#2546;	&#x09F2;		rupeemarkbengali	
+৳	৳		&#2547;	&#x09F3;		rupeesignbengali	
+৴	৴		&#2548;	&#x09F4;		onenumeratorbengali	
+৵	৵		&#2549;	&#x09F5;		twonumeratorbengali	
+৶	৶		&#2550;	&#x09F6;		threenumeratorbengali	
+৷	৷		&#2551;	&#x09F7;		fournumeratorbengali	
+৸	৸		&#2552;	&#x09F8;		denominatorminusonenumeratorbengali	
+৹	৹		&#2553;	&#x09F9;		sixteencurrencydenominatorbengali	
+৺	৺		&#2554;	&#x09FA;		issharbengali	
+ਂ	ਂ		&#2562;	&#x0A02;		bindigurmukhi	
+ਅ	ਅ		&#2565;	&#x0A05;		agurmukhi	
+ਆ	ਆ		&#2566;	&#x0A06;		aagurmukhi	
+ਇ	ਇ		&#2567;	&#x0A07;		igurmukhi	
+ਈ	ਈ		&#2568;	&#x0A08;		iigurmukhi	
+ਉ	ਉ		&#2569;	&#x0A09;		ugurmukhi	
+ਊ	ਊ		&#2570;	&#x0A0A;		uugurmukhi	
+ਏ	ਏ		&#2575;	&#x0A0F;		eegurmukhi	
+ਐ	ਐ		&#2576;	&#x0A10;		aigurmukhi	
+ਓ	ਓ		&#2579;	&#x0A13;		oogurmukhi	
+ਔ	ਔ		&#2580;	&#x0A14;		augurmukhi	
+ਕ	ਕ		&#2581;	&#x0A15;		kagurmukhi	
+ਖ	ਖ		&#2582;	&#x0A16;		khagurmukhi	
+ਗ	ਗ		&#2583;	&#x0A17;		gagurmukhi	
+ਘ	ਘ		&#2584;	&#x0A18;		ghagurmukhi	
+ਙ	ਙ		&#2585;	&#x0A19;		ngagurmukhi	
+ਚ	ਚ		&#2586;	&#x0A1A;		cagurmukhi	
+ਛ	ਛ		&#2587;	&#x0A1B;		chagurmukhi	
+ਜ	ਜ		&#2588;	&#x0A1C;		jagurmukhi	
+ਝ	ਝ		&#2589;	&#x0A1D;		jhagurmukhi	
+ਞ	ਞ		&#2590;	&#x0A1E;		nyagurmukhi	
+ਟ	ਟ		&#2591;	&#x0A1F;		ttagurmukhi	
+ਠ	ਠ		&#2592;	&#x0A20;		tthagurmukhi	
+ਡ	ਡ		&#2593;	&#x0A21;		ddagurmukhi	
+ਢ	ਢ		&#2594;	&#x0A22;		ddhagurmukhi	
+ਣ	ਣ		&#2595;	&#x0A23;		nnagurmukhi	
+ਤ	ਤ		&#2596;	&#x0A24;		tagurmukhi	
+ਥ	ਥ		&#2597;	&#x0A25;		thagurmukhi	
+ਦ	ਦ		&#2598;	&#x0A26;		dagurmukhi	
+ਧ	ਧ		&#2599;	&#x0A27;		dhagurmukhi	
+ਨ	ਨ		&#2600;	&#x0A28;		nagurmukhi	
+ਪ	ਪ		&#2602;	&#x0A2A;		pagurmukhi	
+ਫ	ਫ		&#2603;	&#x0A2B;		phagurmukhi	
+ਬ	ਬ		&#2604;	&#x0A2C;		bagurmukhi	
+ਭ	ਭ		&#2605;	&#x0A2D;		bhagurmukhi	
+ਮ	ਮ		&#2606;	&#x0A2E;		magurmukhi	
+ਯ	ਯ		&#2607;	&#x0A2F;		yagurmukhi	
+ਰ	ਰ		&#2608;	&#x0A30;		ragurmukhi	
+ਲ	ਲ		&#2610;	&#x0A32;		lagurmukhi	
+ਵ	ਵ		&#2613;	&#x0A35;		vagurmukhi	
+ਸ਼	ਸ਼		&#2614;	&#x0A36;		shagurmukhi	
+ਸ	ਸ		&#2616;	&#x0A38;		sagurmukhi	
+ਹ	ਹ		&#2617;	&#x0A39;		hagurmukhi	
+਼	਼		&#2620;	&#x0A3C;		nuktagurmukhi	
+ਾ	ਾ		&#2622;	&#x0A3E;		aamatragurmukhi	
+ਿ	ਿ		&#2623;	&#x0A3F;		imatragurmukhi	
+ੀ	ੀ		&#2624;	&#x0A40;		iimatragurmukhi	
+ੁ	ੁ		&#2625;	&#x0A41;		umatragurmukhi	
+ੂ	ੂ		&#2626;	&#x0A42;		uumatragurmukhi	
+ੇ	ੇ		&#2631;	&#x0A47;		eematragurmukhi	
+ੈ	ੈ		&#2632;	&#x0A48;		aimatragurmukhi	
+ੋ	ੋ		&#2635;	&#x0A4B;		oomatragurmukhi	
+ੌ	ੌ		&#2636;	&#x0A4C;		aumatragurmukhi	
+੍	੍		&#2637;	&#x0A4D;		halantgurmukhi	
+ਖ਼	ਖ਼		&#2649;	&#x0A59;		khhagurmukhi	
+ਗ਼	ਗ਼		&#2650;	&#x0A5A;		ghhagurmukhi	
+ਜ਼	ਜ਼		&#2651;	&#x0A5B;		zagurmukhi	
+ੜ	ੜ		&#2652;	&#x0A5C;		rragurmukhi	
+ਫ਼	ਫ਼		&#2654;	&#x0A5E;		fagurmukhi	
+੦	੦		&#2662;	&#x0A66;		zerogurmukhi	
+੧	੧		&#2663;	&#x0A67;		onegurmukhi	
+੨	੨		&#2664;	&#x0A68;		twogurmukhi	
+੩	੩		&#2665;	&#x0A69;		threegurmukhi	
+੪	੪		&#2666;	&#x0A6A;		fourgurmukhi	
+੫	੫		&#2667;	&#x0A6B;		fivegurmukhi	
+੬	੬		&#2668;	&#x0A6C;		sixgurmukhi	
+੭	੭		&#2669;	&#x0A6D;		sevengurmukhi	
+੮	੮		&#2670;	&#x0A6E;		eightgurmukhi	
+੯	੯		&#2671;	&#x0A6F;		ninegurmukhi	
+ੰ	ੰ		&#2672;	&#x0A70;		tippigurmukhi	
+ੱ	ੱ		&#2673;	&#x0A71;		addakgurmukhi	
+ੲ	ੲ		&#2674;	&#x0A72;		irigurmukhi	
+ੳ	ੳ		&#2675;	&#x0A73;		uragurmukhi	
+ੴ	ੴ		&#2676;	&#x0A74;		ekonkargurmukhi	
+ઁ	ઁ		&#2689;	&#x0A81;		candrabindugujarati	
+ં	ં		&#2690;	&#x0A82;		anusvaragujarati	
+ઃ	ઃ		&#2691;	&#x0A83;		visargagujarati	
+અ	અ		&#2693;	&#x0A85;		agujarati	
+આ	આ		&#2694;	&#x0A86;		aagujarati	
+ઇ	ઇ		&#2695;	&#x0A87;		igujarati	
+ઈ	ઈ		&#2696;	&#x0A88;		iigujarati	
+ઉ	ઉ		&#2697;	&#x0A89;		ugujarati	
+ઊ	ઊ		&#2698;	&#x0A8A;		uugujarati	
+ઋ	ઋ		&#2699;	&#x0A8B;		rvocalicgujarati	
+ઍ	ઍ		&#2701;	&#x0A8D;		ecandragujarati	
+એ	એ		&#2703;	&#x0A8F;		egujarati	
+ઐ	ઐ		&#2704;	&#x0A90;		aigujarati	
+ઑ	ઑ		&#2705;	&#x0A91;		ocandragujarati	
+ઓ	ઓ		&#2707;	&#x0A93;		ogujarati	
+ઔ	ઔ		&#2708;	&#x0A94;		augujarati	
+ક	ક		&#2709;	&#x0A95;		kagujarati	
+ખ	ખ		&#2710;	&#x0A96;		khagujarati	
+ગ	ગ		&#2711;	&#x0A97;		gagujarati	
+ઘ	ઘ		&#2712;	&#x0A98;		ghagujarati	
+ઙ	ઙ		&#2713;	&#x0A99;		ngagujarati	
+ચ	ચ		&#2714;	&#x0A9A;		cagujarati	
+છ	છ		&#2715;	&#x0A9B;		chagujarati	
+જ	જ		&#2716;	&#x0A9C;		jagujarati	
+ઝ	ઝ		&#2717;	&#x0A9D;		jhagujarati	
+ઞ	ઞ		&#2718;	&#x0A9E;		nyagujarati	
+ટ	ટ		&#2719;	&#x0A9F;		ttagujarati	
+ઠ	ઠ		&#2720;	&#x0AA0;		tthagujarati	
+ડ	ડ		&#2721;	&#x0AA1;		ddagujarati	
+ઢ	ઢ		&#2722;	&#x0AA2;		ddhagujarati	
+ણ	ણ		&#2723;	&#x0AA3;		nnagujarati	
+ત	ત		&#2724;	&#x0AA4;		tagujarati	
+થ	થ		&#2725;	&#x0AA5;		thagujarati	
+દ	દ		&#2726;	&#x0AA6;		dagujarati	
+ધ	ધ		&#2727;	&#x0AA7;		dhagujarati	
+ન	ન		&#2728;	&#x0AA8;		nagujarati	
+પ	પ		&#2730;	&#x0AAA;		pagujarati	
+ફ	ફ		&#2731;	&#x0AAB;		phagujarati	
+બ	બ		&#2732;	&#x0AAC;		bagujarati	
+ભ	ભ		&#2733;	&#x0AAD;		bhagujarati	
+મ	મ		&#2734;	&#x0AAE;		magujarati	
+ય	ય		&#2735;	&#x0AAF;		yagujarati	
+ર	ર		&#2736;	&#x0AB0;		ragujarati	
+લ	લ		&#2738;	&#x0AB2;		lagujarati	
+ળ	ળ		&#2739;	&#x0AB3;		llagujarati	
+વ	વ		&#2741;	&#x0AB5;		vagujarati	
+શ	શ		&#2742;	&#x0AB6;		shagujarati	
+ષ	ષ		&#2743;	&#x0AB7;		ssagujarati	
+સ	સ		&#2744;	&#x0AB8;		sagujarati	
+હ	હ		&#2745;	&#x0AB9;		hagujarati	
+઼	઼		&#2748;	&#x0ABC;		nuktagujarati	
+ા	ા		&#2750;	&#x0ABE;		aavowelsigngujarati	
+િ	િ		&#2751;	&#x0ABF;		ivowelsigngujarati	
+ી	ી		&#2752;	&#x0AC0;		iivowelsigngujarati	
+ુ	ુ		&#2753;	&#x0AC1;		uvowelsigngujarati	
+ૂ	ૂ		&#2754;	&#x0AC2;		uuvowelsigngujarati	
+ૃ	ૃ		&#2755;	&#x0AC3;		rvocalicvowelsigngujarati	
+ૄ	ૄ		&#2756;	&#x0AC4;		rrvocalicvowelsigngujarati	
+ૅ	ૅ		&#2757;	&#x0AC5;		ecandravowelsigngujarati	
+ે	ે		&#2759;	&#x0AC7;		evowelsigngujarati	
+ૈ	ૈ		&#2760;	&#x0AC8;		aivowelsigngujarati	
+ૉ	ૉ		&#2761;	&#x0AC9;		ocandravowelsigngujarati	
+ો	ો		&#2763;	&#x0ACB;		ovowelsigngujarati	
+ૌ	ૌ		&#2764;	&#x0ACC;		auvowelsigngujarati	
+્	્		&#2765;	&#x0ACD;		viramagujarati	
+ૐ	ૐ		&#2768;	&#x0AD0;		omgujarati	
+ૠ	ૠ		&#2784;	&#x0AE0;		rrvocalicgujarati	
+૦	૦		&#2790;	&#x0AE6;		zerogujarati	
+૧	૧		&#2791;	&#x0AE7;		onegujarati	
+૨	૨		&#2792;	&#x0AE8;		twogujarati	
+૩	૩		&#2793;	&#x0AE9;		threegujarati	
+૪	૪		&#2794;	&#x0AEA;		fourgujarati	
+૫	૫		&#2795;	&#x0AEB;		fivegujarati	
+૬	૬		&#2796;	&#x0AEC;		sixgujarati	
+૭	૭		&#2797;	&#x0AED;		sevengujarati	
+૮	૮		&#2798;	&#x0AEE;		eightgujarati	
+૯	૯		&#2799;	&#x0AEF;		ninegujarati	
+ก	ก		&#3585;	&#x0E01;		kokaithai	
+ข	ข		&#3586;	&#x0E02;		khokhaithai	
+ฃ	ฃ		&#3587;	&#x0E03;		khokhuatthai	
+ค	ค		&#3588;	&#x0E04;		khokhwaithai	
+ฅ	ฅ		&#3589;	&#x0E05;		khokhonthai	
+ฆ	ฆ		&#3590;	&#x0E06;		khorakhangthai	
+ง	ง		&#3591;	&#x0E07;		ngonguthai	
+จ	จ		&#3592;	&#x0E08;		chochanthai	
+ฉ	ฉ		&#3593;	&#x0E09;		chochingthai	
+ช	ช		&#3594;	&#x0E0A;		chochangthai	
+ซ	ซ		&#3595;	&#x0E0B;		sosothai	
+ฌ	ฌ		&#3596;	&#x0E0C;		chochoethai	
+ญ	ญ		&#3597;	&#x0E0D;		yoyingthai	
+ฎ	ฎ		&#3598;	&#x0E0E;		dochadathai	
+ฏ	ฏ		&#3599;	&#x0E0F;		topatakthai	
+ฐ	ฐ		&#3600;	&#x0E10;		thothanthai	
+ฑ	ฑ		&#3601;	&#x0E11;		thonangmonthothai	
+ฒ	ฒ		&#3602;	&#x0E12;		thophuthaothai	
+ณ	ณ		&#3603;	&#x0E13;		nonenthai	
+ด	ด		&#3604;	&#x0E14;		dodekthai	
+ต	ต		&#3605;	&#x0E15;		totaothai	
+ถ	ถ		&#3606;	&#x0E16;		thothungthai	
+ท	ท		&#3607;	&#x0E17;		thothahanthai	
+ธ	ธ		&#3608;	&#x0E18;		thothongthai	
+น	น		&#3609;	&#x0E19;		nonuthai	
+บ	บ		&#3610;	&#x0E1A;		bobaimaithai	
+ป	ป		&#3611;	&#x0E1B;		poplathai	
+ผ	ผ		&#3612;	&#x0E1C;		phophungthai	
+ฝ	ฝ		&#3613;	&#x0E1D;		fofathai	
+พ	พ		&#3614;	&#x0E1E;		phophanthai	
+ฟ	ฟ		&#3615;	&#x0E1F;		fofanthai	
+ภ	ภ		&#3616;	&#x0E20;		phosamphaothai	
+ม	ม		&#3617;	&#x0E21;		momathai	
+ย	ย		&#3618;	&#x0E22;		yoyakthai	
+ร	ร		&#3619;	&#x0E23;		roruathai	
+ฤ	ฤ		&#3620;	&#x0E24;		ruthai	
+ล	ล		&#3621;	&#x0E25;		lolingthai	
+ฦ	ฦ		&#3622;	&#x0E26;		luthai	
+ว	ว		&#3623;	&#x0E27;		wowaenthai	
+ศ	ศ		&#3624;	&#x0E28;		sosalathai	
+ษ	ษ		&#3625;	&#x0E29;		sorusithai	
+ส	ส		&#3626;	&#x0E2A;		sosuathai	
+ห	ห		&#3627;	&#x0E2B;		hohipthai	
+ฬ	ฬ		&#3628;	&#x0E2C;		lochulathai	
+อ	อ		&#3629;	&#x0E2D;		oangthai	
+ฮ	ฮ		&#3630;	&#x0E2E;		honokhukthai	
+ฯ	ฯ		&#3631;	&#x0E2F;		paiyannoithai	
+ะ	ะ		&#3632;	&#x0E30;		saraathai	
+ั	ั		&#3633;	&#x0E31;		maihanakatthai	
+า	า		&#3634;	&#x0E32;		saraaathai	
+ำ	ำ		&#3635;	&#x0E33;		saraamthai	
+ิ	ิ		&#3636;	&#x0E34;		saraithai	
+ี	ี		&#3637;	&#x0E35;		saraiithai	
+ึ	ึ		&#3638;	&#x0E36;		sarauethai	
+ื	ื		&#3639;	&#x0E37;		saraueethai	
+ุ	ุ		&#3640;	&#x0E38;		sarauthai	
+ู	ู		&#3641;	&#x0E39;		sarauuthai	
+ฺ	ฺ		&#3642;	&#x0E3A;		phinthuthai	
+฿	฿		&#3647;	&#x0E3F;		bahtthai	
+เ	เ		&#3648;	&#x0E40;		saraethai	
+แ	แ		&#3649;	&#x0E41;		saraaethai	
+โ	โ		&#3650;	&#x0E42;		saraothai	
+ใ	ใ		&#3651;	&#x0E43;		saraaimaimuanthai	
+ไ	ไ		&#3652;	&#x0E44;		saraaimaimalaithai	
+ๅ	ๅ		&#3653;	&#x0E45;		lakkhangyaothai	
+ๆ	ๆ		&#3654;	&#x0E46;		maiyamokthai	
+็	็		&#3655;	&#x0E47;		maitaikhuthai	
+่	่		&#3656;	&#x0E48;		maiekthai	
+้	้		&#3657;	&#x0E49;		maithothai	
+๊	๊		&#3658;	&#x0E4A;		maitrithai	
+๋	๋		&#3659;	&#x0E4B;		maichattawathai	
+์	์		&#3660;	&#x0E4C;		thanthakhatthai	
+ํ	ํ		&#3661;	&#x0E4D;		nikhahitthai	
+๎	๎		&#3662;	&#x0E4E;		yamakkanthai	
+๏	๏		&#3663;	&#x0E4F;		fongmanthai	
+๐	๐		&#3664;	&#x0E50;		zerothai	
+๑	๑		&#3665;	&#x0E51;		onethai	
+๒	๒		&#3666;	&#x0E52;		twothai	
+๓	๓		&#3667;	&#x0E53;		threethai	
+๔	๔		&#3668;	&#x0E54;		fourthai	
+๕	๕		&#3669;	&#x0E55;		fivethai	
+๖	๖		&#3670;	&#x0E56;		sixthai	
+๗	๗		&#3671;	&#x0E57;		seventhai	
+๘	๘		&#3672;	&#x0E58;		eightthai	
+๙	๙		&#3673;	&#x0E59;		ninethai	
+๚	๚		&#3674;	&#x0E5A;		angkhankhuthai	
+๛	๛		&#3675;	&#x0E5B;		khomutthai	
+Ḁ	Ḁ		&#7680;	&#x1E00;		Aringbelow	
+ḁ	ḁ		&#7681;	&#x1E01;		aringbelow	
+Ḃ	Ḃ		&#7682;	&#x1E02;		Bdotaccent	
+ḃ	ḃ		&#7683;	&#x1E03;		bdotaccent	
+Ḅ	Ḅ		&#7684;	&#x1E04;		Bdotbelow	
+ḅ	ḅ		&#7685;	&#x1E05;		bdotbelow	
+Ḇ	Ḇ		&#7686;	&#x1E06;		Blinebelow	
+ḇ	ḇ		&#7687;	&#x1E07;		blinebelow	
+Ḉ	Ḉ		&#7688;	&#x1E08;		Ccedillaacute	
+ḉ	ḉ		&#7689;	&#x1E09;		ccedillaacute	
+Ḋ	Ḋ		&#7690;	&#x1E0A;		Ddotaccent	
+ḋ	ḋ		&#7691;	&#x1E0B;		ddotaccent	
+Ḍ	Ḍ		&#7692;	&#x1E0C;		Ddotbelow	
+ḍ	ḍ		&#7693;	&#x1E0D;		ddotbelow	
+Ḏ	Ḏ		&#7694;	&#x1E0E;		Dlinebelow	
+ḏ	ḏ		&#7695;	&#x1E0F;		dlinebelow	
+Ḑ	Ḑ		&#7696;	&#x1E10;		Dcedilla	
+ḑ	ḑ		&#7697;	&#x1E11;		dcedilla	
+Ḓ	Ḓ		&#7698;	&#x1E12;		Dcircumflexbelow	
+ḓ	ḓ		&#7699;	&#x1E13;		dcircumflexbelow	
+Ḕ	Ḕ		&#7700;	&#x1E14;		Emacrongrave	
+ḕ	ḕ		&#7701;	&#x1E15;		emacrongrave	
+Ḗ	Ḗ		&#7702;	&#x1E16;		Emacronacute	
+ḗ	ḗ		&#7703;	&#x1E17;		emacronacute	
+Ḙ	Ḙ		&#7704;	&#x1E18;		Ecircumflexbelow	
+ḙ	ḙ		&#7705;	&#x1E19;		ecircumflexbelow	
+Ḛ	Ḛ		&#7706;	&#x1E1A;		Etildebelow	
+ḛ	ḛ		&#7707;	&#x1E1B;		etildebelow	
+Ḝ	Ḝ		&#7708;	&#x1E1C;		Ecedillabreve	
+ḝ	ḝ		&#7709;	&#x1E1D;		ecedillabreve	
+Ḟ	Ḟ		&#7710;	&#x1E1E;		Fdotaccent	
+ḟ	ḟ		&#7711;	&#x1E1F;		fdotaccent	
+Ḡ	Ḡ		&#7712;	&#x1E20;		Gmacron	
+ḡ	ḡ		&#7713;	&#x1E21;		gmacron	
+Ḣ	Ḣ		&#7714;	&#x1E22;		Hdotaccent	
+ḣ	ḣ		&#7715;	&#x1E23;		hdotaccent	
+Ḥ	Ḥ		&#7716;	&#x1E24;		Hdotbelow	
+ḥ	ḥ		&#7717;	&#x1E25;		hdotbelow	
+Ḧ	Ḧ		&#7718;	&#x1E26;		Hdieresis	
+ḧ	ḧ		&#7719;	&#x1E27;		hdieresis	
+Ḩ	Ḩ		&#7720;	&#x1E28;		Hcedilla	
+ḩ	ḩ		&#7721;	&#x1E29;		hcedilla	
+Ḫ	Ḫ		&#7722;	&#x1E2A;		Hbrevebelow	
+ḫ	ḫ		&#7723;	&#x1E2B;		hbrevebelow	
+Ḭ	Ḭ		&#7724;	&#x1E2C;		Itildebelow	
+ḭ	ḭ		&#7725;	&#x1E2D;		itildebelow	
+Ḯ	Ḯ		&#7726;	&#x1E2E;		Idieresisacute	
+ḯ	ḯ		&#7727;	&#x1E2F;		idieresisacute	
+Ḱ	Ḱ		&#7728;	&#x1E30;		Kacute	
+ḱ	ḱ		&#7729;	&#x1E31;		kacute	
+Ḳ	Ḳ		&#7730;	&#x1E32;		Kdotbelow	
+ḳ	ḳ		&#7731;	&#x1E33;		kdotbelow	
+Ḵ	Ḵ		&#7732;	&#x1E34;		Klinebelow	
+ḵ	ḵ		&#7733;	&#x1E35;		klinebelow	
+Ḷ	Ḷ		&#7734;	&#x1E36;		Ldotbelow	
+ḷ	ḷ		&#7735;	&#x1E37;		ldotbelow	
+Ḹ	Ḹ		&#7736;	&#x1E38;		Ldotbelowmacron	
+ḹ	ḹ		&#7737;	&#x1E39;		ldotbelowmacron	
+Ḻ	Ḻ		&#7738;	&#x1E3A;		Llinebelow	
+ḻ	ḻ		&#7739;	&#x1E3B;		llinebelow	
+Ḽ	Ḽ		&#7740;	&#x1E3C;		Lcircumflexbelow	
+ḽ	ḽ		&#7741;	&#x1E3D;		lcircumflexbelow	
+Ḿ	Ḿ		&#7742;	&#x1E3E;		Macute	
+ḿ	ḿ		&#7743;	&#x1E3F;		macute	
+Ṁ	Ṁ		&#7744;	&#x1E40;		Mdotaccent	
+ṁ	ṁ		&#7745;	&#x1E41;		mdotaccent	
+Ṃ	Ṃ		&#7746;	&#x1E42;		Mdotbelow	
+ṃ	ṃ		&#7747;	&#x1E43;		mdotbelow	
+Ṅ	Ṅ		&#7748;	&#x1E44;		Ndotaccent	
+ṅ	ṅ		&#7749;	&#x1E45;		ndotaccent	
+Ṇ	Ṇ		&#7750;	&#x1E46;		Ndotbelow	
+ṇ	ṇ		&#7751;	&#x1E47;		ndotbelow	
+Ṉ	Ṉ		&#7752;	&#x1E48;		Nlinebelow	
+ṉ	ṉ		&#7753;	&#x1E49;		nlinebelow	
+Ṋ	Ṋ		&#7754;	&#x1E4A;		Ncircumflexbelow	
+ṋ	ṋ		&#7755;	&#x1E4B;		ncircumflexbelow	
+Ṍ	Ṍ		&#7756;	&#x1E4C;		Otildeacute	
+ṍ	ṍ		&#7757;	&#x1E4D;		otildeacute	
+Ṏ	Ṏ		&#7758;	&#x1E4E;		Otildedieresis	
+ṏ	ṏ		&#7759;	&#x1E4F;		otildedieresis	
+Ṑ	Ṑ		&#7760;	&#x1E50;		Omacrongrave	
+ṑ	ṑ		&#7761;	&#x1E51;		omacrongrave	
+Ṓ	Ṓ		&#7762;	&#x1E52;		Omacronacute	
+ṓ	ṓ		&#7763;	&#x1E53;		omacronacute	
+Ṕ	Ṕ		&#7764;	&#x1E54;		Pacute	
+ṕ	ṕ		&#7765;	&#x1E55;		pacute	
+Ṗ	Ṗ		&#7766;	&#x1E56;		Pdotaccent	
+ṗ	ṗ		&#7767;	&#x1E57;		pdotaccent	
+Ṙ	Ṙ		&#7768;	&#x1E58;		Rdotaccent	
+ṙ	ṙ		&#7769;	&#x1E59;		rdotaccent	
+Ṛ	Ṛ		&#7770;	&#x1E5A;		Rdotbelow	
+ṛ	ṛ		&#7771;	&#x1E5B;		rdotbelow	
+Ṝ	Ṝ		&#7772;	&#x1E5C;		Rdotbelowmacron	
+ṝ	ṝ		&#7773;	&#x1E5D;		rdotbelowmacron	
+Ṟ	Ṟ		&#7774;	&#x1E5E;		Rlinebelow	
+ṟ	ṟ		&#7775;	&#x1E5F;		rlinebelow	
+Ṡ	Ṡ		&#7776;	&#x1E60;		Sdotaccent	
+ṡ	ṡ		&#7777;	&#x1E61;		sdotaccent	
+Ṣ	Ṣ		&#7778;	&#x1E62;		Sdotbelow	
+ṣ	ṣ		&#7779;	&#x1E63;		sdotbelow	
+Ṥ	Ṥ		&#7780;	&#x1E64;		Sacutedotaccent	
+ṥ	ṥ		&#7781;	&#x1E65;		sacutedotaccent	
+Ṧ	Ṧ		&#7782;	&#x1E66;		Scarondotaccent	
+ṧ	ṧ		&#7783;	&#x1E67;		scarondotaccent	
+Ṩ	Ṩ		&#7784;	&#x1E68;		Sdotbelowdotaccent	
+ṩ	ṩ		&#7785;	&#x1E69;		sdotbelowdotaccent	
+Ṫ	Ṫ		&#7786;	&#x1E6A;		Tdotaccent	
+ṫ	ṫ		&#7787;	&#x1E6B;		tdotaccent	
+Ṭ	Ṭ		&#7788;	&#x1E6C;		Tdotbelow	
+ṭ	ṭ		&#7789;	&#x1E6D;		tdotbelow	
+Ṯ	Ṯ		&#7790;	&#x1E6E;		Tlinebelow	
+ṯ	ṯ		&#7791;	&#x1E6F;		tlinebelow	
+Ṱ	Ṱ		&#7792;	&#x1E70;		Tcircumflexbelow	
+ṱ	ṱ		&#7793;	&#x1E71;		tcircumflexbelow	
+Ṳ	Ṳ		&#7794;	&#x1E72;		Udieresisbelow	
+ṳ	ṳ		&#7795;	&#x1E73;		udieresisbelow	
+Ṵ	Ṵ		&#7796;	&#x1E74;		Utildebelow	
+ṵ	ṵ		&#7797;	&#x1E75;		utildebelow	
+Ṷ	Ṷ		&#7798;	&#x1E76;		Ucircumflexbelow	
+ṷ	ṷ		&#7799;	&#x1E77;		ucircumflexbelow	
+Ṹ	Ṹ		&#7800;	&#x1E78;		Utildeacute	
+ṹ	ṹ		&#7801;	&#x1E79;		utildeacute	
+Ṻ	Ṻ		&#7802;	&#x1E7A;		Umacrondieresis	
+ṻ	ṻ		&#7803;	&#x1E7B;		umacrondieresis	
+Ṽ	Ṽ		&#7804;	&#x1E7C;		Vtilde	
+ṽ	ṽ		&#7805;	&#x1E7D;		vtilde	
+Ṿ	Ṿ		&#7806;	&#x1E7E;		Vdotbelow	
+ṿ	ṿ		&#7807;	&#x1E7F;		vdotbelow	
+Ẁ	Ẁ		&#7808;	&#x1E80;		Wgrave	
+ẁ	ẁ		&#7809;	&#x1E81;		wgrave	
+Ẃ	Ẃ		&#7810;	&#x1E82;		Wacute	
+ẃ	ẃ		&#7811;	&#x1E83;		wacute	
+Ẅ	Ẅ		&#7812;	&#x1E84;		Wdieresis	
+ẅ	ẅ		&#7813;	&#x1E85;		wdieresis	
+Ẇ	Ẇ		&#7814;	&#x1E86;		Wdotaccent	
+ẇ	ẇ		&#7815;	&#x1E87;		wdotaccent	
+Ẉ	Ẉ		&#7816;	&#x1E88;		Wdotbelow	
+ẉ	ẉ		&#7817;	&#x1E89;		wdotbelow	
+Ẋ	Ẋ		&#7818;	&#x1E8A;		Xdotaccent	
+ẋ	ẋ		&#7819;	&#x1E8B;		xdotaccent	
+Ẍ	Ẍ		&#7820;	&#x1E8C;		Xdieresis	
+ẍ	ẍ		&#7821;	&#x1E8D;		xdieresis	
+Ẏ	Ẏ		&#7822;	&#x1E8E;		Ydotaccent	
+ẏ	ẏ		&#7823;	&#x1E8F;		ydotaccent	
+Ẑ	Ẑ		&#7824;	&#x1E90;		Zcircumflex	
+ẑ	ẑ		&#7825;	&#x1E91;		zcircumflex	
+Ẓ	Ẓ		&#7826;	&#x1E92;		Zdotbelow	
+ẓ	ẓ		&#7827;	&#x1E93;		zdotbelow	
+Ẕ	Ẕ		&#7828;	&#x1E94;		Zlinebelow	
+ẕ	ẕ		&#7829;	&#x1E95;		zlinebelow	
+ẖ	ẖ		&#7830;	&#x1E96;		hlinebelow	
+ẗ	ẗ		&#7831;	&#x1E97;		tdieresis	
+ẘ	ẘ		&#7832;	&#x1E98;		wring	
+ẙ	ẙ		&#7833;	&#x1E99;		yring	
+ẚ	ẚ		&#7834;	&#x1E9A;		arighthalfring	
+ẛ	ẛ		&#7835;	&#x1E9B;		slongdotaccent	
+Ạ	Ạ		&#7840;	&#x1EA0;		Adotbelow	
+ạ	ạ		&#7841;	&#x1EA1;		adotbelow	
+Ả	Ả		&#7842;	&#x1EA2;		Ahookabove	
+ả	ả		&#7843;	&#x1EA3;		ahookabove	
+Ấ	Ấ		&#7844;	&#x1EA4;		Acircumflexacute	
+ấ	ấ		&#7845;	&#x1EA5;		acircumflexacute	
+Ầ	Ầ		&#7846;	&#x1EA6;		Acircumflexgrave	
+ầ	ầ		&#7847;	&#x1EA7;		acircumflexgrave	
+Ẩ	Ẩ		&#7848;	&#x1EA8;		Acircumflexhookabove	
+ẩ	ẩ		&#7849;	&#x1EA9;		acircumflexhookabove	
+Ẫ	Ẫ		&#7850;	&#x1EAA;		Acircumflextilde	
+ẫ	ẫ		&#7851;	&#x1EAB;		acircumflextilde	
+Ậ	Ậ		&#7852;	&#x1EAC;		Acircumflexdotbelow	
+ậ	ậ		&#7853;	&#x1EAD;		acircumflexdotbelow	
+Ắ	Ắ		&#7854;	&#x1EAE;		Abreveacute	
+ắ	ắ		&#7855;	&#x1EAF;		abreveacute	
+Ằ	Ằ		&#7856;	&#x1EB0;		Abrevegrave	
+ằ	ằ		&#7857;	&#x1EB1;		abrevegrave	
+Ẳ	Ẳ		&#7858;	&#x1EB2;		Abrevehookabove	
+ẳ	ẳ		&#7859;	&#x1EB3;		abrevehookabove	
+Ẵ	Ẵ		&#7860;	&#x1EB4;		Abrevetilde	
+ẵ	ẵ		&#7861;	&#x1EB5;		abrevetilde	
+Ặ	Ặ		&#7862;	&#x1EB6;		Abrevedotbelow	
+ặ	ặ		&#7863;	&#x1EB7;		abrevedotbelow	
+Ẹ	Ẹ		&#7864;	&#x1EB8;		Edotbelow	
+ẹ	ẹ		&#7865;	&#x1EB9;		edotbelow	
+Ẻ	Ẻ		&#7866;	&#x1EBA;		Ehookabove	
+ẻ	ẻ		&#7867;	&#x1EBB;		ehookabove	
+Ẽ	Ẽ		&#7868;	&#x1EBC;		Etilde	
+ẽ	ẽ		&#7869;	&#x1EBD;		etilde	
+Ế	Ế		&#7870;	&#x1EBE;		Ecircumflexacute	
+ế	ế		&#7871;	&#x1EBF;		ecircumflexacute	
+Ề	Ề		&#7872;	&#x1EC0;		Ecircumflexgrave	
+ề	ề		&#7873;	&#x1EC1;		ecircumflexgrave	
+Ể	Ể		&#7874;	&#x1EC2;		Ecircumflexhookabove	
+ể	ể		&#7875;	&#x1EC3;		ecircumflexhookabove	
+Ễ	Ễ		&#7876;	&#x1EC4;		Ecircumflextilde	
+ễ	ễ		&#7877;	&#x1EC5;		ecircumflextilde	
+Ệ	Ệ		&#7878;	&#x1EC6;		Ecircumflexdotbelow	
+ệ	ệ		&#7879;	&#x1EC7;		ecircumflexdotbelow	
+Ỉ	Ỉ		&#7880;	&#x1EC8;		Ihookabove	
+ỉ	ỉ		&#7881;	&#x1EC9;		ihookabove	
+Ị	Ị		&#7882;	&#x1ECA;		Idotbelow	
+ị	ị		&#7883;	&#x1ECB;		idotbelow	
+Ọ	Ọ		&#7884;	&#x1ECC;		Odotbelow	
+ọ	ọ		&#7885;	&#x1ECD;		odotbelow	
+Ỏ	Ỏ		&#7886;	&#x1ECE;		Ohookabove	
+ỏ	ỏ		&#7887;	&#x1ECF;		ohookabove	
+Ố	Ố		&#7888;	&#x1ED0;		Ocircumflexacute	
+ố	ố		&#7889;	&#x1ED1;		ocircumflexacute	
+Ồ	Ồ		&#7890;	&#x1ED2;		Ocircumflexgrave	
+ồ	ồ		&#7891;	&#x1ED3;		ocircumflexgrave	
+Ổ	Ổ		&#7892;	&#x1ED4;		Ocircumflexhookabove	
+ổ	ổ		&#7893;	&#x1ED5;		ocircumflexhookabove	
+Ỗ	Ỗ		&#7894;	&#x1ED6;		Ocircumflextilde	
+ỗ	ỗ		&#7895;	&#x1ED7;		ocircumflextilde	
+Ộ	Ộ		&#7896;	&#x1ED8;		Ocircumflexdotbelow	
+ộ	ộ		&#7897;	&#x1ED9;		ocircumflexdotbelow	
+Ớ	Ớ		&#7898;	&#x1EDA;		Ohornacute	
+ớ	ớ		&#7899;	&#x1EDB;		ohornacute	
+Ờ	Ờ		&#7900;	&#x1EDC;		Ohorngrave	
+ờ	ờ		&#7901;	&#x1EDD;		ohorngrave	
+Ở	Ở		&#7902;	&#x1EDE;		Ohornhookabove	
+ở	ở		&#7903;	&#x1EDF;		ohornhookabove	
+Ỡ	Ỡ		&#7904;	&#x1EE0;		Ohorntilde	
+ỡ	ỡ		&#7905;	&#x1EE1;		ohorntilde	
+Ợ	Ợ		&#7906;	&#x1EE2;		Ohorndotbelow	
+ợ	ợ		&#7907;	&#x1EE3;		ohorndotbelow	
+Ụ	Ụ		&#7908;	&#x1EE4;		Udotbelow	
+ụ	ụ		&#7909;	&#x1EE5;		udotbelow	
+Ủ	Ủ		&#7910;	&#x1EE6;		Uhookabove	
+ủ	ủ		&#7911;	&#x1EE7;		uhookabove	
+Ứ	Ứ		&#7912;	&#x1EE8;		Uhornacute	
+ứ	ứ		&#7913;	&#x1EE9;		uhornacute	
+Ừ	Ừ		&#7914;	&#x1EEA;		Uhorngrave	
+ừ	ừ		&#7915;	&#x1EEB;		uhorngrave	
+Ử	Ử		&#7916;	&#x1EEC;		Uhornhookabove	
+ử	ử		&#7917;	&#x1EED;		uhornhookabove	
+Ữ	Ữ		&#7918;	&#x1EEE;		Uhorntilde	
+ữ	ữ		&#7919;	&#x1EEF;		uhorntilde	
+Ự	Ự		&#7920;	&#x1EF0;		Uhorndotbelow	
+ự	ự		&#7921;	&#x1EF1;		uhorndotbelow	
+Ỳ	Ỳ		&#7922;	&#x1EF2;		Ygrave	
+ỳ	ỳ		&#7923;	&#x1EF3;		ygrave	
+Ỵ	Ỵ		&#7924;	&#x1EF4;		Ydotbelow	
+ỵ	ỵ		&#7925;	&#x1EF5;		ydotbelow	
+Ỷ	Ỷ		&#7926;	&#x1EF6;		Yhookabove	
+ỷ	ỷ		&#7927;	&#x1EF7;		yhookabove	
+Ỹ	Ỹ		&#7928;	&#x1EF8;		Ytilde	
+ỹ	ỹ		&#7929;	&#x1EF9;		ytilde	
+​	​		&#8203;	&#x200B;		zerowidthspace	
+‐	‐		&#8208;	&#x2010;		hyphentwo	
+‒	‒		&#8210;	&#x2012;		figuredash	
+―	―		&#8213;	&#x2015;		afii00208
+horizontalbar	
+‖	‖		&#8214;	&#x2016;		dblverticalbar	
+‗	‗		&#8215;	&#x2017;		dbllowline
+underscoredbl	
+‛	‛		&#8219;	&#x201B;		quoteleftreversed
+quotereversed	
+․	․		&#8228;	&#x2024;		onedotenleader	
+‥	‥		&#8229;	&#x2025;		twodotenleader
+twodotleader	
+‬	‬		&#8236;	&#x202C;		afii61573	
+‭	‭		&#8237;	&#x202D;		afii61574	
+‮	‮		&#8238;	&#x202E;		afii61575	
+‵	‵		&#8245;	&#x2035;		primereversed	
+※	※		&#8251;	&#x203B;		referencemark	
+‼	‼		&#8252;	&#x203C;		exclamdbl	
+⁂	⁂		&#8258;	&#x2042;		asterism	
+⁰	⁰		&#8304;	&#x2070;		zerosuperior	
+⁴	⁴		&#8308;	&#x2074;		foursuperior	
+⁵	⁵		&#8309;	&#x2075;		fivesuperior	
+⁶	⁶		&#8310;	&#x2076;		sixsuperior	
+⁷	⁷		&#8311;	&#x2077;		sevensuperior	
+⁸	⁸		&#8312;	&#x2078;		eightsuperior	
+⁹	⁹		&#8313;	&#x2079;		ninesuperior	
+⁺	⁺		&#8314;	&#x207A;		plussuperior	
+⁼	⁼		&#8316;	&#x207C;		equalsuperior	
+⁽	⁽		&#8317;	&#x207D;		parenleftsuperior	
+⁾	⁾		&#8318;	&#x207E;		parenrightsuperior	
+ⁿ	ⁿ		&#8319;	&#x207F;		nsuperior	
+₀	₀		&#8320;	&#x2080;		zeroinferior	
+₁	₁		&#8321;	&#x2081;		oneinferior	
+₂	₂		&#8322;	&#x2082;		twoinferior	
+₃	₃		&#8323;	&#x2083;		threeinferior	
+₄	₄		&#8324;	&#x2084;		fourinferior	
+₅	₅		&#8325;	&#x2085;		fiveinferior	
+₆	₆		&#8326;	&#x2086;		sixinferior	
+₇	₇		&#8327;	&#x2087;		seveninferior	
+₈	₈		&#8328;	&#x2088;		eightinferior	
+₉	₉		&#8329;	&#x2089;		nineinferior	
+₍	₍		&#8333;	&#x208D;		parenleftinferior	
+₎	₎		&#8334;	&#x208E;		parenrightinferior	
+₡	₡		&#8353;	&#x20A1;		colonmonetary
+colonsign	
+₢	₢		&#8354;	&#x20A2;		cruzeiro	
+₣	₣		&#8355;	&#x20A3;		franc	
+₤	₤		&#8356;	&#x20A4;		afii08941
+lira	
+₧	₧		&#8359;	&#x20A7;		peseta	
+₩	₩		&#8361;	&#x20A9;		won	
+₪	₪		&#8362;	&#x20AA;		afii57636
+newsheqelsign
+sheqel
+sheqelhebrew	
+₫	₫		&#8363;	&#x20AB;		dong	
+℃	℃		&#8451;	&#x2103;		centigrade	
+℅	℅		&#8453;	&#x2105;		afii61248
+careof	
+℉	℉		&#8457;	&#x2109;		fahrenheit	
+ℓ	ℓ		&#8467;	&#x2113;		afii61289
+lsquare	
+№	№		&#8470;	&#x2116;		afii61352
+numero	
+℞	℞		&#8478;	&#x211E;		prescription	
+℡	℡		&#8481;	&#x2121;		telephone	
+Ω	Ω		&#8486;	&#x2126;		Ohm
+Omega	
+Å	Å		&#8491;	&#x212B;		angstrom	
+℮	℮		&#8494;	&#x212E;		estimated	
+⅓	⅓		&#8531;	&#x2153;		onethird	
+⅔	⅔		&#8532;	&#x2154;		twothirds	
+⅛	⅛		&#8539;	&#x215B;		oneeighth	
+⅜	⅜		&#8540;	&#x215C;		threeeighths	
+⅝	⅝		&#8541;	&#x215D;		fiveeighths	
+⅞	⅞		&#8542;	&#x215E;		seveneighths	
+Ⅰ	Ⅰ		&#8544;	&#x2160;		Oneroman	
+Ⅱ	Ⅱ		&#8545;	&#x2161;		Tworoman	
+Ⅲ	Ⅲ		&#8546;	&#x2162;		Threeroman	
+Ⅳ	Ⅳ		&#8547;	&#x2163;		Fourroman	
+Ⅴ	Ⅴ		&#8548;	&#x2164;		Fiveroman	
+Ⅵ	Ⅵ		&#8549;	&#x2165;		Sixroman	
+Ⅶ	Ⅶ		&#8550;	&#x2166;		Sevenroman	
+Ⅷ	Ⅷ		&#8551;	&#x2167;		Eightroman	
+Ⅸ	Ⅸ		&#8552;	&#x2168;		Nineroman	
+Ⅹ	Ⅹ		&#8553;	&#x2169;		Tenroman	
+Ⅺ	Ⅺ		&#8554;	&#x216A;		Elevenroman	
+Ⅻ	Ⅻ		&#8555;	&#x216B;		Twelveroman	
+ⅰ	ⅰ		&#8560;	&#x2170;		oneroman	
+ⅱ	ⅱ		&#8561;	&#x2171;		tworoman	
+ⅲ	ⅲ		&#8562;	&#x2172;		threeroman	
+ⅳ	ⅳ		&#8563;	&#x2173;		fourroman	
+ⅴ	ⅴ		&#8564;	&#x2174;		fiveroman	
+ⅵ	ⅵ		&#8565;	&#x2175;		sixroman	
+ⅶ	ⅶ		&#8566;	&#x2176;		sevenroman	
+ⅷ	ⅷ		&#8567;	&#x2177;		eightroman	
+ⅸ	ⅸ		&#8568;	&#x2178;		nineroman	
+ⅹ	ⅹ		&#8569;	&#x2179;		tenroman	
+ⅺ	ⅺ		&#8570;	&#x217A;		elevenroman	
+ⅻ	ⅻ		&#8571;	&#x217B;		twelveroman	
+↕	↕		&#8597;	&#x2195;		arrowupdn	
+↖	↖		&#8598;	&#x2196;		arrowupleft	
+↗	↗		&#8599;	&#x2197;		arrowupright	
+↘	↘		&#8600;	&#x2198;		arrowdownright	
+↙	↙		&#8601;	&#x2199;		arrowdownleft	
+↨	↨		&#8616;	&#x21A8;		arrowupdnbse
+arrowupdownbase	
+↼	↼		&#8636;	&#x21BC;		harpoonleftbarbup	
+⇀	⇀		&#8640;	&#x21C0;		harpoonrightbarbup	
+⇄	⇄		&#8644;	&#x21C4;		arrowrightoverleft	
+⇅	⇅		&#8645;	&#x21C5;		arrowupleftofdown	
+⇆	⇆		&#8646;	&#x21C6;		arrowleftoverright	
+⇍	⇍		&#8653;	&#x21CD;		arrowleftdblstroke	
+⇏	⇏		&#8655;	&#x21CF;		arrowrightdblstroke	
+⇞	⇞		&#8670;	&#x21DE;		pageup	
+⇟	⇟		&#8671;	&#x21DF;		pagedown	
+⇠	⇠		&#8672;	&#x21E0;		arrowdashleft	
+⇡	⇡		&#8673;	&#x21E1;		arrowdashup	
+⇢	⇢		&#8674;	&#x21E2;		arrowdashright	
+⇣	⇣		&#8675;	&#x21E3;		arrowdashdown	
+⇤	⇤		&#8676;	&#x21E4;		arrowtableft	
+⇥	⇥		&#8677;	&#x21E5;		arrowtabright	
+⇦	⇦		&#8678;	&#x21E6;		arrowleftwhite	
+⇧	⇧		&#8679;	&#x21E7;		arrowupwhite	
+⇨	⇨		&#8680;	&#x21E8;		arrowrightwhite	
+⇩	⇩		&#8681;	&#x21E9;		arrowdownwhite	
+⇪	⇪		&#8682;	&#x21EA;		capslock	
+∆	∆		&#8710;	&#x2206;		Delta
+increment	
+∌	∌		&#8716;	&#x220C;		notcontains	
+∓	∓		&#8723;	&#x2213;		minusplus	
+∕	∕		&#8725;	&#x2215;		divisionslash	
+∙	∙		&#8729;	&#x2219;		bulletoperator	
+∟	∟		&#8735;	&#x221F;		orthogonal
+rightangle	
+∣	∣		&#8739;	&#x2223;		divides	
+∥	∥		&#8741;	&#x2225;		parallel	
+∦	∦		&#8742;	&#x2226;		notparallel	
+∬	∬		&#8748;	&#x222C;		dblintegral	
+∮	∮		&#8750;	&#x222E;		contourintegral	
+∵	∵		&#8757;	&#x2235;		because	
+∶	∶		&#8758;	&#x2236;		ratio	
+∷	∷		&#8759;	&#x2237;		proportion	
+∽	∽		&#8765;	&#x223D;		reversedtilde	
+≃	≃		&#8771;	&#x2243;		asymptoticallyequal	
+≌	≌		&#8780;	&#x224C;		allequal	
+≐	≐		&#8784;	&#x2250;		approaches	
+≑	≑		&#8785;	&#x2251;		geometricallyequal	
+≒	≒		&#8786;	&#x2252;		approxequalorimage	
+≓	≓		&#8787;	&#x2253;		imageorapproximatelyequal	
+≢	≢		&#8802;	&#x2262;		notidentical	
+≦	≦		&#8806;	&#x2266;		lessoverequal	
+≧	≧		&#8807;	&#x2267;		greateroverequal	
+≪	≪		&#8810;	&#x226A;		muchless	
+≫	≫		&#8811;	&#x226B;		muchgreater	
+≮	≮		&#8814;	&#x226E;		notless	
+≯	≯		&#8815;	&#x226F;		notgreater	
+≰	≰		&#8816;	&#x2270;		notlessnorequal	
+≱	≱		&#8817;	&#x2271;		notgreaternorequal	
+≲	≲		&#8818;	&#x2272;		lessorequivalent	
+≳	≳		&#8819;	&#x2273;		greaterorequivalent	
+≶	≶		&#8822;	&#x2276;		lessorgreater	
+≷	≷		&#8823;	&#x2277;		greaterorless	
+≹	≹		&#8825;	&#x2279;		notgreaternorless	
+≺	≺		&#8826;	&#x227A;		precedes	
+≻	≻		&#8827;	&#x227B;		succeeds	
+⊀	⊀		&#8832;	&#x2280;		notprecedes	
+⊁	⊁		&#8833;	&#x2281;		notsucceeds	
+⊅	⊅		&#8837;	&#x2285;		notsuperset	
+⊊	⊊		&#8842;	&#x228A;		subsetnotequal	
+⊋	⊋		&#8843;	&#x228B;		supersetnotequal	
+⊖	⊖		&#8854;	&#x2296;		minuscircle	
+⊙	⊙		&#8857;	&#x2299;		circleot	
+⊣	⊣		&#8867;	&#x22A3;		tackleft	
+⊤	⊤		&#8868;	&#x22A4;		tackdown	
+⊿	⊿		&#8895;	&#x22BF;		righttriangle	
+⋎	⋎		&#8910;	&#x22CE;		curlyor	
+⋏	⋏		&#8911;	&#x22CF;		curlyand	
+⋚	⋚		&#8922;	&#x22DA;		lessequalorgreater	
+⋛	⋛		&#8923;	&#x22DB;		greaterequalorless	
+⋮	⋮		&#8942;	&#x22EE;		ellipsisvertical	
+⌂	⌂		&#8962;	&#x2302;		house	
+⌃	⌃		&#8963;	&#x2303;		control	
+⌅	⌅		&#8965;	&#x2305;		projective	
+⌐	⌐		&#8976;	&#x2310;		logicalnotreversed
+revlogicalnot	
+⌒	⌒		&#8978;	&#x2312;		arc	
+⌘	⌘		&#8984;	&#x2318;		propellor	
+⌠	⌠		&#8992;	&#x2320;		integraltop
+integraltp	
+⌡	⌡		&#8993;	&#x2321;		integralbottom
+integralbt	
+⌥	⌥		&#8997;	&#x2325;		option	
+⌦	⌦		&#8998;	&#x2326;		deleteright	
+⌧	⌧		&#8999;	&#x2327;		clear	
+⌫	⌫		&#9003;	&#x232B;		deleteleft	
+␣	␣		&#9251;	&#x2423;		blank	
+①	①		&#9312;	&#x2460;		onecircle	
+②	②		&#9313;	&#x2461;		twocircle	
+③	③		&#9314;	&#x2462;		threecircle	
+④	④		&#9315;	&#x2463;		fourcircle	
+⑤	⑤		&#9316;	&#x2464;		fivecircle	
+⑥	⑥		&#9317;	&#x2465;		sixcircle	
+⑦	⑦		&#9318;	&#x2466;		sevencircle	
+⑧	⑧		&#9319;	&#x2467;		eightcircle	
+⑨	⑨		&#9320;	&#x2468;		ninecircle	
+⑩	⑩		&#9321;	&#x2469;		tencircle	
+⑪	⑪		&#9322;	&#x246A;		elevencircle	
+⑫	⑫		&#9323;	&#x246B;		twelvecircle	
+⑬	⑬		&#9324;	&#x246C;		thirteencircle	
+⑭	⑭		&#9325;	&#x246D;		fourteencircle	
+⑮	⑮		&#9326;	&#x246E;		fifteencircle	
+⑯	⑯		&#9327;	&#x246F;		sixteencircle	
+⑰	⑰		&#9328;	&#x2470;		seventeencircle	
+⑱	⑱		&#9329;	&#x2471;		eighteencircle	
+⑲	⑲		&#9330;	&#x2472;		nineteencircle	
+⑳	⑳		&#9331;	&#x2473;		twentycircle	
+⑴	⑴		&#9332;	&#x2474;		oneparen	
+⑵	⑵		&#9333;	&#x2475;		twoparen	
+⑶	⑶		&#9334;	&#x2476;		threeparen	
+⑷	⑷		&#9335;	&#x2477;		fourparen	
+⑸	⑸		&#9336;	&#x2478;		fiveparen	
+⑹	⑹		&#9337;	&#x2479;		sixparen	
+⑺	⑺		&#9338;	&#x247A;		sevenparen	
+⑻	⑻		&#9339;	&#x247B;		eightparen	
+⑼	⑼		&#9340;	&#x247C;		nineparen	
+⑽	⑽		&#9341;	&#x247D;		tenparen	
+⑾	⑾		&#9342;	&#x247E;		elevenparen	
+⑿	⑿		&#9343;	&#x247F;		twelveparen	
+⒀	⒀		&#9344;	&#x2480;		thirteenparen	
+⒁	⒁		&#9345;	&#x2481;		fourteenparen	
+⒂	⒂		&#9346;	&#x2482;		fifteenparen	
+⒃	⒃		&#9347;	&#x2483;		sixteenparen	
+⒄	⒄		&#9348;	&#x2484;		seventeenparen	
+⒅	⒅		&#9349;	&#x2485;		eighteenparen	
+⒆	⒆		&#9350;	&#x2486;		nineteenparen	
+⒇	⒇		&#9351;	&#x2487;		twentyparen	
+⒈	⒈		&#9352;	&#x2488;		oneperiod	
+⒉	⒉		&#9353;	&#x2489;		twoperiod	
+⒊	⒊		&#9354;	&#x248A;		threeperiod	
+⒋	⒋		&#9355;	&#x248B;		fourperiod	
+⒌	⒌		&#9356;	&#x248C;		fiveperiod	
+⒍	⒍		&#9357;	&#x248D;		sixperiod	
+⒎	⒎		&#9358;	&#x248E;		sevenperiod	
+⒏	⒏		&#9359;	&#x248F;		eightperiod	
+⒐	⒐		&#9360;	&#x2490;		nineperiod	
+⒑	⒑		&#9361;	&#x2491;		tenperiod	
+⒒	⒒		&#9362;	&#x2492;		elevenperiod	
+⒓	⒓		&#9363;	&#x2493;		twelveperiod	
+⒔	⒔		&#9364;	&#x2494;		thirteenperiod	
+⒕	⒕		&#9365;	&#x2495;		fourteenperiod	
+⒖	⒖		&#9366;	&#x2496;		fifteenperiod	
+⒗	⒗		&#9367;	&#x2497;		sixteenperiod	
+⒘	⒘		&#9368;	&#x2498;		seventeenperiod	
+⒙	⒙		&#9369;	&#x2499;		eighteenperiod	
+⒚	⒚		&#9370;	&#x249A;		nineteenperiod	
+⒛	⒛		&#9371;	&#x249B;		twentyperiod	
+⒜	⒜		&#9372;	&#x249C;		aparen	
+⒝	⒝		&#9373;	&#x249D;		bparen	
+⒞	⒞		&#9374;	&#x249E;		cparen	
+⒟	⒟		&#9375;	&#x249F;		dparen	
+⒠	⒠		&#9376;	&#x24A0;		eparen	
+⒡	⒡		&#9377;	&#x24A1;		fparen	
+⒢	⒢		&#9378;	&#x24A2;		gparen	
+⒣	⒣		&#9379;	&#x24A3;		hparen	
+⒤	⒤		&#9380;	&#x24A4;		iparen	
+⒥	⒥		&#9381;	&#x24A5;		jparen	
+⒦	⒦		&#9382;	&#x24A6;		kparen	
+⒧	⒧		&#9383;	&#x24A7;		lparen	
+⒨	⒨		&#9384;	&#x24A8;		mparen	
+⒩	⒩		&#9385;	&#x24A9;		nparen	
+⒪	⒪		&#9386;	&#x24AA;		oparen	
+⒫	⒫		&#9387;	&#x24AB;		pparen	
+⒬	⒬		&#9388;	&#x24AC;		qparen	
+⒭	⒭		&#9389;	&#x24AD;		rparen	
+⒮	⒮		&#9390;	&#x24AE;		sparen	
+⒯	⒯		&#9391;	&#x24AF;		tparen	
+⒰	⒰		&#9392;	&#x24B0;		uparen	
+⒱	⒱		&#9393;	&#x24B1;		vparen	
+⒲	⒲		&#9394;	&#x24B2;		wparen	
+⒳	⒳		&#9395;	&#x24B3;		xparen	
+⒴	⒴		&#9396;	&#x24B4;		yparen	
+⒵	⒵		&#9397;	&#x24B5;		zparen	
+Ⓐ	Ⓐ		&#9398;	&#x24B6;		Acircle	
+Ⓑ	Ⓑ		&#9399;	&#x24B7;		Bcircle	
+Ⓒ	Ⓒ		&#9400;	&#x24B8;		Ccircle	
+Ⓓ	Ⓓ		&#9401;	&#x24B9;		Dcircle	
+Ⓔ	Ⓔ		&#9402;	&#x24BA;		Ecircle	
+Ⓕ	Ⓕ		&#9403;	&#x24BB;		Fcircle	
+Ⓖ	Ⓖ		&#9404;	&#x24BC;		Gcircle	
+Ⓗ	Ⓗ		&#9405;	&#x24BD;		Hcircle	
+Ⓘ	Ⓘ		&#9406;	&#x24BE;		Icircle	
+Ⓙ	Ⓙ		&#9407;	&#x24BF;		Jcircle	
+Ⓚ	Ⓚ		&#9408;	&#x24C0;		Kcircle	
+Ⓛ	Ⓛ		&#9409;	&#x24C1;		Lcircle	
+Ⓜ	Ⓜ		&#9410;	&#x24C2;		Mcircle	
+Ⓝ	Ⓝ		&#9411;	&#x24C3;		Ncircle	
+Ⓞ	Ⓞ		&#9412;	&#x24C4;		Ocircle	
+Ⓟ	Ⓟ		&#9413;	&#x24C5;		Pcircle	
+Ⓠ	Ⓠ		&#9414;	&#x24C6;		Qcircle	
+Ⓡ	Ⓡ		&#9415;	&#x24C7;		Rcircle	
+Ⓢ	Ⓢ		&#9416;	&#x24C8;		Scircle	
+Ⓣ	Ⓣ		&#9417;	&#x24C9;		Tcircle	
+Ⓤ	Ⓤ		&#9418;	&#x24CA;		Ucircle	
+Ⓥ	Ⓥ		&#9419;	&#x24CB;		Vcircle	
+Ⓦ	Ⓦ		&#9420;	&#x24CC;		Wcircle	
+Ⓧ	Ⓧ		&#9421;	&#x24CD;		Xcircle	
+Ⓨ	Ⓨ		&#9422;	&#x24CE;		Ycircle	
+Ⓩ	Ⓩ		&#9423;	&#x24CF;		Zcircle	
+ⓐ	ⓐ		&#9424;	&#x24D0;		acircle	
+ⓑ	ⓑ		&#9425;	&#x24D1;		bcircle	
+ⓒ	ⓒ		&#9426;	&#x24D2;		ccircle	
+ⓓ	ⓓ		&#9427;	&#x24D3;		dcircle	
+ⓔ	ⓔ		&#9428;	&#x24D4;		ecircle	
+ⓕ	ⓕ		&#9429;	&#x24D5;		fcircle	
+ⓖ	ⓖ		&#9430;	&#x24D6;		gcircle	
+ⓗ	ⓗ		&#9431;	&#x24D7;		hcircle	
+ⓘ	ⓘ		&#9432;	&#x24D8;		icircle	
+ⓙ	ⓙ		&#9433;	&#x24D9;		jcircle	
+ⓚ	ⓚ		&#9434;	&#x24DA;		kcircle	
+ⓛ	ⓛ		&#9435;	&#x24DB;		lcircle	
+ⓜ	ⓜ		&#9436;	&#x24DC;		mcircle	
+ⓝ	ⓝ		&#9437;	&#x24DD;		ncircle	
+ⓞ	ⓞ		&#9438;	&#x24DE;		ocircle	
+ⓟ	ⓟ		&#9439;	&#x24DF;		pcircle	
+ⓠ	ⓠ		&#9440;	&#x24E0;		qcircle	
+ⓡ	ⓡ		&#9441;	&#x24E1;		rcircle	
+ⓢ	ⓢ		&#9442;	&#x24E2;		scircle	
+ⓣ	ⓣ		&#9443;	&#x24E3;		tcircle	
+ⓤ	ⓤ		&#9444;	&#x24E4;		ucircle	
+ⓥ	ⓥ		&#9445;	&#x24E5;		vcircle	
+ⓦ	ⓦ		&#9446;	&#x24E6;		wcircle	
+ⓧ	ⓧ		&#9447;	&#x24E7;		xcircle	
+ⓨ	ⓨ		&#9448;	&#x24E8;		ycircle	
+ⓩ	ⓩ		&#9449;	&#x24E9;		zcircle	
+─	─		&#9472;	&#x2500;		SF100000	
+│	│		&#9474;	&#x2502;		SF110000	
+┌	┌		&#9484;	&#x250C;		SF010000	
+┐	┐		&#9488;	&#x2510;		SF030000	
+└	└		&#9492;	&#x2514;		SF020000	
+┘	┘		&#9496;	&#x2518;		SF040000	
+├	├		&#9500;	&#x251C;		SF080000	
+┤	┤		&#9508;	&#x2524;		SF090000	
+┬	┬		&#9516;	&#x252C;		SF060000	
+┴	┴		&#9524;	&#x2534;		SF070000	
+┼	┼		&#9532;	&#x253C;		SF050000	
+═	═		&#9552;	&#x2550;		SF430000	
+║	║		&#9553;	&#x2551;		SF240000	
+╒	╒		&#9554;	&#x2552;		SF510000	
+╓	╓		&#9555;	&#x2553;		SF520000	
+╔	╔		&#9556;	&#x2554;		SF390000	
+╕	╕		&#9557;	&#x2555;		SF220000	
+╖	╖		&#9558;	&#x2556;		SF210000	
+╗	╗		&#9559;	&#x2557;		SF250000	
+╘	╘		&#9560;	&#x2558;		SF500000	
+╙	╙		&#9561;	&#x2559;		SF490000	
+╚	╚		&#9562;	&#x255A;		SF380000	
+╛	╛		&#9563;	&#x255B;		SF280000	
+╜	╜		&#9564;	&#x255C;		SF270000	
+╝	╝		&#9565;	&#x255D;		SF260000	
+╞	╞		&#9566;	&#x255E;		SF360000	
+╟	╟		&#9567;	&#x255F;		SF370000	
+╠	╠		&#9568;	&#x2560;		SF420000	
+╡	╡		&#9569;	&#x2561;		SF190000	
+╢	╢		&#9570;	&#x2562;		SF200000	
+╣	╣		&#9571;	&#x2563;		SF230000	
+╤	╤		&#9572;	&#x2564;		SF470000	
+╥	╥		&#9573;	&#x2565;		SF480000	
+╦	╦		&#9574;	&#x2566;		SF410000	
+╧	╧		&#9575;	&#x2567;		SF450000	
+╨	╨		&#9576;	&#x2568;		SF460000	
+╩	╩		&#9577;	&#x2569;		SF400000	
+╪	╪		&#9578;	&#x256A;		SF540000	
+╫	╫		&#9579;	&#x256B;		SF530000	
+╬	╬		&#9580;	&#x256C;		SF440000	
+▀	▀		&#9600;	&#x2580;		upblock	
+▄	▄		&#9604;	&#x2584;		dnblock	
+█	█		&#9608;	&#x2588;		block	
+▌	▌		&#9612;	&#x258C;		lfblock	
+▐	▐		&#9616;	&#x2590;		rtblock	
+░	░		&#9617;	&#x2591;		ltshade
+shadelight	
+▒	▒		&#9618;	&#x2592;		shade
+shademedium	
+▓	▓		&#9619;	&#x2593;		dkshade
+shadedark	
+■	■		&#9632;	&#x25A0;		blacksquare
+filledbox	
+□	□		&#9633;	&#x25A1;		H22073
+whitesquare	
+▣	▣		&#9635;	&#x25A3;		squarewhitewithsmallblack	
+▤	▤		&#9636;	&#x25A4;		squarehorizontalfill	
+▥	▥		&#9637;	&#x25A5;		squareverticalfill	
+▦	▦		&#9638;	&#x25A6;		squareorthogonalcrosshatchfill	
+▧	▧		&#9639;	&#x25A7;		squareupperlefttolowerrightfill	
+▨	▨		&#9640;	&#x25A8;		squareupperrighttolowerleftfill	
+▩	▩		&#9641;	&#x25A9;		squarediagonalcrosshatchfill	
+▪	▪		&#9642;	&#x25AA;		H18543
+blacksmallsquare	
+▫	▫		&#9643;	&#x25AB;		H18551
+whitesmallsquare	
+▬	▬		&#9644;	&#x25AC;		blackrectangle
+filledrect	
+▲	▲		&#9650;	&#x25B2;		blackuppointingtriangle
+triagup	
+△	△		&#9651;	&#x25B3;		whiteuppointingtriangle	
+▴	▴		&#9652;	&#x25B4;		blackuppointingsmalltriangle	
+▵	▵		&#9653;	&#x25B5;		whiteuppointingsmalltriangle	
+▶	▶		&#9654;	&#x25B6;		blackrightpointingtriangle	
+▷	▷		&#9655;	&#x25B7;		whiterightpointingtriangle	
+▹	▹		&#9657;	&#x25B9;		whiterightpointingsmalltriangle	
+►	►		&#9658;	&#x25BA;		blackrightpointingpointer
+triagrt	
+▼	▼		&#9660;	&#x25BC;		blackdownpointingtriangle
+triagdn	
+▽	▽		&#9661;	&#x25BD;		whitedownpointingtriangle	
+▿	▿		&#9663;	&#x25BF;		whitedownpointingsmalltriangle	
+◀	◀		&#9664;	&#x25C0;		blackleftpointingtriangle	
+◁	◁		&#9665;	&#x25C1;		whiteleftpointingtriangle	
+◃	◃		&#9667;	&#x25C3;		whiteleftpointingsmalltriangle	
+◄	◄		&#9668;	&#x25C4;		blackleftpointingpointer
+triaglf	
+◆	◆		&#9670;	&#x25C6;		blackdiamond	
+◇	◇		&#9671;	&#x25C7;		whitediamond	
+◈	◈		&#9672;	&#x25C8;		whitediamondcontainingblacksmalldiamond	
+◉	◉		&#9673;	&#x25C9;		fisheye	
+○	○		&#9675;	&#x25CB;		circle
+whitecircle	
+◌	◌		&#9676;	&#x25CC;		dottedcircle	
+◎	◎		&#9678;	&#x25CE;		bullseye	
+●	●		&#9679;	&#x25CF;		H18533
+blackcircle	
+◐	◐		&#9680;	&#x25D0;		circlewithlefthalfblack	
+◑	◑		&#9681;	&#x25D1;		circlewithrighthalfblack	
+◘	◘		&#9688;	&#x25D8;		bulletinverse
+invbullet	
+◙	◙		&#9689;	&#x25D9;		invcircle
+whitecircleinverse	
+◢	◢		&#9698;	&#x25E2;		blacklowerrighttriangle	
+◣	◣		&#9699;	&#x25E3;		blacklowerlefttriangle	
+◤	◤		&#9700;	&#x25E4;		blackupperlefttriangle	
+◥	◥		&#9701;	&#x25E5;		blackupperrighttriangle	
+◦	◦		&#9702;	&#x25E6;		openbullet
+whitebullet	
+◯	◯		&#9711;	&#x25EF;		largecircle	
+★	★		&#9733;	&#x2605;		blackstar	
+☆	☆		&#9734;	&#x2606;		whitestar	
+☎	☎		&#9742;	&#x260E;		telephoneblack	
+☏	☏		&#9743;	&#x260F;		whitetelephone	
+☜	☜		&#9756;	&#x261C;		pointingindexleftwhite	
+☝	☝		&#9757;	&#x261D;		pointingindexupwhite	
+☞	☞		&#9758;	&#x261E;		pointingindexrightwhite	
+☟	☟		&#9759;	&#x261F;		pointingindexdownwhite	
+☯	☯		&#9775;	&#x262F;		yinyang	
+☺	☺		&#9786;	&#x263A;		smileface
+whitesmilingface	
+☻	☻		&#9787;	&#x263B;		blacksmilingface
+invsmileface	
+☼	☼		&#9788;	&#x263C;		compass
+sun	
+♀	♀		&#9792;	&#x2640;		female
+venus	
+♁	♁		&#9793;	&#x2641;		earth	
+♂	♂		&#9794;	&#x2642;		male
+mars	
+♡	♡		&#9825;	&#x2661;		heartsuitwhite	
+♢	♢		&#9826;	&#x2662;		diamondsuitwhite	
+♤	♤		&#9828;	&#x2664;		spadesuitwhite	
+♧	♧		&#9831;	&#x2667;		clubsuitwhite	
+♨	♨		&#9832;	&#x2668;		hotsprings	
+♩	♩		&#9833;	&#x2669;		quarternote	
+♪	♪		&#9834;	&#x266A;		musicalnote	
+♫	♫		&#9835;	&#x266B;		eighthnotebeamed
+musicalnotedbl	
+♬	♬		&#9836;	&#x266C;		beamedsixteenthnotes	
+♭	♭		&#9837;	&#x266D;		musicflatsign	
+♯	♯		&#9839;	&#x266F;		musicsharpsign	
+✓	✓		&#10003;	&#x2713;		checkmark	
+➊	➊		&#10122;	&#x278A;		onecircleinversesansserif	
+➋	➋		&#10123;	&#x278B;		twocircleinversesansserif	
+➌	➌		&#10124;	&#x278C;		threecircleinversesansserif	
+➍	➍		&#10125;	&#x278D;		fourcircleinversesansserif	
+➎	➎		&#10126;	&#x278E;		fivecircleinversesansserif	
+➏	➏		&#10127;	&#x278F;		sixcircleinversesansserif	
+➐	➐		&#10128;	&#x2790;		sevencircleinversesansserif	
+➑	➑		&#10129;	&#x2791;		eightcircleinversesansserif	
+➒	➒		&#10130;	&#x2792;		ninecircleinversesansserif	
+➞	➞		&#10142;	&#x279E;		arrowrightheavy	
+　	　		&#12288;	&#x3000;		ideographicspace	
+、	、		&#12289;	&#x3001;		ideographiccomma	
+。	。		&#12290;	&#x3002;		ideographicperiod	
+〃	〃		&#12291;	&#x3003;		dittomark	
+〄	〄		&#12292;	&#x3004;		jis	
+々	々		&#12293;	&#x3005;		ideographiciterationmark	
+〆	〆		&#12294;	&#x3006;		ideographicclose	
+〇	〇		&#12295;	&#x3007;		ideographiczero	
+〈	〈		&#12296;	&#x3008;		anglebracketleft	
+〉	〉		&#12297;	&#x3009;		anglebracketright	
+《	《		&#12298;	&#x300A;		dblanglebracketleft	
+》	》		&#12299;	&#x300B;		dblanglebracketright	
+「	「		&#12300;	&#x300C;		cornerbracketleft	
+」	」		&#12301;	&#x300D;		cornerbracketright	
+『	『		&#12302;	&#x300E;		whitecornerbracketleft	
+』	』		&#12303;	&#x300F;		whitecornerbracketright	
+【	【		&#12304;	&#x3010;		blacklenticularbracketleft	
+】	】		&#12305;	&#x3011;		blacklenticularbracketright	
+〒	〒		&#12306;	&#x3012;		postalmark	
+〓	〓		&#12307;	&#x3013;		getamark	
+〔	〔		&#12308;	&#x3014;		tortoiseshellbracketleft	
+〕	〕		&#12309;	&#x3015;		tortoiseshellbracketright	
+〖	〖		&#12310;	&#x3016;		whitelenticularbracketleft	
+〗	〗		&#12311;	&#x3017;		whitelenticularbracketright	
+〘	〘		&#12312;	&#x3018;		whitetortoiseshellbracketleft	
+〙	〙		&#12313;	&#x3019;		whitetortoiseshellbracketright	
+〜	〜		&#12316;	&#x301C;		wavedash	
+〝	〝		&#12317;	&#x301D;		quotedblprimereversed	
+〞	〞		&#12318;	&#x301E;		quotedblprime	
+〠	〠		&#12320;	&#x3020;		postalmarkface	
+〡	〡		&#12321;	&#x3021;		onehangzhou	
+〢	〢		&#12322;	&#x3022;		twohangzhou	
+〣	〣		&#12323;	&#x3023;		threehangzhou	
+〤	〤		&#12324;	&#x3024;		fourhangzhou	
+〥	〥		&#12325;	&#x3025;		fivehangzhou	
+〦	〦		&#12326;	&#x3026;		sixhangzhou	
+〧	〧		&#12327;	&#x3027;		sevenhangzhou	
+〨	〨		&#12328;	&#x3028;		eighthangzhou	
+〩	〩		&#12329;	&#x3029;		ninehangzhou	
+〶	〶		&#12342;	&#x3036;		circlepostalmark	
+ぁ	ぁ		&#12353;	&#x3041;		asmallhiragana	
+あ	あ		&#12354;	&#x3042;		ahiragana	
+ぃ	ぃ		&#12355;	&#x3043;		ismallhiragana	
+い	い		&#12356;	&#x3044;		ihiragana	
+ぅ	ぅ		&#12357;	&#x3045;		usmallhiragana	
+う	う		&#12358;	&#x3046;		uhiragana	
+ぇ	ぇ		&#12359;	&#x3047;		esmallhiragana	
+え	え		&#12360;	&#x3048;		ehiragana	
+ぉ	ぉ		&#12361;	&#x3049;		osmallhiragana	
+お	お		&#12362;	&#x304A;		ohiragana	
+か	か		&#12363;	&#x304B;		kahiragana	
+が	が		&#12364;	&#x304C;		gahiragana	
+き	き		&#12365;	&#x304D;		kihiragana	
+ぎ	ぎ		&#12366;	&#x304E;		gihiragana	
+く	く		&#12367;	&#x304F;		kuhiragana	
+ぐ	ぐ		&#12368;	&#x3050;		guhiragana	
+け	け		&#12369;	&#x3051;		kehiragana	
+げ	げ		&#12370;	&#x3052;		gehiragana	
+こ	こ		&#12371;	&#x3053;		kohiragana	
+ご	ご		&#12372;	&#x3054;		gohiragana	
+さ	さ		&#12373;	&#x3055;		sahiragana	
+ざ	ざ		&#12374;	&#x3056;		zahiragana	
+し	し		&#12375;	&#x3057;		sihiragana	
+じ	じ		&#12376;	&#x3058;		zihiragana	
+す	す		&#12377;	&#x3059;		suhiragana	
+ず	ず		&#12378;	&#x305A;		zuhiragana	
+せ	せ		&#12379;	&#x305B;		sehiragana	
+ぜ	ぜ		&#12380;	&#x305C;		zehiragana	
+そ	そ		&#12381;	&#x305D;		sohiragana	
+ぞ	ぞ		&#12382;	&#x305E;		zohiragana	
+た	た		&#12383;	&#x305F;		tahiragana	
+だ	だ		&#12384;	&#x3060;		dahiragana	
+ち	ち		&#12385;	&#x3061;		tihiragana	
+ぢ	ぢ		&#12386;	&#x3062;		dihiragana	
+っ	っ		&#12387;	&#x3063;		tusmallhiragana	
+つ	つ		&#12388;	&#x3064;		tuhiragana	
+づ	づ		&#12389;	&#x3065;		duhiragana	
+て	て		&#12390;	&#x3066;		tehiragana	
+で	で		&#12391;	&#x3067;		dehiragana	
+と	と		&#12392;	&#x3068;		tohiragana	
+ど	ど		&#12393;	&#x3069;		dohiragana	
+な	な		&#12394;	&#x306A;		nahiragana	
+に	に		&#12395;	&#x306B;		nihiragana	
+ぬ	ぬ		&#12396;	&#x306C;		nuhiragana	
+ね	ね		&#12397;	&#x306D;		nehiragana	
+の	の		&#12398;	&#x306E;		nohiragana	
+は	は		&#12399;	&#x306F;		hahiragana	
+ば	ば		&#12400;	&#x3070;		bahiragana	
+ぱ	ぱ		&#12401;	&#x3071;		pahiragana	
+ひ	ひ		&#12402;	&#x3072;		hihiragana	
+び	び		&#12403;	&#x3073;		bihiragana	
+ぴ	ぴ		&#12404;	&#x3074;		pihiragana	
+ふ	ふ		&#12405;	&#x3075;		huhiragana	
+ぶ	ぶ		&#12406;	&#x3076;		buhiragana	
+ぷ	ぷ		&#12407;	&#x3077;		puhiragana	
+へ	へ		&#12408;	&#x3078;		hehiragana	
+べ	べ		&#12409;	&#x3079;		behiragana	
+ぺ	ぺ		&#12410;	&#x307A;		pehiragana	
+ほ	ほ		&#12411;	&#x307B;		hohiragana	
+ぼ	ぼ		&#12412;	&#x307C;		bohiragana	
+ぽ	ぽ		&#12413;	&#x307D;		pohiragana	
+ま	ま		&#12414;	&#x307E;		mahiragana	
+み	み		&#12415;	&#x307F;		mihiragana	
+む	む		&#12416;	&#x3080;		muhiragana	
+め	め		&#12417;	&#x3081;		mehiragana	
+も	も		&#12418;	&#x3082;		mohiragana	
+ゃ	ゃ		&#12419;	&#x3083;		yasmallhiragana	
+や	や		&#12420;	&#x3084;		yahiragana	
+ゅ	ゅ		&#12421;	&#x3085;		yusmallhiragana	
+ゆ	ゆ		&#12422;	&#x3086;		yuhiragana	
+ょ	ょ		&#12423;	&#x3087;		yosmallhiragana	
+よ	よ		&#12424;	&#x3088;		yohiragana	
+ら	ら		&#12425;	&#x3089;		rahiragana	
+り	り		&#12426;	&#x308A;		rihiragana	
+る	る		&#12427;	&#x308B;		ruhiragana	
+れ	れ		&#12428;	&#x308C;		rehiragana	
+ろ	ろ		&#12429;	&#x308D;		rohiragana	
+ゎ	ゎ		&#12430;	&#x308E;		wasmallhiragana	
+わ	わ		&#12431;	&#x308F;		wahiragana	
+ゐ	ゐ		&#12432;	&#x3090;		wihiragana	
+ゑ	ゑ		&#12433;	&#x3091;		wehiragana	
+を	を		&#12434;	&#x3092;		wohiragana	
+ん	ん		&#12435;	&#x3093;		nhiragana	
+ゔ	ゔ		&#12436;	&#x3094;		vuhiragana	
+゛	゛		&#12443;	&#x309B;		voicedmarkkana	
+゜	゜		&#12444;	&#x309C;		semivoicedmarkkana	
+ゝ	ゝ		&#12445;	&#x309D;		iterationhiragana	
+ゞ	ゞ		&#12446;	&#x309E;		voicediterationhiragana	
+ァ	ァ		&#12449;	&#x30A1;		asmallkatakana	
+ア	ア		&#12450;	&#x30A2;		akatakana	
+ィ	ィ		&#12451;	&#x30A3;		ismallkatakana	
+イ	イ		&#12452;	&#x30A4;		ikatakana	
+ゥ	ゥ		&#12453;	&#x30A5;		usmallkatakana	
+ウ	ウ		&#12454;	&#x30A6;		ukatakana	
+ェ	ェ		&#12455;	&#x30A7;		esmallkatakana	
+エ	エ		&#12456;	&#x30A8;		ekatakana	
+ォ	ォ		&#12457;	&#x30A9;		osmallkatakana	
+オ	オ		&#12458;	&#x30AA;		okatakana	
+カ	カ		&#12459;	&#x30AB;		kakatakana	
+ガ	ガ		&#12460;	&#x30AC;		gakatakana	
+キ	キ		&#12461;	&#x30AD;		kikatakana	
+ギ	ギ		&#12462;	&#x30AE;		gikatakana	
+ク	ク		&#12463;	&#x30AF;		kukatakana	
+グ	グ		&#12464;	&#x30B0;		gukatakana	
+ケ	ケ		&#12465;	&#x30B1;		kekatakana	
+ゲ	ゲ		&#12466;	&#x30B2;		gekatakana	
+コ	コ		&#12467;	&#x30B3;		kokatakana	
+ゴ	ゴ		&#12468;	&#x30B4;		gokatakana	
+サ	サ		&#12469;	&#x30B5;		sakatakana	
+ザ	ザ		&#12470;	&#x30B6;		zakatakana	
+シ	シ		&#12471;	&#x30B7;		sikatakana	
+ジ	ジ		&#12472;	&#x30B8;		zikatakana	
+ス	ス		&#12473;	&#x30B9;		sukatakana	
+ズ	ズ		&#12474;	&#x30BA;		zukatakana	
+セ	セ		&#12475;	&#x30BB;		sekatakana	
+ゼ	ゼ		&#12476;	&#x30BC;		zekatakana	
+ソ	ソ		&#12477;	&#x30BD;		sokatakana	
+ゾ	ゾ		&#12478;	&#x30BE;		zokatakana	
+タ	タ		&#12479;	&#x30BF;		takatakana	
+ダ	ダ		&#12480;	&#x30C0;		dakatakana	
+チ	チ		&#12481;	&#x30C1;		tikatakana	
+ヂ	ヂ		&#12482;	&#x30C2;		dikatakana	
+ッ	ッ		&#12483;	&#x30C3;		tusmallkatakana	
+ツ	ツ		&#12484;	&#x30C4;		tukatakana	
+ヅ	ヅ		&#12485;	&#x30C5;		dukatakana	
+テ	テ		&#12486;	&#x30C6;		tekatakana	
+デ	デ		&#12487;	&#x30C7;		dekatakana	
+ト	ト		&#12488;	&#x30C8;		tokatakana	
+ド	ド		&#12489;	&#x30C9;		dokatakana	
+ナ	ナ		&#12490;	&#x30CA;		nakatakana	
+ニ	ニ		&#12491;	&#x30CB;		nikatakana	
+ヌ	ヌ		&#12492;	&#x30CC;		nukatakana	
+ネ	ネ		&#12493;	&#x30CD;		nekatakana	
+ノ	ノ		&#12494;	&#x30CE;		nokatakana	
+ハ	ハ		&#12495;	&#x30CF;		hakatakana	
+バ	バ		&#12496;	&#x30D0;		bakatakana	
+パ	パ		&#12497;	&#x30D1;		pakatakana	
+ヒ	ヒ		&#12498;	&#x30D2;		hikatakana	
+ビ	ビ		&#12499;	&#x30D3;		bikatakana	
+ピ	ピ		&#12500;	&#x30D4;		pikatakana	
+フ	フ		&#12501;	&#x30D5;		hukatakana	
+ブ	ブ		&#12502;	&#x30D6;		bukatakana	
+プ	プ		&#12503;	&#x30D7;		pukatakana	
+ヘ	ヘ		&#12504;	&#x30D8;		hekatakana	
+ベ	ベ		&#12505;	&#x30D9;		bekatakana	
+ペ	ペ		&#12506;	&#x30DA;		pekatakana	
+ホ	ホ		&#12507;	&#x30DB;		hokatakana	
+ボ	ボ		&#12508;	&#x30DC;		bokatakana	
+ポ	ポ		&#12509;	&#x30DD;		pokatakana	
+マ	マ		&#12510;	&#x30DE;		makatakana	
+ミ	ミ		&#12511;	&#x30DF;		mikatakana	
+ム	ム		&#12512;	&#x30E0;		mukatakana	
+メ	メ		&#12513;	&#x30E1;		mekatakana	
+モ	モ		&#12514;	&#x30E2;		mokatakana	
+ャ	ャ		&#12515;	&#x30E3;		yasmallkatakana	
+ヤ	ヤ		&#12516;	&#x30E4;		yakatakana	
+ュ	ュ		&#12517;	&#x30E5;		yusmallkatakana	
+ユ	ユ		&#12518;	&#x30E6;		yukatakana	
+ョ	ョ		&#12519;	&#x30E7;		yosmallkatakana	
+ヨ	ヨ		&#12520;	&#x30E8;		yokatakana	
+ラ	ラ		&#12521;	&#x30E9;		rakatakana	
+リ	リ		&#12522;	&#x30EA;		rikatakana	
+ル	ル		&#12523;	&#x30EB;		rukatakana	
+レ	レ		&#12524;	&#x30EC;		rekatakana	
+ロ	ロ		&#12525;	&#x30ED;		rokatakana	
+ヮ	ヮ		&#12526;	&#x30EE;		wasmallkatakana	
+ワ	ワ		&#12527;	&#x30EF;		wakatakana	
+ヰ	ヰ		&#12528;	&#x30F0;		wikatakana	
+ヱ	ヱ		&#12529;	&#x30F1;		wekatakana	
+ヲ	ヲ		&#12530;	&#x30F2;		wokatakana	
+ン	ン		&#12531;	&#x30F3;		nkatakana	
+ヴ	ヴ		&#12532;	&#x30F4;		vukatakana	
+ヵ	ヵ		&#12533;	&#x30F5;		kasmallkatakana	
+ヶ	ヶ		&#12534;	&#x30F6;		kesmallkatakana	
+ヷ	ヷ		&#12535;	&#x30F7;		vakatakana	
+ヸ	ヸ		&#12536;	&#x30F8;		vikatakana	
+ヹ	ヹ		&#12537;	&#x30F9;		vekatakana	
+ヺ	ヺ		&#12538;	&#x30FA;		vokatakana	
+・	・		&#12539;	&#x30FB;		dotkatakana	
+ー	ー		&#12540;	&#x30FC;		prolongedkana	
+ヽ	ヽ		&#12541;	&#x30FD;		iterationkatakana	
+ヾ	ヾ		&#12542;	&#x30FE;		voicediterationkatakana	
+ㄅ	ㄅ		&#12549;	&#x3105;		bbopomofo	
+ㄆ	ㄆ		&#12550;	&#x3106;		pbopomofo	
+ㄇ	ㄇ		&#12551;	&#x3107;		mbopomofo	
+ㄈ	ㄈ		&#12552;	&#x3108;		fbopomofo	
+ㄉ	ㄉ		&#12553;	&#x3109;		dbopomofo	
+ㄊ	ㄊ		&#12554;	&#x310A;		tbopomofo	
+ㄋ	ㄋ		&#12555;	&#x310B;		nbopomofo	
+ㄌ	ㄌ		&#12556;	&#x310C;		lbopomofo	
+ㄍ	ㄍ		&#12557;	&#x310D;		gbopomofo	
+ㄎ	ㄎ		&#12558;	&#x310E;		kbopomofo	
+ㄏ	ㄏ		&#12559;	&#x310F;		hbopomofo	
+ㄐ	ㄐ		&#12560;	&#x3110;		jbopomofo	
+ㄑ	ㄑ		&#12561;	&#x3111;		qbopomofo	
+ㄒ	ㄒ		&#12562;	&#x3112;		xbopomofo	
+ㄓ	ㄓ		&#12563;	&#x3113;		zhbopomofo	
+ㄔ	ㄔ		&#12564;	&#x3114;		chbopomofo	
+ㄕ	ㄕ		&#12565;	&#x3115;		shbopomofo	
+ㄖ	ㄖ		&#12566;	&#x3116;		rbopomofo	
+ㄗ	ㄗ		&#12567;	&#x3117;		zbopomofo	
+ㄘ	ㄘ		&#12568;	&#x3118;		cbopomofo	
+ㄙ	ㄙ		&#12569;	&#x3119;		sbopomofo	
+ㄚ	ㄚ		&#12570;	&#x311A;		abopomofo	
+ㄛ	ㄛ		&#12571;	&#x311B;		obopomofo	
+ㄜ	ㄜ		&#12572;	&#x311C;		ebopomofo	
+ㄝ	ㄝ		&#12573;	&#x311D;		ehbopomofo	
+ㄞ	ㄞ		&#12574;	&#x311E;		aibopomofo	
+ㄟ	ㄟ		&#12575;	&#x311F;		eibopomofo	
+ㄠ	ㄠ		&#12576;	&#x3120;		aubopomofo	
+ㄡ	ㄡ		&#12577;	&#x3121;		oubopomofo	
+ㄢ	ㄢ		&#12578;	&#x3122;		anbopomofo	
+ㄣ	ㄣ		&#12579;	&#x3123;		enbopomofo	
+ㄤ	ㄤ		&#12580;	&#x3124;		angbopomofo	
+ㄥ	ㄥ		&#12581;	&#x3125;		engbopomofo	
+ㄦ	ㄦ		&#12582;	&#x3126;		erbopomofo	
+ㄧ	ㄧ		&#12583;	&#x3127;		ibopomofo	
+ㄨ	ㄨ		&#12584;	&#x3128;		ubopomofo	
+ㄩ	ㄩ		&#12585;	&#x3129;		iubopomofo	
+ㄱ	ㄱ		&#12593;	&#x3131;		kiyeokkorean	
+ㄲ	ㄲ		&#12594;	&#x3132;		ssangkiyeokkorean	
+ㄳ	ㄳ		&#12595;	&#x3133;		kiyeoksioskorean	
+ㄴ	ㄴ		&#12596;	&#x3134;		nieunkorean	
+ㄵ	ㄵ		&#12597;	&#x3135;		nieuncieuckorean	
+ㄶ	ㄶ		&#12598;	&#x3136;		nieunhieuhkorean	
+ㄷ	ㄷ		&#12599;	&#x3137;		tikeutkorean	
+ㄸ	ㄸ		&#12600;	&#x3138;		ssangtikeutkorean	
+ㄹ	ㄹ		&#12601;	&#x3139;		rieulkorean	
+ㄺ	ㄺ		&#12602;	&#x313A;		rieulkiyeokkorean	
+ㄻ	ㄻ		&#12603;	&#x313B;		rieulmieumkorean	
+ㄼ	ㄼ		&#12604;	&#x313C;		rieulpieupkorean	
+ㄽ	ㄽ		&#12605;	&#x313D;		rieulsioskorean	
+ㄾ	ㄾ		&#12606;	&#x313E;		rieulthieuthkorean	
+ㄿ	ㄿ		&#12607;	&#x313F;		rieulphieuphkorean	
+ㅀ	ㅀ		&#12608;	&#x3140;		rieulhieuhkorean	
+ㅁ	ㅁ		&#12609;	&#x3141;		mieumkorean	
+ㅂ	ㅂ		&#12610;	&#x3142;		pieupkorean	
+ㅃ	ㅃ		&#12611;	&#x3143;		ssangpieupkorean	
+ㅄ	ㅄ		&#12612;	&#x3144;		pieupsioskorean	
+ㅅ	ㅅ		&#12613;	&#x3145;		sioskorean	
+ㅆ	ㅆ		&#12614;	&#x3146;		ssangsioskorean	
+ㅇ	ㅇ		&#12615;	&#x3147;		ieungkorean	
+ㅈ	ㅈ		&#12616;	&#x3148;		cieuckorean	
+ㅉ	ㅉ		&#12617;	&#x3149;		ssangcieuckorean	
+ㅊ	ㅊ		&#12618;	&#x314A;		chieuchkorean	
+ㅋ	ㅋ		&#12619;	&#x314B;		khieukhkorean	
+ㅌ	ㅌ		&#12620;	&#x314C;		thieuthkorean	
+ㅍ	ㅍ		&#12621;	&#x314D;		phieuphkorean	
+ㅎ	ㅎ		&#12622;	&#x314E;		hieuhkorean	
+ㅏ	ㅏ		&#12623;	&#x314F;		akorean	
+ㅐ	ㅐ		&#12624;	&#x3150;		aekorean	
+ㅑ	ㅑ		&#12625;	&#x3151;		yakorean	
+ㅒ	ㅒ		&#12626;	&#x3152;		yaekorean	
+ㅓ	ㅓ		&#12627;	&#x3153;		eokorean	
+ㅔ	ㅔ		&#12628;	&#x3154;		ekorean	
+ㅕ	ㅕ		&#12629;	&#x3155;		yeokorean	
+ㅖ	ㅖ		&#12630;	&#x3156;		yekorean	
+ㅗ	ㅗ		&#12631;	&#x3157;		okorean	
+ㅘ	ㅘ		&#12632;	&#x3158;		wakorean	
+ㅙ	ㅙ		&#12633;	&#x3159;		waekorean	
+ㅚ	ㅚ		&#12634;	&#x315A;		oekorean	
+ㅛ	ㅛ		&#12635;	&#x315B;		yokorean	
+ㅜ	ㅜ		&#12636;	&#x315C;		ukorean	
+ㅝ	ㅝ		&#12637;	&#x315D;		weokorean	
+ㅞ	ㅞ		&#12638;	&#x315E;		wekorean	
+ㅟ	ㅟ		&#12639;	&#x315F;		wikorean	
+ㅠ	ㅠ		&#12640;	&#x3160;		yukorean	
+ㅡ	ㅡ		&#12641;	&#x3161;		eukorean	
+ㅢ	ㅢ		&#12642;	&#x3162;		yikorean	
+ㅣ	ㅣ		&#12643;	&#x3163;		ikorean	
+ㅤ	ㅤ		&#12644;	&#x3164;		hangulfiller	
+ㅥ	ㅥ		&#12645;	&#x3165;		ssangnieunkorean	
+ㅦ	ㅦ		&#12646;	&#x3166;		nieuntikeutkorean	
+ㅧ	ㅧ		&#12647;	&#x3167;		nieunsioskorean	
+ㅨ	ㅨ		&#12648;	&#x3168;		nieunpansioskorean	
+ㅩ	ㅩ		&#12649;	&#x3169;		rieulkiyeoksioskorean	
+ㅪ	ㅪ		&#12650;	&#x316A;		rieultikeutkorean	
+ㅫ	ㅫ		&#12651;	&#x316B;		rieulpieupsioskorean	
+ㅬ	ㅬ		&#12652;	&#x316C;		rieulpansioskorean	
+ㅭ	ㅭ		&#12653;	&#x316D;		rieulyeorinhieuhkorean	
+ㅮ	ㅮ		&#12654;	&#x316E;		mieumpieupkorean	
+ㅯ	ㅯ		&#12655;	&#x316F;		mieumsioskorean	
+ㅰ	ㅰ		&#12656;	&#x3170;		mieumpansioskorean	
+ㅱ	ㅱ		&#12657;	&#x3171;		kapyeounmieumkorean	
+ㅲ	ㅲ		&#12658;	&#x3172;		pieupkiyeokkorean	
+ㅳ	ㅳ		&#12659;	&#x3173;		pieuptikeutkorean	
+ㅴ	ㅴ		&#12660;	&#x3174;		pieupsioskiyeokkorean	
+ㅵ	ㅵ		&#12661;	&#x3175;		pieupsiostikeutkorean	
+ㅶ	ㅶ		&#12662;	&#x3176;		pieupcieuckorean	
+ㅷ	ㅷ		&#12663;	&#x3177;		pieupthieuthkorean	
+ㅸ	ㅸ		&#12664;	&#x3178;		kapyeounpieupkorean	
+ㅹ	ㅹ		&#12665;	&#x3179;		kapyeounssangpieupkorean	
+ㅺ	ㅺ		&#12666;	&#x317A;		sioskiyeokkorean	
+ㅻ	ㅻ		&#12667;	&#x317B;		siosnieunkorean	
+ㅼ	ㅼ		&#12668;	&#x317C;		siostikeutkorean	
+ㅽ	ㅽ		&#12669;	&#x317D;		siospieupkorean	
+ㅾ	ㅾ		&#12670;	&#x317E;		sioscieuckorean	
+ㅿ	ㅿ		&#12671;	&#x317F;		pansioskorean	
+ㆀ	ㆀ		&#12672;	&#x3180;		ssangieungkorean	
+ㆁ	ㆁ		&#12673;	&#x3181;		yesieungkorean	
+ㆂ	ㆂ		&#12674;	&#x3182;		yesieungsioskorean	
+ㆃ	ㆃ		&#12675;	&#x3183;		yesieungpansioskorean	
+ㆄ	ㆄ		&#12676;	&#x3184;		kapyeounphieuphkorean	
+ㆅ	ㆅ		&#12677;	&#x3185;		ssanghieuhkorean	
+ㆆ	ㆆ		&#12678;	&#x3186;		yeorinhieuhkorean	
+ㆇ	ㆇ		&#12679;	&#x3187;		yoyakorean	
+ㆈ	ㆈ		&#12680;	&#x3188;		yoyaekorean	
+ㆉ	ㆉ		&#12681;	&#x3189;		yoikorean	
+ㆊ	ㆊ		&#12682;	&#x318A;		yuyeokorean	
+ㆋ	ㆋ		&#12683;	&#x318B;		yuyekorean	
+ㆌ	ㆌ		&#12684;	&#x318C;		yuikorean	
+ㆍ	ㆍ		&#12685;	&#x318D;		araeakorean	
+ㆎ	ㆎ		&#12686;	&#x318E;		araeaekorean	
+㈀	㈀		&#12800;	&#x3200;		kiyeokparenkorean	
+㈁	㈁		&#12801;	&#x3201;		nieunparenkorean	
+㈂	㈂		&#12802;	&#x3202;		tikeutparenkorean	
+㈃	㈃		&#12803;	&#x3203;		rieulparenkorean	
+㈄	㈄		&#12804;	&#x3204;		mieumparenkorean	
+㈅	㈅		&#12805;	&#x3205;		pieupparenkorean	
+㈆	㈆		&#12806;	&#x3206;		siosparenkorean	
+㈇	㈇		&#12807;	&#x3207;		ieungparenkorean	
+㈈	㈈		&#12808;	&#x3208;		cieucparenkorean	
+㈉	㈉		&#12809;	&#x3209;		chieuchparenkorean	
+㈊	㈊		&#12810;	&#x320A;		khieukhparenkorean	
+㈋	㈋		&#12811;	&#x320B;		thieuthparenkorean	
+㈌	㈌		&#12812;	&#x320C;		phieuphparenkorean	
+㈍	㈍		&#12813;	&#x320D;		hieuhparenkorean	
+㈎	㈎		&#12814;	&#x320E;		kiyeokaparenkorean	
+㈏	㈏		&#12815;	&#x320F;		nieunaparenkorean	
+㈐	㈐		&#12816;	&#x3210;		tikeutaparenkorean	
+㈑	㈑		&#12817;	&#x3211;		rieulaparenkorean	
+㈒	㈒		&#12818;	&#x3212;		mieumaparenkorean	
+㈓	㈓		&#12819;	&#x3213;		pieupaparenkorean	
+㈔	㈔		&#12820;	&#x3214;		siosaparenkorean	
+㈕	㈕		&#12821;	&#x3215;		ieungaparenkorean	
+㈖	㈖		&#12822;	&#x3216;		cieucaparenkorean	
+㈗	㈗		&#12823;	&#x3217;		chieuchaparenkorean	
+㈘	㈘		&#12824;	&#x3218;		khieukhaparenkorean	
+㈙	㈙		&#12825;	&#x3219;		thieuthaparenkorean	
+㈚	㈚		&#12826;	&#x321A;		phieuphaparenkorean	
+㈛	㈛		&#12827;	&#x321B;		hieuhaparenkorean	
+㈜	㈜		&#12828;	&#x321C;		cieucuparenkorean	
+㈠	㈠		&#12832;	&#x3220;		oneideographicparen	
+㈡	㈡		&#12833;	&#x3221;		twoideographicparen	
+㈢	㈢		&#12834;	&#x3222;		threeideographicparen	
+㈣	㈣		&#12835;	&#x3223;		fourideographicparen	
+㈤	㈤		&#12836;	&#x3224;		fiveideographicparen	
+㈥	㈥		&#12837;	&#x3225;		sixideographicparen	
+㈦	㈦		&#12838;	&#x3226;		sevenideographicparen	
+㈧	㈧		&#12839;	&#x3227;		eightideographicparen	
+㈨	㈨		&#12840;	&#x3228;		nineideographicparen	
+㈩	㈩		&#12841;	&#x3229;		tenideographicparen	
+㈪	㈪		&#12842;	&#x322A;		ideographicmoonparen	
+㈫	㈫		&#12843;	&#x322B;		ideographicfireparen	
+㈬	㈬		&#12844;	&#x322C;		ideographicwaterparen	
+㈭	㈭		&#12845;	&#x322D;		ideographicwoodparen	
+㈮	㈮		&#12846;	&#x322E;		ideographicmetalparen	
+㈯	㈯		&#12847;	&#x322F;		ideographicearthparen	
+㈰	㈰		&#12848;	&#x3230;		ideographicsunparen	
+㈱	㈱		&#12849;	&#x3231;		ideographicstockparen	
+㈲	㈲		&#12850;	&#x3232;		ideographichaveparen	
+㈳	㈳		&#12851;	&#x3233;		ideographicsocietyparen	
+㈴	㈴		&#12852;	&#x3234;		ideographicnameparen	
+㈵	㈵		&#12853;	&#x3235;		ideographicspecialparen	
+㈶	㈶		&#12854;	&#x3236;		ideographicfinancialparen	
+㈷	㈷		&#12855;	&#x3237;		ideographiccongratulationparen	
+㈸	㈸		&#12856;	&#x3238;		ideographiclaborparen	
+㈹	㈹		&#12857;	&#x3239;		ideographicrepresentparen	
+㈺	㈺		&#12858;	&#x323A;		ideographiccallparen	
+㈻	㈻		&#12859;	&#x323B;		ideographicstudyparen	
+㈼	㈼		&#12860;	&#x323C;		ideographicsuperviseparen	
+㈽	㈽		&#12861;	&#x323D;		ideographicenterpriseparen	
+㈾	㈾		&#12862;	&#x323E;		ideographicresourceparen	
+㈿	㈿		&#12863;	&#x323F;		ideographicallianceparen	
+㉀	㉀		&#12864;	&#x3240;		ideographicfestivalparen	
+㉂	㉂		&#12866;	&#x3242;		ideographicselfparen	
+㉃	㉃		&#12867;	&#x3243;		ideographicreachparen	
+㉠	㉠		&#12896;	&#x3260;		kiyeokcirclekorean	
+㉡	㉡		&#12897;	&#x3261;		nieuncirclekorean	
+㉢	㉢		&#12898;	&#x3262;		tikeutcirclekorean	
+㉣	㉣		&#12899;	&#x3263;		rieulcirclekorean	
+㉤	㉤		&#12900;	&#x3264;		mieumcirclekorean	
+㉥	㉥		&#12901;	&#x3265;		pieupcirclekorean	
+㉦	㉦		&#12902;	&#x3266;		sioscirclekorean	
+㉧	㉧		&#12903;	&#x3267;		ieungcirclekorean	
+㉨	㉨		&#12904;	&#x3268;		cieuccirclekorean	
+㉩	㉩		&#12905;	&#x3269;		chieuchcirclekorean	
+㉪	㉪		&#12906;	&#x326A;		khieukhcirclekorean	
+㉫	㉫		&#12907;	&#x326B;		thieuthcirclekorean	
+㉬	㉬		&#12908;	&#x326C;		phieuphcirclekorean	
+㉭	㉭		&#12909;	&#x326D;		hieuhcirclekorean	
+㉮	㉮		&#12910;	&#x326E;		kiyeokacirclekorean	
+㉯	㉯		&#12911;	&#x326F;		nieunacirclekorean	
+㉰	㉰		&#12912;	&#x3270;		tikeutacirclekorean	
+㉱	㉱		&#12913;	&#x3271;		rieulacirclekorean	
+㉲	㉲		&#12914;	&#x3272;		mieumacirclekorean	
+㉳	㉳		&#12915;	&#x3273;		pieupacirclekorean	
+㉴	㉴		&#12916;	&#x3274;		siosacirclekorean	
+㉵	㉵		&#12917;	&#x3275;		ieungacirclekorean	
+㉶	㉶		&#12918;	&#x3276;		cieucacirclekorean	
+㉷	㉷		&#12919;	&#x3277;		chieuchacirclekorean	
+㉸	㉸		&#12920;	&#x3278;		khieukhacirclekorean	
+㉹	㉹		&#12921;	&#x3279;		thieuthacirclekorean	
+㉺	㉺		&#12922;	&#x327A;		phieuphacirclekorean	
+㉻	㉻		&#12923;	&#x327B;		hieuhacirclekorean	
+㉿	㉿		&#12927;	&#x327F;		koreanstandardsymbol	
+㊊	㊊		&#12938;	&#x328A;		ideographmooncircle	
+㊋	㊋		&#12939;	&#x328B;		ideographfirecircle	
+㊌	㊌		&#12940;	&#x328C;		ideographwatercircle	
+㊍	㊍		&#12941;	&#x328D;		ideographwoodcircle	
+㊎	㊎		&#12942;	&#x328E;		ideographmetalcircle	
+㊏	㊏		&#12943;	&#x328F;		ideographearthcircle	
+㊐	㊐		&#12944;	&#x3290;		ideographsuncircle	
+㊔	㊔		&#12948;	&#x3294;		ideographnamecircle	
+㊖	㊖		&#12950;	&#x3296;		ideographicfinancialcircle	
+㊘	㊘		&#12952;	&#x3298;		ideographiclaborcircle	
+㊙	㊙		&#12953;	&#x3299;		ideographicsecretcircle	
+㊝	㊝		&#12957;	&#x329D;		ideographicexcellentcircle	
+㊞	㊞		&#12958;	&#x329E;		ideographicprintcircle	
+㊣	㊣		&#12963;	&#x32A3;		ideographiccorrectcircle	
+㊤	㊤		&#12964;	&#x32A4;		ideographichighcircle	
+㊥	㊥		&#12965;	&#x32A5;		ideographiccentrecircle	
+㊦	㊦		&#12966;	&#x32A6;		ideographiclowcircle	
+㊧	㊧		&#12967;	&#x32A7;		ideographicleftcircle	
+㊨	㊨		&#12968;	&#x32A8;		ideographicrightcircle	
+㊩	㊩		&#12969;	&#x32A9;		ideographicmedicinecircle	
+㌀	㌀		&#13056;	&#x3300;		apaatosquare	
+㌃	㌃		&#13059;	&#x3303;		aarusquare	
+㌅	㌅		&#13061;	&#x3305;		intisquare	
+㌍	㌍		&#13069;	&#x330D;		karoriisquare	
+㌔	㌔		&#13076;	&#x3314;		kirosquare	
+㌕	㌕		&#13077;	&#x3315;		kiroguramusquare	
+㌖	㌖		&#13078;	&#x3316;		kiromeetorusquare	
+㌘	㌘		&#13080;	&#x3318;		guramusquare	
+㌞	㌞		&#13086;	&#x331E;		kooposquare	
+㌢	㌢		&#13090;	&#x3322;		sentisquare	
+㌣	㌣		&#13091;	&#x3323;		sentosquare	
+㌦	㌦		&#13094;	&#x3326;		dorusquare	
+㌧	㌧		&#13095;	&#x3327;		tonsquare	
+㌪	㌪		&#13098;	&#x332A;		haitusquare	
+㌫	㌫		&#13099;	&#x332B;		paasentosquare	
+㌱	㌱		&#13105;	&#x3331;		birusquare	
+㌳	㌳		&#13107;	&#x3333;		huiitosquare	
+㌶	㌶		&#13110;	&#x3336;		hekutaarusquare	
+㌹	㌹		&#13113;	&#x3339;		herutusquare	
+㌻	㌻		&#13115;	&#x333B;		peezisquare	
+㍂	㍂		&#13122;	&#x3342;		hoonsquare	
+㍇	㍇		&#13127;	&#x3347;		mansyonsquare	
+㍉	㍉		&#13129;	&#x3349;		mirisquare	
+㍊	㍊		&#13130;	&#x334A;		miribaarusquare	
+㍍	㍍		&#13133;	&#x334D;		meetorusquare	
+㍎	㍎		&#13134;	&#x334E;		yaadosquare	
+㍑	㍑		&#13137;	&#x3351;		rittorusquare	
+㍗	㍗		&#13143;	&#x3357;		wattosquare	
+㍻	㍻		&#13179;	&#x337B;		heiseierasquare	
+㍼	㍼		&#13180;	&#x337C;		syouwaerasquare	
+㍽	㍽		&#13181;	&#x337D;		taisyouerasquare	
+㍾	㍾		&#13182;	&#x337E;		meizierasquare	
+㍿	㍿		&#13183;	&#x337F;		corporationsquare	
+㎀	㎀		&#13184;	&#x3380;		paampssquare	
+㎁	㎁		&#13185;	&#x3381;		nasquare	
+㎂	㎂		&#13186;	&#x3382;		muasquare	
+㎃	㎃		&#13187;	&#x3383;		masquare	
+㎄	㎄		&#13188;	&#x3384;		kasquare	
+㎅	㎅		&#13189;	&#x3385;		KBsquare	
+㎆	㎆		&#13190;	&#x3386;		MBsquare	
+㎇	㎇		&#13191;	&#x3387;		GBsquare	
+㎈	㎈		&#13192;	&#x3388;		calsquare	
+㎉	㎉		&#13193;	&#x3389;		kcalsquare	
+㎊	㎊		&#13194;	&#x338A;		pfsquare	
+㎋	㎋		&#13195;	&#x338B;		nfsquare	
+㎌	㎌		&#13196;	&#x338C;		mufsquare	
+㎍	㎍		&#13197;	&#x338D;		mugsquare	
+㎎	㎎		&#13198;	&#x338E;		squaremg	
+㎏	㎏		&#13199;	&#x338F;		squarekg	
+㎐	㎐		&#13200;	&#x3390;		Hzsquare	
+㎑	㎑		&#13201;	&#x3391;		khzsquare	
+㎒	㎒		&#13202;	&#x3392;		mhzsquare	
+㎓	㎓		&#13203;	&#x3393;		ghzsquare	
+㎔	㎔		&#13204;	&#x3394;		thzsquare	
+㎕	㎕		&#13205;	&#x3395;		mulsquare	
+㎖	㎖		&#13206;	&#x3396;		mlsquare	
+㎗	㎗		&#13207;	&#x3397;		dlsquare	
+㎘	㎘		&#13208;	&#x3398;		klsquare	
+㎙	㎙		&#13209;	&#x3399;		fmsquare	
+㎚	㎚		&#13210;	&#x339A;		nmsquare	
+㎛	㎛		&#13211;	&#x339B;		mumsquare	
+㎜	㎜		&#13212;	&#x339C;		squaremm	
+㎝	㎝		&#13213;	&#x339D;		squarecm	
+㎞	㎞		&#13214;	&#x339E;		squarekm	
+㎟	㎟		&#13215;	&#x339F;		mmsquaredsquare	
+㎠	㎠		&#13216;	&#x33A0;		cmsquaredsquare	
+㎡	㎡		&#13217;	&#x33A1;		squaremsquared	
+㎢	㎢		&#13218;	&#x33A2;		kmsquaredsquare	
+㎣	㎣		&#13219;	&#x33A3;		mmcubedsquare	
+㎤	㎤		&#13220;	&#x33A4;		cmcubedsquare	
+㎥	㎥		&#13221;	&#x33A5;		mcubedsquare	
+㎦	㎦		&#13222;	&#x33A6;		kmcubedsquare	
+㎧	㎧		&#13223;	&#x33A7;		moverssquare	
+㎨	㎨		&#13224;	&#x33A8;		moverssquaredsquare	
+㎩	㎩		&#13225;	&#x33A9;		pasquare	
+㎪	㎪		&#13226;	&#x33AA;		kpasquare	
+㎫	㎫		&#13227;	&#x33AB;		mpasquare	
+㎬	㎬		&#13228;	&#x33AC;		gpasquare	
+㎭	㎭		&#13229;	&#x33AD;		radsquare	
+㎮	㎮		&#13230;	&#x33AE;		radoverssquare	
+㎯	㎯		&#13231;	&#x33AF;		radoverssquaredsquare	
+㎰	㎰		&#13232;	&#x33B0;		pssquare	
+㎱	㎱		&#13233;	&#x33B1;		nssquare	
+㎲	㎲		&#13234;	&#x33B2;		mussquare	
+㎳	㎳		&#13235;	&#x33B3;		mssquare	
+㎴	㎴		&#13236;	&#x33B4;		pvsquare	
+㎵	㎵		&#13237;	&#x33B5;		nvsquare	
+㎶	㎶		&#13238;	&#x33B6;		muvsquare	
+㎷	㎷		&#13239;	&#x33B7;		mvsquare	
+㎸	㎸		&#13240;	&#x33B8;		kvsquare	
+㎹	㎹		&#13241;	&#x33B9;		mvmegasquare	
+㎺	㎺		&#13242;	&#x33BA;		pwsquare	
+㎻	㎻		&#13243;	&#x33BB;		nwsquare	
+㎼	㎼		&#13244;	&#x33BC;		muwsquare	
+㎽	㎽		&#13245;	&#x33BD;		mwsquare	
+㎾	㎾		&#13246;	&#x33BE;		kwsquare	
+㎿	㎿		&#13247;	&#x33BF;		mwmegasquare	
+㏀	㏀		&#13248;	&#x33C0;		kohmsquare	
+㏁	㏁		&#13249;	&#x33C1;		mohmsquare	
+㏂	㏂		&#13250;	&#x33C2;		amsquare	
+㏃	㏃		&#13251;	&#x33C3;		bqsquare	
+㏄	㏄		&#13252;	&#x33C4;		squarecc	
+㏅	㏅		&#13253;	&#x33C5;		cdsquare	
+㏆	㏆		&#13254;	&#x33C6;		coverkgsquare	
+㏇	㏇		&#13255;	&#x33C7;		cosquare	
+㏈	㏈		&#13256;	&#x33C8;		dbsquare	
+㏉	㏉		&#13257;	&#x33C9;		gysquare	
+㏊	㏊		&#13258;	&#x33CA;		hasquare	
+㏋	㏋		&#13259;	&#x33CB;		HPsquare	
+㏍	㏍		&#13261;	&#x33CD;		KKsquare	
+㏎	㏎		&#13262;	&#x33CE;		squarekmcapital	
+㏏	㏏		&#13263;	&#x33CF;		ktsquare	
+㏐	㏐		&#13264;	&#x33D0;		lmsquare	
+㏑	㏑		&#13265;	&#x33D1;		squareln	
+㏒	㏒		&#13266;	&#x33D2;		squarelog	
+㏓	㏓		&#13267;	&#x33D3;		lxsquare	
+㏔	㏔		&#13268;	&#x33D4;		mbsquare	
+㏕	㏕		&#13269;	&#x33D5;		squaremil	
+㏖	㏖		&#13270;	&#x33D6;		molsquare	
+㏘	㏘		&#13272;	&#x33D8;		pmsquare	
+㏛	㏛		&#13275;	&#x33DB;		srsquare	
+㏜	㏜		&#13276;	&#x33DC;		svsquare	
+㏝	㏝		&#13277;	&#x33DD;		wbsquare	
+卄	卄		&#21316;	&#x5344;		twentyhangzhou	
+			&#63166;	&#xF6BE;		dotlessj	
+			&#63167;	&#xF6BF;		LL	
+			&#63168;	&#xF6C0;		ll	
+			&#63171;	&#xF6C3;		commaaccent	
+			&#63172;	&#xF6C4;		afii10063	
+			&#63173;	&#xF6C5;		afii10064	
+			&#63174;	&#xF6C6;		afii10192	
+			&#63175;	&#xF6C7;		afii10831	
+			&#63176;	&#xF6C8;		afii10832	
+			&#63177;	&#xF6C9;		Acute	
+			&#63178;	&#xF6CA;		Caron	
+			&#63179;	&#xF6CB;		Dieresis	
+			&#63180;	&#xF6CC;		DieresisAcute	
+			&#63181;	&#xF6CD;		DieresisGrave	
+			&#63182;	&#xF6CE;		Grave	
+			&#63183;	&#xF6CF;		Hungarumlaut	
+			&#63184;	&#xF6D0;		Macron	
+			&#63185;	&#xF6D1;		cyrBreve	
+			&#63186;	&#xF6D2;		cyrFlex	
+			&#63187;	&#xF6D3;		dblGrave	
+			&#63188;	&#xF6D4;		cyrbreve	
+			&#63189;	&#xF6D5;		cyrflex	
+			&#63190;	&#xF6D6;		dblgrave	
+			&#63191;	&#xF6D7;		dieresisacute	
+			&#63192;	&#xF6D8;		dieresisgrave	
+			&#63193;	&#xF6D9;		copyrightserif	
+			&#63194;	&#xF6DA;		registerserif	
+			&#63195;	&#xF6DB;		trademarkserif	
+			&#63196;	&#xF6DC;		onefitted	
+			&#63197;	&#xF6DD;		rupiah	
+			&#63198;	&#xF6DE;		threequartersemdash	
+			&#63199;	&#xF6DF;		centinferior	
+			&#63200;	&#xF6E0;		centsuperior	
+			&#63201;	&#xF6E1;		commainferior	
+			&#63202;	&#xF6E2;		commasuperior	
+			&#63203;	&#xF6E3;		dollarinferior	
+			&#63204;	&#xF6E4;		dollarsuperior	
+			&#63205;	&#xF6E5;		hypheninferior	
+			&#63206;	&#xF6E6;		hyphensuperior	
+			&#63207;	&#xF6E7;		periodinferior	
+			&#63208;	&#xF6E8;		periodsuperior	
+			&#63209;	&#xF6E9;		asuperior	
+			&#63210;	&#xF6EA;		bsuperior	
+			&#63211;	&#xF6EB;		dsuperior	
+			&#63212;	&#xF6EC;		esuperior	
+			&#63213;	&#xF6ED;		isuperior	
+			&#63214;	&#xF6EE;		lsuperior	
+			&#63215;	&#xF6EF;		msuperior	
+			&#63216;	&#xF6F0;		osuperior	
+			&#63217;	&#xF6F1;		rsuperior	
+			&#63218;	&#xF6F2;		ssuperior	
+			&#63219;	&#xF6F3;		tsuperior	
+			&#63220;	&#xF6F4;		Brevesmall	
+			&#63221;	&#xF6F5;		Caronsmall	
+			&#63222;	&#xF6F6;		Circumflexsmall	
+			&#63223;	&#xF6F7;		Dotaccentsmall	
+			&#63224;	&#xF6F8;		Hungarumlautsmall	
+			&#63225;	&#xF6F9;		Lslashsmall	
+			&#63226;	&#xF6FA;		OEsmall	
+			&#63227;	&#xF6FB;		Ogoneksmall	
+			&#63228;	&#xF6FC;		Ringsmall	
+			&#63229;	&#xF6FD;		Scaronsmall	
+			&#63230;	&#xF6FE;		Tildesmall	
+			&#63231;	&#xF6FF;		Zcaronsmall	
+			&#63265;	&#xF721;		exclamsmall	
+			&#63268;	&#xF724;		dollaroldstyle	
+			&#63270;	&#xF726;		ampersandsmall	
+			&#63280;	&#xF730;		zerooldstyle	
+			&#63281;	&#xF731;		oneoldstyle	
+			&#63282;	&#xF732;		twooldstyle	
+			&#63283;	&#xF733;		threeoldstyle	
+			&#63284;	&#xF734;		fouroldstyle	
+			&#63285;	&#xF735;		fiveoldstyle	
+			&#63286;	&#xF736;		sixoldstyle	
+			&#63287;	&#xF737;		sevenoldstyle	
+			&#63288;	&#xF738;		eightoldstyle	
+			&#63289;	&#xF739;		nineoldstyle	
+			&#63295;	&#xF73F;		questionsmall	
+			&#63328;	&#xF760;		Gravesmall	
+			&#63329;	&#xF761;		Asmall	
+			&#63330;	&#xF762;		Bsmall	
+			&#63331;	&#xF763;		Csmall	
+			&#63332;	&#xF764;		Dsmall	
+			&#63333;	&#xF765;		Esmall	
+			&#63334;	&#xF766;		Fsmall	
+			&#63335;	&#xF767;		Gsmall	
+			&#63336;	&#xF768;		Hsmall	
+			&#63337;	&#xF769;		Ismall	
+			&#63338;	&#xF76A;		Jsmall	
+			&#63339;	&#xF76B;		Ksmall	
+			&#63340;	&#xF76C;		Lsmall	
+			&#63341;	&#xF76D;		Msmall	
+			&#63342;	&#xF76E;		Nsmall	
+			&#63343;	&#xF76F;		Osmall	
+			&#63344;	&#xF770;		Psmall	
+			&#63345;	&#xF771;		Qsmall	
+			&#63346;	&#xF772;		Rsmall	
+			&#63347;	&#xF773;		Ssmall	
+			&#63348;	&#xF774;		Tsmall	
+			&#63349;	&#xF775;		Usmall	
+			&#63350;	&#xF776;		Vsmall	
+			&#63351;	&#xF777;		Wsmall	
+			&#63352;	&#xF778;		Xsmall	
+			&#63353;	&#xF779;		Ysmall	
+			&#63354;	&#xF77A;		Zsmall	
+			&#63393;	&#xF7A1;		exclamdownsmall	
+			&#63394;	&#xF7A2;		centoldstyle	
+			&#63400;	&#xF7A8;		Dieresissmall	
+			&#63407;	&#xF7AF;		Macronsmall	
+			&#63412;	&#xF7B4;		Acutesmall	
+			&#63416;	&#xF7B8;		Cedillasmall	
+			&#63423;	&#xF7BF;		questiondownsmall	
+			&#63456;	&#xF7E0;		Agravesmall	
+			&#63457;	&#xF7E1;		Aacutesmall	
+			&#63458;	&#xF7E2;		Acircumflexsmall	
+			&#63459;	&#xF7E3;		Atildesmall	
+			&#63460;	&#xF7E4;		Adieresissmall	
+			&#63461;	&#xF7E5;		Aringsmall	
+			&#63462;	&#xF7E6;		AEsmall	
+			&#63463;	&#xF7E7;		Ccedillasmall	
+			&#63464;	&#xF7E8;		Egravesmall	
+			&#63465;	&#xF7E9;		Eacutesmall	
+			&#63466;	&#xF7EA;		Ecircumflexsmall	
+			&#63467;	&#xF7EB;		Edieresissmall	
+			&#63468;	&#xF7EC;		Igravesmall	
+			&#63469;	&#xF7ED;		Iacutesmall	
+			&#63470;	&#xF7EE;		Icircumflexsmall	
+			&#63471;	&#xF7EF;		Idieresissmall	
+			&#63472;	&#xF7F0;		Ethsmall	
+			&#63473;	&#xF7F1;		Ntildesmall	
+			&#63474;	&#xF7F2;		Ogravesmall	
+			&#63475;	&#xF7F3;		Oacutesmall	
+			&#63476;	&#xF7F4;		Ocircumflexsmall	
+			&#63477;	&#xF7F5;		Otildesmall	
+			&#63478;	&#xF7F6;		Odieresissmall	
+			&#63480;	&#xF7F8;		Oslashsmall	
+			&#63481;	&#xF7F9;		Ugravesmall	
+			&#63482;	&#xF7FA;		Uacutesmall	
+			&#63483;	&#xF7FB;		Ucircumflexsmall	
+			&#63484;	&#xF7FC;		Udieresissmall	
+			&#63485;	&#xF7FD;		Yacutesmall	
+			&#63486;	&#xF7FE;		Thornsmall	
+			&#63487;	&#xF7FF;		Ydieresissmall	
+			&#63620;	&#xF884;		maihanakatleftthai	
+			&#63621;	&#xF885;		saraileftthai	
+			&#63622;	&#xF886;		saraiileftthai	
+			&#63623;	&#xF887;		saraueleftthai	
+			&#63624;	&#xF888;		saraueeleftthai	
+			&#63625;	&#xF889;		maitaikhuleftthai	
+			&#63626;	&#xF88A;		maiekupperleftthai	
+			&#63627;	&#xF88B;		maieklowrightthai	
+			&#63628;	&#xF88C;		maieklowleftthai	
+			&#63629;	&#xF88D;		maithoupperleftthai	
+			&#63630;	&#xF88E;		maitholowrightthai	
+			&#63631;	&#xF88F;		maitholowleftthai	
+			&#63632;	&#xF890;		maitriupperleftthai	
+			&#63633;	&#xF891;		maitrilowrightthai	
+			&#63634;	&#xF892;		maitrilowleftthai	
+			&#63635;	&#xF893;		maichattawaupperleftthai	
+			&#63636;	&#xF894;		maichattawalowrightthai	
+			&#63637;	&#xF895;		maichattawalowleftthai	
+			&#63638;	&#xF896;		thanthakhatupperleftthai	
+			&#63639;	&#xF897;		thanthakhatlowrightthai	
+			&#63640;	&#xF898;		thanthakhatlowleftthai	
+			&#63641;	&#xF899;		nikhahitleftthai	
+			&#63717;	&#xF8E5;		radicalex	
+			&#63718;	&#xF8E6;		arrowvertex	
+			&#63719;	&#xF8E7;		arrowhorizex	
+			&#63720;	&#xF8E8;		registersans	
+			&#63721;	&#xF8E9;		copyrightsans	
+			&#63722;	&#xF8EA;		trademarksans	
+			&#63723;	&#xF8EB;		parenlefttp	
+			&#63724;	&#xF8EC;		parenleftex	
+			&#63725;	&#xF8ED;		parenleftbt	
+			&#63726;	&#xF8EE;		bracketlefttp	
+			&#63727;	&#xF8EF;		bracketleftex	
+			&#63728;	&#xF8F0;		bracketleftbt	
+			&#63729;	&#xF8F1;		bracelefttp	
+			&#63730;	&#xF8F2;		braceleftmid	
+			&#63731;	&#xF8F3;		braceleftbt	
+			&#63732;	&#xF8F4;		braceex	
+			&#63733;	&#xF8F5;		integralex	
+			&#63734;	&#xF8F6;		parenrighttp	
+			&#63735;	&#xF8F7;		parenrightex	
+			&#63736;	&#xF8F8;		parenrightbt	
+			&#63737;	&#xF8F9;		bracketrighttp	
+			&#63738;	&#xF8FA;		bracketrightex	
+			&#63739;	&#xF8FB;		bracketrightbt	
+			&#63740;	&#xF8FC;		bracerighttp	
+			&#63741;	&#xF8FD;		bracerightmid	
+			&#63742;	&#xF8FE;		bracerightbt	
+			&#63743;	&#xF8FF;		apple	
+ﬀ	ﬀ		&#64256;	&#xFB00;		ff	
+ﬁ	ﬁ		&#64257;	&#xFB01;		fi	
+ﬂ	ﬂ		&#64258;	&#xFB02;		fl	
+ﬃ	ﬃ		&#64259;	&#xFB03;		ffi	
+ﬄ	ﬄ		&#64260;	&#xFB04;		ffl	
+ײַ	ײַ		&#64287;	&#xFB1F;		afii57705
+doubleyodpatah
+doubleyodpatahhebrew
+yodyodpatahhebrew	
+ﬠ	ﬠ		&#64288;	&#xFB20;		ayinaltonehebrew	
+שׁ	שׁ		&#64298;	&#xFB2A;		afii57694
+shinshindot
+shinshindothebrew	
+שׂ	שׂ		&#64299;	&#xFB2B;		afii57695
+shinsindot
+shinsindothebrew	
+שּׁ	שּׁ		&#64300;	&#xFB2C;		shindageshshindot
+shindageshshindothebrew	
+שּׂ	שּׂ		&#64301;	&#xFB2D;		shindageshsindot
+shindageshsindothebrew	
+אַ	אַ		&#64302;	&#xFB2E;		alefpatahhebrew	
+אָ	אָ		&#64303;	&#xFB2F;		alefqamatshebrew	
+אּ	אּ		&#64304;	&#xFB30;		alefdageshhebrew	
+בּ	בּ		&#64305;	&#xFB31;		betdagesh
+betdageshhebrew	
+גּ	גּ		&#64306;	&#xFB32;		gimeldagesh
+gimeldageshhebrew	
+דּ	דּ		&#64307;	&#xFB33;		daletdagesh
+daletdageshhebrew	
+הּ	הּ		&#64308;	&#xFB34;		hedagesh
+hedageshhebrew	
+וּ	וּ		&#64309;	&#xFB35;		afii57723
+vavdagesh
+vavdagesh65
+vavdageshhebrew	
+זּ	זּ		&#64310;	&#xFB36;		zayindagesh
+zayindageshhebrew	
+טּ	טּ		&#64312;	&#xFB38;		tetdagesh
+tetdageshhebrew	
+יּ	יּ		&#64313;	&#xFB39;		yoddagesh
+yoddageshhebrew	
+ךּ	ךּ		&#64314;	&#xFB3A;		finalkafdagesh
+finalkafdageshhebrew	
+כּ	כּ		&#64315;	&#xFB3B;		kafdagesh
+kafdageshhebrew	
+לּ	לּ		&#64316;	&#xFB3C;		lameddagesh
+lameddageshhebrew	
+מּ	מּ		&#64318;	&#xFB3E;		memdagesh
+memdageshhebrew	
+נּ	נּ		&#64320;	&#xFB40;		nundagesh
+nundageshhebrew	
+סּ	סּ		&#64321;	&#xFB41;		samekhdagesh
+samekhdageshhebrew	
+ףּ	ףּ		&#64323;	&#xFB43;		pefinaldageshhebrew	
+פּ	פּ		&#64324;	&#xFB44;		pedagesh
+pedageshhebrew	
+צּ	צּ		&#64326;	&#xFB46;		tsadidagesh
+tsadidageshhebrew	
+קּ	קּ		&#64327;	&#xFB47;		qofdagesh
+qofdageshhebrew	
+רּ	רּ		&#64328;	&#xFB48;		reshdageshhebrew	
+שּ	שּ		&#64329;	&#xFB49;		shindagesh
+shindageshhebrew	
+תּ	תּ		&#64330;	&#xFB4A;		tavdages
+tavdagesh
+tavdageshhebrew	
+וֹ	וֹ		&#64331;	&#xFB4B;		afii57700
+vavholam
+vavholamhebrew	
+בֿ	בֿ		&#64332;	&#xFB4C;		betrafehebrew	
+כֿ	כֿ		&#64333;	&#xFB4D;		kafrafehebrew	
+פֿ	פֿ		&#64334;	&#xFB4E;		perafehebrew	
+ﭏ	ﭏ		&#64335;	&#xFB4F;		aleflamedhebrew	
+ﭗ	ﭗ		&#64343;	&#xFB57;		pehfinalarabic	
+ﭘ	ﭘ		&#64344;	&#xFB58;		pehinitialarabic	
+ﭙ	ﭙ		&#64345;	&#xFB59;		pehmedialarabic	
+ﭧ	ﭧ		&#64359;	&#xFB67;		ttehfinalarabic	
+ﭨ	ﭨ		&#64360;	&#xFB68;		ttehinitialarabic	
+ﭩ	ﭩ		&#64361;	&#xFB69;		ttehmedialarabic	
+ﭫ	ﭫ		&#64363;	&#xFB6B;		vehfinalarabic	
+ﭬ	ﭬ		&#64364;	&#xFB6C;		vehinitialarabic	
+ﭭ	ﭭ		&#64365;	&#xFB6D;		vehmedialarabic	
+ﭻ	ﭻ		&#64379;	&#xFB7B;		tchehfinalarabic	
+ﭼ	ﭼ		&#64380;	&#xFB7C;		tchehinitialarabic
+tchehmeeminitialarabic	
+ﭽ	ﭽ		&#64381;	&#xFB7D;		tchehmedialarabic	
+ﮉ	ﮉ		&#64393;	&#xFB89;		ddalfinalarabic	
+ﮋ	ﮋ		&#64395;	&#xFB8B;		jehfinalarabic	
+ﮍ	ﮍ		&#64397;	&#xFB8D;		rrehfinalarabic	
+ﮓ	ﮓ		&#64403;	&#xFB93;		gaffinalarabic	
+ﮔ	ﮔ		&#64404;	&#xFB94;		gafinitialarabic	
+ﮕ	ﮕ		&#64405;	&#xFB95;		gafmedialarabic	
+ﮟ	ﮟ		&#64415;	&#xFB9F;		noonghunnafinalarabic	
+ﮤ	ﮤ		&#64420;	&#xFBA4;		hehhamzaaboveisolatedarabic	
+ﮥ	ﮥ		&#64421;	&#xFBA5;		hehhamzaabovefinalarabic	
+ﮧ	ﮧ		&#64423;	&#xFBA7;		hehfinalaltonearabic	
+ﮨ	ﮨ		&#64424;	&#xFBA8;		hehinitialaltonearabic	
+ﮩ	ﮩ		&#64425;	&#xFBA9;		hehmedialaltonearabic	
+ﮯ	ﮯ		&#64431;	&#xFBAF;		yehbarreefinalarabic	
+ﰈ	ﰈ		&#64520;	&#xFC08;		behmeemisolatedarabic	
+ﰋ	ﰋ		&#64523;	&#xFC0B;		tehjeemisolatedarabic	
+ﰌ	ﰌ		&#64524;	&#xFC0C;		tehhahisolatedarabic	
+ﰎ	ﰎ		&#64526;	&#xFC0E;		tehmeemisolatedarabic	
+ﱈ	ﱈ		&#64584;	&#xFC48;		meemmeemisolatedarabic	
+ﱋ	ﱋ		&#64587;	&#xFC4B;		noonjeemisolatedarabic	
+ﱎ	ﱎ		&#64590;	&#xFC4E;		noonmeemisolatedarabic	
+ﱘ	ﱘ		&#64600;	&#xFC58;		yehmeemisolatedarabic	
+ﱞ	ﱞ		&#64606;	&#xFC5E;		shaddadammatanarabic	
+ﱟ	ﱟ		&#64607;	&#xFC5F;		shaddakasratanarabic	
+ﱠ	ﱠ		&#64608;	&#xFC60;		shaddafathaarabic	
+ﱡ	ﱡ		&#64609;	&#xFC61;		shaddadammaarabic	
+ﱢ	ﱢ		&#64610;	&#xFC62;		shaddakasraarabic	
+ﱭ	ﱭ		&#64621;	&#xFC6D;		behnoonfinalarabic	
+ﱳ	ﱳ		&#64627;	&#xFC73;		tehnoonfinalarabic	
+ﲍ	ﲍ		&#64653;	&#xFC8D;		noonnoonfinalarabic	
+ﲔ	ﲔ		&#64660;	&#xFC94;		yehnoonfinalarabic	
+ﲟ	ﲟ		&#64671;	&#xFC9F;		behmeeminitialarabic	
+ﲡ	ﲡ		&#64673;	&#xFCA1;		tehjeeminitialarabic	
+ﲢ	ﲢ		&#64674;	&#xFCA2;		tehhahinitialarabic	
+ﲤ	ﲤ		&#64676;	&#xFCA4;		tehmeeminitialarabic	
+ﳉ	ﳉ		&#64713;	&#xFCC9;		lamjeeminitialarabic	
+ﳊ	ﳊ		&#64714;	&#xFCCA;		lamhahinitialarabic	
+ﳋ	ﳋ		&#64715;	&#xFCCB;		lamkhahinitialarabic	
+ﳌ	ﳌ		&#64716;	&#xFCCC;		lammeeminitialarabic	
+ﳑ	ﳑ		&#64721;	&#xFCD1;		meemmeeminitialarabic	
+ﳒ	ﳒ		&#64722;	&#xFCD2;		noonjeeminitialarabic	
+ﳕ	ﳕ		&#64725;	&#xFCD5;		noonmeeminitialarabic	
+ﳝ	ﳝ		&#64733;	&#xFCDD;		yehmeeminitialarabic	
+﴾	﴾		&#64830;	&#xFD3E;		parenleftaltonearabic	
+﴿	﴿		&#64831;	&#xFD3F;		parenrightaltonearabic	
+ﶈ	ﶈ		&#64904;	&#xFD88;		lammeemhahinitialarabic	
+ﷲ	ﷲ		&#65010;	&#xFDF2;		lamlamhehisolatedarabic	
+ﷺ	ﷺ		&#65018;	&#xFDFA;		sallallahoualayhewasallamarabic	
+︰	︰		&#65072;	&#xFE30;		twodotleadervertical	
+︱	︱		&#65073;	&#xFE31;		emdashvertical	
+︲	︲		&#65074;	&#xFE32;		endashvertical	
+︳	︳		&#65075;	&#xFE33;		underscorevertical	
+︴	︴		&#65076;	&#xFE34;		wavyunderscorevertical	
+︵	︵		&#65077;	&#xFE35;		parenleftvertical	
+︶	︶		&#65078;	&#xFE36;		parenrightvertical	
+︷	︷		&#65079;	&#xFE37;		braceleftvertical	
+︸	︸		&#65080;	&#xFE38;		bracerightvertical	
+︹	︹		&#65081;	&#xFE39;		tortoiseshellbracketleftvertical	
+︺	︺		&#65082;	&#xFE3A;		tortoiseshellbracketrightvertical	
+︻	︻		&#65083;	&#xFE3B;		blacklenticularbracketleftvertical	
+︼	︼		&#65084;	&#xFE3C;		blacklenticularbracketrightvertical	
+︽	︽		&#65085;	&#xFE3D;		dblanglebracketleftvertical	
+︾	︾		&#65086;	&#xFE3E;		dblanglebracketrightvertical	
+︿	︿		&#65087;	&#xFE3F;		anglebracketleftvertical	
+﹀	﹀		&#65088;	&#xFE40;		anglebracketrightvertical	
+﹁	﹁		&#65089;	&#xFE41;		cornerbracketleftvertical	
+﹂	﹂		&#65090;	&#xFE42;		cornerbracketrightvertical	
+﹃	﹃		&#65091;	&#xFE43;		whitecornerbracketleftvertical	
+﹄	﹄		&#65092;	&#xFE44;		whitecornerbracketrightvertical	
+﹉	﹉		&#65097;	&#xFE49;		overlinedashed	
+﹊	﹊		&#65098;	&#xFE4A;		overlinecenterline	
+﹋	﹋		&#65099;	&#xFE4B;		overlinewavy	
+﹌	﹌		&#65100;	&#xFE4C;		overlinedblwavy	
+﹍	﹍		&#65101;	&#xFE4D;		lowlinedashed	
+﹎	﹎		&#65102;	&#xFE4E;		lowlinecenterline	
+﹏	﹏		&#65103;	&#xFE4F;		underscorewavy	
+﹐	﹐		&#65104;	&#xFE50;		commasmall	
+﹒	﹒		&#65106;	&#xFE52;		periodsmall	
+﹔	﹔		&#65108;	&#xFE54;		semicolonsmall	
+﹕	﹕		&#65109;	&#xFE55;		colonsmall	
+﹙	﹙		&#65113;	&#xFE59;		parenleftsmall	
+﹚	﹚		&#65114;	&#xFE5A;		parenrightsmall	
+﹛	﹛		&#65115;	&#xFE5B;		braceleftsmall	
+﹜	﹜		&#65116;	&#xFE5C;		bracerightsmall	
+﹝	﹝		&#65117;	&#xFE5D;		tortoiseshellbracketleftsmall	
+﹞	﹞		&#65118;	&#xFE5E;		tortoiseshellbracketrightsmall	
+﹟	﹟		&#65119;	&#xFE5F;		numbersignsmall	
+﹡	﹡		&#65121;	&#xFE61;		asterisksmall	
+﹢	﹢		&#65122;	&#xFE62;		plussmall	
+﹣	﹣		&#65123;	&#xFE63;		hyphensmall	
+﹤	﹤		&#65124;	&#xFE64;		lesssmall	
+﹥	﹥		&#65125;	&#xFE65;		greatersmall	
+﹦	﹦		&#65126;	&#xFE66;		equalsmall	
+﹩	﹩		&#65129;	&#xFE69;		dollarsmall	
+﹪	﹪		&#65130;	&#xFE6A;		percentsmall	
+﹫	﹫		&#65131;	&#xFE6B;		atsmall	
+ﺂ	ﺂ		&#65154;	&#xFE82;		alefmaddaabovefinalarabic	
+ﺄ	ﺄ		&#65156;	&#xFE84;		alefhamzaabovefinalarabic	
+ﺆ	ﺆ		&#65158;	&#xFE86;		wawhamzaabovefinalarabic	
+ﺈ	ﺈ		&#65160;	&#xFE88;		alefhamzabelowfinalarabic	
+ﺊ	ﺊ		&#65162;	&#xFE8A;		yehhamzaabovefinalarabic	
+ﺋ	ﺋ		&#65163;	&#xFE8B;		yehhamzaaboveinitialarabic	
+ﺌ	ﺌ		&#65164;	&#xFE8C;		yehhamzaabovemedialarabic	
+ﺎ	ﺎ		&#65166;	&#xFE8E;		aleffinalarabic	
+ﺐ	ﺐ		&#65168;	&#xFE90;		behfinalarabic	
+ﺑ	ﺑ		&#65169;	&#xFE91;		behinitialarabic	
+ﺒ	ﺒ		&#65170;	&#xFE92;		behmedialarabic	
+ﺔ	ﺔ		&#65172;	&#xFE94;		tehmarbutafinalarabic	
+ﺖ	ﺖ		&#65174;	&#xFE96;		tehfinalarabic	
+ﺗ	ﺗ		&#65175;	&#xFE97;		tehinitialarabic	
+ﺘ	ﺘ		&#65176;	&#xFE98;		tehmedialarabic	
+ﺚ	ﺚ		&#65178;	&#xFE9A;		thehfinalarabic	
+ﺛ	ﺛ		&#65179;	&#xFE9B;		thehinitialarabic	
+ﺜ	ﺜ		&#65180;	&#xFE9C;		thehmedialarabic	
+ﺞ	ﺞ		&#65182;	&#xFE9E;		jeemfinalarabic	
+ﺟ	ﺟ		&#65183;	&#xFE9F;		jeeminitialarabic	
+ﺠ	ﺠ		&#65184;	&#xFEA0;		jeemmedialarabic	
+ﺢ	ﺢ		&#65186;	&#xFEA2;		hahfinalarabic	
+ﺣ	ﺣ		&#65187;	&#xFEA3;		hahinitialarabic	
+ﺤ	ﺤ		&#65188;	&#xFEA4;		hahmedialarabic	
+ﺦ	ﺦ		&#65190;	&#xFEA6;		khahfinalarabic	
+ﺧ	ﺧ		&#65191;	&#xFEA7;		khahinitialarabic	
+ﺨ	ﺨ		&#65192;	&#xFEA8;		khahmedialarabic	
+ﺪ	ﺪ		&#65194;	&#xFEAA;		dalfinalarabic	
+ﺬ	ﺬ		&#65196;	&#xFEAC;		thalfinalarabic	
+ﺮ	ﺮ		&#65198;	&#xFEAE;		rehfinalarabic	
+ﺰ	ﺰ		&#65200;	&#xFEB0;		zainfinalarabic	
+ﺲ	ﺲ		&#65202;	&#xFEB2;		seenfinalarabic	
+ﺳ	ﺳ		&#65203;	&#xFEB3;		seeninitialarabic	
+ﺴ	ﺴ		&#65204;	&#xFEB4;		seenmedialarabic	
+ﺶ	ﺶ		&#65206;	&#xFEB6;		sheenfinalarabic	
+ﺷ	ﺷ		&#65207;	&#xFEB7;		sheeninitialarabic	
+ﺸ	ﺸ		&#65208;	&#xFEB8;		sheenmedialarabic	
+ﺺ	ﺺ		&#65210;	&#xFEBA;		sadfinalarabic	
+ﺻ	ﺻ		&#65211;	&#xFEBB;		sadinitialarabic	
+ﺼ	ﺼ		&#65212;	&#xFEBC;		sadmedialarabic	
+ﺾ	ﺾ		&#65214;	&#xFEBE;		dadfinalarabic	
+ﺿ	ﺿ		&#65215;	&#xFEBF;		dadinitialarabic	
+ﻀ	ﻀ		&#65216;	&#xFEC0;		dadmedialarabic	
+ﻂ	ﻂ		&#65218;	&#xFEC2;		tahfinalarabic	
+ﻃ	ﻃ		&#65219;	&#xFEC3;		tahinitialarabic	
+ﻄ	ﻄ		&#65220;	&#xFEC4;		tahmedialarabic	
+ﻆ	ﻆ		&#65222;	&#xFEC6;		zahfinalarabic	
+ﻇ	ﻇ		&#65223;	&#xFEC7;		zahinitialarabic	
+ﻈ	ﻈ		&#65224;	&#xFEC8;		zahmedialarabic	
+ﻊ	ﻊ		&#65226;	&#xFECA;		ainfinalarabic	
+ﻋ	ﻋ		&#65227;	&#xFECB;		aininitialarabic	
+ﻌ	ﻌ		&#65228;	&#xFECC;		ainmedialarabic	
+ﻎ	ﻎ		&#65230;	&#xFECE;		ghainfinalarabic	
+ﻏ	ﻏ		&#65231;	&#xFECF;		ghaininitialarabic	
+ﻐ	ﻐ		&#65232;	&#xFED0;		ghainmedialarabic	
+ﻒ	ﻒ		&#65234;	&#xFED2;		fehfinalarabic	
+ﻓ	ﻓ		&#65235;	&#xFED3;		fehinitialarabic	
+ﻔ	ﻔ		&#65236;	&#xFED4;		fehmedialarabic	
+ﻖ	ﻖ		&#65238;	&#xFED6;		qaffinalarabic	
+ﻗ	ﻗ		&#65239;	&#xFED7;		qafinitialarabic	
+ﻘ	ﻘ		&#65240;	&#xFED8;		qafmedialarabic	
+ﻚ	ﻚ		&#65242;	&#xFEDA;		kaffinalarabic	
+ﻛ	ﻛ		&#65243;	&#xFEDB;		kafinitialarabic	
+ﻜ	ﻜ		&#65244;	&#xFEDC;		kafmedialarabic	
+ﻞ	ﻞ		&#65246;	&#xFEDE;		lamfinalarabic	
+ﻟ	ﻟ		&#65247;	&#xFEDF;		laminitialarabic
+lammeemjeeminitialarabic
+lammeemkhahinitialarabic	
+ﻠ	ﻠ		&#65248;	&#xFEE0;		lammedialarabic	
+ﻢ	ﻢ		&#65250;	&#xFEE2;		meemfinalarabic	
+ﻣ	ﻣ		&#65251;	&#xFEE3;		meeminitialarabic	
+ﻤ	ﻤ		&#65252;	&#xFEE4;		meemmedialarabic	
+ﻦ	ﻦ		&#65254;	&#xFEE6;		noonfinalarabic	
+ﻧ	ﻧ		&#65255;	&#xFEE7;		nooninitialarabic
+noonhehinitialarabic	
+ﻨ	ﻨ		&#65256;	&#xFEE8;		noonmedialarabic	
+ﻪ	ﻪ		&#65258;	&#xFEEA;		hehfinalalttwoarabic
+hehfinalarabic	
+ﻫ	ﻫ		&#65259;	&#xFEEB;		hehinitialarabic	
+ﻬ	ﻬ		&#65260;	&#xFEEC;		hehmedialarabic	
+ﻮ	ﻮ		&#65262;	&#xFEEE;		wawfinalarabic	
+ﻰ	ﻰ		&#65264;	&#xFEF0;		alefmaksurafinalarabic	
+ﻲ	ﻲ		&#65266;	&#xFEF2;		yehfinalarabic	
+ﻳ	ﻳ		&#65267;	&#xFEF3;		alefmaksurainitialarabic
+yehinitialarabic	
+ﻴ	ﻴ		&#65268;	&#xFEF4;		alefmaksuramedialarabic
+yehmedialarabic	
+ﻵ	ﻵ		&#65269;	&#xFEF5;		lamalefmaddaaboveisolatedarabic	
+ﻶ	ﻶ		&#65270;	&#xFEF6;		lamalefmaddaabovefinalarabic	
+ﻷ	ﻷ		&#65271;	&#xFEF7;		lamalefhamzaaboveisolatedarabic	
+ﻸ	ﻸ		&#65272;	&#xFEF8;		lamalefhamzaabovefinalarabic	
+ﻹ	ﻹ		&#65273;	&#xFEF9;		lamalefhamzabelowisolatedarabic	
+ﻺ	ﻺ		&#65274;	&#xFEFA;		lamalefhamzabelowfinalarabic	
+ﻻ	ﻻ		&#65275;	&#xFEFB;		lamalefisolatedarabic	
+ﻼ	ﻼ		&#65276;	&#xFEFC;		lamaleffinalarabic	
+﻿	﻿		&#65279;	&#xFEFF;		zerowidthjoiner	
+！	！		&#65281;	&#xFF01;		exclammonospace	
+＂	＂		&#65282;	&#xFF02;		quotedblmonospace	
+＃	＃		&#65283;	&#xFF03;		numbersignmonospace	
+＄	＄		&#65284;	&#xFF04;		dollarmonospace	
+％	％		&#65285;	&#xFF05;		percentmonospace	
+＆	＆		&#65286;	&#xFF06;		ampersandmonospace	
+＇	＇		&#65287;	&#xFF07;		quotesinglemonospace	
+（	（		&#65288;	&#xFF08;		parenleftmonospace	
+）	）		&#65289;	&#xFF09;		parenrightmonospace	
+＊	＊		&#65290;	&#xFF0A;		asteriskmonospace	
+＋	＋		&#65291;	&#xFF0B;		plusmonospace	
+，	，		&#65292;	&#xFF0C;		commamonospace	
+－	－		&#65293;	&#xFF0D;		hyphenmonospace	
+．	．		&#65294;	&#xFF0E;		periodmonospace	
+／	／		&#65295;	&#xFF0F;		slashmonospace	
+０	０		&#65296;	&#xFF10;		zeromonospace	
+１	１		&#65297;	&#xFF11;		onemonospace	
+２	２		&#65298;	&#xFF12;		twomonospace	
+３	３		&#65299;	&#xFF13;		threemonospace	
+４	４		&#65300;	&#xFF14;		fourmonospace	
+５	５		&#65301;	&#xFF15;		fivemonospace	
+６	６		&#65302;	&#xFF16;		sixmonospace	
+７	７		&#65303;	&#xFF17;		sevenmonospace	
+８	８		&#65304;	&#xFF18;		eightmonospace	
+９	９		&#65305;	&#xFF19;		ninemonospace	
+：	：		&#65306;	&#xFF1A;		colonmonospace	
+；	；		&#65307;	&#xFF1B;		semicolonmonospace	
+＜	＜		&#65308;	&#xFF1C;		lessmonospace	
+＝	＝		&#65309;	&#xFF1D;		equalmonospace	
+＞	＞		&#65310;	&#xFF1E;		greatermonospace	
+？	？		&#65311;	&#xFF1F;		questionmonospace	
+＠	＠		&#65312;	&#xFF20;		atmonospace	
+Ａ	Ａ		&#65313;	&#xFF21;		Amonospace	
+Ｂ	Ｂ		&#65314;	&#xFF22;		Bmonospace	
+Ｃ	Ｃ		&#65315;	&#xFF23;		Cmonospace	
+Ｄ	Ｄ		&#65316;	&#xFF24;		Dmonospace	
+Ｅ	Ｅ		&#65317;	&#xFF25;		Emonospace	
+Ｆ	Ｆ		&#65318;	&#xFF26;		Fmonospace	
+Ｇ	Ｇ		&#65319;	&#xFF27;		Gmonospace	
+Ｈ	Ｈ		&#65320;	&#xFF28;		Hmonospace	
+Ｉ	Ｉ		&#65321;	&#xFF29;		Imonospace	
+Ｊ	Ｊ		&#65322;	&#xFF2A;		Jmonospace	
+Ｋ	Ｋ		&#65323;	&#xFF2B;		Kmonospace	
+Ｌ	Ｌ		&#65324;	&#xFF2C;		Lmonospace	
+Ｍ	Ｍ		&#65325;	&#xFF2D;		Mmonospace	
+Ｎ	Ｎ		&#65326;	&#xFF2E;		Nmonospace	
+Ｏ	Ｏ		&#65327;	&#xFF2F;		Omonospace	
+Ｐ	Ｐ		&#65328;	&#xFF30;		Pmonospace	
+Ｑ	Ｑ		&#65329;	&#xFF31;		Qmonospace	
+Ｒ	Ｒ		&#65330;	&#xFF32;		Rmonospace	
+Ｓ	Ｓ		&#65331;	&#xFF33;		Smonospace	
+Ｔ	Ｔ		&#65332;	&#xFF34;		Tmonospace	
+Ｕ	Ｕ		&#65333;	&#xFF35;		Umonospace	
+Ｖ	Ｖ		&#65334;	&#xFF36;		Vmonospace	
+Ｗ	Ｗ		&#65335;	&#xFF37;		Wmonospace	
+Ｘ	Ｘ		&#65336;	&#xFF38;		Xmonospace	
+Ｙ	Ｙ		&#65337;	&#xFF39;		Ymonospace	
+Ｚ	Ｚ		&#65338;	&#xFF3A;		Zmonospace	
+［	［		&#65339;	&#xFF3B;		bracketleftmonospace	
+＼	＼		&#65340;	&#xFF3C;		backslashmonospace	
+］	］		&#65341;	&#xFF3D;		bracketrightmonospace	
+＾	＾		&#65342;	&#xFF3E;		asciicircummonospace	
+＿	＿		&#65343;	&#xFF3F;		underscoremonospace	
+｀	｀		&#65344;	&#xFF40;		gravemonospace	
+ａ	ａ		&#65345;	&#xFF41;		amonospace	
+ｂ	ｂ		&#65346;	&#xFF42;		bmonospace	
+ｃ	ｃ		&#65347;	&#xFF43;		cmonospace	
+ｄ	ｄ		&#65348;	&#xFF44;		dmonospace	
+ｅ	ｅ		&#65349;	&#xFF45;		emonospace	
+ｆ	ｆ		&#65350;	&#xFF46;		fmonospace	
+ｇ	ｇ		&#65351;	&#xFF47;		gmonospace	
+ｈ	ｈ		&#65352;	&#xFF48;		hmonospace	
+ｉ	ｉ		&#65353;	&#xFF49;		imonospace	
+ｊ	ｊ		&#65354;	&#xFF4A;		jmonospace	
+ｋ	ｋ		&#65355;	&#xFF4B;		kmonospace	
+ｌ	ｌ		&#65356;	&#xFF4C;		lmonospace	
+ｍ	ｍ		&#65357;	&#xFF4D;		mmonospace	
+ｎ	ｎ		&#65358;	&#xFF4E;		nmonospace	
+ｏ	ｏ		&#65359;	&#xFF4F;		omonospace	
+ｐ	ｐ		&#65360;	&#xFF50;		pmonospace	
+ｑ	ｑ		&#65361;	&#xFF51;		qmonospace	
+ｒ	ｒ		&#65362;	&#xFF52;		rmonospace	
+ｓ	ｓ		&#65363;	&#xFF53;		smonospace	
+ｔ	ｔ		&#65364;	&#xFF54;		tmonospace	
+ｕ	ｕ		&#65365;	&#xFF55;		umonospace	
+ｖ	ｖ		&#65366;	&#xFF56;		vmonospace	
+ｗ	ｗ		&#65367;	&#xFF57;		wmonospace	
+ｘ	ｘ		&#65368;	&#xFF58;		xmonospace	
+ｙ	ｙ		&#65369;	&#xFF59;		ymonospace	
+ｚ	ｚ		&#65370;	&#xFF5A;		zmonospace	
+｛	｛		&#65371;	&#xFF5B;		braceleftmonospace	
+｜	｜		&#65372;	&#xFF5C;		barmonospace	
+｝	｝		&#65373;	&#xFF5D;		bracerightmonospace	
+～	～		&#65374;	&#xFF5E;		asciitildemonospace	
+｡	｡		&#65377;	&#xFF61;		periodhalfwidth	
+｢	｢		&#65378;	&#xFF62;		cornerbracketlefthalfwidth	
+｣	｣		&#65379;	&#xFF63;		cornerbracketrighthalfwidth	
+､	､		&#65380;	&#xFF64;		ideographiccommaleft	
+･	･		&#65381;	&#xFF65;		middledotkatakanahalfwidth	
+ｦ	ｦ		&#65382;	&#xFF66;		wokatakanahalfwidth	
+ｧ	ｧ		&#65383;	&#xFF67;		asmallkatakanahalfwidth	
+ｨ	ｨ		&#65384;	&#xFF68;		ismallkatakanahalfwidth	
+ｩ	ｩ		&#65385;	&#xFF69;		usmallkatakanahalfwidth	
+ｪ	ｪ		&#65386;	&#xFF6A;		esmallkatakanahalfwidth	
+ｫ	ｫ		&#65387;	&#xFF6B;		osmallkatakanahalfwidth	
+ｬ	ｬ		&#65388;	&#xFF6C;		yasmallkatakanahalfwidth	
+ｭ	ｭ		&#65389;	&#xFF6D;		yusmallkatakanahalfwidth	
+ｮ	ｮ		&#65390;	&#xFF6E;		yosmallkatakanahalfwidth	
+ｯ	ｯ		&#65391;	&#xFF6F;		tusmallkatakanahalfwidth	
+ｰ	ｰ		&#65392;	&#xFF70;		katahiraprolongmarkhalfwidth	
+ｱ	ｱ		&#65393;	&#xFF71;		akatakanahalfwidth	
+ｲ	ｲ		&#65394;	&#xFF72;		ikatakanahalfwidth	
+ｳ	ｳ		&#65395;	&#xFF73;		ukatakanahalfwidth	
+ｴ	ｴ		&#65396;	&#xFF74;		ekatakanahalfwidth	
+ｵ	ｵ		&#65397;	&#xFF75;		okatakanahalfwidth	
+ｶ	ｶ		&#65398;	&#xFF76;		kakatakanahalfwidth	
+ｷ	ｷ		&#65399;	&#xFF77;		kikatakanahalfwidth	
+ｸ	ｸ		&#65400;	&#xFF78;		kukatakanahalfwidth	
+ｹ	ｹ		&#65401;	&#xFF79;		kekatakanahalfwidth	
+ｺ	ｺ		&#65402;	&#xFF7A;		kokatakanahalfwidth	
+ｻ	ｻ		&#65403;	&#xFF7B;		sakatakanahalfwidth	
+ｼ	ｼ		&#65404;	&#xFF7C;		sikatakanahalfwidth	
+ｽ	ｽ		&#65405;	&#xFF7D;		sukatakanahalfwidth	
+ｾ	ｾ		&#65406;	&#xFF7E;		sekatakanahalfwidth	
+ｿ	ｿ		&#65407;	&#xFF7F;		sokatakanahalfwidth	
+ﾀ	ﾀ		&#65408;	&#xFF80;		takatakanahalfwidth	
+ﾁ	ﾁ		&#65409;	&#xFF81;		tikatakanahalfwidth	
+ﾂ	ﾂ		&#65410;	&#xFF82;		tukatakanahalfwidth	
+ﾃ	ﾃ		&#65411;	&#xFF83;		tekatakanahalfwidth	
+ﾄ	ﾄ		&#65412;	&#xFF84;		tokatakanahalfwidth	
+ﾅ	ﾅ		&#65413;	&#xFF85;		nakatakanahalfwidth	
+ﾆ	ﾆ		&#65414;	&#xFF86;		nikatakanahalfwidth	
+ﾇ	ﾇ		&#65415;	&#xFF87;		nukatakanahalfwidth	
+ﾈ	ﾈ		&#65416;	&#xFF88;		nekatakanahalfwidth	
+ﾉ	ﾉ		&#65417;	&#xFF89;		nokatakanahalfwidth	
+ﾊ	ﾊ		&#65418;	&#xFF8A;		hakatakanahalfwidth	
+ﾋ	ﾋ		&#65419;	&#xFF8B;		hikatakanahalfwidth	
+ﾌ	ﾌ		&#65420;	&#xFF8C;		hukatakanahalfwidth	
+ﾍ	ﾍ		&#65421;	&#xFF8D;		hekatakanahalfwidth	
+ﾎ	ﾎ		&#65422;	&#xFF8E;		hokatakanahalfwidth	
+ﾏ	ﾏ		&#65423;	&#xFF8F;		makatakanahalfwidth	
+ﾐ	ﾐ		&#65424;	&#xFF90;		mikatakanahalfwidth	
+ﾑ	ﾑ		&#65425;	&#xFF91;		mukatakanahalfwidth	
+ﾒ	ﾒ		&#65426;	&#xFF92;		mekatakanahalfwidth	
+ﾓ	ﾓ		&#65427;	&#xFF93;		mokatakanahalfwidth	
+ﾔ	ﾔ		&#65428;	&#xFF94;		yakatakanahalfwidth	
+ﾕ	ﾕ		&#65429;	&#xFF95;		yukatakanahalfwidth	
+ﾖ	ﾖ		&#65430;	&#xFF96;		yokatakanahalfwidth	
+ﾗ	ﾗ		&#65431;	&#xFF97;		rakatakanahalfwidth	
+ﾘ	ﾘ		&#65432;	&#xFF98;		rikatakanahalfwidth	
+ﾙ	ﾙ		&#65433;	&#xFF99;		rukatakanahalfwidth	
+ﾚ	ﾚ		&#65434;	&#xFF9A;		rekatakanahalfwidth	
+ﾛ	ﾛ		&#65435;	&#xFF9B;		rokatakanahalfwidth	
+ﾜ	ﾜ		&#65436;	&#xFF9C;		wakatakanahalfwidth	
+ﾝ	ﾝ		&#65437;	&#xFF9D;		nkatakanahalfwidth	
+ﾞ	ﾞ		&#65438;	&#xFF9E;		voicedmarkkanahalfwidth	
+ﾟ	ﾟ		&#65439;	&#xFF9F;		semivoicedmarkkanahalfwidth	
+￠	￠		&#65504;	&#xFFE0;		centmonospace	
+￡	￡		&#65505;	&#xFFE1;		sterlingmonospace	
+￣	￣		&#65507;	&#xFFE3;		macronmonospace	
+￥	￥		&#65509;	&#xFFE5;		yenmonospace	
+￦	￦		&#65510;	&#xFFE6;		wonmonospace	

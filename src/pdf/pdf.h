@@ -19,4 +19,11 @@
 #define PS_VERT_MARGIN PS_PT_PER_INCH // 1 inch, in pt's
 #define PS_HOR_MARGIN PS_PT_PER_INCH // 1 inch, in pt's
 
+// PostScript simbolių vardų įrašai faile psc.cpp
+struct PsChName
+{
+    UCHAR m_lpszName[80],
+    UniChar m_iCode
+};
+
 #endif // #ifndef pdf_included
