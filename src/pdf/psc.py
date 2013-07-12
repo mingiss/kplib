@@ -42,7 +42,7 @@ for in_line in in_lines:
     hex_vals = in_line_tabs[4].split('&#')
     hex_vals = hex_vals[1].split(';')
     if (len(in_line_tabs[6]) == 0): in_line_tabs[6] = ' '
-    print '{0:<47}'.format('    { "' + in_line_tabs[6] + '",'), '{0:<11}'.format('0' + hex_vals[0] + ' },'), '{0:<15}'.format('// ' + in_line_tabs[5]), in_line_tabs[0], ' ', in_line_tabs[7], '//'  
+    print '{0:<47}'.format('    { "' + in_line_tabs[6] + '",'), '{0:<11}'.format('0' + hex_vals[0] + ' },'), '{0:<15}'.format('// ' + in_line_tabs[5]), '{0:<5}'.format(in_line_tabs[0]), ' ', in_line_tabs[7], '//'  
 #   print '\t'.join(in_line_tabs)
 
     prev_in_line_tabs = in_line_tabs

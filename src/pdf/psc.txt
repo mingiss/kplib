@@ -1,4 +1,4 @@
- 	 	 	&#160;	&#x00A0;	&nbsp;	nbspace
+ 	 	 	&#160;	&#x00A0;	&nbsp;	nbspace	 // ----------------------- http://www.jdawiseman.com/papers/trivia/character-entities.html
 nonbreakingspace	no-break space = non-breaking space, U+00A0 ISOnum
 ¡	¡	¡	&#161;	&#x00A1;	&iexcl;	exclamdown	inverted exclamation mark, U+00A1 ISOnum
 ¢	¢	¢	&#162;	&#x00A2;	&cent;	cent	cent sign, U+00A2 ISOnum
@@ -160,6 +160,7 @@ pisymbolgreek	greek pi symbol, U+03D6 ISOgrk3
 •	•	•	&#8226;	&#x2022;	&bull;	bullet	bullet = black small circle, U+2022 ISOpub [bullet is NOT the same as bullet operator, U+2219]
 …	…	…	&#8230;	&#x2026;	&hellip;	ellipsis	horizontal ellipsis = three dot leader, U+2026 ISOpub
 ′	′	′	&#8242;	&#x2032;	&prime;	minute	prime = minutes = feet, U+2032 ISOtech
+prime
 ″	″	″	&#8243;	&#x2033;	&Prime;	second	double prime = seconds = inches, U+2033 ISOtech
 ‾	‾	‾	&#8254;	&#x203E;	&oline;	overline	overline = spacing overscore, U+203E NEW
 ⁄	⁄	⁄	&#8260;	&#x2044;	&frasl;	fraction	fraction slash, U+2044 NEW
@@ -4286,7 +4287,7 @@ yehmedialarabic
 ￣	￣		&#65507;	&#xFFE3;		macronmonospace	
 ￥	￥		&#65509;	&#xFFE5;		yenmonospace	
 ￦	￦		&#65510;	&#xFFE6;		wonmonospace	
-			&#0;	&#xE803;		f_k	// ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN-historic/fonts/tex-gyre/chorus/1.103/qzc-info.pdf
+			&#0;	&#xE803;		f_k	 // -------------------- ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN-historic/fonts/tex-gyre/chorus/1.103/qzc-info.pdf
 			&#0;	&#xEA00;		acute.cap
 Acute
 			&#0;	&#xEA01;		uni0301.cap
@@ -4537,328 +4538,397 @@ ttilde
 ² 	² 		&#0;	&#x00B2;		two.superior
 ³ 	³ 		&#0;	&#x00B3;		three.superior
 ¹ 	¹ 		&#0;	&#x00B9;		one.superior
-2222 ∢ anglearc
-2300 ⌀ diameter
- 	 		&#0;	&#xEC10;		Orogate	// http://texdoc.net/texmf-dist/doc/fonts/lm/lm-info.pdf
+∢ 	 	 	&#0;	&#x2222;		anglearc
+⌀ 	 	 	&#0;	&#x2300;		diameter
+ 	 		&#0;	&#xEC10;		Orogate	 // -------------------- http://texdoc.net/texmf-dist/doc/fonts/lm/lm-info.pdf
  	 		&#0;	&#xEC11;		orogate
-Ifractur;2111	// http://math.sut.ac.th/lab/software/texlive/texmf-dist/fonts/map/glyphlist/texglyphlist.txt
-Ng;014A
-Rfractur;211C
-altselector;D802	# altselector: invalid Unicode
-angbracketleft;27E8
-angbracketright;27E9
-arrowbothv;2195
-arrowdblbothv;21D5
-arrowleftbothalf;21BD
-arrowlefttophalf;21BC
-arrownortheast;2197
-arrownorthwest;2196
-arrowrightbothalf;21C1
-arrowrighttophalf;21C0
-arrowsoutheast;2198
-arrowsouthwest;2199
-ascendercompwordmark;D80A	# ascendercompwordmark: taller cwm, invalid Unicode
-asteriskcentered;2217
-bardbl;2225
-capitalcompwordmark;D809	# capitalcompwordmark: taller cwm, invalid Unicode
-ceilingleft;2308
-ceilingright;2309
-circlecopyrt;20DD
-circledivide;2298
-circledot;2299
-circleminus;2296
-coproduct;2A3F
-cwm;200C	# cwm: Unicode for ZWNJ, used for secondary replacement from EC.enc // qzc-info.pdf jau apibrėžtas kodu 0xEB10 
-diamondmath;22C4
-dotlessj,F6BE	# U+0237 is the proposed allocation for dotless j as of Unicode 4.0 # U+1D6A5 is the mathematical italic version approved in Unicode 5.0
-emptyset;2205
-emptyslot;D801	# emptyslot: invalid Unicode; the user explicitly wants this slot empty
-epsilon1;03F5
-epsiloninv;03F6
-equivasymptotic;224D
-flat;266D
-floorleft;230A
-floorright;230B
-follows;227B
-followsequal;2AB0
-followsorcurly;227D
-greatermuch;226B
-interrobangdown;2E18
-intersectionsq;2293
-latticetop;22A4
-lessmuch;226A
-lscript;2113
-natural;266E
-negationslash;0338
-ng;014B
-owner;220B
-pertenthousand;2031
-pi1;03D6
-precedesequal;2AAF
-precedesorcurly;227C
-rho1;03F1
-ringfitted;D80D	# ringfitted: a ring character centered on the x-width of A, invalid Unicode
-sharp;266F
-similarequal;2243
-slurabove;2322
-slurbelow;2323
-star;22C6
-subsetsqequal;2291
-supersetsqequal;2292
-triangle;25B3
-triangleinv;25BD
-triangleleft;25C1
-triangleright;25B7
-turnstileleft;22A2
-turnstileright;22A3
-twelveudash;D80C	# twelveudash: 2/3-em dash; invalid Unicode
-unionmulti;228E
-unionsq;2294
-vector;20D7
-visualspace;2423	# visualspace: Unicode for OPEN BOX, used for secondary replacement from EC.enc
-wreathproduct;2240
-Dbar;0110	# Dbar = Dcroat # -- Marco Kuhlmann reported annoying glyph neologisms in fontinst encodings
-compwordmark;200C	# compwordmark = cwm
-dbar;0111	# dbar = dcroat
-rangedash;2013	# rangedash = endash
-hyphenchar;002D	# hyphenchar = hyphen
-punctdash;2014	# punctdash = emdash
-visiblespace;2423	# visiblespace = visualspace
-Yen;00A5	# -- These character names are used in the MSAM fonts
-anticlockwise;27F2	// 21BA # the MSAM10 glyph is more closed than U+21BA # the MSAM10 glyph's gap is at the top, while U+27F2 is on the left
-arrowaxisleft;003F	// TODO: !!! 
-arrowaxisright;003F	// TODO: !!!
-arrowparrleftright;21C6
-arrowparrrightleft;21C4
-arrowtailleft;21A2
-arrowtailright;21A3
-arrowtripleleft;21DA
-arrowtripleright;21DB
-axisshort;003F	// TODO: !!!
-between;226C
-check;2713	# U+2713 is a Zapf dingbat
-circleR;00AE
-circleS;24C8	# the MSAM10 glyph may be smaller than U+24C8
-circleasterisk;229B
-circleequal;229C
-circlering;229A
-clockwise;27F3	// 21BB # the MSAM10 glyph is more closed than U+21BB # the MSAM10 glyph's gap is at the top, while U+27F3 is on the left
-complement;2201
-curlyleft;21AB
-curlyright;21AC
-dblarrowdwn;21CA
-dblarrowheadleft;219E
-dblarrowheadright;21A0
-dblarrowup;21C8
-defines;225C
-# U+2666 is BLACK DIAMOND SUIT
-# U+29EB is BLACK LOZENGE
-diamondsolid;2666,29EB
-difference;224F
-dotplus;2214
-downfall;22CE
-equaldotleftright;2252
-equaldotrightleft;2253
-equalorfollows;22DF
-equalorgreater;2A96
-equalorless;2A95
-equalorprecedes;22DE
-equalsdots;2251
-followsorequal;227F
-forces;22A9
-forcesbar;22AA
-fork;22D4
-frown;2322
-geomequivalent;224E
-greaterdbleqlless;2A8C
-greaterdblequal;2267
-greaterlessequal;22DB
-greaterorapproxeql;2A86
-greaterorequalslant;2A7E
-greaterorsimilar;2273
-harpoondownleft;21C3
-harpoondownright;21C2
-# MSAM probably misnamed this glyph; the right pointing harpoon is above
-# U+21CC has the right pointing harpoon above, like MSAM
-harpoonleftright;21CC
-# MSAM probably misnamed this glyph; the left pointing harpoon is above
-# U+21CB has the left pointing harpoon above, like MSAM
-harpoonrightleft;21CB
-harpoonupleft;21BF
-harpoonupright;21BE
-# U+22BA may be larger than MSAM intercal
-intercal;22BA
-intersectiondbl;22D2
-lessdbleqlgreater;2A8B
-lessdblequal;2266
-lessequalgreater;22DA
-lessorapproxeql;2A85
-lessorequalslant;2A7D
-lessorsimilar;2272
-maltesecross;2720
-measuredangle;2221
-multimap;22B8
-multiopenleft;22CB
-multiopenright;22CC
-nand;22BC
-orunderscore;22BB
-# U+2306 PERSPECTIVE is larger than the MSAM glyph
-perpcorrespond;2A5E,2306
-precedesorequal;227E
-primereverse;2035
-revasymptequal;22CD
-revsimilar;223D
-# U+231D TOP RIGHT CORNER is a quine corner,
-# U+2E23 TOP RIGHT HALF BRACKET is a half bracket.
-# MSAM rightanglene matches the shape of U+231C but the spacing of U+2E23.
-# Similar for other rightangle characters.
-rightanglene;231D,2E23
-rightanglenw;231C,2E22
-rightanglese;231F,2E25
-rightanglesw;231E,2E24
-ringinequal;2256
-# U+22A7 MODELS is shorter than U+22A8 TRUE = satisfies.
-# MSAM satisfies is in between.
-satisfies;22A8
-shiftleft;21B0
-shiftright;21B1
-smile;2323
-sphericalangle;2222
-# U+25A1 WHITE SQUARE
-square;25A1
-squaredot;22A1
-squareimage;228F
-squareminus;229F
-squaremultiply;22A0
-squareoriginal;2290
-squareplus;229E
-# XXX U+25AA BLACK SMALL SQUARE doesn't sit on the baseline
-# XXX squaresmallsolid
-squaresolid;25A0
-# U+21AD LEFT RIGHT WAVE ARROW is not actually a squiggle arrow
-squiggleleftright;21AD
-squiggleright;21DD
-subsetdbl;22D0
-subsetdblequal;2AC5
-supersetdbl;22D1
-supersetdblequal;2AC6
-triangledownsld;25BC
-# U+22B4 NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSAM
-triangleleftequal;22B4,25C1 0332
-triangleleftsld;25C0
-# U+22B5 CONTAINS AS NORMAL SUBGROUP OR EQUAL TO is sharper than MSAM
-trianglerightequal;22B5,25B7 0332
-trianglerightsld;25B6
-trianglesolid;25B2
-uniondbl;22D3
-uprise;22CF
-# --
-# -- These character names are used in the MSBM fonts
-# --
-# U+1D7CB MATHEMATICAL BOLD SMALL DIGAMMA is the closest match to MSBM,
-# although MSBM Digamma's spelling indicates that a capital was intended
-# U+03DD GREEK SMALL LETTER DIGAMMA for fallback
-Digamma;1D7CB,03DD
-# U+2132 TURNED CAPITAL F is shown as seriffed, MSBM Finv is sans
-Finv;2132
-# U+2141 TURNED SANS-SERIF CAPITAL G is turned, MSBM Gmir is only reversed
-Gmir;2141
-Omegainv;2127
-approxorequal;224A
-archleftdown;21B6
-archrightdown;21B7
-# XXX barshort
-beth;2136
-daleth;2138
-dividemultiply;22C7
-# U+29F9 BIG REVERSE SOLIDUS seems the right size
-downslope;29F9
-equalorsimilar;2242
-follownotdbleqv;2ABA
-follownotslnteql;2AB6
-followornoteqvlnt;22E9
-greaterdot;22D7
-# MSBM misnamed this glyph; should be greaternotdbleqv
-greaternotdblequal;2A8A
-greaternotequal;2A88
-greaterornotdbleql;2269
-# XXX MSBM greaterornotequal has a vertical negation slash, not U+2269 diagonal
-greaterornotequal;2269
-# XXX greaterornotsimilar
-# XXX hatwide
-# XXX hatwider
-integerdivide;2216
-lessdot;22D6
-# MSBM misnamed this glyph; should be lessnotdbleqv
-lessnotdblequal;2A89
-lessnotequal;2A87
-lessornotdbleql;2268
-# XXX MSBM lessornotequal has a vertical negation slash, not U+2268 diagonal
-lessornotequal;2268
-# XXX lessornotsimilar
-multicloseleft;22C9
-multicloseright;22CA
-notapproxequal;2247
-notarrowboth;21AE
-notarrowleft;219A
-notarrowright;219B
-notbar;2224
-notdblarrowboth;21CE
-notdblarrowleft;21CD
-notdblarrowright;21CF
-notexistential;2204
-notfollows;2281
-# U+22E1 DOES NOT SUCCEED OR EQUAL has a curved equal sign, unlike MSBM
-notfollowsoreql;2AB0 0338,22E1
-notforces;22AE
-notforcesextra;22AF
-# Unicode has no precomposed negation of U+2267 GREATER THAN OVER EQUAL TO
-notgreaterdblequal;2267 0338
-notgreaterequal;2271
-notgreaterorslnteql;2A7E 0338
-notlessdblequal;2266 0338
-notlessequal;2270
-notlessorslnteql;2A7D 0338
-# U+22E0 DOES NOT PRECEDE OR EQUAL has a curved equal sign, unlike MSBM
-notprecedesoreql;2AAF 0338,22E0
-notsatisfies;22AD
-# XXX notshortbar
-# XXX notshortparallel
-notsimilar;2241
-notsubseteql;2288
-notsubsetordbleql;2AC5 0338
-# U+228A SUBSET OF WITH NOT EQUAL TO negation slash only touches bar below;
-# MSBM negation slash touches bar and lower part of subset
-notsubsetoreql;228A
-notsuperseteql;2289
-notsupersetordbleql;2AC6 0338
-# U+228A SUPERSET OF WITH NOT EQUAL TO negation slash only touches bar below;
-# MSBM negation slash touches bar and lower part of superset
-notsupersetoreql;228B
-# U+22EC NOT NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSBM
-nottriangeqlleft;22EC,25C1 0332 0338
-# U+22ED DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL is sharper than MSBM
-nottriangeqlright;22ED,25B7 0332 0338
-# U+22EA NOT NORMAL SUBGROUP OF is sharper than MSBM
-nottriangleleft;22EA,25C1 0338
-# U+22EB DOES NOT CONTAIN AS NORMAL SUBGROUP is sharper than MSBM
-nottriangleright;22EB,25B7 0338
-notturnstile;22AC
-# XXX parallelshort
-planckover2pi;210F
-# U+210F PLANCK CONSTANT OVER TWO PI is shown with diagonal slash, which
-# corresponds to MSBM planckover2pi, but this is a font variant
-planckover2pi1;210F
-precedenotdbleqv;2AB9
-precedenotslnteql;2AB5
-precedeornoteqvlnt;22E8
-subsetnoteql;228A
-subsetornotdbleql;2ACB
-# XXX subsetornoteql
-supersetnoteql;228B
-supersetornotdbleql;2ACC
-# XXX supersetornoteql
-# XXX tildewide
-# XXX tildewider
-# U+29F8 BIG SOLIDUS seems the right size
-upslope;29F8
+ 	 	 	&#0;	&#x2111;		Ifractur	 // -------------------- http://math.sut.ac.th/lab/software/texlive/texmf-dist/fonts/map/glyphlist/texglyphlist.txt	
+ 	 	 	&#0;	&#x014A;		Ng		
+ 	 	 	&#0;	&#x211C;		Rfractur		
+ 	 	 	&#0;	&#xD802;		altselector	 # altselector: invalid Unicode	
+ 	 	 	&#0;	&#x27E8;		angbracketleft		
+ 	 	 	&#0;	&#x27E9;		angbracketright		
+ 	 	 	&#0;	&#x2195;		arrowbothv		
+ 	 	 	&#0;	&#x21D5;		arrowdblbothv		
+ 	 	 	&#0;	&#x21BD;		arrowleftbothalf		
+ 	 	 	&#0;	&#x21BC;		arrowlefttophalf		
+ 	 	 	&#0;	&#x2197;		arrownortheast		
+ 	 	 	&#0;	&#x2196;		arrownorthwest		
+ 	 	 	&#0;	&#x21C1;		arrowrightbothalf		
+ 	 	 	&#0;	&#x21C0;		arrowrighttophalf		
+ 	 	 	&#0;	&#x2198;		arrowsoutheast		
+ 	 	 	&#0;	&#x2199;		arrowsouthwest		
+ 	 	 	&#0;	&#xD80A;		ascendercompwordmark	 # ascendercompwordmark: taller cwm, invalid Unicode	
+ 	 	 	&#0;	&#x2217;		asteriskcentered		
+ 	 	 	&#0;	&#x2225;		bardbl		
+ 	 	 	&#0;	&#xD809;		capitalcompwordmark	 # capitalcompwordmark: taller cwm, invalid Unicode	
+ 	 	 	&#0;	&#x2308;		ceilingleft		
+ 	 	 	&#0;	&#x2309;		ceilingright		
+ 	 	 	&#0;	&#x20DD;		circlecopyrt		
+ 	 	 	&#0;	&#x2298;		circledivide		
+ 	 	 	&#0;	&#x2299;		circledot		
+ 	 	 	&#0;	&#x2296;		circleminus		
+ 	 	 	&#0;	&#x2A3F;		coproduct		
+ 	 	 	&#0;	&#x200C;		cwm	 # cwm: Unicode for ZWNJ, used for secondary replacement from EC.enc // qzc-info.pdf jau apibrėžtas kodu 0xEB10 	
+ 	 	 	&#0;	&#x2662;		diamond	 // tuščiaviduris diamond	 šiaip jau apibrėžtas pilnaviduriu (0x2666) # U+2662 is WHITE DIAMOND SUIT # U+25CA is LOZENGE # U+2666 is BLACK DIAMOND SUIT
+ 	 	 	&#0;	&#x22C4;		diamondmath		
+ 	 	 	&#0;	&#xF6BE;		dotlessj	 # U+0237 is the proposed allocation for dotless j as of Unicode 4.0 # U+1D6A5 is the mathematical italic version approved in Unicode 5.0	
+ 	 	 	&#0;	&#x2205;		emptyset		
+ 	 	 	&#0;	&#xD801;		emptyslot	 # emptyslot: invalid Unicode	 the user explicitly wants this slot empty
+ 	 	 	&#0;	&#x03F5;		epsilon1		
+ 	 	 	&#0;	&#x03F6;		epsiloninv		
+ 	 	 	&#0;	&#x224D;		equivasymptotic		
+ 	 	 	&#0;	&#x266D;		flat		
+ 	 	 	&#0;	&#x230A;		floorleft		
+ 	 	 	&#0;	&#x230B;		floorright		
+ 	 	 	&#0;	&#x227B;		follows		
+ 	 	 	&#0;	&#x2AB0;		followsequal		
+ 	 	 	&#0;	&#x227D;		followsorcurly		
+ 	 	 	&#0;	&#x226B;		greatermuch		
+ 	 	 	&#0;	&#x2E18;		interrobangdown		
+ 	 	 	&#0;	&#x2293;		intersectionsq		
+ 	 	 	&#0;	&#x22A4;		latticetop		
+ 	 	 	&#0;	&#x226A;		lessmuch		
+ 	 	 	&#0;	&#x2113;		lscript		
+ 	 	 	&#0;	&#x266E;		natural		
+ 	 	 	&#0;	&#x0338;		negationslash		
+ 	 	 	&#0;	&#x014B;		ng		
+ 	 	 	&#0;	&#x220B;		owner		
+ 	 	 	&#0;	&#x2031;		pertenthousand		
+ 	 	 	&#0;	&#x03D6;		pi1		
+ 	 	 	&#0;	&#x2AAF;		precedesequal		
+ 	 	 	&#0;	&#x227C;		precedesorcurly		
+ 	 	 	&#0;	&#x03F1;		rho1		
+ 	 	 	&#0;	&#xD80D;		ringfitted	 # ringfitted: a ring character centered on the x-width of A, invalid Unicode	
+ 	 	 	&#0;	&#x266F;		sharp		
+ 	 	 	&#0;	&#x2243;		similarequal		
+ 	 	 	&#0;	&#x2322;		slurabove		
+ 	 	 	&#0;	&#x2323;		slurbelow		
+ 	 	 	&#0;	&#x22C6;		star		
+ 	 	 	&#0;	&#x2291;		subsetsqequal		
+ 	 	 	&#0;	&#x2292;		supersetsqequal		
+ 	 	 	&#0;	&#x25B3;		triangle		
+ 	 	 	&#0;	&#x25BD;		triangleinv		
+ 	 	 	&#0;	&#x25C1;		triangleleft		
+ 	 	 	&#0;	&#x25B7;		triangleright		
+ 	 	 	&#0;	&#x22A2;		turnstileleft		
+ 	 	 	&#0;	&#x22A3;		turnstileright		
+ 	 	 	&#0;	&#xD80C;		twelveudash	 # twelveudash: 2/3-em dash	 invalid Unicode
+ 	 	 	&#0;	&#x228E;		unionmulti		
+ 	 	 	&#0;	&#x2294;		unionsq		
+ 	 	 	&#0;	&#x20D7;		vector		
+ 	 	 	&#0;	&#x2423;		visualspace	 # visualspace: Unicode for OPEN BOX, used for secondary replacement from EC.enc	
+ 	 	 	&#0;	&#x2240;		wreathproduct		
+ 	 	 	&#0;	&#x0110;		Dbar	 # Dbar = Dcroat # -- Marco Kuhlmann reported annoying glyph neologisms in fontinst encodings	
+ 	 	 	&#0;	&#x200C;		compwordmark	 # compwordmark = cwm	
+ 	 	 	&#0;	&#x0111;		dbar	 # dbar = dcroat	
+ 	 	 	&#0;	&#x2013;		rangedash	 # rangedash = endash	
+ 	 	 	&#0;	&#x002D;		hyphenchar	 # hyphenchar = hyphen	
+ 	 	 	&#0;	&#x2014;		punctdash	 # punctdash = emdash	
+ 	 	 	&#0;	&#x2423;		visiblespace	 # visiblespace = visualspace	
+ 	 	 	&#0;	&#x00A5;		Yen	 # -- These character names are used in the MSAM fonts	
+ 	 	 	&#0;	&#x27F2;		anticlockwise	 // 21BA # the MSAM10 glyph is more closed than U+21BA # the MSAM10 glyph's gap is at the top, while U+27F2 is on the left	
+ 	 	 	&#0;	&#xfffd;		arrowaxisleft	 // TODO: !!! 	
+ 	 	 	&#0;	&#xfffd;		arrowaxisright	 // TODO: !!!	
+ 	 	 	&#0;	&#x21C6;		arrowparrleftright		
+ 	 	 	&#0;	&#x21C4;		arrowparrrightleft		
+ 	 	 	&#0;	&#x21A2;		arrowtailleft		
+ 	 	 	&#0;	&#x21A3;		arrowtailright		
+ 	 	 	&#0;	&#x21DA;		arrowtripleleft		
+ 	 	 	&#0;	&#x21DB;		arrowtripleright		
+ 	 	 	&#0;	&#xfffd;		axisshort	 // TODO: !!!	
+ 	 	 	&#0;	&#x226C;		between		
+ 	 	 	&#0;	&#x2713;		check	 # U+2713 is a Zapf dingbat	
+ 	 	 	&#0;	&#x00AE;		circleR		
+ 	 	 	&#0;	&#x24C8;		circleS	 # the MSAM10 glyph may be smaller than U+24C8	
+ 	 	 	&#0;	&#x229B;		circleasterisk		
+ 	 	 	&#0;	&#x229C;		circleequal		
+ 	 	 	&#0;	&#x229A;		circlering		
+ 	 	 	&#0;	&#x27F3;		clockwise	 // 21BB # the MSAM10 glyph is more closed than U+21BB # the MSAM10 glyph's gap is at the top, while U+27F3 is on the left	
+ 	 	 	&#0;	&#x2201;		complement		
+ 	 	 	&#0;	&#x21AB;		curlyleft		
+ 	 	 	&#0;	&#x21AC;		curlyright		
+ 	 	 	&#0;	&#x21CA;		dblarrowdwn		
+ 	 	 	&#0;	&#x219E;		dblarrowheadleft		
+ 	 	 	&#0;	&#x21A0;		dblarrowheadright		
+ 	 	 	&#0;	&#x21C8;		dblarrowup		
+ 	 	 	&#0;	&#x225C;		defines		
+ 	 	 	&#0;	&#x2666;		diamondsolid	 # U+2666 is BLACK DIAMOND SUIT # U+29EB is BLACK LOZENGE	
+ 	 	 	&#0;	&#x224F;		difference		
+ 	 	 	&#0;	&#x2214;		dotplus		
+ 	 	 	&#0;	&#x22CE;		downfall		
+ 	 	 	&#0;	&#x2252;		equaldotleftright		
+ 	 	 	&#0;	&#x2253;		equaldotrightleft		
+ 	 	 	&#0;	&#x22DF;		equalorfollows		
+ 	 	 	&#0;	&#x2A96;		equalorgreater		
+ 	 	 	&#0;	&#x2A95;		equalorless		
+ 	 	 	&#0;	&#x22DE;		equalorprecedes		
+ 	 	 	&#0;	&#x2251;		equalsdots		
+ 	 	 	&#0;	&#x227F;		followsorequal		
+ 	 	 	&#0;	&#x22A9;		forces		
+ 	 	 	&#0;	&#x22AA;		forcesbar		
+ 	 	 	&#0;	&#x22D4;		fork		
+ 	 	 	&#0;	&#x2322;		frown		
+ 	 	 	&#0;	&#x224E;		geomequivalent		
+ 	 	 	&#0;	&#x2A8C;		greaterdbleqlless		
+ 	 	 	&#0;	&#x2267;		greaterdblequal		
+ 	 	 	&#0;	&#x22DB;		greaterlessequal		
+ 	 	 	&#0;	&#x2A86;		greaterorapproxeql		
+ 	 	 	&#0;	&#x2A7E;		greaterorequalslant		
+ 	 	 	&#0;	&#x2273;		greaterorsimilar		
+ 	 	 	&#0;	&#x21C3;		harpoondownleft		
+ 	 	 	&#0;	&#x21C2;		harpoondownright		
+ 	 	 	&#0;	&#x21CC;		harpoonleftright	 # MSAM probably misnamed this glyph	 the right pointing harpoon is above U+21CC has the right pointing harpoon above, like MSAM
+ 	 	 	&#0;	&#x21CB;		harpoonrightleft	 # MSAM probably misnamed this glyph	 the left pointing harpoon is above U+21CB has the left pointing harpoon above, like MSAM
+ 	 	 	&#0;	&#x21BF;		harpoonupleft		
+ 	 	 	&#0;	&#x21BE;		harpoonupright		
+ 	 	 	&#0;	&#x22BA;		intercal	 # U+22BA may be larger than MSAM intercal	
+ 	 	 	&#0;	&#x22D2;		intersectiondbl		
+ 	 	 	&#0;	&#x2A8B;		lessdbleqlgreater		
+ 	 	 	&#0;	&#x2266;		lessdblequal		
+ 	 	 	&#0;	&#x22DA;		lessequalgreater		
+ 	 	 	&#0;	&#x2A85;		lessorapproxeql		
+ 	 	 	&#0;	&#x2A7D;		lessorequalslant		
+ 	 	 	&#0;	&#x2272;		lessorsimilar		
+ 	 	 	&#0;	&#x2720;		maltesecross		
+ 	 	 	&#0;	&#x2221;		measuredangle		
+ 	 	 	&#0;	&#x22B8;		multimap		
+ 	 	 	&#0;	&#x22CB;		multiopenleft		
+ 	 	 	&#0;	&#x22CC;		multiopenright		
+ 	 	 	&#0;	&#x22BC;		nand		
+ 	 	 	&#0;	&#x22BB;		orunderscore		
+ 	 	 	&#0;	&#x2A5E;		perpcorrespond	 # U+2306 PERSPECTIVE is larger than the MSAM glyph	
+ 	 	 	&#0;	&#x227E;		precedesorequal		
+ 	 	 	&#0;	&#x2035;		primereverse		
+ 	 	 	&#0;	&#x22CD;		revasymptequal		
+ 	 	 	&#0;	&#x223D;		revsimilar		
+ 	 	 	&#0;	&#x231D;		rightanglene	 # U+231D TOP RIGHT CORNER is a quine corner, U+2E23 TOP RIGHT HALF BRACKET is a half bracket. MSAM rightanglene matches the shape of U+231C but the spacing of U+2E23. Similar for other rightangle characters.	
+ 	 	 	&#0;	&#x231C;		rightanglenw	 # 2E22	
+ 	 	 	&#0;	&#x231F;		rightanglese	 # 2E25	
+ 	 	 	&#0;	&#x231E;		rightanglesw	 # 2E24	
+ 	 	 	&#0;	&#x2256;		ringinequal		
+ 	 	 	&#0;	&#x22A8;		satisfies	 # U+22A7 MODELS is shorter than U+22A8 TRUE = satisfies. MSAM satisfies is in between.	
+ 	 	 	&#0;	&#x21B0;		shiftleft		
+ 	 	 	&#0;	&#x21B1;		shiftright		
+ 	 	 	&#0;	&#x2323;		smile		
+ 	 	 	&#0;	&#x2222;		sphericalangle		
+ 	 	 	&#0;	&#x25A1;		square	 # U+25A1 WHITE SQUARE	
+ 	 	 	&#0;	&#x22A1;		squaredot		
+ 	 	 	&#0;	&#x228F;		squareimage		
+ 	 	 	&#0;	&#x229F;		squareminus		
+ 	 	 	&#0;	&#x22A0;		squaremultiply		
+ 	 	 	&#0;	&#x2290;		squareoriginal		
+ 	 	 	&#0;	&#x229E;		squareplus		
+ 	 	 	&#0;	&#x25AA;		squaresmallsolid	 # XXX U+25AA BLACK SMALL SQUARE doesn't sit on the baseline	
+ 	 	 	&#0;	&#x25A0;		squaresolid		
+ 	 	 	&#0;	&#x21AD;		squiggleleftright	 # U+21AD LEFT RIGHT WAVE ARROW is not actually a squiggle arrow	
+ 	 	 	&#0;	&#x21DD;		squiggleright		
+ 	 	 	&#0;	&#x22D0;		subsetdbl		
+ 	 	 	&#0;	&#x2AC5;		subsetdblequal		
+ 	 	 	&#0;	&#x22D1;		supersetdbl		
+ 	 	 	&#0;	&#x2AC6;		supersetdblequal		
+ 	 	 	&#0;	&#x25BC;		triangledownsld		
+ 	 	 	&#0;	&#x22B4;		triangleleftequal	 // 25C1 0332 # U+22B4 NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSAM	
+ 	 	 	&#0;	&#x25C0;		triangleleftsld		
+ 	 	 	&#0;	&#x22B5;		trianglerightequal	 // 25B7 0332# U+22B5 CONTAINS AS NORMAL SUBGROUP OR EQUAL TO is sharper than MSAM	
+ 	 	 	&#0;	&#x25B6;		trianglerightsld		
+ 	 	 	&#0;	&#x25B2;		trianglesolid		
+ 	 	 	&#0;	&#x22D3;		uniondbl		
+ 	 	 	&#0;	&#x22CF;		uprise		
+ 	 	 	&#0;	&#x03DD;		Digamma	 // 1D7CB # -- These character names are used in the MSBM fonts # U+1D7CB MATHEMATICAL BOLD SMALL DIGAMMA is the closest match to MSBM, although MSBM Digamma's spelling indicates that a capital was intended U+03DD GREEK SMALL LETTER DIGAMMA for fallback	
+ 	 	 	&#0;	&#x2132;		Finv	 # U+2132 TURNED CAPITAL F is shown as seriffed, MSBM Finv is sans	
+ 	 	 	&#0;	&#x2141;		Gmir	 # U+2141 TURNED SANS-SERIF CAPITAL G is turned, MSBM Gmir is only reversed	
+ 	 	 	&#0;	&#x2127;		Omegainv		
+ 	 	 	&#0;	&#x224A;		approxorequal		
+ 	 	 	&#0;	&#x21B6;		archleftdown		
+ 	 	 	&#0;	&#x21B7;		archrightdown		
+ 	 	 	&#0;	&#xfffd;		barshort	 // TODO: !!!	
+ 	 	 	&#0;	&#x2136;		beth		
+ 	 	 	&#0;	&#x2138;		daleth		
+ 	 	 	&#0;	&#x22C7;		dividemultiply		
+ 	 	 	&#0;	&#x29F9;		downslope	 # U+29F9 BIG REVERSE SOLIDUS seems the right size	
+ 	 	 	&#0;	&#x2242;		equalorsimilar		
+ 	 	 	&#0;	&#x2ABA;		follownotdbleqv		
+ 	 	 	&#0;	&#x2AB6;		follownotslnteql		
+ 	 	 	&#0;	&#x22E9;		followornoteqvlnt		
+ 	 	 	&#0;	&#x22D7;		greaterdot		
+ 	 	 	&#0;	&#x2A8A;		greaternotdblequal	 # MSBM misnamed this glyph	 should be greaternotdbleqv
+ 	 	 	&#0;	&#x2A88;		greaternotequal		
+ 	 	 	&#0;	&#x2269;		greaterornotdbleql		
+ 	 	 	&#0;	&#x2269;		greaterornotequal	 # MSBM greaterornotequal has a vertical negation slash, not U+2269 diagonal	
+ 	 	 	&#0;	&#xfffd;		greaterornotsimilar	 // TODO: !!!	
+ 	 	 	&#0;	&#xfffd;		hatwide	 // TODO: !!!	
+ 	 	 	&#0;	&#xfffd;		hatwider	 // TODO: !!!	
+ 	 	 	&#0;	&#x2216;		integerdivide		
+ 	 	 	&#0;	&#x22D6;		lessdot		
+ 	 	 	&#0;	&#x2A89;		lessnotdblequal	 # MSBM misnamed this glyph should be lessnotdbleqv
+ 	 	 	&#0;	&#x2A89;		lessnotdbleqv		
+ 	 	 	&#0;	&#x2A87;		lessnotequal		
+ 	 	 	&#0;	&#x2268;		lessornotdbleql		
+ 	 	 	&#0;	&#x2268;		lessornotequal	 # MSBM lessornotequal has a vertical negation slash, not U+2268 diagonal	
+ 	 	 	&#0;	&#xfffd;		lessornotsimilar	 // TODO: !!!	
+ 	 	 	&#0;	&#x22C9;		multicloseleft		
+ 	 	 	&#0;	&#x22CA;		multicloseright		
+ 	 	 	&#0;	&#x2247;		notapproxequal		
+ 	 	 	&#0;	&#x21AE;		notarrowboth		
+ 	 	 	&#0;	&#x219A;		notarrowleft		
+ 	 	 	&#0;	&#x219B;		notarrowright		
+ 	 	 	&#0;	&#x2224;		notbar		
+ 	 	 	&#0;	&#x21CE;		notdblarrowboth		
+ 	 	 	&#0;	&#x21CD;		notdblarrowleft		
+ 	 	 	&#0;	&#x21CF;		notdblarrowright		
+ 	 	 	&#0;	&#x2204;		notexistential		
+ 	 	 	&#0;	&#x2281;		notfollows		
+ 	 	 	&#0;	&#x22E1;		notfollowsoreql	 // 2AB0 0338 # U+22E1 DOES NOT SUCCEED OR EQUAL has a curved equal sign, unlike MSBM	
+ 	 	 	&#0;	&#x22AE;		notforces		
+ 	 	 	&#0;	&#x22AF;		notforcesextra		
+ 	 	 	&#0;	&#xfffd;		notgreaterdblequal	 // TODO: !!!  2267 0338 # Unicode has no precomposed negation of U+2267 GREATER THAN OVER EQUAL TO
+ 	 	 	&#0;	&#x2271;		notgreaterequal		
+ 	 	 	&#0;	&#xfffd;		notgreaterorslnteql	 // TODO: !!!  2A7E 0338
+ 	 	 	&#0;	&#xfffd;		notlessdblequal	 // TODO: !!! 	2266 0338
+ 	 	 	&#0;	&#x2270;		notlessequal		
+ 	 	 	&#0;	&#xfffd;		notlessorslnteql	 // TODO: !!!  2A7D 0338
+ 	 	 	&#0;	&#x22E0;		notprecedesoreql	 // 2AAF 0338, # U+22E0 DOES NOT PRECEDE OR EQUAL has a curved equal sign, unlike MSBM	
+ 	 	 	&#0;	&#x22AD;		notsatisfies		
+ 	 	 	&#0;	&#xfffd;		notshortbar	 // TODO: !!!	
+ 	 	 	&#0;	&#xfffd;		notshortparallel	 // TODO: !!!	
+ 	 	 	&#0;	&#x2241;		notsimilar		
+ 	 	 	&#0;	&#x2288;		notsubseteql		
+ 	 	 	&#0;	&#xfffd;		notsubsetordbleql	 // TODO: !!!  2AC5 0338
+ 	 	 	&#0;	&#x228A;		notsubsetoreql	 # U+228A SUBSET OF WITH NOT EQUAL TO negation slash only touches bar below	 MSBM negation slash touches bar and lower part of subset
+ 	 	 	&#0;	&#x2289;		notsuperseteql		
+ 	 	 	&#0;	&#xfffd;		notsupersetordbleql	 // TODO: !!!  2AC6 0338
+ 	 	 	&#0;	&#x228B;		notsupersetoreql	 # U+228A SUPERSET OF WITH NOT EQUAL TO negation slash only touches bar below	 MSBM negation slash touches bar and lower part of superset
+ 	 	 	&#0;	&#x22EC;		nottriangeqlleft	 // 25C1 0332 0338 # U+22EC NOT NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSBM	
+ 	 	 	&#0;	&#x22ED;		nottriangeqlright	 // 25B7 0332 0338 # U+22ED DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL is sharper than MSBM	
+ 	 	 	&#0;	&#x22EA;		nottriangleleft	 // 25C1 0338 # U+22EA NOT NORMAL SUBGROUP OF is sharper than MSBM	
+ 	 	 	&#0;	&#x22EB;		nottriangleright	 // 25B7 0338 # U+22EB DOES NOT CONTAIN AS NORMAL SUBGROUP is sharper than MSBM	
+ 	 	 	&#0;	&#x22AC;		notturnstile		
+ 	 	 	&#0;	&#xfffd;		parallelshort	 // TODO: !!!	
+ 	 	 	&#0;	&#x210F;		planckover2pi		
+ 	 	 	&#0;	&#x210F;		planckover2pi1	 # U+210F PLANCK CONSTANT OVER TWO PI is shown with diagonal slash, which corresponds to MSBM planckover2pi, but this is a font variant	
+ 	 	 	&#0;	&#x2AB9;		precedenotdbleqv		
+ 	 	 	&#0;	&#x2AB5;		precedenotslnteql		
+ 	 	 	&#0;	&#x22E8;		precedeornoteqvlnt		
+ 	 	 	&#0;	&#x228A;		subsetnoteql		
+ 	 	 	&#0;	&#x2ACB;		subsetornotdbleql		
+ 	 	 	&#0;	&#xfffd;		subsetornoteql	 // TODO: !!!	
+ 	 	 	&#0;	&#x228B;		supersetnoteql		
+ 	 	 	&#0;	&#x2ACC;		supersetornotdbleql		
+ 	 	 	&#0;	&#xfffd;		supersetornoteql	 // TODO: !!!	
+ 	 	 	&#0;	&#xfffd;		tildewide	 // TODO: !!!	
+ 	 	 	&#0;	&#xfffd;		tildewider	 // TODO: !!!	
+ 	 	 	&#0;	&#x29F8;		upslope	 # U+29F8 BIG SOLIDUS seems the right size	
+ 	 	 	&#0;	&#xED01;		angbracketleftBig	 // -------------------- glyphtounicode-cmr.tex	
+ 	 	 	&#0;	&#xED03;		angbracketleftBigg	
+ 	 	 	&#0;	&#xED02;		angbracketleftbig	
+ 	 	 	&#0;	&#xED04;		angbracketleftbigg	
+ 	 	 	&#0;	&#xED06;		angbracketrightBig	
+ 	 	 	&#0;	&#xED08;		angbracketrightBigg	
+ 	 	 	&#0;	&#xED07;		angbracketrightbig	
+ 	 	 	&#0;	&#xED09;		angbracketrightbigg	
+ 	 	 	&#0;	&#xED0A;		arrowbt	
+ 	 	 	&#0;	&#xED0B;		arrowdblbt	
+ 	 	 	&#0;	&#xED0E;		arrowdbltp	
+ 	 	 	&#0;	&#x21A9;		arrowhookleft	
+ 	 	 	&#0;	&#x21AA;		arrowhookright	
+ 	 	 	&#0;	&#xED11;		arrowtp	
+ 	 	 	&#0;	&#xED12;		arrowvertexdbl	
+ 	 	 	&#0;	&#xED13;		backslashBig	
+ 	 	 	&#0;	&#xED15;		backslashBigg	
+ 	 	 	&#0;	&#xED14;		backslashbig	
+ 	 	 	&#0;	&#xED16;		backslashbigg	
+ 	 	 	&#0;	&#xED17;		bracehtipdownleft	
+ 	 	 	&#0;	&#xED18;		bracehtipdownright	
+ 	 	 	&#0;	&#xED19;		bracehtipupleft	
+ 	 	 	&#0;	&#xED1A;		bracehtipupright	
+ 	 	 	&#0;	&#xED1B;		braceleftBig	
+ 	 	 	&#0;	&#xED1D;		braceleftBigg	
+ 	 	 	&#0;	&#xED1C;		braceleftbig	
+ 	 	 	&#0;	&#xED1E;		braceleftbigg	
+ 	 	 	&#0;	&#xED20;		bracerightBig	
+ 	 	 	&#0;	&#xED22;		bracerightBigg	
+ 	 	 	&#0;	&#xED21;		bracerightbig	
+ 	 	 	&#0;	&#xED23;		bracerightbigg	
+ 	 	 	&#0;	&#xED24;		bracketleftBig	
+ 	 	 	&#0;	&#xED26;		bracketleftBigg	
+ 	 	 	&#0;	&#xED25;		bracketleftbig	
+ 	 	 	&#0;	&#xED27;		bracketleftbigg	
+ 	 	 	&#0;	&#xED28;		bracketrightBig	
+ 	 	 	&#0;	&#xED2A;		bracketrightBigg	
+ 	 	 	&#0;	&#xED29;		bracketrightbig	
+ 	 	 	&#0;	&#xED2B;		bracketrightbigg	
+ 	 	 	&#0;	&#xED2C;		ceilingleftBig	
+ 	 	 	&#0;	&#xED2E;		ceilingleftBigg	
+ 	 	 	&#0;	&#xED2D;		ceilingleftbig	
+ 	 	 	&#0;	&#xED2F;		ceilingleftbigg	
+ 	 	 	&#0;	&#xED30;		ceilingrightBig	
+ 	 	 	&#0;	&#xED32;		ceilingrightBigg	
+ 	 	 	&#0;	&#xED31;		ceilingrightbig	
+ 	 	 	&#0;	&#xED33;		ceilingrightbigg	
+ 	 	 	&#0;	&#xED34;		circledotdisplay	
+ 	 	 	&#0;	&#xED35;		circledottext	
+ 	 	 	&#0;	&#xED36;		circlemultiplydisplay	
+ 	 	 	&#0;	&#xED37;		circlemultiplytext	
+ 	 	 	&#0;	&#xED38;		circleplusdisplay	
+ 	 	 	&#0;	&#xED39;		circleplustext	
+ 	 	 	&#0;	&#xED3B;		contintegraldisplay	
+ 	 	 	&#0;	&#xED3C;		contintegraltext	
+ 	 	 	&#0;	&#xED3D;		coproductdisplay	
+ 	 	 	&#0;	&#xED3E;		coproducttext	
+ 	 	 	&#0;	&#xED42;		floorleftBig	
+ 	 	 	&#0;	&#xED44;		floorleftBigg	
+ 	 	 	&#0;	&#xED43;		floorleftbig	
+ 	 	 	&#0;	&#xED45;		floorleftbigg	
+ 	 	 	&#0;	&#xED46;		floorrightBig	
+ 	 	 	&#0;	&#xED48;		floorrightBigg	
+ 	 	 	&#0;	&#xED47;		floorrightbig	
+ 	 	 	&#0;	&#xED49;		floorrightbigg	
+ 	 	 	&#0;	&#xED4A;		hatwide	
+ 	 	 	&#0;	&#xED4B;		hatwider	
+ 	 	 	&#0;	&#xED4C;		hatwidest	
+ 	 	 	&#0;	&#xED4D;		integraldisplay	
+ 	 	 	&#0;	&#xED4E;		integraltext	
+ 	 	 	&#0;	&#xED4F;		intersectiondisplay	
+ 	 	 	&#0;	&#xED50;		intersectiontext	
+ 	 	 	&#0;	&#xED51;		logicalanddisplay	
+ 	 	 	&#0;	&#xED52;		logicalandtext	
+ 	 	 	&#0;	&#xED53;		logicalordisplay	
+ 	 	 	&#0;	&#xED54;		logicalortext	
+ 	 	 	&#0;	&#x2192;		mapsto	// ED55
+ 	 	 	&#0;	&#xED5A;		parenleftBig	
+ 	 	 	&#0;	&#xED5C;		parenleftBigg	
+ 	 	 	&#0;	&#xED5B;		parenleftbig	
+ 	 	 	&#0;	&#xED5D;		parenleftbigg	
+ 	 	 	&#0;	&#xED5E;		parenrightBig	
+ 	 	 	&#0;	&#xED60;		parenrightBigg	
+ 	 	 	&#0;	&#xED5F;		parenrightbig	
+ 	 	 	&#0;	&#xED61;		parenrightbigg	
+ 	 	 	&#0;	&#xED63;		productdisplay	
+ 	 	 	&#0;	&#xED64;		producttext	
+ 	 	 	&#0;	&#xED65;		radicalBig	
+ 	 	 	&#0;	&#xED67;		radicalBigg	
+ 	 	 	&#0;	&#xED66;		radicalbig	
+ 	 	 	&#0;	&#xED68;		radicalbigg	
+ 	 	 	&#0;	&#xED69;		radicalbt	
+ 	 	 	&#0;	&#xED6A;		radicaltp	
+ 	 	 	&#0;	&#xED6B;		radicalvertex	
+ 	 	 	&#0;	&#xED6C;		slashBig	
+ 	 	 	&#0;	&#xED6E;		slashBigg	
+ 	 	 	&#0;	&#xED6D;		slashbig	
+ 	 	 	&#0;	&#xED6F;		slashbigg	
+ 	 	 	&#0;	&#xED70;		summationdisplay	
+ 	 	 	&#0;	&#xED71;		summationtext	
+ 	 	 	&#0;	&#xEB61;		suppress	
+ 	 	 	&#0;	&#x2040;		tie	
+ 	 	 	&#0;	&#xEB68;		tildewide	
+ 	 	 	&#0;	&#xEB69;		tildewider	
+ 	 	 	&#0;	&#xEB6A;		tildewidest	
+ 	 	 	&#0;	&#xED72;		uniondisplay	
+ 	 	 	&#0;	&#xED73;		unionmultidisplay	
+ 	 	 	&#0;	&#xED74;		unionmultitext	
+ 	 	 	&#0;	&#xED75;		unionsqdisplay	
+ 	 	 	&#0;	&#xED76;		unionsqtext	
+ 	 	 	&#0;	&#xED77;		uniontext	
+ 	 	 	&#0;	&#xED79;		vextenddouble	
+ 	 	 	&#0;	&#xED7A;		vextendsingle	
