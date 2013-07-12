@@ -22,8 +22,10 @@
 // PostScript simbolių vardų įrašai faile psc.cpp
 struct PsChName
 {
-    UCHAR m_lpszName[80],
-    UniChar m_iCode
+    UCHAR m_lpszName[80];
+    UniChar m_iCode;
 };
+
+extern PsChName PsChNames[];
 
 #endif // #ifndef pdf_included

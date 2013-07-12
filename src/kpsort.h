@@ -31,25 +31,34 @@ extern int iCharWeigths[C_CharSize0];        // sort order definition
 // ----------------------
 // Calculates keyword index in keyword table.
 //    returns TV_TG_NoKey (-1) if not found
-// Input:
-//    p_lpszKeywrd;
-//    p_plpszKeytable - array of pointers to all
-//       keywords - null terminated strings, not longer than KP_KWD_LEN bytes each;
-//    if p_iTabSize <0, then end of keyword table
-//       is marked by null pointer,
-//    if p_iTabSize >=0, then all p_iTabSize records
-//       will be tested, regardless if they are NULL
-//       or not.
-//    p_bCaseSens - case sensitivity flag
-//    p_bWholeWords - search for p_lpszKeywrd as whole word,
-//       otherwise - only starting characters up to checking keyword length
 extern int GetKwrdIndex
 (
 const UCHAR *p_lpszKeywrd,
-const UCHAR * const *p_plpszKeytable,
-const int p_iTabSize,
+const UCHAR * const *p_plpszKeytable,         
+                        //      array of pointers to all
+                        //      keywords - null terminated strings, 
+                        //      not longer than KP_KWD_LEN bytes each;
+const int p_iTabSize,   //  number of elements in p_plpszKeytable[]
+                        //  if p_iTabSize <0, then end of keyword table
+                        //      is marked by NULL pointer,
+                        //  if p_iTabSize >=0, then all p_iTabSize records
+                        //      will be tested, regardless if they are NULL
+                        //      or not.
+bool p_bCaseSens,       //  case sensitivity flag
+bool p_bWholeWords      //  search for p_lpszKeywrd as whole word,
+);                      //      otherwise - only starting characters up to keyword length currently checked
+
+
+extern int GetKwrdIndexArr
+(
+const UCHAR *p_lpszKeywrd,
+const UCHAR *p_plpszKeytable, // const UCHAR p_plpszKeytable[][p_iKeySize]   
+const int p_iTabSize,   //  number of elements in p_plpszKeytable[]
+                        //  if p_iTabSize <0, then end of keyword table
+                        //      is marked by empty strint "" (p_plpszKeytable[ix][0] == Nul),
 bool p_bCaseSens,
-bool p_bWholeWords
-);  
+bool p_bWholeWords,
+int p_iKeySize          //  size of one p_plpszKeytable[] element                        
+);
 
 #endif // #ifndef kpsort_included

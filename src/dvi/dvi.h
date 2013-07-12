@@ -242,4 +242,6 @@ typedef enum
 
 #define DVI_DEF_UNITS_PER_PT 30000
 
+#define ENC_TAB_START 0 // kai kurie .enc failai panašu, kad prasideda nuo kitų kodų (tarpo?)
+
 #endif // #ifndef dvi_included

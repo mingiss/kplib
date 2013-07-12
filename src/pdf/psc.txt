@@ -67,6 +67,7 @@ periodcentered	middle dot = Georgian comma = Greek middle dot, U+00B7 ISOnum
 Ý	Ý	Ý	&#221;	&#x00DD;	&Yacute;	Yacute	latin capital letter Y with acute, U+00DD ISOlat1
 Þ	Þ	Þ	&#222;	&#x00DE;	&THORN;	Thorn	latin capital letter THORN, U+00DE ISOlat1
 ß	ß	ß	&#223;	&#x00DF;	&szlig;	germandbls	latin small letter sharp s = ess-zed, U+00DF ISOlat1
+Germandbls
 à	à	à	&#224;	&#x00E0;	&agrave;	agrave	latin small letter a with grave = latin small letter a grave, U+00E0 ISOlat1
 á	á	á	&#225;	&#x00E1;	&aacute;	aacute	latin small letter a with acute, U+00E1 ISOlat1
 â	â	â	&#226;	&#x00E2;	&acirc;	acircumflex	latin small letter a with circumflex, U+00E2 ISOlat1
@@ -146,7 +147,7 @@ sigmafinal	greek small letter final sigma, U+03C2 ISOgrk3
 σ	σ	σ	&#963;	&#x03C3;	&sigma;	sigma	greek small letter sigma, U+03C3 ISOgrk3
 τ	τ	τ	&#964;	&#x03C4;	&tau;	tau	greek small letter tau, U+03C4 ISOgrk3
 υ	υ	υ	&#965;	&#x03C5;	&upsilon;	upsilon	greek small letter upsilon, U+03C5 ISOgrk3
-φ	φ	φ	&#966;	&#x03C6;	&phi;	phi	greek small letter phi, U+03C6 ISOgrk3
+φ	φ	φ	&#966;	&#x03C6;	&phi;	phi1	// phi // greek small letter phi, U+03C6 ISOgrk3 // # texglyphlist.txt: TeX encodings such as 'texmital.enc' disagree with Unicode and the Adobe glyph list; in TeX, the "straight" form of phi takes the name "phi", whereas the more-common "loopy" form of phi, \varphi, takes the name "phi1".
 χ	χ	χ	&#967;	&#x03C7;	&chi;	chi	greek small letter chi, U+03C7 ISOgrk3
 ψ	ψ	ψ	&#968;	&#x03C8;	&psi;	psi	greek small letter psi, U+03C8 ISOgrk3
 ω	ω	ω	&#969;	&#x03C9;	&omega;	omega	greek small letter omega, U+03C9 ISOgrk3
@@ -367,7 +368,7 @@ X	X		&#88;	&#x0058;		X
 Y	Y		&#89;	&#x0059;		Y	
 Z	Z		&#90;	&#x005A;		Z	
 [	[		&#91;	&#x005B;		bracketleft	
-\	\		&#92;	&#x005C;		backslash	
+\ 	\ 		&#92;	&#x005C;		backslash	
 ]	]		&#93;	&#x005D;		bracketright	
 ^	^		&#94;	&#x005E;		asciicircum	
 _	_		&#95;	&#x005F;		underscore	
@@ -950,7 +951,7 @@ dieresistonos
 ϐ	ϐ		&#976;	&#x03D0;		betasymbolgreek	
 ϓ	ϓ		&#979;	&#x03D3;		Upsilonacutehooksymbolgreek	
 ϔ	ϔ		&#980;	&#x03D4;		Upsilondieresishooksymbolgreek	
-ϕ	ϕ		&#981;	&#x03D5;		phi1
+ϕ	ϕ		&#981;	&#x03D5;		phi	// phi1 # texglyphlist.txt: TeX encodings such as 'texmital.enc' disagree with Unicode and the Adobe glyph list; in TeX, the "straight" form of phi takes the name "phi", whereas the more-common "loopy" form of phi, \varphi, takes the name "phi1".
 phisymbolgreek	
 Ϛ	Ϛ		&#986;	&#x03DA;		Stigmagreek	
 Ϝ	Ϝ		&#988;	&#x03DC;		Digammagreek	
@@ -2607,6 +2608,7 @@ twodotleader
 ⁾	⁾		&#8318;	&#x207E;		parenrightsuperior	
 ⁿ	ⁿ		&#8319;	&#x207F;		nsuperior	
 ₀	₀		&#8320;	&#x2080;		zeroinferior	
+perthousandzero
 ₁	₁		&#8321;	&#x2081;		oneinferior	
 ₂	₂		&#8322;	&#x2082;		twoinferior	
 ₃	₃		&#8323;	&#x2083;		threeinferior	
@@ -4284,3 +4286,579 @@ yehmedialarabic
 ￣	￣		&#65507;	&#xFFE3;		macronmonospace	
 ￥	￥		&#65509;	&#xFFE5;		yenmonospace	
 ￦	￦		&#65510;	&#xFFE6;		wonmonospace	
+			&#0;	&#xE803;		f_k	// ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN-historic/fonts/tex-gyre/chorus/1.103/qzc-info.pdf
+			&#0;	&#xEA00;		acute.cap
+Acute
+			&#0;	&#xEA01;		uni0301.cap
+Acutecomb
+			&#0;	&#xEA02;		breve.cap
+Breve
+			&#0;	&#xEA03;		space_uni0306_uni0301.cap
+Breveacute
+			&#0;	&#xEA04;		space_uni0306_uni0301
+breveacute
+			&#0;	&#xEA05;		space_uni032E
+brevebelow
+			&#0;	&#xEA06;		space_uni032F
+brevebelowinverted
+			&#0;	&#xEA07;		uni0306.cap
+Brevecomb
+			&#0;	&#xEA08;		space_uni0306_uni0300.cap
+Brevegrave
+			&#0;	&#xEA09;		space_uni0306_uni0300
+brevegrave
+			&#0;	&#xEA0A;		space_uni0306_uni0309.cap
+Brevehookabove
+			&#0;	&#xEA0B;		space_uni0306_uni0309
+brevehookabove
+			&#0;	&#xEA0C;		space_uni0311.cap
+Breveinverted
+			&#0;	&#xEA0D;		space_uni0311
+breveinverted
+			&#0;	&#xEA0E;		uni0311.cap
+Breveinvertedcomb
+			&#0;	&#xEA0F;		space_uni0306_uni0303.cap
+Brevetilde
+			&#0;	&#xEA10;		space_uni0306_uni0303
+brevetilde
+			&#0;	&#xEA11;		caron.cap
+Caron
+			&#0;	&#xEA14;		uni030C.cap
+Caroncomb
+			&#0;	&#xEA15;		circumflex.cap
+Circumflex
+			&#0;	&#xEA16;		space_uni0302_uni0301.cap
+Circumflexacute
+			&#0;	&#xEA17;		space_uni0302_uni0301
+circumflexacute
+			&#0;	&#xEA18;		uni0302.cap
+Circumflexcomb
+			&#0;	&#xEA19;		space_uni0302_uni0300.cap
+Circumflexgrave
+			&#0;	&#xEA1A;		space_uni0302_uni0300
+circumflexgrave
+			&#0;	&#xEA1B;		space_uni0302_uni0309.cap
+Circumflexhookabove
+			&#0;	&#xEA1C;		space_uni0302_uni0309
+circumflexhookabove
+			&#0;	&#xEA1D;		space_uni0302_uni0303.cap
+Circumflextilde
+			&#0;	&#xEA1E;		space_uni0302_uni0303
+circumflextilde
+			&#0;	&#xEA1F;		space_uni0326
+commaaccent
+			&#0;	&#xEA21;		breve.cyrcap
+cyrBreve
+			&#0;	&#xEA22;		breve.cyr
+cyrbreve
+			&#0;	&#xEA23;		circumflex.cyrcap
+cyrFlex
+			&#0;	&#xEA24;		circumflex.cyr
+cyrflex
+			&#0;	&#xEA25;		space_uni030F.cap
+dblGrave
+			&#0;	&#xEA26;		space_uni030F
+dblgrave
+			&#0;	&#xEA27;		uni030F.cap
+dblGravecomb
+			&#0;	&#xEA28;		dieresis.cap
+Dieresis
+			&#0;	&#xEA2B;		uni0308.cap
+Dieresiscomb
+			&#0;	&#xEA2E;		dotaccent.cap
+Dotaccent
+			&#0;	&#xEA2F;		uni0307.cap
+Dotaccentcomb
+			&#0;	&#xEA30;		grave.cap
+Grave
+			&#0;	&#xEA31;		uni0300.cap
+Gravecomb
+			&#0;	&#xEA32;		space_uni0309.cap
+Hookabove
+			&#0;	&#xEA33;		space_uni0309
+hookabove
+			&#0;	&#xEA34;		uni0309.cap
+Hookabovecomb
+			&#0;	&#xEA36;		hungarumlaut.cap
+Hungarumlaut
+			&#0;	&#xEA37;		uni030B.cap
+Hungarumlautcomb
+			&#0;	&#xEA38;		space_uni0332
+linebelow
+			&#0;	&#xEA39;		macron.cap
+Macron
+			&#0;	&#xEA3A;		macron.cap.alt
+Macron.alt
+			&#0;	&#xEA3B;		macron.alt
+			&#0;	&#xEA3C;		space_uni0331
+macronbelow
+			&#0;	&#xEA3D;		uni0304.cap
+Macroncomb
+			&#0;	&#xEA3E;		ring.cap
+Ring
+			&#0;	&#xEA3F;		space_uni030A_uni0301.cap
+Ringacute
+			&#0;	&#xEA40;		space_uni030A_uni0301
+ringacute
+			&#0;	&#xEA41;		uni030A.cap
+Ringcomb
+			&#0;	&#xEA42;		tilde.cap
+Tilde
+			&#0;	&#xEA43;		space_uni0330
+tildebelow
+			&#0;	&#xEA44;		uni0303.cap
+Tildecomb
+			&#0;	&#xEB02;		acute.ts1
+			&#0;	&#xEB03;		Aogonekacute
+			&#0;	&#xEB04;		aogonekacute
+			&#0;	&#xEB05;		at.alt
+			&#0;	&#xEB08;		bigcircle
+			&#0;	&#xEB09;		star.alt
+born
+			&#0;	&#xEB0A;		breve.ts1
+			&#0;	&#xEB0D;		caron.ts1
+			&#0;	&#xEB0F;		copyleft
+			&#0;	&#xEB10;		cwm
+			&#0;	&#xEB11;		cwmascender
+			&#0;	&#xEB12;		cwmcapital
+			&#0;	&#xEB15;		dblgrave.ts1
+			&#0;	&#xEB16;		died
+			&#0;	&#xEB17;		dieresis.ts1
+			&#0;	&#xEB19;		space_uni0323
+dotbelow
+			&#0;	&#xEB1E;		Eogonekacute
+			&#0;	&#xEB1F;		eogonekacute
+			&#0;	&#xEB28;		S_S
+Germandbls
+			&#0;	&#xEB29;		gnaborretni
+			&#0;	&#xEB2A;		grave.ts1
+			&#0;	&#xEB2B;		guarani
+			&#0;	&#xEB2E;		hungarumlaut.ts1
+			&#0;	&#xEB2F;		hyphen.alt
+			&#0;	&#xEB30;		hyphen.prop
+			&#0;	&#xEB31;		hyphendbl
+			&#0;	&#xEB32;		hyphendbl.alt
+			&#0;	&#xEB35;		Iogonekacute
+			&#0;	&#xEB36;		iogonekacute
+			&#0;	&#xEB3A;		Jacute
+			&#0;	&#xEB3B;		jacute
+			&#0;	&#xEB40;		leaf
+			&#0;	&#xEB43;		macron.ts1
+			&#0;	&#xEB48;		Oogonekacute
+			&#0;	&#xEB49;		oogonekacute
+			&#0;	&#xEB4C;		paragraph.alt
+			&#0;	&#xEB4D;		perthousandzero
+			&#0;	&#xEB52;		quotedblbase.ts1
+			&#0;	&#xEB56;		quotesinglbase.ts1
+			&#0;	&#xEB57;		quotesingle.ts1
+			&#0;	&#xEB5A;		registered.alt
+			&#0;	&#xEB61;		suppress
+			&#0;	&#xEB63;		tieaccentcapital
+			&#0;	&#xEB64;		tieaccentcapital.new
+			&#0;	&#xEB65;		tieaccentlowercase
+			&#0;	&#xEB66;		tieaccentlowercase.new
+			&#0;	&#xEB67;		asciitilde.low
+tildelow
+			&#0;	&#xEB6B;		emdash.alt
+			&#0;	&#xEB6E;		U_uni032F
+Ubrevebelowinverted
+			&#0;	&#xEB6F;		u_uni032F
+ubrevebelowinverted
+			&#0;	&#xEC08;		H_uni0303
+Htilde
+			&#0;	&#xEC09;		h_uni0303
+htilde
+			&#0;	&#xEC07;		Imacron.alt
+			&#0;	&#xEC06;		imacron.alt
+			&#0;	&#xEC0F;		lslash_lslash
+			&#0;	&#xEC0A;		L_uni0303
+Ltilde
+			&#0;	&#xEC0B;		l_uni0303
+ltilde
+			&#0;	&#xEC0E;		T_uni0308
+Tdieresis
+			&#0;	&#xEC0C;		T_uni0303
+Ttilde
+			&#0;	&#xEC0D;		t_uni0303
+ttilde
+			&#0;	&#xF7A2;		cent.oldstyle
+			&#0;	&#xF724;		dollar.oldstyle
+			&#0;	&#xF6BE;		dotlessj
+			&#0;	&#xF640;		eight.prop
+			&#0;	&#xF738;		eight.oldstyle
+			&#0;	&#xF64B;		eight.taboldstyle
+			&#0;	&#xF63D;		five.prop
+			&#0;	&#xF735;		five.oldstyle
+			&#0;	&#xF648;		five.taboldstyle
+			&#0;	&#xF63C;		four.prop
+			&#0;	&#xF734;		four.oldstyle
+			&#0;	&#xF647;		four.taboldstyle
+			&#0;	&#xF641;		nine.prop
+			&#0;	&#xF739;		nine.oldstyle
+			&#0;	&#xF64C;		nine.taboldstyle
+			&#0;	&#xF6DC;		one.prop
+			&#0;	&#xF731;		one.oldstyle
+			&#0;	&#xF644;		one.taboldstyle
+			&#0;	&#xF63F;		seven.prop
+			&#0;	&#xF737;		seven.oldstyle
+			&#0;	&#xF64A;		seven.taboldstyle
+			&#0;	&#xF63E;		six.prop
+			&#0;	&#xF736;		six.oldstyle
+			&#0;	&#xF649;		six.taboldstyle
+			&#0;	&#xF63B;		three.prop
+			&#0;	&#xF733;		three.oldstyle
+			&#0;	&#xF6DE;		threequartersemdash
+			&#0;	&#xF646;		three.taboldstyle
+			&#0;	&#xF63A;		two.prop
+			&#0;	&#xF732;		two.oldstyle
+			&#0;	&#xF645;		two.taboldstyle
+			&#0;	&#xF639;		zero.prop
+			&#0;	&#xF638;		zero.slash
+			&#0;	&#xF730;		zero.oldstyle
+			&#0;	&#xF643;		zero.taboldstyle
+␢	␢		&#0;	&#x2422;		blanksymbol
+℧	℧		&#0;	&#x2127;		mho
+Ω	Ω		&#0;	&#x2126;		ohm
+⟦	⟦		&#0;	&#x27E6;		dblbracketleft
+⟧	⟧		&#0;	&#x27E7;		dblbracketright
+⚭	⚭		&#0;	&#x26AD;		married
+⚮	⚮		&#0;	&#x26AE;		divorced
+₦ 	₦ 		&#0;	&#x20A6;		naira
+₱ 	₱ 		&#0;	&#x20B1;		peso
+℞ 	℞ 		&#0;	&#x211E;		recipe
+‽ 	‽ 		&#0;	&#x203D;		interrobang
+‱ 	‱ 		&#0;	&#x2031;		permyriad
+฿ 	฿ 		&#0;	&#x0E3F;		baht
+⁒ 	⁒ 		&#0;	&#x2052;		discount
+℠ 	℠ 		&#0;	&#x2120;		servicemark
+⁅ 	⁅ 		&#0;	&#x2045;		quillbracketleft
+⁆ 	⁆ 		&#0;	&#x2046;		quillbracketright
+℗ 	℗ 		&#0;	&#x2117;		published
+² 	² 		&#0;	&#x00B2;		two.superior
+³ 	³ 		&#0;	&#x00B3;		three.superior
+¹ 	¹ 		&#0;	&#x00B9;		one.superior
+2222 ∢ anglearc
+2300 ⌀ diameter
+ 	 		&#0;	&#xEC10;		Orogate	// http://texdoc.net/texmf-dist/doc/fonts/lm/lm-info.pdf
+ 	 		&#0;	&#xEC11;		orogate
+Ifractur;2111	// http://math.sut.ac.th/lab/software/texlive/texmf-dist/fonts/map/glyphlist/texglyphlist.txt
+Ng;014A
+Rfractur;211C
+altselector;D802	# altselector: invalid Unicode
+angbracketleft;27E8
+angbracketright;27E9
+arrowbothv;2195
+arrowdblbothv;21D5
+arrowleftbothalf;21BD
+arrowlefttophalf;21BC
+arrownortheast;2197
+arrownorthwest;2196
+arrowrightbothalf;21C1
+arrowrighttophalf;21C0
+arrowsoutheast;2198
+arrowsouthwest;2199
+ascendercompwordmark;D80A	# ascendercompwordmark: taller cwm, invalid Unicode
+asteriskcentered;2217
+bardbl;2225
+capitalcompwordmark;D809	# capitalcompwordmark: taller cwm, invalid Unicode
+ceilingleft;2308
+ceilingright;2309
+circlecopyrt;20DD
+circledivide;2298
+circledot;2299
+circleminus;2296
+coproduct;2A3F
+cwm;200C	# cwm: Unicode for ZWNJ, used for secondary replacement from EC.enc // qzc-info.pdf jau apibrėžtas kodu 0xEB10 
+diamondmath;22C4
+dotlessj,F6BE	# U+0237 is the proposed allocation for dotless j as of Unicode 4.0 # U+1D6A5 is the mathematical italic version approved in Unicode 5.0
+emptyset;2205
+emptyslot;D801	# emptyslot: invalid Unicode; the user explicitly wants this slot empty
+epsilon1;03F5
+epsiloninv;03F6
+equivasymptotic;224D
+flat;266D
+floorleft;230A
+floorright;230B
+follows;227B
+followsequal;2AB0
+followsorcurly;227D
+greatermuch;226B
+interrobangdown;2E18
+intersectionsq;2293
+latticetop;22A4
+lessmuch;226A
+lscript;2113
+natural;266E
+negationslash;0338
+ng;014B
+owner;220B
+pertenthousand;2031
+pi1;03D6
+precedesequal;2AAF
+precedesorcurly;227C
+rho1;03F1
+ringfitted;D80D	# ringfitted: a ring character centered on the x-width of A, invalid Unicode
+sharp;266F
+similarequal;2243
+slurabove;2322
+slurbelow;2323
+star;22C6
+subsetsqequal;2291
+supersetsqequal;2292
+triangle;25B3
+triangleinv;25BD
+triangleleft;25C1
+triangleright;25B7
+turnstileleft;22A2
+turnstileright;22A3
+twelveudash;D80C	# twelveudash: 2/3-em dash; invalid Unicode
+unionmulti;228E
+unionsq;2294
+vector;20D7
+visualspace;2423	# visualspace: Unicode for OPEN BOX, used for secondary replacement from EC.enc
+wreathproduct;2240
+Dbar;0110	# Dbar = Dcroat # -- Marco Kuhlmann reported annoying glyph neologisms in fontinst encodings
+compwordmark;200C	# compwordmark = cwm
+dbar;0111	# dbar = dcroat
+rangedash;2013	# rangedash = endash
+hyphenchar;002D	# hyphenchar = hyphen
+punctdash;2014	# punctdash = emdash
+visiblespace;2423	# visiblespace = visualspace
+Yen;00A5	# -- These character names are used in the MSAM fonts
+anticlockwise;27F2	// 21BA # the MSAM10 glyph is more closed than U+21BA # the MSAM10 glyph's gap is at the top, while U+27F2 is on the left
+arrowaxisleft;003F	// TODO: !!! 
+arrowaxisright;003F	// TODO: !!!
+arrowparrleftright;21C6
+arrowparrrightleft;21C4
+arrowtailleft;21A2
+arrowtailright;21A3
+arrowtripleleft;21DA
+arrowtripleright;21DB
+axisshort;003F	// TODO: !!!
+between;226C
+check;2713	# U+2713 is a Zapf dingbat
+circleR;00AE
+circleS;24C8	# the MSAM10 glyph may be smaller than U+24C8
+circleasterisk;229B
+circleequal;229C
+circlering;229A
+clockwise;27F3	// 21BB # the MSAM10 glyph is more closed than U+21BB # the MSAM10 glyph's gap is at the top, while U+27F3 is on the left
+complement;2201
+curlyleft;21AB
+curlyright;21AC
+dblarrowdwn;21CA
+dblarrowheadleft;219E
+dblarrowheadright;21A0
+dblarrowup;21C8
+defines;225C
+# U+2666 is BLACK DIAMOND SUIT
+# U+29EB is BLACK LOZENGE
+diamondsolid;2666,29EB
+difference;224F
+dotplus;2214
+downfall;22CE
+equaldotleftright;2252
+equaldotrightleft;2253
+equalorfollows;22DF
+equalorgreater;2A96
+equalorless;2A95
+equalorprecedes;22DE
+equalsdots;2251
+followsorequal;227F
+forces;22A9
+forcesbar;22AA
+fork;22D4
+frown;2322
+geomequivalent;224E
+greaterdbleqlless;2A8C
+greaterdblequal;2267
+greaterlessequal;22DB
+greaterorapproxeql;2A86
+greaterorequalslant;2A7E
+greaterorsimilar;2273
+harpoondownleft;21C3
+harpoondownright;21C2
+# MSAM probably misnamed this glyph; the right pointing harpoon is above
+# U+21CC has the right pointing harpoon above, like MSAM
+harpoonleftright;21CC
+# MSAM probably misnamed this glyph; the left pointing harpoon is above
+# U+21CB has the left pointing harpoon above, like MSAM
+harpoonrightleft;21CB
+harpoonupleft;21BF
+harpoonupright;21BE
+# U+22BA may be larger than MSAM intercal
+intercal;22BA
+intersectiondbl;22D2
+lessdbleqlgreater;2A8B
+lessdblequal;2266
+lessequalgreater;22DA
+lessorapproxeql;2A85
+lessorequalslant;2A7D
+lessorsimilar;2272
+maltesecross;2720
+measuredangle;2221
+multimap;22B8
+multiopenleft;22CB
+multiopenright;22CC
+nand;22BC
+orunderscore;22BB
+# U+2306 PERSPECTIVE is larger than the MSAM glyph
+perpcorrespond;2A5E,2306
+precedesorequal;227E
+primereverse;2035
+revasymptequal;22CD
+revsimilar;223D
+# U+231D TOP RIGHT CORNER is a quine corner,
+# U+2E23 TOP RIGHT HALF BRACKET is a half bracket.
+# MSAM rightanglene matches the shape of U+231C but the spacing of U+2E23.
+# Similar for other rightangle characters.
+rightanglene;231D,2E23
+rightanglenw;231C,2E22
+rightanglese;231F,2E25
+rightanglesw;231E,2E24
+ringinequal;2256
+# U+22A7 MODELS is shorter than U+22A8 TRUE = satisfies.
+# MSAM satisfies is in between.
+satisfies;22A8
+shiftleft;21B0
+shiftright;21B1
+smile;2323
+sphericalangle;2222
+# U+25A1 WHITE SQUARE
+square;25A1
+squaredot;22A1
+squareimage;228F
+squareminus;229F
+squaremultiply;22A0
+squareoriginal;2290
+squareplus;229E
+# XXX U+25AA BLACK SMALL SQUARE doesn't sit on the baseline
+# XXX squaresmallsolid
+squaresolid;25A0
+# U+21AD LEFT RIGHT WAVE ARROW is not actually a squiggle arrow
+squiggleleftright;21AD
+squiggleright;21DD
+subsetdbl;22D0
+subsetdblequal;2AC5
+supersetdbl;22D1
+supersetdblequal;2AC6
+triangledownsld;25BC
+# U+22B4 NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSAM
+triangleleftequal;22B4,25C1 0332
+triangleleftsld;25C0
+# U+22B5 CONTAINS AS NORMAL SUBGROUP OR EQUAL TO is sharper than MSAM
+trianglerightequal;22B5,25B7 0332
+trianglerightsld;25B6
+trianglesolid;25B2
+uniondbl;22D3
+uprise;22CF
+# --
+# -- These character names are used in the MSBM fonts
+# --
+# U+1D7CB MATHEMATICAL BOLD SMALL DIGAMMA is the closest match to MSBM,
+# although MSBM Digamma's spelling indicates that a capital was intended
+# U+03DD GREEK SMALL LETTER DIGAMMA for fallback
+Digamma;1D7CB,03DD
+# U+2132 TURNED CAPITAL F is shown as seriffed, MSBM Finv is sans
+Finv;2132
+# U+2141 TURNED SANS-SERIF CAPITAL G is turned, MSBM Gmir is only reversed
+Gmir;2141
+Omegainv;2127
+approxorequal;224A
+archleftdown;21B6
+archrightdown;21B7
+# XXX barshort
+beth;2136
+daleth;2138
+dividemultiply;22C7
+# U+29F9 BIG REVERSE SOLIDUS seems the right size
+downslope;29F9
+equalorsimilar;2242
+follownotdbleqv;2ABA
+follownotslnteql;2AB6
+followornoteqvlnt;22E9
+greaterdot;22D7
+# MSBM misnamed this glyph; should be greaternotdbleqv
+greaternotdblequal;2A8A
+greaternotequal;2A88
+greaterornotdbleql;2269
+# XXX MSBM greaterornotequal has a vertical negation slash, not U+2269 diagonal
+greaterornotequal;2269
+# XXX greaterornotsimilar
+# XXX hatwide
+# XXX hatwider
+integerdivide;2216
+lessdot;22D6
+# MSBM misnamed this glyph; should be lessnotdbleqv
+lessnotdblequal;2A89
+lessnotequal;2A87
+lessornotdbleql;2268
+# XXX MSBM lessornotequal has a vertical negation slash, not U+2268 diagonal
+lessornotequal;2268
+# XXX lessornotsimilar
+multicloseleft;22C9
+multicloseright;22CA
+notapproxequal;2247
+notarrowboth;21AE
+notarrowleft;219A
+notarrowright;219B
+notbar;2224
+notdblarrowboth;21CE
+notdblarrowleft;21CD
+notdblarrowright;21CF
+notexistential;2204
+notfollows;2281
+# U+22E1 DOES NOT SUCCEED OR EQUAL has a curved equal sign, unlike MSBM
+notfollowsoreql;2AB0 0338,22E1
+notforces;22AE
+notforcesextra;22AF
+# Unicode has no precomposed negation of U+2267 GREATER THAN OVER EQUAL TO
+notgreaterdblequal;2267 0338
+notgreaterequal;2271
+notgreaterorslnteql;2A7E 0338
+notlessdblequal;2266 0338
+notlessequal;2270
+notlessorslnteql;2A7D 0338
+# U+22E0 DOES NOT PRECEDE OR EQUAL has a curved equal sign, unlike MSBM
+notprecedesoreql;2AAF 0338,22E0
+notsatisfies;22AD
+# XXX notshortbar
+# XXX notshortparallel
+notsimilar;2241
+notsubseteql;2288
+notsubsetordbleql;2AC5 0338
+# U+228A SUBSET OF WITH NOT EQUAL TO negation slash only touches bar below;
+# MSBM negation slash touches bar and lower part of subset
+notsubsetoreql;228A
+notsuperseteql;2289
+notsupersetordbleql;2AC6 0338
+# U+228A SUPERSET OF WITH NOT EQUAL TO negation slash only touches bar below;
+# MSBM negation slash touches bar and lower part of superset
+notsupersetoreql;228B
+# U+22EC NOT NORMAL SUBGROUP OF OR EQUAL TO is sharper than MSBM
+nottriangeqlleft;22EC,25C1 0332 0338
+# U+22ED DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL is sharper than MSBM
+nottriangeqlright;22ED,25B7 0332 0338
+# U+22EA NOT NORMAL SUBGROUP OF is sharper than MSBM
+nottriangleleft;22EA,25C1 0338
+# U+22EB DOES NOT CONTAIN AS NORMAL SUBGROUP is sharper than MSBM
+nottriangleright;22EB,25B7 0338
+notturnstile;22AC
+# XXX parallelshort
+planckover2pi;210F
+# U+210F PLANCK CONSTANT OVER TWO PI is shown with diagonal slash, which
+# corresponds to MSBM planckover2pi, but this is a font variant
+planckover2pi1;210F
+precedenotdbleqv;2AB9
+precedenotslnteql;2AB5
+precedeornoteqvlnt;22E8
+subsetnoteql;228A
+subsetornotdbleql;2ACB
+# XXX subsetornoteql
+supersetnoteql;228B
+supersetornotdbleql;2ACC
+# XXX supersetornoteql
+# XXX tildewide
+# XXX tildewider
+# U+29F8 BIG SOLIDUS seems the right size
+upslope;29F8
