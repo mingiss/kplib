@@ -41,6 +41,8 @@
 #define CH_LTCOD(new_code, old_code) (new_code)
 #endif
 
+#define KPT_UniUnknown 0xfffd
+
 // -----------------------
 // typedef unsigned short UniChar; // WCHAR
 #ifndef WIN32

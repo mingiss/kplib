@@ -4816,8 +4816,6 @@ ttilde
  	 	 	&#0;	&#x228B;		supersetnoteql		
  	 	 	&#0;	&#x2ACC;		supersetornotdbleql		
  	 	 	&#0;	&#xfffd;		supersetornoteql	 // TODO: !!!	
- 	 	 	&#0;	&#xfffd;		tildewide	 // TODO: !!!	
- 	 	 	&#0;	&#xfffd;		tildewider	 // TODO: !!!	
  	 	 	&#0;	&#x29F8;		upslope	 # U+29F8 BIG SOLIDUS seems the right size	
  	 	 	&#0;	&#xED01;		angbracketleftBig	 // -------------------- glyphtounicode-cmr.tex	
  	 	 	&#0;	&#xED03;		angbracketleftBigg	

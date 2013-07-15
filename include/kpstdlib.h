@@ -15,46 +15,47 @@
 
 // ========================================= kptt
 #ifndef __WIN32__
-typedef char CHAR;
-typedef unsigned char UCHAR;
+// typedef char CHAR;
+// typedef unsigned char UCHAR;
 typedef unsigned long DWORD;
 #endif
+typedef unsigned char uchar;
 
 // ------------------------------
-#define Nul ((UCHAR)0)
-#define Soh ((UCHAR)1)
-#define Stx ((UCHAR)2)
-#define Etx ((UCHAR)3)
-#define Eot ((UCHAR)4)
-#define Enq ((UCHAR)5)
-#define Ack ((UCHAR)6)
-#define Bel ((UCHAR)7)
-#define Bs  ((UCHAR)('\b'))
-#define Ht  ((UCHAR)('\t'))
+#define Nul ((uchar)0)
+#define Soh ((uchar)1)
+#define Stx ((uchar)2)
+#define Etx ((uchar)3)
+#define Eot ((uchar)4)
+#define Enq ((uchar)5)
+#define Ack ((uchar)6)
+#define Bel ((uchar)7)
+#define Bs  ((uchar)('\b'))
+#define Ht  ((uchar)('\t'))
 #define Tab Ht
-#define Lf  ((UCHAR)('\n'))
-#define Vt ((UCHAR)('\v'))
-#define Ff ((UCHAR)('\f'))
-#define Cr ((UCHAR)('\r')) // 0x0D
-#define So  ((UCHAR)016)
-#define Si  ((UCHAR)017)
-#define Dle ((UCHAR)020)
-#define Dc1 ((UCHAR)021)
-#define Dc2 ((UCHAR)022)
-#define Dc3 ((UCHAR)023)
-#define Dc4 ((UCHAR)024)
-#define Nak ((UCHAR)025)
-#define Syn ((UCHAR)026)
-#define Etb ((UCHAR)027)
-#define Can ((UCHAR)030)
-#define Em  ((UCHAR)031) // 0x19
-#define Sub ((UCHAR)032)
-#define Esc ((UCHAR)033)
-#define Fs  ((UCHAR)034)
-#define Gs  ((UCHAR)035)
-#define Rs  ((UCHAR)036)
-#define Us  ((UCHAR)037)
-#define Spc ((UCHAR)(' '))
+#define Lf  ((uchar)('\n'))
+#define Vt ((uchar)('\v'))
+#define Ff ((uchar)('\f'))
+#define Cr ((uchar)('\r')) // 0x0D
+#define So  ((uchar)016)
+#define Si  ((uchar)017)
+#define Dle ((uchar)020)
+#define Dc1 ((uchar)021)
+#define Dc2 ((uchar)022)
+#define Dc3 ((uchar)023)
+#define Dc4 ((uchar)024)
+#define Nak ((uchar)025)
+#define Syn ((uchar)026)
+#define Etb ((uchar)027)
+#define Can ((uchar)030)
+#define Em  ((uchar)031) // 0x19
+#define Sub ((uchar)032)
+#define Esc ((uchar)033)
+#define Fs  ((uchar)034)
+#define Gs  ((uchar)035)
+#define Rs  ((uchar)036)
+#define Us  ((uchar)037)
+#define Spc ((uchar)(' '))
 
 
 // ----------------------------------
@@ -122,7 +123,7 @@ typedef enum
 #define PLAIN_C
 #endif
 
-extern PLAIN_C void KpInit(const UCHAR *ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer, 
+extern PLAIN_C void KpInit(const uchar *ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer, 
 extern PLAIN_C void KpClose(void);                  // usually pointer to some local variable of the main() function
                                                     // could be NULL
 
@@ -178,16 +179,16 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
 #define KP_DIR_SEP '\\'
-#define KP_DIR_SEP_STR (const UCHAR *)"\\"
-#define KP_EXE_EXT (const UCHAR *)"exe"
+#define KP_DIR_SEP_STR (const uchar *)"\\"
+#define KP_EXE_EXT (const uchar *)"exe"
 #else
 #define KP_DIR_SEP '/'
-#define KP_DIR_SEP_STR (const UCHAR *)"/"
-#define KP_EXE_EXT (const UCHAR *)""
+#define KP_DIR_SEP_STR (const uchar *)"/"
+#define KP_EXE_EXT (const uchar *)""
 #endif
 #define KP_EXT_SEP '.'
-#define KP_EXT_SEP_STR (const UCHAR *)"."
-#define KP_CUR_DIR_STR (const UCHAR *)"."
+#define KP_EXT_SEP_STR (const uchar *)"."
+#define KP_CUR_DIR_STR (const uchar *)"."
 
 // ========================================= malloc
 #ifdef __cplusplus
@@ -337,7 +338,7 @@ extern KpHeapClass KpHeap;
 
 // formats p_iVal as 16 bytes binary string
 // p_lpszBinStrBuf[16 + 1]
-void I2BinStr(UCHAR *p_lpszBinStrBuf, int p_iVal);  
+void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal);  
 
 
 // ================================================== searching and sorting

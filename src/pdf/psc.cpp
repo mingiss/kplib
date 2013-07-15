@@ -19,7 +19,7 @@
 #include "pdf.h"
 
 PsChName PsChNames[] = {
-    { ".notdef",                                C_Quest},  
+    { ".notdef",                                0xfffd },  
     { "nbspace",                                0x00A0 },   // &nbsp;                // ----------------------- http://www.jdawiseman.com/papers/trivia/character-entities.html //
     { "nonbreakingspace",                       0x00A0 },   // &nbsp;               no-break space = non-breaking space, U+00A0 ISOnum //
     { "exclamdown",                             0x00A1 },   // &iexcl;      ¡      inverted exclamation mark, U+00A1 ISOnum //
@@ -4838,8 +4838,6 @@ PsChName PsChNames[] = {
     { "supersetnoteql",                         0x228B },   //                       //
     { "supersetornotdbleql",                    0x2ACC },   //                       //
     { "supersetornoteql",                       0xfffd },   //                       // TODO: !!! //
-    { "tildewide",                              0xfffd },   //                       // TODO: !!! //
-    { "tildewider",                             0xfffd },   //                       // TODO: !!! //
     { "upslope",                                0x29F8 },   //                       # U+29F8 BIG SOLIDUS seems the right size //
     { "angbracketleftBig",                      0xED01 },   //                       // -------------------- glyphtounicode-cmr.tex //
     { "angbracketleftBigg",                     0xED03 },   //                       //

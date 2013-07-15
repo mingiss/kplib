@@ -25,7 +25,7 @@ print '#include "pdf.h"'
 print
 print 'PsChName PsChNames[] = {'
 
-print '{0:<47}'.format('    { ".notdef",'), '{0:<11}'.format('C_Quest},')  
+print '{0:<47}'.format('    { ".notdef",'), '{0:<11}'.format('0xfffd },')  
 
 in_lines = sys.stdin.readlines()
 prev_in_line_tabs = ['', '', '', '', '', '', '', '']
