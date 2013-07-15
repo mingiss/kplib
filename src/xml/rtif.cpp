@@ -60,10 +60,10 @@ RtiClass::~RtiClass()
 
 
 // ------------------------------------  
-void RtiClass::OpenOutFile(const UCHAR *p_lpszOutFileName, FmtFileForgeFptr p_FmtFileForge)
+void RtiClass::OpenOutFile(const uchar *p_lpszOutFileName, FmtFileForgeFptr p_FmtFileForge)
 {
     KP_ASSERT(m_pFmtFileObj == NULL, KP_E_DOUBLE_CALL, null);
-    m_pFmtFileObj = (*p_FmtFileForge)(p_lpszOutFileName, (const UCHAR *)"w");
+    m_pFmtFileObj = (*p_FmtFileForge)(p_lpszOutFileName, (const uchar *)"w");
     KP_ASSERT(m_pFmtFileObj != NULL, KP_E_DIR_ERROR, p_lpszOutFileName);
 }
 
@@ -80,23 +80,23 @@ void RtiClass::CloseOutFile(void)
 
 
 // ------------------------------------  
-void RtiClass::ScanOutputList(const UCHAR *p_lpszKwdStr)
+void RtiClass::ScanOutputList(const uchar *p_lpszKwdStr)
 {
     scan_kwd_list(m_szaOutputList, &m_iOutputListSize, p_lpszKwdStr); 
 } 
 
 
-void RtiClass::ScanGrpList(const UCHAR *p_lpszKwdStr)
+void RtiClass::ScanGrpList(const uchar *p_lpszKwdStr)
 {
     scan_kwd_list(m_szaGrpList, &m_iGrpListSize, p_lpszKwdStr);
 }
 
 
 // ------------------------------------  
-void scan_kwd_list(UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdListSize, const UCHAR *p_lpszKwdStr)
+void scan_kwd_list(uchar p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdListSize, const uchar *p_lpszKwdStr)
 { 
 HRESULT retc = S_OK;
-const UCHAR *temp;
+const uchar *temp;
     
     KP_ASSERTW((p_szaKwdList != NULL) && (p_piKwdListSize != NULL) && (p_lpszKwdStr != null),
         E_INVALIDARG, null);
@@ -109,7 +109,7 @@ const UCHAR *temp;
             if (SUCCEEDED(retc))
             { 
                 strcpy(p_szaKwdList[0], p_lpszKwdStr);
-                temp = (const UCHAR *)strtok((CHAR *)p_szaKwdList[0], ",");
+                temp = (const uchar *)strtok((char *)p_szaKwdList[0], ",");
             }
                 
             KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
@@ -117,7 +117,7 @@ const UCHAR *temp;
 
             while ((temp != null) && SUCCEEDED(retc))
             {
-                temp = (const UCHAR *)strtok(NULL, ",");
+                temp = (const uchar *)strtok(NULL, ",");
                 if(temp != null)
                 {
                     KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
@@ -136,7 +136,7 @@ const UCHAR *temp;
 
 
 
-bool kwd_in_list(/* const */ UCHAR p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const UCHAR *p_lpszKwd) 
+bool kwd_in_list(/* const */ uchar p_szaKwdList[][RTI_KWD_LEN + 1], int p_iKwdListSize, const uchar *p_lpszKwd) 
 {
 HRESULT retc = S_OK;
 bool retv = False;
@@ -161,7 +161,7 @@ return(retv);
 
 
 // -----------------------------
-void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
+void str_del(uchar *t, uchar *s, const uchar *p_lpszHead)
 {
   int iC, iB; 
   iC = strlen(p_lpszHead);
@@ -173,14 +173,14 @@ void str_del(UCHAR *t, UCHAR *s, const UCHAR *p_lpszHead)
 }
 
 
-void add_to_rti(const UCHAR *p_lpszKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
+void add_to_rti(const uchar *p_lpszKwdStr, const uchar *p_lpszGrpTagName, const uchar *p_lpszGrpGrpTagName)
 {
 HRESULT retc = S_OK;
-UCHAR kwd_str_buf[RTI_KWD_LEN + 1];
-/* const */ UCHAR *cur_kwd = null;
-UCHAR tag_name[RTI_KWD_LEN + 1];
-UCHAR tag_val[RTI_KWD_LEN + 1];
-const UCHAR *grp_tag_name = p_lpszGrpTagName;
+uchar kwd_str_buf[RTI_KWD_LEN + 1];
+/* const */ uchar *cur_kwd = null;
+uchar tag_name[RTI_KWD_LEN + 1];
+uchar tag_val[RTI_KWD_LEN + 1];
+const uchar *grp_tag_name = p_lpszGrpTagName;
 
     KP_ASSERT(p_lpszKwdStr != null, E_INVALIDARG, null);
 
@@ -201,7 +201,7 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
     if (SUCCEEDED(retc))
     { 
         strcpy(kwd_str_buf, p_lpszKwdStr);
-        cur_kwd = (/* const */ UCHAR *)strtok((CHAR *)kwd_str_buf, "}"); // RTI_CLOSING_BRACE
+        cur_kwd = (/* const */ uchar *)strtok((char *)kwd_str_buf, "}"); // RTI_CLOSING_BRACE
     }
         
     while ((cur_kwd != null) && SUCCEEDED(retc))
@@ -224,10 +224,10 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
                     grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
             
             TiXmlElement *element = NULL;
-                KP_NEW(element, TiXmlElement((const CHAR *)tag_name));
+                KP_NEW(element, TiXmlElement((const char *)tag_name));
                 
             TiXmlText *text = NULL;
-                KP_NEW(text, TiXmlText((const CHAR *)tag_val));
+                KP_NEW(text, TiXmlText((const char *)tag_val));
                 element->LinkEndChild(text);
                 text = NULL;
                 
@@ -237,15 +237,15 @@ const UCHAR *grp_tag_name = p_lpszGrpTagName;
         }
         
         // continue scanning
-        cur_kwd = (/* const */ UCHAR *)strtok(NULL, "}"); // RTI_CLOSING_BRACE
+        cur_kwd = (/* const */ uchar *)strtok(NULL, "}"); // RTI_CLOSING_BRACE
     }
 }
 
 
-void add_xml_to_rti(const string *p_psKwdStr, const UCHAR *p_lpszGrpTagName, const UCHAR *p_lpszGrpGrpTagName)
+void add_xml_to_rti(const string *p_psKwdStr, const uchar *p_lpszGrpTagName, const uchar *p_lpszGrpGrpTagName)
 {
 HRESULT retc = S_OK;
-const UCHAR *grp_tag_name = p_lpszGrpTagName;
+const uchar *grp_tag_name = p_lpszGrpTagName;
 
     KP_ASSERT(p_psKwdStr != NULL, E_INVALIDARG, null);
 
@@ -269,22 +269,22 @@ TiXmlNode *grp_node = NULL;
                 
 TiXmlDocument xml_doc;
     xml_doc.Parse(p_psKwdStr->c_str());
-TiXmlNode *cur_node = FindNodeByName((const UCHAR *)"key", &xml_doc);
+TiXmlNode *cur_node = FindNodeByName((const uchar *)"key", &xml_doc);
 
-const UCHAR *name_ptr = null;
-const UCHAR *val_ptr = null;
+const uchar *name_ptr = null;
+const uchar *val_ptr = null;
     while(cur_node != NULL)
     {
         if(cur_node->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
         TiXmlElement *elem = cur_node->ToElement();
             KP_ASSERT(elem != NULL, E_POINTER, null);
-            // name_ptr = (const UCHAR *)((TiXmlElement *)cur_node)->Attribute("name");
-            name_ptr = (const UCHAR *)elem->Attribute("name");
+            // name_ptr = (const uchar *)((TiXmlElement *)cur_node)->Attribute("name");
+            name_ptr = (const uchar *)elem->Attribute("name");
             if(name_ptr == null)
             {
                 KP_WARNING(KP_E_FILE_FORMAT, p_psKwdStr->c_str());
-                name_ptr = (const UCHAR *)"key";
+                name_ptr = (const uchar *)"key";
             }
             
             if(kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, name_ptr) ||
@@ -292,13 +292,13 @@ const UCHAR *val_ptr = null;
             {            
                 val_ptr = GetNodeVal(cur_node);
                 if(val_ptr == null)
-                    val_ptr = (const UCHAR *)"";
+                    val_ptr = (const uchar *)"";
     
             TiXmlElement *element = NULL;
-                KP_NEW(element, TiXmlElement((const CHAR *)name_ptr));
+                KP_NEW(element, TiXmlElement((const char *)name_ptr));
                 
             TiXmlText *text = NULL;
-                KP_NEW(text, TiXmlText((const CHAR *)val_ptr));
+                KP_NEW(text, TiXmlText((const char *)val_ptr));
                 element->LinkEndChild(text);
                 text = NULL;
                 
@@ -312,9 +312,9 @@ const UCHAR *val_ptr = null;
 }
 
 
-int split_strings(UCHAR *t, UCHAR *tt, /* const */ UCHAR *s)
+int split_strings(uchar *t, uchar *tt, /* const */ uchar *s)
 {
-  const UCHAR *ps; 
+  const uchar *ps; 
   ps = strchr(s, RTI_EQ_SIGN); // '='
   int l, m;
   if (ps == NULL)

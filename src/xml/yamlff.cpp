@@ -35,7 +35,7 @@
 
 
 // ---------------------------------
-FmtFile *CreateYamlFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreateYamlFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 
@@ -65,7 +65,7 @@ int indent = 0;
 
     if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
-    const UCHAR *tag_name = (const UCHAR *)p_pCurNode->Value();
+    const uchar *tag_name = (const uchar *)p_pCurNode->Value();
         KP_ASSERT(tag_name != null, E_POINTER, null);
 
         if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
@@ -73,9 +73,9 @@ int indent = 0;
             indent = 1;
             
             MakeIndent(p_pOutFile);
-            fprintf(p_pOutFile, "%s:", (const CHAR *)tag_name);
+            fprintf(p_pOutFile, "%s:", (const char *)tag_name);
 
-const UCHAR *value = GetNodeVal(p_pCurNode);
+const uchar *value = GetNodeVal(p_pCurNode);
             if(value != null) fprintf(p_pOutFile, " %s", value);
 
             fprintf(p_pOutFile, "\n");
@@ -95,7 +95,7 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
 
 void YamlFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+FILE *out_file = fopen((const char *)m_lpszFileName, "w");
     KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
     fprintf(out_file, "---\n");

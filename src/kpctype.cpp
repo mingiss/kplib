@@ -21,10 +21,10 @@ using namespace std;
 
 
 // =========================================== predefined spec. character strings
-UCHAR lpszSpaces[] = " \t\xA0"; // C_NBSP
-UCHAR lpszEols[] =   "\r\n";      // "\r\n\f";
-UCHAR lpszSpcEol[] = " \t\xA0\r\n"; // C_NBSP // " \t\r\n\f";
-UCHAR lpszSpcEolNotNBSP[] = " \t\r\n";
-UCHAR lpszSpcEolNotTabNotFF[] = " \r\n";
+uchar lpszSpaces[] = " \t\xA0"; // C_NBSP
+uchar lpszEols[] =   "\r\n";      // "\r\n\f";
+uchar lpszSpcEol[] = " \t\xA0\r\n"; // C_NBSP // " \t\r\n\f";
+uchar lpszSpcEolNotNBSP[] = " \t\r\n";
+uchar lpszSpcEolNotTabNotFF[] = " \r\n";
 
-UCHAR lpszSpCharsSpcEol[] = "/.,- \t\r\n";
+uchar lpszSpCharsSpcEol[] = "/.,- \t\r\n";

@@ -12,7 +12,7 @@
 #define kpstring_included
 
 // -------------------------
-typedef UCHAR * KpStrPtr;
+typedef uchar * KpStrPtr;
 #define null ((const KpStrPtr)NULL) // null pointer to the string
 
 // #ifdef __GNUC__
@@ -24,30 +24,30 @@ typedef UCHAR * KpStrPtr;
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę?
-extern size_t strlen(const UCHAR *src);
+extern size_t strlen(const uchar *src);
 
-extern UCHAR *strcpy(UCHAR *dest, const UCHAR *src);
-extern UCHAR *strcpy(UCHAR *dest, const CHAR *src);
+extern uchar *strcpy(uchar *dest, const uchar *src);
+extern uchar *strcpy(uchar *dest, const char *src);
    
-extern UCHAR *strncpy(UCHAR *dest, const UCHAR *src, size_t nbytes);
+extern uchar *strncpy(uchar *dest, const uchar *src, size_t nbytes);
 
-extern UCHAR *strcat(UCHAR *dest, const UCHAR *src);
-extern UCHAR *strcat(UCHAR *dest, const CHAR *src);
+extern uchar *strcat(uchar *dest, const uchar *src);
+extern uchar *strcat(uchar *dest, const char *src);
    
-extern UCHAR *strchr(UCHAR *p_lpszString, KpChar p_iCh);
-extern const UCHAR *strchr(const UCHAR *p_lpszString, KpChar p_iCh);
+extern uchar *strchr(uchar *p_lpszString, KpChar p_iCh);
+extern const uchar *strchr(const uchar *p_lpszString, KpChar p_iCh);
 
-extern UCHAR *strstr(UCHAR *p_lpszString, const CHAR *p_lpszPattern);
-extern const UCHAR *strstr(const UCHAR *p_lpszString, const CHAR *p_lpszPattern);
-extern UCHAR *strstr(UCHAR *p_lpszString, const UCHAR *p_lpszPattern);
-extern const UCHAR *strstr(const UCHAR *p_lpszString, const UCHAR *p_lpszPattern);
+extern uchar *strstr(uchar *p_lpszString, const char *p_lpszPattern);
+extern const uchar *strstr(const uchar *p_lpszString, const char *p_lpszPattern);
+extern uchar *strstr(uchar *p_lpszString, const uchar *p_lpszPattern);
+extern const uchar *strstr(const uchar *p_lpszString, const uchar *p_lpszPattern);
 
-extern int strcmp(const UCHAR *str1, const UCHAR *str2);
-extern int strcmp(const UCHAR *str1, const CHAR *str2);
+extern int strcmp(const uchar *str1, const uchar *str2);
+extern int strcmp(const uchar *str1, const char *str2);
 
-extern int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes);
+extern int strncmp(const uchar *str1, const uchar *str2, size_t nbytes);
 
-extern UCHAR *strlwr(UCHAR *str);
+extern uchar *strlwr(uchar *str);
 
 
 // ------------------------- UTF-8 functions
@@ -61,15 +61,15 @@ extern UCHAR *strlwr(UCHAR *str);
 // 0: p_lpszStr1 == p_lpszStr2
 // 1: p_lpszStr1 > p_lpszStr2
 // -1: p_lpszStr1 > p_lpszStr2
-extern int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc, 
+extern int UcStrCmp(const uchar *p_lpszStr1, const uchar *p_lpszStr2, bool p_bSkipSpc, 
     int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg);
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę
-void KpStripTrailing(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus gale // former CutTrailSpcs
-void KpStripLeading(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj
-void KpStrip(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj ir gale 
-void KpStripAll(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs = lpszSpcEol); // išmeta visus tarpus
+void KpStripTrailing(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus gale // former CutTrailSpcs
+void KpStripLeading(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj
+void KpStrip(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj ir gale 
+void KpStripAll(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // išmeta visus tarpus
 
 
 // -------------------------

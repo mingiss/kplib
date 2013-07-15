@@ -31,11 +31,11 @@ using namespace std;
 
 
 // ========================================= KpLib 
-KpErrorClass KpError((const UCHAR *)"kplib");
+KpErrorClass KpError((const uchar *)"kplib");
 KpCommonApp *KpApp = NULL;
 KpCommonApp *KpAppAlloc = NULL; // pointer to locally here allocated KpApp 
 
-void KpInit(const UCHAR *ProdName, const void *pStackTop)
+void KpInit(const uchar *ProdName, const void *pStackTop)
 {
     try
     {
@@ -46,7 +46,7 @@ void KpInit(const UCHAR *ProdName, const void *pStackTop)
         }
         KpApp->Init(
 #ifdef __WIN32__
-            GetModuleHandle(NULL), (const UCHAR *)GetCommandLine(),
+            GetModuleHandle(NULL), (const uchar *)GetCommandLine(),
 #else
 // TODO Linux: get cmd line
             0, ProdName,
@@ -121,8 +121,8 @@ void KpHeapClass::InsertHeapPtr(const void *pNewPtr, bool bArrayFl)
 {
 HRESULT retc = S_OK;
 
-UCHAR msg_out[MAX_LONG_HEX_DIGITS + 5];
-   sprintf((CHAR *)msg_out, "%lx", (unsigned long)pNewPtr);
+uchar msg_out[MAX_LONG_HEX_DIGITS + 5];
+   sprintf((char *)msg_out, "%lx", (unsigned long)pNewPtr);
 
 int ix = SearchHeapEntry(pNewPtr);
    KP_ASSERTW(ix < 0, KP_E_DOUBLE_CALL, null);
@@ -141,8 +141,8 @@ HRESULT KpHeapClass::RemoveHeapPtr(const void *pDelPtr, bool bArrayFl)
 {
 HRESULT retc = S_OK;
 
-UCHAR msg_out[MAX_LONG_HEX_DIGITS + 5];
-   sprintf((CHAR *)msg_out, "%lx", (DWORD)pDelPtr);
+uchar msg_out[MAX_LONG_HEX_DIGITS + 5];
+   sprintf((char *)msg_out, "%lx", (DWORD)pDelPtr);
 
 int ix = SearchHeapEntry(pDelPtr);
    KP_ASSERTW(ix >= 0, KP_E_SYSTEM_ERROR, msg_out);
@@ -161,10 +161,10 @@ return(retc);
 
 
 // ----------------------------------
-void I2BinStr(UCHAR *p_lpszBinStrBuf, int p_iVal)
+void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal)
 {
     KP_ASSERT(p_lpszBinStrBuf != null, E_INVALIDARG, null);
-UCHAR *pntd = p_lpszBinStrBuf + 16;
+uchar *pntd = p_lpszBinStrBuf + 16;
     *pntd = Nul;
 int val = p_iVal;     
     for (int ii = 0; ii < 16; ii++)

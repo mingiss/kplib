@@ -14,7 +14,7 @@
 class HtmFmtFile: public XmlFmtFile
 {
 public:
-    HtmFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    HtmFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : XmlFmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -25,6 +25,6 @@ public:
 };
 
 
-extern FmtFile *CreateHtmFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreateHtmFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef htmff_included

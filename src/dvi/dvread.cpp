@@ -277,7 +277,7 @@ DviRead::~DviRead()
 
 
 // ------------------------------------  
-void DviRead::Open(const UCHAR *p_lpszDviFileName)
+void DviRead::Open(const uchar *p_lpszDviFileName)
 {
     if(p_lpszDviFileName != null) if(p_lpszDviFileName[0] != Nul)
     {
@@ -286,7 +286,7 @@ void DviRead::Open(const UCHAR *p_lpszDviFileName)
          
         KP_ASSERT(m_pDviFile == stdin, KP_E_DOUBLE_CALL, p_lpszDviFileName);
      
-        m_pDviFile = fopen((const CHAR *)p_lpszDviFileName, "rb");
+        m_pDviFile = fopen((const char *)p_lpszDviFileName, "rb");
         KP_ASSERT(m_pDviFile != NULL, KP_E_FILE_NOT_FOUND, p_lpszDviFileName);
     } 
 }
@@ -585,7 +585,7 @@ COUNT DviRead::wtable(op_table table, int opcode)
     if (op.m_iCallbackIx != DVREAD_Trans_NoIx)
     { 
         // assume pointer to the vtable is in the very first hidden word in the body of the object
-        KP_ASSERT(m_lpszInFileName - (const UCHAR *)this == sizeof(TransFunPtr), 
+        KP_ASSERT(m_lpszInFileName - (const uchar *)this == sizeof(TransFunPtr), 
             E_NOTIMPL, "Wrong offset of the vtable");
 TransFunPtr *vtable = *(TransFunPtr **)this;  
         bcount += vtable[
@@ -658,7 +658,7 @@ COUNT DviRead::setseq(int opcode)
 //DG    fprintf (dtl, ESEQ);
   }
   
-  TransText((const UCHAR *)(out_str.c_str()));
+  TransText((const uchar *)(out_str.c_str()));
   
   return ccount;
 }

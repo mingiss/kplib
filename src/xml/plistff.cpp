@@ -35,7 +35,7 @@
 
 
 // ---------------------------------
-FmtFile *CreatePlistFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreatePlistFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
     KP_NEW(fmt_file, PlistFmtFile(p_lpszFileName, p_lpszFileMode));
@@ -53,7 +53,7 @@ TiXmlElement *dest_child = NULL;
 
     if(p_pSrcNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
-    const UCHAR *tag_name = (const UCHAR *)p_pSrcNode->Value();
+    const uchar *tag_name = (const uchar *)p_pSrcNode->Value();
         KP_ASSERT(tag_name != null, E_POINTER, null);
 
         if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
@@ -61,19 +61,19 @@ TiXmlElement *dest_child = NULL;
             KP_NEW(dest_child, TiXmlElement("key"));
 
 TiXmlText *text = NULL;
-            KP_NEW(text, TiXmlText((const CHAR *)tag_name));
+            KP_NEW(text, TiXmlText((const char *)tag_name));
             dest_child->LinkEndChild(text);
             text = NULL;
 
             p_pDestParNode->LinkEndChild(dest_child);
             dest_child = NULL;
 
-const UCHAR *value = GetNodeVal(p_pSrcNode);
+const uchar *value = GetNodeVal(p_pSrcNode);
             if(value != null)
             {
                 KP_NEW(dest_child, TiXmlElement("string"));
                 
-                KP_NEW(text, TiXmlText((const CHAR *)value));
+                KP_NEW(text, TiXmlText((const char *)value));
                 dest_child->LinkEndChild(text);
                 text = NULL;
                 
@@ -126,5 +126,5 @@ TiXmlNode *xml_node = FindNodeByName(DRTI_XML_GRP_TAG, &m_XmlDoc);
     TransferNode(xml_node, dest_child);
     dest_child = NULL;
 
-    m_PlistDoc.SaveFile((const CHAR *)m_lpszFileName);
+    m_PlistDoc.SaveFile((const char *)m_lpszFileName);
 }

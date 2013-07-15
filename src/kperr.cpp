@@ -250,9 +250,9 @@ KP_MSG_UNHANDLED_EXCEPTION_EN,      KP_MSG_UNHANDLED_EXCEPTION_LT,      KP_MSG_U
 void KpException::Constructor
 (
    HRESULT lhErrCode,
-   const UCHAR *lpszMsg,
+   const uchar *lpszMsg,
    LONG lWindowsErrorCode,
-   const UCHAR *lpszSourceFile,
+   const uchar *lpszSourceFile,
    int iSourceLine
 )
 {
@@ -268,7 +268,7 @@ void KpException::Constructor
    m_lWindowsErrorCode = lWindowsErrorCode;
    
    m_lpszSourceFile[0] = Nul;
-   if((const UCHAR *)lpszSourceFile != null)
+   if((const uchar *)lpszSourceFile != null)
    {
       strncpy(m_lpszSourceFile, lpszSourceFile, KP_MAX_FNAME_LEN);
       m_lpszSourceFile[KP_MAX_FNAME_LEN] = Nul;
@@ -279,7 +279,7 @@ void KpException::Constructor
    
 
 // ---------------------
-KpErrorClass::KpErrorClass(const UCHAR *lpszProdName)
+KpErrorClass::KpErrorClass(const uchar *lpszProdName)
 {
 //  m_iInsideOfStackDump = 0;
     m_iInsideOfPutLogMessage = 0;
@@ -300,25 +300,25 @@ KpErrorClass::KpErrorClass(const UCHAR *lpszProdName)
 
 
 // ----------------------------------
-void KpErrorClass::GetProdName(UCHAR *lpszNameBuf)
+void KpErrorClass::GetProdName(uchar *lpszNameBuf)
 {
     KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
     strcpy(lpszNameBuf, m_lpszProdName);
 }
 
-const UCHAR *KpErrorClass::GetProdNamePtr(void)
+const uchar *KpErrorClass::GetProdNamePtr(void)
 {
 return(m_lpszProdName);
 }
 
-const UCHAR *KpGetProdName(void)
+const uchar *KpGetProdName(void)
 {
 return(KpError.GetProdNamePtr());
 }
 
 
 // ----------------------------------
-void KpErrorClass::SetProdName(const UCHAR *lpszNameBuf)
+void KpErrorClass::SetProdName(const uchar *lpszNameBuf)
 {
     KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
     KP_ASSERT(strlen(lpszNameBuf) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
@@ -335,7 +335,7 @@ unsigned char *lpszMsg
 {
    if(lpszMsg != null)
    {
-const UCHAR *msgptr = (const UCHAR *)"";
+const uchar *msgptr = (const uchar *)"";
 
       switch(lhRetc)
       {
@@ -396,16 +396,16 @@ const UCHAR *msgptr = (const UCHAR *)"";
 HRESULT KpErrorClass::FormatSystemErrorMessage
 (
 long lWindowsErrorCode,
-UCHAR *lpszMsg,
+uchar *lpszMsg,
 bool bFullFormat
 )
 {
 HRESULT retc = S_OK;
-const UCHAR *pszMsg0 = null;
-UCHAR *pszMsg1 = null;
-const UCHAR *pszMsg = null;
-UCHAR *pnts;
-UCHAR str_buf[MAX_LONG_DIGITS + 20];
+const uchar *pszMsg0 = null;
+uchar *pszMsg1 = null;
+const uchar *pszMsg = null;
+uchar *pnts;
+uchar str_buf[MAX_LONG_DIGITS + 20];
     str_buf[0] = Nul;
 int ii;
 
@@ -532,7 +532,7 @@ int ii;
         ii += strlen(str_buf);
     
 //      KP_NEWA(pszMsg1, unsigned char, ii + 1); // isvieciamas ir is KP_NEWA(), gali uzsiciklint
-        pszMsg1 = new UCHAR[ii + 1];
+        pszMsg1 = new uchar[ii + 1];
     
         if((pszMsg1 != null) && SUCCEEDED(retc))
         {
@@ -577,16 +577,16 @@ return(S_OK);
 }
 
 
-UCHAR *KpErrorClass::FormatSystemErrorMessage(long lWindowsErrorCode)
+uchar *KpErrorClass::FormatSystemErrorMessage(long lWindowsErrorCode)
 {
-static UCHAR sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
+static uchar sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
     FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
 return(sys_err_msg);
 }
 
 
 // ---------------------
-void KpErrorClass::SendDiagMsg(const UCHAR *lpszMessageText, bool bSevereError, const UCHAR *lpszAddMessage) 
+void KpErrorClass::SendDiagMsg(const uchar *lpszMessageText, bool bSevereError, const uchar *lpszAddMessage) 
 {
 #ifdef KP_CONSOLE
 // cout << lpszMessageText << endl;
@@ -597,14 +597,14 @@ void KpErrorClass::SendDiagMsg(const UCHAR *lpszMessageText, bool bSevereError, 
 }
 
 // ---------------------
-void KpErrorClass::OutputErrorMessage(HRESULT lhRetc, const UCHAR *lpszMessageText, 
-   bool bSevereError, const UCHAR *lpszSourceFile, int iSourceLine)
+void KpErrorClass::OutputErrorMessage(HRESULT lhRetc, const uchar *lpszMessageText, 
+   bool bSevereError, const uchar *lpszSourceFile, int iSourceLine)
 {
 HRESULT retc = lhRetc;
    if(retc == KP_S_DIAG_MSG) retc = S_OK;
 
 // -----------------------
-UCHAR msg_text[KP_MAX_FILE_LIN_LEN + 1];
+uchar msg_text[KP_MAX_FILE_LIN_LEN + 1];
    msg_text[0] = Nul;
    if(lpszMessageText != null)
    {
@@ -631,7 +631,7 @@ int ll = strlen(msg_text);
       m_iLastSourceLine = iSourceLine;
 
 // -----------------------
-UCHAR out_text[KP_MAX_FILE_LIN_LEN * 2 + 1];
+uchar out_text[KP_MAX_FILE_LIN_LEN * 2 + 1];
       out_text[0] = Nul;
 
       if(FAILED(retc))
@@ -648,7 +648,7 @@ int ll = strlen(out_text);
       out_text[KP_MAX_FILE_LIN_LEN] = Nul;
 
 int msg_tail_pos = ll = strlen(out_text);
-      sprintf((CHAR *)out_text + ll, (const CHAR *)KP_MSG_FILE_LINE, lhRetc, lpszSourceFile, iSourceLine);
+      sprintf((char *)out_text + ll, (const char *)KP_MSG_FILE_LINE, lhRetc, lpszSourceFile, iSourceLine);
       out_text[KP_MAX_FILE_LIN_LEN] = Nul;
       
 // ----------------------
@@ -714,14 +714,14 @@ NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
 // --------------------
         if((ebp_buf != 0) && (stack_top != NULL))
         {   
-UCHAR *out_buf = null;
-            KP_NEWA(out_buf, UCHAR, KP_MAX_FILE_LIN_LEN + 1);
+uchar *out_buf = null;
+            KP_NEWA(out_buf, uchar, KP_MAX_FILE_LIN_LEN + 1);
 
             strcpy(out_buf, "Stack call trace: ");
             while((stack_ptr < stack_top - 4 /* 0x40 */) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
             {
-UCHAR hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
-                sprintf((CHAR *)hex_buf, "%08x ", stack_ptr[1]);
+uchar hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
+                sprintf((char *)hex_buf, "%08x ", stack_ptr[1]);
                 strcat(out_buf, hex_buf);
                 stack_ptr = (const unsigned int *)(*stack_ptr);
                 if (stack_ptr == NULL) break;
@@ -741,7 +741,7 @@ UCHAR hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
 
 
 // ----------------------------------------------
-void KpErrorClass::EncodeLogBuf(UCHAR *pBuffer, int iDataLen)
+void KpErrorClass::EncodeLogBuf(uchar *pBuffer, int iDataLen)
 {
    KP_ASSERT(pBuffer != null, E_INVALIDARG, null);
    for(int ii = 0; ii < iDataLen; ii++) pBuffer[ii] ^= 0xAA;
@@ -749,29 +749,29 @@ void KpErrorClass::EncodeLogBuf(UCHAR *pBuffer, int iDataLen)
 
 
 // ----------------------------------------------
-void KpErrorClass::GetLogFileName(UCHAR *lpszLogFNameBuf)
+void KpErrorClass::GetLogFileName(uchar *lpszLogFNameBuf)
 {
     KP_ASSERT(lpszLogFNameBuf != null, E_INVALIDARG, null);
    
-const UCHAR *temp_dir = null;
+const uchar *temp_dir = null;
 #ifdef __WIN32__
-    temp_dir = (const UCHAR *)getenv("TEMP");
+    temp_dir = (const uchar *)getenv("TEMP");
     KP_ASSERT(temp_dir != null, KP_E_SYSTEM_ERROR, null);
 #else
     temp_dir = KP_CUR_DIR_STR;
 #endif   
 
-static UCHAR app_name[KP_MAX_FNAME_LEN + 1];
+static uchar app_name[KP_MAX_FNAME_LEN + 1];
     KpError.GetProdName(app_name);
     if(KpApp != NULL) KpApp->GetAppName(app_name);
 
-static UCHAR app_disk[KP_MAX_FNAME_LEN + 1];
-static UCHAR app_path[KP_MAX_FNAME_LEN + 1];
-static UCHAR app_fname[KP_MAX_FNAME_LEN + 1];
-static UCHAR app_ftype[KP_MAX_FNAME_LEN + 1];
+static uchar app_disk[KP_MAX_FNAME_LEN + 1];
+static uchar app_path[KP_MAX_FNAME_LEN + 1];
+static uchar app_fname[KP_MAX_FNAME_LEN + 1];
+static uchar app_ftype[KP_MAX_FNAME_LEN + 1];
     KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
 
-const UCHAR *log_ftype = (const UCHAR *)".log";
+const uchar *log_ftype = (const uchar *)".log";
     KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
     strcpy(lpszLogFNameBuf, temp_dir);
     strcat(lpszLogFNameBuf, "/");
@@ -781,14 +781,14 @@ const UCHAR *log_ftype = (const UCHAR *)".log";
 
 
 // ----------------------------------------------
-void KpErrorClass::PutLogMessage(const UCHAR *lpszFmt, va_list Args)
+void KpErrorClass::PutLogMessage(const uchar *lpszFmt, va_list Args)
 {
     if(m_iInsideOfPutLogMessage++ == 0)
     {
 // --------------------
 
-UCHAR *out_str = null;   
-        KP_NEWA(out_str, UCHAR, KP_MAX_FILE_LIN_LEN + strlen(lpszFmt) * 10 + 1);
+uchar *out_str = null;   
+        KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(lpszFmt) * 10 + 1);
 
 // --------------------
 time_t ltime;
@@ -796,22 +796,22 @@ time_t ltime;
 tm *tm_ptr = NULL;
         tm_ptr = gmtime(&ltime);
         KP_ASSERT(tm_ptr != NULL, KP_E_SYSTEM_ERROR, null);
-const UCHAR *prod_name = (const UCHAR *)"kperr";
+const uchar *prod_name = (const uchar *)"kperr";
 int prod_ver = 0;
-const UCHAR *prod_date = (const UCHAR *)"0000-00-00";
+const uchar *prod_date = (const uchar *)"0000-00-00";
         if(KpApp != NULL)
         {
             prod_name = m_lpszProdName;
             prod_ver = KpApp->m_iProdVer;
             prod_date = KpApp->m_lpszProdDate;
         }
-        sprintf((CHAR *)out_str, "%04d.%02d.%02d %02d:%02d:%02d %s[%05d:%s] %ld ",
+        sprintf((char *)out_str, "%04d.%02d.%02d %02d:%02d:%02d %s[%05d:%s] %ld ",
             1900 + tm_ptr->tm_year, 1 + tm_ptr->tm_mon, tm_ptr->tm_mday, tm_ptr->tm_hour + 2, tm_ptr->tm_min, tm_ptr->tm_sec,
             prod_name, prod_ver, prod_date, ltime);
 
 // --------------------
         if(lpszFmt != null)
-            vsprintf((CHAR *)out_str + strlen(out_str), (const CHAR *)lpszFmt, Args);
+            vsprintf((char *)out_str + strlen(out_str), (const char *)lpszFmt, Args);
         strcat(out_str, "\n");
 
 #if (defined Debug) && (defined KP_CONSOLE)
@@ -825,12 +825,12 @@ int out_str_len = strlen(out_str);
 #  endif
 
 // --------------------
-static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
+static uchar log_fname[KP_MAX_FNAME_LEN + 1];
         GetLogFileName(log_fname);
 
 // --------------------
 FILE *log_file = NULL;
-        log_file = fopen((const CHAR *)log_fname, 
+        log_file = fopen((const char *)log_fname, 
 #  ifdef KP_ENCODE_LOG
             "ab"
 #  else
@@ -893,16 +893,16 @@ const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
 void KpOutputErrorMessage
 (
     HRESULT lhRetc,
-    const UCHAR *lpszMessageText,
+    const uchar *lpszMessageText,
     bool bSevereError,
-    const UCHAR *lpszSourceFile,
+    const uchar *lpszSourceFile,
     int iSourceLine
 )
 {
     KpError.OutputErrorMessage(lhRetc, lpszMessageText, bSevereError, lpszSourceFile, iSourceLine);
 }
 
-UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
+uchar *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
 {
 return(KpError.FormatSystemErrorMessage(lWindowsErrorCode));
 }

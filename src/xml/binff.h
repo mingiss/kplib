@@ -14,7 +14,7 @@
 class BinFmtFile: public FmtFile
 {
 public:
-    BinFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode) 
+    BinFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode) 
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -22,6 +22,6 @@ public:
 };
 
 
-extern FmtFile *CreateBinaryFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreateBinaryFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef plainff_included

@@ -16,7 +16,7 @@ class PlainFmtFile: public FmtFile
 {
 public:
     bool m_bOutputEmpty; // paskutinio \n suvalgymui
-    PlainFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    PlainFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -25,6 +25,6 @@ public:
 };
 
 
-extern FmtFile *CreatePlainFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreatePlainFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef plainff_included

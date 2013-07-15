@@ -35,7 +35,7 @@
 
 
 // ---------------------------------
-FmtFile *CreateCsvFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreateCsvFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 
@@ -52,7 +52,7 @@ void CsvFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool bLowes
     KP_ASSERT(p_pOutFile != NULL, KP_E_NO_FILE, null);
     
 TiXmlNode *parent = p_pCurNode->Parent();
-const UCHAR *value = GetNodeVal(p_pCurNode);
+const uchar *value = GetNodeVal(p_pCurNode);
 
 	if(
         ((parent == p_pBaseNode) && (value != null) && bLowest) || // ne m_XmlDoc, o "xml" tagas 
@@ -63,12 +63,12 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
       )
         if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-        const UCHAR *tag_name = (const UCHAR *)p_pCurNode->Value();
+        const uchar *tag_name = (const uchar *)p_pCurNode->Value();
             KP_ASSERT(tag_name != null, E_POINTER, null);
 
             if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
             {
-                fprintf(p_pOutFile, (const CHAR *)tag_name);
+                fprintf(p_pOutFile, (const char *)tag_name);
                 if(value != null) fprintf(p_pOutFile, ",%s", value);
                 fprintf(p_pOutFile, "\n");
             }
@@ -83,7 +83,7 @@ const UCHAR *value = GetNodeVal(p_pCurNode);
 
 void CsvFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+FILE *out_file = fopen((const char *)m_lpszFileName, "w");
     KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
 TiXmlNode* xml_node = FindNodeByName(DRTI_XML_GRP_TAG, &m_XmlDoc);

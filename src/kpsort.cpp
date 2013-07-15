@@ -38,14 +38,14 @@ int iCharWeigths[C_CharArrSize44] =
 int GetKwrdIndex
 (
    const unsigned char *p_lpszKeywrd,
-   const UCHAR * const *p_plpszKeytable,
+   const uchar * const *p_plpszKeytable,
    const int p_iTabSize,
    bool p_bCaseSens,
    bool p_bWholeWords
 )
 {
 int ix;
-UCHAR kwd_str[KP_KWD_LEN + 1];
+uchar kwd_str[KP_KWD_LEN + 1];
 int ii;
 int retv = TV_TG_NoKey;
 
@@ -83,7 +83,7 @@ return(retv);
 int GetKwrdIndexArr
 (
    const unsigned char *p_lpszKeywrd,
-   const UCHAR *p_plpszKeytable,
+   const uchar *p_plpszKeytable,
    const int p_iTabSize,
    bool p_bCaseSens,
    bool p_bWholeWords,
@@ -91,10 +91,10 @@ int GetKwrdIndexArr
 )
 {
 int ix;
-UCHAR kwd_str[KP_KWD_LEN + 1];
+uchar kwd_str[KP_KWD_LEN + 1];
 int ii;
 int retv = TV_TG_NoKey;
-const UCHAR *cur_kwd = p_plpszKeytable;
+const uchar *cur_kwd = p_plpszKeytable;
 
     KP_ASSERT((p_lpszKeywrd != null) && (p_plpszKeytable != NULL), E_INVALIDARG, null); 
     KP_ASSERT(strlen(p_lpszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);

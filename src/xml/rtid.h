@@ -25,21 +25,21 @@
 
 
 // --------------------------
-#define DRTI_XML_GRP_TAG (const UCHAR *)"xml"
-#define DRTI_STAGE_TAG (const UCHAR *)"mt:stage"
-#define DRTI_INFO_GRP_TAG (const UCHAR *)"vtex:info"
-#define DRTI_SETTINGS_GRP_TAG (const UCHAR *)"vtex:settings"
-#define DRTI_OPTION_TAG (const UCHAR *)"option"
-#define DRTI_RUNTOOL_GRP_TAG (const UCHAR *)"runtool"
-#define DRTI_SOMETOOL_GRP_TAG (const UCHAR *)"sometool"
-#define DRTI_IMSREF_GRP_TAG (const UCHAR *)"imsref"
-#define DRTI_STRUCTPYB_GRP_TAG (const UCHAR *)"structpyb"
-#define DRTI_PAGEINFO_GRP_TAG (const UCHAR *)"MC:PageInfo"
+#define DRTI_XML_GRP_TAG (const uchar *)"xml"
+#define DRTI_STAGE_TAG (const uchar *)"mt:stage"
+#define DRTI_INFO_GRP_TAG (const uchar *)"vtex:info"
+#define DRTI_SETTINGS_GRP_TAG (const uchar *)"vtex:settings"
+#define DRTI_OPTION_TAG (const uchar *)"option"
+#define DRTI_RUNTOOL_GRP_TAG (const uchar *)"runtool"
+#define DRTI_SOMETOOL_GRP_TAG (const uchar *)"sometool"
+#define DRTI_IMSREF_GRP_TAG (const uchar *)"imsref"
+#define DRTI_STRUCTPYB_GRP_TAG (const uchar *)"structpyb"
+#define DRTI_PAGEINFO_GRP_TAG (const uchar *)"MC:PageInfo"
 
-#define DRTI_CHKSUM_TAG_PREF (const UCHAR *)"chksum:"
-#define DRTI_CHKSUM_GRP_TAG (const UCHAR *)"chksums"
+#define DRTI_CHKSUM_TAG_PREF (const uchar *)"chksum:"
+#define DRTI_CHKSUM_GRP_TAG (const uchar *)"chksums"
 
-#define DRTI_ALL_GRP_TAG (const UCHAR *)"all"
+#define DRTI_ALL_GRP_TAG (const uchar *)"all"
 
 
 #endif // #ifndef rti_included

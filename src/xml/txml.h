@@ -12,12 +12,12 @@
 
 // The first child of this node with the matching tag name. Will be null if none found.
 // Searches through all grandchildren, starting from p_pCurNode
-extern TiXmlNode* FindNodeByName(const UCHAR *p_lpszTagName, TiXmlNode *p_pCurNode);
+extern TiXmlNode* FindNodeByName(const uchar *p_lpszTagName, TiXmlNode *p_pCurNode);
 // search for tag with corresponding value of attribute "id"
-extern TiXmlNode *FindNodeById(const UCHAR *p_lpszId, TiXmlNode *p_pCurNode);
+extern TiXmlNode *FindNodeById(const uchar *p_lpszId, TiXmlNode *p_pCurNode);
 
 // Searches for text child, returns its value
-extern const UCHAR *GetNodeVal(TiXmlNode *p_pNode);
+extern const uchar *GetNodeVal(TiXmlNode *p_pNode);
 
 extern void dump_to_stdout( TiXmlNode* pParent, unsigned int indent = 0 );
 

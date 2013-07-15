@@ -17,7 +17,7 @@ class PlistFmtFile: public FmtFile
 public:
     TiXmlDocument m_PlistDoc;
 
-    PlistFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    PlistFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -27,6 +27,6 @@ public:
 };
 
 
-extern FmtFile *CreatePlistFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreatePlistFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef plistff_included

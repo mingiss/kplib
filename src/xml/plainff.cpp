@@ -34,7 +34,7 @@
 
 
 // ---------------------------------
-FmtFile *CreatePlainFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreatePlainFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 
@@ -52,7 +52,7 @@ void PlainFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile)
 
     if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
-    const UCHAR *value = GetNodeVal(p_pCurNode);
+    const uchar *value = GetNodeVal(p_pCurNode);
         if(value != null)
         { 
             if(!m_bOutputEmpty) fprintf(p_pOutFile, "\n");
@@ -70,7 +70,7 @@ void PlainFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile)
 
 void PlainFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+FILE *out_file = fopen((const char *)m_lpszFileName, "w");
     KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
     m_bOutputEmpty = True;

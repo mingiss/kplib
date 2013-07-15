@@ -12,11 +12,11 @@
 
 // ================================================== predefined spec. character strings
 // TODO: kelt į KpCtype klasę
-extern UCHAR lpszSpaces[];
-extern UCHAR lpszEols[];
-extern UCHAR lpszSpcEol[];
-extern UCHAR lpszSpcEolNotNBSP[];
-extern UCHAR lpszSpcEolNotTabNotFF[];
+extern uchar lpszSpaces[];
+extern uchar lpszEols[];
+extern uchar lpszSpcEol[];
+extern uchar lpszSpcEolNotNBSP[];
+extern uchar lpszSpcEolNotTabNotFF[];
 
 extern unsigned char lpszSpCharsSpcEol[]; // "/.,- \t\r\n"  // characters ignored by sorting/searching
                                                             //    former lpszSpChars

@@ -33,8 +33,8 @@ extern int iCharWeigths[C_CharSize0];        // sort order definition
 //    returns TV_TG_NoKey (-1) if not found
 extern int GetKwrdIndex
 (
-const UCHAR *p_lpszKeywrd,
-const UCHAR * const *p_plpszKeytable,         
+const uchar *p_lpszKeywrd,
+const uchar * const *p_plpszKeytable,         
                         //      array of pointers to all
                         //      keywords - null terminated strings, 
                         //      not longer than KP_KWD_LEN bytes each;
@@ -51,8 +51,8 @@ bool p_bWholeWords      //  search for p_lpszKeywrd as whole word,
 
 extern int GetKwrdIndexArr
 (
-const UCHAR *p_lpszKeywrd,
-const UCHAR *p_plpszKeytable, // const UCHAR p_plpszKeytable[][p_iKeySize]   
+const uchar *p_lpszKeywrd,
+const uchar *p_plpszKeytable, // const uchar p_plpszKeytable[][p_iKeySize]   
 const int p_iTabSize,   //  number of elements in p_plpszKeytable[]
                         //  if p_iTabSize <0, then end of keyword table
                         //      is marked by empty strint "" (p_plpszKeytable[ix][0] == Nul),

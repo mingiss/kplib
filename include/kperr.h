@@ -12,7 +12,7 @@
 #define kperr_included
 
 // ---------------------------------------- assertions
-// KP_ASSERT[W[0]](bool bCond, HRESULT lhErrCode, UCHAR *Msg);
+// KP_ASSERT[W[0]](bool bCond, HRESULT lhErrCode, uchar *Msg);
 //    assertion, whether bCond is kept
 //    Msg could be null
 //
@@ -31,7 +31,7 @@
 
 #ifdef __cplusplus
 // ---------------------------------------- exceptions
-#define KP_THROW(lhErrCode, Msg) {{ throw(new KpException(lhErrCode, Msg, (const UCHAR *)__FILE__, __LINE__)); }}
+#define KP_THROW(lhErrCode, Msg) {{ throw(new KpException(lhErrCode, Msg, (const uchar *)__FILE__, __LINE__)); }}
 
 // KP_CATCH(const std::exception &e);
 // KP_CATCH(KpException &e);
@@ -54,11 +54,11 @@
 
 // ---------------------------------------- error messages
 #ifdef __cplusplus
-#define KP_ERROR(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, True, (const UCHAR *)__FILE__, __LINE__); }}
-#define KP_WARNING(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, False, (const UCHAR *)__FILE__, __LINE__); }}
+#define KP_ERROR(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, True, (const uchar *)__FILE__, __LINE__); }}
+#define KP_WARNING(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, False, (const uchar *)__FILE__, __LINE__); }}
 #else
-#define KP_ERROR(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, True, (const UCHAR *)__FILE__, __LINE__); }}
-#define KP_WARNING(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, False, (const UCHAR *)__FILE__, __LINE__); }}
+#define KP_ERROR(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, True, (const uchar *)__FILE__, __LINE__); }}
+#define KP_WARNING(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, False, (const uchar *)__FILE__, __LINE__); }}
 #endif
 
 #ifdef __cplusplus
@@ -67,41 +67,41 @@ class KpException : public std::exception
 public:
    // KpErrorClass::OutputErrorMessage() parametrai
    HRESULT m_lhErrCode;
-   UCHAR m_lpszMsg[KP_MAX_FILE_LIN_LEN + 1];
+   uchar m_lpszMsg[KP_MAX_FILE_LIN_LEN + 1];
    LONG m_lWindowsErrorCode;
-   UCHAR m_lpszSourceFile[KP_MAX_FNAME_LEN + 1];
+   uchar m_lpszSourceFile[KP_MAX_FNAME_LEN + 1];
    int m_iSourceLine;
    
    KpException
    (
       HRESULT lhRetc,
-      const UCHAR *lpszMessageText,
-      const UCHAR *lpszSourceFile,
+      const uchar *lpszMessageText,
+      const uchar *lpszSourceFile,
       int iSourceLine
    ){ Constructor(lhRetc, lpszMessageText, 0L, lpszSourceFile, iSourceLine); }
 
    KpException
    (
       HRESULT lhRetc,
-      const CHAR *lpszMessageText,
-      const UCHAR *lpszSourceFile,
+      const char *lpszMessageText,
+      const uchar *lpszSourceFile,
       int iSourceLine
-   ){ Constructor(lhRetc, (const UCHAR *)lpszMessageText, 0L, lpszSourceFile, iSourceLine); }
+   ){ Constructor(lhRetc, (const uchar *)lpszMessageText, 0L, lpszSourceFile, iSourceLine); }
 
    KpException
    (
       HRESULT lhRetc,
       LONG lWindowsErrorCode, // return value of GetLastError() etc.
-      const UCHAR *lpszSourceFile,
+      const uchar *lpszSourceFile,
       int iSourceLine
    ){ Constructor(lhRetc, null, lWindowsErrorCode, lpszSourceFile, iSourceLine); }
 
    void Constructor
    (
       HRESULT lhRetc,
-      const UCHAR *lpszMessageText,
+      const uchar *lpszMessageText,
       LONG lWindowsErrorCode,
-      const UCHAR *lpszSourceFile,
+      const uchar *lpszSourceFile,
       int iSourceLine
    );
 };
@@ -111,7 +111,7 @@ public:
 class KpErrorClass
 {
 public:
-    UCHAR m_lpszProdName[KP_MAX_FNAME_LEN + 1];
+    uchar m_lpszProdName[KP_MAX_FNAME_LEN + 1];
 
     static const unsigned char *m_lpszaKpMessages[NumOfKpMessages][KpNumOfLangs];
 
@@ -119,43 +119,43 @@ public:
     volatile int m_iInsideOfPutLogMessage; // PutLogMessage() recursion avoiding semaphore
     
     HRESULT m_lhLastRetc;
-    UCHAR m_lpszLastMessageText[KP_MAX_FILE_LIN_LEN + 1];
-    UCHAR m_lpszLastSourceFile[KP_MAX_FNAME_LEN + 1];
+    uchar m_lpszLastMessageText[KP_MAX_FILE_LIN_LEN + 1];
+    uchar m_lpszLastSourceFile[KP_MAX_FNAME_LEN + 1];
     int m_iLastSourceLine;
     
-    KpErrorClass(const UCHAR *lpszProdName);
+    KpErrorClass(const uchar *lpszProdName);
     
-    void SetProdName(const UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
-    void GetProdName(UCHAR *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
-    const UCHAR *GetProdNamePtr(void); // grąžina m_lpszProdName, taigi, ne ilgesnis už KP_MAX_FNAME_LEN 
+    void SetProdName(const uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+    void GetProdName(uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+    const uchar *GetProdNamePtr(void); // grąžina m_lpszProdName, taigi, ne ilgesnis už KP_MAX_FNAME_LEN 
 
 //  void StackDump(void);
     
-    void GetLogFileName(UCHAR *lpszLogFNameBuf); // lpszFNameBuf[KP_MAX_FNAME_LEN + 1];
-    void EncodeLogBuf(UCHAR *pBuffer, int iDataLen);
+    void GetLogFileName(uchar *lpszLogFNameBuf); // lpszFNameBuf[KP_MAX_FNAME_LEN + 1];
+    void EncodeLogBuf(uchar *pBuffer, int iDataLen);
     
 // --------------------   
-    void PutLogMessage(const UCHAR *lpszFmt, va_list Args);
-    void PutLogMessage(const UCHAR *lpszFmt, ...)
+    void PutLogMessage(const uchar *lpszFmt, va_list Args);
+    void PutLogMessage(const uchar *lpszFmt, ...)
     {
 va_list argptr;
         va_start(argptr, lpszFmt);
         PutLogMessage(lpszFmt, argptr);
     }
-    void PutLogMessage(const CHAR *lpszFmt, ...)
+    void PutLogMessage(const char *lpszFmt, ...)
     {
 va_list argptr;
         va_start(argptr, lpszFmt);
-        PutLogMessage((const UCHAR *)lpszFmt, argptr);
+        PutLogMessage((const uchar *)lpszFmt, argptr);
     }
 
 // --------------------   
     void SendDiagMsg
     (
-        const UCHAR *lpszMessageText, // pranešimas klientui 
+        const uchar *lpszMessageText, // pranešimas klientui 
         bool bSevereError,            // jei False – ne klaida, o tiesiog diag. msg siuntimas, 
                                       //    formuoti atitinkamą ikoną ir kepurės tekstą
-        const UCHAR *lpszAddMessage   // papildomas pranešimas apie klaidos kodą ir src failą, 
+        const uchar *lpszAddMessage   // papildomas pranešimas apie klaidos kodą ir src failą, 
                                       //    klientui nerodomas, siunčiamas helpdeskui
     );
 
@@ -163,7 +163,7 @@ va_list argptr;
     static HRESULT FormatErrorMessage
     (
         const HRESULT lhRetc,
-        UCHAR *lpszMsg
+        uchar *lpszMsg
     );                         // generates the error message
                                // lpszMsg is used to return back the error text, must
                                //    be not shorter, than KP_MAX_FILE_LIN_LEN bytes
@@ -172,10 +172,10 @@ va_list argptr;
     static HRESULT FormatSystemErrorMessage
     (
         LONG lWindowsErrorCode,
-        UCHAR *lpszMsg,
+        uchar *lpszMsg,
         bool bFullFormat
     );
-    static UCHAR *FormatSystemErrorMessage(LONG lWindowsErrorCode);
+    static uchar *FormatSystemErrorMessage(LONG lWindowsErrorCode);
                                // formats windows system error message
                                // bFullFormat == False - tik lietuviškas pranešimas
                                // lpszMsg is used to return back the error text, must
@@ -185,27 +185,27 @@ va_list argptr;
     void OutputErrorMessage          // outputs error message; calls FormatErrorMessage()
     (
         HRESULT lhRetc,
-        const UCHAR *lpszMessageText,  // explanational error text
+        const uchar *lpszMessageText,  // explanational error text
         bool bSevereError,      // True - pranešimas išvedamas ne tik į log failą, bet ir į ekraną su galimybe išsiųsti diagnostinį pranešimą
-        const UCHAR *lpszSourceFile,
+        const uchar *lpszSourceFile,
         int iSourceLine
     );
     
     void OutputErrorMessage
     (
         HRESULT lhRetc,
-        const CHAR *lpszMessageText,
+        const char *lpszMessageText,
         bool bSevereError,
-        const UCHAR *lpszSourceFile,
+        const uchar *lpszSourceFile,
         int iSourceLine
-    ){ OutputErrorMessage(lhRetc, (const UCHAR *)lpszMessageText, bSevereError, lpszSourceFile, iSourceLine); }
+    ){ OutputErrorMessage(lhRetc, (const uchar *)lpszMessageText, bSevereError, lpszSourceFile, iSourceLine); }
     
     void OutputErrorMessage
     (
         HRESULT lhRetc,
         LONG lWindowsErrorCode, // return value of GetLastError() etc.
         bool bSevereError,
-        const UCHAR *lpszSourceFile,
+        const uchar *lpszSourceFile,
         int iSourceLine
     ){ OutputErrorMessage(lhRetc, FormatSystemErrorMessage(lWindowsErrorCode), bSevereError, lpszSourceFile, iSourceLine); };
     
@@ -221,18 +221,18 @@ extern KpErrorClass KpError;
 extern PLAIN_C void KpOutputErrorMessage
 (
     HRESULT lhRetc,
-    const UCHAR *lpszMessageText,
+    const uchar *lpszMessageText,
     bool bSevereError,
-    const UCHAR *lpszSourceFile,
+    const uchar *lpszSourceFile,
     int iSourceLine
 );
 
 // call to KpError.FormatSystemErrorMessage()
-extern PLAIN_C UCHAR *KpFormatSystemErrorMessage(LONG lWindowsErrorCode);
+extern PLAIN_C uchar *KpFormatSystemErrorMessage(LONG lWindowsErrorCode);
 
 // call to KpError.GetProdName() and KpApp->GetAppName()
 // returns char string not longer than KP_MAX_FNAME_LEN
-extern PLAIN_C const UCHAR *KpGetProdName(void);
+extern PLAIN_C const uchar *KpGetProdName(void);
 // extern String program;  /* name of dvread program */
 #define program KpGetProdName() // definition for dvread.c, etc.
 

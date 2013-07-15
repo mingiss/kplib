@@ -12,16 +12,16 @@
 #define kpstdio_included
 
 // ------------------------
-#define KP_LOG_EXT ((const UCHAR *)".log")
+#define KP_LOG_EXT ((const uchar *)".log")
 
 // --------------------------
 extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
 (
-    UCHAR *lpszDiskBuf,
-    UCHAR *lpszPathBuf,
-    UCHAR *lpszFNameBuf,
-    UCHAR *lpszFTypeBuf,
-    const UCHAR *lpszFullName
+    uchar *lpszDiskBuf,
+    uchar *lpszPathBuf,
+    uchar *lpszFNameBuf,
+    uchar *lpszFTypeBuf,
+    const uchar *lpszFullName
 );
 
 // --------------------------
@@ -32,11 +32,11 @@ class KpStdIo
 public:
    static void TvFnameSplit          // splits lpszFullName to file name and file
    (                                 //    type parts lpszFNameBuf, lpszFTypeBuf.
-      UCHAR *lpszDiskBuf,            // lpszDiskBuf, lpszPathBuf and lpszFNameBuf
-      UCHAR *lpszPathBuf,            //    must be not shorter than
-      UCHAR *lpszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, lpszFTypeBuf
-      UCHAR *lpszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
-      const UCHAR *lpszFullName      
+      uchar *lpszDiskBuf,            // lpszDiskBuf, lpszPathBuf and lpszFNameBuf
+      uchar *lpszPathBuf,            //    must be not shorter than
+      uchar *lpszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, lpszFTypeBuf
+      uchar *lpszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
+      const uchar *lpszFullName      
    );
 };
 

@@ -15,7 +15,7 @@
 class CsvFmtFile: public FmtFile
 {
 public:
-    CsvFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    CsvFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -26,6 +26,6 @@ public:
 };
 
 
-extern FmtFile *CreateCsvFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreateCsvFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef csvff_included

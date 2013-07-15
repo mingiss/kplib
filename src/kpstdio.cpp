@@ -29,11 +29,11 @@
 
 void FnameSplit
 (
-    UCHAR *lpszDiskBuf,
-    UCHAR *lpszPathBuf,
-    UCHAR *lpszFNameBuf,
-    UCHAR *lpszFTypeBuf,
-    const UCHAR *lpszFullName
+    uchar *lpszDiskBuf,
+    uchar *lpszPathBuf,
+    uchar *lpszFNameBuf,
+    uchar *lpszFTypeBuf,
+    const uchar *lpszFullName
 )
 {
     KpStdIo::TvFnameSplit(lpszDiskBuf, lpszPathBuf, lpszFNameBuf, lpszFTypeBuf, lpszFullName);
@@ -42,11 +42,11 @@ void FnameSplit
 
 void KpStdIo::TvFnameSplit
 (
-UCHAR *lpszDiskBuf,
-UCHAR *lpszPathBuf,
-UCHAR *lpszFNameBuf,
-UCHAR *lpszFTypeBuf,
-const UCHAR *lpszFullName
+uchar *lpszDiskBuf,
+uchar *lpszPathBuf,
+uchar *lpszFNameBuf,
+uchar *lpszFTypeBuf,
+const uchar *lpszFullName
 )
 {
    KP_ASSERT((lpszDiskBuf != NULL) && (lpszPathBuf != NULL) && (lpszFNameBuf != NULL) &&
@@ -54,14 +54,14 @@ const UCHAR *lpszFullName
 
    KP_ASSERT(strlen(lpszFullName) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, lpszFullName);
 
-UCHAR str_buf[KP_MAX_FNAME_LEN + 1];
+uchar str_buf[KP_MAX_FNAME_LEN + 1];
    strcpy(str_buf, lpszFullName);
 
-UCHAR *disk_ptr;
-UCHAR *path_ptr;
-UCHAR *fnam_ptr;
-UCHAR *typ_ptr;
-UCHAR *pnts;
+uchar *disk_ptr;
+uchar *path_ptr;
+uchar *fnam_ptr;
+uchar *typ_ptr;
+uchar *pnts;
    disk_ptr = pnts = path_ptr = fnam_ptr = typ_ptr = str_buf;
 
    do
@@ -73,7 +73,7 @@ UCHAR *pnts;
    } while(*pnts);
 
 // type
-   if(typ_ptr <= fnam_ptr) typ_ptr=(UCHAR *)"";
+   if(typ_ptr <= fnam_ptr) typ_ptr=(uchar *)"";
    else *(typ_ptr++) = Nul;
    
    KP_ASSERT(strlen(typ_ptr) < KP_MAX_FTYPE_LEN, KP_E_BUFFER_OVERFLOW, null);

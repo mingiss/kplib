@@ -22,7 +22,7 @@
 // PostScript simbolių vardų įrašai faile psc.cpp
 struct PsChName
 {
-    UCHAR m_lpszName[80];
+    uchar m_lpszName[80];
     UniChar m_iCode;
 };
 

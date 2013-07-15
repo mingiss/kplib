@@ -34,7 +34,7 @@
 
 
 // ---------------------------------
-FmtFile *CreateXmlFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreateXmlFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 
@@ -48,5 +48,5 @@ return(fmt_file);
 void XmlFmtFile::ExportDoc(void)
 {
 //  dump_to_stdout(&m_XmlDoc);
-    m_XmlDoc.SaveFile((const CHAR *)m_lpszFileName);
+    m_XmlDoc.SaveFile((const char *)m_lpszFileName);
 }

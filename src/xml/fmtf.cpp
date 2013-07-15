@@ -34,7 +34,7 @@
 
 
 // ---------------------------
-FmtFile::FmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile::FmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
     m_lpszFileName[0] = Nul;
     m_lpszFileMode[0] = Nul;
@@ -58,7 +58,7 @@ FmtFile::FmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
         if(strchr(m_lpszFileMode, 'w') != null) m_pFileObj = stdout;
         if(strchr(m_lpszFileMode, 'r') != null) m_pFileObj = stdin;
 #endif
-        strcpy(m_lpszFileName, (const UCHAR *)"con");
+        strcpy(m_lpszFileName, (const uchar *)"con");
     }
     
     if(p_lpszFileName != null) if (p_lpszFileName[0] != Nul)
@@ -67,7 +67,7 @@ FmtFile::FmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
         strcpy(m_lpszFileName, p_lpszFileName);
         
         // ExportDoc() pats failą ir atsidaro, ir uždaro
-        // m_pFileObj = fopen((const CHAR *)m_lpszFileName, (const CHAR *)m_lpszFileMode);
+        // m_pFileObj = fopen((const char *)m_lpszFileName, (const char *)m_lpszFileMode);
         // KP_ASSERT(m_pFileObj != NULL, KP_E_DIR_ERROR, p_lpszFileName);
     }
 }
@@ -99,7 +99,7 @@ void FmtFile::CloseOutFile(void)
 
 
 // ---------------------------------
-void FmtFile::CreateGrpNode(const UCHAR *p_lpszTagName, const UCHAR *p_lpszGrpTagName)
+void FmtFile::CreateGrpNode(const uchar *p_lpszTagName, const uchar *p_lpszGrpTagName)
 {
     KP_ASSERT(p_lpszTagName != null, E_INVALIDARG, null);
 
@@ -119,7 +119,7 @@ TiXmlNode *cur_node = NULL;
     if(cur_node == NULL)
     {            
     TiXmlElement *element = NULL;
-        KP_NEW(element, TiXmlElement((const CHAR *)p_lpszTagName));
+        KP_NEW(element, TiXmlElement((const char *)p_lpszTagName));
         grp_node->LinkEndChild(element);
         element = NULL;
     }

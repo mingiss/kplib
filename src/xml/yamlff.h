@@ -15,7 +15,7 @@
 class YamlFmtFile: public FmtFile
 {
 public:
-    YamlFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    YamlFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -26,6 +26,6 @@ public:
 };
 
 
-extern FmtFile *CreateYamlFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreateYamlFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef yamlff_included

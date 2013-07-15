@@ -32,37 +32,37 @@ using namespace std;
 
 
 // -----------------------------
-size_t strlen(const UCHAR *src){ return(strlen((const CHAR *)src)); }
+size_t strlen(const uchar *src){ return(strlen((const char *)src)); }
 
-UCHAR *strcpy(UCHAR *dest, const UCHAR *src)
-   { return ((UCHAR *)strcpy((CHAR *)dest, (const CHAR *)src)); }
-UCHAR *strcpy(UCHAR *dest, const CHAR *src)
-   { return ((UCHAR *)strcpy((CHAR *)dest, src)); }
+uchar *strcpy(uchar *dest, const uchar *src)
+   { return ((uchar *)strcpy((char *)dest, (const char *)src)); }
+uchar *strcpy(uchar *dest, const char *src)
+   { return ((uchar *)strcpy((char *)dest, src)); }
 
-UCHAR *strncpy(UCHAR *dest, const UCHAR *src, size_t nbytes)
-   { return ((UCHAR *)strncpy((CHAR *)dest, (const CHAR *)src, nbytes)); }
+uchar *strncpy(uchar *dest, const uchar *src, size_t nbytes)
+   { return ((uchar *)strncpy((char *)dest, (const char *)src, nbytes)); }
 
-UCHAR *strcat(UCHAR *dest, const UCHAR *src)
-   { return ((UCHAR *)strcat((CHAR *)dest, (const CHAR *)src)); }
-UCHAR *strcat(UCHAR *dest, const CHAR *src)
-   { return ((UCHAR *)strcat((CHAR *)dest, src)); }
+uchar *strcat(uchar *dest, const uchar *src)
+   { return ((uchar *)strcat((char *)dest, (const char *)src)); }
+uchar *strcat(uchar *dest, const char *src)
+   { return ((uchar *)strcat((char *)dest, src)); }
 
-int strcmp(const UCHAR *str1, const UCHAR *str2)
-   { return (strcmp((const CHAR *)str1, (const CHAR *)str2)); }
+int strcmp(const uchar *str1, const uchar *str2)
+   { return (strcmp((const char *)str1, (const char *)str2)); }
 
-int strcmp(const UCHAR *str1, const CHAR *str2)
-   { return (strcmp((const CHAR *)str1, str2)); }
+int strcmp(const uchar *str1, const char *str2)
+   { return (strcmp((const char *)str1, str2)); }
 
-int strncmp(const UCHAR *str1, const UCHAR *str2, size_t nbytes)
-   { return (strncmp((const CHAR *)str1, (const CHAR *)str2, nbytes)); }
+int strncmp(const uchar *str1, const uchar *str2, size_t nbytes)
+   { return (strncmp((const char *)str1, (const char *)str2, nbytes)); }
 
 // --------------------------------------------------
-UCHAR *strchr(UCHAR *p_lpszString, KpChar p_iCh)
-    { return((UCHAR *)strchr((CHAR *)p_lpszString, p_iCh)); }
+uchar *strchr(uchar *p_lpszString, KpChar p_iCh)
+    { return((uchar *)strchr((char *)p_lpszString, p_iCh)); }
 
-const UCHAR *strchr(const UCHAR *p_lpszString, KpChar p_iCh)
+const uchar *strchr(const uchar *p_lpszString, KpChar p_iCh)
 {
-const UCHAR *str_ptr = p_lpszString;
+const uchar *str_ptr = p_lpszString;
 
     while((*str_ptr != Nul) && (*str_ptr != p_iCh)) str_ptr++;
     if(*str_ptr == Nul) str_ptr = null;
@@ -71,17 +71,17 @@ return(str_ptr);
 }
 
 // --------------------------------------------------
-UCHAR *strstr(UCHAR *p_lpszString, const CHAR *p_lpszPattern)
-    { return ((UCHAR *)strstr((CHAR *)p_lpszString, p_lpszPattern)); }
+uchar *strstr(uchar *p_lpszString, const char *p_lpszPattern)
+    { return ((uchar *)strstr((char *)p_lpszString, p_lpszPattern)); }
     
-const UCHAR *strstr(const UCHAR *p_lpszString, const CHAR *p_lpszPattern)
+const uchar *strstr(const uchar *p_lpszString, const char *p_lpszPattern)
     {
         KP_ASSERT(p_lpszString != null, E_INVALIDARG, null);
-    UCHAR *str = null;
-        KP_NEWA(str, UCHAR, strlen(p_lpszString) + 1);
+    uchar *str = null;
+        KP_NEWA(str, uchar, strlen(p_lpszString) + 1);
         strcpy(str, p_lpszString);
 
-    const UCHAR *retv = null;
+    const uchar *retv = null;
         retv = strstr(str, p_lpszPattern);
         if(retv != null) retv = p_lpszString + (retv - str);
         
@@ -89,21 +89,21 @@ const UCHAR *strstr(const UCHAR *p_lpszString, const CHAR *p_lpszPattern)
      return (retv); 
      }
 
-UCHAR *strstr(UCHAR *p_lpszString, const UCHAR *p_lpszPattern)
-    { return(strstr(p_lpszString, (const CHAR *)p_lpszPattern)); }
+uchar *strstr(uchar *p_lpszString, const uchar *p_lpszPattern)
+    { return(strstr(p_lpszString, (const char *)p_lpszPattern)); }
     
-const UCHAR *strstr(const UCHAR *p_lpszString, const UCHAR *p_lpszPattern)
-    { return(strstr(p_lpszString, (const CHAR *)p_lpszPattern)); }
+const uchar *strstr(const uchar *p_lpszString, const uchar *p_lpszPattern)
+    { return(strstr(p_lpszString, (const char *)p_lpszPattern)); }
 
 // --------------------------------------------------
-UCHAR *strlwr(UCHAR *str)
-    { return((UCHAR *)strlwr((CHAR *)str)); }
+uchar *strlwr(uchar *str)
+    { return((uchar *)strlwr((char *)str)); }
 
 
 // --------------------------------------------------
-void KpStripTrailing(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+void KpStripTrailing(uchar *lpszString, /* const */ uchar *lpszSpcs)
 {
-UCHAR *pnts = null;
+uchar *pnts = null;
 
     KP_ASSERT(lpszString != null, E_INVALIDARG, null);
 
@@ -122,10 +122,10 @@ UCHAR *pnts = null;
 }
 
 
-void KpStripLeading(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+void KpStripLeading(uchar *lpszString, /* const */ uchar *lpszSpcs)
 {
-UCHAR *pnts = null;
-UCHAR *pntd = null;
+uchar *pnts = null;
+uchar *pntd = null;
 
     KP_ASSERT(lpszString != null, E_INVALIDARG, null);
 
@@ -136,17 +136,17 @@ UCHAR *pntd = null;
 }
 
 
-void KpStrip(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+void KpStrip(uchar *lpszString, /* const */ uchar *lpszSpcs)
 {
     KpStripLeading(lpszString, lpszSpcs);
     KpStripTrailing(lpszString, lpszSpcs);
 }
 
 
-void KpStripAll(UCHAR *lpszString, /* const */ UCHAR *lpszSpcs)
+void KpStripAll(uchar *lpszString, /* const */ uchar *lpszSpcs)
 {
-UCHAR *pnts = null;
-UCHAR *pntd = null;
+uchar *pnts = null;
+uchar *pntd = null;
 
     KP_ASSERT(lpszString != null, E_INVALIDARG, null);
 
@@ -161,12 +161,12 @@ UCHAR *pntd = null;
 
 
 // --------------------------------------------------
-int UcStrCmp(const UCHAR *p_lpszStr1, const UCHAR *p_lpszStr2, bool p_bSkipSpc,
+int UcStrCmp(const uchar *p_lpszStr1, const uchar *p_lpszStr2, bool p_bSkipSpc,
     int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg)
 {
 int retv = 0;
 // TODO: const KpChar *pnts1, *pnts2;
-const UCHAR *pnts1, *pnts2;
+const uchar *pnts1, *pnts2;
 int wgt1, wgt2;
 
     KP_ASSERT((p_lpszStr1 != null) && (p_lpszStr2 != null), E_INVALIDARG, null);

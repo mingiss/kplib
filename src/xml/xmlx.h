@@ -41,4 +41,4 @@ enum XmlSysTagChars                          // XML system tag characters
    XL_LastSysTag
 };
 
-extern const UCHAR *plpszaXmlSysTags[XL_NumOfSysTags + 1]; // XML system tag names without enclosing "<" and ">" 
+extern const uchar *plpszaXmlSysTags[XL_NumOfSysTags + 1]; // XML system tag names without enclosing "<" and ">" 

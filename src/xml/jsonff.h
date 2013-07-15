@@ -15,7 +15,7 @@
 class JsonFmtFile: public FmtFile
 {
 public:
-    JsonFmtFile(const UCHAR *p_lpszOutFileName, const UCHAR *p_lpszFileMode)
+    JsonFmtFile(const uchar *p_lpszOutFileName, const uchar *p_lpszFileMode)
         : FmtFile(p_lpszOutFileName, p_lpszFileMode) 
         {}
 
@@ -28,6 +28,6 @@ public:
 };
 
 
-extern FmtFile *CreateJsonFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode);
+extern FmtFile *CreateJsonFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
 #endif // #ifndef jsonff_included

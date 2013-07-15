@@ -38,7 +38,7 @@ KpLang KpCommonApp::m_iMsgLangOff = KpLangEn;
 
 
 // ----------------------------------
-KpCommonApp::KpCommonApp(const UCHAR *lpszProdName, int iProdVer)
+KpCommonApp::KpCommonApp(const uchar *lpszProdName, int iProdVer)
 {
     m_iMsgLangOff = KpLangEn;
 #ifdef __WIN32__
@@ -72,7 +72,7 @@ KpCommonApp::~KpCommonApp(void){}
 
 
 // ----------------------------------
-void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void *pStackTop)
+void KpCommonApp::Init(HINSTANCE hInstance, const uchar *lpszCmdLine, const void *pStackTop)
 {
 #ifdef __WIN32__
     if(hInstance != 0L) m_hInstance = hInstance;
@@ -84,14 +84,14 @@ void KpCommonApp::Init(HINSTANCE hInstance, const UCHAR *lpszCmdLine, const void
 
     m_pStackTop = pStackTop;
 
-static UCHAR log_fname[KP_MAX_FNAME_LEN + 1];
+static uchar log_fname[KP_MAX_FNAME_LEN + 1];
     KpError.GetLogFileName(log_fname);
     remove((const char *)log_fname);
 }
 
 
 // ----------------------------------
-void KpCommonApp::SetProd(const UCHAR *lpszProdName, int iProdVer)
+void KpCommonApp::SetProd(const uchar *lpszProdName, int iProdVer)
 {
     KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
     KpError.SetProdName(lpszProdName);
@@ -100,7 +100,7 @@ void KpCommonApp::SetProd(const UCHAR *lpszProdName, int iProdVer)
 
 
 // ----------------------------------
-void KpCommonApp::GetAppName(UCHAR *lpszNameBuf)
+void KpCommonApp::GetAppName(uchar *lpszNameBuf)
 {
     KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
     
@@ -108,15 +108,15 @@ void KpCommonApp::GetAppName(UCHAR *lpszNameBuf)
         strcpy(lpszNameBuf, m_lpszAppName); // tik pirmą kartą būna teisingas kelias, paskui nustatau SetCurrentDirectory() ir santykinis kelias išsiderina
     else
     {
-UCHAR *pnts = m_lpszCmdLine;
+uchar *pnts = m_lpszCmdLine;
 
-static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
+static uchar name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         if(*pnts != '\"')
         {
             strncpy(name_buf_tmp, pnts, KP_MAX_FNAME_LEN);
             name_buf_tmp[KP_MAX_FNAME_LEN] = Nul;
             
-            pnts = const_cast<UCHAR *>(strchr(name_buf_tmp, Spc));
+            pnts = const_cast<uchar *>(strchr(name_buf_tmp, Spc));
         }
         else
         {
@@ -128,7 +128,7 @@ static UCHAR name_buf_tmp[KP_MAX_FNAME_LEN + 1];
 
 #ifdef __WIN32__
 DWORD ll = 0L;
-        ll = GetFullPathName((const CHAR *)name_buf_tmp, KP_MAX_FNAME_LEN, (CHAR *)lpszNameBuf, NULL);
+        ll = GetFullPathName((const char *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)lpszNameBuf, NULL);
 //      KP_ASSERT(ll > 0L, KP_E_SYSTEM_ERROR, GetLastError());
         KP_ASSERTW0(ll < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;

@@ -105,7 +105,7 @@ public:
 // ---------------------------
 class DviRead
 {
-    UCHAR m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
+    uchar m_lpszInFileName[KP_MAX_FNAME_LEN + 1]; // input DVI file name
 public:
     FILE *m_pDviFile; // input DVI file object
 
@@ -125,7 +125,7 @@ public:
     DviRead(void);
     virtual ~DviRead();
     
-    virtual void Open(const UCHAR *p_lpszDviFileName);
+    virtual void Open(const uchar *p_lpszDviFileName);
     void Close(void);
     
     void SetHorStepW(int p_iHorStepW);
@@ -241,7 +241,7 @@ public:
     virtual void CmdClose(void){}  /* end of command and parameters */ // former RtiCmdClose()
     
     // accumulated set_char's into a string
-    virtual void TransText(const UCHAR *p_lpszStr) {}
+    virtual void TransText(const uchar *p_lpszStr) {}
 };
 
 #endif // #ifndef dvread_included

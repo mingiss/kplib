@@ -34,7 +34,7 @@
 
 
 // ---------------------------------
-FmtFile *CreateHtmFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreateHtmFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 

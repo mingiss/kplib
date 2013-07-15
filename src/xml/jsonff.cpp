@@ -34,7 +34,7 @@
 
 
 // ---------------------------------
-FmtFile *CreateJsonFmtFile(const UCHAR *p_lpszFileName, const UCHAR *p_lpszFileMode)
+FmtFile *CreateJsonFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 {
 FmtFile *fmt_file = NULL;
 
@@ -62,7 +62,7 @@ void JsonFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool *p_pb
 
     if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
-    const UCHAR *tag_name = (const UCHAR *)p_pCurNode->Value();
+    const uchar *tag_name = (const uchar *)p_pCurNode->Value();
         KP_ASSERT(tag_name != null, E_POINTER, null);
 
         if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
@@ -71,9 +71,9 @@ void JsonFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool *p_pb
             fprintf(p_pOutFile, "\n");
     
             MakeIndent(p_pOutFile);
-            fprintf(p_pOutFile, "\"%s\":", (const CHAR *)tag_name);
+            fprintf(p_pOutFile, "\"%s\":", (const char *)tag_name);
 
-const UCHAR *value = GetNodeVal(p_pCurNode);
+const uchar *value = GetNodeVal(p_pCurNode);
             if(value != null) fprintf(p_pOutFile, " \"%s\"", value);
         }
     }
@@ -117,7 +117,7 @@ bool make_indent = (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT); // dokume
 
 void JsonFmtFile::ExportDoc(void)
 {
-FILE *out_file = fopen((const CHAR *)m_lpszFileName, "w");
+FILE *out_file = fopen((const char *)m_lpszFileName, "w");
     KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
 
     m_iIndent = 0;

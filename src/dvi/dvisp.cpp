@@ -48,65 +48,65 @@ using namespace std;
 
 
 // -----------------------------
-const UCHAR *lpszaIgnoreSpecList[] =
+const uchar *lpszaIgnoreSpecList[] =
 {
-    (const UCHAR *)"\" ",
-    (const UCHAR *)"!", 
-    (const UCHAR *)"ps:", 
-    (const UCHAR *)"PSfile=",
+    (const uchar *)"\" ",
+    (const uchar *)"!", 
+    (const uchar *)"ps:", 
+    (const uchar *)"PSfile=",
 
-    (const UCHAR *)"color ",
-    (const UCHAR *)"background ",
+    (const uchar *)"color ",
+    (const uchar *)"background ",
     
-    (const UCHAR *)"em: graph ",
-    (const UCHAR *)"mt:destination",
+    (const uchar *)"em: graph ",
+    (const uchar *)"mt:destination",
 
-    (const UCHAR *)"vtex:bmc.artifact.",
-    (const UCHAR *)"vtex:emc.artifact.",
+    (const uchar *)"vtex:bmc.artifact.",
+    (const uchar *)"vtex:emc.artifact.",
 
-    (const UCHAR *)"fp",
-    (const UCHAR *)"bk",
-    (const UCHAR *)"sp",
-    (const UCHAR *)"pn ", // "pn 5"
-    (const UCHAR *)"pa ", // "pa 639 -2122"
-    (const UCHAR *)"ar ", // "ar 0 0 26 26 0 6.2832"
+    (const uchar *)"fp",
+    (const uchar *)"bk",
+    (const uchar *)"sp",
+    (const uchar *)"pn ", // "pn 5"
+    (const uchar *)"pa ", // "pa 639 -2122"
+    (const uchar *)"ar ", // "ar 0 0 26 26 0 6.2832"
     
     null
 };
 
-const UCHAR *lpszaIgnoreFullSpecList[] =
+const uchar *lpszaIgnoreFullSpecList[] =
 {
-    (const UCHAR *)"MC:Contents",
+    (const uchar *)"MC:Contents",
     
-    (const UCHAR *)"BMC:Book/SpringerURL",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightHolderName",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightYear",
-    (const UCHAR *)"BMC:BookCopyright/CopyrightYearFormerEditions",
-    (const UCHAR *)"BMC:Contents",
-    (const UCHAR *)"BMC:MyCopy/Intro",
-    (const UCHAR *)"BMC:MyCopy/SpringerURL",
-    (const UCHAR *)"BMC:text",
-    (const UCHAR *)"BMC:VTEX/LCCN",
-    (const UCHAR *)"EMC:Book/SpringerURL",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightHolderName",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightYear",
-    (const UCHAR *)"EMC:BookCopyright/CopyrightYearFormerEditions",
-    (const UCHAR *)"EMC:Contents",
-    (const UCHAR *)"EMC:MyCopy/Intro",
-    (const UCHAR *)"EMC:MyCopy/SpringerURL",
-    (const UCHAR *)"EMC:text",
-    (const UCHAR *)"EMC:VTEX/LCCN",
+    (const uchar *)"BMC:Book/SpringerURL",
+    (const uchar *)"BMC:BookCopyright/CopyrightHolderName",
+    (const uchar *)"BMC:BookCopyright/CopyrightYear",
+    (const uchar *)"BMC:BookCopyright/CopyrightYearFormerEditions",
+    (const uchar *)"BMC:Contents",
+    (const uchar *)"BMC:MyCopy/Intro",
+    (const uchar *)"BMC:MyCopy/SpringerURL",
+    (const uchar *)"BMC:text",
+    (const uchar *)"BMC:VTEX/LCCN",
+    (const uchar *)"EMC:Book/SpringerURL",
+    (const uchar *)"EMC:BookCopyright/CopyrightHolderName",
+    (const uchar *)"EMC:BookCopyright/CopyrightYear",
+    (const uchar *)"EMC:BookCopyright/CopyrightYearFormerEditions",
+    (const uchar *)"EMC:Contents",
+    (const uchar *)"EMC:MyCopy/Intro",
+    (const uchar *)"EMC:MyCopy/SpringerURL",
+    (const uchar *)"EMC:text",
+    (const uchar *)"EMC:VTEX/LCCN",
 
-    (const UCHAR *)"BMC:BookInfo/BookDOI",
-    (const UCHAR *)"BMC:BookInfo/BookElectronicISBN",
-    (const UCHAR *)"BMC:BookInfo/BookPrintISBN",
-    (const UCHAR *)"EMC:BookInfo/BookDOI",
-    (const UCHAR *)"EMC:BookInfo/BookElectronicISBN",
-    (const UCHAR *)"EMC:BookInfo/BookPrintISBN",
-    (const UCHAR *)"BMC:SeriesInfo/SeriesElectronicISSN",
-    (const UCHAR *)"BMC:SeriesInfo/SeriesPrintISSN",
-    (const UCHAR *)"EMC:SeriesInfo/SeriesElectronicISSN",
-    (const UCHAR *)"EMC:SeriesInfo/SeriesPrintISSN",
+    (const uchar *)"BMC:BookInfo/BookDOI",
+    (const uchar *)"BMC:BookInfo/BookElectronicISBN",
+    (const uchar *)"BMC:BookInfo/BookPrintISBN",
+    (const uchar *)"EMC:BookInfo/BookDOI",
+    (const uchar *)"EMC:BookInfo/BookElectronicISBN",
+    (const uchar *)"EMC:BookInfo/BookPrintISBN",
+    (const uchar *)"BMC:SeriesInfo/SeriesElectronicISSN",
+    (const uchar *)"BMC:SeriesInfo/SeriesPrintISSN",
+    (const uchar *)"EMC:SeriesInfo/SeriesElectronicISSN",
+    (const uchar *)"EMC:SeriesInfo/SeriesPrintISSN",
     
     null
 };
@@ -120,7 +120,7 @@ DviSpClass::DviSpClass(void)
 
 
 // -------------------------
-void DviSpClass::Open(const UCHAR *p_lpszInFileName)
+void DviSpClass::Open(const uchar *p_lpszInFileName)
 {
     if(lpszInFileName != null) if(lpszInFileName[0] != Nul)
     {
@@ -136,20 +136,20 @@ void DviSpClass::Open(const UCHAR *p_lpszInFileName)
 // -------------------------
 void DviSpClass::ReadFile(void)
 {
-UCHAR in_fname[KP_MAX_FNAME_LEN + 100];
+uchar in_fname[KP_MAX_FNAME_LEN + 100];
 FILE *in_file = NULL;
 
 // ------------ .dvi
     strcpy(in_fname, m_lpszInFileName);
     strcat(in_fname, ".dvi");
     
-    in_file = fopen((const CHAR *)in_fname, "rb");
+    in_file = fopen((const char *)in_fname, "rb");
     if(in_file != NULL)
     {
         fclose(in_file);
         in_file = NULL;    
     
-        if (strcmp(m_lpszInFileName, (const UCHAR *)"") != 0)
+        if (strcmp(m_lpszInFileName, (const uchar *)"") != 0)
             open_dvi(in_fname, &in_file);
 
         if(in_file != NULL)
@@ -163,14 +163,14 @@ FILE *in_file = NULL;
     strcpy(in_fname, m_lpszInFileName);
     strcat(in_fname, ".specials");
     
-    in_file = fopen((const CHAR *)in_fname, "r");
+    in_file = fopen((const char *)in_fname, "r");
     if(in_file != NULL)
     {
         SpecRead(in_file);
         fclose(in_file);
     }
 
-    ProcessSpecial((const UCHAR *)""); // kad išsiflushintų sukauptas XML-as last_xml_str
+    ProcessSpecial((const uchar *)""); // kad išsiflushintų sukauptas XML-as last_xml_str
 }
 
 
@@ -181,8 +181,8 @@ void DviSpClass::SpecRead(FILE *p_pInFile)
     
     while(!feof(p_pInFile))
     {
-UCHAR in_line[KP_MAX_FILE_LIN_LEN + 1];    
-        if(fgets((CHAR *)in_line, KP_MAX_FILE_LIN_LEN, p_pInFile) != NULL)
+uchar in_line[KP_MAX_FILE_LIN_LEN + 1];    
+        if(fgets((char *)in_line, KP_MAX_FILE_LIN_LEN, p_pInFile) != NULL)
         {
 int ll = strlen(in_line);
 int ii;
@@ -198,11 +198,11 @@ int ii;
 
 
 // -------------------------
-bool kwd_in_plist(const UCHAR *p_lpszaKwdList[], const UCHAR *p_lpszKwd) 
+bool kwd_in_plist(const uchar *p_lpszaKwdList[], const uchar *p_lpszKwd) 
 {
 HRESULT retc = S_OK;
 bool retv = False;
-const UCHAR **list_ptr = p_lpszaKwdList;
+const uchar **list_ptr = p_lpszaKwdList;
 
     KP_ASSERTW((p_lpszaKwdList != NULL) && (p_lpszKwd != null), E_INVALIDARG, null);
     if(SUCCEEDED(retc))
@@ -227,9 +227,9 @@ return(retv);
 // ----------------------------
 void DviSpClass::TransSpec(int p_iNumOfBytes)
 {
-UCHAR *src_buf = null;
-    KP_NEWA(src_buf, UCHAR, p_iNumOfBytes + 1);
-UCHAR *src_ptr = src_buf;
+uchar *src_buf = null;
+    KP_NEWA(src_buf, uchar, p_iNumOfBytes + 1);
+uchar *src_ptr = src_buf;
 
     for (int ii = 0; ii < p_iNumOfBytes; ii++)
         *src_ptr++ = fgetc(m_pDviFile);
@@ -241,17 +241,17 @@ UCHAR *src_ptr = src_buf;
 }
 
 
-const UCHAR *prev_grp_tag = DRTI_INFO_GRP_TAG;
+const uchar *prev_grp_tag = DRTI_INFO_GRP_TAG;
 string last_xml_str = ""; // xml-as būna per kelias eilutes, į add_xml_to_rti() perduodam per kelis iškvietimus sukauptą stringą  
-void ProcessSpecial(const UCHAR *p_lpszSrcBuf)
+void ProcessSpecial(const uchar *p_lpszSrcBuf)
 {
 HRESULT retc = S_OK;
-const UCHAR *head = DVISP_SPEC_RTI_HEAD;
+const uchar *head = DVISP_SPEC_RTI_HEAD;
 bool hd_found = False;
-UCHAR src_buf[RTI_KWD_LEN + 1];
-UCHAR dst_buf[RTI_KWD_LEN + 1];
-const UCHAR *grp_tag_name = null;
-const UCHAR *grp_grp_tag_name = null;
+uchar src_buf[RTI_KWD_LEN + 1];
+uchar dst_buf[RTI_KWD_LEN + 1];
+const uchar *grp_tag_name = null;
+const uchar *grp_grp_tag_name = null;
 // xml tęsinių eilutėms
 bool xml_fl = False;
 
@@ -282,7 +282,7 @@ bool xml_fl = False;
             head = DVISP_SPEC_PAPERSIZE_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
-                head = (const UCHAR *)"";
+                head = (const uchar *)"";
         }
 
 // "header="
@@ -291,7 +291,7 @@ bool xml_fl = False;
             head = DVISP_SPEC_HEADER_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found) 
-                head = (const UCHAR *)"";
+                head = (const uchar *)"";
         }
 
         if (!hd_found)
@@ -351,7 +351,7 @@ bool xml_fl = False;
             head = DVISP_SPEC_MT_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
             if (hd_found)
-                head = (const UCHAR *)"";
+                head = (const uchar *)"";
         }
         
 // "vtex:info."
@@ -502,7 +502,7 @@ bool xml_fl = False;
                 {
                     grp_tag_name = prev_grp_tag;
                     xml_fl = True;
-                    head = (const UCHAR *)"";
+                    head = (const uchar *)"";
                 }
                 else hd_found = False;
             }
@@ -511,7 +511,7 @@ bool xml_fl = False;
 // tagai be reikšmių (nėra "=")
         if (hd_found)
         {
-/* const */ UCHAR *pnt_rest = src_buf + strlen(head);
+/* const */ uchar *pnt_rest = src_buf + strlen(head);
 
             if (strchr(pnt_rest, RTI_EQ_SIGN) == null)
             {
@@ -551,7 +551,7 @@ bool xml_fl = False;
             str_del(dst_buf, src_buf, head);
 
             if (xml_fl)
-                last_xml_str += (const CHAR *)dst_buf;
+                last_xml_str += (const char *)dst_buf;
             else 
                 add_to_rti(dst_buf, grp_tag_name, grp_grp_tag_name);
         }            

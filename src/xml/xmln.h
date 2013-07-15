@@ -18,11 +18,11 @@ public:
                         
     XmlTagPars *m_pTagPars; // tag parameters
 
-    UCHAR *m_lpszTagContents;  // text contents of the tag - null-terminated UTF-8 string, 
+    uchar *m_lpszTagContents;  // text contents of the tag - null-terminated UTF-8 string, 
                             //      only for m_iNodeTag==XC_Text, 
                             //      if not null -- no subtags and m_pTagPars allowed
                             
-    XmlNodeRec(int p_iNodeTag, XmlTagPars *p_pTagPars, UCHAR *p_lpszTagContents);
+    XmlNodeRec(int p_iNodeTag, XmlTagPars *p_pTagPars, uchar *p_lpszTagContents);
                 // konstruktorius                    
                 // p_pTagPars tiesiog priskiria m_pTagPars, todėl p_pTagPars turi būti dinamiškai išskirtas,
                 //      po grįžimo trinti nebegalima
@@ -45,7 +45,7 @@ class XmlTree
 {
 public:
     XmlNode *m_pRootNode; // record tree entry point
-    const UCHAR **m_plpszaTags; // pointeris į tagų vardų masyvą, pvz., plpszaXmlttDictTagsFull[]
+    const uchar **m_plpszaTags; // pointeris į tagų vardų masyvą, pvz., plpszaXmlttDictTagsFull[]
                                 // masyvo dydis -- XL_MaxNumOfTags
     int m_iFirstTag;    // tago kodas, atitinkantis m_plpszaTags[0]
     int m_iNumOfTags;   // m_plpszaTags[] elementų skaičius
@@ -53,6 +53,6 @@ public:
     XmlTree(void);
     
     // kuria tago objektą pagal tago vardą, pakeliui sukuria m_plpszaTags[] įrašą, jei tokio tago dar nėra 
-    XmlNodeRec *CreateTagNode(const UCHAR *p_lpszTagName, 
-        const XmlTagPars *p_TagPars, const UCHAR *p_lpszTagContents);
+    XmlNodeRec *CreateTagNode(const uchar *p_lpszTagName, 
+        const XmlTagPars *p_TagPars, const uchar *p_lpszTagContents);
 };

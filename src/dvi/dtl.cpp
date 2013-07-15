@@ -305,7 +305,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
 // tagai be reikšmių (nėra "=")
         if (hd_found)
         {
-const CHAR *pnt_rest = src_buf + strlen(head);
+const char *pnt_rest = src_buf + strlen(head);
             if (strchr(pnt_rest, RTI_EQ_SIGN) == NULL)
             {
 // pridedam <option> prie visų "vtex:settings." tagų be "="

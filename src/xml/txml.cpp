@@ -31,7 +31,7 @@ using namespace std;
 
 
 // -----------------------------
-TiXmlNode *FindNodeByName(const UCHAR *p_lpszTagName, TiXmlNode *p_pCurNode)
+TiXmlNode *FindNodeByName(const uchar *p_lpszTagName, TiXmlNode *p_pCurNode)
 {
 TiXmlNode *retv = NULL;
 
@@ -44,7 +44,7 @@ TiXmlNode *retv = NULL;
     {
         if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-            if (strcmp((const UCHAR *)cur_child->Value(), p_lpszTagName) == 0)
+            if (strcmp((const uchar *)cur_child->Value(), p_lpszTagName) == 0)
                 retv = cur_child;
             else
                 retv = FindNodeByName(p_lpszTagName, cur_child);
@@ -56,7 +56,7 @@ return (retv);
 
 
 // -----------------------------
-TiXmlNode *FindNodeById(const UCHAR *p_lpszId, TiXmlNode *p_pCurNode)
+TiXmlNode *FindNodeById(const uchar *p_lpszId, TiXmlNode *p_pCurNode)
 {
 TiXmlNode *retv = NULL;
 
@@ -69,7 +69,7 @@ TiXmlNode *retv = NULL;
     {
         if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-        const UCHAR *id_str = (const UCHAR *)(dynamic_cast<TiXmlElement *>(cur_child)->Attribute("id"));
+        const uchar *id_str = (const uchar *)(dynamic_cast<TiXmlElement *>(cur_child)->Attribute("id"));
             if (id_str != null)
                 if (strcmp(id_str, p_lpszId) == 0)
                     retv = cur_child;
@@ -83,16 +83,16 @@ return (retv);
 
 
 // ---------------------------------
-const UCHAR *GetNodeVal(TiXmlNode *p_pNode)
+const uchar *GetNodeVal(TiXmlNode *p_pNode)
 {
-const UCHAR *retv = null;
+const uchar *retv = null;
 
     TiXmlNode* cur_child = NULL;
     for (cur_child = p_pNode->FirstChild(); 
         (cur_child != NULL) && (retv == NULL); 
         cur_child = cur_child->NextSibling())
             if(cur_child->Type() == TiXmlNode::TINYXML_TEXT)
-                retv = (const UCHAR *)cur_child->Value();
+                retv = (const uchar *)cur_child->Value();
 
 return (retv);
 }
