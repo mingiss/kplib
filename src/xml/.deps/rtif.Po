@@ -125,12 +125,12 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleauto.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
- ../kplib/src/tinyxml/tinyxml.h \
+ ../tinyxml/tinyxml.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h \
- ../kplib/src/tinyxml/tinystr.h ../kplib/include/kperrno.h \
+ ../tinyxml/tinystr.h ../kplib/include/kperrno.h \
  ../kplib/include/kpstdlib.h ../kplib/include/kptt.h \
  ../kplib/src/kpctype.h ../kplib/src/kpstring.h ../kplib/src/kpmsg.h \
- ../kplib/include/kperr.h ../kplib/src/kptree.h ../kplib/src/xml/txml.h \
+ ../kplib/include/kperr.h ../kplib/src/kptree.h ../tinyxml/kpadd/txml.h \
  ../kplib/src/xml/rtid.h ../kplib/src/xml/fmtf.h ../kplib/src/xml/rtif.h \
  ../kplib/src/dvi/dvi.h ../kplib/src/dvi/dvread.h \
  ../kplib/src/dvi/dvisp.h
@@ -387,11 +387,11 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
-../kplib/src/tinyxml/tinyxml.h:
+../tinyxml/tinyxml.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
 
-../kplib/src/tinyxml/tinystr.h:
+../tinyxml/tinystr.h:
 
 ../kplib/include/kperrno.h:
 
@@ -409,7 +409,7 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/assert.h:
 
 ../kplib/src/kptree.h:
 
-../kplib/src/xml/txml.h:
+../tinyxml/kpadd/txml.h:
 
 ../kplib/src/xml/rtid.h:
 
