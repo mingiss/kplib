@@ -18,14 +18,120 @@
 #include <windows.h>
 #endif
 
+#include "res_com.h"
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
 #include "kpmsg.h"
+#include "kpwindow.h"
 #include "kperr.h"
 #include "kpcapp.h"
+
+
+// ------------------------------------------
+HINSTANCE KpCommonApp::m_hInstance = NULL;
+
+int KpCommonApp::m_iWndCaptionHgt = KPW_WND_CAPTION_HGT_INI;
+int KpCommonApp::m_iWndMenuHgt = KPW_WND_MENU_HGT_INI;
+int KpCommonApp::m_iWndBorderWdt = KPW_WND_BORDER_WDT_INI;
+
+
+void KpCommonApp::InitWindowPars(void)
+{
+WNDCLASSEX wcx;
+HWND test_wnd = NULL;
+RECT cli_rect;
+RECT wnd_rect;
+HMENU menu = NULL;
+
+// ---------------------------------
+    wcx.hInstance     = m_hInstance;
+    wcx.lpszClassName = "KPTEST",
+    wcx.lpfnWndProc   = DefWindowProc;
+    wcx.style         = CS_DBLCLKS;
+    wcx.cbSize        = sizeof(WNDCLASSEX);
+    wcx.hIcon         = LoadIcon(m_hInstance, IDI_APPLICATION); // MAKEINTRESOURCE(IDI_APPLICATION));
+    wcx.hIconSm       = LoadIcon(m_hInstance, IDI_APPLICATION); // MAKEINTRESOURCE(IDI_APPLICATION));
+    wcx.hCursor       = LoadCursor(0, IDC_ARROW);
+    wcx.lpszMenuName  = 0;
+    wcx.cbClsExtra    = 0;
+    wcx.cbWndExtra    = 0;
+    wcx.hbrBackground = (HBRUSH)COLOR_BACKGROUND;
+
+    KP_ASSERTW0(RegisterClassEx(&wcx), KP_E_SYSTEM_ERROR, GetLastError());
+
+// ---------------------------------
+    test_wnd = CreateWindowEx
+    (
+        0,              // DWORD dwExStyle,      // extended window style
+        "KPTEST",       // LPCTSTR lpClassName,
+        "KpTest",       // LPCTSTR lpWindowName, // pointer to window name
+         WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX |WS_THICKFRAME
+//       |WS_MINIMIZE
+#ifdef Debug
+//       |WS_VISIBLE
+#endif
+         , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,    // window style
+         200, // CW_USEDEFAULT, // int x,               // horizontal position of window
+         200, // CW_USEDEFAULT, // int y,               // vertical position of window
+         200, // CW_USEDEFAULT, // int nWidth,          // window width
+         200, // CW_USEDEFAULT, // int nHeight,         // window height
+         HWND_DESKTOP,  // HWND hWndParent,      // handle to parent or owner window
+         NULL,          // HMENU hMenu,          // handle to menu, or child-window identifier
+         m_hInstance, // HINSTANCE hInstance,
+         NULL           // LPVOID lpParam        // pointer to window-creation data
+    );
+    KP_ASSERT(test_wnd != NULL, KP_E_SYSTEM_ERROR, GetLastError());
+
+// --------------------------------
+    KP_ASSERT(GetClientRect(test_wnd, &cli_rect), KP_E_SYSTEM_ERROR, GetLastError()); 
+    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect), KP_E_SYSTEM_ERROR, GetLastError());
+    m_iWndBorderWdt = ((wnd_rect.right - wnd_rect.left) - (cli_rect.right - cli_rect.left)) / 2;
+    m_iWndCaptionHgt = ((wnd_rect.bottom - wnd_rect.top) - (cli_rect.bottom - cli_rect.top)) - 2 * m_iWndBorderWdt;
+
+    if (test_wnd != NULL) ::DestroyWindow(test_wnd);
+    test_wnd=NULL;
+
+// ------------------------------- menu
+    menu = CreateMenu();
+    KP_ASSERT(menu != NULL, KP_E_SYSTEM_ERROR, GetLastError());
+
+    KP_ASSERT(AppendMenu(menu, MF_STRING, KP_ID_FILE, "File"), KP_E_SYSTEM_ERROR, GetLastError());
+
+// ---------------------------------
+    test_wnd = CreateWindowEx
+    (
+        0,              // DWORD dwExStyle,      // extended window style
+        "KPTEST",       // LPCTSTR lpClassName,
+        "KpTest",       // LPCTSTR lpWindowName, // pointer to window name
+        WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX |WS_THICKFRAME
+//       |WS_MINIMIZE
+#ifdef Debug
+//       |WS_VISIBLE
+#endif
+         , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,    // window style
+         200, // CW_USEDEFAULT, // int x,               // horizontal position of window
+         200, // CW_USEDEFAULT, // int y,               // vertical position of window
+         200, // CW_USEDEFAULT, // int nWidth,          // window width
+         200, // CW_USEDEFAULT, // int nHeight,         // window height
+         HWND_DESKTOP,  // HWND hWndParent,      // handle to parent or owner window
+         menu,          // HMENU hMenu,          // handle to menu, or child-window identifier
+         m_hInstance,   // HINSTANCE hInstance,
+         NULL           // LPVOID lpParam        // pointer to window-creation data
+    );
+    KP_ASSERT(test_wnd != NULL, KP_E_SYSTEM_ERROR, GetLastError());
+
+// --------------------------------
+    KP_ASSERT(GetClientRect(test_wnd, &cli_rect), KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect), KP_E_SYSTEM_ERROR, GetLastError());
+    m_iWndMenuHgt = ((wnd_rect.bottom - wnd_rect.top) - (cli_rect.bottom - cli_rect.top)) - 
+        2 * m_iWndBorderWdt - m_iWndCaptionHgt;
+
+    if (test_wnd != NULL) ::DestroyWindow(test_wnd);
+    test_wnd=NULL;
+}
 
 
 // ------------------------------------------
@@ -98,6 +204,9 @@ DWORD val_type;
 #endif // #ifdef MsgLang
 
     KP_ASSERT((m_iMsgLangOff >= 0) && (m_iMsgLangOff < KpNumOfLangs), KP_E_SYSTEM_ERROR, null);
+
+// -------------
+    InitWindowPars();
 }
 
 #endif // #ifdef __WIN32__

@@ -22,9 +22,16 @@ public:
     const void *m_pStackTop;
 
     uchar m_lpszAppName[KP_MAX_FNAME_LEN + 1]; // full path to the executable
+
 #ifdef __WIN32__
     static HINSTANCE m_hInstance;   // nustatomas KpInitWindows(), po to Init()
+
+    // nustatomi InitWindowPars()
+    static int m_iWndCaptionHgt;
+    static int m_iWndMenuHgt;
+    static int m_iWndBorderWdt;
 #endif
+
     uchar m_lpszCmdLine[KP_MAX_FNAME_LEN + 1]; // command line
 
     static KpLang m_iMsgLangOff; // member, set by KpInitWindows() // nupjautas iki KpNumOfLangs, galima naudoti masyvų indeksams
@@ -37,8 +44,10 @@ public:
     virtual void Close(void){}                                  // usually pointer to some local variable of the main() function
                                                                 // could be NULL
 #ifdef __WIN32__
+    static void InitWindowPars(void); // iškviečiamas KpInitWindows()    
     static void KpInitWindows(void); // iškviečiamas konstruktoriaus
 #endif
+
    
     void SetProd(const uchar *lpszProdName, int iProdVer); // sets value of KpError.m_lpszProdName[] and m_iProdVer
     

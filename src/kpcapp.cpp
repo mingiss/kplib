@@ -30,10 +30,6 @@ using namespace std;
 
 
 // ----------------------------------
-#ifdef __WIN32__
-HINSTANCE KpCommonApp::m_hInstance = NULL;
-#endif
-
 KpLang KpCommonApp::m_iMsgLangOff = KpLangEn;
 
 
