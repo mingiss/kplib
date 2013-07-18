@@ -7,7 +7,10 @@
  *   
  */   
 
+#ifndef kpimg_included
+#define kpimg_included
+
 #define KPG_BMP_EXT "bmp"
 #define KPG_PGM_EXT "pgm"
 
-extern const uchar *plpszPictExt[]; // paveikslų failų prievardžių atitinkamybė failų formatams FREE_IMAGE_FORMAT
+#endif // #ifndef kpimg_included
