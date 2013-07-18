@@ -13,9 +13,11 @@
 
 #include "envir.h"
 
+#include <stdio.h>
 #include <iostream>
 #ifdef __WIN32__
 #include <windows.h>
+#include <wincon.h>
 #endif
 
 #include "res_com.h"
@@ -135,14 +137,30 @@ HMENU menu = NULL;
 
 
 // ------------------------------------------
-void KpCommonApp::KpInitWindows(void)
+void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 {
 // -----------------
-    m_hInstance = 
 #ifdef __WIN32__
-        GetModuleHandle(NULL);
-#else
-        0;
+    if(p_hInstance != 0L) m_hInstance = p_hInstance;
+    else
+    { 
+//      m_hInstance = GetModuleHandle(NULL);
+
+    HWND cons_wnd = GetConsoleWindow();
+        KP_ASSERT(cons_wnd != NULL, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle must be provided");
+        m_hInstance = (HINSTANCE)GetWindowLong(cons_wnd, GWL_HINSTANCE);
+printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, cons_wnd);
+
+#if FALSE
+    char cur_title[KP_MAX_FNAME_LEN + 1];
+        KP_ASSERT(GetConsoleTitle(cur_title, KP_MAX_FNAME_LEN), KP_E_SYSTEM_ERROR, null);
+        KP_ASSERTW0(SetConsoleTitle("zzzz"), KP_E_SYSTEM_ERROR, GetLastError()); // (const char *)KpError.m_lpszProdName);
+        cons_wnd = FindWindow(NULL, "zzzz"); // (const char *)KpError.m_lpszProdName);
+//      SetConsoleTitle(cur_title);
+        m_hInstance = (HINSTANCE)GetWindowLong(cons_wnd, GWL_HINSTANCE);
+printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, cons_wnd);
+#endif
+    }
 #endif
 
 // -----------------

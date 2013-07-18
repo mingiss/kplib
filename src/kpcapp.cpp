@@ -34,25 +34,24 @@ KpLang KpCommonApp::m_iMsgLangOff = KpLangEn;
 
 
 // ----------------------------------
-KpCommonApp::KpCommonApp(const uchar *lpszProdName, int iProdVer)
+KpCommonApp::KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer)
 {
     m_iMsgLangOff = KpLangEn;
 #ifdef __WIN32__
     m_hInstance = 0L;
-    KpInitWindows();
 #endif
 
     m_lpszAppName[0] = Nul;
    
-    SetProd(lpszProdName, iProdVer);
+    SetProd(p_lpszProdName, p_iProdVer);
     
     m_lpszCmdLine[0] = Nul;
-    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
-    KP_ASSERT(strlen(KP_CUR_DIR_STR) + strlen(KP_DIR_SEP_STR) + strlen(lpszProdName) + strlen(KP_EXT_SEP_STR) + strlen(KP_EXE_EXT) 
-        <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, lpszProdName);
+    KP_ASSERT(p_lpszProdName != null, E_INVALIDARG, null);
+    KP_ASSERT(strlen(KP_CUR_DIR_STR) + strlen(KP_DIR_SEP_STR) + strlen(p_lpszProdName) + strlen(KP_EXT_SEP_STR) + strlen(KP_EXE_EXT) 
+        <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, p_lpszProdName);
     strcpy(m_lpszCmdLine, KP_CUR_DIR_STR); 
     strcat(m_lpszCmdLine, KP_DIR_SEP_STR); 
-    strcat(m_lpszCmdLine, lpszProdName);
+    strcat(m_lpszCmdLine, p_lpszProdName);
     strcat(m_lpszCmdLine, KP_EXT_SEP_STR); 
     strcat(m_lpszCmdLine, KP_EXE_EXT);
    
@@ -68,17 +67,17 @@ KpCommonApp::~KpCommonApp(void){}
 
 
 // ----------------------------------
-void KpCommonApp::Init(HINSTANCE hInstance, const uchar *lpszCmdLine, const void *pStackTop)
+void KpCommonApp::Init(HINSTANCE p_hInstance, const uchar *p_lpszCmdLine, const void *p_pStackTop)
 {
 #ifdef __WIN32__
-    if(hInstance != 0L) m_hInstance = hInstance;
+    KpInitWindows(p_hInstance);
 #endif
 
-    KP_ASSERT(lpszCmdLine != NULL, E_POINTER, null);
-    strncpy(m_lpszCmdLine, lpszCmdLine, KP_MAX_FNAME_LEN);
+    KP_ASSERT(p_lpszCmdLine != NULL, E_POINTER, null);
+    strncpy(m_lpszCmdLine, p_lpszCmdLine, KP_MAX_FNAME_LEN);
     m_lpszCmdLine[KP_MAX_FNAME_LEN] = Nul;
 
-    m_pStackTop = pStackTop;
+    m_pStackTop = p_pStackTop;
 
 static uchar log_fname[KP_MAX_FNAME_LEN + 1];
     KpError.GetLogFileName(log_fname);
@@ -87,21 +86,21 @@ static uchar log_fname[KP_MAX_FNAME_LEN + 1];
 
 
 // ----------------------------------
-void KpCommonApp::SetProd(const uchar *lpszProdName, int iProdVer)
+void KpCommonApp::SetProd(const uchar *p_lpszProdName, int p_iProdVer)
 {
-    KP_ASSERT(lpszProdName != null, E_INVALIDARG, null);
-    KpError.SetProdName(lpszProdName);
-    m_iProdVer = iProdVer;
+    KP_ASSERT(p_lpszProdName != null, E_INVALIDARG, null);
+    KpError.SetProdName(p_lpszProdName);
+    m_iProdVer = p_iProdVer;
 }
 
 
 // ----------------------------------
-void KpCommonApp::GetAppName(uchar *lpszNameBuf)
+void KpCommonApp::GetAppName(uchar *p_lpszNameBuf)
 {
-    KP_ASSERT(lpszNameBuf != null, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszNameBuf != null, E_INVALIDARG, null);
     
     if(m_lpszAppName[0] != Nul)
-        strcpy(lpszNameBuf, m_lpszAppName); // tik pirmą kartą būna teisingas kelias, paskui nustatau SetCurrentDirectory() ir santykinis kelias išsiderina
+        strcpy(p_lpszNameBuf, m_lpszAppName); // tik pirmą kartą būna teisingas kelias, paskui nustatau SetCurrentDirectory() ir santykinis kelias išsiderina
     else
     {
 uchar *pnts = m_lpszCmdLine;
@@ -124,14 +123,14 @@ static uchar name_buf_tmp[KP_MAX_FNAME_LEN + 1];
 
 #ifdef __WIN32__
 DWORD ll = 0L;
-        ll = GetFullPathName((const char *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)lpszNameBuf, NULL);
+        ll = GetFullPathName((const char *)name_buf_tmp, KP_MAX_FNAME_LEN, (char *)p_lpszNameBuf, NULL);
 //      KP_ASSERT(ll > 0L, KP_E_SYSTEM_ERROR, GetLastError());
         KP_ASSERTW0(ll < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-        lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;
+        p_lpszNameBuf[KP_MAX_FNAME_LEN] = Nul;
 #else
 // TODO Linux: get full path
-        strcpy(lpszNameBuf, name_buf_tmp);
+        strcpy(p_lpszNameBuf, name_buf_tmp);
 #endif        
-        strcpy(m_lpszAppName, lpszNameBuf);
+        strcpy(m_lpszAppName, p_lpszNameBuf);
     }
 }
