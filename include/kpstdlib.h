@@ -332,7 +332,9 @@ extern KpHeapClass KpHeap;
 
 // ================================================== integer types and constants, math
 #define MAX_UCHAR 0xFF
+#ifndef __WIN32__
 #define MAX_INT 0x7FFFFFFF
+#endif
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 
