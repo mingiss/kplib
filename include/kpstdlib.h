@@ -80,17 +80,17 @@ typedef enum
 #define KpLangPl_1257_p 3
    KpLangRu_1251,    // 4 - rusų
 #define KpLangRu_1251_p 4
-   KpLangRu_0,       // 5 - rusų su angliškais mygtukų tekstais – kai regional Settings ne rusiški
+   KpLangRu_0,       // 5 - rusų su angli�kais mygtukų tekstais – kai regional Settings ne rusi�ki
 #define KpLangRu_0_p 5
 
    KpNumOfLangs,
 #define KpNumOfLangs_p 6
 
-   KpLangRu    = 97, // 97 - išsitraukti iš registro Regional Setting'ų – KpLangRu_0 arba KpLangRu_1251 (jei rusiški)
+   KpLangRu    = 97, // 97 - i�sitraukti i� registro Regional Setting'ų – KpLangRu_0 arba KpLangRu_1251 (jei rusi�ki)
 #define KpLangRu_p   97
-   KpLangPl    = 98, // 98 - išsitraukti iš registro Regional Setting'ų – KpLangPl_1250 arba KpLangPl_1257 (jei lietuviški/Baltic)
+   KpLangPl    = 98, // 98 - i�sitraukti i� registro Regional Setting'ų – KpLangPl_1250 arba KpLangPl_1257 (jei lietuvi�ki/Baltic)
 #define KpLangPl_p   98
-   KpLangSel,        // 99 - išsitraukti iš registro Regional Setting'ų
+   KpLangSel,        // 99 - i�sitraukti i� registro Regional Setting'ų
 #define KpLangSel_p  99
 
 } KpLang;
@@ -174,7 +174,7 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
       // -1: **ppVal1 > **ppVal2
 
 // ========================================= file I/O
-#define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis
+#define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neai�kios makrokomandos – pasikeis kpstart.ini dydis
 #define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist – pasikeis kpstart.ini dydis
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
@@ -332,7 +332,9 @@ extern KpHeapClass KpHeap;
 
 // ================================================== integer types and constants, math
 #define MAX_UCHAR 0xFF
+#ifndef __WIN32__
 #define MAX_INT 0x7FFFFFFF
+#endif
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 
