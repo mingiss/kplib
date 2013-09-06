@@ -34,6 +34,7 @@
 
 // ------------------------------------------
 HINSTANCE KpCommonApp::m_hInstance = NULL;
+HWND KpCommonApp::m_hWndParent = NULL;
 
 int KpCommonApp::m_iWndCaptionHgt = KPW_WND_CAPTION_HGT_INI;
 int KpCommonApp::m_iWndMenuHgt = KPW_WND_MENU_HGT_INI;
@@ -141,7 +142,11 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 {
 // -----------------
 #ifdef __WIN32__
-    if (p_hInstance) m_hInstance = p_hInstance;
+    if (p_hInstance)
+    {
+        m_hInstance = p_hInstance;
+        m_hWndParent = HWND_DESKTOP;
+    }
     else
     {
 //      m_hInstance = GetModuleHandle(NULL);
@@ -149,19 +154,20 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 #ifndef KP_CONSOLE
 #error Not a console application
 #endif
-    HWND cons_wnd = GetConsoleWindow(); // = HWND_DESKTOP; // TODO: neveikia ið CodeBlocks 
-        KP_ASSERT(cons_wnd, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle must be provided");
-        m_hInstance = (HINSTANCE)GetWindowLong(cons_wnd, GWL_HINSTANCE);
-// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, cons_wnd);
+    // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 ið MSYS, nëra MinGW 4.4.1 ið CodeBlocks 10.05
+        m_hWndParent = GetConsoleWindow(); // = HWND_DESKTOP; 
+        KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle must be provided");
+        m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
+// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, m_hWndParent);
 
 #if FALSE
     char cur_title[KP_MAX_FNAME_LEN + 1];
         KP_ASSERT(GetConsoleTitle(cur_title, KP_MAX_FNAME_LEN), KP_E_SYSTEM_ERROR, null);
         KP_ASSERTW0(SetConsoleTitle("zzzz"), KP_E_SYSTEM_ERROR, GetLastError()); // (const char *)KpError.m_lpszProdName);
-        cons_wnd = FindWindow(NULL, "zzzz"); // (const char *)KpError.m_lpszProdName);
+        m_hWndParent = FindWindow(NULL, "zzzz"); // (const char *)KpError.m_lpszProdName);
 //      SetConsoleTitle(cur_title);
-        m_hInstance = (HINSTANCE)GetWindowLong(cons_wnd, GWL_HINSTANCE);
-// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, cons_wnd);
+        m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
+// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, m_hWndParent);
 #endif
     }
 #endif

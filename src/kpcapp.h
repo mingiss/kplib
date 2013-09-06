@@ -26,6 +26,9 @@ public:
 #ifdef __WIN32__
     static HINSTANCE m_hInstance;   // nustatomas KpInitWindows(), po to Init()
 
+    static HWND m_hWndParent; // parent window: either desktop or console 
+    HWND m_hWndHandle; // main program window
+
     // nustatomi InitWindowPars()
     static int m_iWndCaptionHgt;
     static int m_iWndMenuHgt;

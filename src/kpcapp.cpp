@@ -38,7 +38,9 @@ KpCommonApp::KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer)
 {
     m_iMsgLangOff = KpLangEn;
 #ifdef __WIN32__
-    m_hInstance = 0L;
+    m_hInstance = NULL;
+    m_hWndHandle = NULL;
+    m_hWndParent = NULL; 
 #endif
 
     m_lpszAppName[0] = Nul;
