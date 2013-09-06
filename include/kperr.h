@@ -5,8 +5,8 @@
  *    error handling
  *
  * 2013-02-22  mp  initial creation
- *  
- */      
+ *
+ */
 
 #ifndef kperr_included
 #define kperr_included
@@ -18,15 +18,15 @@
 //
 // severe error – throws an exception if bCond not kept
 #ifdef KP_CPP
-#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_THROW(lhErrCode, Msg); } }}
+#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_THROW(lhErrCode, Msg); } }}
 #else
-#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_ERROR(lhErrCode, Msg); exit(lhErrCode); } }}
+#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_ERROR(lhErrCode, Msg); exit(lhErrCode); } }}
 #endif
 
 // local fault – puts warning to the log file and sets local variable retc (HRESULT retc)
-#define KP_ASSERTW(bCond, lhErrCode, Msg) {{ if(SUCCEEDED(retc)) if(!(bCond)){ KP_WARNING(lhErrCode, Msg); retc = lhErrCode; } }}
+#define KP_ASSERTW(bCond, lhErrCode, Msg) {{ if (SUCCEEDED(retc)) if (!(bCond)){ KP_WARNING(lhErrCode, Msg); retc = lhErrCode; } }}
 // the same as KP_ASSERTW, but does not bother with retc
-#define KP_ASSERTW0(bCond, lhErrCode, Msg) {{ if(!(bCond)){ KP_WARNING(lhErrCode, Msg); } }}
+#define KP_ASSERTW0(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_WARNING(lhErrCode, Msg); } }}
 
 
 #ifdef __cplusplus
@@ -71,7 +71,7 @@ public:
    LONG m_lWindowsErrorCode;
    uchar m_lpszSourceFile[KP_MAX_FNAME_LEN + 1];
    int m_iSourceLine;
-   
+
    KpException
    (
       HRESULT lhRetc,
@@ -117,24 +117,24 @@ public:
 
 //  volatile int m_iInsideOfStackDump; // StackDump() recursion avoiding semaphore
     volatile int m_iInsideOfPutLogMessage; // PutLogMessage() recursion avoiding semaphore
-    
+
     HRESULT m_lhLastRetc;
     uchar m_lpszLastMessageText[KP_MAX_FILE_LIN_LEN + 1];
     uchar m_lpszLastSourceFile[KP_MAX_FNAME_LEN + 1];
     int m_iLastSourceLine;
-    
+
     KpErrorClass(const uchar *lpszProdName);
-    
+
     void SetProdName(const uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
     void GetProdName(uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
-    const uchar *GetProdNamePtr(void); // grąžina m_lpszProdName, taigi, ne ilgesnis už KP_MAX_FNAME_LEN 
+    const uchar *GetProdNamePtr(void); // grąžina m_lpszProdName, taigi, ne ilgesnis už KP_MAX_FNAME_LEN
 
 //  void StackDump(void);
-    
+
     void GetLogFileName(uchar *lpszLogFNameBuf); // lpszFNameBuf[KP_MAX_FNAME_LEN + 1];
     void EncodeLogBuf(uchar *pBuffer, int iDataLen);
-    
-// --------------------   
+
+// --------------------
     void PutLogMessage(const uchar *lpszFmt, va_list Args);
     void PutLogMessage(const uchar *lpszFmt, ...)
     {
@@ -149,18 +149,18 @@ va_list argptr;
         PutLogMessage((const uchar *)lpszFmt, argptr);
     }
 
-// --------------------   
+// --------------------
     void SendDiagMsg
     (
-        const uchar *lpszMessageText, // pranešimas klientui 
-        bool bSevereError,            // jei False – ne klaida, o tiesiog diag. msg siuntimas, 
+        const uchar *lpszMessageText, // pranešimas klientui
+        bool bSevereError,            // jei False – ne klaida, o tiesiog diag. msg siuntimas,
                                       //    formuoti atitinkamą ikoną ir kepurės tekstą
-        const uchar *lpszAddMessage   // papildomas pranešimas apie klaidos kodą ir src failą, 
+        const uchar *lpszAddMessage   // papildomas pranešimas apie klaidos kodą ir src failą,
                                       //    klientui nerodomas, siunčiamas helpdeskui
     );
 
-// --------------------   
-    static HRESULT FormatErrorMessage
+// --------------------
+    static void FormatErrorMessage
     (
         const HRESULT lhRetc,
         uchar *lpszMsg
@@ -181,7 +181,7 @@ va_list argptr;
                                // lpszMsg is used to return back the error text, must
                                //    be not shorter, than KP_MAX_FILE_LIN_LEN bytes
 
-// --------------------   
+// --------------------
     void OutputErrorMessage          // outputs error message; calls FormatErrorMessage()
     (
         HRESULT lhRetc,
@@ -190,7 +190,7 @@ va_list argptr;
         const uchar *lpszSourceFile,
         int iSourceLine
     );
-    
+
     void OutputErrorMessage
     (
         HRESULT lhRetc,
@@ -199,7 +199,7 @@ va_list argptr;
         const uchar *lpszSourceFile,
         int iSourceLine
     ){ OutputErrorMessage(lhRetc, (const uchar *)lpszMessageText, bSevereError, lpszSourceFile, iSourceLine); }
-    
+
     void OutputErrorMessage
     (
         HRESULT lhRetc,
@@ -208,8 +208,8 @@ va_list argptr;
         const uchar *lpszSourceFile,
         int iSourceLine
     ){ OutputErrorMessage(lhRetc, FormatSystemErrorMessage(lWindowsErrorCode), bSevereError, lpszSourceFile, iSourceLine); };
-    
-// --------------------   
+
+// --------------------
     void Catch(const std::exception &e);
 };
 

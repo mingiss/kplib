@@ -46,29 +46,29 @@ FmtFile::FmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode)
 
     strcpy(m_lpszFileMode, "r");
     
-    if(p_lpszFileMode != null)
+    if (p_lpszFileMode)
     {
         KP_ASSERT(strlen(p_lpszFileMode) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszFileMode, p_lpszFileMode);
     }
 
-    if(strchr(m_lpszFileMode, 'b') == null)
+    if (strchr(m_lpszFileMode, 'b') == null)
     {
 #if FALSE
-        if(strchr(m_lpszFileMode, 'w') != null) m_pFileObj = stdout;
-        if(strchr(m_lpszFileMode, 'r') != null) m_pFileObj = stdin;
+        if (strchr(m_lpszFileMode, 'w')) m_pFileObj = stdout;
+        if (strchr(m_lpszFileMode, 'r')) m_pFileObj = stdin;
 #endif
         strcpy(m_lpszFileName, (const uchar *)"con");
     }
     
-    if(p_lpszFileName != null) if (p_lpszFileName[0] != Nul)
+    if (p_lpszFileName) if (p_lpszFileName[0])
     {
         KP_ASSERT(strlen(p_lpszFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszFileName, p_lpszFileName);
         
         // ExportDoc() pats failą ir atsidaro, ir uždaro
         // m_pFileObj = fopen((const char *)m_lpszFileName, (const char *)m_lpszFileMode);
-        // KP_ASSERT(m_pFileObj != NULL, KP_E_DIR_ERROR, p_lpszFileName);
+        // KP_ASSERT(m_pFileObj, KP_E_DIR_ERROR, p_lpszFileName);
     }
 }
 
@@ -84,9 +84,9 @@ void FmtFile::CloseOutFile(void)
 {
 // ExportDoc() pats failą ir atsidaro, ir uždaro
 #if FALSE
-    if(m_pFileObj != NULL)
+    if (m_pFileObj)
     {
-        if(m_pFileObj == stdout)
+        if (m_pFileObj == stdout)
             KP_ASSERT(fflush(m_pFileObj) != EOF, KP_E_FERROR, null)
         else
             KP_ASSERT(fclose(m_pFileObj) != EOF, KP_E_FERROR, m_lpszFileName);
@@ -101,12 +101,12 @@ void FmtFile::CloseOutFile(void)
 // ---------------------------------
 void FmtFile::CreateGrpNode(const uchar *p_lpszTagName, const uchar *p_lpszGrpTagName)
 {
-    KP_ASSERT(p_lpszTagName != null, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszTagName, E_INVALIDARG, null);
 
 TiXmlNode *grp_node = NULL;
 TiXmlNode *cur_node = NULL;
 
-    if (p_lpszGrpTagName != null)
+    if (p_lpszGrpTagName)
     {
         grp_node = FindNodeByName(p_lpszGrpTagName, &m_XmlDoc);
     }
@@ -116,7 +116,7 @@ TiXmlNode *cur_node = NULL;
     // tikrinam, gal jau toks yra
     cur_node = FindNodeByName(p_lpszTagName, grp_node);
 
-    if(cur_node == NULL)
+    if (cur_node == NULL)
     {            
     TiXmlElement *element = NULL;
         KP_NEW(element, TiXmlElement((const char *)p_lpszTagName));

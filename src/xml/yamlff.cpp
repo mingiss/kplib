@@ -50,7 +50,7 @@ void YamlFmtFile::MakeIndent(FILE *p_pOutFile)
 {
 int ii;
 
-    for(ii = 0; ii < m_iIndent; ii++)
+    for (ii = 0; ii < m_iIndent; ii++)
         fprintf(p_pOutFile, "    ");
 }        
 
@@ -60,15 +60,15 @@ void YamlFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile)
 {
 int indent = 0;
 
-    KP_ASSERT(p_pCurNode != NULL, E_INVALIDARG, null);
-    KP_ASSERT(p_pOutFile != NULL, KP_E_NO_FILE, null);
+    KP_ASSERT(p_pCurNode, E_INVALIDARG, null);
+    KP_ASSERT(p_pOutFile, KP_E_NO_FILE, null);
 
-    if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
+    if (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
     const uchar *tag_name = (const uchar *)p_pCurNode->Value();
-        KP_ASSERT(tag_name != null, E_POINTER, null);
+        KP_ASSERT(tag_name, E_POINTER, null);
 
-        if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
+        if (strcmp(tag_name, DRTI_XML_GRP_TAG)) // "xml"
         {
             indent = 1;
             
@@ -76,7 +76,7 @@ int indent = 0;
             fprintf(p_pOutFile, "%s:", (const char *)tag_name);
 
 const uchar *value = GetNodeVal(p_pCurNode);
-            if(value != null) fprintf(p_pOutFile, " %s", value);
+            if (value) fprintf(p_pOutFile, " %s", value);
 
             fprintf(p_pOutFile, "\n");
         }
@@ -85,8 +85,8 @@ const uchar *value = GetNodeVal(p_pCurNode);
     m_iIndent += indent;
     
     TiXmlNode *cur_child = NULL;
-    for (cur_child = p_pCurNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
-        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+    for (cur_child = p_pCurNode->FirstChild(); cur_child; cur_child = cur_child->NextSibling())
+        if (cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
             ExportNode(cur_child, p_pOutFile);
     
     m_iIndent -= indent;
@@ -96,7 +96,7 @@ const uchar *value = GetNodeVal(p_pCurNode);
 void YamlFmtFile::ExportDoc(void)
 {
 FILE *out_file = fopen((const char *)m_lpszFileName, "w");
-    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
+    KP_ASSERT(out_file, KP_E_DIR_ERROR, m_lpszFileName);
 
     fprintf(out_file, "---\n");
 

@@ -47,16 +47,16 @@ return(fmt_file);
 // ---------------------------------
 void PlistFmtFile::TransferNode(TiXmlNode *p_pSrcNode, TiXmlNode *p_pDestParNode)
 {
-    KP_ASSERT((p_pSrcNode != NULL) && (p_pDestParNode != NULL), E_INVALIDARG, null);
+    KP_ASSERT(p_pSrcNode && p_pDestParNode, E_INVALIDARG, null);
 
 TiXmlElement *dest_child = NULL;
 
-    if(p_pSrcNode->Type() == TiXmlNode::TINYXML_ELEMENT)
+    if (p_pSrcNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
     const uchar *tag_name = (const uchar *)p_pSrcNode->Value();
-        KP_ASSERT(tag_name != null, E_POINTER, null);
+        KP_ASSERT(tag_name, E_POINTER, null);
 
-        if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
+        if (strcmp(tag_name, DRTI_XML_GRP_TAG)) // "xml"
         {
             KP_NEW(dest_child, TiXmlElement("key"));
 
@@ -69,7 +69,7 @@ TiXmlText *text = NULL;
             dest_child = NULL;
 
 const uchar *value = GetNodeVal(p_pSrcNode);
-            if(value != null)
+            if (value)
             {
                 KP_NEW(dest_child, TiXmlElement("string"));
                 
@@ -85,10 +85,10 @@ const uchar *value = GetNodeVal(p_pSrcNode);
     
     dest_child = NULL;
 TiXmlNode* cur_child = NULL;
-    for (cur_child = p_pSrcNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
-        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+    for (cur_child = p_pSrcNode->FirstChild(); cur_child; cur_child = cur_child->NextSibling())
+        if (cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
-            if(dest_child == NULL)
+            if (dest_child == NULL)
             {
                 KP_NEW(dest_child, TiXmlElement("dict"));
                 p_pDestParNode->LinkEndChild(dest_child);

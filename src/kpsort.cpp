@@ -49,28 +49,28 @@ uchar kwd_str[KP_KWD_LEN + 1];
 int ii;
 int retv = TV_TG_NoKey;
 
-    KP_ASSERT((p_lpszKeywrd != null) && (p_plpszKeytable != NULL), E_INVALIDARG, null); 
+    KP_ASSERT(p_lpszKeywrd && p_plpszKeytable, E_INVALIDARG, null); 
     KP_ASSERT(strlen(p_lpszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
     ix = 0;
     while
     (
         ((p_iTabSize < 0) || (ix < p_iTabSize)) &&
-        ((p_iTabSize >= 0) || (p_plpszKeytable[ix] != null)) &&
+        ((p_iTabSize >= 0) || p_plpszKeytable[ix]) &&
         (retv == TV_TG_NoKey)
     )
     {
         strcpy(kwd_str, p_lpszKeywrd);
-        if(p_plpszKeytable[ix] != null)
+        if (p_plpszKeytable[ix])
         {
-            if(!p_bWholeWords)
+            if (!p_bWholeWords)
             { 
                 ii = strlen(p_plpszKeytable[ix]);
                 KP_ASSERT(ii < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
                 kwd_str[ii] = Nul;
             }
 
-            if(UcStrCmp(kwd_str, p_plpszKeytable[ix], False, KP_LNG_ENG, p_bCaseSens, False) == 0)
+            if (UcStrCmp(kwd_str, p_plpszKeytable[ix], False, KP_LNG_ENG, p_bCaseSens, False) == 0)
                 retv = ix;
         }
          
@@ -96,7 +96,7 @@ int ii;
 int retv = TV_TG_NoKey;
 const uchar *cur_kwd = p_plpszKeytable;
 
-    KP_ASSERT((p_lpszKeywrd != null) && (p_plpszKeytable != NULL), E_INVALIDARG, null); 
+    KP_ASSERT(p_lpszKeywrd && p_plpszKeytable, E_INVALIDARG, null); 
     KP_ASSERT(strlen(p_lpszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
     KP_ASSERT(p_iKeySize > 1, E_INVALIDARG, null);
 
@@ -104,21 +104,21 @@ const uchar *cur_kwd = p_plpszKeytable;
     while
     (
         ((p_iTabSize < 0) || (ix < p_iTabSize)) &&
-        ((p_iTabSize >= 0) || (*cur_kwd != Nul)) &&
+        ((p_iTabSize >= 0) || *cur_kwd) &&
         (retv == TV_TG_NoKey)
     )
     {
         strcpy(kwd_str, p_lpszKeywrd);
-        if(*cur_kwd != Nul)
+        if (*cur_kwd)
         {
-            if(!p_bWholeWords)
+            if (!p_bWholeWords)
             { 
                 ii = strlen(cur_kwd);
                 KP_ASSERT(ii < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
                 kwd_str[ii] = Nul;
             }
 
-            if(UcStrCmp(kwd_str, cur_kwd, False, KP_LNG_ENG, p_bCaseSens, False) == 0)
+            if (UcStrCmp(kwd_str, cur_kwd, False, KP_LNG_ENG, p_bCaseSens, False) == 0)
                 retv = ix;
         }
          

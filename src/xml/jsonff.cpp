@@ -49,7 +49,7 @@ void JsonFmtFile::MakeIndent(FILE *p_pOutFile)
 {
 int ii;
 
-    for(ii = 0; ii < m_iIndent; ii++)
+    for (ii = 0; ii < m_iIndent; ii++)
         fprintf(p_pOutFile, "    ");
 }        
 
@@ -57,41 +57,41 @@ int ii;
 // ---------------------------------
 void JsonFmtFile::ExportNode(TiXmlNode *p_pCurNode, FILE *p_pOutFile, bool *p_pbOutputEmpty)
 {
-    KP_ASSERT((p_pCurNode != NULL) && (p_pbOutputEmpty != NULL), E_INVALIDARG, null);
-    KP_ASSERT(p_pOutFile != NULL, KP_E_NO_FILE, null);
+    KP_ASSERT(p_pCurNode && p_pbOutputEmpty, E_INVALIDARG, null);
+    KP_ASSERT(p_pOutFile, KP_E_NO_FILE, null);
 
-    if(p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
+    if (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT)
     {
     const uchar *tag_name = (const uchar *)p_pCurNode->Value();
-        KP_ASSERT(tag_name != null, E_POINTER, null);
+        KP_ASSERT(tag_name, E_POINTER, null);
 
-        if(strcmp(tag_name, DRTI_XML_GRP_TAG) != 0) // "xml"
+        if (strcmp(tag_name, DRTI_XML_GRP_TAG)) // "xml"
         {
-            if(p_pCurNode->PreviousSibling() != NULL) fprintf(p_pOutFile, ",");
+            if (p_pCurNode->PreviousSibling()) fprintf(p_pOutFile, ",");
             fprintf(p_pOutFile, "\n");
     
             MakeIndent(p_pOutFile);
             fprintf(p_pOutFile, "\"%s\":", (const char *)tag_name);
 
 const uchar *value = GetNodeVal(p_pCurNode);
-            if(value != null) fprintf(p_pOutFile, " \"%s\"", value);
+            if (value) fprintf(p_pOutFile, " \"%s\"", value);
         }
     }
     
 bool children_put_out = False;    
     
     TiXmlNode* cur_child = NULL;
-    for (cur_child = p_pCurNode->FirstChild(); (cur_child != NULL); cur_child = cur_child->NextSibling())
-        if(cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
+    for (cur_child = p_pCurNode->FirstChild(); cur_child; cur_child = cur_child->NextSibling())
+        if (cur_child->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
 bool make_indent = (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT); // dokumentui nereikia, užteks nuo <xml>        
             if (make_indent)
             {
-                if((!children_put_out))
+                if ((!children_put_out))
                 {
                     children_put_out = True;
                     
-                    if(!*p_pbOutputEmpty)
+                    if (!*p_pbOutputEmpty)
                         fprintf(p_pOutFile, "\n");
                     *p_pbOutputEmpty = False;
                                             
@@ -118,7 +118,7 @@ bool make_indent = (p_pCurNode->Type() == TiXmlNode::TINYXML_ELEMENT); // dokume
 void JsonFmtFile::ExportDoc(void)
 {
 FILE *out_file = fopen((const char *)m_lpszFileName, "w");
-    KP_ASSERT(out_file != NULL, KP_E_DIR_ERROR, m_lpszFileName);
+    KP_ASSERT(out_file, KP_E_DIR_ERROR, m_lpszFileName);
 
     m_iIndent = 0;
 

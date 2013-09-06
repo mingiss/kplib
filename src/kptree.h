@@ -31,7 +31,7 @@ public:
     // don't delete it after return
     KpTreeEntry(KpTreeRecType *lpRecord, KpTreeEntry<KpTreeRecType> *pFath)
     {
-     // KP_ASSERT(lpRecord != NULL, E_INVALIDARG, null);
+     // KP_ASSERT(lpRecord, E_INVALIDARG, null);
         m_lpRecord = lpRecord;
 
         m_pFather = pFath;
@@ -46,14 +46,14 @@ public:
     {
     KpTreeEntry<KpTreeRecType> *next_br = NULL;
 
-        while (m_pNextBrother != NULL)
+        while (m_pNextBrother)
         {
             next_br = m_pNextBrother->GetNextBrother();
             m_pNextBrother->SetNextBrother(NULL);
 //          m_pNextBrother->SetPrevBrother(NULL);
 
             KP_DELETE(m_pNextBrother);
-            if (next_br != NULL) next_br->SetPrevBrother(this);
+            if (next_br) next_br->SetPrevBrother(this);
             SetNextBrother(next_br);
         }
 
@@ -83,7 +83,7 @@ public:
     KpTreeEntry<KpTreeRecType> *father = NULL;
     KpTreeEntry<KpTreeRecType> *prev_brother = NULL;
     
-        if (pChild != NULL)
+        if (pChild)
         {
             father = pChild->GetFather();
             KP_ASSERT(father == this, KP_E_SYSTEM_ERROR, null);
@@ -110,13 +110,13 @@ public:
     KpTreeEntry<KpTreeRecType> *cur_entry = this;
     KpTreeEntry<KpTreeRecType> *next_entry = NULL;
 
-        KP_ASSERT(lpNode != NULL, E_INVALIDARG, null);
+        KP_ASSERT(lpNode, E_INVALIDARG, null);
 
         do
         {
             next_entry = cur_entry->GetFirstChild();
-            if (next_entry != NULL) cur_entry = next_entry;
-        } while (next_entry != NULL);
+            if (next_entry) cur_entry = next_entry;
+        } while (next_entry);
 
         lpNode->SetFather(cur_entry);
         cur_entry->SetFirstChild(lpNode);
@@ -138,7 +138,7 @@ public:
         m_pFather = pFath;
 
         // recursion
-        if (m_pNextBrother != NULL) m_pNextBrother->SetFather0(pFath);
+        if (m_pNextBrother) m_pNextBrother->SetFather0(pFath);
     }
 
     void SetFather(KpTreeEntry<KpTreeRecType> *pFath)  // main entry
@@ -159,7 +159,7 @@ public:
     {
     KpTreeEntry<KpTreeRecType> *father = NULL;
 
-        if (pPrevBr != NULL)
+        if (pPrevBr)
         {
             father = pPrevBr->GetFather();
             KP_ASSERT(father == m_pFather, KP_E_SYSTEM_ERROR, null);
@@ -181,7 +181,7 @@ public:
     {
     KpTreeEntry<KpTreeRecType> *father = NULL;
 
-        if (pNextBr != NULL)
+        if (pNextBr)
         {
             father = pNextBr->GetFather();
             KP_ASSERT(father == m_pFather, KP_E_SYSTEM_ERROR, null);
@@ -198,8 +198,8 @@ public:
     // DeleteChild() papildymas
     static void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
     {
-        KP_ASSERT(ppEntryPtr != NULL, E_POINTER, null);
-        KP_ASSERT(*ppEntryPtr != NULL, E_POINTER, null);
+        KP_ASSERT(ppEntryPtr, E_POINTER, null);
+        KP_ASSERT(*ppEntryPtr, E_POINTER, null);
 
     KpTreeEntry<KpTreeRecType> *first_child = NULL;
         first_child = (*ppEntryPtr)->GetFirstChild();
@@ -210,12 +210,12 @@ public:
     KpTreeEntry<KpTreeRecType> *father = NULL;
         father = (*ppEntryPtr)->GetFather();
 
-        if (first_child != NULL) 
+        if (first_child) 
         {
             first_child->SetPrevBrother(prev_brother);
             first_child->SetFather0(father);
         }
-        if (prev_brother != NULL) prev_brother->SetNextBrother(first_child);
+        if (prev_brother) prev_brother->SetNextBrother(first_child);
 
         (*ppEntryPtr)->SetFirstChild(NULL);
      // (*ppEntryPtr)->SetPrevBrother(NULL);
@@ -224,7 +224,7 @@ public:
         *ppEntryPtr = first_child;
 
         // pirmas vaikas  nustatom naujà tëvo pirmà vaikà
-        if ((prev_brother == NULL) && (father != NULL)) father->SetFirstChild(first_child);
+        if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
     }
 };
 

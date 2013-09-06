@@ -239,7 +239,7 @@ extern KpHeapClass KpHeap;
 #ifdef KP_ALLOC_SAFE
 #define KP_ALLOC_CHECK_DOUBLE_CALL(ptr) {{ KP_ASSERTW0((ptr) == NULL, KP_E_DOUBLE_CALL, null); }}
 #define KP_ALLOC_INSERT_HEAP_PTR(ptr, arr_fl) {{ KpHeap.InsertHeapPtr(ptr, arr_fl); }}
-#define KP_ALLOC_CHECK_REMOVE_HEAP_PTR(ptr, arr_fl) if(SUCCEEDED(KpHeap.RemoveHeapPtr(ptr, arr_fl)))
+#define KP_ALLOC_CHECK_REMOVE_HEAP_PTR(ptr, arr_fl) if (SUCCEEDED(KpHeap.RemoveHeapPtr(ptr, arr_fl)))
 #else
 #define KP_ALLOC_CHECK_DOUBLE_CALL(ptr)
 #define KP_ALLOC_INSERT_HEAP_PTR(ptr, arr_fl)
@@ -261,7 +261,7 @@ extern KpHeapClass KpHeap;
    {{ \
       KP_ALLOC_CHECK_DOUBLE_CALL(ptr); \
       (ptr) = new constr; \
-      KP_ASSERT((ptr) != NULL, KP_E_OUTOFMEM, null); \
+      KP_ASSERT((ptr), KP_E_OUTOFMEM, null); \
       KP_ALLOC_TRACE_NEW_PTR(ptr, "new"); \
       KP_ALLOC_INSERT_HEAP_PTR(ptr, False); \
    }}
@@ -271,7 +271,7 @@ extern KpHeapClass KpHeap;
    {{ \
       KP_ALLOC_CHECK_DOUBLE_CALL(ptr); \
       (ptr) = new constr; \
-      KP_ASSERT((ptr) != NULL, KP_E_OUTOFMEM, null); \
+      KP_ASSERT((ptr), KP_E_OUTOFMEM, null); \
    }}
 
 // -------------------------------------
@@ -280,7 +280,7 @@ extern KpHeapClass KpHeap;
 //    if ptr != NULL deletes *ptr and clears ptr
 #define KP_DELETE(ptr) \
    {{ \
-      if((ptr) != NULL) \
+      if (ptr) \
       { \
          KP_ALLOC_TRACE_NEW_PTR(ptr, "del"); \
          KP_ALLOC_CHECK_REMOVE_HEAP_PTR(ptr, False) delete (ptr); \
@@ -291,7 +291,7 @@ extern KpHeapClass KpHeap;
 // without consistency check
 #define KP_DELETE0(ptr) \
    {{ \
-      if((ptr) != NULL) \
+      if (ptr) \
       { \
          delete (ptr); \
          (ptr) = NULL; \
@@ -307,7 +307,7 @@ extern KpHeapClass KpHeap;
    {{ \
       KP_ALLOC_CHECK_DOUBLE_CALL(ptr); \
       (ptr) = new type[count]; \
-      KP_ASSERT((ptr) != NULL, KP_E_OUTOFMEM, null); \
+      KP_ASSERT((ptr), KP_E_OUTOFMEM, null); \
       KP_ALLOC_TRACE_NEW_PTR(ptr, "new[]"); \
       KP_ALLOC_INSERT_HEAP_PTR(ptr, True); \
    }}
@@ -319,7 +319,7 @@ extern KpHeapClass KpHeap;
 //    if ptr != NULL deletes *ptr and clears ptr
 #define KP_DELETEA(ptr) \
    {{ \
-      if((ptr) != NULL) \
+      if (ptr) \
       { \
          KP_ALLOC_TRACE_NEW_PTR(ptr, "del[]"); \
          KP_ALLOC_CHECK_REMOVE_HEAP_PTR(ptr, True) delete [] (ptr); \

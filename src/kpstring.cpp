@@ -64,8 +64,8 @@ const uchar *strchr(const uchar *p_lpszString, KpChar p_iCh)
 {
 const uchar *str_ptr = p_lpszString;
 
-    while((*str_ptr != Nul) && (*str_ptr != p_iCh)) str_ptr++;
-    if(*str_ptr == Nul) str_ptr = null;
+    while (*str_ptr && (*str_ptr != p_iCh)) str_ptr++;
+    if (*str_ptr == Nul) str_ptr = null;
 
 return(str_ptr);
 }
@@ -76,14 +76,14 @@ uchar *strstr(uchar *p_lpszString, const char *p_lpszPattern)
     
 const uchar *strstr(const uchar *p_lpszString, const char *p_lpszPattern)
     {
-        KP_ASSERT(p_lpszString != null, E_INVALIDARG, null);
+        KP_ASSERT(p_lpszString, E_INVALIDARG, null);
     uchar *str = null;
         KP_NEWA(str, uchar, strlen(p_lpszString) + 1);
         strcpy(str, p_lpszString);
 
     const uchar *retv = null;
         retv = strstr(str, p_lpszPattern);
-        if(retv != null) retv = p_lpszString + (retv - str);
+        if (retv) retv = p_lpszString + (retv - str);
         
         KP_DELETEA(str);
      return (retv); 
@@ -105,13 +105,13 @@ void KpStripTrailing(uchar *lpszString, /* const */ uchar *lpszSpcs)
 {
 uchar *pnts = null;
 
-    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+    KP_ASSERT(lpszString, E_INVALIDARG, null);
 
     pnts = lpszString + strlen(lpszString);
-    while(pnts > lpszString)
+    while (pnts > lpszString)
     {
         --pnts;
-        if(strchr(lpszSpcs, *pnts) == null) // TODO: TvStrChr()
+        if (strchr(lpszSpcs, *pnts) == null) // TODO: TvStrChr()
         {
             pnts++;
             break;
@@ -127,11 +127,11 @@ void KpStripLeading(uchar *lpszString, /* const */ uchar *lpszSpcs)
 uchar *pnts = null;
 uchar *pntd = null;
 
-    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+    KP_ASSERT(lpszString, E_INVALIDARG, null);
 
     pntd = pnts = lpszString;
-    while(strchr(lpszSpcs, *pnts) != null) pnts++;
-    while(*pnts != Nul) *pntd++ = *pnts++;
+    while (strchr(lpszSpcs, *pnts)) pnts++;
+    while (*pnts) *pntd++ = *pnts++;
     *pntd = Nul;
 }
 
@@ -148,12 +148,12 @@ void KpStripAll(uchar *lpszString, /* const */ uchar *lpszSpcs)
 uchar *pnts = null;
 uchar *pntd = null;
 
-    KP_ASSERT(lpszString != null, E_INVALIDARG, null);
+    KP_ASSERT(lpszString, E_INVALIDARG, null);
 
     pntd = pnts = lpszString;
-    while(*pnts != Nul)
+    while (*pnts)
     {
-        while(strchr(lpszSpcs, *pnts) != null) pnts++;
+        while (strchr(lpszSpcs, *pnts)) pnts++;
         *pntd++ = *pnts++;
     }
     *pntd = Nul;
@@ -169,54 +169,54 @@ int retv = 0;
 const uchar *pnts1, *pnts2;
 int wgt1, wgt2;
 
-    KP_ASSERT((p_lpszStr1 != null) && (p_lpszStr2 != null), E_INVALIDARG, null);
+    KP_ASSERT(p_lpszStr1 && p_lpszStr2, E_INVALIDARG, null);
 
 // TODO: convert p_lpszStr1 and p_lpszStr2 to KpChar*
     pnts1 = p_lpszStr1;
     pnts2 = p_lpszStr2;
 
-    while(((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
+    while (((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
     {
 // TODO: išmest, kai perkonvertuosiu
 KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL, "UTF-8 character");
 
-        if(p_bSkipSpc)
+        if (p_bSkipSpc)
         {
-            if(*pnts1 != C_Nul)
-                while(((strchr(lpszSpCharsSpcEol, *pnts1) != null) || (*pnts1 == '\'')) &&
+            if (*pnts1 != C_Nul)
+                while ((strchr(lpszSpCharsSpcEol, *pnts1) || (*pnts1 == '\'')) &&
                        (*pnts1 != C_Nul)) pnts1++;
-            if(*pnts2 != C_Nul)
-                while(((strchr(lpszSpCharsSpcEol, *pnts2) != null) || (*pnts2 == '\'')) &&
+            if (*pnts2 != C_Nul)
+                while ((strchr(lpszSpCharsSpcEol, *pnts2) || (*pnts2 == '\'')) &&
                     (*pnts2 != C_Nul)) pnts2++;
         }
 
-        if((*pnts1 != C_Nul) && (*pnts2 != C_Nul))
+        if ((*pnts1 != C_Nul) && (*pnts2 != C_Nul))
         {
             wgt1 = iCharWeigths[*pnts1];
             wgt2 = iCharWeigths[*pnts2];
 
-            if((p_iSortLng == KP_LNG_LIT) || (p_iSortLng == KP_LNG_LIX) || (p_iSortLng == KP_LNG_LIS))
+            if ((p_iSortLng == KP_LNG_LIT) || (p_iSortLng == KP_LNG_LIX) || (p_iSortLng == KP_LNG_LIS))
             {
-                if(wgt1 / 10000 == C_Y) wgt1 = C_I * 10000 + wgt1 % 10000;
-                if(wgt1 / 10000 == C_y) wgt1 = C_i * 10000 + wgt1 % 10000;
-                if(wgt2 / 10000 == C_Y) wgt2 = C_I * 10000 + wgt2 % 10000;
-                if(wgt2 / 10000 == C_y) wgt2 = C_i * 10000 + wgt2 % 10000;
+                if (wgt1 / 10000 == C_Y) wgt1 = C_I * 10000 + wgt1 % 10000;
+                if (wgt1 / 10000 == C_y) wgt1 = C_i * 10000 + wgt1 % 10000;
+                if (wgt2 / 10000 == C_Y) wgt2 = C_I * 10000 + wgt2 % 10000;
+                if (wgt2 / 10000 == C_y) wgt2 = C_i * 10000 + wgt2 % 10000;
             }
 
-            if(!p_bCaseSens)
+            if (!p_bCaseSens)
             {
                 wgt1 = ToLowWgt(wgt1);
                 wgt2 = ToLowWgt(wgt2);
             }
 
-            if(p_bRoundFlg)
+            if (p_bRoundFlg)
             {
-                if(p_iSortLng != KP_LNG_LIS)
+                if (p_iSortLng != KP_LNG_LIS)
                 {
                     wgt1 = RoundChWgt(wgt1);
                     wgt2 = RoundChWgt(wgt2);
 
-                    if(p_iSortLng == KP_LNG_LIX)
+                    if (p_iSortLng == KP_LNG_LIX)
                     {
                         wgt1 -= wgt1 % 10000;
                         wgt2 -= wgt2 % 10000;
@@ -224,8 +224,8 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
                 }
             }
 
-            if(wgt1 > wgt2) retv = 1;
-            if(wgt1 < wgt2) retv = (-1);
+            if (wgt1 > wgt2) retv = 1;
+            if (wgt1 < wgt2) retv = (-1);
 
             pnts1++;
             pnts2++;
@@ -233,10 +233,10 @@ KP_ASSERT((*pnts1 < KPT_FirstKptChar) && (*pnts2 < KPT_FirstKptChar), E_NOTIMPL,
         else break;
     }
 
-    if(retv == 0)
+    if (retv == 0)
     {
-        if((*pnts1 != C_Nul) && (*pnts2 == C_Nul)) retv = 1;
-        if((*pnts1 == C_Nul) && (*pnts2 != C_Nul)) retv = (-1);
+        if ((*pnts1 != C_Nul) && (*pnts2 == C_Nul)) retv = 1;
+        if ((*pnts1 == C_Nul) && (*pnts2 != C_Nul)) retv = (-1);
     }
 
 return(retv);
@@ -268,10 +268,10 @@ int KpChStrStatic::Len(void) const
 {
 int chr_cnt = 0;
 
-    if(m_iazStr != NULL)
+    if (m_iazStr)
     {
 const KpChar *pnts = m_iazStr;
-        while(*pnts++ != C_Nul) chr_cnt++;
+        while (*pnts++ != C_Nul) chr_cnt++;
     }
 
 return(chr_cnt);

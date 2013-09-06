@@ -72,9 +72,9 @@ void KpClose(void)
 {
     try
     {
-        KP_ASSERT(KpApp != NULL, E_POINTER, null);
+        KP_ASSERT(KpApp, E_POINTER, null);
         KpApp->Close();
-        if(KpAppAlloc != NULL)
+        if (KpAppAlloc)
         {
             KP_DELETE(KpAppAlloc /* KpApp */); // delete just in case when allocated not in the main application
             KpApp = KpAppAlloc;
@@ -106,8 +106,8 @@ int KpHeapClass::SearchHeapEntry(const void *pPtr) // -1 – did not find
 {
 int ret_val = -1;
 
-   for(int ii = 0; ii < m_iCurKpHeapIx; ii++)
-      if(m_KpHeapArray[ii].m_pAddress == pPtr)
+   for (int ii = 0; ii < m_iCurKpHeapIx; ii++)
+      if (m_KpHeapArray[ii].m_pAddress == pPtr)
       {
          ret_val = ii;
          break;
@@ -128,7 +128,7 @@ int ix = SearchHeapEntry(pNewPtr);
    KP_ASSERTW(ix < 0, KP_E_DOUBLE_CALL, null);
 
    KP_ASSERTW(m_iCurKpHeapIx < KP_HEAP_SIZE - 1, KP_E_BUFFER_OVERFLOW, msg_out);
-   if(SUCCEEDED(retc))
+   if (SUCCEEDED(retc))
    {
       m_KpHeapArray[m_iCurKpHeapIx].m_pAddress = pNewPtr;
       m_KpHeapArray[m_iCurKpHeapIx].m_bArrayFl = bArrayFl;
@@ -147,9 +147,9 @@ uchar msg_out[MAX_LONG_HEX_DIGITS + 5];
 int ix = SearchHeapEntry(pDelPtr);
    KP_ASSERTW(ix >= 0, KP_E_SYSTEM_ERROR, msg_out);
    KP_ASSERTW(m_KpHeapArray[ix].m_bArrayFl == bArrayFl, KP_E_SYSTEM_ERROR, msg_out);
-// if(FAILED(retc)) KpError.StackDump();
+// if (FAILED(retc)) KpError.StackDump();
 
-   if((ix >= 0) /* SUCCEEDED(retc) */)
+   if ((ix >= 0) /* SUCCEEDED(retc) */)
    {
       memmove(&(m_KpHeapArray[ix]), &(m_KpHeapArray[ix + 1]), (m_iCurKpHeapIx - ix - 1) * sizeof(KpHeapEntry));
       m_iCurKpHeapIx--;
@@ -163,13 +163,13 @@ return(retc);
 // ----------------------------------
 void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal)
 {
-    KP_ASSERT(p_lpszBinStrBuf != null, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszBinStrBuf, E_INVALIDARG, null);
 uchar *pntd = p_lpszBinStrBuf + 16;
     *pntd = Nul;
 int val = p_iVal;     
     for (int ii = 0; ii < 16; ii++)
     {
-        *(--pntd) = ((val & 1) != 0)?'1':'0';
+        *(--pntd) = (val & 1)?'1':'0';
         val >>= 1;         
     }         
 }

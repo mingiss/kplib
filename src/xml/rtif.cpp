@@ -64,14 +64,14 @@ void RtiClass::OpenOutFile(const uchar *p_lpszOutFileName, FmtFileForgeFptr p_Fm
 {
     KP_ASSERT(m_pFmtFileObj == NULL, KP_E_DOUBLE_CALL, null);
     m_pFmtFileObj = (*p_FmtFileForge)(p_lpszOutFileName, (const uchar *)"w");
-    KP_ASSERT(m_pFmtFileObj != NULL, KP_E_DIR_ERROR, p_lpszOutFileName);
+    KP_ASSERT(m_pFmtFileObj, KP_E_DIR_ERROR, p_lpszOutFileName);
 }
 
 
 // ------------------------------------  
 void RtiClass::CloseOutFile(void)
 {
-    if(m_pFmtFileObj != NULL)
+    if (m_pFmtFileObj)
     {
         m_pFmtFileObj->CloseOutFile();
         KP_DELETE(m_pFmtFileObj);
@@ -98,12 +98,12 @@ void scan_kwd_list(uchar p_szaKwdList[][RTI_KWD_LEN + 1], int *p_piKwdListSize, 
 HRESULT retc = S_OK;
 const uchar *temp;
     
-    KP_ASSERTW((p_szaKwdList != NULL) && (p_piKwdListSize != NULL) && (p_lpszKwdStr != null),
+    KP_ASSERTW(p_szaKwdList && p_piKwdListSize && p_lpszKwdStr,
         E_INVALIDARG, null);
     if (SUCCEEDED(retc))
     {
         *p_piKwdListSize = 0;
-        if (p_lpszKwdStr[0] != Nul)
+        if (p_lpszKwdStr[0])
         {
             KP_ASSERTW(strlen(p_lpszKwdStr) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
             if (SUCCEEDED(retc))
@@ -115,10 +115,10 @@ const uchar *temp;
             KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
             if (SUCCEEDED(retc)) (*p_piKwdListSize)++;
 
-            while ((temp != null) && SUCCEEDED(retc))
+            while (temp && SUCCEEDED(retc))
             {
                 temp = (const uchar *)strtok(NULL, ",");
-                if(temp != null)
+                if (temp)
                 {
                     KP_ASSERT(*p_piKwdListSize < RTI_NUM_OF_KWDS, KP_E_BUFFER_OVERFLOW, null);
                     if (SUCCEEDED(retc)) 
@@ -129,7 +129,7 @@ const uchar *temp;
                 }
             }
   
-        } // if (p_lpszKwdStr[0] != Nul)
+        } // if (p_lpszKwdStr[0])
     
     } // if (SUCCEEDED(retc))
 }
@@ -142,8 +142,8 @@ HRESULT retc = S_OK;
 bool retv = False;
 int ii;
 
-    KP_ASSERTW((p_szaKwdList != NULL) && (p_lpszKwd != null), E_INVALIDARG, null);
-    if(SUCCEEDED(retc))
+    KP_ASSERTW(p_szaKwdList && p_lpszKwd, E_INVALIDARG, null);
+    if (SUCCEEDED(retc))
     {
         for (ii = 0; ii < p_iKwdListSize; ii++)
         {
@@ -182,19 +182,19 @@ uchar tag_name[RTI_KWD_LEN + 1];
 uchar tag_val[RTI_KWD_LEN + 1];
 const uchar *grp_tag_name = p_lpszGrpTagName;
 
-    KP_ASSERT(p_lpszKwdStr != null, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszKwdStr, E_INVALIDARG, null);
 
-    KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
-    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj, E_POINTER, null);
 
     pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(DRTI_XML_GRP_TAG, null);
-    if(p_lpszGrpGrpTagName != null)
+    if (p_lpszGrpGrpTagName)
         pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpGrpTagName, DRTI_XML_GRP_TAG);
-    if(p_lpszGrpTagName != null)
+    if (p_lpszGrpTagName)
         pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpTagName, 
-            (p_lpszGrpGrpTagName != null)?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
+            p_lpszGrpGrpTagName?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
 
-    if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
+    if (grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
 
 // pradedam tagų skanavimą    
     KP_ASSERTW(strlen(p_lpszKwdStr) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
@@ -204,21 +204,21 @@ const uchar *grp_tag_name = p_lpszGrpTagName;
         cur_kwd = (/* const */ uchar *)strtok((char *)kwd_str_buf, "}"); // RTI_CLOSING_BRACE
     }
         
-    while ((cur_kwd != null) && SUCCEEDED(retc))
+    while (cur_kwd && SUCCEEDED(retc))
     {
         // valom tarpus pradžioj
-        while(*cur_kwd == Spc) cur_kwd++;
+        while (*cur_kwd == Spc) cur_kwd++;
         // ar ne tuščia eilutė?
-        if(*cur_kwd != Nul)
+        if (*cur_kwd)
         {
             split_strings(tag_name, tag_val, cur_kwd);
  
-            if(kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, tag_name) ||
+            if (kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, tag_name) ||
                 (pRtiObjPtr->m_iOutputListSize == 0))
             {            
             // ------------------ pildom XML struktūrą
             TiXmlNode *grp_node = NULL;
-                if (grp_tag_name != null)
+                if (grp_tag_name)
                     grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
                 if (grp_node == NULL)            
                     grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
@@ -247,22 +247,22 @@ void add_xml_to_rti(const string *p_psKwdStr, const uchar *p_lpszGrpTagName, con
 HRESULT retc = S_OK;
 const uchar *grp_tag_name = p_lpszGrpTagName;
 
-    KP_ASSERT(p_psKwdStr != NULL, E_INVALIDARG, null);
+    KP_ASSERT(p_psKwdStr, E_INVALIDARG, null);
 
-    KP_ASSERT(pRtiObjPtr != NULL, E_POINTER, null);
-    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj != NULL, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr, E_POINTER, null);
+    KP_ASSERT(pRtiObjPtr->m_pFmtFileObj, E_POINTER, null);
 
     pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(DRTI_XML_GRP_TAG, null);
-    if(p_lpszGrpGrpTagName != null)
+    if (p_lpszGrpGrpTagName)
         pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpGrpTagName, DRTI_XML_GRP_TAG);
-    if(p_lpszGrpTagName != null)
+    if (p_lpszGrpTagName)
         pRtiObjPtr->m_pFmtFileObj->CreateGrpNode(p_lpszGrpTagName, 
-            (p_lpszGrpGrpTagName != null)?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
+            p_lpszGrpGrpTagName?p_lpszGrpGrpTagName:DRTI_XML_GRP_TAG);
 
-    if(grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
+    if (grp_tag_name == null) grp_tag_name = DRTI_XML_GRP_TAG;
 
 TiXmlNode *grp_node = NULL;
-    if (grp_tag_name != null)
+    if (grp_tag_name)
         grp_node = FindNodeByName(grp_tag_name, &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc);
     if (grp_node == NULL)            
         grp_node = &pRtiObjPtr->m_pFmtFileObj->m_XmlDoc;
@@ -273,25 +273,25 @@ TiXmlNode *cur_node = FindNodeByName((const uchar *)"key", &xml_doc);
 
 const uchar *name_ptr = null;
 const uchar *val_ptr = null;
-    while(cur_node != NULL)
+    while (cur_node)
     {
-        if(cur_node->Type() == TiXmlNode::TINYXML_ELEMENT)
+        if (cur_node->Type() == TiXmlNode::TINYXML_ELEMENT)
         {
         TiXmlElement *elem = cur_node->ToElement();
-            KP_ASSERT(elem != NULL, E_POINTER, null);
+            KP_ASSERT(elem, E_POINTER, null);
             // name_ptr = (const uchar *)((TiXmlElement *)cur_node)->Attribute("name");
             name_ptr = (const uchar *)elem->Attribute("name");
-            if(name_ptr == null)
+            if (name_ptr == null)
             {
                 KP_WARNING(KP_E_FILE_FORMAT, p_psKwdStr->c_str());
                 name_ptr = (const uchar *)"key";
             }
             
-            if(kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, name_ptr) ||
+            if (kwd_in_list(pRtiObjPtr->m_szaOutputList, pRtiObjPtr->m_iOutputListSize, name_ptr) ||
                 (pRtiObjPtr->m_iOutputListSize == 0))
             {            
                 val_ptr = GetNodeVal(cur_node);
-                if(val_ptr == null)
+                if (val_ptr == null)
                     val_ptr = (const uchar *)"";
     
             TiXmlElement *element = NULL;
@@ -333,10 +333,10 @@ int split_strings(uchar *t, uchar *tt, /* const */ uchar *s)
 // strncpy(&tt[0], &s[l+2], m - 3);
 // *(&tt[m-3]) = '\0';
     ps++;
-    if(*ps == RTI_OPENING_BRACE) ps++; // '{'
+    if (*ps == RTI_OPENING_BRACE) ps++; // '{'
     strcpy(tt, ps);
     m = strlen(tt);
-    if(m > 0) if(tt[m - 1] == RTI_CLOSING_BRACE) tt[m - 1] = Nul; // '}' 
+    if (m > 0) if (tt[m - 1] == RTI_CLOSING_BRACE) tt[m - 1] = Nul; // '}' 
   
   return 0;
 }

@@ -135,112 +135,112 @@ DviSteps::DviSteps(void)
 // ------------------------------------  
 void DviRead::SetHorStepW(int p_iHorStepW)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iHorStepW = p_iHorStepW;
 }
 
 
 int DviRead::GetHorStepW(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iHorStepW);
 }
 
 
 void DviRead::SetHorStepX(int p_iHorStepX)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iHorStepX = p_iHorStepX;
 }
 
 
 int DviRead::GetHorStepX(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iHorStepX);
 }
 
 
 void DviRead::SetVertStepY(int p_iVertStepY)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iVertStepY = p_iVertStepY;
 }
 
 
 int DviRead::GetVertStepY(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iVertStepY);
 }
 
 
 void DviRead::SetVertStepZ(int p_iVertStepZ)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iVertStepZ = p_iVertStepZ;
 }
 
 
 int DviRead::GetVertStepZ(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iVertStepZ);
 }
 
 
 void DviRead::IncCurHorPos(int p_iOffset)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iCurHorPos += p_iOffset;
 }
 
 
 void DviRead::SetCurHorPos(int p_iCurHorPos)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iCurHorPos = p_iCurHorPos;
 }
 
 
 int DviRead::GetCurHorPos(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iCurHorPos);
 }
 
 
 void DviRead::IncCurVertPos(int p_iOffset)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iCurVertPos += p_iOffset;
 }
 
 
 void DviRead::SetCurVertPos(int p_iCurVertPos)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
     m_pCurSteps->m_lpRecord->m_iCurVertPos = p_iCurVertPos;
 }
 
 
 int DviRead::GetCurVertPos(void)
 {                       
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
-    KP_ASSERT(m_pCurSteps->m_lpRecord != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps->m_lpRecord, E_POINTER, null);
 return(m_pCurSteps->m_lpRecord->m_iCurVertPos);
 }
 
@@ -279,7 +279,7 @@ DviRead::~DviRead()
 // ------------------------------------  
 void DviRead::Open(const uchar *p_lpszDviFileName)
 {
-    if(p_lpszDviFileName != null) if(p_lpszDviFileName[0] != Nul)
+    if (p_lpszDviFileName) if (p_lpszDviFileName[0])
     {
         KP_ASSERT(strlen(p_lpszDviFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszInFileName, p_lpszDviFileName);
@@ -287,14 +287,14 @@ void DviRead::Open(const uchar *p_lpszDviFileName)
         KP_ASSERT(m_pDviFile == stdin, KP_E_DOUBLE_CALL, p_lpszDviFileName);
      
         m_pDviFile = fopen((const char *)p_lpszDviFileName, "rb");
-        KP_ASSERT(m_pDviFile != NULL, KP_E_FILE_NOT_FOUND, p_lpszDviFileName);
+        KP_ASSERT(m_pDviFile, KP_E_FILE_NOT_FOUND, p_lpszDviFileName);
     } 
 }
 
 
 void DviRead::Close(void)
 {
-    if(m_pDviFile != stdin) fclose(m_pDviFile);
+    if (m_pDviFile != stdin) fclose(m_pDviFile);
     m_pDviFile = stdin;
 }
 
@@ -442,11 +442,11 @@ U4 DviRead::runsigned(int n)
   {
     integer *= 256;
     ibyte = fgetc (m_pDviFile);
-// if(count == 27132) printf("%x ", ibyte);
+// if (count == 27132) printf("%x ", ibyte);
     integer += ibyte;
   }
 
-// if(count == 27132) printf("%x\n", integer);
+// if (count == 27132) printf("%x\n", integer);
   return integer;
 }
 /* end runsigned */
@@ -473,7 +473,7 @@ S4 DviRead::rsigned(int n)
   {
     integer *= 256;
     ibyte = fgetc (m_pDviFile);
-// if(count == 27132) printf("%x ", ibyte);
+// if (count == 27132) printf("%x ", ibyte);
     /* Big-endian implies sign byte is first byte. */
     if (i == 0 && ibyte >= 128)
     {
@@ -482,7 +482,7 @@ S4 DviRead::rsigned(int n)
     integer += ibyte;
   }
 
-// if(count == 27132) printf("%x\n", integer);
+// if (count == 27132) printf("%x\n", integer);
   return integer;
 }
 /* end rsigned */
@@ -502,7 +502,7 @@ COUNT DviRead::wtable(op_table table, int opcode)
   // struct -- kad masyvą perduotų by value 
   struct { int val[DVREAD_MAX_NUM_OF_ARGS]; } argt; 
   
-  for(int ii = 0; ii < DVREAD_MAX_NUM_OF_ARGS; ii++) argt.val[ii] = 0;
+  for (int ii = 0; ii < DVREAD_MAX_NUM_OF_ARGS; ii++) argt.val[ii] = 0;
 
   /* Defensive programming. */
   if (opcode < table.first || opcode > table.last)
@@ -573,7 +573,7 @@ COUNT DviRead::wtable(op_table table, int opcode)
 #endif
 
 // calling virtual callback method through the pointer in op.m_pTransFun
-    if (op.m_pTransFun != NULL) bcount +=  
+    if (op.m_pTransFun) bcount +=  
         (this->*op.m_pTransFun)(opcode, 
             op.code - op.m_iFirstGrpOpcode + 1, // offset in the group of opcode's
             argt);  // passing all argt.val[DVREAD_MAX_NUM_OF_ARGS] values as parameters
@@ -990,7 +990,7 @@ return (TransMoveLocal(p_iOpCode, p_iFirstArgLen, offset, count /* p_iOff */));
 
 COUNT DviRead::TransPush(int p_iOpCode, int p_iFirstArgLen)
 {
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
     
 int cur_x = GetCurHorPos();
 int cur_y = GetCurVertPos();
@@ -1024,9 +1024,9 @@ int cur_x = GetCurHorPos();
 int cur_y = GetCurVertPos();
 
 // traukiam steką
-    KP_ASSERT(m_pCurSteps != NULL, E_POINTER, null);
+    KP_ASSERT(m_pCurSteps, E_POINTER, null);
 KpTreeEntry<DviSteps> *father = m_pCurSteps->GetFather(); 
-    KP_ASSERT(father != NULL, E_POINTER, "Stack m_pCurSteps underflow"); 
+    KP_ASSERT(father, E_POINTER, "Stack m_pCurSteps underflow"); 
 KpTreeEntry<DviSteps> *old_steps = m_pCurSteps;
     m_pCurSteps = father;
     old_steps->SetFather(NULL);

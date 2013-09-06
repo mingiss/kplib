@@ -65,7 +65,7 @@ extern void str_del(uchar *t, uchar *s, const uchar *p_lpszHead);
 // kuria pRtiObjPtr->m_pFmtFileObj->m_XmlDoc tagus, p_lpszGrpTagName vaikus
 // jei p_lpszGrpTagName, kuria m_XmlDoc šaknies vaikus
 // jei dar nėra, susikuria ir grupinį tagą p_lpszGrpTagName
-// jei p_lpszGrpGrpTagName != null, grupinį tagą p_lpszGrpTagName kuria jame
+// jei p_lpszGrpGrpTagName, grupinį tagą p_lpszGrpTagName kuria jame
 // multiple tag string is split into individual tags:
 //  "voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}"
 extern void add_to_rti(const uchar *p_lpszKwdStr, const uchar *p_lpszGrpTagName, const uchar *p_lpszGrpGrpTagName);

@@ -15,7 +15,7 @@ XmlNodeRec::XmlNodeRec(int p_iNodeTag, XmlTagPars *p_pTagPars, uchar *p_lpszCont
     m_pTagPars = p_pTagPars;
     
     m_lpszContents = null;
-    if(p_lpszContents != null)
+    if (p_lpszContents)
     {
         KP_NEWA(m_lpszContents, uchar, strlen(p_lpszContents) + 1);
         strcpy(m_lpszContents, p_lpszContents);
@@ -36,7 +36,7 @@ XmlTree::XmlTree(void)
     
     m_plpszaTags = NULL;
     m_plpszaTags = KP_NEWA(uchar *, XL_MaxNumOfTags);
-    for(int ii = 0; ii < XL_MaxNumOfTags; ii++) m_plpszaTags[ii] = null;
+    for (int ii = 0; ii < XL_MaxNumOfTags; ii++) m_plpszaTags[ii] = null;
     
     m_iFirstTag = XM_FirstDictTagCode
     m_iNumOfTags = 0;
@@ -45,8 +45,8 @@ XmlTree::XmlTree(void)
 
 XmlTree::~XmlTree()
 {
-    if(m_plpszaTags != NULL)
-        for(int ii = 0; ii < XL_MaxNumOfTags; ii++) KP_DELETEA(m_plpszaTags[ii]);
+    if (m_plpszaTags)
+        for (int ii = 0; ii < XL_MaxNumOfTags; ii++) KP_DELETEA(m_plpszaTags[ii]);
         
     KP_DELETEA(m_plpszaTags);
 }
@@ -56,11 +56,11 @@ XmlTree::~XmlTree()
 XmlNodeRec *XmlTree::CreateTagNode(const uchar *p_lpszTagName, 
     const XmlTagPars *p_TagPars, const uchar *p_lpszTagVal)
 {
-    KP_ASSERT(m_plpszaTags != NULL, E_POPINTER, null);
-    KP_ASSERT(p_lpszTagName != null, E_INVALIDARG, null);
+    KP_ASSERT(m_plpszaTags, E_POPINTER, null);
+    KP_ASSERT(p_lpszTagName, E_INVALIDARG, null);
 
 int ix = GetKwrdIndex(p_lpszTagName, m_plpszaTags, m_iNumOfTags, True, True);
-    if(ix == TV_TG_NoKey)
+    if (ix == TV_TG_NoKey)
     {
         KP_ASSERT(m_iNumOfTags < XL_MaxNumOfTags, KP_E_BUFFER_OVERFLOW, null);
         m_plpszaTags[m_iNumOfTags] = KP_NEWA(uchar, strlen(p_lpszTagName) + 1);

@@ -101,8 +101,8 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
 
     *src_ptr++ = '\0';
 
-    if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
-        if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf)) 
+    if (!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) 
+        if (!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf)) 
     {
         rti_ptr = NULL;
         
@@ -174,7 +174,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
                 head = DVISP_SPEC_STAGE_HEAD;
                 KP_ASSERTW(strlen(src_buf) + strlen(DRTI_STAGE_TAG) + 3 < RTI_KWD_LEN,
                     KP_E_BUFFER_OVERFLOW, null);
-                if(SUCCEEDED(retc))
+                if (SUCCEEDED(retc))
                 {
                     strcpy(dst_buf, head);
                     strcat(dst_buf, DRTI_STAGE_TAG);
@@ -201,7 +201,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
         
 // "vtex:info."
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_INFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -215,7 +215,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // "vtex:settings.imsref={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_IMSREF_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -230,7 +230,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // "vtex:settings.runtool={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_RUNTOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -245,7 +245,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // "vtex:settings.sometool={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_SOMETOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -260,7 +260,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // "vtex:settings.structpyb={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_STRUCTPYB_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -275,7 +275,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // "vtex:settings."
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_SETTINGS_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -289,7 +289,7 @@ void DtlClass::TransSpec(int p_iNumOfBytes)
         }
 
 // MC:PageInfo voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_PAGEINFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -313,7 +313,7 @@ const char *pnt_rest = src_buf + strlen(head);
                 {
                     KP_ASSERTW(strlen(src_buf) + strlen(DRTI_OPTION_TAG) + 2 < RTI_KWD_LEN,
                         KP_E_BUFFER_OVERFLOW, null);
-                    if(SUCCEEDED(retc))
+                    if (SUCCEEDED(retc))
                     {
                         strcpy(dst_buf, head);
                         strcat(dst_buf, DRTI_OPTION_TAG);
@@ -326,7 +326,7 @@ const char *pnt_rest = src_buf + strlen(head);
                 {
 // kitiems pridedam gale "="
                     KP_ASSERTW(strlen(src_buf) + 1 < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
-                    if(SUCCEEDED(retc)) strcat(src_buf, "=");
+                    if (SUCCEEDED(retc)) strcat(src_buf, "=");
                 }
             }
         }
@@ -334,12 +334,12 @@ const char *pnt_rest = src_buf + strlen(head);
 // -------------        
         if (hd_found)
         {
-            if (rti_ptr != NULL)
+            if (rti_ptr)
             {
                 str_del(dst_buf, src_buf, head);
                 add_to_rti(dst_buf, rti_ptr);
 
-                if(rti_ptr == rti_arr) // main tags
+                if (rti_ptr == rti_arr) // main tags
                 {
                     if (kwd_in_list(output_list_e, output_list_n, rti_ptr->name) || (output_list_n == 0))
                     {
@@ -361,6 +361,6 @@ const char *pnt_rest = src_buf + strlen(head);
     // kaka
     //  fprintf (stderr, "kaka\n");
     
-    } // if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
+    } // if (!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) if (!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
 }
 /* xferstring */

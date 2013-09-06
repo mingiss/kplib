@@ -122,7 +122,7 @@ DviSpClass::DviSpClass(void)
 // -------------------------
 void DviSpClass::Open(const uchar *p_lpszInFileName)
 {
-    if(lpszInFileName != null) if(lpszInFileName[0] != Nul)
+    if (lpszInFileName) if (lpszInFileName[0])
     {
         KP_ASSERT(strlen(lpszInFileName) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
         strcpy(m_lpszInFileName, lpszInFileName);
@@ -144,15 +144,15 @@ FILE *in_file = NULL;
     strcat(in_fname, ".dvi");
     
     in_file = fopen((const char *)in_fname, "rb");
-    if(in_file != NULL)
+    if (in_file)
     {
         fclose(in_file);
         in_file = NULL;    
     
-        if (strcmp(m_lpszInFileName, (const uchar *)"") != 0)
+        if (strcmp(m_lpszInFileName, (const uchar *)""))
             open_dvi(in_fname, &in_file);
 
-        if(in_file != NULL)
+        if (in_file)
         {
             dvread(in_file);
             fclose(in_file);
@@ -164,7 +164,7 @@ FILE *in_file = NULL;
     strcat(in_fname, ".specials");
     
     in_file = fopen((const char *)in_fname, "r");
-    if(in_file != NULL)
+    if (in_file)
     {
         SpecRead(in_file);
         fclose(in_file);
@@ -177,16 +177,16 @@ FILE *in_file = NULL;
 // ---------------------------
 void DviSpClass::SpecRead(FILE *p_pInFile)
 {
-    KP_ASSERT(p_pInFile != NULL, E_INVALIDARG, null);
+    KP_ASSERT(p_pInFile, E_INVALIDARG, null);
     
-    while(!feof(p_pInFile))
+    while (!feof(p_pInFile))
     {
 uchar in_line[KP_MAX_FILE_LIN_LEN + 1];    
-        if(fgets((char *)in_line, KP_MAX_FILE_LIN_LEN, p_pInFile) != NULL)
+        if (fgets((char *)in_line, KP_MAX_FILE_LIN_LEN, p_pInFile))
         {
 int ll = strlen(in_line);
 int ii;
-            for(ii = 0; ((ii < 2) && (ll > 0)); ii++)
+            for (ii = 0; ((ii < 2) && (ll > 0)); ii++)
                 if ((in_line[ll - 1] == Cr) || (in_line[ll - 1] == Lf)) ll--; 
             in_line[ll] = Nul;        
             ProcessSpecial(in_line);
@@ -204,10 +204,10 @@ HRESULT retc = S_OK;
 bool retv = False;
 const uchar **list_ptr = p_lpszaKwdList;
 
-    KP_ASSERTW((p_lpszaKwdList != NULL) && (p_lpszKwd != null), E_INVALIDARG, null);
-    if(SUCCEEDED(retc))
+    KP_ASSERTW(p_lpszaKwdList && p_lpszKwd, E_INVALIDARG, null);
+    if (SUCCEEDED(retc))
     {
-        while (*list_ptr != null)
+        while (*list_ptr)
         {
             if (p_lpszaKwdList == lpszaIgnoreSpecList)
                 retv = (strncmp(p_lpszKwd, *list_ptr, strlen(*list_ptr)) == 0);
@@ -255,10 +255,10 @@ const uchar *grp_grp_tag_name = null;
 // xml tęsinių eilutėms
 bool xml_fl = False;
 
-    KP_ASSERT(p_lpszSrcBuf != NULL, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszSrcBuf, E_INVALIDARG, null);
     KP_ASSERT(strlen(p_lpszSrcBuf) <= RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
-    KP_ASSERT(pRtiObjPtr != NULL, KP_E_SYSTEM_ERROR, null);
+    KP_ASSERT(pRtiObjPtr, KP_E_SYSTEM_ERROR, null);
 
     strcpy(src_buf, p_lpszSrcBuf);
     
@@ -333,7 +333,7 @@ bool xml_fl = False;
                 head = DVISP_SPEC_STAGE_HEAD;
                 KP_ASSERTW(strlen(src_buf) + strlen(DRTI_STAGE_TAG) + 3 < RTI_KWD_LEN,
                     KP_E_BUFFER_OVERFLOW, null);
-                if(SUCCEEDED(retc))
+                if (SUCCEEDED(retc))
                 {
                     strcpy(dst_buf, head);
                     strcat(dst_buf, DRTI_STAGE_TAG);
@@ -355,7 +355,7 @@ bool xml_fl = False;
         }
         
 // "vtex:info."
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_INFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -369,7 +369,7 @@ bool xml_fl = False;
         }
 
 // "vtex:settings.imsref={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_IMSREF_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -387,7 +387,7 @@ bool xml_fl = False;
         }
 
 // "vtex:settings.runtool={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_RUNTOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -405,7 +405,7 @@ bool xml_fl = False;
         }
 
 // "vtex:settings.sometool={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_SOMETOOL_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -423,7 +423,7 @@ bool xml_fl = False;
         }
 
 // "vtex:settings.structpyb={"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_STRUCTPYB_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -441,7 +441,7 @@ bool xml_fl = False;
         }
 
 // "vtex:settings."
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_SETTINGS_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -456,7 +456,7 @@ bool xml_fl = False;
 
 // MC:PageInfo voffset={-72.26999pt} hoffset={-72.26999pt} topmargin={29.98857pt} headheight={12.0pt} headsep={14.0pt} textheight={540.60236pt} textwidth={332.89723pt} oddsidemargin={54.0pt} evensidemargin={54.0pt} footskip={20.0pt} baselineskip={12.0pt plus 0.3pt minus 0.3pt} headmargin={29.98857pt} backmargin={54.0pt} columnwidth={332.89723pt} trimbox={0 0 439.3701 666.1417}
 // "MC:PageInfo "
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_PAGEINFO_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -471,7 +471,7 @@ bool xml_fl = False;
 
 // vtex:xml <sec name="TeX info"><key name="voffset">-72.26999pt</key><key name="hoffset">-72.26999pt</key><key name="topmargin">36.0pt</key><key name="headheight">11.0pt</key><key name="headsep">12.0pt</key><key name="textheight">560.51929pt</key><key name="textwidth">364.19527pt</key><key name="oddsidemargin">39.83386pt</key><key name="evensidemargin">36.98859pt</key><key name="footskip">12.0pt</key><key name="columnwidth">364.19527pt</key><key name="baselineskip">13.0pt plus 0.1pt minus 0.1pt</key>
 // "vtex:xml <sec name="TeX info">"
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_INFO_XML_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -491,7 +491,7 @@ bool xml_fl = False;
 // ankstesnio vtex:xml tęsinys
 // <key name="trimwidth">6in</key><key name="trimheight">9in</key><key name="headmargin">36.0pt</key><key name="backmargin">39.83386pt</key></sec>
 // "<key name=\""
-        if(!hd_found)
+        if (!hd_found)
         {
             head = DVISP_SPEC_XML_KEY_HEAD;
             hd_found = (strncmp(src_buf, head, strlen(head)) == 0);
@@ -520,7 +520,7 @@ bool xml_fl = False;
                 {
                     KP_ASSERTW(strlen(src_buf) + strlen(DRTI_OPTION_TAG) + 2 < RTI_KWD_LEN,
                         KP_E_BUFFER_OVERFLOW, null);
-                    if(SUCCEEDED(retc))
+                    if (SUCCEEDED(retc))
                     {
                         strcpy(dst_buf, head);
                         strcat(dst_buf, DRTI_OPTION_TAG);
@@ -533,7 +533,7 @@ bool xml_fl = False;
                 {
 // kitiems pridedam gale "="
                     KP_ASSERTW(strlen(src_buf) + 1 < RTI_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
-                    if(SUCCEEDED(retc)) strcat(src_buf, "=");
+                    if (SUCCEEDED(retc)) strcat(src_buf, "=");
                 }
             }
         }
@@ -560,5 +560,5 @@ bool xml_fl = False;
         else printf("[%s]\n", src_buf);
 #endif
 
-    } // if(!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) if(!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
+    } // if (!kwd_in_plist(lpszaIgnoreSpecList, src_buf)) if (!kwd_in_plist(lpszaIgnoreFullSpecList, src_buf))
 }

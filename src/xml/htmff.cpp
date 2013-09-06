@@ -94,7 +94,7 @@ TiXmlElement* dest_child = NULL;
     dest_child->SetAttribute("CONTENT", "text/html; charset=UTF-8");
     dest_node->LinkEndChild(dest_child);
 
-    if(p_HeadNode != NULL) dest_node->LinkEndChild(p_HeadNode);
+    if (p_HeadNode) dest_node->LinkEndChild(p_HeadNode);
 
 return(dest_node);
 }
