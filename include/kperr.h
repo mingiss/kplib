@@ -56,10 +56,16 @@
 #ifdef __cplusplus
 #define KP_ERROR(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, True, (const uchar *)__FILE__, __LINE__); }}
 #define KP_WARNING(lhErrCode, Msg) {{ KpError.OutputErrorMessage(lhErrCode, Msg, False, (const uchar *)__FILE__, __LINE__); }}
+// #define KP_TRACE(...) {{ char *trc_buf_ptr = new char[10000]; if(trc_buf_ptr != NULL){ sprintf(trc_buf_ptr, (const char *)__VA_ARGS__); KpError.PutLogMessage(trc_buf_ptr); delete [] trc_buf_ptr; } }}
+#define KP_TRACE(...) {{ KpError.PutLogMessage((const char *)__VA_ARGS__); }}
 #else
 #define KP_ERROR(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, True, (const uchar *)__FILE__, __LINE__); }}
 #define KP_WARNING(lhErrCode, Msg) {{ KpOutputErrorMessage(lhErrCode, Msg, False, (const uchar *)__FILE__, __LINE__); }}
+// #define KP_TRACE(...) {{ char *trc_buf_ptr = new char[10000]; if(trc_buf_ptr != NULL){ sprintf(trc_buf_ptr, (const char *)__VA_ARGS__); KpPutLogMessage(trc_buf_ptr); delete [] trc_buf_ptr; } }}
+#define KP_TRACE(...) {{ KpPutLogMessage((const char *)__VA_ARGS__); }}
 #endif
+
+
 
 #ifdef __cplusplus
 class KpException : public std::exception
@@ -229,6 +235,10 @@ extern PLAIN_C void KpOutputErrorMessage
 
 // call to KpError.FormatSystemErrorMessage()
 extern PLAIN_C uchar *KpFormatSystemErrorMessage(LONG lWindowsErrorCode);
+
+// call to KpError.PutLogMessage()
+extern PLAIN_C void KpPutLogMessage(const uchar *lpszFmt, ...);
+
 
 // call to KpError.GetProdName() and KpApp->GetAppName()
 // returns char string not longer than KP_MAX_FNAME_LEN

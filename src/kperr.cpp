@@ -910,3 +910,10 @@ uchar *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
 {
 return(KpError.FormatSystemErrorMessage(lWindowsErrorCode));
 }
+
+void KpPutLogMessage(const uchar *lpszFmt, ...)
+{
+va_list argptr;
+    va_start(argptr, lpszFmt);
+    KpError.PutLogMessage(lpszFmt, argptr);
+}
