@@ -78,6 +78,8 @@ public:
     // pChild cannot be deleted after successfull SetFirstChild()
     // pChild->m_pFather turi sutapti su this
     // pChild->m_pPrevBrother turi buti NULL
+    // naudojamas grubiam reikšmės nustatymui
+    // pChild gali būti NULL
     void SetFirstChild(KpTreeEntry<KpTreeRecType> *pChild)
     {
     KpTreeEntry<KpTreeRecType> *father = NULL;
@@ -93,6 +95,25 @@ public:
         }
 
         m_pFirstChild = pChild;
+    }
+
+
+    // prijungia vaiką (sekantį sąrašo elementą su visa uodega)
+    // nustato pChild->m_pFather į this
+    // pChild->m_pPrevBrother turi buti NULL
+    // this->m_pFirstChild turi būti NULL
+    // naudojamas šakos/uodegos gražiam prijungimui
+    // pChild gali būti NULL
+    void ConnectChild(KpTreeEntry<KpTreeRecType> *pChild)
+    {
+//      KP_ASSERT(pChild, E_INVALIDARG, null);
+        KP_ASSERT(m_pFirstChild == NULL, KP_E_SYSTEM_ERROR, null);
+        if (pChild)
+        {
+//          KP_ASSERT(pChild->GetPrevBrother() == NULL, KP_E_SYSTEM_ERROR, null); // patikrins SetFirstChild()
+            pChild->SetFather(this);
+        }
+        SetFirstChild(pChild);
     }
 
 

@@ -18,6 +18,6 @@
 #define KP_CPP              // C++ aplication (uses exceptions)
 
 // #define KP_ALLOC_TRACE   // memory leak tracing
-#define KP_ALLOC_SAFE       // memory allocation control
+// #define KP_ALLOC_SAFE    // memory allocation control
 
 // #define KP_ENCODE_LOG    // encode log file
