@@ -84,7 +84,6 @@ E_END_OF_DATA 0x80060015    Parser reached maximum content size.
 E_PARSE_ERROR 0x80060016    Data format error.
 E_SCHEMA_CHECK 0x80060017    Data format error.
 E_WOULD_BLOCK 0x80060018    The method is done for now but ought to be restarted in the future.
-E_OBJECT_BUSY 0x80060019    The method can't proceed since a resource needed is currently in use but this ought to be restarted in the future.
 E_PARSING_ERROR 0x80060020    Invalid input encountered
 E_ERROR_RESPONSE_RECEIVED 0x80060021    Invalid input encountered
 E_AUTHORIZATION_REQUIRED 0x80060022    The client authorization is lacking (e.g. HTTP 401).
@@ -160,6 +159,11 @@ E_HTTP_ERROR 0x80070965    Driver error. Exclusive access.
 */
 
 #endif // #ifndef WIN32
+
+// Object is busy
+// The method can't proceed since a resource needed is currently in use but this ought to be restarted in the future.
+#define E_OBJECT_BUSY ((HRESULT)0x80060019L)
+
 
 // --------------------------------------------------------
 // out of memory

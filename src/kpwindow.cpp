@@ -236,4 +236,34 @@ DWORD val_type;
     InitWindowPars();
 }
 
+
+// ----------------------------------------
+void KpDrawLine(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
+{
+HRESULT retc = S_OK;
+HPEN pen = NULL;
+
+    pen = CreatePen(PS_SOLID, 1, lColor);
+    KP_ASSERTW(pen, KP_E_SYSTEM_ERROR, GetLastError());
+
+    KP_ASSERTW(SelectObject(hDC, pen), KP_E_SYSTEM_ERROR, GetLastError());
+
+    KP_ASSERTW(MoveToEx(hDC, iX1, iY1, NULL), KP_E_SYSTEM_ERROR, GetLastError());
+
+    KP_ASSERTW(LineTo(hDC, iX2, iY2), KP_E_SYSTEM_ERROR, GetLastError());
+
+    if(pen) KP_ASSERTW(DeleteObject(pen), KP_E_SYSTEM_ERROR, GetLastError());
+    pen = NULL;
+}
+
+
+void KpDrawRect(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
+{
+    KpDrawLine(hDC, iX1, iY1, iX2, iY1, lColor);
+    KpDrawLine(hDC, iX2, iY1, iX2, iY2, lColor);
+    KpDrawLine(hDC, iX2, iY2, iX1, iY2, lColor);
+    KpDrawLine(hDC, iX1, iY2, iX1, iY1, lColor);
+}
+
+
 #endif // #ifdef __WIN32__

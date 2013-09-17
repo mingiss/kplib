@@ -347,6 +347,7 @@ const uchar *msgptr = (const uchar *)"";
          case E_POINTER:            msgptr = KP_MSG_POINTER; break;
 //       case E_HANDLE:
 //       case E_FAIL:
+// TODO: case E_OBJECT_BUSY:        msgptr = KP_MSG_OBJBUSY; break;
          case KP_E_FERROR:          msgptr = KP_MSG_FERROR; break;
          case KP_E_SYSTEM_ERROR:    msgptr = KP_MSG_SYSTEM_ERROR; break;
          case KP_E_EOF:             msgptr = KP_MSG_EOF; break;
