@@ -18,7 +18,13 @@
 #define KPW_WND_BORDER_WDT_INI 4
 #define KPW_WND_MENU_HGT_INI 20
 
+// #define KPW_FIRST_USER_MSG WM_USER
+#define KPW_FIRST_USER_MSG 10000
+
 #define KPW_POLL_TIMEOUT 100 // kas kiek msec tikrinam threadų sinchroniškumą ir pan.
+#define KPW_FLASH_TIMEOUT 200 // kursoriaus mirgėjimo intervalas msec
+
+#define KPW_FLASH_TIMER  (KPW_FIRST_USER_MSG + 150) // kursoriaus mirgėjimo taimerio id
 
 // ----------------------------
 extern void KpDrawLine(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF iColor);

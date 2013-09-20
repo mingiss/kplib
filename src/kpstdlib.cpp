@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <math.h>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
@@ -173,3 +174,18 @@ int val = p_iVal;
         val >>= 1;         
     }         
 }
+
+
+// ----------------------------------
+double NormAngle(double p_dAngle)
+{
+double whole = 0.0;
+double fract = modf(p_dAngle / (2.0 * M_PI), &whole);
+
+double angle = fract * (2.0 * M_PI);
+    if (angle >= M_PI) angle -= (2.0 * M_PI);
+    else if (angle < -M_PI) angle += (2.0 * M_PI);
+
+return(angle);
+}
+

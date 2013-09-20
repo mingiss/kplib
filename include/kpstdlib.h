@@ -338,11 +338,18 @@ extern KpHeapClass KpHeap;
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
 
+// max float
 #define MAX_FLT (3.40282e+38) // FLT_MAX
+
+#ifndef __MINGW32__
+#define M_PI		3.14159265358979323846
+#endif
 
 // formats p_iVal as 16 bytes binary string
 // p_lpszBinStrBuf[16 + 1]
 void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal);  
+
+double NormAngle(double p_dAngle); // sukiða kampà á intervalà [-pi, pi)
 
 
 // ================================================== searching and sorting

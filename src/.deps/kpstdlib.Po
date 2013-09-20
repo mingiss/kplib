@@ -75,6 +75,7 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/math.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h \
@@ -280,6 +281,8 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc:
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/math.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h:
 
