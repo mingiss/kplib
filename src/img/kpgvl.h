@@ -33,13 +33,13 @@ double m_dAngle; // kampų skirtumas tarp suporuoto ir „this“ artimiausių d
     void CalcDescrs(VlSiftFilt *p_pSiftFilt); // užpildo m_faDescr[], m_daOrients[] ir m_iNumOfOrients
     
     // skaičiuoja mažiausią atstumą tarp deskriptorių  
-    // į *p_dAngle grąžina artimiausių deskriptorių orientacijų skirtumą (transformacijos iš p_pKpnt1 į p_pKpnt2 kampą)
+    // į *p_dAngle grąžina artimiausių deskriptorių orientacijų skirtumą (transformacijos iš p_pKeyPt1 į p_pKeyPt2 kampą)
     // jei p_bUseAngle == True, tada į atstumo skaičiavimą įtraukiamas skirtumas tarp transformacijos kampo ir
     //      suvidurkinto visų taškų transformacijos kampo, perduodamo parametru *p_pdAngle
-    static double CalcKpntDiff(const KpVlSiftKeypoint *p_pKpnt1, const KpVlSiftKeypoint *p_pKpnt2, 
+    static double CalcKeyPtDiff(const KpVlSiftKeypoint *p_pKeyPt1, const KpVlSiftKeypoint *p_pKeyPt2, 
         double *p_pdAngle, bool p_bUseAngle);
     // skaičiuoja atstumą tarp deskriptorių, tik susumuoja skirtumų kvadratus, šaknies netraukia 
-    static double CalcKpntDescDiff(const vl_sift_pix *p_pDesc1, const vl_sift_pix *p_pDesc2);
+    static double CalcKeyPtDescDiff(const vl_sift_pix *p_pDesc1, const vl_sift_pix *p_pDesc2);
 };
 
 // vietoj vl_get_last_error_message() -- jeigu ją naudojam, iš vl.lib neprisilinkuoja _vl_state

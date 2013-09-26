@@ -98,7 +98,7 @@ void KpVlSiftKeypoint::CalcDescrs(VlSiftFilt *p_pSiftFilt)
 
 
 // -----------------------
-double KpVlSiftKeypoint::CalcKpntDescDiff(const vl_sift_pix *p_pDesc1, const vl_sift_pix *p_pDesc2)
+double KpVlSiftKeypoint::CalcKeyPtDescDiff(const vl_sift_pix *p_pDesc1, const vl_sift_pix *p_pDesc2)
 {
     KP_ASSERT(p_pDesc1, E_INVALIDARG, null);
     KP_ASSERT(p_pDesc2, E_INVALIDARG, null);
@@ -115,22 +115,22 @@ return (diff);
 }
 
 
-double KpVlSiftKeypoint::CalcKpntDiff(const KpVlSiftKeypoint *p_pKpnt1, const KpVlSiftKeypoint *p_pKpnt2, 
+double KpVlSiftKeypoint::CalcKeyPtDiff(const KpVlSiftKeypoint *p_pKeyPt1, const KpVlSiftKeypoint *p_pKeyPt2, 
     double *p_pdAngle, bool p_bUseAngle)
 {
-    KP_ASSERT(p_pKpnt1, E_INVALIDARG, null);
-    KP_ASSERT(p_pKpnt2, E_INVALIDARG, null);
+    KP_ASSERT(p_pKeyPt1, E_INVALIDARG, null);
+    KP_ASSERT(p_pKeyPt2, E_INVALIDARG, null);
     KP_ASSERT(p_pdAngle || (!p_bUseAngle), E_INVALIDARG, null);
     
 double min_diff = MAX_FLT;
 double min_angle = 0.0;
 
-    for (int ii = 0; ii < p_pKpnt1->m_iNumOfOrients; ii++)
-        for (int jj = 0; jj < p_pKpnt2->m_iNumOfOrients; jj++)
+    for (int ii = 0; ii < p_pKeyPt1->m_iNumOfOrients; ii++)
+        for (int jj = 0; jj < p_pKeyPt2->m_iNumOfOrients; jj++)
         {
-        double diff = CalcKpntDescDiff(p_pKpnt1->m_faDescr[ii], p_pKpnt2->m_faDescr[jj]);
+        double diff = CalcKeyPtDescDiff(p_pKeyPt1->m_faDescr[ii], p_pKeyPt2->m_faDescr[jj]);
         
-        double angle = p_pKpnt2->m_daOrients[jj] - p_pKpnt1->m_daOrients[ii];
+        double angle = p_pKeyPt2->m_daOrients[jj] - p_pKeyPt1->m_daOrients[ii];
         double angle_dif = NormAngle(angle - *p_pdAngle) * 10.0 /* / ( 2.0 * M_PI) */;
             diff += angle_dif * angle_dif;
 
