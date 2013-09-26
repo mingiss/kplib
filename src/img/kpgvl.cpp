@@ -62,16 +62,6 @@ KpVlSiftKeypoint::KpVlSiftKeypoint(void): VlSiftKeypoint()
         for (int jj = 0; jj < KP_VL_KEYPNT_DESCR_SIZE; jj++)
             m_faDescr[ii][jj] = 0.0;
     }
-
-    ClearPairPnt();
-}
-
-
-void KpVlSiftKeypoint::ClearPairPnt(void)
-{
-    m_pPairPnt = NULL;
-    m_dPairDiff = MAX_FLT;
-    m_dAngle = 0.0;
 }
 
 

@@ -22,14 +22,8 @@ double m_daOrients[KP_VL_MAX_NUM_OF_KEYPNT_ORIENTS]; // orientacijos
 int m_iNumOfOrients; // krypčių skaičius masyve m_faDescr[] ir mfaOrients[]
 
 public:
-KpVlSiftKeypoint *m_pPairPnt; // suporuoto taško adresas lyginamame paveikslo keipointų sąraše; nesuporuotiems NULL
-double m_dPairDiff; // mažiausias atstumas iki suporuoto taško deskriptorių; nesuporuotiems MAX_FLT
-double m_dAngle; // kampų skirtumas tarp suporuoto ir „this“ artimiausių deskriptorių orientacijų; nesuporuotiems 0.0 
+    KpVlSiftKeypoint(void);
 
-    KpVlSiftKeypoint(void); 
-
-    void ClearPairPnt(void);
-    
     void CalcDescrs(VlSiftFilt *p_pSiftFilt); // užpildo m_faDescr[], m_daOrients[] ir m_iNumOfOrients
     
     // skaičiuoja mažiausią atstumą tarp deskriptorių  
