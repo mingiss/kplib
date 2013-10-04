@@ -156,7 +156,7 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 #endif
     // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 ið MSYS, nëra MinGW 4.4.1 ið CodeBlocks 10.05
         m_hWndParent = GetConsoleWindow(); // = HWND_DESKTOP; 
-        KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle must be provided");
+        KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle should be provided");
         m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
 // printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, m_hWndParent);
 
@@ -238,6 +238,7 @@ DWORD val_type;
 
 
 // ----------------------------------------
+#ifdef KP_WINDOWED
 void KpDrawLine(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
 {
 HRESULT retc = S_OK;
@@ -255,8 +256,10 @@ HPEN pen = NULL;
     if(pen) KP_ASSERTW(DeleteObject(pen), KP_E_SYSTEM_ERROR, GetLastError());
     pen = NULL;
 }
+#endif
 
 
+#ifdef KP_WINDOWED
 void KpDrawRect(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
 {
     KpDrawLine(hDC, iX1, iY1, iX2, iY1, lColor);
@@ -264,6 +267,6 @@ void KpDrawRect(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
     KpDrawLine(hDC, iX2, iY2, iX1, iY2, lColor);
     KpDrawLine(hDC, iX1, iY2, iX1, iY1, lColor);
 }
-
+#endif
 
 #endif // #ifdef __WIN32__

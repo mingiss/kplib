@@ -128,6 +128,18 @@ extern PLAIN_C void KpClose(void);                  // usually pointer to some l
                                                     // could be NULL
 
 // ========================================= data types
+// typedef enum
+// {
+//     False,
+//     True
+// } bool;
+
+#ifdef __MINGW32__
+#ifndef __cplusplus
+typedef char bool;
+#endif
+#endif
+
 #ifndef FALSE
 #define FALSE 0
 #endif
@@ -174,7 +186,7 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
       // -1: **ppVal1 > **ppVal2
 
 // ========================================= file I/O
-#define KP_MAX_FNAME_LEN 260 // MAX_PATH        // negalima keist/naudot neaiÅkios makrokomandos â€“ pasikeis kpstart.ini dydis
+#define KP_MAX_FNAME_LEN 260 // MAX_PATH // FILENAME_MAX // negalima keist/naudot neaiÅkios makrokomandos â€“ pasikeis kpstart.ini dydis
 #define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist â€“ pasikeis kpstart.ini dydis
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
@@ -334,7 +346,9 @@ extern KpHeapClass KpHeap;
 #define MAX_UCHAR 0xFF
 #if (!defined(__WIN32__)) || defined(__MINGW32__)
 #define MAX_SHRT 0x7FFF // 32767 // SHRT_MAX
+#ifndef MAX_INT
 #define MAX_INT 0x7FFFFFFF // INT_MAX
+#endif
 #endif
 #define MAX_LONG_HEX_DIGITS 8 /* num. of hex digits of MAXLONG */
 #define MAX_LONG_DIGITS 11 /* num. of decimal digits of MAXLONG */
@@ -356,6 +370,17 @@ double NormAngle(double p_dAngle); // sukiða kampà á intervalà [-pi, pi)
 // ================================================== searching and sorting
 #define KP_KWD_LEN 400 // negalima keist – pasikeis susijusiø failø layout
 
+
+// ================================================== OS ports (Windows/Linux)
+#ifdef __WIN32__
+// #ifdef WINDOWS
+// #include <direct.h>
+// #define GetCurrentDir _getcwd
+#define GetCurrentDir(buf, len) GetCurrentDirectory(len, (LPSTR)buf)
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#endif
 
 // ----------------------------------------
 #endif // #ifndef kpstdlib_included
