@@ -594,8 +594,8 @@ return(sys_err_msg);
 void KpErrorClass::SendDiagMsg(const uchar *lpszMessageText, bool bSevereError, const uchar *lpszAddMessage)
 {
 #ifdef KP_CONSOLE
-// cout << lpszMessageText << endl;
-   printf("%s\n", lpszMessageText);
+// cerr /* cout */ << lpszMessageText << endl;
+   fprintf(stderr, "%s\n", lpszMessageText);
 #else
 // #error Not yet implemented
 #endif
@@ -668,8 +668,8 @@ int msg_tail_pos = ll = strlen(out_text);
 #ifdef KP_CONSOLE
       else
       {
-//      cout << out_str;
-        printf("%s\n", out_text);
+//      cerr /* cout */ << out_str;
+        fprintf(stderr, "%s\n", out_text);
     }
 #endif
    }
@@ -820,7 +820,7 @@ const uchar *prod_date = (const uchar *)"0000-00-00";
         strcat(out_str, "\n");
 
 #if (defined Debug) && (defined KP_CONSOLE)
-        cout << out_str;
+        cerr /* cout */ << out_str;
 #endif
 
 // --------------------

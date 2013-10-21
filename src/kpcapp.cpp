@@ -146,7 +146,7 @@ DWORD ll = 0L;
 // ----------------------------------
 void KpCommonApp::Pause(void)
 {
-puts("Press Enter ...");
+fputs("Press Enter ...", stderr);
 char str_buf[100];
 getchar();
 }
