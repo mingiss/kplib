@@ -141,3 +141,12 @@ DWORD ll = 0L;
         strcpy(m_lpszAppName, p_lpszNameBuf);
     }
 }
+
+
+// ----------------------------------
+void KpCommonApp::Pause(void)
+{
+puts("Press Enter ...");
+char str_buf[100];
+getchar();
+}

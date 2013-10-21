@@ -881,7 +881,7 @@ const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
          else
          {
 // TODO: perdaryt į KpError.OutputErrorMessage(KpExc.what(), True, null); (parametrai kaip SendDiagMsg)
-            if (exc->m_lpszMsg)
+            if (exc->m_lpszMsg[0])
                KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_lpszMsg, True, exc->m_lpszSourceFile, exc->m_iSourceLine);
             else
                KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_lWindowsErrorCode, True, exc->m_lpszSourceFile, exc->m_iSourceLine);

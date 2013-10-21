@@ -192,10 +192,12 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #ifdef __WIN32__
 #define KP_DIR_SEP '\\'
 #define KP_DIR_SEP_STR (const uchar *)"\\"
+#define KP_DIR_SEP_STR_0 "\\"
 #define KP_EXE_EXT (const uchar *)"exe"
 #else
 #define KP_DIR_SEP '/'
 #define KP_DIR_SEP_STR (const uchar *)"/"
+#define KP_DIR_SEP_STR_0 "/"
 #define KP_EXE_EXT (const uchar *)""
 #endif
 #define KP_EXT_SEP '.'

@@ -58,6 +58,8 @@ public:
                      // gets filename of application currently running
                      // at first call sets m_lpszAppName[]
                      // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+
+    static void Pause(void); // panašiai kaip system("pause") laukia enterio iš stdin
 };
 
 extern KpCommonApp *KpApp;
