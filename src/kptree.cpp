@@ -31,5 +31,5 @@ using namespace std;
 #include "kptree.h"
 
 
-// visi templatinti metodai iškelti į hederį
+// visi templatinti metodai iškelti į headerį
 
