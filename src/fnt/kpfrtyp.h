@@ -11,6 +11,9 @@
 #define kpfrtyp_included
 
 // -------------------------- FreeImage papildymai
+
+#define KP_FT_Err_NoError -1
+
 class KpFreeType
 {
 public:

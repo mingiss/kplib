@@ -23,12 +23,15 @@ using namespace std;
 #include "kpfrtyp.h"
 
 
+
 HRESULT KpFreeType::GetKpErrCode(FT_Error p_iError)
 {
 HRESULT retc = S_OK;
 
     switch (p_iError)
     {
+    case KP_FT_Err_NoError:                     // "error undefined"
+    
     case FT_Err_Ok:                             // "no error" 
     case FT_Err_Ignore:                         // "ignore"
         retc = S_OK; 
