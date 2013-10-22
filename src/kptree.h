@@ -151,7 +151,7 @@ public:
     //-----------------------------------
     KpTreeEntry<KpTreeRecType> *GetFather(void) const { return(m_pFather); };
 
-    // nustato teva ir visiems tolimesniems broliams
+    // nustato tėvą ir visiems tolimesniems broliams
     // pPrevBrother turi buti NULL
     // pFath cannnot be deleted after successfull SetFather()
     void SetFather0(KpTreeEntry<KpTreeRecType> *pFath) // recursive entry
@@ -195,7 +195,7 @@ public:
     
 
     //-----------------------------------
-    // nustato sekantá brolá ðiam mazgui (this)
+    // nustato sekantį brolį šiam mazgui (this)
     // pNextBr cannnot be deleted after successfull SetNextBrother()
     // pNextBr->pFather turi sutapti su this->pFather
     void SetNextBrother(KpTreeEntry<KpTreeRecType> *pNextBr)
@@ -213,8 +213,8 @@ public:
 
 
     //-----------------------------------
-    // TODO: panaðiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
-    // TODO: elementà trina su visais broliais
+    // TODO: panašiai, kaip ir DeleteKpTreeEntry, tik elementą trina, vietoj jo atkeldamas vaikus
+    // TODO: elementą trina su visais broliais
     // tinka paprasto listo tvarkymui  
     // DeleteChild() papildymas
     static void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
@@ -244,10 +244,27 @@ public:
    
         *ppEntryPtr = first_child;
 
-        // pirmas vaikas  nustatom naujà tëvo pirmà vaikà
+        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
         if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
     }
 };
 
-#endif // #ifndef kptree_included
+// ----------------------------
+// elementų sąrašo trynimas, kai sąrašas ilgas – rekursinis naikinimas gali užkišti steką
+// sąrašas žemyn per vaikus m_pFirstChild
+template <class KpTreeRecType> 
+void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListRoot)
+{
+    KpTreeEntry<KpTreeRecType> *cur_entry = m_pListRoot;
+    KpTreeEntry<KpTreeRecType> *first_child = NULL;
 
+    while (cur_entry)
+    {
+        first_child = cur_entry->GetFirstChild();
+        cur_entry->SetFirstChild(NULL);
+        KP_DELETE(cur_entry);
+        cur_entry = first_child;  
+    }
+}
+
+#endif // #ifndef kptree_included

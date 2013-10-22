@@ -92,6 +92,8 @@ HRESULT retc = S_OK;
     case FT_Err_Missing_Bbx_Field:              // "`BBX' field missing"
     case FT_Err_Corrupted_Font_Header:          // "Font header corrupted or missing fields"
     case FT_Err_Corrupted_Font_Glyphs:          // "Font glyphs corrupted or missing fields"
+
+    case KP_FT_Err_TooManyGlyphs:               // "too many glyphs"
         retc = KP_E_FILE_FORMAT;                        
         break;                                          
                                                         
@@ -181,6 +183,8 @@ const uchar *ret_msg = (const uchar *)"unknown FreeType error";
     switch (p_iError)
     {
 #include "fterrdef.h"
+
+    case KP_FT_Err_TooManyGlyphs: ret_msg = (const uchar *)"too many glyphs"; break;
     }
 
 return(ret_msg);

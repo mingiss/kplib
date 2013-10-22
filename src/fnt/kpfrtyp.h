@@ -12,7 +12,15 @@
 
 // -------------------------- FreeImage papildymai
 
-#define KP_FT_Err_NoError -1
+typedef enum
+{
+KP_FT_Err_NoError = -1,
+KP_FT_Err_FirstKpError = 0x1000,
+KP_FT_Err_TooManyGlyphs = KP_FT_Err_FirstKpError,
+KP_FT_Err_LastKpErr
+} KP_FT_Error;
+
+#define KP_FT_NumOfKpErrs (KP_FT_Err_LastKpErr - KP_FT_Err_FirstKpError)
 
 class KpFreeType
 {

@@ -166,6 +166,8 @@ typedef unsigned long HINSTANCE;
 typedef long LONG;
 #endif
 
+typedef unsigned int uint;
+typedef unsigned long ulong;
 
 //--------------------------- pointer processing
 typedef void (*FuncPtr)(void);    /* funkcijos rodykles tipas */ // former Funpnt
