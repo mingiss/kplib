@@ -29,7 +29,7 @@ public:
     // create new record entry
     // stores allocated object pointer lpRecord to m_lpRecord
     // don't delete it after return
-    KpTreeEntry(KpTreeRecType *lpRecord, KpTreeEntry<KpTreeRecType> *pFath)
+    KpTreeEntry(KpTreeRecType *lpRecord, KpTreeEntry<KpTreeRecType> *pFath = NULL)
     {
      // KP_ASSERT(lpRecord, E_INVALIDARG, null);
         m_lpRecord = lpRecord;
@@ -247,41 +247,40 @@ public:
         // pirmas vaikas – nustatom naują tėvo pirmą vaiką
         if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
     }
-};
 
 // ----------------------------
 // elementų sąrašo trynimas, kai sąrašas ilgas – rekursinis naikinimas gali užkišti steką
 // sąrašas žemyn per vaikus m_pFirstChild
-template <class KpTreeRecType> 
-void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListNodePtr)
-{
-KpTreeEntry<KpTreeRecType> *cur_entry = m_pListNodePtr;
-KpTreeEntry<KpTreeRecType> *first_child = NULL;
-
-    while (cur_entry)
+    static void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListNodePtr)
     {
-        first_child = cur_entry->GetFirstChild();
-        cur_entry->SetFirstChild(NULL);
-        KP_DELETE(cur_entry);
-        cur_entry = first_child;  
+    KpTreeEntry<KpTreeRecType> *cur_entry = m_pListNodePtr;
+    KpTreeEntry<KpTreeRecType> *first_child = NULL;
+    
+        while (cur_entry)
+        {
+            first_child = cur_entry->GetFirstChild();
+            cur_entry->SetFirstChild(NULL);
+            KP_DELETE(cur_entry);
+            cur_entry = first_child;  
+        }
     }
-}
 
 // ---------------------------------
 // listo elementų skaičius (linijinio listo per vaikus m_pFirstChild)
-template <class KpTreeRecType> 
-int KpTreeListSize(KpTreeEntry<KpTreeRecType> *m_pListPtr)
-{
-KpTreeEntry<KpTreeRecType> *cur_entry = m_pListPtr;
-int node_cnt = 0;
-
-    while (cur_entry)
+    static int KpTreeListSize(KpTreeEntry<KpTreeRecType> *m_pListPtr)
     {
-        node_cnt++;
-        cur_entry = cur_entry->GetFirstChild();
+    KpTreeEntry<KpTreeRecType> *cur_entry = m_pListPtr;
+    int node_cnt = 0;
+    
+        while (cur_entry)
+        {
+            node_cnt++;
+            cur_entry = cur_entry->GetFirstChild();
+        }
+    
+    return(node_cnt);
     }
 
-return(node_cnt);
-}
+};
 
 #endif // #ifndef kptree_included
