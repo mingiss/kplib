@@ -253,10 +253,10 @@ public:
 // elementų sąrašo trynimas, kai sąrašas ilgas – rekursinis naikinimas gali užkišti steką
 // sąrašas žemyn per vaikus m_pFirstChild
 template <class KpTreeRecType> 
-void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListRoot)
+void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListNodePtr)
 {
-    KpTreeEntry<KpTreeRecType> *cur_entry = m_pListRoot;
-    KpTreeEntry<KpTreeRecType> *first_child = NULL;
+KpTreeEntry<KpTreeRecType> *cur_entry = m_pListNodePtr;
+KpTreeEntry<KpTreeRecType> *first_child = NULL;
 
     while (cur_entry)
     {
@@ -265,6 +265,23 @@ void KpTreeListDelete(KpTreeEntry<KpTreeRecType> *m_pListRoot)
         KP_DELETE(cur_entry);
         cur_entry = first_child;  
     }
+}
+
+// ---------------------------------
+// listo elementų skaičius (linijinio listo per vaikus m_pFirstChild)
+template <class KpTreeRecType> 
+int KpTreeListSize(KpTreeEntry<KpTreeRecType> *m_pListPtr)
+{
+KpTreeEntry<KpTreeRecType> *cur_entry = m_pListPtr;
+int node_cnt = 0;
+
+    while (cur_entry)
+    {
+        node_cnt++;
+        cur_entry = cur_entry->GetFirstChild();
+    }
+
+return(node_cnt);
 }
 
 #endif // #ifndef kptree_included

@@ -23,7 +23,7 @@ using namespace std;
 #include "kpfrtyp.h"
 
 
-
+// ---------------------------
 HRESULT KpFreeType::GetKpErrCode(FT_Error p_iError)
 {
 HRESULT retc = S_OK;
@@ -37,10 +37,6 @@ HRESULT retc = S_OK;
         retc = S_OK; 
         break;
     
-    case FT_Err_Cannot_Open_Resource:           // "cannot open resource"
-        retc = KP_E_FILE_NOT_FOUND;
-        break;
-        
     case FT_Err_Unknown_File_Format:            // "unknown file format"
     case FT_Err_Invalid_File_Format:            // "broken file"
     case FT_Err_Invalid_Version:                // "invalid FreeType version"
@@ -94,6 +90,8 @@ HRESULT retc = S_OK;
     case FT_Err_Corrupted_Font_Glyphs:          // "Font glyphs corrupted or missing fields"
 
     case KP_FT_Err_TooManyGlyphs:               // "too many glyphs"
+    case KP_FT_Err_TooManyTypefaces:            // "too many typefaces"
+    case KP_FT_Err_TooManyCharMaps:             // "too many charmaps"
         retc = KP_E_FILE_FORMAT;                        
         break;                                          
                                                         
@@ -134,17 +132,21 @@ HRESULT retc = S_OK;
         retc = E_OUTOFMEMORY;
         break;
 
+    case FT_Err_Divide_By_Zero:                 // "division by zero"
+        retc = KP_E_DIV_ZERO;                                                
+        break;
+
     case FT_Err_Cannot_Open_Stream:             // "cannot open stream"
+    case FT_Err_Cannot_Open_Resource:           // "cannot open resource"
+        retc = KP_E_FILE_NOT_FOUND;
+        break;
+
     case FT_Err_Invalid_Stream_Seek:            // "invalid stream seek"
     case FT_Err_Invalid_Stream_Skip:            // "invalid stream skip"
     case FT_Err_Invalid_Stream_Read:            // "invalid stream read"
     case FT_Err_Invalid_Stream_Operation:       // "invalid stream operation"
     case FT_Err_Invalid_Frame_Read:             // "invalid frame read"
         retc = KP_E_FERROR;
-        break;
-
-    case FT_Err_Divide_By_Zero:                 // "division by zero"
-        retc = KP_E_DIV_ZERO;                                                
         break;
 
     case FT_Err_ENDF_In_Exec_Stream:            // "found ENDF opcode in execution stream"
@@ -164,8 +166,11 @@ HRESULT retc = S_OK;
     case FT_Err_Raster_Uninitialized:           // "raster uninitialized"
     case FT_Err_Raster_Corrupted:               // "raster corrupted"
     case FT_Err_Raster_Negative_Height:         // "negative height while rastering"
-    default:                                            
         retc = KP_E_SYSTEM_ERROR;                       
+        break;                                          
+
+    default:                                            
+        retc = KP_E_UNHANDLED_EXCEPTION;                       
         break;                                          
     }
 
@@ -173,6 +178,115 @@ return(retc);
 }
 
 
+FT_Error KpFreeType::GetFtErrCode(HRESULT p_lKpErr)
+{
+FT_Error retv = FT_Err_Ok;
+
+    switch (p_lKpErr)
+    {
+    case S_OK:
+        retv = FT_Err_Ok;
+        break;
+        
+    case E_NOTIMPL:
+        retv = FT_Err_Unimplemented_Feature;
+        break;
+
+    case E_INVALIDARG:
+        retv = FT_Err_Invalid_Argument;
+        break;
+
+    case KP_E_FILE_FORMAT:
+        retv = FT_Err_Unknown_File_Format;
+        break;
+
+    case KP_E_DIV_ZERO:
+        retv = FT_Err_Divide_By_Zero;
+        break;
+
+    case E_OUTOFMEMORY:
+        retv = FT_Err_Out_Of_Memory;
+        break;
+
+    case KP_E_BUFFER_OVERFLOW:
+        retv = FT_Err_Array_Too_Large;
+        break;
+
+    case KP_E_DIR_ERROR:
+    case KP_E_FILE_NOT_FOUND:
+        retv = FT_Err_Cannot_Open_Stream;
+        break;
+
+    case KP_E_EOF:
+        retv = FT_Err_ENDF_In_Exec_Stream;
+        break;
+
+    case KP_E_KWD_NOT_FOUND:
+        retv = FT_Err_No_Unicode_Glyph_Name;
+        break;
+
+    case KP_E_UNKN_CHR:
+        retv = FT_Err_Invalid_Character_Code;
+        break;
+
+    case KP_E_TIMEOUT:
+        retv = FT_Err_Execution_Too_Long;
+        break;
+
+    case E_UNEXPECTED:
+    case E_NOINTERFACE:
+    case E_POINTER:
+    case E_HANDLE:
+    case E_ABORT:
+    case E_FAIL:
+    case E_ACCESSDENIED:
+    case E_PENDING:
+    // case E_OBJECT_BUSY:
+    // case KP_E_OUTOFMEM:
+    case KP_E_DOUBLE_UNGET:
+    case KP_E_FERROR:
+    case KP_E_SYSTEM_ERROR:
+    case KP_E_NO_FILE:
+    case KP_E_COMMAND_ERROR:
+    case KP_E_FONT_UNDEF:
+    case KP_E_UNKNOWN_SYSTEM:
+    case KP_E_ILL_CODE:
+    // case KP_E_CANCEL:
+    // case KP_E_DOUBLE_CALL:
+    case KP_E_OBJ_NOT_FOUND:
+    case KP_E_NO_CONN:
+    case KP_E_TRANS_ERR:
+    case KP_E_REFUSED:
+    // case KP_E_ACCESS_DENIED:
+    case KP_E_ILL_CHR:
+    case KP_E_SKIP:
+    case KP_E_ILLMATHARG:
+    case KP_E_ILLFUNC:
+    case KP_E_NOTINST:
+    case KP_E_MSG_FORMAT:
+    case KP_E_OBSOLETE:
+    case KP_E_HELP:
+    case KP_E_NEG_ANSW:
+    case KP_E_FILE_CHANGED:
+    case KP_S_DIAG_MSG:
+    case KP_E_BAD_EMAIL:
+    case KP_S_LOGOFF:
+    case KP_S_DONE:
+    case KP_E_EXPIRED:
+    case KP_E_UNHANDLED_EXCEPTION:
+        retv = KP_FT_Err_UnknownFtError;
+        break;
+
+    default:
+        retv = KP_FT_Err_UnknownFtError;
+        break;
+    }
+    
+return(retv);    
+}  
+
+
+// ---------------------------
 #define FT_ERRORDEF_(name, code, msg) case FT_Err_##name: ret_msg = (const uchar *)msg; break;
 #define FT_NOERRORDEF_(name, code, msg) FT_ERRORDEF_(name, code, msg)
 
@@ -184,7 +298,10 @@ const uchar *ret_msg = (const uchar *)"unknown FreeType error";
     {
 #include "fterrdef.h"
 
-    case KP_FT_Err_TooManyGlyphs: ret_msg = (const uchar *)"too many glyphs"; break;
+    case KP_FT_Err_TooManyGlyphs:       ret_msg = (const uchar *)"kpfrtyp: too many glyphs"; break;
+    case KP_FT_Err_TooManyTypefaces:    ret_msg = (const uchar *)"kpfrtyp: too many typefaces"; break;
+    case KP_FT_Err_TooManyCharMaps:     ret_msg = (const uchar *)"too many charmaps"; break;
+    case KP_FT_Err_UnknownFtError:      ret_msg = (const uchar *)"unknown error"; break;
     }
 
 return(ret_msg);
