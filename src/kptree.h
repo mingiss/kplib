@@ -65,7 +65,7 @@ public:
 
     //-----------------------------------
     // get record object pointer m_lpRecord
-    KpTreeRecType *GetValue(void){ return(m_lpRecord); } 
+    KpTreeRecType *GetValue(void) const { return(m_lpRecord); } 
 
     
 // ------------------------------
