@@ -9,8 +9,8 @@
  */  
 
 
-#ifndef plistff_included
-#define plistff_included
+#ifndef PLISTFF_INCLUDED
+#define PLISTFF_INCLUDED
 
 class PlistFmtFile: public FmtFile
 {
@@ -29,4 +29,4 @@ public:
 
 extern FmtFile *CreatePlistFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef plistff_included
+#endif // #ifndef PLISTFF_INCLUDED

@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef rtif_included
-#define rtif_included
+#ifndef RTIF_INCLUDED
+#define RTIF_INCLUDED
 
 
 #ifdef __cplusplus
@@ -80,4 +80,4 @@ void add_xml_to_rti(const string *p_psKwdStr, const uchar *p_lpszGrpTagName, con
 extern int split_strings(uchar *t, uchar *tt, /* const */ uchar *s);
 #endif // #ifdef __cplusplus
 
-#endif // #ifndef rtif_included
+#endif // #ifndef RTIF_INCLUDED

@@ -9,8 +9,8 @@
  */  
 
 
-#ifndef csvff_included
-#define csvff_included
+#ifndef CSVFF_INCLUDED
+#define CSVFF_INCLUDED
 
 class CsvFmtFile: public FmtFile
 {
@@ -28,4 +28,4 @@ public:
 
 extern FmtFile *CreateCsvFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef csvff_included
+#endif // #ifndef CSVFF_INCLUDED

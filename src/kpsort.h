@@ -7,8 +7,8 @@
  *       
  */  
 
-#ifndef kpsort_included
-#define kpsort_included
+#ifndef KPSORT_INCLUDED
+#define KPSORT_INCLUDED
 
 
 // ----------------------
@@ -61,4 +61,4 @@ bool p_bWholeWords,
 int p_iKeySize          //  size of one p_plpszKeytable[] element                        
 );
 
-#endif // #ifndef kpsort_included
+#endif // #ifndef KPSORT_INCLUDED

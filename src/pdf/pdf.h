@@ -8,8 +8,8 @@
  */
 
 
-#ifndef pdf_included
-#define pdf_included
+#ifndef PDF_INCLUDED
+#define PDF_INCLUDED
 
 #define PS_PT_PER_INCH 72
 
@@ -28,4 +28,4 @@ struct PsChName
 
 extern PsChName PsChNames[];
 
-#endif // #ifndef pdf_included
+#endif // #ifndef PDF_INCLUDED

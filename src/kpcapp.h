@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef kpcapp_included
-#define kpcapp_included
+#ifndef KPCAPP_INCLUDED
+#define KPCAPP_INCLUDED
 
 #ifdef __cplusplus
 
@@ -65,4 +65,4 @@ public:
 extern KpCommonApp *KpApp;
 
 #endif // #ifdef __cplusplus
-#endif // #ifndef kpcapp_included
+#endif // #ifndef KPCAPP_INCLUDED

@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef kpstring_included
-#define kpstring_included
+#ifndef KPSTRING_INCLUDED
+#define KPSTRING_INCLUDED
 
 // -------------------------
 typedef uchar * KpStrPtr;
@@ -93,4 +93,4 @@ public:
 };
 
 #endif // #ifdef __cplusplus
-#endif // #ifndef kpstring_included
+#endif // #ifndef KPSTRING_INCLUDED

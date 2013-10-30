@@ -9,8 +9,8 @@
  *     
  */
 
-#ifndef dvi_included
-#define dvi_included
+#ifndef DVI_INCLUDED
+#define DVI_INCLUDED
 
 /* variety of DTL produced */
 #define  VARIETY  "sequences-6"
@@ -244,4 +244,4 @@ typedef enum
 
 #define ENC_TAB_START 0 // kai kurie .enc failai panašu, kad prasideda nuo kitų kodų (tarpo?)
 
-#endif // #ifndef dvi_included
+#endif // #ifndef DVI_INCLUDED

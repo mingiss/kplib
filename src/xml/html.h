@@ -7,9 +7,9 @@
  *
  */
 
-#ifndef html_included
-#define html_included
+#ifndef HTML_INCLUDED
+#define HTML_INCLUDED
 
 #define KP_HTM_EXT "htm"
 
-#endif // #ifndef txml_included
+#endif // #ifndef HTML_INCLUDED

@@ -9,8 +9,8 @@
  */  
 
 
-#ifndef jsonff_included
-#define jsonff_included
+#ifndef JSONFF_INCLUDED
+#define JSONFF_INCLUDED
 
 class JsonFmtFile: public FmtFile
 {
@@ -30,4 +30,4 @@ public:
 
 extern FmtFile *CreateJsonFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef jsonff_included
+#endif // #ifndef JSONFF_INCLUDED

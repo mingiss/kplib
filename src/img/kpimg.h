@@ -7,10 +7,10 @@
  *   
  */   
 
-#ifndef kpimg_included
-#define kpimg_included
+#ifndef KPIMG_INCLUDED
+#define KPIMG_INCLUDED
 
 #define KPG_BMP_EXT "bmp"
 #define KPG_PGM_EXT "pgm"
 
-#endif // #ifndef kpimg_included
+#endif // #ifndef KPIMG_INCLUDED

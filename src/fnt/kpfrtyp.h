@@ -7,8 +7,8 @@
  *   
  */   
 
-#ifndef kpfrtyp_included
-#define kpfrtyp_included
+#ifndef KPFRTYP_INCLUDED
+#define KPFRTYP_INCLUDED
 
 // -------------------------- FreeImage papildymai
 
@@ -35,6 +35,4 @@ public:
     static const uchar *GetFtErrMsg(FT_Error p_iError); // suformuoja FreeType klaidos pranešimą
 };
 
-#endif // #ifndef kpfrtyp_included
-
-
+#endif // #ifndef KPFRTYP_INCLUDED

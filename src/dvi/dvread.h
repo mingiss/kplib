@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef dvread_included
-#define dvread_included
+#ifndef DVREAD_INCLUDED
+#define DVREAD_INCLUDED
 
 
 // ---------------------------
@@ -244,4 +244,4 @@ public:
     virtual void TransText(const uchar *p_lpszStr) {}
 };
 
-#endif // #ifndef dvread_included
+#endif // #ifndef DVREAD_INCLUDED

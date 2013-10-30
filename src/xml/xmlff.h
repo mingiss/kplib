@@ -9,8 +9,8 @@
  */  
 
 
-#ifndef xmlff_included
-#define xmlff_included
+#ifndef XMLFF_INCLUDED
+#define XMLFF_INCLUDED
 
 class XmlFmtFile: public FmtFile
 {
@@ -25,4 +25,4 @@ public:
 
 extern FmtFile *CreateXmlFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef xmlff_included
+#endif // #ifndef XMLFF_INCLUDED

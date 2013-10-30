@@ -9,8 +9,8 @@
  *       
  */  
 
-#ifndef plainff_included
-#define plainff_included
+#ifndef PLAINFF_INCLUDED
+#define PLAINFF_INCLUDED
 
 class PlainFmtFile: public FmtFile
 {
@@ -27,4 +27,4 @@ public:
 
 extern FmtFile *CreatePlainFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef plainff_included
+#endif // #ifndef PLAINFF_INCLUDED

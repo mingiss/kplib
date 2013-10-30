@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef dvisp_included
-#define dvisp_included
+#ifndef DVISP_INCLUDED
+#define DVISP_INCLUDED
 
 // ------------------------
 #define DVISP_SPEC_PAPERSIZE_HEAD (const uchar *)"papersize="
@@ -93,4 +93,4 @@ extern bool kwd_in_plist(const uchar *p_lpszaKwdList[], const uchar *p_lpszKwd);
 //      iškviesti tuščią ProcessSpecial((const uchar *)""), kad išsiflushintų sukauptas XML-as
 extern void ProcessSpecial(const uchar *p_lpszSrcBuf);
 
-#endif // #ifndef dvisp_included
+#endif // #ifndef DVISP_INCLUDED

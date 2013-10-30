@@ -7,8 +7,8 @@
  *   
  */   
 
-#ifndef kpgfrim_included
-#define kpgfrim_included
+#ifndef KPGFRIM_INCLUDED
+#define KPGFRIM_INCLUDED
 
 // -------------------------- FreeImage papildymai
 extern const uchar *plpszPictExt[]; // paveikslų failų prievardžių atitinkamybė failų formatams FREE_IMAGE_FORMAT
@@ -26,4 +26,4 @@ public:
     int getPixelGreyVal(unsigned p_iX, unsigned p_iY) const;
 };
 
-#endif // #ifndef kpgfrim_included
+#endif // #ifndef KPGFRIM_INCLUDED

@@ -9,8 +9,8 @@
  */  
 
 
-#ifndef yamlff_included
-#define yamlff_included
+#ifndef YAMLFF_INCLUDED
+#define YAMLFF_INCLUDED
 
 class YamlFmtFile: public FmtFile
 {
@@ -28,4 +28,4 @@ public:
 
 extern FmtFile *CreateYamlFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef yamlff_included
+#endif // #ifndef YAMLFF_INCLUDED

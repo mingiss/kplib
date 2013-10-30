@@ -3,8 +3,8 @@
 // kp programø praneðimai
 //
 
-#ifndef kpmsg_included
-#define kpmsg_included
+#ifndef KPMSG_INCLUDED
+#define KPMSG_INCLUDED
 
 // --------------------------------------- common kp messages
 enum
@@ -1450,4 +1450,4 @@ NumOfKpMessages
 
 #endif // #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangRu_p) && (MsgLang != KpLangRu_1251_p) && (MsgLang != KpLangRu_0_p))
 
-#endif // #ifndef kpmsg_included
+#endif // #ifndef KPMSG_INCLUDED

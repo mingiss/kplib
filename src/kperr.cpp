@@ -25,6 +25,7 @@
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
+#include "kptree.h"
 #include "kpstdio.h"
 #include "kpmsg.h"
 #include "kpmsg_en.h"

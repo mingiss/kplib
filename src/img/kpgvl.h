@@ -7,8 +7,8 @@
  *   
  */   
 
-#ifndef kpgvl_included
-#define kpgvl_included
+#ifndef KPGVL_INCLUDED
+#define KPGVL_INCLUDED
 
 // -------------------------- VlFeat papildymai
 #define KP_VL_KEYPOINT_TIMEOUT 5000 // keypoint skaičiavimo taimoutas, jeigu per jį nepabaigia – laužiam lauk
@@ -39,4 +39,4 @@ public:
 // vietoj vl_get_last_error_message() -- jeigu ją naudojam, iš vl.lib neprisilinkuoja _vl_state
 extern const uchar *KpVlGetErrorMsg(int p_iVlErrCode);
 
-#endif // #ifndef kpgvl_included
+#endif // #ifndef KPGVL_INCLUDED

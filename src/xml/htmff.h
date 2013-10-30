@@ -8,8 +8,8 @@
  */  
 
 
-#ifndef htmff_included
-#define htmff_included
+#ifndef HTMFF_INCLUDED
+#define HTMFF_INCLUDED
 
 class HtmFmtFile: public XmlFmtFile
 {
@@ -27,4 +27,4 @@ public:
 
 extern FmtFile *CreateHtmFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef htmff_included
+#endif // #ifndef HTMFF_INCLUDED

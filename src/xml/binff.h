@@ -8,8 +8,8 @@
  *       
  */  
 
-#ifndef binff_included
-#define binff_included
+#ifndef BINFF_INCLUDED
+#define BINFF_INCLUDED
 
 class BinFmtFile: public FmtFile
 {
@@ -24,4 +24,4 @@ public:
 
 extern FmtFile *CreateBinaryFmtFile(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef plainff_included
+#endif // #ifndef BINFF_INCLUDED

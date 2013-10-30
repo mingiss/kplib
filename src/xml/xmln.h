@@ -7,6 +7,9 @@
  *       
  */  
 
+#ifndef XMLN_INCLUDED
+#define XMLN_INCLUDED
+
 // ----------------------------------------
 class XmlNodeRec: public KpTreeRec // XmlNode elemento duomenų struktūra, XmlNode::m_lpRecord
 {
@@ -56,3 +59,5 @@ public:
     XmlNodeRec *CreateTagNode(const uchar *p_lpszTagName, 
         const XmlTagPars *p_TagPars, const uchar *p_lpszTagContents);
 };
+
+#endif // #ifndef XMLN_INCLUDED

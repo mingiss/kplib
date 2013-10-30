@@ -8,8 +8,8 @@
  */  
 
 
-#ifndef kptree_included
-#define kptree_included
+#ifndef KPTREE_INCLUDED
+#define KPTREE_INCLUDED
 
 template <class KpTreeRecType> 
 class KpTreeEntry
@@ -283,4 +283,4 @@ public:
 
 };
 
-#endif // #ifndef kptree_included
+#endif // #ifndef KPTREE_INCLUDED

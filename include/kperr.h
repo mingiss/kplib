@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef kperr_included
-#define kperr_included
+#ifndef KPERR_INCLUDED
+#define KPERR_INCLUDED
 
 // ---------------------------------------- assertions
 // KP_ASSERT[W[0]](bool bCond, HRESULT lhErrCode, uchar *Msg);
@@ -247,4 +247,4 @@ extern PLAIN_C const uchar *KpGetProdName(void);
 #define program KpGetProdName() // definition for dvread.c, etc.
 
 // ----------------------------------------
-#endif // #ifndef kperr_included
+#endif // #ifndef KPERR_INCLUDED

@@ -9,8 +9,8 @@
  */
 
 // -------------------------------------------------
-#ifndef kperrno_included
-#define kperrno_included
+#ifndef KPERRNO_INCLUDED
+#define KPERRNO_INCLUDED
 
 
 // ================================================== return codes
@@ -254,4 +254,4 @@ E_HTTP_ERROR 0x80070965    Driver error. Exclusive access.
 // unhandled exception
 #define KP_E_UNHANDLED_EXCEPTION  (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 + 0x02b))
 
-#endif // #ifndef kperrno_included
+#endif // #ifndef KPERRNO_INCLUDED

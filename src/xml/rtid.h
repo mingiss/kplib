@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef rti_included
-#define rti_included
+#ifndef RTI_INCLUDED
+#define RTI_INCLUDED
 
 
 // ------------------------
@@ -42,4 +42,4 @@
 #define DRTI_ALL_GRP_TAG (const uchar *)"all"
 
 
-#endif // #ifndef rti_included
+#endif // #ifndef RTI_INCLUDED

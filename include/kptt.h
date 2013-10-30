@@ -4,8 +4,8 @@
  */
 
 
-#ifndef kptt
-#define kptt
+#ifndef KPTT_INCLUDED
+#define KPTT_INCLUDED
 
 /* =================================================== */
 #define KPT_NoCodeTable   (-1)   /* No code table - value for undefined font table */
@@ -1120,4 +1120,4 @@ typedef enum
 typedef int KpChar;
 
 
-#endif
+#endif // #ifndef KPTT_INCLUDED

@@ -4,8 +4,8 @@
 // anglø kalba
 //
 
-#ifndef kpmsg_en_included
-#define kpmsg_en_included
+#ifndef KPMSG_EN_INCLUDED
+#define KPMSG_EN_INCLUDED
 
 // --------------------------------------- common kp messages
 
@@ -224,4 +224,4 @@
 
 #endif // #if ((MsgLang == KpLangEn_p) || (MsgLang == KpLangSel_p) || (MsgLang == KpLangEn_p))
 
-#endif // #ifndef kpmsg_en_included
+#endif // #ifndef KPMSG_EN_INCLUDED

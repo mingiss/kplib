@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef kpstdlib_included
-#define kpstdlib_included
+#ifndef KPSTDLIB_INCLUDED
+#define KPSTDLIB_INCLUDED
 
 
 
@@ -146,6 +146,13 @@ typedef char bool;
 #ifndef TRUE
 #define TRUE (!FALSE)
 #endif
+
+#ifndef __cplusplus
+#ifndef true
+#define true 1
+#define false 0
+#endif /* not true */
+#endif /* not __cplusplus */
 
 #define True ((bool)TRUE)
 #define False ((bool)FALSE)
@@ -387,4 +394,4 @@ double NormAngle(double p_dAngle); // sukiða kampà á intervalà [-pi, pi)
 #endif
 
 // ----------------------------------------
-#endif // #ifndef kpstdlib_included
+#endif // #ifndef KPSTDLIB_INCLUDED

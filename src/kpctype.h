@@ -6,8 +6,8 @@
  *
  */   
 
-#ifndef kpctype_included
-#define kpctype_included
+#ifndef KPCTYPE_INCLUDED
+#define KPCTYPE_INCLUDED
 
 
 // ================================================== predefined spec. character strings
@@ -21,5 +21,5 @@ extern uchar lpszSpcEolNotTabNotFF[];
 extern unsigned char lpszSpCharsSpcEol[]; // "/.,- \t\r\n"  // characters ignored by sorting/searching
                                                             //    former lpszSpChars
 
-#endif // #ifndef kpctype_included
+#endif // #ifndef KPCTYPE_INCLUDED
 

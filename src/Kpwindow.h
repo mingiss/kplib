@@ -8,8 +8,8 @@
  *
  */
 
-#ifndef kpwindows_included
-#define kpwindows_included
+#ifndef KPWINDOW_INCLUDED
+#define KPWINDOW_INCLUDED
 
 #ifdef __WIN32__
 
@@ -32,4 +32,4 @@ extern void KpDrawRect(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lCo
  
 #endif // #ifdef __WIN32__
 
-#endif // #ifndef kpwindows_included
+#endif // #ifndef KPWINDOW_INCLUDED

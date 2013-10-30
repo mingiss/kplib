@@ -11,8 +11,8 @@
  *
  */  
 
-#ifndef fmtf_included
-#define fmtf_included
+#ifndef FMTF_INCLUDED
+#define FMTF_INCLUDED
 
 class FmtFile
 {
@@ -44,4 +44,4 @@ public:
 // Paveldėtų iš FmtFile objektų factory
 typedef FmtFile * (*FmtFileForgeFptr)(const uchar *p_lpszFileName, const uchar *p_lpszFileMode);
 
-#endif // #ifndef fmtf_included
+#endif // #ifndef FMTF_INCLUDED

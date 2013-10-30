@@ -8,6 +8,9 @@
  */  
 
 
+#ifndef XMLX_INCLUDED
+#define XMLX_INCLUDED
+
 // ----------------------------------------
 #define XL_MaxNumOfTags 1000
 
@@ -42,3 +45,5 @@ enum XmlSysTagChars                          // XML system tag characters
 };
 
 extern const uchar *plpszaXmlSysTags[XL_NumOfSysTags + 1]; // XML system tag names without enclosing "<" and ">" 
+
+#endif // #ifndef XMLX_INCLUDED
