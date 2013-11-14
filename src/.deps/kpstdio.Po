@@ -73,6 +73,12 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/fstream \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/codecvt.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cstdio \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/basic_file.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++io.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/fstream.tcc \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h \
@@ -278,6 +284,18 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc:
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/fstream:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/codecvt.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cstdio:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/basic_file.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++io.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/fstream.tcc:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h:
 

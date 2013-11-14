@@ -1,0 +1,15 @@
+# use glob syntax.
+syntax: glob
+
+*.o
+*.lo
+*.la
+*.lai
+*autom4te.cache/*
+# *.elc
+# *.pyc
+# *~
+
+# switch to regexp syntax.
+# syntax: regexp
+# ^\.pc/

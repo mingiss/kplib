@@ -13,9 +13,12 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
+
+using namespace std;
 
 #include "kperrno.h"
 #include "kpstdlib.h"

@@ -18,9 +18,9 @@ public:
     KpTreeRecType *m_lpRecord;
 
     KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
+    KpTreeEntry<KpTreeRecType> *m_pNextBrother;
 private:
     KpTreeEntry<KpTreeRecType> *m_pPrevBrother;
-    KpTreeEntry<KpTreeRecType> *m_pNextBrother;
     KpTreeEntry<KpTreeRecType> *m_pFather;
 
 
@@ -46,6 +46,7 @@ public:
     {
     KpTreeEntry<KpTreeRecType> *next_br = NULL;
 
+        // loop on brothers – recursion could overfill the stack
         while (m_pNextBrother)
         {
             next_br = m_pNextBrother->GetNextBrother();
@@ -57,6 +58,7 @@ public:
             SetNextBrother(next_br);
         }
 
+        // recursion on children
         KP_DELETE(m_pFirstChild);
 
         KP_DELETE(m_lpRecord);
@@ -69,8 +71,8 @@ public:
 
     
 // ------------------------------
-// simply linear list methods
-
+// simply linear list methods based on father-child relations
+// for not very big lists - deletion recursive
 
     //-----------------------------------
     // sets value of pointer to the next entry (child) m_pFirstChild
@@ -99,15 +101,15 @@ public:
 
 
     // prijungia vaiką (sekantį sąrašo elementą su visa uodega)
+    // pChild cannnot be deleted after successfull ConnectChild()
     // nustato pChild->m_pFather į this
     // pChild->m_pPrevBrother turi buti NULL
     // this->m_pFirstChild turi būti NULL
     // naudojamas šakos/uodegos gražiam prijungimui
-    // pChild gali būti NULL
     void ConnectChild(KpTreeEntry<KpTreeRecType> *pChild)
     {
-//      KP_ASSERT(pChild, E_INVALIDARG, null);
-        KP_ASSERT(m_pFirstChild == NULL, KP_E_SYSTEM_ERROR, null);
+        KP_ASSERT(pChild, E_INVALIDARG, null);
+        KP_ASSERT(m_pFirstChild == NULL, E_UNEXPECTED, null);
         if (pChild)
         {
 //          KP_ASSERT(pChild->GetPrevBrother() == NULL, KP_E_SYSTEM_ERROR, null); // patikrins SetFirstChild()
@@ -209,6 +211,72 @@ public:
         }
 
         m_pNextBrother = pNextBr;
+    }
+
+
+    //-----------------------------------
+    // nustato sekantį brolį šiam mazgui (this)
+    // pNextBr cannnot be deleted after successfull ConnectBrother()
+    // nustato pNextBr->m_pFather=this->m_pFather
+    // į galimai buvusį brolį pNextBr->m_pPrevBrother nekreipia dėmesio –
+    //      užkloja ant viršaus
+    void ConnectBrother(KpTreeEntry<KpTreeRecType> *pNextBr)
+    {
+        KP_ASSERT(pNextBr, E_INVALIDARG, null);
+        KP_ASSERT(m_pNextBrother == NULL, E_UNEXPECTED, null);
+
+        if(pNextBr)
+        {
+            pNextBr->SetPrevBrother(NULL);
+            pNextBr->SetFather(m_pFather);
+            pNextBr->SetPrevBrother(this);
+        }
+
+        SetNextBrother(pNextBr);
+    }
+
+
+    //-----------------------------------
+    // appends new child AFTER the last child of this
+    //    pChild cannot be deleted after successfull AppendChild()
+    // nežiūrėdamas nustato pChild->pFather i this
+    void AppendChild(KpTreeEntry<KpTreeRecType> *pChild)
+    {
+    KpTreeEntry<KpTreeRecType> *cur_brother = NULL;
+    KpTreeEntry<KpTreeRecType> *next_brother = NULL;
+
+        KP_ASSERT(pChild, E_INVALIDARG, null);
+
+        // patikrins pChild->SetFather(this);
+        // KP_ASSERT(pChild->GetPrevBrother() == NULL, E_INVALIDARG, null);
+
+        pChild->SetFather(this);
+
+        if(m_pFirstChild == NULL) ConnectChild(pChild);
+        else
+        {
+            next_brother = m_pFirstChild;
+            do
+            {
+                cur_brother = next_brother;
+                next_brother = cur_brother->GetNextBrother();
+            } while(next_brother);
+
+            cur_brother->ConnectBrother(pChild);
+        }
+    }
+
+
+    //-----------------------------------
+    //  suskaičiuoja protėvius
+    int GetDepth(void)
+    {
+    int ret_val = 0;
+
+        if (m_pFather)
+            ret_val = 1 + m_pFather->GetDepth();
+
+    return(ret_val);
     }
 
 

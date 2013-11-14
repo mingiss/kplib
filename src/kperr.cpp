@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <time.h>
 #ifdef __WIN32__
 #include <windows.h>
@@ -19,6 +20,8 @@
 #include <ddk\ntapi.h>
 #endif
 #endif
+
+using namespace std;
 
 #include "kperrno.h"
 #include "kpstdlib.h"
