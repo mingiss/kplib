@@ -14,12 +14,9 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <fstream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
-
-using namespace std;
 
 #include "kperrno.h"
 #include "kpstdlib.h"
@@ -111,73 +108,6 @@ uchar *pnts;
 // -------------------------------------- File I/O traceris
 // *KpFileDescListPtr metodų PLAIN_C wrapperiai
 
-int kpadd_fmode_to_flags(const uchar *p_lpszOpenMode)
-{
-    KP_ASSERT(p_lpszOpenMode, E_INVALIDARG, null);
-int fflags = 0;
-    if (strchr(p_lpszOpenMode, "r") fflags |= _O_RDONLY;
-    if (strchr(p_lpszOpenMode, "w") 
-    {
-        if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
-        else fflags |= _O_WRONLY | _O_CREAT;
-    }
-    if (strchr(p_lpszOpenMode, "a") fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    if (strchr(p_lpszOpenMode, "b") fflags |= _O_BINARY;
-    else fflags |= _O_TEXT;
-
-return(fflags);
-}
-
-
-int kpadd_wfmode_to_flags(const wchar_t *p_lpwszOpenMode)
-{
-    KP_ASSERT(p_lpwszOpenMode, E_INVALIDARG, null);
-int fflags = 0;
-    if (wcschr(p_lpwszOpenMode, "r") fflags |= _O_RDONLY;
-    if (wcschr(p_lpwszOpenMode, "w") 
-    {
-        if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
-        else fflags |= _O_WRONLY | _O_CREAT;
-    }
-    if (wcschr(p_lpwszOpenMode, "a") fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    if (wcschr(p_lpwszOpenMode, "b") fflags |= _O_BINARY;
-    else fflags |= _O_TEXT;
-
-return(fflags);
-}
-
-
-int kpadd_acc_to_flags(DWORD p_dwDesiredAccess)
-{
-int fflags = 0;
-    if (p_dwDesiredAccess & FILE_READ_DATA) fflags |= _O_RDONLY;
-    if (p_dwDesiredAccess & FILE_WRITE_DATA)  
-    {
-        if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
-        else fflags |= _O_WRONLY | _O_CREAT;
-    }
-    if (p_dwDesiredAccess & FILE_APPEND_DATA) fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    fflags |= _O_BINARY;
-
-return(fflags);
-}
-
-
-uchar *kpadd_open_flags_to_str(int p_iFlags)
-{
-uchar fmode = null;
-    KP_NEWA(fmode, uchar, 20);
-    fmode[0] = Nul;
-    
-    if (p_iFlags & _O_RDONLY) strcat(fmode, "r");
-    if (p_iFlags & (_O_WRONLY | _O_CREAT | _O_TRUNC | _O_RDWR)) strcat(fmode, "w");
-    if (p_iFlags & _O_APPEND) strcat(fmode, "a");
-    if (p_iFlags & _O_BINARY) strcat(fmode, "b");
-    
-return(fmode);
-}
-
-
 void FILE *kpadd_fopen(const char *p_lpszFname, const char *p_lpszOpenMode, 
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
@@ -195,8 +125,7 @@ FILE *ret_file = NULL;
                 
         ret_file = fopen(p_lpszFname, fmode);
         
-    int fflags = kpadd_fmode_to_flags(p_lpszOpenMode);
-        kpadd_fopen_chkin(p_lpszFname, fflags, ret_file, NO_FILE_DESC, NULL, p_lpszSrcFile, p_iSrcLine);
+        kpadd_fopen_chkin(ret_file, NO_FILE_DESC, NULL, p_lpszFname, p_lpszOpenMode, p_lpszSrcFile, p_iSrcLine);
         
         KP_DELETEA(fmode);
     }
@@ -223,8 +152,11 @@ FILE *ret_file = NULL;
                 
         ret_file = _wfopen(p_lpwszFname, fmode);
         
-    int fflags = kpadd_wfmode_to_flags(p_lpwszOpenMode);
-        kpadd_wfopen_chkin(p_lpwszFname, fflags, ret_file, NO_FILE_DESC, NULL, p_lpszSrcFile, p_iSrcLine);
+    uchar fmode_plain[MAX_FNAME_LEN + 1];
+        // TODO: konvertuoti p_lpwszOpenMode – į lpsz
+        KP_THROW(E_NOTIMPL, null);
+        
+        kpadd_wfopen_chkin(ret_file, NO_FILE_DESC, NULL, p_lpwszFname, fmode_plain, p_lpszSrcFile, p_iSrcLine);
         
         KP_DELETEA(fmode);
     }
@@ -251,14 +183,28 @@ FILE *ret_file = NULL;
                 
         ret_file = fdopen(p_iFileDesc, fmode);
         
-    int fflags = kpadd_fmode_to_flags(p_lpszOpenMode);
-        kpadd_fopen_chkin(p_lpszFname, fflags, ret_file, p_iFileDesc, NULL, p_lpszSrcFile, p_iSrcLine);
+        kpadd_fopen_chkin(ret_file, p_iFileDesc, NULL, p_lpszFname, p_lpszOpenMode, p_lpszSrcFile, p_iSrcLine);
         
         KP_DELETEA(fmode);
     }
     KP_CATCH_ALL; 
 
 return(ret_file); 
+}
+
+
+uchar *kpadd_open_flags_to_str(int p_iFlags)
+{
+uchar fmode = null;
+    KP_NEWA(fmode, uchar, 20);
+    fmode[0] = Nul;
+    
+    if (p_iFlags & _O_RDONLY) strcat(fmode, "r");
+    if (p_iFlags & (_O_WRONLY | _O_CREAT | _O_TRUNC | _O_RDWR)) strcat(fmode, "w");
+    if (p_iFlags & _O_APPEND) strcat(fmode, "a");
+    if (p_iFlags & _O_BINARY) strcat(fmode, "b");
+    
+return(fmode);
 }
 
 
@@ -274,7 +220,10 @@ int ret_fdesc = NO_FILE_DESC;
     int fflags = (p_iFlags & ~_O_TEXT) | _O_BINARY; // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
         ret_fdesc = open(p_lpszFname, fflags, p_iPerm);
         
-        kpadd_fopen_chkin(p_lpszFname, p_iFlags, NULL, ret_fdesc, NULL, p_lpszSrcFile, p_iSrcLine);
+    uchar *fmode_orig = kpadd_open_flags_to_str(p_iFlags);
+        KP_ASSERT(fmode_orig, E_POINTER, null);
+        kpadd_fopen_chkin(NULL, ret_fdesc, NULL, p_lpszFname, fmode_orig, p_lpszSrcFile, p_iSrcLine);
+        free(fmode_orig);
     }
     KP_CATCH_ALL; 
 
@@ -294,7 +243,10 @@ int ret_fdesc = NO_FILE_DESC;
     int fflags = (p_iFlags & ~_O_TEXT) | _O_BINARY; // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
         ret_fdesc = _wopen(p_lpwszFname, fflags, p_iPerm);
 
-        kpadd_wfopen_chkin(p_lpwszFname, p_iFlags, NULL, ret_fdesc, NULL, p_lpszSrcFile, p_iSrcLine);
+    uchar *fmode_orig = kpadd_open_flags_to_str(p_iFlags);
+        KP_ASSERT(fmode_orig, E_POINTER, null);
+        kpadd_wfopen_chkin(NULL, ret_fdesc, NULL, p_lpwszFname, fmode_orig, p_lpszSrcFile, p_iSrcLine);
+        free(fmode_orig);
     }
     KP_CATCH_ALL; 
 
@@ -302,20 +254,20 @@ return(ret_fdesc);
 }
 
 
-HANDLE kpadd_CreateFileA(const char *p_lpFileName,
-    DWORD p_dwDesiredAccess, DWORD p_dwShareMode, LPSECURITY_ATTRIBUTES p_lpSecurityAttributes,
-    DWORD p_dwCreationDisposition, DWORD p_dwFlagsAndAttributes, HANDLE p_hTemplateFile,
+HANDLE kpadd_CreateFileA(const char *lpFileName,
+    DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+    DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile,
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
 HANDLE retv = NULL;
 
     try
     {
-        retv = CreateFileA(p_lpFileName, p_dwDesiredAccess, p_dwShareMode, p_lpSecurityAttributes,
-            p_dwCreationDisposition, p_dwFlagsAndAttributes, p_hTemplateFile);
+        retv = CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes,
+            dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
 
-    int fflags = kpadd_acc_to_flags(p_dwDesiredAccess);
-        kpadd_fopen_chkin(p_lpFileName, fflags, NULL, NO_FILE_DESC, retv, 
+        kpadd_fopen_chkin(NULL, NO_FILE_DESC, retv, 
+            lpFileName, !!! const char *p_lpszOpenMode, 
             p_lpszSrcFile, p_iSrcLine);
     }
     KP_CATCH_ALL; 
@@ -324,20 +276,20 @@ return(retv);
 }
     
     
-HANDLE PLAIN_C kpadd_CreateFileW(const wchar_t *p_lpFileName,
-    DWORD p_dwDesiredAccess, DWORD p_dwShareMode, LPSECURITY_ATTRIBUTES p_lpSecurityAttributes,
-    DWORD p_dwCreationDisposition, DWORD p_dwFlagsAndAttributes, HANDLE p_hTemplateFile,
+HANDLE PLAIN_C kpadd_CreateFileW(const wchar_t *lpFileName,
+    DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+    DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile,
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
 HANDLE retv = NULL;
     
     try
     {
-        retv = CreateFileW(p_lpFileName, p_dwDesiredAccess, p_dwShareMode, p_lpSecurityAttributes,
-            p_dwCreationDisposition, p_dwFlagsAndAttributes, p_hTemplateFile);
+        retv = CreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes,
+            dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
 
-    int fflags = kpadd_acc_to_flags(p_dwDesiredAccess);
-        kpadd_wfopen_chkin(p_lpFileName, fflags, NULL, NO_FILE_DESC, retv, 
+        kpadd_wfopen_chkin(NULL, NO_FILE_DESC, retv, 
+            lpFileName, !!! const char *p_lpszOpenMode, 
             p_lpszSrcFile, p_iSrcLine);
     }
     KP_CATCH_ALL; 
@@ -346,8 +298,8 @@ return(retv);
 }    
 
 
-void kpadd_wfopen_chkin(const wchar_t *p_lpwszFname, int p_iFlags,
-    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
+void kpadd_wfopen_chkin(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
+    const wchar_t *p_lpwszFname, const char *p_lpszOpenMode, 
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
     try
@@ -356,23 +308,23 @@ void kpadd_wfopen_chkin(const wchar_t *p_lpwszFname, int p_iFlags,
         // TODO: konvertuoti p_lpwszFname į UTF-8
         KP_THROW(E_NOTIMPL, null);
         
-    kpadd_fopen_chkin(fname_utf8, p_iFlags, p_pFile, p_iFileDesc, p_hFile, 
-        p_lpszSrcFile, p_iSrcLine);
+    kpadd_fopen_chkin(p_pFile, p_iFileDesc, p_hFile, 
+        fname_utf8, p_lpszOpenMode, p_lpszSrcFile, p_iSrcLine);
     }
     KP_CATCH_ALL; 
 }
 
 
-void kpadd_fopen_chkin(const char *p_lpszFname, const char *p_iFlags,
-    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
+void kpadd_fopen_chkin(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
+    const char *p_lpszFname, const char *p_lpszOpenMode, 
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
     try
     {
         KP_ASSERT(KpFileDescListPtr, E_POINTER, null);
         
-        KpFileDescListPtr->RegNewFile(p_lpszFname, p_iFlags,
-            p_pFile, p_iFileDesc, p_hFile);
+        KpFileDescListPtr->RegNewFile(p_pFile, p_iFileDesc, p_hFile, 
+            p_lpszOpenMode, p_lpszFname);
 #ifdef KPSTDIO_FULL_LOG
         KpFileDescListPtr->PutLogMessage(p_pFile, "Opened: %s", p_lpszFname);
 #endif
@@ -395,7 +347,7 @@ uchar str_buf[KP_MAX_FILE_LIN_LEN + 1];
 
 int kpadd_fclose(FILE *p_pFile, const char *p_lpszSrcFile, int p_iSrcLine)
 {
-    kpadd_fclose_chkin(p_pFile, NO_FILE_DESC, NULL, p_lpszSrcFile, p_iSrcLine);
+    kpadd_fclose_chkin(p_pFile, p_lpszSrcFile, p_iSrcLine);
 return(fclose(p_pFile));
 }      
 
@@ -404,38 +356,6 @@ int kpadd_fclose_plain(FILE *p_pFile)
 {
 return(kpadd_fclose(p_pFile, __FILE__, __LINE__));
 }      
-
-
-int kpadd_close(int p_iFileDesc, const char *p_lpszSrcFile, int p_iSrcLine)
-{
-int retv = -1;
-    
-    try
-    {
-        retv = close(p_iFileDesc);
-
-        kpadd_fclose_chkin(NULL, p_iFileDesc, NULL, p_lpszSrcFile, p_iSrcLine);
-    }
-    KP_CATCH_ALL; 
-
-return(retv);
-}    
-
-
-BOOL kpadd_CloseHandle(HANDLE p_hFile, const char *p_lpszSrcFile, int p_iSrcLine)
-{
-BOOL retv = False;
-    
-    try
-    {
-        retv = CloseHandle(p_hFile);
-
-        kpadd_fclose_chkin(NULL, NO_FILE_DESC, p_hFile, p_lpszSrcFile, p_iSrcLine);
-    }
-    KP_CATCH_ALL; 
-
-return(retv);
-}    
 
 
 void kpadd_fclose_chkin(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
@@ -478,7 +398,7 @@ printf("KpFileDesc::InitMembers(%x)\n", this);
     m_hFile = NULL;
 
     m_lpszFileName[0] = Nul;
-    m_iFlags = 0;
+    m_lpszOpenMode[0] = Nul;
 
 #ifdef KPSTDIO_FULL_LOG
     m_lpszLogFileName[0] = Nul;
@@ -489,33 +409,25 @@ printf("KpFileDesc::InitMembers(%x)\n", this);
 }
 
 
-KpFileDesc::KpFileDesc(const uchar *p_lpszFileName, int p_iFlags, 
-    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
+KpFileDesc::KpFileDesc(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile,
+    const uchar *p_lpszOpenMode, const uchar *p_lpszFileName)
 {
     InitMembers();
 
     // ------
     KP_ASSERT((p_pFile != NULL)  || (p_iFileDesc != NO_FILE_DESC) || (p_hFile != NULL),
         E_INVALIDARG, null);
-    KP_ASSERT(p_lpszFileName, E_INVALIDARG, null);
+    KP_ASSERT((p_lpszOpenMode != null) && (p_lpszFileName != null), E_INVALIDARG, null);
     
     m_pFile = p_pFile;
     m_iFileDesc = p_iFileDesc;
     m_hFile = p_hFile;
 
-    // -------
-    if (m_pFile)
+    if (p_pFile)
     {
-    int fd = fileno(m_pFile);
+    int fd = fileno(p_pFile);
         if (m_iFileDesc == NO_FILE_DESC) m_iFileDesc = fd;
         KP_ASSERTW0(m_iFileDesc == fd, E_INVALIDARGS, null);
-    }
-
-    if (m_iFileDesc != NO_FILE_DESC)
-    {
-    HANDLE fh = _get_osfhandle(m_iFileDesc); 
-        if (m_hFile == NULL) m_hFile = fh;
-        KP_ASSERTW0(m_hFile == fh, E_INVALIDARGS, null);
     }
     
     // ------
@@ -525,7 +437,8 @@ KpFileDesc::KpFileDesc(const uchar *p_lpszFileName, int p_iFlags,
     strlwr(m_lpszFileName);
 
     // ------
-    m_iFlags = p_iFlags;
+    KP_ASSERT(strlen(p_lpszOpenMode) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+    strcpy(m_lpszOpenMode, p_lpszOpenMode);
 
     // ------
 #ifdef KPSTDIO_FULL_LOG
@@ -621,24 +534,25 @@ KpFileDesc *desc_ptr = cur_entry->GetValue();
 
 
 // -----------------------------------------
-KpFileDesc *KpFileDescList::KpFileDescFactory(const uchar *p_lpszFileName, int p_iFlags,
-    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
+KpFileDesc *KpFileDescList::KpFileDescFactory(
+    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile,
+    const uchar *p_lpszOpenMode, const uchar *p_lpszFileName)
 {
 #ifdef Debug
     KpError.PutLogMessage("KpFileDescList::KpFileDescFactory()");
 #endif
 
 KpFileDesc *desc_obj_ptr = NULL;
-    KP_NEW(desc_obj_ptr, KpFileDesc(p_lpszFileName, p_iFlags,
-        p_pFile, p_iFileDesc, p_hFile));
+    KP_NEW(desc_obj_ptr, KpFileDesc(p_pFile, p_iFileDesc, p_hFile, 
+        p_lpszOpenMode, p_lpszFileName));
 
 return(desc_obj_ptr);
 }
 
 
 // -----------------------------------------
-void KpFileDescList::RegNewFile(const uchar *p_lpszFileName, int p_iFlags,
-    const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
+void KpFileDescList::RegNewFile(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile,
+    const char *p_lpszOpenMode, const uchar *p_lpszFileName)
 {
 HRESULT retc = S_OK;
 KpFileDesc *desc_obj_ptr = NULL;
@@ -653,7 +567,7 @@ KpFileDesc *desc_obj_ptr = NULL;
         DelFile(p_pFile, p_iFileDesc, p_hFile);
     }
 
-    desc_obj_ptr = KpFileDescFactory(p_lpszFileName, p_iFlags, p_pFile, p_iFileDesc, p_hFile);
+    desc_obj_ptr = KpFileDescFactory(p_pFile, p_iFileDesc, p_hFile, p_lpszOpenMode, p_lpszFileName);
 
 KpTreeEntry<KpFileDesc> *new_node = NULL;
     KP_NEW(new_node, KpTreeEntry<KpFileDesc>(desc_obj_ptr, NULL));    

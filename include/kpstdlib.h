@@ -5,12 +5,41 @@
  *    common definitions for all KpLib driven projects
  *
  * 2013-02-22  mp  initial creation
+ * 2013-10-31  mp  KPADDSHARED atkelti ið textrc.h 
  *
  */
 
 #ifndef KPSTDLIB_INCLUDED
 #define KPSTDLIB_INCLUDED
 
+
+
+// -------------------------------------- plain exportai
+#ifdef MAKE_KPADD_SHARED
+#   ifndef KPADD_SHARED
+#       define KPADD_SHARED
+#   endif
+#endif
+
+#ifndef KPADDSHARED
+#   ifdef KPADD_SHARED
+#       ifdef MAKE_KPADD_SHARED
+#           ifndef __WIN32__
+#               define KPADDSHARED __attribute__ ((visibility("default")))
+#           else // #ifndef __WIN32__
+#               define KPADDSHARED __declspec(dllexport)
+#           endif
+#       else // #ifdef MAKE_KPADD_SHARED
+#           ifndef __WIN32__
+#               define KPADDSHARED
+#           else // #ifndef __WIN32__
+#               define KPADDSHARED __declspec(dllimport)
+#           endif
+#       endif
+#   else // #ifdef KPADD_SHARED
+#       define KPADDSHARED
+#   endif
+#endif
 
 
 // ========================================= kptt
