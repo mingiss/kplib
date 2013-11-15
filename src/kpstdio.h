@@ -50,17 +50,18 @@ extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
 #define KPADD_CreateFile(file, access, share_mode, attrs, cr_disp, flags, temp_file) \
     kpadd_CreateFileA(file, access, share_mode, attrs, cr_disp, flags, temp_file, __FILE__, __LINE__)
 #endif
-#define KPADD_FOPEN_CHKIN(fhandle, fname, fmode) kpadd_fopen_chkin(fhandle, \
-    fname, fmode, __FILE__, __LINE__)
+#define KPADD_FOPEN_CHKIN(fhandle, fname, fmode) kpadd_fopen_chkin(fname, \
+    kpadd_fmode_to_flags(fmode), fhandle, NO_FILE_DESC, NULL, __FILE__, __LINE__)
+
 #define KPADD_FCLOSE(fh) kpadd_fclose(fh, __FILE__, __LINE__)
 #define KPADD_CLOSE(fd) kpadd_close(fd, __FILE__, __LINE__)
 #define KPADD_CloseHandle(fh) kpadd_CloseHandle(fh, __FILE__, __LINE__)    
 
-#define KPADD_FCLOSE_CHKIN(fhandle) kpadd_fclose_chkin(fhandle, __FILE__, __LINE__)
+#define KPADD_FCLOSE_CHKIN(fhandle) kpadd_fclose_chkin(fhandle, NO_FILE_DESC, NULL, __FILE__, __LINE__)
 // #define KPADD_FGETC(fname, fmode) kpadd_fgetc(fname, fmode, __FILE__, __LINE__)
 
 // converts fopen() style mode string to open() style flags
-extern int kpadd_fmode_to_flags(const uchar *p_lpszOpenMode);
+extern PLAIN_C KPADDSHARED int kpadd_fmode_to_flags(const uchar *p_lpszOpenMode);
 // converts _wfopen() style mode string to open() style flags
 extern int kpadd_wfmode_to_flags(const wchar_t *p_lpwszOpenMode);
 // converts CreateFile() dwDesiredAccess parameter to open() style flags
@@ -123,7 +124,7 @@ extern PLAIN_C KPADDSHARED BOOL kpadd_CloseHandle(HANDLE p_hFile,
     const char *p_lpszSrcFile, int p_iSrcLine);    
 // KpFileDesc objekto naikinimas iš KpFileDescListPtr->m_pFileList
 extern PLAIN_C KPADDSHARED void kpadd_fclose_chkin(
-    FILE *p_pFile /* = NULL */, int p_iFileDesc /* = NO_FILE_DESC */, HANDLE p_hFile /* = NULL */, 
+    const FILE *p_pFile /* = NULL */, int p_iFileDesc /* = NO_FILE_DESC */, HANDLE p_hFile /* = NULL */,
     const char *p_lpszSrcFile, int p_iSrcLine);
 
 

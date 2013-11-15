@@ -12,7 +12,10 @@
 /* ----------------------- */
 #include <stdlib.h>
 #include <assert.h>
-#include "kpstrapp.h"
+#include <string.h>
+
+#include "kpstdlib.h"
+#include "kpstring.h"
 
 
 /* ----------------------- */
@@ -20,7 +23,8 @@ void kp_append_str(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr)
 {
     if (out_str && buf_len_ptr && str_buf_ptr) if (*str_buf_ptr)
     {
-    int new_str_len = strlen(*str_buf_ptr) + strlen(out_str); 
+    int new_str_len = strlen((const char *)*str_buf_ptr) +
+                                    strlen((const char *)out_str);
         if (new_str_len >= *buf_len_ptr)
         {
             *buf_len_ptr = new_str_len + 1000;
@@ -33,7 +37,7 @@ void kp_append_str(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr)
 }
 
 
-void kp_append_str_and_free(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr)
+void kp_append_str_and_free(uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr)
 {
     if (out_str)
     {

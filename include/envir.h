@@ -11,7 +11,7 @@
  
 // -----------------------------------------
 
-#define Debug               // debug mode
+// #define Debug            // debug mode
 
 #define KP_CONSOLE          // console application
 // #define KP_WINDOWED      // windows application; 

@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <fcntl.h>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
@@ -115,14 +116,14 @@ int kpadd_fmode_to_flags(const uchar *p_lpszOpenMode)
 {
     KP_ASSERT(p_lpszOpenMode, E_INVALIDARG, null);
 int fflags = 0;
-    if (strchr(p_lpszOpenMode, "r") fflags |= _O_RDONLY;
-    if (strchr(p_lpszOpenMode, "w") 
+    if (strchr(p_lpszOpenMode, 'r')) fflags |= _O_RDONLY;
+    if (strchr(p_lpszOpenMode, 'w'))
     {
         if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
         else fflags |= _O_WRONLY | _O_CREAT;
     }
-    if (strchr(p_lpszOpenMode, "a") fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    if (strchr(p_lpszOpenMode, "b") fflags |= _O_BINARY;
+    if (strchr(p_lpszOpenMode, 'a')) fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
+    if (strchr(p_lpszOpenMode, 'b')) fflags |= _O_BINARY;
     else fflags |= _O_TEXT;
 
 return(fflags);
@@ -133,14 +134,14 @@ int kpadd_wfmode_to_flags(const wchar_t *p_lpwszOpenMode)
 {
     KP_ASSERT(p_lpwszOpenMode, E_INVALIDARG, null);
 int fflags = 0;
-    if (wcschr(p_lpwszOpenMode, "r") fflags |= _O_RDONLY;
-    if (wcschr(p_lpwszOpenMode, "w") 
+    if (wcschr(p_lpwszOpenMode, 'r')) fflags |= _O_RDONLY;
+    if (wcschr(p_lpwszOpenMode, 'w'))
     {
         if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
         else fflags |= _O_WRONLY | _O_CREAT;
     }
-    if (wcschr(p_lpwszOpenMode, "a") fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    if (wcschr(p_lpwszOpenMode, "b") fflags |= _O_BINARY;
+    if (wcschr(p_lpwszOpenMode, 'a')) fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
+    if (wcschr(p_lpwszOpenMode, 'b')) fflags |= _O_BINARY;
     else fflags |= _O_TEXT;
 
 return(fflags);
@@ -165,7 +166,7 @@ return(fflags);
 
 uchar *kpadd_open_flags_to_str(int p_iFlags)
 {
-uchar fmode = null;
+uchar *fmode = null;
     KP_NEWA(fmode, uchar, 20);
     fmode[0] = Nul;
     
@@ -178,7 +179,7 @@ return(fmode);
 }
 
 
-void FILE *kpadd_fopen(const char *p_lpszFname, const char *p_lpszOpenMode, 
+FILE *kpadd_fopen(const char *p_lpszFname, const char *p_lpszOpenMode,
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
 FILE *ret_file = NULL;
@@ -193,9 +194,9 @@ FILE *ret_file = NULL;
         strcpy(fmode, p_lpszOpenMode);
         if(strchr(fmode, 'b') == null) strcat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
                 
-        ret_file = fopen(p_lpszFname, fmode);
+        ret_file = fopen(p_lpszFname, (const char *)fmode);
         
-    int fflags = kpadd_fmode_to_flags(p_lpszOpenMode);
+    int fflags = kpadd_fmode_to_flags((const uchar *)p_lpszOpenMode);
         kpadd_fopen_chkin(p_lpszFname, fflags, ret_file, NO_FILE_DESC, NULL, p_lpszSrcFile, p_iSrcLine);
         
         KP_DELETEA(fmode);
@@ -216,10 +217,10 @@ FILE *ret_file = NULL;
         KP_ASSERT(p_lpwszFname, E_INVALIDARG, null);
         KP_ASSERT(p_lpwszOpenMode, E_INVALIDARG, null);
     
-    wchar_t *fmode = null;
+    wchar_t *fmode = NULL;
         KP_NEWA(fmode, wchar_t, wcslen(p_lpwszOpenMode) + 10);
         wcscpy(fmode, p_lpwszOpenMode);
-        if(wcschr(fmode, 'b')) wcscat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
+        if(wcschr(fmode, 'b')) wcscat(fmode, L"b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai
                 
         ret_file = _wfopen(p_lpwszFname, fmode);
         
@@ -249,9 +250,9 @@ FILE *ret_file = NULL;
         strcpy(fmode, p_lpszOpenMode);
         if(strchr(fmode, 'b') == null) strcat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
                 
-        ret_file = fdopen(p_iFileDesc, fmode);
+        ret_file = fdopen(p_iFileDesc, (const char *)fmode);
         
-    int fflags = kpadd_fmode_to_flags(p_lpszOpenMode);
+    int fflags = kpadd_fmode_to_flags((const uchar *)p_lpszOpenMode);
         kpadd_fopen_chkin(p_lpszFname, fflags, ret_file, p_iFileDesc, NULL, p_lpszSrcFile, p_iSrcLine);
         
         KP_DELETEA(fmode);
@@ -324,7 +325,7 @@ return(retv);
 }
     
     
-HANDLE PLAIN_C kpadd_CreateFileW(const wchar_t *p_lpFileName,
+HANDLE kpadd_CreateFileW(const wchar_t *p_lpFileName,
     DWORD p_dwDesiredAccess, DWORD p_dwShareMode, LPSECURITY_ATTRIBUTES p_lpSecurityAttributes,
     DWORD p_dwCreationDisposition, DWORD p_dwFlagsAndAttributes, HANDLE p_hTemplateFile,
     const char *p_lpszSrcFile, int p_iSrcLine)
@@ -352,18 +353,18 @@ void kpadd_wfopen_chkin(const wchar_t *p_lpwszFname, int p_iFlags,
 {
     try
     {
-    uchar fname_utf8[MAX_FNAME_LEN + 1];
+    uchar fname_utf8[KP_MAX_FNAME_LEN + 1];
         // TODO: konvertuoti p_lpwszFname į UTF-8
         KP_THROW(E_NOTIMPL, null);
         
-    kpadd_fopen_chkin(fname_utf8, p_iFlags, p_pFile, p_iFileDesc, p_hFile, 
+    kpadd_fopen_chkin((const char *)fname_utf8, p_iFlags, p_pFile, p_iFileDesc, p_hFile,
         p_lpszSrcFile, p_iSrcLine);
     }
     KP_CATCH_ALL; 
 }
 
 
-void kpadd_fopen_chkin(const char *p_lpszFname, const char *p_iFlags,
+void kpadd_fopen_chkin(const char *p_lpszFname, int p_iFlags,
     const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile, 
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
@@ -371,7 +372,7 @@ void kpadd_fopen_chkin(const char *p_lpszFname, const char *p_iFlags,
     {
         KP_ASSERT(KpFileDescListPtr, E_POINTER, null);
         
-        KpFileDescListPtr->RegNewFile(p_lpszFname, p_iFlags,
+        KpFileDescListPtr->RegNewFile((const uchar *)p_lpszFname, p_iFlags,
             p_pFile, p_iFileDesc, p_hFile);
 #ifdef KPSTDIO_FULL_LOG
         KpFileDescListPtr->PutLogMessage(p_pFile, "Opened: %s", p_lpszFname);
@@ -508,14 +509,14 @@ KpFileDesc::KpFileDesc(const uchar *p_lpszFileName, int p_iFlags,
     {
     int fd = fileno(m_pFile);
         if (m_iFileDesc == NO_FILE_DESC) m_iFileDesc = fd;
-        KP_ASSERTW0(m_iFileDesc == fd, E_INVALIDARGS, null);
+        KP_ASSERTW0(m_iFileDesc == fd, E_INVALIDARG, null);
     }
 
     if (m_iFileDesc != NO_FILE_DESC)
     {
-    HANDLE fh = _get_osfhandle(m_iFileDesc); 
+    HANDLE fh = (HANDLE)_get_osfhandle(m_iFileDesc);
         if (m_hFile == NULL) m_hFile = fh;
-        KP_ASSERTW0(m_hFile == fh, E_INVALIDARGS, null);
+        KP_ASSERTW0(m_hFile == fh, E_INVALIDARG, null);
     }
     
     // ------

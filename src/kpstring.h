@@ -43,7 +43,7 @@ typedef unsigned char uchar;
 extern void kp_append_str(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr);
 
 /* appends out_str to *str_buf_ptr and free()'s */
-extern void kp_append_str_and_free(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr);
+extern void kp_append_str_and_free(uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr);
 
 /* safely appends byte out_chr to the string buffer *str_buf_ptr */
 extern void kp_append_chr(const uchar out_chr, uchar **str_buf_ptr, int *buf_len_ptr);
