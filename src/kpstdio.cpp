@@ -685,9 +685,7 @@ KpFileDesc *desc_obj_ptr = NULL;
         KP_ASSERT(node_ptr_ptr != NULL, KP_E_NO_FILE, out_str);
         KP_ASSERT(*node_ptr_ptr != NULL, KP_E_NO_FILE, out_str);
 
-KpTreeEntry<KpFileDesc> tmp_obj(NULL, NULL);
-        tmp_obj.DeleteKpTreeNode(node_ptr_ptr);
-//      KpTreeEntry<TeXtrcFileDesc>::DeleteKpTreeNode(node_ptr_ptr);
+        KpTreeEntry<KpFileDesc>::DeleteKpTreeBros(node_ptr_ptr);
     } 
 }
 

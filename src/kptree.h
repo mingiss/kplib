@@ -155,7 +155,6 @@ public:
     KpTreeEntry<KpTreeRecType> *GetFather(void) const { return(m_pFather); };
 
     // nustato tėvą ir visiems tolimesniems broliams
-    // pPrevBrother turi buti NULL
     // pFath cannnot be deleted after successfull SetFather()
     void SetFather0(KpTreeEntry<KpTreeRecType> *pFath) // recursive entry
     {
@@ -165,6 +164,7 @@ public:
         if (m_pNextBrother) m_pNextBrother->SetFather0(pFath);
     }
 
+    // papildomai prie SetFather0(): pPrevBrother turi buti NULL
     void SetFather(KpTreeEntry<KpTreeRecType> *pFath)  // main entry
     {
         KP_ASSERT(m_pPrevBrother == NULL, KP_E_SYSTEM_ERROR, null);
@@ -282,23 +282,49 @@ public:
 
 
     //-----------------------------------
-    // TODO: panašiai, kaip ir DeleteKpTreeEntry, tik elementą trina, vietoj jo atkeldamas vaikus
-    // TODO: elementą trina su visais broliais
-    // tinka paprasto listo tvarkymui  
-    // DeleteChild() papildymas
-    static void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
+    // Trina mazgą horizontaliai, vietoj jo atkeldamas tolesnius brolius
+    // ištrina *pEntryPtr su visais vaikais
+    // žr. DeleteKpTreeBros()
+    // former DeleteKpTreeEntry()
+    static void DeleteKpTreeChildren(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
     {
         KP_ASSERT(ppEntryPtr, E_POINTER, null);
         KP_ASSERT(*ppEntryPtr, E_POINTER, null);
 
-    KpTreeEntry<KpTreeRecType> *first_child = NULL;
-        first_child = (*ppEntryPtr)->GetFirstChild();
+    KpTreeEntry<KpTreeRecType> *next_brother = (*ppEntryPtr)->GetNextBrother();
+    KpTreeEntry<KpTreeRecType> *prev_brother = (*ppEntryPtr)->GetPrevBrother();
+    KpTreeEntry<KpTreeRecType> *father = (*ppEntryPtr)->GetFather();
 
-    KpTreeEntry<KpTreeRecType> *prev_brother = NULL;
-        prev_brother = (*ppEntryPtr)->GetPrevBrother();
+        if (next_brother) next_brother->SetPrevBrother(prev_brother);
+        if (prev_brother) prev_brother->SetNextBrother(next_brother);
 
-    KpTreeEntry<KpTreeRecType> *father = NULL;
-        father = (*ppEntryPtr)->GetFather();
+        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
+        if ((prev_brother == NULL) && father)
+            father->SetFirstChild(next_brother);
+
+        (*ppEntryPtr)->SetNextBrother(NULL);
+        (*ppEntryPtr)->SetPrevBrother(NULL);
+        KP_DELETE((*ppEntryPtr));
+
+        *ppEntryPtr = next_brother;
+    }
+
+
+    //-----------------------------------
+    // Trina mazgą vertikaliai, vietoj jo atkeldamas vaikus
+    // žr. DeleteKpTreeChildren()
+    // elementą *ppEntryPtr trina su visais broliais
+    // tinka paprasto listo tėvai-vaikai tvarkymui;
+    // papildytas ankstesnis DeleteChild()
+    // former DeleteKpTreeNode()
+    static void DeleteKpTreeBros(KpTreeEntry<KpTreeRecType> **ppEntryPtr)
+    {
+        KP_ASSERT(ppEntryPtr, E_POINTER, null);
+        KP_ASSERT(*ppEntryPtr, E_POINTER, null);
+
+    KpTreeEntry<KpTreeRecType> *first_child = (*ppEntryPtr)->GetFirstChild();
+    KpTreeEntry<KpTreeRecType> *prev_brother = (*ppEntryPtr)->GetPrevBrother();
+    KpTreeEntry<KpTreeRecType> *father = (*ppEntryPtr)->GetFather();
 
         if (first_child) 
         {
@@ -307,15 +333,16 @@ public:
         }
         if (prev_brother) prev_brother->SetNextBrother(first_child);
 
+        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
+        if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
+
         (*ppEntryPtr)->SetFirstChild(NULL);
      // (*ppEntryPtr)->SetPrevBrother(NULL);
         KP_DELETE(*ppEntryPtr);
-   
-        *ppEntryPtr = first_child;
 
-        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
-        if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
+        *ppEntryPtr = first_child;
     }
+
 
 // ----------------------------
 // elementų sąrašo trynimas, kai sąrašas ilgas – rekursinis naikinimas gali užkišti steką
