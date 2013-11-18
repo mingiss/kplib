@@ -282,6 +282,19 @@ public:
 
 
     //-----------------------------------
+    //  suskaičiuoja vyresnius brolius
+    int GetDist(void)
+    {
+    int ret_val = 0;
+
+        if (m_pPrevBrother)
+            ret_val = 1 + m_pPrevBrother->GetDist();
+
+    return(ret_val);
+    }
+
+
+    //-----------------------------------
     // Trina mazgą horizontaliai, vietoj jo atkeldamas tolesnius brolius
     // ištrina *pEntryPtr su visais vaikais
     // žr. DeleteKpTreeBros()
