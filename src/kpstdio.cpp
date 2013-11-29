@@ -380,8 +380,8 @@ void kpadd_fopen_chkin(const char *p_lpszFname, int p_iFlags,
 
 #ifdef Debug
 uchar str_buf[KP_MAX_FILE_LIN_LEN + 1];    
-        sprintf((char *)str_buf, "kpadd:kpadd_fopen_chkin(\"%s\") %lx; %d; %lx; file: %s line: %d\n", 
-            p_lpszFname, 
+        sprintf((char *)str_buf, "kpadd:kpadd_fopen_chkin(\"%s\") %x; %lx; %d; %lx; file: %s line: %d\n",
+            p_lpszFname, p_iFlags,
             p_pFile, p_iFileDesc, p_hFile, 
             p_lpszSrcFile, p_iSrcLine);
 //      cout << endl << str_buf;
@@ -686,7 +686,7 @@ KpFileDesc *desc_obj_ptr = NULL;
         KP_ASSERT(*node_ptr_ptr != NULL, KP_E_NO_FILE, out_str);
 
         KpTreeEntry<KpFileDesc>::DeleteKpTreeBros(node_ptr_ptr);
-    } 
+    }
 }
 
 

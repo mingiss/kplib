@@ -87,7 +87,7 @@ public:
     {
     KpTreeEntry<KpTreeRecType> *father = NULL;
     KpTreeEntry<KpTreeRecType> *prev_brother = NULL;
-    
+
         if (pChild)
         {
             father = pChild->GetFather();
@@ -346,13 +346,13 @@ public:
         }
         if (prev_brother) prev_brother->SetNextBrother(first_child);
 
-        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
-        if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
-
         (*ppEntryPtr)->SetFirstChild(NULL);
      // (*ppEntryPtr)->SetPrevBrother(NULL);
         KP_DELETE(*ppEntryPtr);
 
+        // pirmas vaikas – nustatom naują tėvo pirmą vaiką
+        if ((prev_brother == NULL) && father) father->SetFirstChild(first_child);
+        // šiaip čia tas pats – ppEntryPtr ir rodo į tėvą
         *ppEntryPtr = first_child;
     }
 

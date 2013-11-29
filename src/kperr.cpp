@@ -669,12 +669,12 @@ int msg_tail_pos = ll = strlen(out_text);
 #endif
       if (bSevereError || (lhRetc == KP_S_DIAG_MSG))
          SendDiagMsg(out_text, bSevereError, out_text + msg_tail_pos + 1);
-#ifdef KP_CONSOLE
+#if (defined Debug) && (defined KP_CONSOLE)
       else
       {
-//      cerr /* cout */ << out_str;
-        fprintf(stderr, "%s\n", out_text);
-    }
+//       cerr /* cout */ << out_str;
+         fprintf(stderr, "%s\n", out_text);
+      }
 #endif
    }
 }
