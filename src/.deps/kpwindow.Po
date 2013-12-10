@@ -1,5 +1,4 @@
-../kplib/src/kpwindow.o: ../kplib/src/kpwindow.cpp \
- ../kplib/include/envir.h \
+kplib/src/kpwindow.o: kplib/src/kpwindow.cpp kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
@@ -125,12 +124,12 @@
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleauto.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
- ../kplib/src/res_com.h ../kplib/include/kperrno.h \
- ../kplib/include/kpstdlib.h ../kplib/include/kptt.h \
- ../kplib/src/kpctype.h ../kplib/src/kpstring.h ../kplib/src/kpmsg.h \
- ../kplib/src/kpwindow.h ../kplib/include/kperr.h ../kplib/src/kpcapp.h
+ kplib/src/res_com.h kplib/include/kperrno.h kplib/include/kpstdlib.h \
+ kplib/include/kptt.h kplib/src/kpctype.h kplib/src/kpstring.h \
+ kplib/src/kpmsg.h kplib/src/kpwindow.h kplib/include/kperr.h \
+ kplib/src/kpcapp.h
 
-../kplib/include/envir.h:
+kplib/include/envir.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdio.h:
 
@@ -382,22 +381,22 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h:
 
-../kplib/src/res_com.h:
+kplib/src/res_com.h:
 
-../kplib/include/kperrno.h:
+kplib/include/kperrno.h:
 
-../kplib/include/kpstdlib.h:
+kplib/include/kpstdlib.h:
 
-../kplib/include/kptt.h:
+kplib/include/kptt.h:
 
-../kplib/src/kpctype.h:
+kplib/src/kpctype.h:
 
-../kplib/src/kpstring.h:
+kplib/src/kpstring.h:
 
-../kplib/src/kpmsg.h:
+kplib/src/kpmsg.h:
 
-../kplib/src/kpwindow.h:
+kplib/src/kpwindow.h:
 
-../kplib/include/kperr.h:
+kplib/include/kperr.h:
 
-../kplib/src/kpcapp.h:
+kplib/src/kpcapp.h:

@@ -40,7 +40,7 @@ public:
     static KpLang m_iMsgLangOff; // member, set by KpInitWindows() // nupjautas iki KpNumOfLangs, galima naudoti masyvų indeksams
 
 // --------------   
-    KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer);
+    KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer = 0);
     virtual ~KpCommonApp(void);
 
     virtual void Init(HINSTANCE p_hInstance, const uchar *p_lpszCmdLine, const void *p_pStackTop);  // pStackTop – caller stack top pointer,
