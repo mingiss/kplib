@@ -11,12 +11,15 @@
  
 // -----------------------------------------
 
-// #define Debug            // debug mode
+// #define Debug               // debug mode
+
+#define KP_VERBOSE          // warnings not just to .log file, to stderr as well
 
 #define KP_CONSOLE          // console application
 // #define KP_WINDOWED      // windows application; 
                             // could be defined together with KP_CONSOLE – for 
-                            //      console applications opening additional dialog windows
+                            //      console applications opening additional
+                            //      dialog windows
 
 #define KP_CPP              // C++ aplication (uses exceptions)
 

@@ -597,9 +597,12 @@ return(sys_err_msg);
 // ---------------------
 void KpErrorClass::SendDiagMsg(const uchar *lpszMessageText, bool bSevereError, const uchar *lpszAddMessage)
 {
+// TODO:
 #ifdef KP_CONSOLE
-// cerr /* cout */ << lpszMessageText << endl;
-   fprintf(stderr, "%s\n", lpszMessageText);
+#if (!defined(KP_VERBOSE)) && (!defined(Debug))
+   // KP_VERBOSE ar Debug reþime OutputErrorMessage() (PutLogMessage()) jau iðvedë
+   cerr << lpszMessageText << endl;
+#endif
 #else
 // #error Not yet implemented
 #endif
@@ -665,16 +668,14 @@ int msg_tail_pos = ll = strlen(out_text);
 //    if (bSevereError) StackDump();
 
 #ifndef Debug
-//       out_text[msg_tail_pos] = Nul;
+      out_text[msg_tail_pos] = Nul;
 #endif
       if (bSevereError || (lhRetc == KP_S_DIAG_MSG))
          SendDiagMsg(out_text, bSevereError, out_text + msg_tail_pos + 1);
-#if (defined Debug) && (defined KP_CONSOLE)
+#if ((defined(KP_VERBOSE)) && (!defined(Debug)) && (defined(KP_CONSOLE)))
+      // Debug reþime PutLogMessage() jau iðvedë
       else
-      {
-//       cerr /* cout */ << out_str;
-         fprintf(stderr, "%s\n", out_text);
-      }
+         cerr << out_text << endl;
 #endif
    }
 }
