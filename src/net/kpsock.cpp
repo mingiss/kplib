@@ -9,7 +9,7 @@
 
 
 // ---------------------
-#ifdef Debug
+#if 1 // #ifdef Debug
 #define TRACE_HTTP
 #endif
 
@@ -164,6 +164,7 @@ WORD ver_requested = 0x0101; // ver 1.1
     m_iMsgType = HTTP_MSG_TYPE_UNKNOWN;
     m_iRetCode = 0;
     m_lpszRetMsg[0] = Nul;
+    m_lpszLocation[0] = Nul;
     m_lContLen = MAXLONG;
     m_iTrMode = NORMAL_HTTP_TR_MODE;
     m_lpszBoundary[0] = Nul;
@@ -349,14 +350,15 @@ uchar *pntdd = null;
     }
 
 // file name & query
-    m_PackedUrl.m_lpszFileName[0] = Nul;
+    strcpy(m_PackedUrl.m_lpszFileName, "/");
     if (pntd)
     {
         *pntd = '/';
         KP_ASSERTQ(strlen(pntd) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW,
             pntd, p_bThrowError);
+
+        if (SUCCEEDED(retc)) strcpy(m_PackedUrl.m_lpszFileName, pntd);
     }
-    if (SUCCEEDED(retc)) strcpy(m_PackedUrl.m_lpszFileName, pntd);
 
 // ------------------------------
 struct hostent *p_host = NULL;
@@ -464,7 +466,7 @@ return (retc);
 // ---------------------
 void KpSocket::PutMsgFirewall(const uchar *p_lpszMsgFmt)
 {
-uchar ap_name[KP_MAX_FNAME_LEN + 1];
+uchar ap_name[2 * KP_MAX_FNAME_LEN + 100];
 uchar disk[KP_MAX_FNAME_LEN + 1];
 uchar path[KP_MAX_FNAME_LEN + 1];
 uchar name[KP_MAX_FNAME_LEN + 1];
@@ -1172,12 +1174,14 @@ HRESULT KpSocket::SendHttpRequest(const uchar *p_lpszRequest,
 HRESULT retc = S_OK;
 
     KP_ASSERT(p_lpszRequest, E_INVALIDARG, null);
-    KP_ASSERT(p_lpszArg, E_INVALIDARG, null);
     KP_ASSERT(p_lpszHTTP_Template, E_INVALIDARG, null);
     KP_ASSERT(p_lSimplyPostMsgLen >= 0L, E_INVALIDARG, null);
 
     KP_ASSERTQ(m_PackedUrl.m_iProtocol == HTTP_PROT, KP_E_SYSTEM_ERROR,
                                                     null, p_bThrowError);
+
+const uchar *http_fname = m_PackedUrl.m_lpszFileName;
+    if (p_lpszArg) http_fname = p_lpszArg;
 
 const uchar *http_tpl = (const uchar *)"";
 
@@ -1203,9 +1207,9 @@ uchar *buf_ptr = null;
     if (SUCCEEDED(retc))
     {
         KP_NEWA(buf_ptr, uchar, strlen(http_tpl) + strlen(p_lpszRequest) +
-            strlen(p_lpszArg) + strlen(m_PackedUrl.m_lpszServerName) + 1000);
+            strlen(http_fname) + strlen(m_PackedUrl.m_lpszServerName) + 1000);
 
-        sprintf((char *)buf_ptr, (const char *)http_tpl, p_lpszRequest, p_lpszArg,
+        sprintf((char *)buf_ptr, (const char *)http_tpl, p_lpszRequest, http_fname,
             m_PackedUrl.m_lpszServerName, m_PackedUrl.m_iPort,
             KpError.m_lpszProdName, p_lSimplyPostMsgLen);
 
@@ -1214,7 +1218,7 @@ uchar *buf_ptr = null;
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, buf_ptr, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::SendHttpRequest() post:\n%s\n", str_buf_1);
+KP_TRACE("KpSocket::SendHttpRequest() post:\n%s\n", str_buf_1);
 }
 #endif
 
@@ -1225,14 +1229,14 @@ PutLogMessage_("KpSocket::SendHttpRequest() post:\n%s\n", str_buf_1);
         if (strcmp(p_lpszRequest, HTTP_POST_REQUEST_CMD) == 0)
         {
             sprintf((char *)buf_ptr, (const char *)HTTP_POST_REQ_TAIL_TPL,
-                m_PackedUrl.m_lpszServerName, p_lpszArg, p_lpszPostBoundary);
+                m_PackedUrl.m_lpszServerName, http_fname, p_lpszPostBoundary);
 
 #ifdef TRACE_HTTP
 {
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, buf_ptr, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::SendHttpRequest() tail:\n%s\n", str_buf_1);
+KP_TRACE("KpSocket::SendHttpRequest() tail:\n%s\n", str_buf_1);
 }
 #endif
             retc = SendMsg(buf_ptr, strlen(buf_ptr), p_bThrowError);
@@ -1920,6 +1924,7 @@ HRESULT retv = S_OK;
             // priimti su pagrindine POST pranešimo antrašte
             m_iRetCode = 0;
             m_lpszRetMsg[0] = Nul;
+            m_lpszLocation[0] = Nul;
             m_iTrMode = NORMAL_HTTP_TR_MODE;
             m_lContLen = MAXLONG;
             m_lpszBoundary[0] = Nul;
@@ -2071,7 +2076,7 @@ uchar url[KP_MAX_FNAME_LEN+1];
                                 while (*pnts && strchr(lpszSpaces, *pnts))
                                     pnts++;
 
-                            uchar url1[KP_MAX_FNAME_LEN+1];
+                            uchar url1[KP_MAX_FNAME_LEN + 1];
                                 url1[0] = Nul;
                             int ii;
 
@@ -2079,6 +2084,14 @@ uchar url[KP_MAX_FNAME_LEN+1];
                                 {
                                 // --------------------------------
                                 // HTTP_REPLY
+                                case KPSOCK_HDTAG_Location:
+                                    KP_ASSERTQ(strlen(m_lpszLocation) <=
+                                        KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW,
+                                        pnts, p_bThrowError);
+                                    if (SUCCEEDED(retc))
+                                        strcpy(m_lpszLocation, pnts);
+                                    break;
+
                                 case KPSOCK_HDTAG_Date:
                                     // Date: Fri, 22 Oct 2004 07:13:17 GMT
                                     break;
@@ -2493,7 +2506,7 @@ HRESULT retc = S_OK;
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, m_lpszHdrBuf, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::RcvHdr(): \n%s", str_buf_1);
+KP_TRACE("KpSocket::RcvHdr(): \n%s", str_buf_1);
 }
 #endif
 
@@ -2551,7 +2564,7 @@ long read = MAX_HTTP_HDR_LEN;
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, m_lpszHdrBuf, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::RcvHttpMsg():\n%s", str_buf_1);
+KP_TRACE("KpSocket::RcvHttpMsg():\n%s", str_buf_1);
 }
 #endif
     }
@@ -2983,7 +2996,7 @@ if (SUCCEEDED(retc))
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, line_buf, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::GetPostVars() boundary:\n%s\n", str_buf_1);
+KP_TRACE("KpSocket::GetPostVars() boundary:\n%s\n", str_buf_1);
 }
 #endif
 
@@ -3018,7 +3031,7 @@ if (SUCCEEDED(retc))
 static uchar str_buf_1[KP_MAX_FILE_LIN_LEN + 1];
 strncpy(str_buf_1, line_buf, KP_MAX_FILE_LIN_LEN);
 str_buf_1[KP_MAX_FILE_LIN_LEN] = Nul;
-PutLogMessage_("KpSocket::GetPostVars() value:\n%s\n", str_buf_1);
+KP_TRACE("KpSocket::GetPostVars() value:\n%s\n", str_buf_1);
 }
 #endif
 

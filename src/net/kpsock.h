@@ -57,6 +57,7 @@ typedef struct
                             // got from the message header, before Resolve()
 } PackedUrl;
 
+
 typedef struct
 {
     uchar m_lpszVarName[KP_KWD_LEN + 1];
@@ -280,7 +281,10 @@ typedef enum
 // TODO: sinchronizuoti su kpsock.py KpHttpResponse.m_status_text
 //          ir KpErrorProcClass::FormatErrorMessageHTTP()
 #define HTTP_ANSW_OK 200               // 200 OK
+#define HTTP_ANSW_MOVED 301            // 301 Moved Permanently
 #define HTTP_ANSW_FOUND 302            // 302 Found
+#define HTTP_ANSW_OTHER 303            // 303 See Other
+#define HTTP_ANSW_TEMP_REDIR 307       // 307 Temporary Redirect
 #define HTTP_ANSW_FILE_NOT_FOUND 404
 #define HTTP_ANSW_CONTINUE 100
 #define HTTP_ANSW_CONFLICT 409
@@ -338,6 +342,8 @@ public:
         // klaidos pranešimas ištrauktas iš HTTP headerio, tekstas einantis po
         //      200, 404
 
+    uchar m_lpszLocation[KP_MAX_FILE_LIN_LEN + 1]; // Location:
+        // redirectintiems linkams
     long m_lContLen;            // Content-Length:
     HttpTransferModes m_iTrMode;   // Transfer-Encoding:
     uchar m_lpszBoundary[KP_MAX_FILE_LIN_LEN /* MAX_HTTP_HDR_LEN */ + 2 + 1];
@@ -485,8 +491,11 @@ public:
     static bool IsHTTPerrorMsg(int p_iHTTP_RetCode);
 
 // ------------------------------
-    HRESULT SendHttpRequest(const uchar *p_lpszRequest,
-        const uchar *p_lpszArg, // failo vardas
+    HRESULT SendHttpRequest(
+        const uchar *p_lpszRequest,
+            // HTTP_GET_REQUEST_CMD/HTTP_POST_REQUEST_CMD ("GET"/"POST")
+        const uchar *p_lpszArg = null,
+            // failo vardas, jei null – imamas m_PackedUrl.m_lpszFileName
         long p_lSimplyPostMsgLen = 0L,
         bool p_bAcroPostMsg = True,
         const uchar *p_lpszPostBoundary = (const uchar *)"",
