@@ -5,7 +5,7 @@
  *    common definitions for all KpLib driven projects
  *
  * 2013-02-22  mp  initial creation
- * 2013-10-31  mp  KPADDSHARED atkelti ið textrc.h 
+ * 2013-10-31  mp  KPADDSHARED atkelti iÅ¡ textrc.h 
  *
  */
 
@@ -88,7 +88,7 @@ typedef unsigned char uchar;
 
 
 // ----------------------------------
-// TODO: apjungti abejus kalbø kodus
+// TODO: apjungti abejus kalbÅ³ kodus
 
 // ----------------------------------
 // Languages for messages
@@ -109,17 +109,17 @@ typedef enum
 #define KpLangPl_1257_p 3
    KpLangRu_1251,    // 4 - rusÅ³
 #define KpLangRu_1251_p 4
-   KpLangRu_0,       // 5 - rusÅ³ su angliÅkais mygtukÅ³ tekstais â€“ kai regional Settings ne rusiÅki
+   KpLangRu_0,       // 5 - rusÅ³ su angliÅ¡kais mygtukÅ³ tekstais â€“ kai regional Settings ne rusiÅ¡ki
 #define KpLangRu_0_p 5
 
    KpNumOfLangs,
 #define KpNumOfLangs_p 6
 
-   KpLangRu    = 97, // 97 - iÅsitraukti iÅ registro Regional Setting'Å³ â€“ KpLangRu_0 arba KpLangRu_1251 (jei rusiÅki)
+   KpLangRu    = 97, // 97 - iÅ¡sitraukti iÅ¡ registro Regional Setting'Å³ â€“ KpLangRu_0 arba KpLangRu_1251 (jei rusiÅ¡ki)
 #define KpLangRu_p   97
-   KpLangPl    = 98, // 98 - iÅsitraukti iÅ registro Regional Setting'Å³ â€“ KpLangPl_1250 arba KpLangPl_1257 (jei lietuviÅki/Baltic)
+   KpLangPl    = 98, // 98 - iÅ¡sitraukti iÅ¡ registro Regional Setting'Å³ â€“ KpLangPl_1250 arba KpLangPl_1257 (jei lietuviÅ¡ki/Baltic)
 #define KpLangPl_p   98
-   KpLangSel,        // 99 - iÅsitraukti iÅ registro Regional Setting'Å³
+   KpLangSel,        // 99 - iÅ¡sitraukti iÅ¡ registro Regional Setting'Å³
 #define KpLangSel_p  99
 
 } KpLang;
@@ -130,7 +130,7 @@ typedef enum
 // ----------------------------------
 // Languages for SortMode
 #define KP_LNG_LIT ('l')       // lithuanian, former TV_XE_LIT, (former #define Lit 1)
-#define KP_LNG_LIX ('x')       // lithuanian sorting regardless of diacrytics, i.e., è==c, ð==s, þ==z (for lzdsh.exe and main index generation)
+#define KP_LNG_LIX ('x')       // lithuanian sorting regardless of diacrytics, i.e., Ä, Å¡, Å¾ (for lzdsh.exe and main index generation)
 #define KP_LNG_LIS ('s')       // lithuanian straigth sorting according to exact weights (for irregular form table generator - tvxmlecm.exe)
 #define KP_LNG_ENG ('e')       // english, former TV_XE_ENG, (former #define Eng 0)
 #define KP_LNG_GER ('v')       // german, former TV_XE_GER, former 'g'
@@ -224,7 +224,7 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
       // -1: **ppVal1 > **ppVal2
 
 // ========================================= file I/O
-#define KP_MAX_FNAME_LEN 260 // MAX_PATH // FILENAME_MAX // negalima keist/naudot neaiÅkios makrokomandos â€“ pasikeis kpstart.ini dydis
+#define KP_MAX_FNAME_LEN 260 // MAX_PATH // FILENAME_MAX // negalima keist/naudot neaiÅ¡kios makrokomandos â€“ pasikeis kpstart.ini dydis
 #define KP_MAX_FTYPE_LEN KP_MAX_FNAME_LEN // 4  // negalima keist â€“ pasikeis kpstart.ini dydis
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
@@ -404,11 +404,15 @@ extern KpHeapClass KpHeap;
 // p_lpszBinStrBuf[16 + 1]
 void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal);  
 
-double NormAngle(double p_dAngle); // sukiða kampà á intervalà [-pi, pi)
+double NormAngle(double p_dAngle); // sukiÅ¡a kampÄ… Ä¯ intervalÄ… [-pi, pi)
+
+
+// ================================================== date/time
+#define WND_DATE_TEXT_LENGTH 40 // 30 // Windows: "Thu Aug  3 15:55:45 2006", HTTP: "Thu, 15 Jul 2004 16:29:04 GMT"
 
 
 // ================================================== searching and sorting
-#define KP_KWD_LEN 400 // negalima keist – pasikeis susijusiø failø layout
+#define KP_KWD_LEN 400 // negalima keist â€“ pasikeis susijusiÅ³ failÅ³ layout
 
 
 // ================================================== OS ports (Windows/Linux)

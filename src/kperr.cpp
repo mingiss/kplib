@@ -30,6 +30,7 @@ using namespace std;
 #include "kpstring.h"
 #include "kptree.h"
 #include "kpstdio.h"
+#include "kpsock.h"
 #include "kpmsg.h"
 #include "kpmsg_en.h"
 #if (MsgLang == KpLangLt_p) || (MsgLang == KpLangSel_p)
@@ -591,6 +592,272 @@ uchar *KpErrorClass::FormatSystemErrorMessage(long lWindowsErrorCode)
 static uchar sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
     FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
 return(sys_err_msg);
+}
+
+
+// ------------------------------------
+const uchar *KpErrorClass::FormatErrorMessageHTTP(int p_iHTTP_RetCode)
+{
+static uchar out_buf[MAX_LONG_DIGITS + 100];
+    sprintf((char *)out_buf, "HTTP status: %d", p_iHTTP_RetCode);
+const uchar *retv = out_buf;
+
+    switch(p_iHTTP_RetCode)
+    {
+        case HTTP_ANSW_CONTINUE /* 100 */:
+            retv = (const uchar *)"Continue"; break;
+        case 101: retv = (const uchar *)"Switching Protocols"; break;
+        case HTTP_ANSW_OK /* 200 */: retv = (const uchar *)"OK"; break;
+        case 201: retv = (const uchar *)"Created"; break;
+        case 202: retv = (const uchar *)"Accepted"; break;
+        case 203: retv = (const uchar *)"Non-Authoritative Information"; break;
+        case 204: retv = (const uchar *)"No Content"; break;
+        case 205: retv = (const uchar *)"Reset Content"; break;
+        case 206: retv = (const uchar *)"Partial Content"; break;
+        case 300: retv = (const uchar *)"Multiple Choices"; break;
+        case 301: retv = (const uchar *)"Moved Permanently"; break;
+        case HTTP_ANSW_FOUND /* 302 */: retv = (const uchar *)"Found"; break;
+        case 303: retv = (const uchar *)"See Other"; break;
+        case 304: retv = (const uchar *)"Not Modified"; break;
+        case 305: retv = (const uchar *)"Use Proxy"; break;
+        case 307: retv = (const uchar *)"Temporary Redirect"; break;
+        case 400: retv = (const uchar *)"Bad Request"; break;
+        case 401: retv = (const uchar *)"Unauthorized"; break;
+        case 402: retv = (const uchar *)"Payment Required"; break;
+        case 403: retv = (const uchar *)"Forbidden"; break;
+        case HTTP_ANSW_FILE_NOT_FOUND /* 404 */:
+            retv = (const uchar *)"Not Found"; break;
+        case 405: retv = (const uchar *)"Method Not Allowed"; break;
+        case 406: retv = (const uchar *)"Not Acceptable"; break;
+            // serveris negali iðsiøsti failo uþkoduoto në vienu ið metodø,
+            // nurodytø HTTP uþklausos lauke Accept-Encoding:
+        case 407: retv = (const uchar *)"Proxy Authentication Required"; break;
+        case 408: retv = (const uchar *)"Request Timeout"; break;
+        case 409: retv = (const uchar *)"Conflict"; break;
+        case 410: retv = (const uchar *)"Gone"; break;
+        case 411: retv = (const uchar *)"Length Required"; break;
+        case 412: retv = (const uchar *)"Precondition Failed"; break;
+        case 413: retv = (const uchar *)"Request Entity Too Large"; break;
+        case 414: retv = (const uchar *)"Request-URI Too Long"; break;
+        case 415: retv = (const uchar *)"Unsupported Media Type"; break;
+        case 416: retv =
+            (const uchar *)"Requested Range Not Satisfiable"; break;
+        case 417: retv = (const uchar *)"Expectation Failed"; break;
+        case 500: retv = (const uchar *)"Internal Server Error"; break;
+        case 501: retv = (const uchar *)"Not Implemented"; break;
+        case 502: retv = (const uchar *)"Bad Gateway"; break;
+        case 503: retv = (const uchar *)"Service Unavailable"; break;
+        case 504: retv = (const uchar *)"Gateway Timeout"; break;
+        case 505: retv = (const uchar *)"HTTP Version Not Supported"; break;
+   }
+
+return (retv);
+}
+
+
+// ------------------------------------
+int KpErrorClass::TranslToHTTP_RetCode(HRESULT p_lRetc)
+{
+int retv = 500 /* Internal Server Error */;
+
+    switch(p_lRetc)
+    {
+        case S_OK:                  retv = HTTP_ANSW_OK /* 200 OK */; break;
+                                        // 100 continue
+                                        // 201 Created
+                                        // 202 Accepted
+                                        // 302 Found
+                                        // 300 Multiple Choices
+
+//      case E_INVALIDARG:          retv = ; break; // 411 Length Required
+
+        case E_NOTIMPL:             retv = 501 /* Not Implemented */; break;
+                                        // 505 HTTP Version Not Supported
+
+//      case KP_E_FERROR:           retv = ; break;
+
+        case KP_E_SYSTEM_ERROR:     retv = 500 /* Internal Server Error */;
+                                        break;
+                                        // 409 Conflict
+                                        // 412 Precondition Failed
+
+//      case KP_E_EOF:              retv = ; break;
+
+        case KP_E_FILE_FORMAT:      retv = 415; break;
+                                        // Unsupported Media Type
+                                        // 417 Expectation Failed
+                                        // 406 Not Acceptable
+
+        case KP_E_FILE_NOT_FOUND:   retv = HTTP_ANSW_FILE_NOT_FOUND
+                                        /* 404 Not Found */; break;
+                                        // 410 Gone
+                                        // 301 Moved Permanently
+
+//      case KP_E_DIR_ERROR:        retv = ; break;
+//      case KP_E_OUTOFMEM:         retv = ; break;
+        case KP_E_NO_FILE:          retv = 204 /* No Content */; break;
+//      case KP_E_DOUBLE_UNGET:     retv = ; break;
+//      case KP_E_UNKN_CHR:         retv = ; break;
+//      case KP_E_COMMAND_ERROR:    retv = ; break;
+
+        case KP_E_BUFFER_OVERFLOW:  retv = 413 /* Request Entity Too Large */;
+                                        break;
+                                        // 414 Request-URI Too long
+                                        // 416 Requested Range Not Satisfiable
+
+//      case KP_E_FONT_UNDEF:       retv = ; break;
+//      case KP_E_KWD_NOT_FOUND:    retv = ; break;
+//      case KP_E_UNKNOWN_SYSTEM:   retv = ; break;
+//      case KP_E_ILL_CODE:         retv = ; break;
+//      case KP_E_CANCEL:           retv = ; break;
+//      case KP_E_DOUBLE_CALL:      retv = ; break;
+
+        case KP_E_TIMEOUT:          retv = 408 /* Request Timeout */; break;
+                                        // 504 Gateway Timeout
+
+//      case KP_E_OBJ_NOT_FOUND:    retv = ; break;
+
+        case KP_E_NO_CONN:          retv = 408 /* Request Timeout */; break;
+
+        case KP_E_TRANS_ERR:        retv = 408 /* Request Timeout */; break;
+                                        // 305 Use Proxy
+                                        // 502 Bad Gateway
+
+        case KP_E_REFUSED:          retv = 403 /* Forbidden */; break;
+
+        case KP_E_ACCESS_DENIED:    retv = 401 /* Unauthorized */; break;
+                                        // 402 Payment Required
+                                        // 407 Proxy Authentication Required
+
+//      case KP_E_ILL_CHR:          retv = ; break;
+//      case KP_E_DIV_ZERO:         retv = ; break;
+//      case KP_E_ILLMATHARG:       retv = ; break;
+
+        case KP_E_ILLFUNC:          retv = 400 /* Bad Request */; break;
+                                        // 405 Method Not Allowed
+
+        case KP_E_NOTINST:          retv = 503 /* Service Unavailable */;
+                                        break;
+    }
+
+// 101 Switching Protocols
+// 203 Non-Authoritative Information
+// 205 Reset Content
+// 206 Partial Content
+// 303 See Other
+// 304 Not Modified
+// 307 Temporary Redirect
+
+return(retv);
+}
+
+
+// ------------------------------------
+HRESULT KpErrorClass::TranslFromHTTP_RetCode(int p_iHTTP_RetCode)
+{
+HRESULT retc = (p_iHTTP_RetCode == HTTP_ANSW_OK)?S_OK:KP_E_NEG_ANSW;
+
+    switch(p_iHTTP_RetCode)
+    {
+        case HTTP_ANSW_OK /* 200 OK */:
+        case HTTP_ANSW_CONTINUE /* 100 */:
+        case 201 /* Created */:
+        case 202 /* Accepted */:
+        case 300 /* Multiple Choices */:
+                                            retc = S_OK; break;
+
+// ðitais atvejais reikëtø ðokti nuoroda, nurodyta headerio lauke Location:,
+// kol kas nerealizuota (kliento gale)
+        case 302 /* Found */ /* Moved Temporarily */:
+        case 303 /* See Other */:
+        case 307 /* Temporary Redirect */:
+        case 301 /* Moved Permanently */:
+        case 305 /* Use Proxy */:
+                                            retc = E_NOTIMPL; break;
+
+        case 304 /* Not Modified */:
+            // atsakymas á sàlyginæ GET uþklausà – tuðèias atsakymas apie
+            //      nepasikeitusá failà (tikriausiai, pasitikrinimui, ar reikia
+            //      perkrauti cache'intà failà)
+            // að tokiø uþklausø kol kas nesiunèiu, tai ir atsakymo turëtø
+            //      neateiti
+                                            retc = KP_E_FILE_FORMAT; break;
+
+        case 411 /* Length Required */:     retc = E_INVALIDARG; break;
+
+        case 501 /* Not Implemented */:
+        case 505 /* HTTP Version Not Supported */:
+            // nerealizuota funkcija serverio gale
+                                            retc = E_NOTIMPL; break;
+
+//      case :                              retc = KP_E_FERROR; break;
+
+        case 500 /* Internal Server Error */:
+        case 409 /* Conflict */:
+        case 412 /* Precondition Failed */: retc = KP_E_SYSTEM_ERROR; break;
+
+//      case :                              retc = KP_E_EOF; break;
+
+        case 415 /* Unsupported Media Type */:
+        case 417 /* Expectation Failed */:
+        case 406 /* Not Acceptable */:      retc = KP_E_FILE_FORMAT; break;
+
+        case HTTP_ANSW_FILE_NOT_FOUND /* 404 Not Found */:
+        case 410 /* Gone */:
+                                            retc = KP_E_FILE_NOT_FOUND; break;
+
+//      case :                              retc = KP_E_DIR_ERROR; break;
+//      case :                              retc = KP_E_OUTOFMEM; break;
+        case 204 /* No Content */:          retc = KP_E_NO_FILE; break;
+//      case :                              retc = KP_E_DOUBLE_UNGET; break;
+//      case :                              retc = KP_E_UNKN_CHR; break;
+//      case :                              retc = KP_E_COMMAND_ERROR; break;
+
+        case 413 /* Request Entity Too Large */:
+        case 414 /* Request-URI Too long */:
+        case 416 /* Requested Range Not Satisfiable */:
+                                            retc = KP_E_BUFFER_OVERFLOW; break;
+
+//      case :                              retc = KP_E_FONT_UNDEF; break;
+//      case :                              retc = KP_E_KWD_NOT_FOUND; break;
+//      case :                              retc = KP_E_UNKNOWN_SYSTEM; break;
+//      case :                              retc = KP_E_ILL_CODE; break;
+//      case :                              retc = KP_E_CANCEL; break;
+//      case :                              retc = KP_E_DOUBLE_CALL; break;
+
+        case 502 /* Bad Gateway */:         retc = KP_E_TRANS_ERR; break;
+
+        case 408 /* Request Timeout */:  // retc = KP_E_TRANS_ERR; break;
+                                         // retc = KP_E_NO_CONN; break;
+        case 504 /* Gateway Timeout */:     retc = KP_E_TIMEOUT; break;
+
+//      case :                              retc = KP_E_OBJ_NOT_FOUND; break;
+
+        case 401 /* Unauthorized */:        retc = KP_E_ACCESS_DENIED; break;
+        case 403 /* Forbidden */:
+        case 402 /* Payment Required */:
+        case 407 /* Proxy Authentication Required */:
+                                            retc = KP_E_REFUSED; break;
+
+//      case :                              retc = KP_E_ILL_CHR; break;
+//      case :                              retc = KP_E_DIV_ZERO; break;
+//      case :                              retc = KP_E_ILLMATHARG; break;
+
+        case 400 /* Bad Request */:
+        case 405 /* Method Not Allowed */:  retc = KP_E_ILLFUNC; break;
+
+        case 503 /* Service Unavailable */: retc = KP_E_NOTINST; break;
+    }
+
+// 101 Switching Protocols
+// 203 Non-Authoritative Information
+// 205 Reset Content
+// 206 Partial Content
+// 303 See Other
+// 304 Not Modified
+// 307 Temporary Redirect
+
+return(retc);
 }
 
 

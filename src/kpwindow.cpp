@@ -20,6 +20,8 @@
 #include <wincon.h>
 #endif
 
+using namespace std;
+
 #include "res_com.h"
 #include "kperrno.h"
 #include "kpstdlib.h"
@@ -55,8 +57,10 @@ HMENU menu = NULL;
     wcx.lpfnWndProc   = DefWindowProc;
     wcx.style         = CS_DBLCLKS;
     wcx.cbSize        = sizeof(WNDCLASSEX);
-    wcx.hIcon         = LoadIcon(m_hInstance, IDI_APPLICATION); // MAKEINTRESOURCE(IDI_APPLICATION));
-    wcx.hIconSm       = LoadIcon(m_hInstance, IDI_APPLICATION); // MAKEINTRESOURCE(IDI_APPLICATION));
+    wcx.hIcon         = LoadIcon(m_hInstance, IDI_APPLICATION);
+                                // MAKEINTRESOURCE(IDI_APPLICATION));
+    wcx.hIconSm       = LoadIcon(m_hInstance, IDI_APPLICATION);
+                                // MAKEINTRESOURCE(IDI_APPLICATION));
     wcx.hCursor       = LoadCursor(0, IDC_ARROW);
     wcx.lpszMenuName  = 0;
     wcx.cbClsExtra    = 0;
@@ -68,31 +72,45 @@ HMENU menu = NULL;
 // ---------------------------------
     test_wnd = CreateWindowEx
     (
-        0,              // DWORD dwExStyle,      // extended window style
+        0,              // DWORD dwExStyle,
+            // extended window style
         TEXT("KPTEST"),       // LPCTSTR lpClassName,
-        TEXT("KpTest"),       // LPCTSTR lpWindowName, // pointer to window name
+        TEXT("KpTest"),       // LPCTSTR lpWindowName,
+            // pointer to window name
         WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX |WS_THICKFRAME
 //          |WS_MINIMIZE
 #ifdef Debug
 //          |WS_VISIBLE
 #endif
-            , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,    // window style
-        200, // CW_USEDEFAULT, // int x,               // horizontal position of window
-        200, // CW_USEDEFAULT, // int y,               // vertical position of window
-        200, // CW_USEDEFAULT, // int nWidth,          // window width
-        200, // CW_USEDEFAULT, // int nHeight,         // window height
-        HWND_DESKTOP,  // HWND hWndParent,      // handle to parent or owner window
-        NULL,          // HMENU hMenu,          // handle to menu, or child-window identifier
+            , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,
+                // window style
+        200, // CW_USEDEFAULT, // int x,
+            // horizontal position of window
+        200, // CW_USEDEFAULT, // int y,
+            // vertical position of window
+        200, // CW_USEDEFAULT, // int nWidth,
+            // window width
+        200, // CW_USEDEFAULT, // int nHeight,
+            // window height
+        HWND_DESKTOP,  // HWND hWndParent,
+            // handle to parent or owner window
+        NULL,          // HMENU hMenu,
+            // handle to menu, or child-window identifier
         m_hInstance, // HINSTANCE hInstance,
-        NULL           // LPVOID lpParam        // pointer to window-creation data
+        NULL           // LPVOID lpParam
+            // pointer to window-creation data
     );
     KP_ASSERT(test_wnd, KP_E_SYSTEM_ERROR, GetLastError());
 
 // --------------------------------
-    KP_ASSERT(GetClientRect(test_wnd, &cli_rect), KP_E_SYSTEM_ERROR, GetLastError());
-    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect), KP_E_SYSTEM_ERROR, GetLastError());
-    m_iWndBorderWdt = ((wnd_rect.right - wnd_rect.left) - (cli_rect.right - cli_rect.left)) / 2;
-    m_iWndCaptionHgt = ((wnd_rect.bottom - wnd_rect.top) - (cli_rect.bottom - cli_rect.top)) - 2 * m_iWndBorderWdt;
+    KP_ASSERT(GetClientRect(test_wnd, &cli_rect),
+                        KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect),
+                        KP_E_SYSTEM_ERROR, GetLastError());
+    m_iWndBorderWdt = ((wnd_rect.right - wnd_rect.left) -
+                        (cli_rect.right - cli_rect.left)) / 2;
+    m_iWndCaptionHgt = ((wnd_rect.bottom - wnd_rect.top) -
+        (cli_rect.bottom - cli_rect.top)) - 2 * m_iWndBorderWdt;
 
     if (test_wnd) ::DestroyWindow(test_wnd);
     test_wnd=NULL;
@@ -101,35 +119,49 @@ HMENU menu = NULL;
     menu = CreateMenu();
     KP_ASSERT(menu, KP_E_SYSTEM_ERROR, GetLastError());
 
-    KP_ASSERT(AppendMenu(menu, MF_STRING, KP_ID_FILE, TEXT("File")), KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERT(AppendMenu(menu, MF_STRING, KP_ID_FILE, TEXT("File")),
+                                        KP_E_SYSTEM_ERROR, GetLastError());
 
 // ---------------------------------
     test_wnd = CreateWindowEx
     (
-        0,              // DWORD dwExStyle,      // extended window style
+        0,              // DWORD dwExStyle,
+            // extended window style
         TEXT("KPTEST"),       // LPCTSTR lpClassName,
-        TEXT("KpTest"),       // LPCTSTR lpWindowName, // pointer to window name
+        TEXT("KpTest"),       // LPCTSTR lpWindowName,
+            // pointer to window name
         WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX |WS_THICKFRAME
 //       |WS_MINIMIZE
 #ifdef Debug
 //       |WS_VISIBLE
 #endif
-         , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,    // window style
-         200, // CW_USEDEFAULT, // int x,               // horizontal position of window
-         200, // CW_USEDEFAULT, // int y,               // vertical position of window
-         200, // CW_USEDEFAULT, // int nWidth,          // window width
-         200, // CW_USEDEFAULT, // int nHeight,         // window height
-         HWND_DESKTOP,  // HWND hWndParent,      // handle to parent or owner window
-         menu,          // HMENU hMenu,          // handle to menu, or child-window identifier
+            , // |WS_BORDER|WS_POPUP, // DWORD dwStyle,
+                // window style
+         200, // CW_USEDEFAULT, // int x,
+            // horizontal position of window
+         200, // CW_USEDEFAULT, // int y,
+            // vertical position of window
+         200, // CW_USEDEFAULT, // int nWidth,
+            // window width
+         200, // CW_USEDEFAULT, // int nHeight,
+            // window height
+         HWND_DESKTOP,  // HWND hWndParent,
+            // handle to parent or owner window
+         menu,          // HMENU hMenu,
+            // handle to menu, or child-window identifier
          m_hInstance,   // HINSTANCE hInstance,
-         NULL           // LPVOID lpParam        // pointer to window-creation data
+         NULL           // LPVOID lpParam
+            // pointer to window-creation data
     );
     KP_ASSERT(test_wnd, KP_E_SYSTEM_ERROR, GetLastError());
 
 // --------------------------------
-    KP_ASSERT(GetClientRect(test_wnd, &cli_rect), KP_E_SYSTEM_ERROR, GetLastError());
-    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect), KP_E_SYSTEM_ERROR, GetLastError());
-    m_iWndMenuHgt = ((wnd_rect.bottom - wnd_rect.top) - (cli_rect.bottom - cli_rect.top)) -
+    KP_ASSERT(GetClientRect(test_wnd, &cli_rect), KP_E_SYSTEM_ERROR,
+                                                            GetLastError());
+    KP_ASSERT(GetWindowRect(test_wnd, &wnd_rect), KP_E_SYSTEM_ERROR,
+                                                            GetLastError());
+    m_iWndMenuHgt = ((wnd_rect.bottom - wnd_rect.top) -
+        (cli_rect.bottom - cli_rect.top)) -
         2 * m_iWndBorderWdt - m_iWndCaptionHgt;
 
     if (test_wnd) ::DestroyWindow(test_wnd);
@@ -154,20 +186,28 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 #ifndef KP_CONSOLE
 #error Not a console application
 #endif
-    // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 ið MSYS, nëra MinGW 4.4.1 ið CodeBlocks 10.05
+    // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 ið MSYS,
+    //      nëra MinGW 4.4.1 ið CodeBlocks 10.05
         m_hWndParent = GetConsoleWindow(); // = HWND_DESKTOP; 
-        KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR, "Not a console application, proper instance handle should be provided");
+        KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR,
+            "Not a console application, "
+            "proper instance handle should be provided");
         m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
-// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, m_hWndParent);
+// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance,
+//                                                      m_hWndParent);
 
 #if FALSE
     char cur_title[KP_MAX_FNAME_LEN + 1];
-        KP_ASSERT(GetConsoleTitle(cur_title, KP_MAX_FNAME_LEN), KP_E_SYSTEM_ERROR, null);
-        KP_ASSERTW0(SetConsoleTitle("zzzz"), KP_E_SYSTEM_ERROR, GetLastError()); // (const char *)KpError.m_lpszProdName);
-        m_hWndParent = FindWindow(NULL, "zzzz"); // (const char *)KpError.m_lpszProdName);
+        KP_ASSERT(GetConsoleTitle(cur_title, KP_MAX_FNAME_LEN),
+                                                KP_E_SYSTEM_ERROR, null);
+        KP_ASSERTW0(SetConsoleTitle("zzzz"), KP_E_SYSTEM_ERROR,
+                GetLastError()); // (const char *)KpError.m_lpszProdName);
+        m_hWndParent = FindWindow(NULL, "zzzz");
+            // (const char *)KpError.m_lpszProdName);
 //      SetConsoleTitle(cur_title);
         m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
-// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance, m_hWndParent);
+// printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance,
+//                                                      m_hWndParent);
 #endif
     }
 #endif
@@ -180,14 +220,18 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 #   elif (MsgLang == KpLangSel_p)
         KP_THROW(E_NOTIMPL, null);
 
-#   elif ((MsgLang == KpLangEn_p) || (MsgLang == KpLangLt_p) || (MsgLang == KpLangPl_1250_p) || (MsgLang == KpLangPl_1257_p) || (MsgLang == KpLangRu_1251_p) || (MsgLang == KpLangRu_0_p))
-        m_iMsgLangOff = (KpLang)MsgLang;
+#   elif ((MsgLang == KpLangEn_p) || (MsgLang == KpLangLt_p) ||
+        (MsgLang == KpLangPl_1250_p) || (MsgLang == KpLangPl_1257_p) ||
+        (MsgLang == KpLangRu_1251_p) || (MsgLang == KpLangRu_0_p))
+            m_iMsgLangOff = (KpLang)MsgLang;
 
 #   elif ((MsgLang == KpLangPl_p) || (MsgLang == KpLangRu_p))
 #       ifdef __WIN32__
 HRESULT retc = S_OK;
 HKEY key = NULL;
-LONG retw = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage", 0, KEY_QUERY_VALUE, &key);
+LONG retw = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+                        "SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage",
+                        0, KEY_QUERY_VALUE, &key);
         KP_ASSERTW(retw == ERROR_SUCCESS, KP_E_KWD_NOT_FOUND, retw);
         KP_ASSERTW(key, KP_E_SYSTEM_ERROR, null);
 
@@ -196,7 +240,8 @@ unsigned char key_buf[KP_KWD_LEN + 1];
         if (SUCCEEDED(retc))
         {
 DWORD val_type;
-            retw = RegQueryValueEx(key, "ACP", NULL, &val_type, key_buf, &buf_len);
+            retw = RegQueryValueEx(key, "ACP", NULL, &val_type, key_buf,
+                                                                    &buf_len);
             KP_ASSERTW(retw == ERROR_SUCCESS, KP_E_KWD_NOT_FOUND, retw);
             KP_ASSERTW(val_type == REG_SZ, KP_E_KWD_NOT_FOUND, retw);
         }
@@ -206,7 +251,8 @@ DWORD val_type;
             CutInitTrailSpcs(key_buf);
 #       if (MsgLang == KpLangPl_p)
                 if (strcmp(key_buf, "1257") == 0) iMsgLangOff = KpLangPl_1257;
-                else /* if (strcmp(key_buf, "1250") == 0) */  iMsgLangOff = KpLangPl_1250;
+                else /* if (strcmp(key_buf, "1250") == 0) */
+                                        iMsgLangOff = KpLangPl_1250;
 
 #       elif (MsgLang == KpLangRu_p)
                 if (strcmp(key_buf, "1251") == 0) iMsgLangOff = KpLangRu_1251;
@@ -230,7 +276,8 @@ DWORD val_type;
 
 #endif // #ifdef MsgLang
 
-    KP_ASSERT((m_iMsgLangOff >= 0) && (m_iMsgLangOff < KpNumOfLangs), KP_E_SYSTEM_ERROR, null);
+    KP_ASSERT((m_iMsgLangOff >= 0) && (m_iMsgLangOff < KpNumOfLangs),
+                                                    KP_E_SYSTEM_ERROR, null);
 
 // -------------
     InitWindowPars();
@@ -239,19 +286,21 @@ DWORD val_type;
 
 // ----------------------------------------
 #ifdef KP_WINDOWED
-void KpDrawLine(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
+void KpDrawLine(HDC p_hDC, int p_iX1, int p_iY1, int p_iX2, int p_iY2,
+                                                            COLORREF p_lColor)
 {
 HRESULT retc = S_OK;
 HPEN pen = NULL;
 
-    pen = CreatePen(PS_SOLID, 1, lColor);
+    pen = CreatePen(PS_SOLID, 1, p_lColor);
     KP_ASSERTW(pen, KP_E_SYSTEM_ERROR, GetLastError());
 
-    KP_ASSERTW(SelectObject(hDC, pen), KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERTW(SelectObject(p_hDC, pen), KP_E_SYSTEM_ERROR, GetLastError());
 
-    KP_ASSERTW(MoveToEx(hDC, iX1, iY1, NULL), KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERTW(MoveToEx(p_hDC, p_iX1, p_iY1, NULL), KP_E_SYSTEM_ERROR,
+                                                        GetLastError());
 
-    KP_ASSERTW(LineTo(hDC, iX2, iY2), KP_E_SYSTEM_ERROR, GetLastError());
+    KP_ASSERTW(LineTo(p_hDC, p_iX2, p_iY2), KP_E_SYSTEM_ERROR, GetLastError());
 
     if(pen) KP_ASSERTW(DeleteObject(pen), KP_E_SYSTEM_ERROR, GetLastError());
     pen = NULL;
@@ -260,13 +309,26 @@ HPEN pen = NULL;
 
 
 #ifdef KP_WINDOWED
-void KpDrawRect(HDC hDC, int iX1, int iY1, int iX2, int iY2, COLORREF lColor)
+void KpDrawRect(HDC p_hDC, int p_iX1, int p_iY1, int p_iX2, int p_iY2,
+                                                            COLORREF p_lColor)
 {
-    KpDrawLine(hDC, iX1, iY1, iX2, iY1, lColor);
-    KpDrawLine(hDC, iX2, iY1, iX2, iY2, lColor);
-    KpDrawLine(hDC, iX2, iY2, iX1, iY2, lColor);
-    KpDrawLine(hDC, iX1, iY2, iX1, iY1, lColor);
+    KpDrawLine(p_hDC, p_iX1, p_iY1, p_iX2, p_iY1, p_lColor);
+    KpDrawLine(p_hDC, p_iX2, p_iY1, p_iX2, p_iY2, p_lColor);
+    KpDrawLine(p_hDC, p_iX2, p_iY2, p_iX1, p_iY2, p_lColor);
+    KpDrawLine(p_hDC, p_iX1, p_iY2, p_iX1, p_iY1, p_lColor);
 }
 #endif
+
+
+// ----------------------------
+extern HRESULT KpMsgOut(const unsigned char *p_lpszOutStr,
+                            LPCTSTR p_lpszIconID, KpMsgTypes p_iMsgType)
+{
+#ifdef KP_WINDOWED
+// TODO:
+#else
+cout << p_lpszOutStr << endl;
+#endif
+}
 
 #endif // #ifdef __WIN32__

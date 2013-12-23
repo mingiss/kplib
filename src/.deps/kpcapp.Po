@@ -127,7 +127,7 @@ kplib/src/kpcapp.o: kplib/src/kpcapp.cpp kplib/include/envir.h \
  kplib/include/kperrno.h kplib/include/kpstdlib.h kplib/include/kptt.h \
  kplib/src/kpctype.h kplib/src/kpstring.h kplib/src/kpmsg.h \
  kplib/include/kperr.h kplib/src/kpcapp.h \
- D:/kp/bin/MinGW/msys/1.0/home/mindaugas.piesina/kpcurdat.h
+ D:/kp/bin/MinGW/msys/1.0/home/mingis/kpcurdat.h
 
 kplib/include/envir.h:
 
@@ -397,4 +397,4 @@ kplib/include/kperr.h:
 
 kplib/src/kpcapp.h:
 
-D:/kp/bin/MinGW/msys/1.0/home/mindaugas.piesina/kpcurdat.h:
+D:/kp/bin/MinGW/msys/1.0/home/mingis/kpcurdat.h:

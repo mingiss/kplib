@@ -2,8 +2,77 @@ kplib/src/kpctype.o: kplib/src/kpctype.cpp kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/ctype.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h \
- d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/os_defines.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/cpu_defines.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ostream \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ios \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iosfwd \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stringfwd.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/postypes.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwchar \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wchar.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wctype.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdint.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdint.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/exception \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/char_traits.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_algobase.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/functexcept.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/exception_defines.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/cpp_type_traits.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/type_traits.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/numeric_traits.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_pair.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/move.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/concept_check.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator_base_types.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator_base_funcs.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/debug/debug.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/localefwd.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++locale.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/clocale \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/locale.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cctype \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ios_base.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/atomicity.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/gthr.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/gthr-default.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/errno.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/atomic_word.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_classes.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/string \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/allocator.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++allocator.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/new_allocator.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/new \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream_insert.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/cxxabi_forced.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_function.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/backward/binders.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/range_access.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_string.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/initializer_list \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_string.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_classes.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/streambuf \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/streambuf.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_ios.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_facets.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwctype \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/ctype_base.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/streambuf_iterator.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/ctype_inline.h \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_facets.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_ios.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc \
+ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winnt.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/winerror.h \
@@ -55,7 +124,8 @@ kplib/src/kpctype.o: kplib/src/kpctype.cpp kplib/include/envir.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oaidl.h \
  d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/oleidl.h \
  kplib/include/kperrno.h kplib/include/kpstdlib.h kplib/include/kptt.h \
- kplib/src/kpctype.h
+ kplib/src/kpctype.h kplib/src/kpstring.h kplib/src/kpmsg.h \
+ kplib/include/kperr.h
 
 kplib/include/envir.h:
 
@@ -65,9 +135,147 @@ d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/_mingw.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stddef.h:
 
-d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h:
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iostream:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++config.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/os_defines.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/cpu_defines.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ostream:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ios:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/iosfwd:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stringfwd.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/postypes.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwchar:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wchar.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdarg.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/wctype.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/sys/types.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/stdint.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/stdint.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/exception:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/char_traits.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_algobase.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/functexcept.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/exception_defines.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/cpp_type_traits.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/type_traits.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/numeric_traits.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_pair.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/move.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/concept_check.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator_base_types.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator_base_funcs.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_iterator.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/debug/debug.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/localefwd.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++locale.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/clocale:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/locale.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cctype:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ios_base.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/atomicity.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/gthr.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/gthr-default.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/errno.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/atomic_word.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_classes.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/string:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/allocator.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/c++allocator.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/ext/new_allocator.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/new:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream_insert.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/cxxabi_forced.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/stl_function.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/backward/binders.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/range_access.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_string.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/initializer_list:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_string.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_classes.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/streambuf:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/streambuf.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_ios.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_facets.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/cwctype:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/ctype_base.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/streambuf_iterator.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/mingw32/bits/ctype_inline.h:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/locale_facets.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/basic_ios.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/ostream.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/istream:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/include/c++/bits/istream.tcc:
+
+d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windows.h:
 
 d:\kp\bin\mingw\bin\../lib/gcc/mingw32/4.6.2/../../../../include/windef.h:
 
@@ -176,3 +384,9 @@ kplib/include/kpstdlib.h:
 kplib/include/kptt.h:
 
 kplib/src/kpctype.h:
+
+kplib/src/kpstring.h:
+
+kplib/src/kpmsg.h:
+
+kplib/include/kperr.h:

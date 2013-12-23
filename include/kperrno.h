@@ -254,4 +254,24 @@ E_HTTP_ERROR 0x80070965    Driver error. Exclusive access.
 // unhandled exception
 #define KP_E_UNHANDLED_EXCEPTION  (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 + 0x02b))
 
+
+// =========================================
+// interaktyviø praneðimø tipai kpwindow.cpp: KpMsgOut()
+//
+typedef enum
+{
+    KP_MB_OK,
+    KP_MB_GERAI,
+    KP_MB_TESTI,
+    KP_MB_BAIGTI,
+    KP_MB_OK_CANCEL,
+    KP_MB_GERAI_ATSAUKTI,
+    KP_MB_TESTI_ATSAUKTI,
+    KP_MB_YES_NO,
+    KP_MB_TAIP_NE,
+    KP_MB_GERAI_ATSAUKTI_PAMIRSAU,
+    KP_MB_NONE, // tik iðveda praneðimà be mygtukø ir iðkart gráþta
+} KpMsgTypes;
+
+
 #endif // #ifndef KPERRNO_INCLUDED

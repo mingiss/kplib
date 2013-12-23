@@ -18,16 +18,26 @@
 //
 // severe error – throws an exception if bCond not kept
 #ifdef KP_CPP
-#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_THROW(lhErrCode, Msg); } }}
+#define KP_ASSERT(p_bCond, p_lhErrCode, p_Msg) {{ if (!(p_bCond)){ \
+                                        KP_THROW(p_lhErrCode, p_Msg); } }}
 #else
-#define KP_ASSERT(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_ERROR(lhErrCode, Msg); exit(lhErrCode); } }}
+#define KP_ASSERT(p_bCond, p_lhErrCode, p_Msg) {{ if (!(p_bCond)){ \
+                        KP_ERROR(p_lhErrCode, p_Msg); exit(p_lhErrCode); } }}
 #endif
 
-// local fault – puts warning to the log file and sets local variable retc (HRESULT retc)
-#define KP_ASSERTW(bCond, lhErrCode, Msg) {{ if (SUCCEEDED(retc)) if (!(bCond)){ KP_WARNING(lhErrCode, Msg); retc = lhErrCode; } }}
+// local fault – puts warning to the log file and sets local variable retc
+//      (HRESULT retc)
+#define KP_ASSERTW(p_bCond, p_lhErrCode, p_Msg) {{ if (SUCCEEDED(retc)) \
+    if (!(p_bCond)){ KP_WARNING(p_lhErrCode, p_Msg); retc = p_lhErrCode; } }}
 // the same as KP_ASSERTW, but does not bother with retc
-#define KP_ASSERTW0(bCond, lhErrCode, Msg) {{ if (!(bCond)){ KP_WARNING(lhErrCode, Msg); } }}
+#define KP_ASSERTW0(p_bCond, p_lhErrCode, p_Msg) {{ if (!(p_bCond)){ \
+                                        KP_WARNING(p_lhErrCode, p_Msg); } }}
 
+// conditional local fault – depending on p_bThrowError puts warning or throws
+//      an error
+#define KP_ASSERTQ(p_bCond, p_lhErrCode, p_Msg, p_bThrowError) {{ \
+    if (p_bThrowError){ KP_ASSERT(p_bCond, p_lhErrCode, p_Msg) } \
+    else { KP_ASSERTW(p_bCond, p_lhErrCode, p_Msg) }}}
 
 #ifdef __cplusplus
 // ---------------------------------------- exceptions
@@ -64,7 +74,6 @@
 // #define KP_TRACE(...) {{ char *trc_buf_ptr = new char[10000]; if(trc_buf_ptr != NULL){ sprintf(trc_buf_ptr, (const char *)__VA_ARGS__); KpPutLogMessage(trc_buf_ptr); delete [] trc_buf_ptr; } }}
 #define KP_TRACE(...) {{ KpPutLogMessage((const char *)__VA_ARGS__); }}
 #endif
-
 
 
 #ifdef __cplusplus
@@ -186,6 +195,12 @@ va_list argptr;
                                // bFullFormat == False - tik lietuviškas pranešimas
                                // lpszMsg is used to return back the error text, must
                                //    be not shorter, than KP_MAX_FILE_LIN_LEN bytes
+
+    static const uchar *FormatErrorMessageHTTP(int p_iHTTP_RetCode);
+    static int TranslToHTTP_RetCode(HRESULT p_lRetc);
+        // verčia KP klaidos kodą KP_E_... į HTTP atsakymo kodą HTTP_ANSW_...
+    static HRESULT TranslFromHTTP_RetCode(int p_iHTTP_RetCode);
+        // verčia HTTP atsakymo kodą HTTP_ANSW_... į KP klaidos kodą KP_E_...
 
 // --------------------
     void OutputErrorMessage          // outputs error message; calls FormatErrorMessage()
