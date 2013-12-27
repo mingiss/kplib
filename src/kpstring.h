@@ -96,10 +96,12 @@ extern int UcStrCmp(const uchar *p_lpszStr1, const uchar *p_lpszStr2, bool p_bSk
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę
-void KpStripTrailing(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus gale // former CutTrailSpcs
-void KpStripLeading(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj
-void KpStrip(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj ir gale 
-void KpStripAll(uchar *lpszString, /* const */ uchar *lpszSpcs = lpszSpcEol); // išmeta visus tarpus
+extern void KpStripTrailing(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs = lpszSpcEol); // numeta tarpus gale // former CutTrailSpcs
+extern void KpStripLeading(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj
+extern void KpStrip(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs = lpszSpcEol); // numeta tarpus pradžioj ir gale
+extern void KpStripAll(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs = lpszSpcEol); // išmeta visus tarpus
+
+extern void KpObfuscate(uchar *p_lpszString); // keičia visus eol į tarpus
 
 
 // -------------------------

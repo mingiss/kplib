@@ -101,17 +101,17 @@ uchar *strlwr(uchar *str)
 
 
 // --------------------------------------------------
-void KpStripTrailing(uchar *lpszString, /* const */ uchar *lpszSpcs)
+void KpStripTrailing(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs)
 {
 uchar *pnts = null;
 
-    KP_ASSERT(lpszString, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszString, E_INVALIDARG, null);
 
-    pnts = lpszString + strlen(lpszString);
-    while (pnts > lpszString)
+    pnts = p_lpszString + strlen(p_lpszString);
+    while (pnts > p_lpszString)
     {
         --pnts;
-        if (strchr(lpszSpcs, *pnts) == null) // TODO: TvStrChr()
+        if (strchr(p_lpszSpcs, *pnts) == null) // TODO: TvStrChr()
         {
             pnts++;
             break;
@@ -122,40 +122,59 @@ uchar *pnts = null;
 }
 
 
-void KpStripLeading(uchar *lpszString, /* const */ uchar *lpszSpcs)
+void KpStripLeading(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs)
 {
 uchar *pnts = null;
 uchar *pntd = null;
 
-    KP_ASSERT(lpszString, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszString, E_INVALIDARG, null);
 
-    pntd = pnts = lpszString;
-    while (strchr(lpszSpcs, *pnts)) pnts++;
+    pntd = pnts = p_lpszString;
+    while (strchr(p_lpszSpcs, *pnts)) pnts++;
     while (*pnts) *pntd++ = *pnts++;
     *pntd = Nul;
 }
 
 
-void KpStrip(uchar *lpszString, /* const */ uchar *lpszSpcs)
+void KpStrip(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs)
 {
-    KpStripLeading(lpszString, lpszSpcs);
-    KpStripTrailing(lpszString, lpszSpcs);
+    KpStripLeading(p_lpszString, p_lpszSpcs);
+    KpStripTrailing(p_lpszString, p_lpszSpcs);
 }
 
 
-void KpStripAll(uchar *lpszString, /* const */ uchar *lpszSpcs)
+void KpStripAll(uchar *p_lpszString, /* const */ uchar *p_lpszSpcs)
 {
 uchar *pnts = null;
 uchar *pntd = null;
 
-    KP_ASSERT(lpszString, E_INVALIDARG, null);
+    KP_ASSERT(p_lpszString, E_INVALIDARG, null);
 
-    pntd = pnts = lpszString;
+    pntd = pnts = p_lpszString;
     while (*pnts)
     {
-        while (strchr(lpszSpcs, *pnts)) pnts++;
+        while (strchr(p_lpszSpcs, *pnts)) pnts++;
         *pntd++ = *pnts++;
     }
+    *pntd = Nul;
+}
+
+
+// --------------------------------------------------
+void KpObfuscate(uchar *p_lpszString)
+{
+    KP_ASSERT(p_lpszString, E_INVALIDARG, null);
+
+uchar *pnts = p_lpszString;
+uchar *pntd = p_lpszString;
+
+    while (*pnts) switch (*pnts)
+    {
+    case Lf: *pntd++ = Spc; pnts++; break;
+    case Cr: *pntd++ = Spc; if (*(++pnts) == Lf) pnts++; break;
+    default: *pntd++ = *pnts++; break;
+    }
+
     *pntd = Nul;
 }
 

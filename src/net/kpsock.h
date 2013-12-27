@@ -186,6 +186,7 @@ typedef enum
 
 //---------------------
 #define HTTP_PORT 80
+#define HTTP_PORT_ALT 8080
 #define FTP_PORT 21
 #define SMTP_PORT 25
 
@@ -202,7 +203,7 @@ typedef enum
 //---------------------
 #define HTTP_GET_REQ_TPL_MAIN ((const uchar *)\
     "%s %s HTTP/1.1\r\n" \
-    "Host: %s:%d\r\n"          /* 127.0.0.1:80 */ \
+    "Host: %s%s\r\n"          /* 127.0.0.1:80 */ \
     "User-Agent: %s\r\n"       /* Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax) */ \
     "Accept: */*\r\n" \
     "Accept-Language: lt\r\n"  /* en-us,en;q=0.5 */ \
@@ -214,7 +215,7 @@ typedef enum
 
 #define HTTP_GET_REQ_TPL_TEXT ((const uchar *)\
     "%s %s HTTP/1.1\r\n" \
-    "Host: %s:%d\r\n"          /* 127.0.0.1:80 */ \
+    "Host: %s%s\r\n"          /* 127.0.0.1:80 */ \
     "User-Agent: %s\r\n"       /* Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax) */ \
     "Accept: text/*\r\n" \
     "Accept-Language: lt\r\n"  /* en-us,en;q=0.5 */ \
@@ -226,7 +227,7 @@ typedef enum
 
 #define HTTP_GET_REQ_TPL_BIN ((const uchar *)\
     "%s %s HTTP/1.1\r\n" \
-    "Host: %s:%d\r\n"          /* 127.0.0.1:80 */ \
+    "Host: %s%s\r\n"          /* 127.0.0.1:80 */ \
     "User-Agent: %s\r\n"       /* Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax) */ \
     "Accept: */*\r\n" \
 /*  "Accept-Language: lt\r\n" */ /* en-us,en;q=0.5 */ \
@@ -238,7 +239,7 @@ typedef enum
 
 #define HTTP_POST_REQ_TPL ((const uchar *) \
     "%s %s HTTP/1.1\r\n"       /* POST /diag.php HTTP/1.1 */ \
-    "Host: %s:%d\r\n"          /* Host: www.tev.lt:80 */ \
+    "Host: %s%s\r\n"          /* Host: www.tev.lt:80 */ \
     "User-Agent: %s\r\n"       /* User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1) */ \
     "Accept: */*\r\n" \
     "Content-Length: %ld\r\n" \
@@ -251,7 +252,7 @@ typedef enum
 // Tado Acrobato POST pranesimu kepure
 #define HTTP_POST_REQ_TPL_ACRO ((unsigned char *) \
     "%s %s HTTP/1.1\r\n"       /* POST / HTTP/1.1 */ \
-    "Host: %s:%d\r\n"          /* 127.0.0.1:80 */ \
+    "Host: %s%s\r\n"          /* 127.0.0.1:80 */ \
     "User-Agent: %s\r\n"       /* AcroForms */ \
     "Accept: */*\r\n" \
     "Content-Type: application/x-www-form-urlencoded\r\n" \
@@ -321,6 +322,7 @@ typedef enum
 #define HTTP_ANSW_FILE_NOT_FOUND 404
 #define HTTP_ANSW_CONTINUE 100
 #define HTTP_ANSW_CONFLICT 409
+#define HTTP_ANSW_GATEWAY 502
 
 // TODO: contentus migruoti iš content_types.py
 #define KPSOCK_DEF_CONT_TYPE ((const uchar *)"text/html")
@@ -532,6 +534,7 @@ public:
         const uchar *p_lpszArg = null,
             // failo vardas, jei null – imamas m_PackedUrl.m_lpszFileName
         bool p_bFakeAgent = False, // ar apsimetinėti Mozilla
+        bool p_bUsePort = True, // ar nurodyti portą po serverio adreso
         long p_lSimplyPostMsgLen = 0L,
         bool p_bAcroPostMsg = True,
         const uchar *p_lpszPostBoundary = (const uchar *)"",

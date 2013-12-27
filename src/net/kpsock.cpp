@@ -1242,7 +1242,7 @@ return (p_iHTTP_RetCode / 100 == 4);
 
 //---------------------
 HRESULT KpSocket::SendHttpRequest(const uchar *p_lpszRequest,
-    const uchar *p_lpszArg, bool p_bFakeAgent,
+    const uchar *p_lpszArg, bool p_bFakeAgent, bool p_bUsePort,
     long p_lSimplyPostMsgLen, bool p_bAcroPostMsg,
     const uchar *p_lpszPostBoundary, const uchar *p_lpszHTTP_Template,
     bool p_bThrowError)
@@ -1279,6 +1279,11 @@ const uchar *http_tpl = (const uchar *)"";
             p_bAcroPostMsg?HTTP_POST_REQ_TPL_ACRO:HTTP_POST_REQ_TPL;
     }
 
+    // ---------- port
+uchar port_str[MAX_LONG_DIGITS + 10];
+    port_str[0] = Nul;
+    if (p_bUsePort) sprintf((char *)port_str, ":%d", m_PackedUrl.m_iPort);
+
     // -----------
 uchar *buf_ptr = null;
     if (SUCCEEDED(retc))
@@ -1287,7 +1292,7 @@ uchar *buf_ptr = null;
             strlen(http_fname) + strlen(m_PackedUrl.m_lpszServerName) + 1000);
 
         sprintf((char *)buf_ptr, (const char *)http_tpl, p_lpszRequest, http_fname,
-            m_PackedUrl.m_lpszServerName, m_PackedUrl.m_iPort,
+            m_PackedUrl.m_lpszServerName, port_str,
             p_bFakeAgent?KPSOCK_FAKED_USER_AGENT:KpError.m_lpszProdName,
             p_lSimplyPostMsgLen);
 
