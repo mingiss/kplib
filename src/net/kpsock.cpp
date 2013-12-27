@@ -9,7 +9,7 @@
 
 
 // ---------------------
-#if 1 // #ifdef Debug
+#ifdef Debug
 #define TRACE_HTTP
 #endif
 
@@ -40,12 +40,26 @@ using namespace std;
 
 
 // ---------------------
-const uchar *KpSocket::ProtocolNames[NUM_OF_PROTS_1] =
+const uchar *KpSocket::ProtocolNames[NUM_OF_PROTS_2] =
 {
     (const uchar *)"<undefined>",  //   NO_PROT
 
     (const uchar *)"HTTP",         //   HTTP_PROT,
     (const uchar *)"FTP",          //   FTP_PROT,
+    (const uchar *)"HTTPS",        //   HTTPS_PROT,
+    (const uchar *)"MAILTO",       //   SMTP_PROT,
+};
+
+
+int KpSocket::DefPorts[NUM_OF_PROTS_2] =
+{
+    HTTP_PORT,  //   NO_PROT
+
+    HTTP_PORT,  //   HTTP_PROT,
+    FTP_PORT,   //   FTP_PROT,
+    HTTP_PORT,  //   HTTPS_PROT,
+    SMTP_PORT,  //   SMTP_PROT,
+
 };
 
 
@@ -69,7 +83,7 @@ const uchar *KpSocket::KpsockMsgTypes[NUM_OF_HTTP_MSG_TYPES_1] =
 };
 
 
-const uchar *KpSocket::KpsockTagNames[KPSOCK_NUM_OF_HDTAGS_1 + 1] =
+const uchar *KpSocket::KpsockTagNames[KPSOCK_NUM_OF_HDTAGS_4 + 1] =
 {
     (const uchar *)"Date:",                       // KPSOCK_HDTAG_Date
     (const uchar *)"Server:",                     // KPSOCK_HDTAG_Server
@@ -103,10 +117,37 @@ const uchar *KpSocket::KpsockTagNames[KPSOCK_NUM_OF_HDTAGS_1 + 1] =
     (const uchar *)"Acrobat-Version:",            // KPSOCK_HDTAG_AcrobatVersion
     (const uchar *)"Expires:",                    // KPSOCK_HDTAG_Expires
     (const uchar *)"Content-Description:",        // KPSOCK_HDTAG_ContentDescription
+    (const uchar *)"Vary:",                       // KPSOCK_HDTAG_Vary,
+    (const uchar *)"X-UA-Compatible:",            // KPSOCK_HDTAG_X_UA_Compatible,
+    (const uchar *)"X-Environment:",              // KPSOCK_HDTAG_X_Environment
+    (const uchar *)"X-Origin-Server:",            // KPSOCK_HDTAG_X_Origin_Server
+    (const uchar *)"Link:",                       // KPSOCK_HDTAG_Link
+    (const uchar *)"X-Robots-Tag:",               // KPSOCK_HDTAG_X_Robots_Tag
+    (const uchar *)"P3P:",                        // KPSOCK_HDTAG_P3P_Tag
+    (const uchar *)"X-TransKey:",                 // KPSOCK_HDTAG_X_TransKey
+    (const uchar *)"X-RE-Ref:",                   // KPSOCK_HDTAG_X_RE_Ref
+    (const uchar *)"X-RE-PROXY-CMP:",             // KPSOCK_HDTAG_X_RE_PROXY_CMP
+    (const uchar *)"X-Cnection:",                 // KPSOCK_HDTAG_X_Cnection
+    (const uchar *)"X-SmartBan-URL:",             // KPSOCK_HDTAG_X_SmartBan_URL
+    (const uchar *)"X-SmartBan-Host:",            // KPSOCK_HDTAG_X_SmartBan_Host
+    (const uchar *)"X-Varnish:",                  // KPSOCK_HDTAG_X_Varnish
+    (const uchar *)"Age:",                        // KPSOCK_HDTAG_Age
+    (const uchar *)"Via:",                        // KPSOCK_HDTAG_Via
+    (const uchar *)"X-Varnish-Hostname:",         // KPSOCK_HDTAG_X_Varnish_Hostname
+    (const uchar *)"X-Varnish-Cache:",            // KPSOCK_HDTAG_X_Varnish_Cache
+    (const uchar *)"X-Highwire-SessionId:",       // KPSOCK_HDTAG_X_Highwire_SessionId
+    (const uchar *)"X-Highwire-RequestId:",       // KPSOCK_HDTAG_X_Highwire_RequestId
+    (const uchar *)"X-Firenze-Processing-Time:",  // KPSOCK_HDTAG_X_Firenze_Processing_Time
+    (const uchar *)"X-Firenze-Processing-Times:", // KPSOCK_HDTAG_X_Firenze_Processing_Times
+    (const uchar *)"X-HighWire-Preview-Mode:",    // KPSOCK_HDTAG_X_HighWire_Preview_Mode
+    (const uchar *)"X-Content-Type-Options:",     // KPSOCK_HDTAG_X_Content_Type_Options
+    (const uchar *)"X-Frame-Options:",            // KPSOCK_HDTAG_X_Frame_Options
+    (const uchar *)"X-XSS-Protection:",           // KPSOCK_HDTAG_X_XSS_Protection
+    (const uchar *)"Alternate-Protocol:",         // KPSOCK_HDTAG_Alternate_Protocol
     NULL
 };
 
-const bool KpSocket::KpsockTagOccurences[KPSOCK_NUM_OF_HDTAGS_1]
+const bool KpSocket::KpsockTagOccurences[KPSOCK_NUM_OF_HDTAGS_4]
     [NUM_OF_HTTP_MSG_TYPES_1] =
 {
 //  HTTP_MSG_TYPE_UNKNOWN
@@ -149,6 +190,33 @@ const bool KpSocket::KpsockTagOccurences[KPSOCK_NUM_OF_HDTAGS_1]
     False,False,False,True, False,False,True,  // KPSOCK_HDTAG_AcrobatVersion
     False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Expires
     False,False,False,False,False,False,True,  // KPSOCK_HDTAG_ContentDescription
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Vary
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_UA_Compatible
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Environment
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Origin_Server
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Link
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Robots_Tag
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_P3P_Tag
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_TransKey
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_RE_Ref
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_RE_PROXY_CMP
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Cnection
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_SmartBan_URL
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_SmartBan_Host
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Varnish
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Age
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Via
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Varnish_Hostname
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Varnish_Cache
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Highwire_SessionId
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Highwire_RequestId
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Firenze_Processing_Time
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Firenze_Processing_Times
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_HighWire_Preview_Mode
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Content_Type_Options
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_Frame_Options
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_X_XSS_Protection
+    False,False,False,False,False,False,True,  // KPSOCK_HDTAG_Alternate_Protocol
 };
 
 
@@ -276,59 +344,64 @@ HRESULT retc = S_OK;
     KP_ASSERTQ(strlen(p_lpszUrl) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW,
                                                 p_lpszUrl, p_bThrowError);
 uchar url_buf[KP_MAX_FNAME_LEN + 1];
-uchar *pnts = null;
-uchar *pntd = null;
-uchar *pntdd = null;
+uchar *pnts = url_buf;
 
-    if (SUCCEEDED(retc))
-    {
-        strcpy(url_buf, p_lpszUrl);
-        pnts = url_buf;
-    }
+    if (SUCCEEDED(retc)) strcpy(url_buf, p_lpszUrl);
+
+    KP_ASSERTQ((strchr(pnts, '\\') == 0) && // TeX'inės komandos
+        (strchr(pnts, ' ') == 0), E_INVALIDARG, pnts, p_bThrowError);
+// TODO: patiktrint sintaksę nuodugniau
 
 // protocol
+uchar *pntd = null;
     m_PackedUrl.m_iProtocol = HTTP_PROT;
     if (SUCCEEDED(retc))
     {
-        pntd = strstr(pnts, "//");
+        pntd = strchr(pnts, ':');
+        if (pntd)  // jei ne – laikom, kad duotas http adresas be protokolo
+        {           //      ir be slešų pradžioj
+            *pntd++ = Nul;
+        int ix = GetKwrdIndex(pnts, ProtocolNames, NUM_OF_PROTS,
+                                                                False, True);
+            KP_ASSERTQ(ix >= 0 /* != TV_TG_NoKey */,
+                                KP_E_KWD_NOT_FOUND, pnts, p_bThrowError);
+            KP_ASSERTQ(ix < NUM_OF_PROTS,
+                                KP_E_SYSTEM_ERROR, pnts, p_bThrowError);
+            if (SUCCEEDED(retc)) m_PackedUrl.m_iProtocol = (Protocols)ix;
+
+            pnts = pntd; // pointer to server name
+            if (m_PackedUrl.m_iProtocol != SMTP_PROT)
+                KP_ASSERTQ((*pnts++ == '/') && (*pnts++ == '/'),
+                    E_INVALIDARG, pnts, p_bThrowError);
+        }
+    }
+
+// mailto:osoriomauri@gmail.com
+// ftp://user001:secretpassword@private.ftp-servers.example.com/mydirectory/myfile.txt
+    if (SUCCEEDED(retc))
+    {
+        pntd = strchr(pnts, '@');
         if (pntd)
         {
-            *pntd = Nul;
-            if (strlen(pnts))
-            {
-                pntdd = strchr(pnts, ':');
-                KP_ASSERTQ(pntdd, E_INVALIDARG, pnts, p_bThrowError);
-                KP_ASSERTQ(strlen(pntdd) == 1, E_INVALIDARG, pnts,
+            pnts = pntd + 1;
+            KP_ASSERTQ(strchr(pnts, '@') == 0, E_INVALIDARG, pnts,
                                                             p_bThrowError);
-                if (SUCCEEDED(retc))
-                {
-                    *pntdd = Nul;
-                int ix = GetKwrdIndex(pnts, ProtocolNames, NUM_OF_PROTS,
-                                                                False, True);
-                    KP_ASSERTQ(ix >= 0 /* != TV_TG_NoKey */,
-                                KP_E_KWD_NOT_FOUND, pnts, p_bThrowError);
-                    KP_ASSERTQ(ix < NUM_OF_PROTS,
-                                KP_E_SYSTEM_ERROR, pnts, p_bThrowError);
-                    if (SUCCEEDED(retc)) m_PackedUrl.m_iProtocol = (Protocols)ix;
-                }
-            }
-
-            pnts = pntd + 2;
         }
     }
 
 // server name & port
-    if (SUCCEEDED(retc))
+    pntd = null; // pointer to file name
+    if (SUCCEEDED(retc)) if (m_PackedUrl.m_iProtocol != SMTP_PROT)
     {
         pntd = strchr(pnts, '/');
         if (pntd) *pntd = Nul;
     }
 
 // port
-    m_PackedUrl.m_iPort = HTTP_PORT;
+    m_PackedUrl.m_iPort = DefPorts[m_PackedUrl.m_iProtocol];
     if (SUCCEEDED(retc))
     {
-        pntdd = strchr(pnts, ':');
+    uchar *pntdd = strchr(pnts, ':');
         if (pntdd)
         {
             *(pntdd++) = Nul;
@@ -350,7 +423,9 @@ uchar *pntdd = null;
     }
 
 // file name & query
-    strcpy(m_PackedUrl.m_lpszFileName, "/");
+    m_PackedUrl.m_lpszFileName[0] = Nul;
+    if (m_PackedUrl.m_iProtocol != SMTP_PROT)
+        strcpy(m_PackedUrl.m_lpszFileName, "/");
     if (pntd)
     {
         *pntd = '/';
@@ -1167,7 +1242,8 @@ return (p_iHTTP_RetCode / 100 == 4);
 
 //---------------------
 HRESULT KpSocket::SendHttpRequest(const uchar *p_lpszRequest,
-    const uchar *p_lpszArg, long p_lSimplyPostMsgLen, bool p_bAcroPostMsg,
+    const uchar *p_lpszArg, bool p_bFakeAgent,
+    long p_lSimplyPostMsgLen, bool p_bAcroPostMsg,
     const uchar *p_lpszPostBoundary, const uchar *p_lpszHTTP_Template,
     bool p_bThrowError)
 {
@@ -1177,8 +1253,9 @@ HRESULT retc = S_OK;
     KP_ASSERT(p_lpszHTTP_Template, E_INVALIDARG, null);
     KP_ASSERT(p_lSimplyPostMsgLen >= 0L, E_INVALIDARG, null);
 
-    KP_ASSERTQ(m_PackedUrl.m_iProtocol == HTTP_PROT, KP_E_SYSTEM_ERROR,
-                                                    null, p_bThrowError);
+    KP_ASSERTQ((m_PackedUrl.m_iProtocol == HTTP_PROT) ||
+               (m_PackedUrl.m_iProtocol == HTTPS_PROT),
+               KP_E_SYSTEM_ERROR, null, p_bThrowError);
 
 const uchar *http_fname = m_PackedUrl.m_lpszFileName;
     if (p_lpszArg) http_fname = p_lpszArg;
@@ -1211,7 +1288,8 @@ uchar *buf_ptr = null;
 
         sprintf((char *)buf_ptr, (const char *)http_tpl, p_lpszRequest, http_fname,
             m_PackedUrl.m_lpszServerName, m_PackedUrl.m_iPort,
-            KpError.m_lpszProdName, p_lSimplyPostMsgLen);
+            p_bFakeAgent?KPSOCK_FAKED_USER_AGENT:KpError.m_lpszProdName,
+            p_lSimplyPostMsgLen);
 
 #ifdef TRACE_HTTP
 {
@@ -1381,6 +1459,215 @@ return (retc);
 // Content-type: application/vnd.fdf
 //
 // <...> (xxx.fdf failas)
+
+
+// http://www.nd.edu/~ndjfl/
+//
+// HTTP/1.1 301 Moved Permanently
+// Content-Type: text/html; charset=iso-8859-1
+// Date: Mon, 23 Dec 2013 17:13:45 GMT
+// Location: http://www3.nd.edu/~ndjfl/
+// Server: Apache
+// Vary: Accept-Encoding
+// Content-Length: 234
+// Connection: keep-alive
+
+
+// http://linkinghub.elsevier.com/retrieve/pii/S1570868304000497
+//
+// HTTP/1.1 301 Moved Permanently
+// Date: Fri, 27 Dec 2013 10:07:56 GMT
+// Server: Elsevier
+// Set-Cookie: JSESSIONID=30A649A69745B87FB0C1BDBF08E43572.MeEmgl8YWMeBGOMNbiFXtw; Path=/retrieve/; HttpOnly
+// P3P: CP="NON DSP COR CUR ADM DEV TAI PSA PSD OUR IND UNI NAV STA PRE COM INT CNT",policyref="http://linkinghub.elsevier.com/retrieve/static/P3P/IHUB-p3p.xml"
+// location: /retrieve/articleSelectSinglePerm?Redirect=http://www.sciencedirect.com/science/article/pii/S1570868304000497?via%3Dihub
+// Content-Length: 0
+// Keep-Alive: timeout=10, max=83
+// Connection: Keep-Alive
+// Content-Type: text/plain
+
+
+// http://www.sciencedirect.com/science/article/pii/S1570868304000497?via=ihub
+//
+// HTTP/1.1 301 Moved Permanently
+// Location: http://www.sciencedirect.com/science/article/pii/S1570868304000497?via=ihub&cc=y
+// Content-Type: text/html
+// X-TransKey: 12/27/2013 05:07:57 EST#1848_005#171647#82.135.219.67
+// Expires: Tue, 01 Jan 1980 05:00:00 GMT
+// X-RE-Ref: 0 1152536163
+// Server: www.sciencedirect.com
+// P3P: CP="IDC DSP LAW ADM DEV TAI PSA PSD IVA IVD CON HIS TEL OUR DEL SAM OTR IND OTC"
+// Vary: Accept-Encoding, User-Agent
+// Content-Length: 0
+// Date: Fri, 27 Dec 2013 10:07:57 GMT
+// Connection: keep-alive
+// Set-Cookie: SO_AUTH_COOKIE=; expires=Thu, 01 Jan 1970 23:59:59 GMT; path=/; domain=.sciencedirect.com;
+// Set-Cookie: EUID=c27a347a-6ede-11e3-817f-00000aab0f27; expires=Thu, 22 Dec 2033 10:07:57 GMT; path=/; domain=.sciencedirect.com;
+// Set-Cookie: MIAMISESSION=c279debc-6ede-11e3-817f-00000aab0f27:3565591677; path=/; domain=.sciencedirect.com;
+// Set-Cookie: USER_STATE_COOKIE=346fa8c434beaa18dbb50e2b7e6f20803c2c344c39e22674; path=/; domain=.sciencedirect.com;
+// Set-Cookie: MIAMIAUTH=807d246c2f0a7fbbcb21014c7231862005eb5ab1a20d7151953cd43c95adc31616e5d2202bb8a2228535391cfa606e6dfaf28333e02157c01201f017e7f3a5790214cad43d3f46ae2e24ab3822fb68c12f5601d5af0d525a7fb942a9d0a1794d02267e1427a03cc8ccb0f4d344529cfb6da2c2a64a7b84c449aee2e17522f978aa4f59a1f73e95c9d6df53df8304966c212f5484d3964f702bb769e21d024c8b93680820334f446c04f75517643b8dd9f78fba1a81724ecd1d597f9c9b004e82f64d90d18bce4dac17cc28e91f99e8512f561fe6a9a9e5b51d2afb736df1c14e5f236045d35536fe48e66bb90871b5ce2af853f074084996aae7298bc31d1c8b5d8657b339115ba5dab7855989138ee4af78cdc3a01f0edd158876f762a33802; path=/; domain=.sciencedirect.com;
+// Set-Cookie: TARGET_URL=fcf74dd786744d87fbaaaf8652a764ab4a79b0d3ed681139e910692376063105cac4b68b9ec80cda83e0305080161614beed9e27363373b55937c10634d7acea380d71a18799faedd7f37313f95f83c0; path=/; domain=.sciencedirect.com;
+
+
+// http://www.sciencedirect.com/science/article/pii/S1570868304000497
+//
+// HTTP/1.1 200 OK
+// Last-Modified: Fri, 27 Dec 2013 10:07:58 GMT
+// Content-Type: text/html
+// X-TransKey: 12/27/2013 05:07:58 EST#1849_004#200547#82.135.219.67
+// Expires: Tue, 01 Jan 1980 05:00:00 GMT
+// X-RE-PROXY-CMP: 1
+// X-Cnection: close
+// X-RE-Ref: 0 1153180279
+// Server: www.sciencedirect.com
+// P3P: CP="IDC DSP LAW ADM DEV TAI PSA PSD IVA IVD CON HIS TEL OUR DEL SAM OTR IND OTC"
+// Vary: Accept-Encoding, User-Agent
+// Date: Fri, 27 Dec 2013 10:07:58 GMT
+// Transfer-Encoding:  chunked
+// Connection: keep-alive
+// Connection: Transfer-Encoding
+// Set-Cookie: SO_AUTH_COOKIE=; expires=Thu, 01 Jan 1970 23:59:59 GMT; path=/; domain=.sciencedirect.com;
+// Set-Cookie: EUID=c2dc77d4-6ede-11e3-8787-00000aab0f6b; expires=Thu, 22 Dec 2033 10:07:58 GMT; path=/; domain=.sciencedirect.com;
+// Set-Cookie: MIAMISESSION=c2dbc3de-6ede-11e3-8787-00000aab0f6b:3565591678; path=/; domain=.sciencedirect.com;
+// Set-Cookie: USER_STATE_COOKIE=346fa8c434beaa18dbb50e2b7e6f20803c2c344c39e22674; path=/; domain=.sciencedirect.com;
+// Set-Cookie: MIAMIAUTH=73bf0063ae874f857ab066cb1a587590960bd56741aeb6152983a9081a18552ec4a8eade8d5bf8a42c2000388d1b4c440bc37e9bcf4c4425484f5a026a3e516668f8f24ef63db46d643e2838e3642500d132fd34a7f1982d03c2ce682d12f5c279e7aad74499efac46dfb17e9dc7c4d5b063b4c327ec58273df9ab4ec42046db99ec5f8e20d7af5e3a1f4fced880606dc72daae7f46cb9fad8b1184dda2bcfd05395f7f8857df7105a457243484119f3e7110cf4818754c75948d63e4bfb9b7da5e8a116d931c02bfa8bb374460a89923700b783525f407c804fd709e87ecd0f5011ebeb20b7c7483067a552eeef99daf7fc05dc5d565b96a91a71d4d003e4477fa2c6097c4359f187197f7aac293d059e6599970443d2b7a1ac54d236185a4a; path=/; domain=.sciencedirect.com;
+// Set-Cookie: TARGET_URL=fcf74dd786744d87fbaaaf8652a764ab4a79b0d3ed681139e910692376063105cac4b68b9ec80cda83e0305080161614beed9e27363373b55937c10634d7aceae105b740f3332fea; path=/; domain=.sciencedirect.com;
+
+
+// http://logcom.oxfordjournals.org/cgi/doi/10.1093/logcom/7.4.523
+//
+// HTTP/1.1 301 Moved Permanently
+// Server: nginx/0.7.67
+// Date: Fri, 27 Dec 2013 10:08:02 GMT
+// Content-Type: text/html; charset=iso-8859-1
+// Connection: keep-alive
+// Location: http://logcom.oxfordjournals.org/lookup/doi/10.1093/logcom/7.4.523
+// Vary: Accept-Encoding
+// X-SmartBan-URL: /cgi/doi/10.1093/logcom/7.4.523
+// X-SmartBan-Host: logcom.oxfordjournals.org
+// Accept-Ranges: bytes
+// X-Varnish: 1668546491
+// Age: 0
+// Via: 1.1 varnish
+// X-Varnish-Hostname: varnish1.HighWire.ORG
+// X-Varnish-Cache: miss
+// Content-Length: 274
+
+
+// http://link.springer.com/10.1007/s11225-010-9296-9
+//
+// HTTP/1.1 302 Moved Temporarily
+// X-Environment: liveb
+// X-Origin-Server: sldeheti0001.springer-sbm.com
+// Location: http://link.springer.com/article/10.1007%2Fs11225-010-9296-9
+// Content-Type: text/html;charset=UTF-8
+// Content-Length: 0
+// Server: Jetty(8.1.10.v20130312)
+// Vary: Accept-Encoding
+// Cache-Control: max-age=0
+// Expires: Fri, 27 Dec 2013 09:35:40 GMT
+// Date: Fri, 27 Dec 2013 09:35:40 GMT
+// Connection: keep-alive
+// Set-Cookie: sprid=1:3000012753::1388166940237:5b0a20b4d2b831ac0737bf27480a082f;Path=/;Domain=.springer.com
+// Set-Cookie: trackid=79f69d9eb1a24870bfb19d7fb;Path=/;Domain=.springer.com
+// X-Robots-Tag: noarchive
+
+
+// http://link.springer.com/article/10.1007%2Fs11225-010-9296-9
+//
+// HTTP/1.1 200 OK
+// X-Environment: liveb
+// X-Origin-Server: sldeheti0001.springer-sbm.com
+// Link: <http://link.springer.com/article/10.1007%2Fs11225-010-9296-9>; rel="canonical"
+// Content-Type: text/html;charset=UTF-8
+// X-UA-Compatible: IE=Edge,chrome=1
+// Server: Jetty(8.1.10.v20130312)
+// Vary: Accept-Encoding
+// Cache-Control: max-age=0
+// Expires: Fri, 27 Dec 2013 09:35:40 GMT
+// Date: Fri, 27 Dec 2013 09:35:40 GMT
+// Transfer-Encoding:  chunked
+// Connection: keep-alive
+// Connection: Transfer-Encoding
+// Set-Cookie: sprid=1:3000012753::1388166940354:bfdb08836a591fa0d2f77c78cf55963a;Path=/;Domain=.springer.com
+// Set-Cookie: trackid=b9043ca59cf5470da60dcb775;Path=/;Domain=.springer.com
+// X-Robots-Tag: noarchive
+
+
+// http://logcom.oxfordjournals.org/lookup/doi/10.1093/logcom/7.4.523
+//
+// HTTP/1.1 302 Moved Temporarily
+// Server: nginx/0.7.67
+// Date: Fri, 27 Dec 2013 10:40:12 GMT
+// Content-Type: text/html;charset=UTF-8
+// Connection: keep-alive
+// X-Highwire-SessionId: 7OWjkFca1hLs9WsAz8A-VA
+// X-Highwire-RequestId: Ur1ZC6tDdnEAAAt9T2IAAAGx
+// X-Firenze-Processing-Time: 55.868
+// X-Firenze-Processing-Times: detect-robot: 0.182
+// X-Firenze-Processing-Times: add-external-dependencies-info: 0.044
+// X-Firenze-Processing-Times: add-req-info: 7.839
+// X-Firenze-Processing-Times: authn-authz: 19.466
+// X-Firenze-Processing-Times: ac-info-request: 3.218
+// X-Firenze-Processing-Times: login-check: 1.531
+// X-Firenze-Processing-Times: last-authorized-identity: 1.417
+// X-Firenze-Processing-Times: process-navmap: 4.716
+// X-Firenze-Processing-Times: retrieve-branding-data: 0.048
+// X-Firenze-Processing-Times: retrieve-current-issue: 0.136
+// X-Firenze-Processing-Times: retrieve-ads: 4.455
+// X-Firenze-Processing-Times: log-builder: 2.628
+// X-Firenze-Processing-Times: servlet: 99.004
+// X-Firenze-Processing-Time: 153.617
+// X-HighWire-Preview-Mode: reject:empty
+// Location: /content/7/4/523
+// Set-Cookie: JSESSIONID=051D2E6CC943AA721D6F84F62E83D5F9.wa72.highwire.org; Path=/
+// Vary: Accept-Encoding
+// X-SmartBan-URL: /lookup/doi/10.1093/logcom/7.4.523
+// X-SmartBan-Host: logcom.oxfordjournals.org
+// Accept-Ranges: bytes
+// X-Varnish: 1669022612
+// Age: 0
+// Via: 1.1 varnish
+// X-Varnish-Hostname: varnish1.HighWire.ORG
+// X-Varnish-Cache: miss
+// Content-Length: 319
+
+
+// https://sites.google.com/site/osoriomauri/
+//
+// HTTP/1.1 302 Moved Temporarily
+// Content-Type: text/html; charset=UTF-8
+// Location: https://sites.google.com:80/site/osoriomauri/
+// Date: Fri, 27 Dec 2013 10:53:58 GMT
+// Expires: Fri, 27 Dec 2013 10:53:58 GMT
+// Cache-Control: private, max-age=0
+// X-Content-Type-Options: nosniff
+// X-Frame-Options: SAMEORIGIN
+// X-XSS-Protection: 1; mode=block
+// Server: GSE
+// Alternate-Protocol: 80:quic
+// Transfer-Encoding: chunked
+
+
+// HTTP/1.1 303 See Other
+// Server: Apache-Coyote/1.1
+// Vary: Accept
+// Location: http://link.springer.com/10.1007/s11225-010-9296-9
+// Expires: Tue, 24 Dec 2013 15:08:31 GMT
+// Content-Type: text/html;charset=utf-8
+// Content-Length: 186
+// Date: Mon, 23 Dec 2013 17:13:48 GMT
+
+
+// HTTP/1.1 200 OK
+// Cache-Control: max-age=1, private, must-revalidate
+// Content-Type: text/html; charset=utf-8
+// Date: Mon, 23 Dec 2013 17:13:46 GMT
+// Server: Apache
+// Vary: Accept-Encoding
+// X-UA-Compatible: IE=Edge,chrome=1
+// transfer-encoding: chunked
+// Connection: keep-alive
 
 
 // --------------------------------------
@@ -2055,7 +2342,7 @@ uchar url[KP_MAX_FNAME_LEN+1];
                         *pntd0 = Nul;
 
                     int ix = GetKwrdIndex(pnts, KpsockTagNames,
-                                        KPSOCK_NUM_OF_HDTAGS, True, True);
+                                KPSOCK_NUM_OF_HDTAGS, False /* True */, True);
                         if (ix == TV_TG_NoKey)
                         {
                             // neatpažintus headerio raktus praleidžiam
@@ -2833,8 +3120,9 @@ HRESULT retc = S_OK;
 
     KP_ASSERT(KpApp, E_POINTER, null);
 
-    KP_ASSERTQ(m_PackedUrl.m_iProtocol == HTTP_PROT, KP_E_SYSTEM_ERROR,
-        null, p_bThrowError);
+    KP_ASSERTQ((m_PackedUrl.m_iProtocol == HTTP_PROT) ||
+               (m_PackedUrl.m_iProtocol == HTTPS_PROT), KP_E_SYSTEM_ERROR,
+               null, p_bThrowError);
 
     if (SUCCEEDED(retc))
     {

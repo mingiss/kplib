@@ -13,7 +13,7 @@
 
 // #define Debug               // debug mode
 
-#define KP_VERBOSE          // warnings not just to .log file, to stderr as well
+// #define KP_VERBOSE          // warnings not just to .log file, to stderr as well
 
 #define KP_CONSOLE          // console application
 // #define KP_WINDOWED      // windows application; 

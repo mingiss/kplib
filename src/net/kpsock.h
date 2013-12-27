@@ -34,12 +34,14 @@ typedef enum
 
     HTTP_PROT,
     FTP_PROT,
+    HTTPS_PROT,
+    SMTP_PROT,
 
     NUM_OF_PROTS
 
 } Protocols;
 
-#define NUM_OF_PROTS_1 NUM_OF_PROTS
+#define NUM_OF_PROTS_2 NUM_OF_PROTS
 
 
 //---------------------
@@ -131,12 +133,39 @@ typedef enum
     KPSOCK_HDTAG_AcrobatVersion,
     KPSOCK_HDTAG_Expires,
     KPSOCK_HDTAG_ContentDescription,
+    KPSOCK_HDTAG_Vary,
+    KPSOCK_HDTAG_X_UA_Compatible,
+    KPSOCK_HDTAG_X_Environment,
+    KPSOCK_HDTAG_X_Origin_Server,
+    KPSOCK_HDTAG_Link,
+    KPSOCK_HDTAG_X_Robots_Tag,
+    KPSOCK_HDTAG_P3P_Tag,
+    KPSOCK_HDTAG_X_TransKey,
+    KPSOCK_HDTAG_X_RE_Ref,
+    KPSOCK_HDTAG_X_RE_PROXY_CMP,
+    KPSOCK_HDTAG_X_Cnection,
+    KPSOCK_HDTAG_X_SmartBan_URL,
+    KPSOCK_HDTAG_X_SmartBan_Host,
+    KPSOCK_HDTAG_X_Varnish,
+    KPSOCK_HDTAG_Age,
+    KPSOCK_HDTAG_Via,
+    KPSOCK_HDTAG_X_Varnish_Hostname,
+    KPSOCK_HDTAG_X_Varnish_Cache,
+    KPSOCK_HDTAG_X_Highwire_SessionId,
+    KPSOCK_HDTAG_X_Highwire_RequestId,
+    KPSOCK_HDTAG_X_Firenze_Processing_Time,
+    KPSOCK_HDTAG_X_Firenze_Processing_Times,
+    KPSOCK_HDTAG_X_HighWire_Preview_Mode,
+    KPSOCK_HDTAG_X_Content_Type_Options,
+    KPSOCK_HDTAG_X_Frame_Options,
+    KPSOCK_HDTAG_X_XSS_Protection,
+    KPSOCK_HDTAG_Alternate_Protocol,
 
     KPSOCK_NUM_OF_HDTAGS
 
 } KpSockHdTag;
 
-#define KPSOCK_NUM_OF_HDTAGS_1 KPSOCK_NUM_OF_HDTAGS
+#define KPSOCK_NUM_OF_HDTAGS_4 KPSOCK_NUM_OF_HDTAGS
 
 
 //---------------------
@@ -157,6 +186,8 @@ typedef enum
 
 //---------------------
 #define HTTP_PORT 80
+#define FTP_PORT 21
+#define SMTP_PORT 25
 
 #define HTTP_GET_REQUEST_CMD (const uchar *)"GET"
 #define HTTP_POST_REQUEST_CMD (const uchar *)"POST"
@@ -166,6 +197,7 @@ typedef enum
 
 #define KPSOCK_HTTP_HDR_PREFIX "HTTP/1.1"
 
+#define KPSOCK_FAKED_USER_AGENT ((const uchar *)"Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.8.0.6) Gecko/20060728 Firefox/1.5.0.6")
 
 //---------------------
 #define HTTP_GET_REQ_TPL_MAIN ((const uchar *)\
@@ -175,7 +207,7 @@ typedef enum
     "Accept: */*\r\n" \
     "Accept-Language: lt\r\n"  /* en-us,en;q=0.5 */ \
     "Accept-Encoding: identity\r\n" /* "Accept-Encoding: deflate\r\n" */ /* "Accept-Encoding: none\r\n" */ /* gzip,deflate */ \
-    "Accept-Charset: ISO-8859-13\r\n"  /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
+    "Accept-Charset: utf-8\r\n"  /* ISO-8859-13 */ /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
     "Keep-Alive: 300\r\n" \
     "Connection: keep-alive\r\n" \
     "\r\n")
@@ -187,7 +219,7 @@ typedef enum
     "Accept: text/*\r\n" \
     "Accept-Language: lt\r\n"  /* en-us,en;q=0.5 */ \
     "Accept-Encoding: identity\r\n" /* "Accept-Encoding: deflate\r\n" */ /* "Accept-Encoding: none\r\n" */ /* gzip,deflate */ \
-    "Accept-Charset: ISO-8859-13\r\n"  /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
+    "Accept-Charset: utf-8\r\n"  /* ISO-8859-13 */ /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
     "Keep-Alive: 300\r\n" \
     "Connection: keep-alive\r\n" \
     "\r\n")
@@ -199,7 +231,7 @@ typedef enum
     "Accept: */*\r\n" \
 /*  "Accept-Language: lt\r\n" */ /* en-us,en;q=0.5 */ \
     "Accept-Encoding: identity\r\n" /* "Accept-Encoding: deflate\r\n" */ /* "Accept-Encoding: none\r\n" */ /* gzip,deflate */ \
-/*  "Accept-Charset: ISO-8859-13\r\n" */  /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
+/*  "Accept-Charset: utf-8\r\n" */  /* ISO-8859-13 */ /* ISO-8859-1,utf-8;q=0.7,*;q=0.7 */ \
     "Keep-Alive: 300\r\n" \
     "Connection: keep-alive\r\n" \
     "\r\n")
@@ -280,11 +312,12 @@ typedef enum
 
 // TODO: sinchronizuoti su kpsock.py KpHttpResponse.m_status_text
 //          ir KpErrorProcClass::FormatErrorMessageHTTP()
-#define HTTP_ANSW_OK 200               // 200 OK
-#define HTTP_ANSW_MOVED 301            // 301 Moved Permanently
-#define HTTP_ANSW_FOUND 302            // 302 Found
-#define HTTP_ANSW_OTHER 303            // 303 See Other
-#define HTTP_ANSW_TEMP_REDIR 307       // 307 Temporary Redirect
+#define HTTP_ANSW_OK 200                // 200 OK
+#define HTTP_ANSW_MOVED 301             // 301 Moved Permanently
+#define HTTP_ANSW_FOUND 302             // 302 Found
+#define HTTP_ANSW_TEMP_MOVED 302        // 302 Moved Temporarily
+#define HTTP_ANSW_OTHER 303             // 303 See Other
+#define HTTP_ANSW_TEMP_REDIR 307        // 307 Temporary Redirect
 #define HTTP_ANSW_FILE_NOT_FOUND 404
 #define HTTP_ANSW_CONTINUE 100
 #define HTTP_ANSW_CONFLICT 409
@@ -327,6 +360,8 @@ class KpSocket
 
 public:
     static const uchar *ProtocolNames[NUM_OF_PROTS];
+        // URI prefixes actually
+    static int DefPorts[NUM_OF_PROTS]; // default ports
 
     static const uchar *KpsockMsgTypes[NUM_OF_HTTP_MSG_TYPES];
     static const uchar *KpsockTagNames[KPSOCK_NUM_OF_HDTAGS+1]; // gale NULL
@@ -496,6 +531,7 @@ public:
             // HTTP_GET_REQUEST_CMD/HTTP_POST_REQUEST_CMD ("GET"/"POST")
         const uchar *p_lpszArg = null,
             // failo vardas, jei null – imamas m_PackedUrl.m_lpszFileName
+        bool p_bFakeAgent = False, // ar apsimetinėti Mozilla
         long p_lSimplyPostMsgLen = 0L,
         bool p_bAcroPostMsg = True,
         const uchar *p_lpszPostBoundary = (const uchar *)"",
