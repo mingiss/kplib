@@ -57,7 +57,7 @@ int KpSocket::DefPorts[NUM_OF_PROTS_2] =
 
     HTTP_PORT,  //   HTTP_PROT,
     FTP_PORT,   //   FTP_PROT,
-    HTTP_PORT,  //   HTTPS_PROT,
+    HTTPS_PORT, //   HTTPS_PROT,
     SMTP_PORT,  //   SMTP_PROT,
 
 };

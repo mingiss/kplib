@@ -187,6 +187,7 @@ typedef enum
 //---------------------
 #define HTTP_PORT 80
 #define HTTP_PORT_ALT 8080
+#define HTTPS_PORT 443
 #define FTP_PORT 21
 #define SMTP_PORT 25
 
