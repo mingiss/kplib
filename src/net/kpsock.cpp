@@ -9,9 +9,9 @@
 
 
 // ---------------------
-#ifdef Debug
+// #ifdef Debug
 #define TRACE_HTTP
-#endif
+// #endif
 
 
 #include "envir.h"
@@ -1013,7 +1013,7 @@ HRESULT retc = S_OK;
 long read = 1L;
     retc = ReceiveMsg(p_pcInChar, &read, True, p_bThrowError);
 
-    KP_ASSERTW0(read >= 1L, KP_E_EOF, null);
+    if (SUCCEEDED(retc)) if (read <= 0L) retc = KP_E_EOF;
 
 return (retc);
 }
@@ -1357,7 +1357,7 @@ bool endfl = False;
                 endfl = True;
             }
         }
-        if (SUCCEEDED(retc)) *pntd = Nul;
+        *pntd = Nul;
 
         if (SUCCEEDED(retc)) if (pntd - m_lpszHdrBuf > 2)
             if (strcmp(pntd - 2, "\n\n") == 0) endfl = True;
@@ -1367,11 +1367,12 @@ bool endfl = False;
 
     if ((p_plRead) && SUCCEEDED(retc)) *p_plRead = pntd - m_lpszHdrBuf;
 
-    KP_ASSERTW0(pntd - m_lpszHdrBuf, KP_E_TRANS_ERR, null);
-    KP_ASSERTW0(pntd - m_lpszHdrBuf <= MAX_HTTP_HDR_LEN, KP_E_TRANS_ERR, null);
-    KP_ASSERTW0((pntd - m_lpszHdrBuf >= MIN_HTTP_HDR_LEN) || \
-                (p_iMsgType == HTTP_POST_DATA_SEGM), KP_E_TRANS_ERR, null);
-
+    KP_ASSERTQ(pntd - m_lpszHdrBuf, KP_E_TRANS_ERR, null, p_bThrowError);
+    KP_ASSERTQ(pntd - m_lpszHdrBuf <= MAX_HTTP_HDR_LEN, KP_E_TRANS_ERR, null,
+                                                                p_bThrowError);
+    KP_ASSERTQ((pntd - m_lpszHdrBuf >= MIN_HTTP_HDR_LEN) || \
+            (p_iMsgType == HTTP_POST_DATA_SEGM), KP_E_TRANS_ERR, null,
+                                                            p_bThrowError);
 return (retc);
 }
 
