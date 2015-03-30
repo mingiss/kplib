@@ -112,6 +112,8 @@ char dir_buf_sav[KP_MAX_FNAME_LEN + 1];
 // ----------------------------
 	if(SUCCEEDED(retc))
 	{
+		ZeroMemory(&startup_info, sizeof(startup_info));
+
 		startup_info.cb = sizeof(startup_info);
 		startup_info.lpReserved = NULL;
 		startup_info.lpDesktop = NULL;
@@ -139,7 +141,9 @@ char dir_buf_sav[KP_MAX_FNAME_LEN + 1];
 		sec_atr_thread.lpSecurityDescriptor = NULL;
 		sec_atr_thread.bInheritHandle = True;
 
-// ------------------------ nustatom path – XFS.exe kitaip neveikia; jei paleidimo diskas kitas – neu?teks !!!!
+		ZeroMemory(&proc_inf, sizeof(proc_inf));
+
+// ------------------------ nustatom path – XFS.exe kitaip neveikia; jei paleidimo diskas kitas – neužteks !!!!
 		SetCurrentDirectory((const char *)cur_dir);
 
 // char dir_buf_tmp[KP_MAX_FNAME_LEN + 1];
@@ -224,7 +228,7 @@ DWORD exit_code;
 return(retc);
 }
 
-HRESULT RunProcess(const KpStrPtr lpszCmdLine, const KpStrPtr lpszCurDir, const KpStrPtr lpszStdOutFName, WORD iWndShowType)
+HRESULT RunProcess(const KpStrPtr lpszCmdLine, const KpStrPtr lpszCurDir, const KpStrPtr lpszStdOutFName, bool bStdOutAppend, WORD iWndShowType)
 {
 HANDLE hProcess;
 HRESULT retc = S_OK;
@@ -232,15 +236,29 @@ HRESULT retc = S_OK;
 	HANDLE hstdout = NULL;
 	if (lpszStdOutFName)
 	{
-		hstdout = CreateFile((const char *)lpszStdOutFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+		SECURITY_ATTRIBUTES sa;
+		ZeroMemory(&sa, sizeof(sa));
+		sa.nLength = sizeof(sa);
+		sa.bInheritHandle=TRUE;
+
+		hstdout = CreateFile((const char *)lpszStdOutFName, GENERIC_READ|GENERIC_WRITE, 0, &sa,
+						bStdOutAppend ? OPEN_ALWAYS : CREATE_ALWAYS,
+						FILE_ATTRIBUTE_NORMAL, NULL);
 		KP_ASSERT(hstdout, KP_E_DIR_ERROR, GetLastError());
+
+		if (SUCCEEDED(retc))
+		{
+			KP_ASSERT(SetFilePointer(hstdout, 0, NULL, FILE_END) != INVALID_SET_FILE_POINTER, KP_E_FERROR, GetLastError());
+		}
 	}
 
 	if (SUCCEEDED(retc)) retc = StartProcess(lpszCmdLine, lpszCurDir, hstdout, iWndShowType, &hProcess);
 	if (SUCCEEDED(retc)) retc = WaitForProcessEnd(hProcess);
 
 	if (hstdout)
+	{
 		KP_ASSERT(CloseHandle(hstdout), KP_E_FERROR, GetLastError());
+	}
 
 return (retc);
 }

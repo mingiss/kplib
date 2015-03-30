@@ -41,7 +41,8 @@ extern HRESULT WaitForProcessEnd(HANDLE hProcess, HANDLE hThread = NULL);
 
 extern HRESULT RunProcess( // StartProcess() ir WaitForProcessEnd()
 					const KpStrPtr lpszCmdLine, const KpStrPtr lpszCurDir,
-					const KpStrPtr lpszStdOutFName = null, WORD iWndShowType = SW_SHOWNORMAL);
+					const KpStrPtr lpszStdOutFName = null, bool bStdOutAppend = false,
+					WORD iWndShowType = SW_SHOWNORMAL);
 
 extern HRESULT KpSleep(int nMiliSecs, HWND hWind = HWND_DESKTOP);
 

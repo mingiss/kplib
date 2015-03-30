@@ -1,15 +1,43 @@
-# use glob syntax.
 syntax: glob
+*.tlog
+*.suo
+*.ilk
+*.lastbuildstate
+*.log
+*.obj
+*.pch
+*.ipch
+*.pdb
+*.idb
+*.aps
+*.opensdf
+*.sdf
+*.bsc
 
-*.o
-*.lo
-*.la
-*.lai
-*autom4te.cache/*
-# *.elc
-# *.pyc
-# *~
+*.cache
+*.Cache
+*.sbr
+*.exp
+*.lib
 
-# switch to regexp syntax.
-# syntax: regexp
-# ^\.pc/
+*.dacpac
+*.unsuccessfulbuild
+
+*.dll
+*.res
+*.exe
+*.thl
+*.tlh
+*.tli
+*.tlb
+*.dbmdl
+*.map
+;*.config
+*.resources
+*.FileListAbsolute.txt
+
+*.orig
+*.sav
+*.new
+
+*.ldb
