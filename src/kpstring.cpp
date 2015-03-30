@@ -10,8 +10,15 @@
 
 #include "envir.h"
 
+// dėl *trim()
+#include <algorithm> 
+#include <functional> 
+#include <cctype>
+// #include <locale>
+
 #include <stdlib.h>
 #include <string.h>
+#include <vector>
 #include <string>
 #include <stdio.h>
 #include <fstream>
@@ -294,4 +301,49 @@ const KpChar *pnts = m_iazStr;
     }
 
 return(chr_cnt);
+}
+
+/* -------------------------
+ * KpString
+ */
+
+KpString &KpString::ltrim(KpString &s)
+{
+	s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+return s;
+}
+
+KpString &KpString::rtrim(KpString &s)
+{
+	s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+return s;
+}
+
+void KpString::Split(const KpStrPtr pszDelim, vector<KpString> &saOutArr)
+{
+	KP_ASSERT(pszDelim, E_INVALIDARG, null);
+
+	saOutArr.clear();
+
+	KpString tmp_str = *this;
+
+	do
+	{
+		int delim_pos = tmp_str.find((const char *)pszDelim);
+		if (delim_pos != npos)
+		{
+			saOutArr.push_back(KpString(tmp_str.substr(0, delim_pos)));
+			tmp_str = tmp_str.substr(delim_pos + strlen(pszDelim));
+
+			// paskutinis laukas tuščias
+			if (tmp_str == "")
+				saOutArr.push_back(tmp_str);
+		}
+		else
+		{
+			saOutArr.push_back(tmp_str);
+			tmp_str = "";
+		}
+
+	} while (tmp_str.length() > 0);
 }

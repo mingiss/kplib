@@ -88,7 +88,31 @@ extern uchar *strlwr(uchar *str);
 
 
 // ------------------------- string
-typedef string KpString;
+class KpString : public string
+{
+public:
+	KpString () : string() {}
+	KpString (const KpStrPtr lpszStr) : string((const char *)lpszStr) {}
+	KpString (string sStr) : string(sStr) {}
+	KpString& operator=(const KpStrPtr lpszRight) { string::operator=((const char *)lpszRight); return *this; }
+	KpString& operator=(const string& sRight) { string::operator=(sRight); return *this; }
+
+	KpStrPtr c_str() { return (KpStrPtr)string::c_str(); }
+
+	// trim from start
+	static KpString &ltrim(KpString &s);
+	// trim from end
+	static KpString &rtrim(KpString &s);
+	// trim from both ends
+	static KpString &trim(KpString &s) { return ltrim(rtrim(s)); }
+
+	/* Suskaldo stringą į stringų masyvą ties skirtukais
+	* @param[in] pszDelim – skirtukas, ties kuriuo skaldoma eilutė
+	* @param[in] this – eilutė, kurią reikia suskaldyti
+	* @param[out] saOutArr – suskaldytų eilučių masyvas
+	*/
+	void Split(const KpStrPtr pszDelim, vector<KpString> &saOutArr);
+};
 
 
 // ------------------------- UTF-8 functions

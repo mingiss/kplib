@@ -106,6 +106,14 @@ public:
    KpException
    (
       HRESULT lhRetc,
+      KpString& sMessageText,
+      const uchar *lpszSourceFile,
+      int iSourceLine
+   ){ Constructor(lhRetc, sMessageText.c_str(), 0L, lpszSourceFile, iSourceLine); }
+
+   KpException
+   (
+      HRESULT lhRetc,
       LONG lWindowsErrorCode, // return value of GetLastError() etc.
       const uchar *lpszSourceFile,
       int iSourceLine

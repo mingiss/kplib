@@ -13,6 +13,7 @@
 
 #ifdef __WIN32__
 
+#include <vector>
 #include <string>
 #include <windows.h>
 

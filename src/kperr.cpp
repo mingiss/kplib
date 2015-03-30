@@ -14,6 +14,8 @@
 #define _WINSOCKAPI_ // kad neinkliudintų winsock.h – pjaunasi po to su ws2def.h (inkliudinamas iš WinSock2.h)
 #endif
 
+#include <vector>
+#include <string>
 #include <stdio.h>
 #include <iostream>
 #include <fstream>

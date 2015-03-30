@@ -10,8 +10,9 @@
 
 #include "envir.h"
 
-#include <string>
 #include <stdlib.h>
+#include <vector>
+#include <string>
 #include <stdio.h>
 #include <iostream>
 #ifdef __WIN32__

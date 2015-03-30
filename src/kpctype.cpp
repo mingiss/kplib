@@ -7,6 +7,8 @@
 // ======================================= definitions
 #include "envir.h"
 
+#include <vector>
+#include <string>
 #include <ctype.h>
 #include <iostream>
 #ifdef __WIN32__
