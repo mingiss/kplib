@@ -32,7 +32,8 @@
 
 
 // ----------------------------
-extern HRESULT StartProcess(const KpStrPtr lpszCmdLine, const KpStrPtr lpszCurDir,
+extern HRESULT StartProcess(const KpStrPtr lpszCmdLine,
+					const KpStrPtr lpszCurDir, // jeigu NULL, einamąjį aplanką išsitraukia iš lpszCmdLine
 					HANDLE hStdOut, // gali būti NULL
 					WORD iWndShowType, // gali būti SW_SHOWNORMAL arba ne (visi kiti suveikia kaip SW_SHOWMINNOACTIVE)
 					HANDLE *phProcess, DWORD *plThreadId = NULL);
@@ -41,6 +42,9 @@ extern HRESULT WaitForProcessEnd(HANDLE hProcess, HANDLE hThread = NULL);
 
 extern HRESULT RunProcess( // StartProcess() ir WaitForProcessEnd()
 					const KpStrPtr lpszCmdLine, const KpStrPtr lpszCurDir,
+					const KpStrPtr lpszStdOutFName = null, bool bStdOutAppend = false,
+					WORD iWndShowType = SW_SHOWNORMAL);
+extern HRESULT RunProcess(const KpStrPtr lpszCmdLine, const char *lpszCurDir,
 					const KpStrPtr lpszStdOutFName = null, bool bStdOutAppend = false,
 					WORD iWndShowType = SW_SHOWNORMAL);
 

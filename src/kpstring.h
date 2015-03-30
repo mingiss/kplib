@@ -97,6 +97,8 @@ public:
 	KpString& operator=(const KpStrPtr lpszRight) { string::operator=((const char *)lpszRight); return *this; }
 	KpString& operator=(const string& sRight) { string::operator=(sRight); return *this; }
 
+	operator KpStrPtr() { return c_str(); }
+
 	KpStrPtr c_str() { return (KpStrPtr)string::c_str(); }
 
 	// trim from start
@@ -112,6 +114,7 @@ public:
 	* @param[out] saOutArr – suskaldytų eilučių masyvas
 	*/
 	void Split(const KpStrPtr pszDelim, vector<KpString>& saOutArr);
+	void Split(const char *pszDelim, vector<KpString>& saOutArr) { Split((const KpStrPtr)pszDelim, saOutArr); }
 
 	/* Apjungia stringų masyvą į vieną eilutę
 	* @param[in] saStrArr – gabalai, kuriuos reikia apjungti

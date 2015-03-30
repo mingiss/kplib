@@ -97,11 +97,18 @@ static unsigned char cmd_type[KP_MAX_FTYPE_LEN + 1];
 			strcpy(cur_dir, cmd_disk);
 			strcat(cur_dir, cmd_path);
 
-			strcpy(cmd_line, cmd_name);
-			if(cmd_type[0] != Nul)
+			if (lpszCurDir)
 			{
-				strcat(cmd_line, ".");
-				strcat(cmd_line, cmd_type);
+				strcpy(cmd_line, lpszCmdLine);
+			}
+			else
+			{
+				strcpy(cmd_line, cmd_name);
+				if(cmd_type[0] != Nul)
+				{
+					strcat(cmd_line, ".");
+					strcat(cmd_line, cmd_type);
+				}
 			}
 		}
 	}
@@ -151,9 +158,9 @@ char dir_buf_sav[KP_MAX_FNAME_LEN + 1];
 // GetCurrentDirectory(KP_MAX_FNAME_LEN, dir_buf_tmp);
 // PutLogMessage_("StartProcess(): [%s] [%s] [%s] %d %d", cmd_line, dir_buf, dir_buf_tmp, iWndShowType, SW_SHOWNORMAL);
 
-		if(!CreateProcess(NULL /* (const char *)m_szAcroReadPath */, (char *)cmd_line /* m_lpszCmdStr */,
+		if(!CreateProcess(NULL /* (const char *)m_szAcroReadPath */, (char *)cmd_line,
 			&sec_atr_proc /* NULL */, &sec_atr_thread /* NULL */, True /* False */,
-			0L /* NORMAL_PRIORITY_CLASS */, NULL, (char *)cur_dir /* dir_buf */ /* lpszCurDir */, &startup_info, &proc_inf))
+			0L /* NORMAL_PRIORITY_CLASS */, NULL, lpszCurDir? (const char *)dir_buf : (const char *)cur_dir, &startup_info, &proc_inf))
 		{
 			retv = GetLastError();
 			retc = KP_E_SYSTEM_ERROR;
@@ -262,6 +269,13 @@ HRESULT retc = S_OK;
 	}
 
 return (retc);
+}
+
+HRESULT RunProcess(const KpStrPtr lpszCmdLine, const char *lpszCurDir,
+					const KpStrPtr lpszStdOutFName, bool bStdOutAppend,
+					WORD iWndShowType)
+{
+return RunProcess(lpszCmdLine, (const KpStrPtr)lpszCurDir, lpszStdOutFName, bStdOutAppend, iWndShowType);
 }
 
 
