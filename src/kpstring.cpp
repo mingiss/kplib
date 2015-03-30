@@ -347,3 +347,14 @@ void KpString::Split(const KpStrPtr pszDelim, vector<KpString> &saOutArr)
 
 	} while (tmp_str.length() > 0);
 }
+
+KpString KpString::Join(const vector<KpString> &saStrArr)
+{
+	int len = saStrArr.size();
+	KpString ret_str;
+
+	for (int ii = 0; ii < len - 1; ii++) ret_str += saStrArr[ii] + *this;
+	if (len > 0) ret_str += saStrArr[len - 1];
+
+return ret_str;
+}

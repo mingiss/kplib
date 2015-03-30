@@ -24,12 +24,13 @@
 // --------------------------
 extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
 (
-    uchar *p_lpszDiskBuf,
-    uchar *p_lpszPathBuf,
-    uchar *p_lpszFNameBuf,
-    uchar *p_lpszFTypeBuf,
-    const uchar *p_lpszFullName
+    KpStrPtr p_lpszDiskBuf,
+    KpStrPtr p_lpszPathBuf,
+    KpStrPtr p_lpszFNameBuf,
+    KpStrPtr p_lpszFTypeBuf,
+    const KpStrPtr p_lpszFullName
 );
+
 
 // -------------------------------------- failų I/O traceris
 // PLAIN_C wrapperiai į KpFileDesc ir KpFileDescList (*KpFileDescListPtr) metodus
@@ -260,11 +261,20 @@ class KpStdIo
 public:
    static void TvFnameSplit          // splits p_lpszFullName to file name and file
    (                                 //    type parts p_lpszFNameBuf, p_lpszFTypeBuf.
-      uchar *p_lpszDiskBuf,            // p_lpszDiskBuf, p_lpszPathBuf and p_lpszFNameBuf
-      uchar *p_lpszPathBuf,            //    must be not shorter than
-      uchar *p_lpszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_lpszFTypeBuf
-      uchar *p_lpszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
-      const uchar *p_lpszFullName      
+      KpStrPtr p_lpszDiskBuf,            // p_lpszDiskBuf, p_lpszPathBuf and p_lpszFNameBuf
+      KpStrPtr p_lpszPathBuf,            //    must be not shorter than
+      KpStrPtr p_lpszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_lpszFTypeBuf
+      KpStrPtr p_lpszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
+      const KpStrPtr p_lpszFullName      
+   );
+
+   static void TvFnameSplit          // splits p_lpszFullName to file name and file
+   (                                 //    type parts p_lpszFNameBuf, p_lpszFTypeBuf.
+      KpString& sDiskBuf,            // p_lpszDiskBuf, p_lpszPathBuf and p_lpszFNameBuf
+      KpString& sPathBuf,            //    must be not shorter than
+      KpString& sFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_lpszFTypeBuf
+      KpString& sFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
+      KpString sFullName      
    );
 };
 

@@ -111,7 +111,14 @@ public:
 	* @param[in] this – eilutė, kurią reikia suskaldyti
 	* @param[out] saOutArr – suskaldytų eilučių masyvas
 	*/
-	void Split(const KpStrPtr pszDelim, vector<KpString> &saOutArr);
+	void Split(const KpStrPtr pszDelim, vector<KpString>& saOutArr);
+
+	/* Apjungia stringų masyvą į vieną eilutę
+	* @param[in] saStrArr – gabalai, kuriuos reikia apjungti
+	* @param[in] this – jungtukas, kuris įterpiamas tarp visų apjungiamų elementų
+	* @result – apjungta eilutė
+	*/
+	KpString Join(const vector<KpString>& saStrArr);
 };
 
 

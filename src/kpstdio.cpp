@@ -37,11 +37,11 @@ using namespace std;
 
 void FnameSplit
 (
-    uchar *p_lpszDiskBuf,
-    uchar *p_lpszPathBuf,
-    uchar *p_lpszFNameBuf,
-    uchar *p_lpszFTypeBuf,
-    const uchar *p_lpszFullName
+    KpStrPtr p_lpszDiskBuf,
+    KpStrPtr p_lpszPathBuf,
+    KpStrPtr p_lpszFNameBuf,
+    KpStrPtr p_lpszFTypeBuf,
+    const KpStrPtr p_lpszFullName
 )
 {
     KpStdIo::TvFnameSplit(p_lpszDiskBuf, p_lpszPathBuf, p_lpszFNameBuf, p_lpszFTypeBuf, p_lpszFullName);
@@ -50,11 +50,33 @@ void FnameSplit
 
 void KpStdIo::TvFnameSplit
 (
-uchar *p_lpszDiskBuf,
-uchar *p_lpszPathBuf,
-uchar *p_lpszFNameBuf,
-uchar *p_lpszFTypeBuf,
-const uchar *p_lpszFullName
+KpString& sDiskBuf,
+KpString& sPathBuf,
+KpString& sFNameBuf,
+KpString& sFTypeBuf,
+KpString sFullName
+)
+{
+	// TODO: perdaryt per KpString::Split()
+uchar disk[KP_MAX_FNAME_LEN + 1];
+uchar path[KP_MAX_FNAME_LEN + 1];
+uchar fname[KP_MAX_FNAME_LEN + 1];
+uchar ftype[KP_MAX_FNAME_LEN + 1];
+	TvFnameSplit(disk, path, fname, ftype, sFullName.c_str());
+	sDiskBuf = disk;
+	sPathBuf = path;
+	sFNameBuf = fname;
+	sFTypeBuf = ftype;
+}
+
+
+void KpStdIo::TvFnameSplit
+(
+KpStrPtr p_lpszDiskBuf,
+KpStrPtr p_lpszPathBuf,
+KpStrPtr p_lpszFNameBuf,
+KpStrPtr p_lpszFTypeBuf,
+const KpStrPtr p_lpszFullName
 )
 {
    KP_ASSERT(p_lpszDiskBuf && p_lpszPathBuf && p_lpszFNameBuf &&
