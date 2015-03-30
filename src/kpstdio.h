@@ -139,7 +139,7 @@ extern PLAIN_C KPADDSHARED void kpadd_fclose_chkin(
 class KpFileDesc
 {
 public:
-const FILE *m_pFile; // in case the file is fopen()'ed or fdopen()'ed
+/* const */ FILE *m_pFile; // in case the file is fopen()'ed or fdopen()'ed
 int m_iFileDesc; // in case the file is open()'ed
 HANDLE m_hFile; // in case the file is CreateFile()'ed
 uchar m_lpszFileName[KP_MAX_FNAME_LEN + 1];

@@ -16,6 +16,8 @@
 #include <windows.h>
 #endif
 
+using namespace std;
+
 #include "kperrno.h"
 #include "kpstdlib.h"
 #include "kptt.h"
@@ -24,9 +26,9 @@
 #include "kpmsg.h"
 #include "kperr.h"
 #include "kpcapp.h"
-#include "kpcurdat.h"
 
-using namespace std;
+// #include "kpcurdat.h"
+#include "ProjData.h"
 
 
 // ----------------------------------
@@ -57,9 +59,9 @@ KpCommonApp::KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer)
     strcat(m_lpszCmdLine, KP_EXT_SEP_STR); 
     strcat(m_lpszCmdLine, KP_EXE_EXT);
    
-    strncpy(m_lpszProdDate, CUR_DATE, KP_MAX_FNAME_LEN);
+    strncpy(m_lpszProdDate, PROJ_DATE /* CUR_DATE */, KP_MAX_FNAME_LEN);
     m_lpszProdDate[KP_MAX_FNAME_LEN] = Nul;
-    
+
     m_pStackTop = NULL;
 }
 
@@ -147,6 +149,5 @@ DWORD ll = 0L;
 void KpCommonApp::Pause(void)
 {
 fputs("Press Enter ...", stderr);
-char str_buf[100];
 getchar();
 }

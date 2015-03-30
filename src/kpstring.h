@@ -12,6 +12,10 @@
 #define KPSTRING_INCLUDED
 
 // -------------------------
+#ifndef KPSTDLIB_INCLUDED
+typedef unsigned char uchar;
+#endif
+
 typedef uchar * KpStrPtr;
 #ifndef null
 #define null ((const KpStrPtr)NULL) // null pointer to the string
@@ -21,9 +25,12 @@ typedef uchar * KpStrPtr;
 // #define memmove memcpy
 // #endif
 
-
-#ifndef KPSTDLIB_INCLUDED
-typedef unsigned char uchar;
+#ifndef _T
+#ifdef _UNICODE
+#define _T(str) L##str
+#else
+#define _T(str) (KpStrPtr)str
+#endif
 #endif
 
 /* -----------------------
@@ -78,6 +85,10 @@ extern int strcmp(const uchar *str1, const char *str2);
 extern int strncmp(const uchar *str1, const uchar *str2, size_t nbytes);
 
 extern uchar *strlwr(uchar *str);
+
+
+// ------------------------- string
+typedef string KpString;
 
 
 // ------------------------- UTF-8 functions

@@ -137,8 +137,10 @@ public:
     uchar m_lpszLastMessageText[KP_MAX_FILE_LIN_LEN + 1];
     uchar m_lpszLastSourceFile[KP_MAX_FNAME_LEN + 1];
     int m_iLastSourceLine;
+    
+    bool m_bOutMsg;
 
-    KpErrorClass(const uchar *lpszProdName);
+    KpErrorClass(const uchar *lpszProdName, bool bOutMsg);
 
     void SetProdName(const uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
     void GetProdName(uchar *lpszNameBuf); // lpszNameBuf[KP_MAX_FNAME_LEN + 1]

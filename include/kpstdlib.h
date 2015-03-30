@@ -1,4 +1,4 @@
-/* -----------------------------------------------
+﻿/* -----------------------------------------------
  *
  * kpstdlib.h
  *
@@ -11,8 +11,6 @@
 
 #ifndef KPSTDLIB_INCLUDED
 #define KPSTDLIB_INCLUDED
-
-
 
 // -------------------------------------- plain exportai
 #ifdef MAKE_KPADD_SHARED

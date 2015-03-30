@@ -10,12 +10,15 @@
 
 #include "envir.h"
 
+#include <string>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
+
+using namespace std;
 
 #include "kpstdlib.h"
 #include "kperrno.h"

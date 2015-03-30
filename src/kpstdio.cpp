@@ -5,7 +5,7 @@
  *    I/O tools
  *
  * 2013-04-04  mp  initial creation
- * 2013-10-29  mp  KpFileDesc and KpFileDescList split of TeXtrcFileDesc and TeXtrcClass  
+ * 2013-10-29  mp  KpFileDesc and KpFileDescList split of TeXtrcFileDesc and TeXtrcClass
  *
  */
 
@@ -263,6 +263,7 @@ return(ret_file);
 }
 
 
+#ifndef _MSC_VER // nėra open()
 int kpadd_open(const char *p_lpszFname, int p_iFlags, int p_iPerm, 
     const char *p_lpszSrcFile, int p_iSrcLine)
 {
@@ -281,6 +282,7 @@ int ret_fdesc = NO_FILE_DESC;
 
 return(ret_fdesc); 
 }
+#endif
 
 
 int kpadd_wopen(const wchar_t *p_lpwszFname, int p_iFlags, int p_iPerm, 
@@ -407,6 +409,7 @@ return(kpadd_fclose(p_pFile, __FILE__, __LINE__));
 }      
 
 
+#ifndef _MSC_VER // nėra close()
 int kpadd_close(int p_iFileDesc, const char *p_lpszSrcFile, int p_iSrcLine)
 {
 int retv = -1;
@@ -420,7 +423,8 @@ int retv = -1;
     KP_CATCH_ALL; 
 
 return(retv);
-}    
+}
+#endif
 
 
 BOOL kpadd_CloseHandle(HANDLE p_hFile, const char *p_lpszSrcFile, int p_iSrcLine)
@@ -490,6 +494,7 @@ printf("KpFileDesc::InitMembers(%x)\n", this);
 }
 
 
+#ifndef _MSC_VER // nėra _get_osfhandle()
 KpFileDesc::KpFileDesc(const uchar *p_lpszFileName, int p_iFlags, 
     const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
 {
@@ -547,6 +552,7 @@ uchar ftype[KP_MAX_FNAME_LEN + 1];
     remove((const char *)m_lpszLogFileName);
 #endif
 }
+#endif
 
 
 // -----------------------------------------
@@ -630,8 +636,12 @@ KpFileDesc *KpFileDescList::KpFileDescFactory(const uchar *p_lpszFileName, int p
 #endif
 
 KpFileDesc *desc_obj_ptr = NULL;
+#ifndef _MSC_VER
     KP_NEW(desc_obj_ptr, KpFileDesc(p_lpszFileName, p_iFlags,
         p_pFile, p_iFileDesc, p_hFile));
+#else
+	KP_ERROR(E_NOTIMPL, null);
+#endif
 
 return(desc_obj_ptr);
 }

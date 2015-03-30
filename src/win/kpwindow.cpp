@@ -2,16 +2,16 @@
  *
  * kpwindow.cpp
  *
- *    common Win32 things
+ *    Win32 windows
  *
  * 2013-04-11  mp  initial creation
  *
  */
 
 
-#ifdef __WIN32__
-
 #include "envir.h"
+
+#ifdef __WIN32__
 
 #include <stdio.h>
 #include <iostream>
@@ -329,6 +329,8 @@ extern HRESULT KpMsgOut(const unsigned char *p_lpszOutStr,
 #else
 cout << p_lpszOutStr << endl;
 #endif
+
+return S_OK;
 }
 
 #endif // #ifdef __WIN32__

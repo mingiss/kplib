@@ -222,6 +222,9 @@
 
 #define KP_MSG_UNHANDLED_EXCEPTION_EN     ((const unsigned char *)"Unhandled exception")
 
+#define KP_MSG_DATA_FORMAT_EN			((const unsigned char *)"Unrecognized data format")
+#define KP_MSG_DBERROR_EN				((const unsigned char *)"Database error")
+
 #endif // #if ((MsgLang == KpLangEn_p) || (MsgLang == KpLangSel_p) || (MsgLang == KpLangEn_p))
 
 #endif // #ifndef KPMSG_EN_INCLUDED
