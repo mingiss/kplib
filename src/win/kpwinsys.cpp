@@ -285,4 +285,35 @@ HRESULT KpSleep(int nMiliSecs, HWND)
 return S_OK;
 }
 
+
+// -------------------------------------------
+HRESULT KpSetClipboardData(HWND hWndNewOwner, UINT uFormat, const KpStrPtr lpClipData, int iBufSize, bool bClearBeforeSetting)
+{
+HRESULT retc = S_OK;
+
+	KP_ASSERT(OpenClipboard(hWndNewOwner), KP_E_SYSTEM_ERROR, GetLastError());
+
+	if (bClearBeforeSetting)
+	{
+		KP_ASSERT(EmptyClipboard(), KP_E_SYSTEM_ERROR, GetLastError());
+	}
+
+	HGLOBAL h_mem = NULL;
+	h_mem = GlobalAlloc(GMEM_SHARE | GMEM_MOVEABLE, iBufSize);
+	KP_ASSERT(h_mem, KP_E_SYSTEM_ERROR, GetLastError());
+
+	KpStrPtr pntd = (KpStrPtr)GlobalLock(h_mem);
+	KP_ASSERT(pntd, KP_E_SYSTEM_ERROR, GetLastError());
+
+	memcpy(pntd, lpClipData, iBufSize);
+
+	GlobalUnlock(h_mem);
+
+	KP_ASSERT(SetClipboardData(uFormat, h_mem), KP_E_SYSTEM_ERROR, GetLastError());
+
+	CloseClipboard();
+
+return retc;
+}
+
 #endif // #ifdef __WIN32__

@@ -50,6 +50,8 @@ extern HRESULT RunProcess(const KpStrPtr lpszCmdLine, const char *lpszCurDir,
 
 extern HRESULT KpSleep(int nMiliSecs, HWND hWind = HWND_DESKTOP);
 
+extern HRESULT KpSetClipboardData(HWND hWndNewOwner, UINT uFormat, const KpStrPtr lpClipData, int iBufSize, bool bClearBeforeSetting = true);
+
 #endif // #ifdef __WIN32__
 
 #endif // #ifndef KPWINSYS_INCLUDED
