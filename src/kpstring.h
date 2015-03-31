@@ -98,6 +98,7 @@ public:
 	KpString& operator=(const string& sRight) { string::operator=(sRight); return *this; }
 
 	operator KpStrPtr() { return c_str(); }
+	operator const char *() { return string::c_str(); }
 
 	KpStrPtr c_str() { return (KpStrPtr)string::c_str(); }
 
