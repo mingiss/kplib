@@ -104,7 +104,7 @@ const uchar *strstr(const uchar *p_lpszString, const uchar *p_lpszPattern)
 
 // --------------------------------------------------
 uchar *strlwr(uchar *str)
-    { return((uchar *)strlwr((char *)str)); }
+    { return((uchar *)_strlwr((char *)str)); }
 
 
 // --------------------------------------------------

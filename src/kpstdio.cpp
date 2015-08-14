@@ -274,7 +274,7 @@ FILE *ret_file = NULL;
         strcpy(fmode, p_lpszOpenMode);
         if(strchr(fmode, 'b') == null) strcat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai 
                 
-        ret_file = fdopen(p_iFileDesc, (const char *)fmode);
+        ret_file = _fdopen(p_iFileDesc, (const char *)fmode);
         
     int fflags = kpadd_fmode_to_flags((const uchar *)p_lpszOpenMode);
         kpadd_fopen_chkin(p_lpszFname, fflags, ret_file, p_iFileDesc, NULL, p_lpszSrcFile, p_iSrcLine);

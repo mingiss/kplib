@@ -15,12 +15,14 @@
 
 
 #include "envir.h"
+#include "stdafx.h"
 
 #include <stdio.h>
 #include <string>
 #include <iostream>
 #include <winsock2.h>
 #include <time.h>
+#include <vector>
 
 using namespace std;
 
@@ -34,6 +36,7 @@ using namespace std;
 #include "kperr.h"
 #include "kptree.h"
 #include "kpstdio.h"
+#include "kpwinsys.h"
 #include "kpwindow.h"
 #include "kpcapp.h"
 #include "kpsock.h"
@@ -246,6 +249,8 @@ WORD ver_requested = 0x0101; // ver 1.1
     m_PackedUrl.m_iPort = 0;
     m_PackedUrl.m_lpszFileName[0] = Nul;
 
+    m_iLocalPort = 0;
+
     m_lpszHdrBuf = null;
     KP_NEWA(m_lpszHdrBuf, uchar, MAX_HTTP_HDR_LEN + 1);
 
@@ -319,6 +324,7 @@ uchar *pntd = null;
         if ((ii > 3) || (ii < 1)){ retc = E_INVALIDARG; break; }
         if (!KpIsNumber(pnts)){ retc = E_INVALIDARG; break; }
         if (strchr(pnts, '-')){ retc = E_INVALIDARG; break; }
+
         if (sscanf((const char *)pnts, "%d", &ii) < 1)
         {
             retc = E_INVALIDARG;
@@ -486,16 +492,15 @@ int on = 1;
                     KP_DELETEA(msg_buf);
 
                 } // if (p_host == NULL)
+                else
+                {
+                    memcpy((char *)&(m_PackedUrl.m_Addr.S_un.S_addr),
+                        p_host->h_addr,
+                        sizeof(unsigned long) /* p_host->h_length */);
+//					m_PackedUrl.m_Addr.S_un.S_addr = (*p_host->h_addr);
+                }
 
             } // if (m_PackedUrl.m_Addr.S_un.S_addr == INADDR_NONE)
-
-            if (SUCCEEDED(retc))
-            {
-                memcpy((char *)&(m_PackedUrl.m_Addr.S_un.S_addr),
-                    p_host->h_addr,
-                    sizeof(unsigned long) /* p_host->h_length */);
-//              m_PackedUrl.m_Addr.S_un.S_addr = (*p_host->h_addr);
-            }
 
         } // else if (strcmp(m_PackedUrl.m_lpszServerName, KP_IPADDR_BROADCAST)
 
@@ -533,6 +538,19 @@ SOCKADDR_IN sin;
             else KP_ASSERTQ(False, retc, retw, p_bThrowError);
         }
     }
+
+	if (SUCCEEDED(retc))
+	{
+	int addrlen = sizeof(sin);
+
+		KP_ASSERTQ(getsockname(m_hSocket, (struct sockaddr *)&sin, &addrlen) == 0, retc, "getsockname()", p_bThrowError);
+		KP_ASSERTQ(sin.sin_family == AF_INET, retc, "getsockname(): sin.sin_family != AF_INET", p_bThrowError);
+		KP_ASSERTQ(addrlen == sizeof(sin), retc, "getsockname(): addrlen != sizeof(SOCKADDR_IN)", p_bThrowError);
+		if (SUCCEEDED(retc))
+		{
+			m_iLocalPort = ntohs(sin.sin_port);
+		}
+	}
 
 return (retc);
 }
@@ -1370,7 +1388,7 @@ bool endfl = False;
     KP_ASSERTQ(pntd - m_lpszHdrBuf, KP_E_TRANS_ERR, null, p_bThrowError);
     KP_ASSERTQ(pntd - m_lpszHdrBuf <= MAX_HTTP_HDR_LEN, KP_E_TRANS_ERR, null,
                                                                 p_bThrowError);
-    KP_ASSERTQ((pntd - m_lpszHdrBuf >= MIN_HTTP_HDR_LEN) || \
+    KP_ASSERTQ((pntd - m_lpszHdrBuf >= (int)MIN_HTTP_HDR_LEN) || \
             (p_iMsgType == HTTP_POST_DATA_SEGM), KP_E_TRANS_ERR, null,
                                                             p_bThrowError);
 return (retc);

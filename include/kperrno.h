@@ -655,6 +655,8 @@ A reserved policy element was found in the QoS provider-specific buffer.
 #define KP_E_DATA_FORMAT      (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x2c))
 // database error
 #define KP_E_DBERROR          (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x2d))
+// error during text encoding (not limited to KP_E_ILL_CHR, could be KP_E_BUFFER_OVERFLOW, for instance) 
+#define KP_E_ENCODING         (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x2e))
 
 // =========================================
 // interaktyvių pranešimų tipai kpwindow.cpp: KpMsgOut()

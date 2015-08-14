@@ -394,6 +394,8 @@ public:
 
     PackedUrl m_PackedUrl;
 
+    int m_iLocalPort;
+
     long m_lRestChunkLength; // RcvHttpMsg() dabar skaitomo chunk likęs ilgis,
         // jei netilpo į pBuf[]; reikia iškvietinėti RcvHttpRest(), kol
         // perskaitytas ilgis bus 0L
