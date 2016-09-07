@@ -41,3 +41,8 @@ syntax: glob
 *.new
 
 *.ldb
+
+*.o
+
+.dirstamp
+

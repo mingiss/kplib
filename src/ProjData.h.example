@@ -1,0 +1,5 @@
+#error This is an example -- dynamically generated file proj_path/src/ProjData.h should be included instead
+#pragma once
+#include "gwd.h"
+#define PROJ_NAME _T("gwd")
+#define PROJ_DATE _T("2015-10-14 09:56:17")

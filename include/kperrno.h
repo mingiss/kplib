@@ -5,6 +5,7 @@
  *    kp error codes
  *
  * 2013-02-22  mp  initial creation
+ * 2016-09-05  mp  migration of kpsgrp from tv to kplib
  *
  */
 
@@ -53,6 +54,7 @@ typedef long HRESULT;
 // Access denied
 #define E_ACCESSDENIED ((HRESULT)0x80070005L)
 #define E_PENDING ((HRESULT)0x8000000AL)
+#define E_BUFFER_TOO_SMALL ((HRESULT)0x8007007AL)
 
 /*
 http://research.microsoft.com/en-us/um/redmond/projects/invisible/iunknown.htm

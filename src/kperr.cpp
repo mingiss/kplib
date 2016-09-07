@@ -38,8 +38,6 @@ using namespace std;
 #include "kpctype.h"
 #include "kpstring.h"
 #include "kptree.h"
-#include "kpstdio.h"
-#include "kpsock.h"
 #include "kpmsg.h"
 #include "kpmsg_en.h"
 #if (MsgLang == KpLangLt_p) || (MsgLang == KpLangSel_p)
@@ -55,6 +53,8 @@ using namespace std;
 #   include "kpmsg_ru.h"
 #endif
 #include "kperr.h"
+#include "kpstdio.h"
+#include "kpsock.h"
 #include "kpcapp.h"
 
 using namespace std;

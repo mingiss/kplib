@@ -6,6 +6,7 @@
  *
  * 2013-02-22  mp  initial creation
  * 2013-10-31  mp  KPADDSHARED atkelti iš textrc.h 
+ * 2016-09-07  mp  migration of kpsgrp from tv to kplib
  *
  */
 
@@ -47,6 +48,7 @@
 typedef unsigned long DWORD;
 #endif
 typedef unsigned char uchar;
+typedef unsigned char u_char;
 
 // ------------------------------
 #define Nul ((uchar)0)
@@ -195,17 +197,33 @@ typedef char bool;
 #define va_start __builtin_va_start
 #endif
 
-#ifndef WIN32
-typedef unsigned long HINSTANCE;
+#ifndef __WIN32__
+#define DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
+DECLARE_HANDLE(HINSTANCE);
+typedef void* HANDLE;
+
+typedef unsigned short u_short;
+typedef unsigned int uint;
+typedef unsigned int* UINT_PTR;
 typedef long LONG;
+typedef unsigned long ulong;
+typedef unsigned long u_long;
 #endif
 
-typedef unsigned int uint;
-typedef unsigned long ulong;
-
 //--------------------------- pointer processing
-typedef void (*FuncPtr)(void);    /* funkcijos rodykles tipas */ // former Funpnt
-#define Null ((FuncPtr)0)         /* nuline funkcijos rodykle */
+typedef void (*FuncPtr)(void);    /* funkcijos rodyklės tipas */ // former Funpnt
+#define Null ((FuncPtr)0)         /* nulinė funkcijos rodyklė */
+
+#ifndef __WIN32__
+#define FAR // far
+#define WINAPI
+typedef void* LPVOID;
+#endif
+
+#ifndef __WIN32__
+#define __cdecl // _cdecl
+#define __stdcall // _stdcall
+#endif
 
 typedef int (*CompareFuncPtr)(const void *pVal1, const void *pVal2);
       // lyginimo funkcijos rodyklės tipas, parametrai – lyginamų objektų adresai
@@ -220,6 +238,7 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
       // 0: **ppVal1 == **ppVal2
       // 1: **ppVal1 > **ppVal2
       // -1: **ppVal1 > **ppVal2
+
 
 // ========================================= file I/O
 #define KP_MAX_FNAME_LEN 260 // MAX_PATH // FILENAME_MAX // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis

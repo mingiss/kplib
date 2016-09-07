@@ -5,6 +5,7 @@
  *    string tools
  *
  * 2013-04-05  mp  initial creation
+ * 2016-09-05  mp  migration of kpsgrp from tv to kplib
  *
  */
 
@@ -104,7 +105,16 @@ const uchar *strstr(const uchar *p_lpszString, const uchar *p_lpszPattern)
 
 // --------------------------------------------------
 uchar *strlwr(uchar *str)
-    { return((uchar *)_strlwr((char *)str)); }
+{
+#ifdef __WIN32__
+    return (uchar *)_strlwr((char *)str);
+#else
+    for (uchar* pstr = str; *pstr; pstr++)
+        *pstr = tolower((uchar)*pstr);
+
+    return str;
+#endif
+}
 
 
 // --------------------------------------------------
@@ -305,6 +315,7 @@ return(chr_cnt);
 
 /* -------------------------
  * KpString
+
  */
 
 KpString &KpString::ltrim(KpString &s)

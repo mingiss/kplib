@@ -1,0 +1,17 @@
+# ---------------------
+# project build script example
+#
+# calling command
+#   ./build.sh > build.log.mint64 2>&1
+#
+rm depcomp
+autoscan
+aclocal
+autoheader
+automake --add-missing
+autoconf
+./configure
+../kplib/src/kpmkcdat.sh my_proj > ProjData.h
+make clean
+make
+

@@ -3,7 +3,8 @@
  *
  *    Win32 sockets
  *
- *  2013-12-16  mp  Initial creation
+ * 2013-12-16  mp  initial creation
+ * 2016-09-06  mp  migration of kpsgrp from tv to kplib
  *
  *  TODO:
  *      p_bThrowError parametrus kelt į KpSocket metodą m_bThrowErrors
@@ -15,6 +16,28 @@
 
 
 //---------------------
+#ifndef __WIN32__
+typedef struct in_addr {
+  union {
+    struct {
+      u_char s_b1,s_b2,s_b3,s_b4;
+    } S_un_b;
+    struct {
+      u_short s_w1,s_w2;
+    } S_un_w;
+    u_long S_addr;
+  } S_un;
+} IN_ADDR, *PIN_ADDR, FAR *LPIN_ADDR;
+
+#define SOCK_STREAM 1
+#define SOCK_DGRAM 2
+#define SOCK_RAW 3
+#define SOCK_RDM 4
+#define SOCK_SEQPACKET 5
+
+typedef UINT_PTR SOCKET;
+#endif
+
 #define KPSOCK_BLOCK_TIMEOUT 5
 
 #define KP_IPADDR_LOCAL_HOST ((const uchar *)"127.0.0.1")
@@ -351,7 +374,7 @@ typedef struct{
 } RecvFromProcPars;
 
 // KpSocket::RecvFromAsynch() threado procedura
-extern DWORD WINAPI RecvFromProc(
+/* extern */ DWORD WINAPI RecvFromProc(
     LPVOID p_lpParameter // rodyklė į RecvFromProcPars
     );
 

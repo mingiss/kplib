@@ -11,13 +11,17 @@
 // -----------------------------
 #include "envir.h"
 
-#include <stdio.h>
 #include <string.h>
+#include <string>
+#include <vector>
+#include <stdio.h>
 #include <iostream>
 #include <math.h>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
+
+using namespace std;
 
 #include "kperrno.h"
 #include "kpstdlib.h"
@@ -32,7 +36,7 @@ using namespace std;
 
 
 // ========================================= KpLib 
-KpErrorClass KpError((const uchar *)"kplib");
+KpErrorClass KpError((const uchar *)"kplib", True);
 KpCommonApp *KpApp = NULL;
 KpCommonApp *KpAppAlloc = NULL; // pointer to locally here allocated KpApp 
 

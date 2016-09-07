@@ -1,0 +1,33 @@
+## ---------------------------------------
+## kpsgrp project using Autoconfig
+##
+## Changes:
+##  2016-09-03  mp  migration from tv to kplib
+##
+
+AC_INIT([kpsgrp], [1.0], [mpiesina@netscape.net])
+
+## m4_pattern_allow(AM_INIT_AUTOMAKE)
+## m4_pattern_forbid(AM_INIT_AUTOMAKE)
+AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
+## AUTOMAKE_OPTIONS([no-dependencies])
+
+AC_PROG_MAKE_SET
+
+AC_CONFIG_HEADERS([config.h])
+
+AC_CHECK_FUNCS([strchr])
+AC_CHECK_FUNCS([_fdopen])
+AC_CHECK_FUNCS([_get_osfhandle])
+
+AC_CHECK_HEADERS([stdlib.h])
+AC_CHECK_HEADERS([string.h])
+AC_CHECK_HEADER_STDBOOL
+
+AC_PROG_CC
+AM_PROG_CC_C_O
+AC_PROG_CXX
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
+

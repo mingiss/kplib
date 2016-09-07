@@ -1,2 +1,0 @@
-#error Dynamically generated ~/kpcurdat.h should be included instead
-#define CUR_DATE (const uchar *)"2013-11-28"
