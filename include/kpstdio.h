@@ -8,6 +8,7 @@
  * 2013-10-29  mp  KpFileDesc and KpFileDescList split of TeXtrcFileDesc and TeXtrcClass  
  * 2016-09-06  mp  migration of kpsgrp from tv to kplib
  * 2016-09-07  mp  kpfhook split
+ * 2016-09-08  mp  migration of kpsgrm from tv to kplib
  *
  */
 
@@ -72,6 +73,8 @@ extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
     const KpStrPtr p_lpszFullName
 );
 
+// skaito eilutę iš failo, numeta Cr/Lf gale
+uchar *fgetss(uchar *buf, int maxnum, FILE *fil);
 
 #ifdef __cplusplus
 // --------------------------

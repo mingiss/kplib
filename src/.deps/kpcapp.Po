@@ -92,7 +92,7 @@
  /usr/include/x86_64-linux-gnu/bits/unistd.h ../kplib/include/kptt.h \
  ../kplib/include/kpctype.h ../kplib/include/kpstring.h \
  ../kplib/include/kpmsg.h ../kplib/include/kperr.h ../kplib/src/kpcapp.h \
- ProjData.h kpsgrp.h
+ ProjData.h kpsgrm.h
 
 /usr/include/stdc-predef.h:
 
@@ -340,4 +340,4 @@
 
 ProjData.h:
 
-kpsgrp.h:
+kpsgrm.h:

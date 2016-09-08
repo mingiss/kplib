@@ -8,6 +8,7 @@
  * 2013-10-29  mp  KpFileDesc and KpFileDescList split of TeXtrcFileDesc and TeXtrcClass
  * 2016-09-06  mp  migration of kpsgrp from tv to kplib
  * 2016-09-07  mp  kpfhook split
+ * 2016-09-08  mp  migration of kpsgrm from tv to kplib
  *
  */
 
@@ -158,4 +159,25 @@ intptr_t __cdecl _get_osfhandle(int _FileHandle)
 return 0;
 }
 #endif
+
+// --------------------------------------
+uchar *fgetss(uchar *buf, int maxnum, FILE *fil)
+{
+uchar *retstr, *pntc;
+
+    retstr = NULL;
+    fgets((char *)buf, maxnum, fil);
+    if ((!feof(fil)) && (!ferror(fil)))
+    {
+        pntc = (uchar *)strchr((const char *)buf, Cr);
+        if (pntc)
+            *pntc = Nul;
+        pntc = (uchar *)strchr((const char *)buf, Lf);
+        if (pntc)
+            *pntc=Nul;
+        retstr = buf;
+    }
+
+return(retstr);
+}
 
