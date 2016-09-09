@@ -35,9 +35,30 @@ bet lokalią git repozitoriją sukuria pakatalogyje /home/mingis/F/kp/src/kplib/
 [git]
 intree = True
 
-git status
-duoda klaidą
+tokia dviguba veikia tik su hg
+veikia git log
+git status, revert duoda klaidą
 fatal: This operation must be run in a work tree
-nuklonuotoje repozitorijoje gerai
 
-kažin kaip push'as iš nklonuotos?
+repozitoriją nuklonuojam
+cd /home/mingis/kp/src
+git clone /home/mingis/F/kp/src/kplib
+
+/home/mingis/kp/src/kplib
+jau pilnai veikia su git'u
+
+/home/mingis/kp/src/kplib
+perkeliam vietoj senos hg repozitorijos
+/home/mingis/F/kp/src/kplib
+
+iš
+/home/mingis/F/kp/src/kplib/.git/config
+išmetam visą klonavimo uodegą
+
+[remote "origin"]
+	url = /home/mingis/F/kp/src/kplib
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+
