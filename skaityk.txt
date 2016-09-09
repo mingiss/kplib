@@ -1,1 +1,2 @@
-hg clone E:\kp\src\kplib
+git clone /home/mingis/F/kp/src/kplib
+
