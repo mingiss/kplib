@@ -21,13 +21,22 @@ mingis.schemes = http https
 [extensions]
 # hgext.bookmarks =
 hggit = ~/kp/bin/hg-git/hggit
-[git]
-intree = True
 
 cd /home/mingis/F/kp/src/kplib
 hg push
 
 duoda klaidą "broken pipe", "connection timeout" ar pan., github.com/mingiss/kplib.git lieka tuščia,
-bet lokalią git repozitoriją sukuria pakatalogyje /home/mingis/F/kp/src/kplib/.git
+bet lokalią git repozitoriją sukuria pakatalogyje /home/mingis/F/kp/src/kplib/.hg/git
 
+/home/mingis/F/kp/src/kplib/.hg/git perkeliam į /home/mingis/F/kp/src/kplib/.git
+
+/home/mingis/F/kp/src/kplib/.hg/hgrc papildom:
+
+[git]
+intree = True
+
+git status
+duoda klaidą
+fatal: This operation must be run in a work tree
+nuklonuotoje repozitorijoje gerai
 

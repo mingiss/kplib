@@ -46,3 +46,4 @@ syntax: glob
 
 .dirstamp
 
+.git/*
