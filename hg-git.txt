@@ -1,0 +1,33 @@
+/home/mingis/F/kp/src/kplib konvertavimas iš hg į git
+
+cd /home/mingis/kp/bin
+git clone https://github.com/schacon/hg-git.git
+
+sudo apt-get install Dulwich
+
+github.com mingiss[g1tm1ng155] sukuriam repozitoriją kplib
+
+/home/mingis/F/kp/src/kplib/.hg/hgrc papildom:
+
+[paths]
+# default = /home/mingis/F/kp/src/kplib
+# default = git+ssh://mingiss:g1tm1ng155@github.com/mingiss/kplib.git
+default = https://github.com/mingiss/kplib.git
+[auth]
+mingis.prefix = github.com/mingiss
+mingis.username = mingiss
+mingis.password = g1tm1ng155
+mingis.schemes = http https
+[extensions]
+# hgext.bookmarks =
+hggit = ~/kp/bin/hg-git/hggit
+[git]
+intree = True
+
+cd /home/mingis/F/kp/src/kplib
+hg push
+
+duoda klaidą "broken pipe", "connection timeout" ar pan., github.com/mingiss/kplib.git lieka tuščia,
+bet lokalią git repozitoriją sukuria pakatalogyje /home/mingis/F/kp/src/kplib/.git
+
+
