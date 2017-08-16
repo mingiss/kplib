@@ -1,0 +1,3 @@
+https://raw.githubusercontent.com/Alexpux/mingw-w64/master/mingw-w64-headers/crt/fcntl.h
+https://github.com/Alexpux/mingw-w64/blob/master/mingw-w64-headers/crt/fcntl.h
+

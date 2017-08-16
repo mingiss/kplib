@@ -1,0 +1,203 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>sys/fcntl.h Source</title>
+</head><body>
+<h1>Source to sys/fcntl.h</h1>
+<hr><form action="/cgi-bin/src2html.cgi" method="POST">
+<input value="Search" type="submit">
+<input name="Net2/newsrc" type="text">
+Enter a symbol's name here to quickly find it.
+</form><hr>
+<pre>/*-
+ * Copyright (c) 1983, 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	@(#)fcntl.h	5.14 (Berkeley) 7/1/91
+ */
+
+#ifndef _FCNTL_H_
+#define	<a name="_FCNTL_H_" <="" a=""><b>_FCNTL_H_</b>
+
+/*
+ * This file includes the definitions for open and fcntl
+ * described by POSIX for &lt;fcntl.h&gt;; it also includes
+ * related kernel definitions.
+ */
+
+#ifndef KERNEL
+#include &lt;sys/types.h&gt;
+#endif
+
+/*
+ * File status flags: these are used by open(2), fcntl(2).
+ * They are also used (indirectly) in the kernel file structure f_flags,
+ * which is a superset of the open/fcntl flags.  Open flags and f_flags
+ * are inter-convertible using OFLAGS(fflags) and FFLAGS(oflags).
+ * Open/fcntl flags begin with O_; kernel-internal flags begin with F.
+ */
+/* open-only flags */
+#define	</a><a name="O_RDONLY" <="" a=""><b>O_RDONLY</b>	0x0000		/* open for reading only */
+#define	</a><a name="O_WRONLY" <="" a=""><b>O_WRONLY</b>	0x0001		/* open for writing only */
+#define	</a><a name="O_RDWR" <="" a=""><b>O_RDWR</b>		0x0002		/* open for reading and writing */
+#define	</a><a name="O_ACCMODE" <="" a=""><b>O_ACCMODE</b>	0x0003		/* mask for above modes */
+
+#ifdef KERNEL
+/*
+ * Kernel encoding of open mode; separate read and write bits
+ * that are independently testable: 1 greater than the above.
+ */
+#define	</a><a name="FREAD" <="" a=""><b>FREAD</b>		0x0001
+#define	</a><a name="FWRITE" <="" a=""><b>FWRITE</b>		0x0002
+#endif
+#define	</a><a name="O_NONBLOCK" <="" a=""><b>O_NONBLOCK</b>	0x0004		/* no delay */
+#define	</a><a name="O_APPEND" <="" a=""><b>O_APPEND</b>	0x0008		/* set append mode */
+#ifndef _POSIX_SOURCE
+#define	</a><a name="O_SHLOCK" <="" a=""><b>O_SHLOCK</b>	0x0010		/* open with shared file lock */
+#define	</a><a name="O_EXLOCK" <="" a=""><b>O_EXLOCK</b>	0x0020		/* open with exclusive file lock */
+#define	</a><a name="O_ASYNC" <="" a=""><b>O_ASYNC</b>		0x0040		/* signal pgrp when data ready */
+#define	</a><a name="O_FSYNC" <="" a=""><b>O_FSYNC</b>		0x0080		/* synchronous writes */
+#endif
+#define	</a><a name="O_CREAT" <="" a=""><b>O_CREAT</b>		0x0200		/* create if nonexistant */
+#define	</a><a name="O_TRUNC" <="" a=""><b>O_TRUNC</b>		0x0400		/* truncate to zero length */
+#define	</a><a name="O_EXCL" <="" a=""><b>O_EXCL</b>		0x0800		/* error if already exists */
+#ifdef KERNEL
+#define	</a><a name="FMARK" <="" a=""><b>FMARK</b>		0x1000		/* mark during gc() */
+#define	</a><a name="FDEFER" <="" a=""><b>FDEFER</b>		0x2000		/* defer for next gc pass */
+#define	</a><a name="FHASLOCK" <="" a=""><b>FHASLOCK</b>	0x4000		/* descriptor holds advisory lock */
+#endif
+
+/* defined by POSIX 1003.1; BSD default, so no bit required */
+#define	</a><a name="O_NOCTTY" <="" a=""><b>O_NOCTTY</b>	0		/* don't assign controlling terminal */
+
+#ifdef KERNEL
+/* convert from open() flags to/from fflags; convert O_RD/WR to FREAD/FWRITE */
+#define	</a><a name="FFLAGS" <="" a=""><b>FFLAGS</b>(oflags)	((oflags) + 1)
+#define	</a><a name="OFLAGS" <="" a=""><b>OFLAGS</b>(fflags)	((fflags) - 1)
+
+/* bits to save after open */
+#define	</a><a name="FMASK" <="" a=""><b>FMASK</b>		(FREAD|FWRITE|FAPPEND|FASYNC|FFSYNC|FNONBLOCK)
+/* bits settable by fcntl(F_SETFL, ...) */
+#define	</a><a name="FCNTLFLAGS" <="" a=""><b>FCNTLFLAGS</b>	(FAPPEND|FASYNC|FFSYNC|FNONBLOCK)
+#endif
+
+/*
+ * The O_* flags used to have only F* names, which were used in the kernel
+ * and by fcntl.  We retain the F* names for the kernel f_flags field
+ * and for backward compatibility for fcntl.
+ */
+#ifndef _POSIX_SOURCE
+#define	</a><a name="FAPPEND" <="" a=""><b>FAPPEND</b>		O_APPEND	/* kernel/compat */
+#define	</a><a name="FASYNC" <="" a=""><b>FASYNC</b>		O_ASYNC		/* kernel/compat */
+#define	</a><a name="FFSYNC" <="" a=""><b>FFSYNC</b>		O_FSYNC		/* kernel */
+#define	</a><a name="FNONBLOCK" <="" a=""><b>FNONBLOCK</b>	O_NONBLOCK	/* kernel */
+#define	</a><a name="FNDELAY" <="" a=""><b>FNDELAY</b>		O_NONBLOCK	/* compat */
+#define	</a><a name="O_NDELAY" <="" a=""><b>O_NDELAY</b>	O_NONBLOCK	/* compat */
+#endif
+
+/*
+ * Constants used for fcntl(2)
+ */
+
+/* command values */
+#define	</a><a name="F_DUPFD" <="" a=""><b>F_DUPFD</b>		0		/* duplicate file descriptor */
+#define	</a><a name="F_GETFD" <="" a=""><b>F_GETFD</b>		1		/* get file descriptor flags */
+#define	</a><a name="F_SETFD" <="" a=""><b>F_SETFD</b>		2		/* set file descriptor flags */
+#define	</a><a name="F_GETFL" <="" a=""><b>F_GETFL</b>		3		/* get file status flags */
+#define	</a><a name="F_SETFL" <="" a=""><b>F_SETFL</b>		4		/* set file status flags */
+#ifndef _POSIX_SOURCE
+#define	</a><a name="F_GETOWN" <="" a=""><b>F_GETOWN</b>	5		/* get SIGIO/SIGURG proc/pgrp */
+#define </a><a name="F_SETOWN" <="" a=""><b>F_SETOWN</b>	6		/* set SIGIO/SIGURG proc/pgrp */
+#endif
+#define	</a><a name="F_GETLK" <="" a=""><b>F_GETLK</b>		7		/* get record locking information */
+#define	</a><a name="F_SETLK" <="" a=""><b>F_SETLK</b>		8		/* set record locking information */
+#define	</a><a name="F_SETLKW" <="" a=""><b>F_SETLKW</b>	9		/* F_SETLK; wait if blocked */
+
+/* file descriptor flags (F_GETFD, F_SETFD) */
+#define	</a><a name="FD_CLOEXEC" <="" a=""><b>FD_CLOEXEC</b>	1		/* close-on-exec flag */
+
+/* record locking flags (F_GETLK, F_SETLK, F_SETLKW) */
+#define	</a><a name="F_RDLCK" <="" a=""><b>F_RDLCK</b>		1		/* shared or read lock */
+#define	</a><a name="F_UNLCK" <="" a=""><b>F_UNLCK</b>		2		/* unlock */
+#define	</a><a name="F_WRLCK" <="" a=""><b>F_WRLCK</b>		3		/* exclusive or write lock */
+#ifdef KERNEL
+#define	</a><a name="F_WAIT" <="" a=""><b>F_WAIT</b>		0x010		/* Wait until lock is granted */
+#define	</a><a name="F_FLOCK" <="" a=""><b>F_FLOCK</b>		0x020	 	/* Use flock(2) semantics for lock */
+#define	</a><a name="F_POSIX" <="" a=""><b>F_POSIX</b>		0x040	 	/* Use POSIX semantics for lock */
+#endif
+
+/*
+ * Advisory file segment locking data type -
+ * information passed to system by user
+ */
+struct </a><a name="flock" <="" a=""><b>flock</b> {
+	short	l_type;		/* lock type: read/write, etc. */
+	short	l_whence;	/* type of l_start */
+	off_t	l_start;	/* starting offset */
+	off_t	l_len;		/* len = 0 means until end of file */
+	pid_t	l_pid;		/* lock owner */
+};
+
+
+#ifndef _POSIX_SOURCE
+/* lock operations for flock(2) */
+#define	</a><a name="LOCK_SH" <="" a=""><b>LOCK_SH</b>		0x01		/* shared file lock */
+#define	</a><a name="LOCK_EX" <="" a=""><b>LOCK_EX</b>		0x02		/* exclusive file lock */
+#define	</a><a name="LOCK_NB" <="" a=""><b>LOCK_NB</b>		0x04		/* don't block when locking */
+#define	</a><a name="LOCK_UN" <="" a=""><b>LOCK_UN</b>		0x08		/* unlock file */
+#endif
+
+
+#ifndef KERNEL
+#include &lt;sys/cdefs.h&gt;
+
+__BEGIN_DECLS
+int	open __P((const char *, int, ...));
+int	creat __P((const char *, mode_t));
+int	fcntl __P((int, int, ...));
+#ifndef _POSIX_SOURCE
+int	flock __P((int, int));
+#endif /* !_POSIX_SOURCE */
+__END_DECLS
+#endif
+
+#endif /* !_FCNTL_H_ */
+
+
+
+
+
+
+
+
+
+
+</a></pre><a name="LOCK_UN" <="" a="">
+</a></body></html>

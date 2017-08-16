@@ -1,17 +1,21 @@
-﻿/* -----------------------------------------------
+/* -----------------------------------------------
  *
  * kpstdlib.h
  *
  *    common definitions for all KpLib driven projects
  *
- * 2013-02-22  mp  initial creation
- * 2013-10-31  mp  KPADDSHARED atkelti iš textrc.h 
- * 2016-09-07  mp  migration of kpsgrp from tv to kplib
+ * Changelog:
+ *  2013-02-22  mp  initial creation
+ *  2013-10-31  mp  KPADDSHARED atkelti iš textrc.h
+ *  2016-09-07  mp  migration of kpsgrp from tv to kplib
+ *  2017-05-22  mp  build on Linux Mint 18.1 Serena 64
  *
  */
 
 #ifndef KPSTDLIB_INCLUDED
 #define KPSTDLIB_INCLUDED
+
+
 
 // -------------------------------------- plain exportai
 #ifdef MAKE_KPADD_SHARED
@@ -49,6 +53,21 @@ typedef unsigned long DWORD;
 #endif
 typedef unsigned char uchar;
 typedef unsigned char u_char;
+
+typedef uchar *KpStrPtr;
+
+// #ifndef _T
+#ifndef __WIN32__
+#define WCHAR wchar_t
+// #ifdef _UNICODE
+#ifdef UNICODE
+#define _T(str) L##str
+#define TCHAR wchar_t
+#else
+#define _T(str) ((const KpStrPtr)str)
+#define TCHAR uchar
+#endif
+#endif
 
 // ------------------------------
 #define Nul ((uchar)0)
@@ -92,13 +111,13 @@ typedef unsigned char u_char;
 
 // ----------------------------------
 // Languages for messages
-// #define MsgLang – constant defined during compilation 
+// #define MsgLang – constant defined during compilation
 
 typedef enum
 {
-   KpLangNo    = -1, // -1 - neapibrėžta - iMsgLangOff nustatom į KpLangEn 
+   KpLangNo    = -1, // -1 - neapibrėžta – iMsgLangOff nustatom į KpLangEn
 #define KpLangNo_p   (-1)
-   
+
    KpLangEn,         // 0 - anglų
 #define KpLangEn_p   0
    KpLangLt,         // 1 - lietuvių
@@ -117,7 +136,7 @@ typedef enum
 
    KpLangRu    = 97, // 97 - išsitraukti iš registro Regional Setting'ų – KpLangRu_0 arba KpLangRu_1251 (jei rusiški)
 #define KpLangRu_p   97
-   KpLangPl    = 98, // 98 - išsitraukti iš registro Regional Setting'ų – KpLangPl_1250 arba KpLangPl_1257 (jei lietuviški/Baltic)
+   KpLangPl    = 98, // 98 - išsitraukti iš registro Regional Setting'ų – KpLangPl_1250 arba KpLangPl_1257 (jei lietuviški / Baltic)
 #define KpLangPl_p   98
    KpLangSel,        // 99 - išsitraukti iš registro Regional Setting'ų
 #define KpLangSel_p  99
@@ -130,7 +149,7 @@ typedef enum
 // ----------------------------------
 // Languages for SortMode
 #define KP_LNG_LIT ('l')       // lithuanian, former TV_XE_LIT, (former #define Lit 1)
-#define KP_LNG_LIX ('x')       // lithuanian sorting regardless of diacrytics, i.e., č, š, ž (for lzdsh.exe and main index generation)
+#define KP_LNG_LIX ('x')       // lithuanian sorting regardless of diacrytics, i.e., č==c, š==s, ž==z (for lzdsh.exe and main index generation)
 #define KP_LNG_LIS ('s')       // lithuanian straigth sorting according to exact weights (for irregular form table generator - tvxmlecm.exe)
 #define KP_LNG_ENG ('e')       // english, former TV_XE_ENG, (former #define Eng 0)
 #define KP_LNG_GER ('v')       // german, former TV_XE_GER, former 'g'
@@ -152,7 +171,7 @@ typedef enum
 #define PLAIN_C
 #endif
 
-extern PLAIN_C void KpInit(const uchar *ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer, 
+extern PLAIN_C void KpInit(const KpStrPtr ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer,
 extern PLAIN_C void KpClose(void);                  // usually pointer to some local variable of the main() function
                                                     // could be NULL
 
@@ -162,6 +181,10 @@ extern PLAIN_C void KpClose(void);                  // usually pointer to some l
 //     False,
 //     True
 // } bool;
+
+#ifndef WIN32
+typedef int BOOL;
+#endif
 
 #ifdef __MINGW32__
 #ifndef __cplusplus
@@ -211,8 +234,8 @@ typedef unsigned long u_long;
 #endif
 
 //--------------------------- pointer processing
-typedef void (*FuncPtr)(void);    /* funkcijos rodyklės tipas */ // former Funpnt
-#define Null ((FuncPtr)0)         /* nulinė funkcijos rodyklė */
+typedef void (*FuncPtr)(void);    /* funkcijos rodykles tipas */ // former Funpnt
+#define Null ((FuncPtr)0)         /* nuline funkcijos rodykle */
 
 #ifndef __WIN32__
 #define FAR // far
@@ -233,12 +256,11 @@ typedef int (*CompareFuncPtr)(const void *pVal1, const void *pVal2);
       // -1: *pVal1 > *pVal2
 
 typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
-      // lyginimo funkcijos rodykles tipas, parametrai - lyginamų objektų adresų adresai
+      // lyginimo funkcijos rodyklės tipas, parametrai – lyginamų objektų adresų adresai
       // pvz. – TvStrPtrCmpStrict(), TvStrPtrCmpStrictRev()
       // 0: **ppVal1 == **ppVal2
       // 1: **ppVal1 > **ppVal2
       // -1: **ppVal1 > **ppVal2
-
 
 // ========================================= file I/O
 #define KP_MAX_FNAME_LEN 260 // MAX_PATH // FILENAME_MAX // negalima keist/naudot neaiškios makrokomandos – pasikeis kpstart.ini dydis
@@ -246,18 +268,18 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
 #define KP_DIR_SEP '\\'
-#define KP_DIR_SEP_STR (const uchar *)"\\"
+#define KP_DIR_SEP_STR (const KpStrPtr)"\\"
 #define KP_DIR_SEP_STR_0 "\\"
-#define KP_EXE_EXT (const uchar *)"exe"
+#define KP_EXE_EXT (const KpStrPtr)"exe"
 #else
 #define KP_DIR_SEP '/'
-#define KP_DIR_SEP_STR (const uchar *)"/"
+#define KP_DIR_SEP_STR (const KpStrPtr)"/"
 #define KP_DIR_SEP_STR_0 "/"
-#define KP_EXE_EXT (const uchar *)""
+#define KP_EXE_EXT (const KpStrPtr)""
 #endif
 #define KP_EXT_SEP '.'
-#define KP_EXT_SEP_STR (const uchar *)"."
-#define KP_CUR_DIR_STR (const uchar *)"."
+#define KP_EXT_SEP_STR (const KpStrPtr)"."
+#define KP_CUR_DIR_STR (const KpStrPtr)"."
 
 // ========================================= malloc
 #ifdef __cplusplus
@@ -400,6 +422,14 @@ extern KpHeapClass KpHeap;
 
 
 // ================================================== integer types and constants, math
+#ifndef WIN32
+typedef long LONG;
+typedef unsigned long DWORD;
+#endif
+
+typedef unsigned int uint;
+typedef unsigned long ulong;
+
 #define MAX_UCHAR 0xFF
 #if (!defined(__WIN32__)) || defined(__MINGW32__)
 #define MAX_SHRT 0x7FFF // 32767 // SHRT_MAX
@@ -419,7 +449,7 @@ extern KpHeapClass KpHeap;
 
 // formats p_iVal as 16 bytes binary string
 // p_lpszBinStrBuf[16 + 1]
-void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal);  
+void I2BinStr(KpStrPtr p_lpszBinStrBuf, int p_iVal);  
 
 double NormAngle(double p_dAngle); // sukiša kampą į intervalą [-pi, pi)
 
@@ -432,7 +462,13 @@ double NormAngle(double p_dAngle); // sukiša kampą į intervalą [-pi, pi)
 #define KP_KWD_LEN 400 // negalima keist – pasikeis susijusių failų layout
 
 
-// ================================================== OS ports (Windows/Linux)
+// ================================================== OS porting (Windows API <--> Linux)
+#ifndef __WIN32__
+typedef unsigned long HINSTANCE;
+typedef unsigned long HANDLE;
+typedef void* LPSECURITY_ATTRIBUTES;
+#endif
+
 #ifdef __WIN32__
 // #ifdef WINDOWS
 // #include <direct.h>

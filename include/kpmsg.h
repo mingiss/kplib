@@ -11,7 +11,7 @@ enum
 {
 KP_MSG_TITLE_IX,                    // "Pranešimas"
 KP_INPUT_TITLE_IX,                  // "Įvedimas"
-                                    
+
 KP_MSG_TAIP_IX,                     // "Taip"
 KP_MSG_YES_IX,                      // KP_MSG_TAIP
 KP_MSG_NE_IX,                       // "Ne"
@@ -23,19 +23,19 @@ KP_MSG_CANCEL_IX,                   // KP_MSG_ATSAUKTI
 KP_MSG_TESTI_IX,                    // "Toliau"
 KP_MSG_BAIGTI_IX,                   // "Baigti"
 KP_MSG_PAMIRSAU_SLAPTAZODI_IX,      // "Pamiršau slaptažodį"
-                                    
+
 KP_MSG_ERROR_IX,                    // "Klaida"
 KP_MSG_WARNING_IX,                  // "Perspėjimas"
 KP_MSG_FILE_LINE_IX,                // ", failas:%s, eilutė:%d"
 KP_MSG_ENTRY_ID_IX,                 // ", Įrašo nr.:%ld"
 KP_MSG_ENTRY_IX,                    // ", Įrašas: %s"
-                                    
+
 KP_MSG_NO_STANDARD_PROG_IX,         // "Nerasta programa skirta atverti šio tipo failus"
 KP_MSG_WND_NOT_FOUND_IX,            // "Langas nerastas"
 KP_MSG_PID_NOT_FOUND_IX,            // "Nerastas proceso identifikatorius"
 KP_MSG_NO_SOCKET_IX,                // "Jungtis dar nesukurta"
-KP_MSG_SOCK_UNRESOLVED_IX,          // "Tarnybines stoties adresas dar nesurastas"
-                                    
+KP_MSG_SOCK_UNRESOLVED_IX,          // "Tarnybinės stoties adresas dar nesurastas"
+
 KP_MSG_ERR_OK_IX,                   // "Operacija atlikta sėkmingai" // !!!
 KP_MSG_INVALIDARG_IX,               // "Neteisingi parametrai"
 KP_MSG_NOTIMPL_IX,                  // "Priedas neįdiegtas"
@@ -88,7 +88,7 @@ KP_MSG_WSAEALREADY_IX,              // "Operacija jau vykdoma"
 KP_MSG_WSAECONNABORTED_IX,          // "Programa iššaukė ryšio nutraukimą"
 KP_MSG_WSAECONNREFUSED_IX,          // "Susijungimas atmestas"
 KP_MSG_WSAECONNRESET_IX,            // "Sujungimas nutrauktas"
-KP_MSG_WSAEDESTADDRREQ_IX,          // "Būtinas kreities adresas"
+KP_MSG_WSAEDESTADDRREQ_IX,          // "Būtinas kreipties adresas"
 KP_MSG_WSAEFAULT_IX,                // "Neteisingas adresas"
 KP_MSG_WSAEHOSTDOWN_IX,             // "Serveris laikinai neveikia"
 KP_MSG_WSAEHOSTUNREACH_IX,          // "Serveris nepasiekiamas"
@@ -112,7 +112,7 @@ KP_MSG_WSAEPROTONOSUPPORT_IX,       // "Protokolas nepalaikomas"
 KP_MSG_WSAEPROTOTYPE_IX,            // "Neteisingas protokolo sujungimo tipas"
 KP_MSG_WSAESHUTDOWN_IX,             // "Siuntimas nebegalimas, sujungimas nutrauktas"
 KP_MSG_WSAESOCKTNOSUPPORT_IX,       // "Sujungimo tipas nepalaikomas"
-KP_MSG_WSAETIMEDOUT_IX,             // "Maksimalus sujungimo laukimo laikas viršytas"
+KP_MSG_WSAETIMEDOUT_IX,             // "Viršytas maksimalus sujungimo laukimo laikas"
 KP_MSG_WSATYPE_NOT_FOUND_IX,        // "Klasės tipas nerastas"
 KP_MSG_WSAEWOULDBLOCK_IX,           // "Šaltinis laikinai nepasiekiamas"
 KP_MSG_WSAHOST_NOT_FOUND_IX,        // "Serveris nerastas"
@@ -122,7 +122,7 @@ KP_MSG_WSAINVALIDPROCTABLE_IX,      // "Klaidinga procedūrų lentelė"
 KP_MSG_WSAINVALIDPROVIDER_IX,       // "Neteisingas tiekėjo kodas"
 KP_MSG_WSA_IO_INCOMPLETE_IX,        // "Persikloja įvesties/išvesties įvykiai"
 KP_MSG_WSA_IO_PENDING_IX,           // "Persiklojančios operacijos bus atliktos vėliau"
-                                    
+
 KP_MSG_WSA_NOT_ENOUGH_MEMORY_IX,    // "Nepakanka atminties"
 KP_MSG_WSANOTINITIALISED_IX,        // "Tinklo posistemis neaktyvuotas"
 KP_MSG_WSANO_DATA_IX,               // "Vardas teisingas, tačiau nėra reikiamo tipo duomenų"
@@ -164,7 +164,7 @@ KP_MSG_COPYING_FILE_IX,             // "Kopijuojamas failas %s.%s..."
 
 KP_MSG_NEG_ANSW_IX,                 // "Neigiamas atsakymas"
 
-KP_MSG_UNABLE_TO_EXECUTE_IX,        // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+KP_MSG_UNABLE_TO_EXECUTE_IX,        // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 KP_MSG_FLASH_PLAYER_INSTALL_IX,     // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -211,205 +211,205 @@ NumOfKpMessages
 };
 
 #define NumOfKpMessages_25 NumOfKpMessages
- 
+
 // -----------------------------------------
-#define KP_MSG_TITLE                    KpErrorClass::m_lpszaKpMessages[KP_MSG_TITLE_IX                  ][iMsgLangOff]  // "Pranešimas"
-#define KP_INPUT_TITLE                  KpErrorClass::m_lpszaKpMessages[KP_INPUT_TITLE_IX                ][KpCommonApp::m_iMsgLangOff]  // "Įvedimas"
-                                                                                                        
-#define KP_MSG_TAIP                     KpErrorClass::m_lpszaKpMessages[KP_MSG_TAIP_IX                   ][KpCommonApp::m_iMsgLangOff]  // "Taip"
-#define KP_MSG_YES                      KpErrorClass::m_lpszaKpMessages[KP_MSG_YES_IX                    ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_TAIP
-#define KP_MSG_NE                       KpErrorClass::m_lpszaKpMessages[KP_MSG_NE_IX                     ][KpCommonApp::m_iMsgLangOff]  // "Ne"
-#define KP_MSG_NO                       KpErrorClass::m_lpszaKpMessages[KP_MSG_NO_IX                     ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_NE
-#define KP_MSG_GERAI                    KpErrorClass::m_lpszaKpMessages[KP_MSG_GERAI_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Gerai"
-#define KP_MSG_OK                       KpErrorClass::m_lpszaKpMessages[KP_MSG_OK_IX                     ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_GERAI
-#define KP_MSG_ATSAUKTI                 KpErrorClass::m_lpszaKpMessages[KP_MSG_ATSAUKTI_IX               ][KpCommonApp::m_iMsgLangOff]  // "Atšaukti"
-#define KP_MSG_CANCEL                   KpErrorClass::m_lpszaKpMessages[KP_MSG_CANCEL_IX                 ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_ATSAUKTI
-#define KP_MSG_TESTI                    KpErrorClass::m_lpszaKpMessages[KP_MSG_TESTI_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Toliau"
-#define KP_MSG_BAIGTI                   KpErrorClass::m_lpszaKpMessages[KP_MSG_BAIGTI_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Baigti"
-#define KP_MSG_PAMIRSAU_SLAPTAZODI      KpErrorClass::m_lpszaKpMessages[KP_MSG_PAMIRSAU_SLAPTAZODI_IX    ][KpCommonApp::m_iMsgLangOff]  // "Pamiršau slaptažodį"
-                                                                                                        
-#define KP_MSG_ERROR                    KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Klaida"
-#define KP_MSG_WARNING                  KpErrorClass::m_lpszaKpMessages[KP_MSG_WARNING_IX                ][KpCommonApp::m_iMsgLangOff]  // "Perspėjimas"
-#define KP_MSG_FILE_LINE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_FILE_LINE_IX              ][KpCommonApp::m_iMsgLangOff]) // ", failas:%s, eilutė:%d"
-#define KP_MSG_ENTRY_ID  ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_ENTRY_ID_IX               ][KpCommonApp::m_iMsgLangOff]) // ", Įrašo nr.:%ld"
-#define KP_MSG_ENTRY     ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_ENTRY_IX                  ][KpCommonApp::m_iMsgLangOff]) // ", Įrašas: %s"
-                                                                                    
-#define KP_MSG_NO_STANDARD_PROG         KpErrorClass::m_lpszaKpMessages[KP_MSG_NO_STANDARD_PROG_IX       ][KpCommonApp::m_iMsgLangOff]  // "Nerasta programa skirta atverti šio tipo failus"
-#define KP_MSG_WND_NOT_FOUND            KpErrorClass::m_lpszaKpMessages[KP_MSG_WND_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Langas nerastas"
-#define KP_MSG_PID_NOT_FOUND            KpErrorClass::m_lpszaKpMessages[KP_MSG_PID_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Nerastas proceso identifikatorius"
-#define KP_MSG_NO_SOCKET                KpErrorClass::m_lpszaKpMessages[KP_MSG_NO_SOCKET_IX              ][KpCommonApp::m_iMsgLangOff]  // "Jungtis dar nesukurta"
-#define KP_MSG_SOCK_UNRESOLVED          KpErrorClass::m_lpszaKpMessages[KP_MSG_SOCK_UNRESOLVED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Tarnybines stoties adresas dar nesurastas"
-                                                                                                        
-#define KP_MSG_ERR_OK                   KpErrorClass::m_lpszaKpMessages[KP_MSG_ERR_OK_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Operacija atlikta sėkmingai"
-#define KP_MSG_INVALIDARG               KpErrorClass::m_lpszaKpMessages[KP_MSG_INVALIDARG_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
-#define KP_MSG_NOTIMPL                  KpErrorClass::m_lpszaKpMessages[KP_MSG_NOTIMPL_IX                ][KpCommonApp::m_iMsgLangOff]  // "Priedas neįdiegtas"
-#define KP_MSG_UNEXPECTED               KpErrorClass::m_lpszaKpMessages[KP_MSG_UNEXPECTED_IX             ][KpCommonApp::m_iMsgLangOff]  // "Netikėtas kreipinys į sąsają"
-#define KP_MSG_FERROR                   KpErrorClass::m_lpszaKpMessages[KP_MSG_FERROR_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Failo skaitymo/rašymo klaida"
-#define KP_MSG_SYSTEM_ERROR             KpErrorClass::m_lpszaKpMessages[KP_MSG_SYSTEM_ERROR_IX           ][KpCommonApp::m_iMsgLangOff]  // "Klaida sistemoje"
-#define KP_MSG_EOF                      KpErrorClass::m_lpszaKpMessages[KP_MSG_EOF_IX                    ][KpCommonApp::m_iMsgLangOff]  // "Neteisinga failo pabaiga"
-#define KP_MSG_FILE_FORMAT              KpErrorClass::m_lpszaKpMessages[KP_MSG_FILE_FORMAT_IX            ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas failo formatas"
-#define KP_MSG_FILE_NOT_FOUND           KpErrorClass::m_lpszaKpMessages[KP_MSG_FILE_NOT_FOUND_IX         ][KpCommonApp::m_iMsgLangOff]  // "Failas nerastas"
-#define KP_MSG_DIR_ERROR                KpErrorClass::m_lpszaKpMessages[KP_MSG_DIR_ERROR_IX              ][KpCommonApp::m_iMsgLangOff]  // "Nepavyko atverti/sukurti failo"
-#define KP_MSG_OUTOFMEM                 KpErrorClass::m_lpszaKpMessages[KP_MSG_OUTOFMEM_IX               ][KpCommonApp::m_iMsgLangOff]  // "Trūksta atminties"
-#define KP_MSG_NO_FILE                  KpErrorClass::m_lpszaKpMessages[KP_MSG_NO_FILE_IX                ][KpCommonApp::m_iMsgLangOff]  // "Failas neatvertas"
-#define KP_MSG_DOUBLE_UNGET             KpErrorClass::m_lpszaKpMessages[KP_MSG_DOUBLE_UNGET_IX           ][KpCommonApp::m_iMsgLangOff]  // "Dvigubas įvedimo grąžinimas"
-#define KP_MSG_UNKN_CHR                 KpErrorClass::m_lpszaKpMessages[KP_MSG_UNKN_CHR_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neatpažintas simbolis"
-#define KP_MSG_COMMAND_ERROR            KpErrorClass::m_lpszaKpMessages[KP_MSG_COMMAND_ERROR_IX          ][KpCommonApp::m_iMsgLangOff]  // "Išorinė klaida"
-#define KP_MSG_BUFFER_OVERFLOW          KpErrorClass::m_lpszaKpMessages[KP_MSG_BUFFER_OVERFLOW_IX        ][KpCommonApp::m_iMsgLangOff]  // "Persipildė buferis"
-#define KP_MSG_FONT_UNDEF               KpErrorClass::m_lpszaKpMessages[KP_MSG_FONT_UNDEF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neapibrėžtas šriftas"
-#define KP_MSG_KWD_NOT_FOUND            KpErrorClass::m_lpszaKpMessages[KP_MSG_KWD_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Raktinis žodis nerastas"
-#define KP_MSG_UNKNOWN_SYSTEM           KpErrorClass::m_lpszaKpMessages[KP_MSG_UNKNOWN_SYSTEM_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacinė sistema neatpažinta"
-#define KP_MSG_ILL_CODE                 KpErrorClass::m_lpszaKpMessages[KP_MSG_ILL_CODE_IX               ][KpCommonApp::m_iMsgLangOff]  // "Klaidingas registracijos kodas"
-#define KP_MSG_CANCELLED                KpErrorClass::m_lpszaKpMessages[KP_MSG_CANCELLED_IX              ][KpCommonApp::m_iMsgLangOff]  // "Operacija nutraukta"
-#define KP_MSG_DOUBLE_CALL              KpErrorClass::m_lpszaKpMessages[KP_MSG_DOUBLE_CALL_IX            ][KpCommonApp::m_iMsgLangOff]  // "Dvigubas iškvietimas"
-#define KP_MSG_TIMEOUT                  KpErrorClass::m_lpszaKpMessages[KP_MSG_TIMEOUT_IX                ][KpCommonApp::m_iMsgLangOff]  // "Viršytas laukimo laikas"
-#define KP_MSG_OBJ_NOT_FOUND            KpErrorClass::m_lpszaKpMessages[KP_MSG_OBJ_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Objektas nerastas"
-#define KP_MSG_NO_CONN                  KpErrorClass::m_lpszaKpMessages[KP_MSG_NO_CONN_IX                ][KpCommonApp::m_iMsgLangOff]  // "Nėra ryšio"
-                                                                                                        
-#define KP_MSG_TRANS_ERR                KpErrorClass::m_lpszaKpMessages[KP_MSG_TRANS_ERR_IX              ][KpCommonApp::m_iMsgLangOff]  // "Perdavimo klaida"
-#define KP_MSG_TRANS_ERR_1              KpErrorClass::m_lpszaKpMessages[KP_MSG_TRANS_ERR_1_IX            ][KpCommonApp::m_iMsgLangOff]  // "Ryšio klaida, pakartokite siuntimo procedūrą"
+#define KP_MSG_TITLE                    KpErrorClass::m_pszaKpMessages[KP_MSG_TITLE_IX                  ][iMsgLangOff]  // "Pranešimas"
+#define KP_INPUT_TITLE                  KpErrorClass::m_pszaKpMessages[KP_INPUT_TITLE_IX                ][KpCommonApp::m_iMsgLangOff]  // "Įvedimas"
 
-#define KP_MSG_REFUSED                  KpErrorClass::m_lpszaKpMessages[KP_MSG_REFUSED_IX                ][KpCommonApp::m_iMsgLangOff]  // "Registracija atmesta"
-#define KP_MSG_ACCESS_DENIED            KpErrorClass::m_lpszaKpMessages[KP_MSG_ACCESS_DENIED_IX          ][KpCommonApp::m_iMsgLangOff]  // "Neleista prisijungti"
-#define KP_MSG_ILLEGAL_CHARACTER        KpErrorClass::m_lpszaKpMessages[KP_MSG_ILLEGAL_CHARACTER_IX      ][KpCommonApp::m_iMsgLangOff]  // "Neleistinas simbolis"
-#define KP_MSG_DIV_ZERO                 KpErrorClass::m_lpszaKpMessages[KP_MSG_DIV_ZERO_IX               ][KpCommonApp::m_iMsgLangOff]  // "Dalyba iš nulio"
-#define KP_MSG_ILLMATHARG               KpErrorClass::m_lpszaKpMessages[KP_MSG_ILLMATHARG_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neleistinas matematinės funkcijos argumentas"
-#define KP_MSG_ILLFUNC                  KpErrorClass::m_lpszaKpMessages[KP_MSG_ILLFUNC_IX                ][KpCommonApp::m_iMsgLangOff]  // "Neleistina operacija"
-                                                                                                        
-#define KP_MSG_NOTINST                  KpErrorClass::m_lpszaKpMessages[KP_MSG_NOTINST_IX                ][KpCommonApp::m_iMsgLangOff]  // "Programa neįdiegta arba diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_S ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_NOTINST_S_IX              ][KpCommonApp::m_iMsgLangOff]) // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE           KpErrorClass::m_lpszaKpMessages[KP_MSG_NOTINST_DELETE_IX         ][KpCommonApp::m_iMsgLangOff]  // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
-                                                                                                        
-#define KP_MSG_MSG_FORMAT               KpErrorClass::m_lpszaKpMessages[KP_MSG_MSG_FORMAT_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas pranešimo formatas"
-#define KP_MSG_OBSOLETE                 KpErrorClass::m_lpszaKpMessages[KP_MSG_OBSOLETE_IX               ][KpCommonApp::m_iMsgLangOff]  // "Pasenusi funkcija"
-#define KP_MSG_ERROR_HELP               KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_HELP_IX             ][KpCommonApp::m_iMsgLangOff]  // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt"
-#define KP_MSG_ERROR_HELP_REST ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_HELP_REST_IX  ][KpCommonApp::m_iMsgLangOff]) // "   Prie laiško prikabinkite failą %s"
-#define KP_MSG_WSAEACCES                KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEACCES_IX              ][KpCommonApp::m_iMsgLangOff]  // "Teisės nesuteiktos"
-#define KP_MSG_WSAEADDRINUSE            KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEADDRINUSE_IX          ][KpCommonApp::m_iMsgLangOff]  // "Adresas jau naudojamas"
-#define KP_MSG_WSAEADDRNOTAVAIL         KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEADDRNOTAVAIL_IX       ][KpCommonApp::m_iMsgLangOff]  // "Prašomas adresas negali būti priskirtas"
-#define KP_MSG_WSAEAFNOSUPPORT          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEAFNOSUPPORT_IX        ][KpCommonApp::m_iMsgLangOff]  // "Adresų šeimos grupė nepalaikoma protokolo"
-#define KP_MSG_WSAEALREADY              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEALREADY_IX            ][KpCommonApp::m_iMsgLangOff]  // "Operacija jau vykdoma"
-#define KP_MSG_WSAECONNABORTED          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAECONNABORTED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Programa iššaukė ryšio nutraukimą"
-#define KP_MSG_WSAECONNREFUSED          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAECONNREFUSED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Susijungimas atmestas"
-#define KP_MSG_WSAECONNRESET            KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAECONNRESET_IX          ][KpCommonApp::m_iMsgLangOff]  // "Sujungimas nutrauktas"
-#define KP_MSG_WSAEDESTADDRREQ          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEDESTADDRREQ_IX        ][KpCommonApp::m_iMsgLangOff]  // "Būtinas kreities adresas"
-#define KP_MSG_WSAEFAULT                KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEFAULT_IX              ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas adresas"
-#define KP_MSG_WSAEHOSTDOWN             KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEHOSTDOWN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Serveris laikinai neveikia"
-#define KP_MSG_WSAEHOSTUNREACH          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEHOSTUNREACH_IX        ][KpCommonApp::m_iMsgLangOff]  // "Serveris nepasiekiamas"
-#define KP_MSG_WSAEINPROGRESS           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEINPROGRESS_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacija vykdoma"
-#define KP_MSG_WSAEINTR                 KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEINTR_IX               ][KpCommonApp::m_iMsgLangOff]  // "Funkcija nutraukta"
-#define KP_MSG_WSAEINVAL                KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEINVAL_IX              ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
-#define KP_MSG_WSAEISCONN               KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEISCONN_IX             ][KpCommonApp::m_iMsgLangOff]  // "Susijungimas jau įvykęs"
-#define KP_MSG_WSAEMFILE                KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEMFILE_IX              ][KpCommonApp::m_iMsgLangOff]  // "Perdaug atvertų failų"
-#define KP_MSG_WSAEMSGSIZE              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEMSGSIZE_IX            ][KpCommonApp::m_iMsgLangOff]  // "Perdaug ilgas pranešimas"
-#define KP_MSG_WSAENETDOWN              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENETDOWN_IX            ][KpCommonApp::m_iMsgLangOff]  // "Tinklas neveikia"
-#define KP_MSG_WSAENETRESET             KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENETRESET_IX           ][KpCommonApp::m_iMsgLangOff]  // "Atsijungė nuo tinklo"
-#define KP_MSG_WSAENETUNREACH           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENETUNREACH_IX         ][KpCommonApp::m_iMsgLangOff]  // "Tinklas nepasiekiamas"
-#define KP_MSG_WSAENOBUFS               KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENOBUFS_IX             ][KpCommonApp::m_iMsgLangOff]  // "Trūksta vietos buferyje"
-#define KP_MSG_WSAENOPROTOOPT           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENOPROTOOPT_IX         ][KpCommonApp::m_iMsgLangOff]  // "Neteisinga protokolo parinktis"
-#define KP_MSG_WSAENOTCONN              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENOTCONN_IX            ][KpCommonApp::m_iMsgLangOff]  // "Sujungimas nepavyko"
-#define KP_MSG_WSAENOTSOCK              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAENOTSOCK_IX            ][KpCommonApp::m_iMsgLangOff]  // "Socket operation on non-socket"
-#define KP_MSG_WSAEOPNOTSUPP            KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEOPNOTSUPP_IX          ][KpCommonApp::m_iMsgLangOff]  // "Operacija negali būti atlikta"
-#define KP_MSG_WSAEPFNOSUPPORT          KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEPFNOSUPPORT_IX        ][KpCommonApp::m_iMsgLangOff]  // "Protokolo šeima nepalaikoma"
-#define KP_MSG_WSAEPROCLIM              KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEPROCLIM_IX            ][KpCommonApp::m_iMsgLangOff]  // "Perdaug procesų"
-#define KP_MSG_WSAEPROTONOSUPPORT       KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEPROTONOSUPPORT_IX     ][KpCommonApp::m_iMsgLangOff]  // "Protokolas nepalaikomas"
-#define KP_MSG_WSAEPROTOTYPE            KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEPROTOTYPE_IX          ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas protokolo sujungimo tipas"
-#define KP_MSG_WSAESHUTDOWN             KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAESHUTDOWN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Siuntimas nebegalimas, sujungimas nutrauktas"
-#define KP_MSG_WSAESOCKTNOSUPPORT       KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAESOCKTNOSUPPORT_IX     ][KpCommonApp::m_iMsgLangOff]  // "Sujungimo tipas nepalaikomas"
-#define KP_MSG_WSAETIMEDOUT             KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAETIMEDOUT_IX           ][KpCommonApp::m_iMsgLangOff]  // "Maksimalus sujungimo laukimo laikas viršytas"
-#define KP_MSG_WSATYPE_NOT_FOUND        KpErrorClass::m_lpszaKpMessages[KP_MSG_WSATYPE_NOT_FOUND_IX      ][KpCommonApp::m_iMsgLangOff]  // "Klasės tipas nerastas"
-#define KP_MSG_WSAEWOULDBLOCK           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEWOULDBLOCK_IX         ][KpCommonApp::m_iMsgLangOff]  // "Šaltinis laikinai nepasiekiamas"
-#define KP_MSG_WSAHOST_NOT_FOUND        KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAHOST_NOT_FOUND_IX      ][KpCommonApp::m_iMsgLangOff]  // "Serveris nerastas"
-#define KP_MSG_WSA_INVALID_HANDLE       KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_INVALID_HANDLE_IX     ][KpCommonApp::m_iMsgLangOff]  // "Klaidingas objekto valdiklis"
-#define KP_MSG_WSA_INVALID_PARAMETER    KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_INVALID_PARAMETER_IX  ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
-#define KP_MSG_WSAINVALIDPROCTABLE      KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAINVALIDPROCTABLE_IX    ][KpCommonApp::m_iMsgLangOff]  // "Klaidinga procedūrų lentelė"
-#define KP_MSG_WSAINVALIDPROVIDER       KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAINVALIDPROVIDER_IX     ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas tiekėjo kodas"
-#define KP_MSG_WSA_IO_INCOMPLETE        KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_IO_INCOMPLETE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Persikloja įvesties/išvesties įvykiai"
-#define KP_MSG_WSA_IO_PENDING           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_IO_PENDING_IX         ][KpCommonApp::m_iMsgLangOff]  // "Persiklojančios operacijos bus atliktos vėliau"
-                                                                                                        
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY    KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_NOT_ENOUGH_MEMORY_IX  ][KpCommonApp::m_iMsgLangOff]  // "Nepakanka atminties"
-#define KP_MSG_WSANOTINITIALISED        KpErrorClass::m_lpszaKpMessages[KP_MSG_WSANOTINITIALISED_IX      ][KpCommonApp::m_iMsgLangOff]  // "Tinklo posistemis neaktyvuotas"
-#define KP_MSG_WSANO_DATA               KpErrorClass::m_lpszaKpMessages[KP_MSG_WSANO_DATA_IX             ][KpCommonApp::m_iMsgLangOff]  // "Vardas teisingas, tačiau nėra reikiamo tipo duomenų"
-#define KP_MSG_WSANO_RECOVERY           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSANO_RECOVERY_IX         ][KpCommonApp::m_iMsgLangOff]  // "Nepataisoma klaida"
-#define KP_MSG_WSAPROVIDERFAILEDINIT    KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAPROVIDERFAILEDINIT_IX  ][KpCommonApp::m_iMsgLangOff]  // "Negalima inicializuoti paslaugos tiekėjo"
-#define KP_MSG_WSASYSCALLFAILURE        KpErrorClass::m_lpszaKpMessages[KP_MSG_WSASYSCALLFAILURE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Sistemos kreipinio klaida"
-#define KP_MSG_WSASYSNOTREADY           KpErrorClass::m_lpszaKpMessages[KP_MSG_WSASYSNOTREADY_IX         ][KpCommonApp::m_iMsgLangOff]  // "Tinklo posistemė nepasiekiama"
-#define KP_MSG_WSATRY_AGAIN             KpErrorClass::m_lpszaKpMessages[KP_MSG_WSATRY_AGAIN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Neautorizuotas serveris nerastas"
-#define KP_MSG_WSAVERNOTSUPPORTED       KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAVERNOTSUPPORTED_IX     ][KpCommonApp::m_iMsgLangOff]  // "Netinka WINSOCK.DLL versija"
-#define KP_MSG_WSAEDISCON               KpErrorClass::m_lpszaKpMessages[KP_MSG_WSAEDISCON_IX             ][KpCommonApp::m_iMsgLangOff]  // "Pradėtas tvarkingas išjungimas"
-#define KP_MSG_WSA_OPERATION_ABORTED    KpErrorClass::m_lpszaKpMessages[KP_MSG_WSA_OPERATION_ABORTED_IX  ][KpCommonApp::m_iMsgLangOff]  // "Persiklojanti operacija nutraukta"
-                                                                                                        
-#define KP_MSG_OUT_OF_MEM_RES           KpErrorClass::m_lpszaKpMessages[KP_MSG_OUT_OF_MEM_RES_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacinei sistemai trūksta atminties"
-#define KP_MSG_ERROR_FILE_NOT_FOUND     KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_FILE_NOT_FOUND_IX   ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas failas nerastas"
-#define KP_MSG_ERROR_PATH_NOT_FOUND     KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_PATH_NOT_FOUND_IX   ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas kelias iki failų nerastas"
-#define KP_MSG_ERROR_BAD_FORMAT         KpErrorClass::m_lpszaKpMessages[KP_MSG_ERROR_BAD_FORMAT_IX       ][KpCommonApp::m_iMsgLangOff]  // "Pasirinktas .exe failas sugadintas"
-#define KP_MSG_SE_ERR_ACCESSDENIED      KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_ACCESSDENIED_IX    ][KpCommonApp::m_iMsgLangOff]  // "Operacinė sistema uždraudė prisijungimą prie reikiamų failų"
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE   KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_ASSOCINCOMPLETE_IX ][KpCommonApp::m_iMsgLangOff]  // "Failo sąryšis su programa nepilnas arba neteisingas"
-#define KP_MSG_SE_ERR_DDEBUSY           KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_DDEBUSY_IX         ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija negali būti baigta, nes kitos DDE transakcijos dar vykdomos"
-#define KP_MSG_SE_ERR_DDEFAIL           KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_DDEFAIL_IX         ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija nutraukta"
-#define KP_MSG_SE_ERR_DDETIMEOUT        KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_DDETIMEOUT_IX      ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija negali būti baigta, nes neužteko nurodyto laukimo laiko"
-#define KP_MSG_SE_ERR_DLLNOTFOUND       KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_DLLNOTFOUND_IX     ][KpCommonApp::m_iMsgLangOff]  // "Nurodyta dinaminė biblioteka nerasta"
-#define KP_MSG_SE_ERR_FNF               KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_FNF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas failas nerastas"
-#define KP_MSG_SE_ERR_NOASSOC           KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_NOASSOC_IX         ][KpCommonApp::m_iMsgLangOff]  // "Nerasta programa skirta atverti šio tipo failus"
-#define KP_MSG_SE_ERR_OOM               KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_OOM_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nepakanka atminties atlikti operacijai"
-#define KP_MSG_SE_ERR_PNF               KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_PNF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas kelias nerastas"
-#define KP_MSG_SE_ERR_SHARE             KpErrorClass::m_lpszaKpMessages[KP_MSG_SE_ERR_SHARE_IX           ][KpCommonApp::m_iMsgLangOff]  // "Dalijimosi klaida"
-                                                                                    
-#define KP_MSG_FIRST_TIME_ADMIN         KpErrorClass::m_lpszaKpMessages[KP_MSG_FIRST_TIME_ADMIN_IX       ][KpCommonApp::m_iMsgLangOff]  // "Programą paleidžiant pirmą kartą, reikalingos\n administratoriaus teisės. Paleiskite programą iš naujo administratoriaus teisėmis."
-#define KP_MSG_NOW_NOT_ADMIN            KpErrorClass::m_lpszaKpMessages[KP_MSG_NOW_NOT_ADMIN_IX          ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_NOT_ADMIN
-#define KP_MSG_NOT_ADMIN                KpErrorClass::m_lpszaKpMessages[KP_MSG_NOT_ADMIN_IX              ][KpCommonApp::m_iMsgLangOff]  // "Programą paleiskite iš naujo paprasto vartotojo teisėmis"
-#define KP_MSG_COPY_FILE_ACCESS_DENIED  KpErrorClass::m_lpszaKpMessages[KP_MSG_COPY_FILE_ACCESS_DENIED_IX][KpCommonApp::m_iMsgLangOff]  // "Failo nukopijuoti nepavyko, programą paleiskite iš naujo administratoriaus teisėmis"
-                                                                                                        
-#define KP_PROGRESS_TITLE               KpErrorClass::m_lpszaKpMessages[KP_PROGRESS_TITLE_IX             ][KpCommonApp::m_iMsgLangOff]  // "Palaukite..."
-#define KP_MSG_DELETING_FILE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_DELETING_FILE_IX      ][KpCommonApp::m_iMsgLangOff]) // "Naikinamas failas %s.%s..."
-#define KP_MSG_COPYING                  KpErrorClass::m_lpszaKpMessages[KP_MSG_COPYING_IX                ][KpCommonApp::m_iMsgLangOff]  // "Kopijuojamas failas..."
-#define KP_MSG_COPYING_DIR ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_COPYING_DIR_IX          ][KpCommonApp::m_iMsgLangOff]) // "Kopijuojamas aplankas %s.%s..."
-#define KP_MSG_COPYING_FILE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_COPYING_FILE_IX        ][KpCommonApp::m_iMsgLangOff]) // "Kopijuojamas failas %s.%s..."
-                                                                                                        
-#define KP_MSG_NEG_ANSW                 KpErrorClass::m_lpszaKpMessages[KP_MSG_NEG_ANSW_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neigiamas atsakymas"
-                                                                                                        
-#define KP_MSG_UNABLE_TO_EXECUTE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_UNABLE_TO_EXECUTE_IX][KpCommonApp::m_iMsgLangOff]) // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
-                                                                                                        
-#define KP_MSG_FLASH_PLAYER_INSTALL     KpErrorClass::m_lpszaKpMessages[KP_MSG_FLASH_PLAYER_INSTALL_IX   ][KpCommonApp::m_iMsgLangOff]  // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
-                                                                                                        
-#define KP_MSG_FILE_CHANGED             KpErrorClass::m_lpszaKpMessages[KP_MSG_FILE_CHANGED_IX           ][KpCommonApp::m_iMsgLangOff]  // "Failas pasikeitė"
-                                                                                                        
-#define KP_MSG_ALL_FILES                KpErrorClass::m_lpszaKpMessages[KP_MSG_ALL_FILES_IX              ][KpCommonApp::m_iMsgLangOff]  // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS                  KpErrorClass::m_lpszaKpMessages[KP_MSG_SAVE_AS_IX                ][KpCommonApp::m_iMsgLangOff]  // "Įrašyti kaip"
-                                                                                                        
-#define KP_MSG_FILE_EXISTS ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_FILE_EXISTS_IX          ][KpCommonApp::m_iMsgLangOff]) // "Failas %s jau yra, perrašyti?"
-                                                                                                        
-#define KP_MSG_DIAG_MSG                 KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_IX               ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE           KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_TITLE_IX         ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL            KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_EXPL_IX          ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt"
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT    KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_EMAIL_PROMPT_IX  ][KpCommonApp::m_iMsgLangOff]  // "Jūsų e-pašto adresas:"
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_COMMENTS_PROMPT_IX][KpCommonApp::m_iMsgLangOff] // "Komentarai apie klaidos atsiradimo aplinkybes:"
-#define KP_MSG_DIAG_MSG_FILE_PROMPT     KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_FILE_PROMPT_IX   ][KpCommonApp::m_iMsgLangOff]  // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):"
-                                                                                                        
-#define KP_MSG_BAD_EMAIL_ADDRESS        KpErrorClass::m_lpszaKpMessages[KP_MSG_BAD_EMAIL_ADDRESS_IX      ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas e-pašto adresas"
-                                                                                                        
-#define KP_MSG_DIAG_MSG_SEL_FILE        KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_SEL_FILE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Pasirinkite siunčiamą failą"
+#define KP_MSG_TAIP                     KpErrorClass::m_pszaKpMessages[KP_MSG_TAIP_IX                   ][KpCommonApp::m_iMsgLangOff]  // "Taip"
+#define KP_MSG_YES                      KpErrorClass::m_pszaKpMessages[KP_MSG_YES_IX                    ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_TAIP
+#define KP_MSG_NE                       KpErrorClass::m_pszaKpMessages[KP_MSG_NE_IX                     ][KpCommonApp::m_iMsgLangOff]  // "Ne"
+#define KP_MSG_NO                       KpErrorClass::m_pszaKpMessages[KP_MSG_NO_IX                     ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_NE
+#define KP_MSG_GERAI                    KpErrorClass::m_pszaKpMessages[KP_MSG_GERAI_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Gerai"
+#define KP_MSG_OK                       KpErrorClass::m_pszaKpMessages[KP_MSG_OK_IX                     ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_GERAI
+#define KP_MSG_ATSAUKTI                 KpErrorClass::m_pszaKpMessages[KP_MSG_ATSAUKTI_IX               ][KpCommonApp::m_iMsgLangOff]  // "Atšaukti"
+#define KP_MSG_CANCEL                   KpErrorClass::m_pszaKpMessages[KP_MSG_CANCEL_IX                 ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_ATSAUKTI
+#define KP_MSG_TESTI                    KpErrorClass::m_pszaKpMessages[KP_MSG_TESTI_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Toliau"
+#define KP_MSG_BAIGTI                   KpErrorClass::m_pszaKpMessages[KP_MSG_BAIGTI_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Baigti"
+#define KP_MSG_PAMIRSAU_SLAPTAZODI      KpErrorClass::m_pszaKpMessages[KP_MSG_PAMIRSAU_SLAPTAZODI_IX    ][KpCommonApp::m_iMsgLangOff]  // "Pamiršau slaptažodį"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED       KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_SUCCEEDED_IX     ][KpCommonApp::m_iMsgLangOff]  // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_ERROR                    KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_IX                  ][KpCommonApp::m_iMsgLangOff]  // "Klaida"
+#define KP_MSG_WARNING                  KpErrorClass::m_pszaKpMessages[KP_MSG_WARNING_IX                ][KpCommonApp::m_iMsgLangOff]  // "Perspėjimas"
+#define KP_MSG_FILE_LINE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_FILE_LINE_IX              ][KpCommonApp::m_iMsgLangOff]) // ", failas:%s, eilutė:%d"
+#define KP_MSG_ENTRY_ID  ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_ENTRY_ID_IX               ][KpCommonApp::m_iMsgLangOff]) // ", Įrašo nr.:%ld"
+#define KP_MSG_ENTRY     ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_ENTRY_IX                  ][KpCommonApp::m_iMsgLangOff]) // ", Įrašas: %s"
 
-#define KP_MSG_DIAG_MSG_EXPL1           KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_EXPL1_IX         ][KpCommonApp::m_iMsgLangOff]  // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI                   KpErrorClass::m_lpszaKpMessages[KP_MSG_SIUSTI_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2           KpErrorClass::m_lpszaKpMessages[KP_MSG_DIAG_MSG_EXPL2_IX         ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_NO_STANDARD_PROG         KpErrorClass::m_pszaKpMessages[KP_MSG_NO_STANDARD_PROG_IX       ][KpCommonApp::m_iMsgLangOff]  // "Nerasta programa skirta atverti šio tipo failus"
+#define KP_MSG_WND_NOT_FOUND            KpErrorClass::m_pszaKpMessages[KP_MSG_WND_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Langas nerastas"
+#define KP_MSG_PID_NOT_FOUND            KpErrorClass::m_pszaKpMessages[KP_MSG_PID_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Nerastas proceso identifikatorius"
+#define KP_MSG_NO_SOCKET                KpErrorClass::m_pszaKpMessages[KP_MSG_NO_SOCKET_IX              ][KpCommonApp::m_iMsgLangOff]  // "Jungtis dar nesukurta"
+#define KP_MSG_SOCK_UNRESOLVED          KpErrorClass::m_pszaKpMessages[KP_MSG_SOCK_UNRESOLVED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Tarnybinės stoties adresas dar nesurastas"
 
-#define KP_MSG_DOWNLOADING              KpErrorClass::m_lpszaKpMessages[KP_MSG_DOWNLOADING_IX            ][KpCommonApp::m_iMsgLangOff]  // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_DOWNLOADING_FILE_IX][KpCommonApp::m_iMsgLangOff]) // "Siunčiamas failas %s.%s..."
+#define KP_MSG_ERR_OK                   KpErrorClass::m_pszaKpMessages[KP_MSG_ERR_OK_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Operacija atlikta sėkmingai"
+#define KP_MSG_INVALIDARG               KpErrorClass::m_pszaKpMessages[KP_MSG_INVALIDARG_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
+#define KP_MSG_NOTIMPL                  KpErrorClass::m_pszaKpMessages[KP_MSG_NOTIMPL_IX                ][KpCommonApp::m_iMsgLangOff]  // "Priedas neįdiegtas"
+#define KP_MSG_UNEXPECTED               KpErrorClass::m_pszaKpMessages[KP_MSG_UNEXPECTED_IX             ][KpCommonApp::m_iMsgLangOff]  // "Netikėtas kreipinys į sąsają"
+#define KP_MSG_FERROR                   KpErrorClass::m_pszaKpMessages[KP_MSG_FERROR_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Failo skaitymo/rašymo klaida"
+#define KP_MSG_SYSTEM_ERROR             KpErrorClass::m_pszaKpMessages[KP_MSG_SYSTEM_ERROR_IX           ][KpCommonApp::m_iMsgLangOff]  // "Klaida sistemoje"
+#define KP_MSG_EOF                      KpErrorClass::m_pszaKpMessages[KP_MSG_EOF_IX                    ][KpCommonApp::m_iMsgLangOff]  // "Neteisinga failo pabaiga"
+#define KP_MSG_FILE_FORMAT              KpErrorClass::m_pszaKpMessages[KP_MSG_FILE_FORMAT_IX            ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas failo formatas"
+#define KP_MSG_FILE_NOT_FOUND           KpErrorClass::m_pszaKpMessages[KP_MSG_FILE_NOT_FOUND_IX         ][KpCommonApp::m_iMsgLangOff]  // "Failas nerastas"
+#define KP_MSG_DIR_ERROR                KpErrorClass::m_pszaKpMessages[KP_MSG_DIR_ERROR_IX              ][KpCommonApp::m_iMsgLangOff]  // "Nepavyko atverti/sukurti failo"
+#define KP_MSG_OUTOFMEM                 KpErrorClass::m_pszaKpMessages[KP_MSG_OUTOFMEM_IX               ][KpCommonApp::m_iMsgLangOff]  // "Trūksta atminties"
+#define KP_MSG_NO_FILE                  KpErrorClass::m_pszaKpMessages[KP_MSG_NO_FILE_IX                ][KpCommonApp::m_iMsgLangOff]  // "Failas neatvertas"
+#define KP_MSG_DOUBLE_UNGET             KpErrorClass::m_pszaKpMessages[KP_MSG_DOUBLE_UNGET_IX           ][KpCommonApp::m_iMsgLangOff]  // "Dvigubas įvedimo grąžinimas"
+#define KP_MSG_UNKN_CHR                 KpErrorClass::m_pszaKpMessages[KP_MSG_UNKN_CHR_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neatpažintas simbolis"
+#define KP_MSG_COMMAND_ERROR            KpErrorClass::m_pszaKpMessages[KP_MSG_COMMAND_ERROR_IX          ][KpCommonApp::m_iMsgLangOff]  // "Išorinė klaida"
+#define KP_MSG_BUFFER_OVERFLOW          KpErrorClass::m_pszaKpMessages[KP_MSG_BUFFER_OVERFLOW_IX        ][KpCommonApp::m_iMsgLangOff]  // "Persipildė buferis"
+#define KP_MSG_FONT_UNDEF               KpErrorClass::m_pszaKpMessages[KP_MSG_FONT_UNDEF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neapibrėžtas šriftas"
+#define KP_MSG_KWD_NOT_FOUND            KpErrorClass::m_pszaKpMessages[KP_MSG_KWD_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Raktinis žodis nerastas"
+#define KP_MSG_UNKNOWN_SYSTEM           KpErrorClass::m_pszaKpMessages[KP_MSG_UNKNOWN_SYSTEM_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacinė sistema neatpažinta"
+#define KP_MSG_ILL_CODE                 KpErrorClass::m_pszaKpMessages[KP_MSG_ILL_CODE_IX               ][KpCommonApp::m_iMsgLangOff]  // "Klaidingas registracijos kodas"
+#define KP_MSG_CANCELLED                KpErrorClass::m_pszaKpMessages[KP_MSG_CANCELLED_IX              ][KpCommonApp::m_iMsgLangOff]  // "Operacija nutraukta"
+#define KP_MSG_DOUBLE_CALL              KpErrorClass::m_pszaKpMessages[KP_MSG_DOUBLE_CALL_IX            ][KpCommonApp::m_iMsgLangOff]  // "Dvigubas iškvietimas"
+#define KP_MSG_TIMEOUT                  KpErrorClass::m_pszaKpMessages[KP_MSG_TIMEOUT_IX                ][KpCommonApp::m_iMsgLangOff]  // "Viršytas laukimo laikas"
+#define KP_MSG_OBJ_NOT_FOUND            KpErrorClass::m_pszaKpMessages[KP_MSG_OBJ_NOT_FOUND_IX          ][KpCommonApp::m_iMsgLangOff]  // "Objektas nerastas"
+#define KP_MSG_NO_CONN                  KpErrorClass::m_pszaKpMessages[KP_MSG_NO_CONN_IX                ][KpCommonApp::m_iMsgLangOff]  // "Nėra ryšio"
 
-#define KP_MSG_FIREWALL                 KpErrorClass::m_lpszaKpMessages[KP_MSG_FIREWALL_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_TRANS_ERR                KpErrorClass::m_pszaKpMessages[KP_MSG_TRANS_ERR_IX              ][KpCommonApp::m_iMsgLangOff]  // "Perdavimo klaida"
+#define KP_MSG_TRANS_ERR_1              KpErrorClass::m_pszaKpMessages[KP_MSG_TRANS_ERR_1_IX            ][KpCommonApp::m_iMsgLangOff]  // "Ryšio klaida, pakartokite siuntimo procedūrą"
 
-#define KP_MSG_POINTER                  KpErrorClass::m_lpszaKpMessages[KP_MSG_POINTER_IX                ][KpCommonApp::m_iMsgLangOff]  // "Bloga rodyklė"
+#define KP_MSG_REFUSED                  KpErrorClass::m_pszaKpMessages[KP_MSG_REFUSED_IX                ][KpCommonApp::m_iMsgLangOff]  // "Registracija atmesta"
+#define KP_MSG_ACCESS_DENIED            KpErrorClass::m_pszaKpMessages[KP_MSG_ACCESS_DENIED_IX          ][KpCommonApp::m_iMsgLangOff]  // "Neleista prisijungti"
+#define KP_MSG_ILLEGAL_CHARACTER        KpErrorClass::m_pszaKpMessages[KP_MSG_ILLEGAL_CHARACTER_IX      ][KpCommonApp::m_iMsgLangOff]  // "Neleistinas simbolis"
+#define KP_MSG_DIV_ZERO                 KpErrorClass::m_pszaKpMessages[KP_MSG_DIV_ZERO_IX               ][KpCommonApp::m_iMsgLangOff]  // "Dalyba iš nulio"
+#define KP_MSG_ILLMATHARG               KpErrorClass::m_pszaKpMessages[KP_MSG_ILLMATHARG_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neleistinas matematinės funkcijos argumentas"
+#define KP_MSG_ILLFUNC                  KpErrorClass::m_pszaKpMessages[KP_MSG_ILLFUNC_IX                ][KpCommonApp::m_iMsgLangOff]  // "Neleistina operacija"
 
-#define KP_MSG_LOG_STARTED ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_LOG_STARTED_IX          ][KpCommonApp::m_iMsgLangOff]) // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE ((const char *)KpErrorClass::m_lpszaKpMessages[KP_MSG_CONS_TITLE_IX            ][KpCommonApp::m_iMsgLangOff]) // "%s: Pranešimų žurnalas"
+#define KP_MSG_NOTINST                  KpErrorClass::m_pszaKpMessages[KP_MSG_NOTINST_IX                ][KpCommonApp::m_iMsgLangOff]  // "Programa neįdiegta arba diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_S ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_NOTINST_S_IX              ][KpCommonApp::m_iMsgLangOff]) // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE           KpErrorClass::m_pszaKpMessages[KP_MSG_NOTINST_DELETE_IX         ][KpCommonApp::m_iMsgLangOff]  // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_UNHANDLED_EXCEPTION      KpErrorClass::m_lpszaKpMessages[KP_MSG_UNHANDLED_EXCEPTION_IX    ][KpCommonApp::m_iMsgLangOff]  // "Neapdorojamas trūkis"
+#define KP_MSG_MSG_FORMAT               KpErrorClass::m_pszaKpMessages[KP_MSG_MSG_FORMAT_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas pranešimo formatas"
+#define KP_MSG_OBSOLETE                 KpErrorClass::m_pszaKpMessages[KP_MSG_OBSOLETE_IX               ][KpCommonApp::m_iMsgLangOff]  // "Pasenusi funkcija"
+#define KP_MSG_ERROR_HELP               KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_HELP_IX             ][KpCommonApp::m_iMsgLangOff]  // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt"
+#define KP_MSG_ERROR_HELP_REST ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_HELP_REST_IX  ][KpCommonApp::m_iMsgLangOff]) // "   Prie laiško prikabinkite failą %s"
+#define KP_MSG_WSAEACCES                KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEACCES_IX              ][KpCommonApp::m_iMsgLangOff]  // "Teisės nesuteiktos"
+#define KP_MSG_WSAEADDRINUSE            KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEADDRINUSE_IX          ][KpCommonApp::m_iMsgLangOff]  // "Adresas jau naudojamas"
+#define KP_MSG_WSAEADDRNOTAVAIL         KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEADDRNOTAVAIL_IX       ][KpCommonApp::m_iMsgLangOff]  // "Prašomas adresas negali būti priskirtas"
+#define KP_MSG_WSAEAFNOSUPPORT          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEAFNOSUPPORT_IX        ][KpCommonApp::m_iMsgLangOff]  // "Adresų šeimos grupė nepalaikoma protokolo"
+#define KP_MSG_WSAEALREADY              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEALREADY_IX            ][KpCommonApp::m_iMsgLangOff]  // "Operacija jau vykdoma"
+#define KP_MSG_WSAECONNABORTED          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAECONNABORTED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Programa iššaukė ryšio nutraukimą"
+#define KP_MSG_WSAECONNREFUSED          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAECONNREFUSED_IX        ][KpCommonApp::m_iMsgLangOff]  // "Susijungimas atmestas"
+#define KP_MSG_WSAECONNRESET            KpErrorClass::m_pszaKpMessages[KP_MSG_WSAECONNRESET_IX          ][KpCommonApp::m_iMsgLangOff]  // "Sujungimas nutrauktas"
+#define KP_MSG_WSAEDESTADDRREQ          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEDESTADDRREQ_IX        ][KpCommonApp::m_iMsgLangOff]  // "Būtinas kreities adresas"
+#define KP_MSG_WSAEFAULT                KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEFAULT_IX              ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas adresas"
+#define KP_MSG_WSAEHOSTDOWN             KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEHOSTDOWN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Serveris laikinai neveikia"
+#define KP_MSG_WSAEHOSTUNREACH          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEHOSTUNREACH_IX        ][KpCommonApp::m_iMsgLangOff]  // "Serveris nepasiekiamas"
+#define KP_MSG_WSAEINPROGRESS           KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEINPROGRESS_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacija vykdoma"
+#define KP_MSG_WSAEINTR                 KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEINTR_IX               ][KpCommonApp::m_iMsgLangOff]  // "Funkcija nutraukta"
+#define KP_MSG_WSAEINVAL                KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEINVAL_IX              ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
+#define KP_MSG_WSAEISCONN               KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEISCONN_IX             ][KpCommonApp::m_iMsgLangOff]  // "Susijungimas jau įvykęs"
+#define KP_MSG_WSAEMFILE                KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEMFILE_IX              ][KpCommonApp::m_iMsgLangOff]  // "Perdaug atvertų failų"
+#define KP_MSG_WSAEMSGSIZE              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEMSGSIZE_IX            ][KpCommonApp::m_iMsgLangOff]  // "Perdaug ilgas pranešimas"
+#define KP_MSG_WSAENETDOWN              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENETDOWN_IX            ][KpCommonApp::m_iMsgLangOff]  // "Tinklas neveikia"
+#define KP_MSG_WSAENETRESET             KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENETRESET_IX           ][KpCommonApp::m_iMsgLangOff]  // "Atsijungė nuo tinklo"
+#define KP_MSG_WSAENETUNREACH           KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENETUNREACH_IX         ][KpCommonApp::m_iMsgLangOff]  // "Tinklas nepasiekiamas"
+#define KP_MSG_WSAENOBUFS               KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENOBUFS_IX             ][KpCommonApp::m_iMsgLangOff]  // "Trūksta vietos buferyje"
+#define KP_MSG_WSAENOPROTOOPT           KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENOPROTOOPT_IX         ][KpCommonApp::m_iMsgLangOff]  // "Neteisinga protokolo parinktis"
+#define KP_MSG_WSAENOTCONN              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENOTCONN_IX            ][KpCommonApp::m_iMsgLangOff]  // "Sujungimas nepavyko"
+#define KP_MSG_WSAENOTSOCK              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAENOTSOCK_IX            ][KpCommonApp::m_iMsgLangOff]  // "Socket operation on non-socket"
+#define KP_MSG_WSAEOPNOTSUPP            KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEOPNOTSUPP_IX          ][KpCommonApp::m_iMsgLangOff]  // "Operacija negali būti atlikta"
+#define KP_MSG_WSAEPFNOSUPPORT          KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEPFNOSUPPORT_IX        ][KpCommonApp::m_iMsgLangOff]  // "Protokolo šeima nepalaikoma"
+#define KP_MSG_WSAEPROCLIM              KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEPROCLIM_IX            ][KpCommonApp::m_iMsgLangOff]  // "Perdaug procesų"
+#define KP_MSG_WSAEPROTONOSUPPORT       KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEPROTONOSUPPORT_IX     ][KpCommonApp::m_iMsgLangOff]  // "Protokolas nepalaikomas"
+#define KP_MSG_WSAEPROTOTYPE            KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEPROTOTYPE_IX          ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas protokolo sujungimo tipas"
+#define KP_MSG_WSAESHUTDOWN             KpErrorClass::m_pszaKpMessages[KP_MSG_WSAESHUTDOWN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Siuntimas nebegalimas, sujungimas nutrauktas"
+#define KP_MSG_WSAESOCKTNOSUPPORT       KpErrorClass::m_pszaKpMessages[KP_MSG_WSAESOCKTNOSUPPORT_IX     ][KpCommonApp::m_iMsgLangOff]  // "Sujungimo tipas nepalaikomas"
+#define KP_MSG_WSAETIMEDOUT             KpErrorClass::m_pszaKpMessages[KP_MSG_WSAETIMEDOUT_IX           ][KpCommonApp::m_iMsgLangOff]  // "Maksimalus sujungimo laukimo laikas viršytas"
+#define KP_MSG_WSATYPE_NOT_FOUND        KpErrorClass::m_pszaKpMessages[KP_MSG_WSATYPE_NOT_FOUND_IX      ][KpCommonApp::m_iMsgLangOff]  // "Klasės tipas nerastas"
+#define KP_MSG_WSAEWOULDBLOCK           KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEWOULDBLOCK_IX         ][KpCommonApp::m_iMsgLangOff]  // "Šaltinis laikinai nepasiekiamas"
+#define KP_MSG_WSAHOST_NOT_FOUND        KpErrorClass::m_pszaKpMessages[KP_MSG_WSAHOST_NOT_FOUND_IX      ][KpCommonApp::m_iMsgLangOff]  // "Serveris nerastas"
+#define KP_MSG_WSA_INVALID_HANDLE       KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_INVALID_HANDLE_IX     ][KpCommonApp::m_iMsgLangOff]  // "Klaidingas objekto valdiklis"
+#define KP_MSG_WSA_INVALID_PARAMETER    KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_INVALID_PARAMETER_IX  ][KpCommonApp::m_iMsgLangOff]  // "Neteisingi parametrai"
+#define KP_MSG_WSAINVALIDPROCTABLE      KpErrorClass::m_pszaKpMessages[KP_MSG_WSAINVALIDPROCTABLE_IX    ][KpCommonApp::m_iMsgLangOff]  // "Klaidinga procedūrų lentelė"
+#define KP_MSG_WSAINVALIDPROVIDER       KpErrorClass::m_pszaKpMessages[KP_MSG_WSAINVALIDPROVIDER_IX     ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas tiekėjo kodas"
+#define KP_MSG_WSA_IO_INCOMPLETE        KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_IO_INCOMPLETE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Persikloja įvesties/išvesties įvykiai"
+#define KP_MSG_WSA_IO_PENDING           KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_IO_PENDING_IX         ][KpCommonApp::m_iMsgLangOff]  // "Persiklojančios operacijos bus atliktos vėliau"
 
-#define KP_MSG_DATA_FORMAT				KpErrorClass::m_lpszaKpMessages[KP_MSG_DATA_FORMAT_IX			][KpCommonApp::m_iMsgLangOff]	// "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR					KpErrorClass::m_lpszaKpMessages[KP_MSG_DBERROR_IX				][KpCommonApp::m_iMsgLangOff]	// "Duomenų bazės klaida"
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY    KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_NOT_ENOUGH_MEMORY_IX  ][KpCommonApp::m_iMsgLangOff]  // "Nepakanka atminties"
+#define KP_MSG_WSANOTINITIALISED        KpErrorClass::m_pszaKpMessages[KP_MSG_WSANOTINITIALISED_IX      ][KpCommonApp::m_iMsgLangOff]  // "Tinklo posistemis neaktyvuotas"
+#define KP_MSG_WSANO_DATA               KpErrorClass::m_pszaKpMessages[KP_MSG_WSANO_DATA_IX             ][KpCommonApp::m_iMsgLangOff]  // "Vardas teisingas, tačiau nėra reikiamo tipo duomenų"
+#define KP_MSG_WSANO_RECOVERY           KpErrorClass::m_pszaKpMessages[KP_MSG_WSANO_RECOVERY_IX         ][KpCommonApp::m_iMsgLangOff]  // "Nepataisoma klaida"
+#define KP_MSG_WSAPROVIDERFAILEDINIT    KpErrorClass::m_pszaKpMessages[KP_MSG_WSAPROVIDERFAILEDINIT_IX  ][KpCommonApp::m_iMsgLangOff]  // "Negalima inicializuoti paslaugos tiekėjo"
+#define KP_MSG_WSASYSCALLFAILURE        KpErrorClass::m_pszaKpMessages[KP_MSG_WSASYSCALLFAILURE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Sistemos kreipinio klaida"
+#define KP_MSG_WSASYSNOTREADY           KpErrorClass::m_pszaKpMessages[KP_MSG_WSASYSNOTREADY_IX         ][KpCommonApp::m_iMsgLangOff]  // "Tinklo posistemė nepasiekiama"
+#define KP_MSG_WSATRY_AGAIN             KpErrorClass::m_pszaKpMessages[KP_MSG_WSATRY_AGAIN_IX           ][KpCommonApp::m_iMsgLangOff]  // "Neautorizuotas serveris nerastas"
+#define KP_MSG_WSAVERNOTSUPPORTED       KpErrorClass::m_pszaKpMessages[KP_MSG_WSAVERNOTSUPPORTED_IX     ][KpCommonApp::m_iMsgLangOff]  // "Netinka WINSOCK.DLL versija"
+#define KP_MSG_WSAEDISCON               KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEDISCON_IX             ][KpCommonApp::m_iMsgLangOff]  // "Pradėtas tvarkingas išjungimas"
+#define KP_MSG_WSA_OPERATION_ABORTED    KpErrorClass::m_pszaKpMessages[KP_MSG_WSA_OPERATION_ABORTED_IX  ][KpCommonApp::m_iMsgLangOff]  // "Persiklojanti operacija nutraukta"
+
+#define KP_MSG_OUT_OF_MEM_RES           KpErrorClass::m_pszaKpMessages[KP_MSG_OUT_OF_MEM_RES_IX         ][KpCommonApp::m_iMsgLangOff]  // "Operacinei sistemai trūksta atminties"
+#define KP_MSG_ERROR_FILE_NOT_FOUND     KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_FILE_NOT_FOUND_IX   ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas failas nerastas"
+#define KP_MSG_ERROR_PATH_NOT_FOUND     KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_PATH_NOT_FOUND_IX   ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas kelias iki failų nerastas"
+#define KP_MSG_ERROR_BAD_FORMAT         KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_BAD_FORMAT_IX       ][KpCommonApp::m_iMsgLangOff]  // "Pasirinktas .exe failas sugadintas"
+#define KP_MSG_SE_ERR_ACCESSDENIED      KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_ACCESSDENIED_IX    ][KpCommonApp::m_iMsgLangOff]  // "Operacinė sistema uždraudė prisijungimą prie reikiamų failų"
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE   KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_ASSOCINCOMPLETE_IX ][KpCommonApp::m_iMsgLangOff]  // "Failo sąryšis su programa nepilnas arba neteisingas"
+#define KP_MSG_SE_ERR_DDEBUSY           KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_DDEBUSY_IX         ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija negali būti baigta, nes kitos DDE transakcijos dar vykdomos"
+#define KP_MSG_SE_ERR_DDEFAIL           KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_DDEFAIL_IX         ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija nutraukta"
+#define KP_MSG_SE_ERR_DDETIMEOUT        KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_DDETIMEOUT_IX      ][KpCommonApp::m_iMsgLangOff]  // "DDE transakcija negali būti baigta, nes neužteko nurodyto laukimo laiko"
+#define KP_MSG_SE_ERR_DLLNOTFOUND       KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_DLLNOTFOUND_IX     ][KpCommonApp::m_iMsgLangOff]  // "Nurodyta dinaminė biblioteka nerasta"
+#define KP_MSG_SE_ERR_FNF               KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_FNF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas failas nerastas"
+#define KP_MSG_SE_ERR_NOASSOC           KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_NOASSOC_IX         ][KpCommonApp::m_iMsgLangOff]  // "Nerasta programa skirta atverti šio tipo failus"
+#define KP_MSG_SE_ERR_OOM               KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_OOM_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nepakanka atminties atlikti operacijai"
+#define KP_MSG_SE_ERR_PNF               KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_PNF_IX             ][KpCommonApp::m_iMsgLangOff]  // "Nurodytas kelias nerastas"
+#define KP_MSG_SE_ERR_SHARE             KpErrorClass::m_pszaKpMessages[KP_MSG_SE_ERR_SHARE_IX           ][KpCommonApp::m_iMsgLangOff]  // "Dalijimosi klaida"
+
+#define KP_MSG_FIRST_TIME_ADMIN         KpErrorClass::m_pszaKpMessages[KP_MSG_FIRST_TIME_ADMIN_IX       ][KpCommonApp::m_iMsgLangOff]  // "Programą paleidžiant pirmą kartą, reikalingos\n administratoriaus teisės. Paleiskite programą iš naujo administratoriaus teisėmis."
+#define KP_MSG_NOW_NOT_ADMIN            KpErrorClass::m_pszaKpMessages[KP_MSG_NOW_NOT_ADMIN_IX          ][KpCommonApp::m_iMsgLangOff]  // KP_MSG_NOT_ADMIN
+#define KP_MSG_NOT_ADMIN                KpErrorClass::m_pszaKpMessages[KP_MSG_NOT_ADMIN_IX              ][KpCommonApp::m_iMsgLangOff]  // "Programą paleiskite iš naujo paprasto vartotojo teisėmis"
+#define KP_MSG_COPY_FILE_ACCESS_DENIED  KpErrorClass::m_pszaKpMessages[KP_MSG_COPY_FILE_ACCESS_DENIED_IX][KpCommonApp::m_iMsgLangOff]  // "Failo nukopijuoti nepavyko, programą paleiskite iš naujo administratoriaus teisėmis"
+
+#define KP_PROGRESS_TITLE               KpErrorClass::m_pszaKpMessages[KP_PROGRESS_TITLE_IX             ][KpCommonApp::m_iMsgLangOff]  // "Palaukite..."
+#define KP_MSG_DELETING_FILE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_DELETING_FILE_IX      ][KpCommonApp::m_iMsgLangOff]) // "Naikinamas failas %s.%s..."
+#define KP_MSG_COPYING                  KpErrorClass::m_pszaKpMessages[KP_MSG_COPYING_IX                ][KpCommonApp::m_iMsgLangOff]  // "Kopijuojamas failas..."
+#define KP_MSG_COPYING_DIR ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_COPYING_DIR_IX          ][KpCommonApp::m_iMsgLangOff]) // "Kopijuojamas aplankas %s.%s..."
+#define KP_MSG_COPYING_FILE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_COPYING_FILE_IX        ][KpCommonApp::m_iMsgLangOff]) // "Kopijuojamas failas %s.%s..."
+
+#define KP_MSG_NEG_ANSW                 KpErrorClass::m_pszaKpMessages[KP_MSG_NEG_ANSW_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neigiamas atsakymas"
+
+#define KP_MSG_UNABLE_TO_EXECUTE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_UNABLE_TO_EXECUTE_IX][KpCommonApp::m_iMsgLangOff]) // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+
+#define KP_MSG_FLASH_PLAYER_INSTALL     KpErrorClass::m_pszaKpMessages[KP_MSG_FLASH_PLAYER_INSTALL_IX   ][KpCommonApp::m_iMsgLangOff]  // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+
+#define KP_MSG_FILE_CHANGED             KpErrorClass::m_pszaKpMessages[KP_MSG_FILE_CHANGED_IX           ][KpCommonApp::m_iMsgLangOff]  // "Failas pasikeitė"
+
+#define KP_MSG_ALL_FILES                KpErrorClass::m_pszaKpMessages[KP_MSG_ALL_FILES_IX              ][KpCommonApp::m_iMsgLangOff]  // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS                  KpErrorClass::m_pszaKpMessages[KP_MSG_SAVE_AS_IX                ][KpCommonApp::m_iMsgLangOff]  // "Įrašyti kaip"
+
+#define KP_MSG_FILE_EXISTS ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_FILE_EXISTS_IX          ][KpCommonApp::m_iMsgLangOff]) // "Failas %s jau yra, perrašyti?"
+
+#define KP_MSG_DIAG_MSG                 KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_IX               ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE           KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_TITLE_IX         ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL            KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EXPL_IX          ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt"
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT    KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EMAIL_PROMPT_IX  ][KpCommonApp::m_iMsgLangOff]  // "Jūsų e-pašto adresas:"
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_COMMENTS_PROMPT_IX][KpCommonApp::m_iMsgLangOff] // "Komentarai apie klaidos atsiradimo aplinkybes:"
+#define KP_MSG_DIAG_MSG_FILE_PROMPT     KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_FILE_PROMPT_IX   ][KpCommonApp::m_iMsgLangOff]  // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):"
+
+#define KP_MSG_BAD_EMAIL_ADDRESS        KpErrorClass::m_pszaKpMessages[KP_MSG_BAD_EMAIL_ADDRESS_IX      ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas e-pašto adresas"
+
+#define KP_MSG_DIAG_MSG_SEL_FILE        KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_SEL_FILE_IX      ][KpCommonApp::m_iMsgLangOff]  // "Pasirinkite siunčiamą failą"
+
+#define KP_MSG_DIAG_MSG_SUCCEEDED       KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_SUCCEEDED_IX     ][KpCommonApp::m_iMsgLangOff]  // "Diagnostinis pranešimas nusiųstas sėkmingai"
+
+#define KP_MSG_DIAG_MSG_EXPL1           KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EXPL1_IX         ][KpCommonApp::m_iMsgLangOff]  // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI                   KpErrorClass::m_pszaKpMessages[KP_MSG_SIUSTI_IX                 ][KpCommonApp::m_iMsgLangOff]  // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2           KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EXPL2_IX         ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+
+#define KP_MSG_DOWNLOADING              KpErrorClass::m_pszaKpMessages[KP_MSG_DOWNLOADING_IX            ][KpCommonApp::m_iMsgLangOff]  // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_DOWNLOADING_FILE_IX][KpCommonApp::m_iMsgLangOff]) // "Siunčiamas failas %s.%s..."
+
+#define KP_MSG_FIREWALL                 KpErrorClass::m_pszaKpMessages[KP_MSG_FIREWALL_IX               ][KpCommonApp::m_iMsgLangOff]  // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+
+#define KP_MSG_POINTER                  KpErrorClass::m_pszaKpMessages[KP_MSG_POINTER_IX                ][KpCommonApp::m_iMsgLangOff]  // "Bloga rodyklė"
+
+#define KP_MSG_LOG_STARTED ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_LOG_STARTED_IX          ][KpCommonApp::m_iMsgLangOff]) // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_CONS_TITLE_IX            ][KpCommonApp::m_iMsgLangOff]) // "%s: Pranešimų žurnalas"
+
+#define KP_MSG_UNHANDLED_EXCEPTION      KpErrorClass::m_pszaKpMessages[KP_MSG_UNHANDLED_EXCEPTION_IX    ][KpCommonApp::m_iMsgLangOff]  // "Neapdorojamas trūkis"
+
+#define KP_MSG_DATA_FORMAT              KpErrorClass::m_pszaKpMessages[KP_MSG_DATA_FORMAT_IX            ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR                  KpErrorClass::m_pszaKpMessages[KP_MSG_DBERROR_IX                ][KpCommonApp::m_iMsgLangOff]  // "Duomenų bazės klaida"
 
 
 // --------------------------------
@@ -570,7 +570,7 @@ NumOfKpMessages
 #define KP_MSG_COPYING_FILE_EN            ((const unsigned char *)"") // "Copying file %s.%s...")
 #define KP_MSG_COPYING_DIR_EN             ((const unsigned char *)"") // "Copying folder %s.%s...")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_EN       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_EN       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 #define KP_MSG_FLASH_PLAYER_INSTALL_EN    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -610,8 +610,8 @@ NumOfKpMessages
 
 #define KP_MSG_UNHANDLED_EXCEPTION_EN     ((const unsigned char *)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_EN,			((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_EN,				((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_EN,            ((const unsigned char *)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_EN,                ((const unsigned char *)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangNo_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangEn_p))
 
@@ -644,7 +644,7 @@ NumOfKpMessages
 #define KP_MSG_WND_NOT_FOUND_LT     ((const unsigned char *)"") // "Langas nerastas")
 #define KP_MSG_PID_NOT_FOUND_LT     ((const unsigned char *)"") // "Nerastas proceso identifikatorius")
 #define KP_MSG_NO_SOCKET_LT         ((const unsigned char *)"") // "Jungtis dar nesukurta")
-#define KP_MSG_SOCK_UNRESOLVED_LT   ((const unsigned char *)"") // "Tarnybines stoties adresas dar nesurastas")
+#define KP_MSG_SOCK_UNRESOLVED_LT   ((const unsigned char *)"") // "Tarnybinės stoties adresas dar nesurastas")
 
 #define KP_MSG_ERR_OK_LT            ((const unsigned char *)"") // "Operacija atlikta sėkmingai") // !!!
 #define KP_MSG_INVALIDARG_LT        ((const unsigned char *)"") // "Neteisingi parametrai")
@@ -776,7 +776,7 @@ NumOfKpMessages
 
 #define KP_MSG_NEG_ANSW_LT                ((const unsigned char *)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_LT       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_LT       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 #define KP_MSG_FLASH_PLAYER_INSTALL_LT    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -816,8 +816,8 @@ NumOfKpMessages
 
 #define KP_MSG_UNHANDLED_EXCEPTION_LT     ((const unsigned char *)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_LT			((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_LT				((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_LT             ((const unsigned char *)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_LT                 ((const unsigned char *)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangLt_p))
 
@@ -999,7 +999,7 @@ NumOfKpMessages
 
 #define KP_MSG_NEG_ANSW_PL_1250                 ((const unsigned char *)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_PL_1250        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_PL_1250        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 #define KP_MSG_FLASH_PLAYER_INSTALL_PL_1250     ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -1039,8 +1039,8 @@ NumOfKpMessages
 
 #define KP_MSG_UNHANDLED_EXCEPTION_PL_1250      ((const unsigned char *)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_PL_1250				((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_PL_1250					((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_PL_1250              ((const unsigned char *)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_PL_1250                  ((const unsigned char *)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1250_p))
 
@@ -1221,7 +1221,7 @@ NumOfKpMessages
 
 #define KP_MSG_NEG_ANSW_PL_1257                 ((const unsigned char *)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_PL_1257        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_PL_1257        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 #define KP_MSG_FLASH_PLAYER_INSTALL_PL_1257     ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -1261,8 +1261,8 @@ NumOfKpMessages
 
 #define KP_MSG_UNHANDLED_EXCEPTION_PL_1257      ((const unsigned char *)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_PL_1257				((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_PL_1257					((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_PL_1257              ((const unsigned char *)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_PL_1257                  ((const unsigned char *)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1257_p))
 
@@ -1331,14 +1331,14 @@ NumOfKpMessages
 #define KP_MSG_DIV_ZERO_RU          ((const unsigned char *)"") // "Division by zero")
 #define KP_MSG_ILLMATHARG_RU        ((const unsigned char *)"") // "Illegal math argument")
 #define KP_MSG_ILLFUNC_RU           ((const unsigned char *)"") // "Illegal function call")
-                                      
+
 #define KP_MSG_NOTINST_RU           ((const unsigned char *)"") // "Program not yet installed or installation is damaged, repeat the installation procedure again, please")
 #define KP_MSG_NOTINST_S_RU         ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
 #define KP_MSG_NOTINST_DELETE_RU    ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
 #define KP_MSG_MSG_FORMAT_RU        ((const unsigned char *)"") // "Illegal message format")
 #define KP_MSG_OBSOLETE_RU          ((const unsigned char *)"") // "Obsolete function call")
-                                      
+
 #define KP_MSG_ERROR_HELP_RU        ((const unsigned char *)"") // ".  Technical support by e-mail tech@tev.lt")
 #define KP_MSG_ERROR_HELP_REST_RU   ((const unsigned char *)"") // "   For further information look file %s")
 
@@ -1426,7 +1426,7 @@ NumOfKpMessages
 
 #define KP_MSG_NEG_ANSW_RU                ((const unsigned char *)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_RU       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_RU       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
 #define KP_MSG_FLASH_PLAYER_INSTALL_RU    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -1466,8 +1466,8 @@ NumOfKpMessages
 
 #define KP_MSG_UNHANDLED_EXCEPTION_RU     ((const unsigned char *)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_RU				((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_RU					((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_RU             ((const unsigned char *)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_RU                 ((const unsigned char *)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangRu_p) && (MsgLang != KpLangRu_1251_p) && (MsgLang != KpLangRu_0_p))
 

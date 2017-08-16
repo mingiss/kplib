@@ -1,8 +1,13 @@
-// ==================================================
-// kpctype.cpp
-// type conversations & character processing for KP C++ projects
-//
-
+/* -----------------------------------------------
+ *
+ * kpctype.cpp
+ *
+ *  type conversations & character processing for KP C++ projects
+ *
+ * Changelog:
+ *  2017-05-22  mp  build on Linux Mint 18.1 Serena 64
+ *
+ */
 
 // ======================================= definitions
 #include "envir.h"
@@ -28,13 +33,13 @@ using namespace std;
 
 // -------------------------------------------
 // predefined spec. character strings
-uchar lpszSpaces[] = " \t\xA0"; // C_NBSP
-uchar lpszEols[] =   "\r\n";      // "\r\n\f";
-uchar lpszSpcEol[] = " \t\xA0\r\n"; // C_NBSP // " \t\r\n\f";
-uchar lpszSpcEolNotNBSP[] = " \t\r\n";
-uchar lpszSpcEolNotTabNotFF[] = " \r\n";
+uchar pszSpaces[] = " \t\xA0"; // C_NBSP
+uchar pszEols[] =   "\r\n";      // "\r\n\f";
+uchar pszSpcEol[] = " \t\xA0\r\n"; // C_NBSP // " \t\r\n\f";
+uchar pszSpcEolNotNBSP[] = " \t\r\n";
+uchar pszSpcEolNotTabNotFF[] = " \r\n";
 
-uchar lpszSpCharsSpcEol[] = "/.,- \t\r\n";
+uchar pszSpCharsSpcEol[] = "/.,- \t\r\n";
 
 
 // --------------------------------------------------
@@ -65,18 +70,18 @@ return(retv);
 // --------------------------------------------------
 HRESULT TestAllowed
 (
-const uchar *p_lpszCheckString,
-const uchar *p_lpszCharsAllowed
+const KpStrPtr p_pszCheckString,
+const KpStrPtr p_pszCharsAllowed
 )
 {
 HRESULT retc = S_OK;
 
-    KP_ASSERT(p_lpszCheckString, E_INVALIDARG, null);
-    KP_ASSERT(p_lpszCharsAllowed, E_INVALIDARG, null);
+    KP_ASSERT(p_pszCheckString, E_INVALIDARG, null);
+    KP_ASSERT(p_pszCharsAllowed, E_INVALIDARG, null);
 
-const uchar *pntc = p_lpszCheckString;
+const KpStrPtr pntc = p_pszCheckString;
     while ((*pntc) && SUCCEEDED(retc))
-        if (strchr(p_lpszCharsAllowed, *pntc++) == NULL)
+        if (strchr(p_pszCharsAllowed, *pntc++) == NULL)
             retc = KP_E_UNKN_CHR;
 
 return(retc);
@@ -84,18 +89,18 @@ return(retc);
 
 
 // ----------------------------
-bool KpIsNumber(const uchar *p_lpszString)
+bool KpIsNumber(const KpStrPtr p_pszString)
 {
 bool retv = True;
 
-    KP_ASSERT(p_lpszString, E_INVALIDARG, null);
+    KP_ASSERT(p_pszString, E_INVALIDARG, null);
 
-uchar *buf = null;
-    KP_NEWA(buf, uchar, strlen(p_lpszString) + 1);
-    strcpy(buf, p_lpszString);
+KpStrPtr buf = null;
+    KP_NEWA(buf, uchar, strlen(p_pszString) + 1);
+    strcpy(buf, p_pszString);
     KpStripLeading(buf);
 
-const uchar *pntc = buf;
+const KpStrPtr pntc = buf;
     if (*pntc == Nul) retv = False;
     else
         while ((*pntc) && retv)
@@ -111,19 +116,19 @@ return(retv);
 }
 
 
-bool KpIsHexNum(const uchar *p_lpszHexString)
+bool KpIsHexNum(const KpStrPtr p_pszHexString)
 {
-return (SUCCEEDED(TestAllowed(p_lpszHexString, (const uchar *)"0123456789ABCDEFabcdef")));
+return (SUCCEEDED(TestAllowed(p_pszHexString, (const KpStrPtr)"0123456789ABCDEFabcdef")));
 }
 
 
-bool KpIsOctNum(const uchar *p_lpszOctString)
+bool KpIsOctNum(const KpStrPtr p_pszOctString)
 {
-return (SUCCEEDED(TestAllowed(p_lpszOctString, (const uchar *)"01234567")));
+return (SUCCEEDED(TestAllowed(p_pszOctString, (const KpStrPtr)"01234567")));
 }
 
 
-bool KpIsRomNum(const uchar *p_lpszRomanString)
+bool KpIsRomNum(const KpStrPtr p_pszRomanString)
 {
-return (SUCCEEDED(TestAllowed(p_lpszRomanString, (const uchar *)"IVXLCM")));
+return (SUCCEEDED(TestAllowed(p_pszRomanString, (const KpStrPtr)"IVXLCM")));
 }

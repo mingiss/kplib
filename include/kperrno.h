@@ -17,7 +17,7 @@
 // ================================================== return codes
 #ifndef WIN32
 
-typedef long HRESULT;
+typedef int HRESULT;
 
 #define SUCCEEDED(Status) ((HRESULT)(Status) >= 0)
 #define FAILED(Status) ((HRESULT)(Status)<0)
@@ -42,19 +42,19 @@ typedef long HRESULT;
 // feature not implemented yet
 #define E_NOTIMPL    (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 2))
 // out of memory
-#define E_OUTOFMEMORY ((HRESULT)0x8007000EL)
+#define E_OUTOFMEMORY ((HRESULT)0x8007000E)
 // illegal function call (at the moment)
-#define E_UNEXPECTED ((HRESULT)0x8000FFFFL)
-#define E_NOINTERFACE ((HRESULT)0x80004002L)
-#define E_POINTER ((HRESULT)0x80004003L)
-#define E_HANDLE ((HRESULT)0x80070006L)
+#define E_UNEXPECTED ((HRESULT)0x8000FFFF)
+#define E_NOINTERFACE ((HRESULT)0x80004002)
+#define E_POINTER ((HRESULT)0x80004003)
+#define E_HANDLE ((HRESULT)0x80070006)
 // job cancelled
-#define E_ABORT ((HRESULT)0x80004004L)
-#define E_FAIL ((HRESULT)0x80004005L)
+#define E_ABORT ((HRESULT)0x80004004)
+#define E_FAIL ((HRESULT)0x80004005)
 // Access denied
-#define E_ACCESSDENIED ((HRESULT)0x80070005L)
-#define E_PENDING ((HRESULT)0x8000000AL)
-#define E_BUFFER_TOO_SMALL ((HRESULT)0x8007007AL)
+#define E_ACCESSDENIED ((HRESULT)0x80070005)
+#define E_PENDING ((HRESULT)0x8000000A)
+#define E_BUFFER_TOO_SMALL ((HRESULT)0x8007007A)
 
 /*
 http://research.microsoft.com/en-us/um/redmond/projects/invisible/iunknown.htm
@@ -552,7 +552,6 @@ Reserved policy QoS element type.
 A reserved policy element was found in the QoS provider-specific buffer.
  
 */
-
 #endif // #ifndef WIN32
 
 #ifdef _MSC_VER

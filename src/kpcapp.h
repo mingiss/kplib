@@ -17,11 +17,11 @@ class KpCommonApp
 {
 public:
     int m_iProdVer;
-    uchar m_lpszProdDate[KP_MAX_FNAME_LEN + 1];
+    uchar m_pszProdDate[KP_MAX_FNAME_LEN + 1];
 
     const void *m_pStackTop;
 
-    uchar m_lpszAppName[KP_MAX_FNAME_LEN + 1]; // full path to the executable
+    uchar m_pszAppName[KP_MAX_FNAME_LEN + 1]; // full path to the executable
 
 #ifdef __WIN32__
     static HINSTANCE m_hInstance;   // nustatomas KpInitWindows(), po to Init()
@@ -35,15 +35,15 @@ public:
     static int m_iWndBorderWdt;
 #endif
 
-    uchar m_lpszCmdLine[KP_MAX_FNAME_LEN + 1]; // command line
+    uchar m_pszCmdLine[KP_MAX_FNAME_LEN + 1]; // command line
 
     static KpLang m_iMsgLangOff; // member, set by KpInitWindows() // nupjautas iki KpNumOfLangs, galima naudoti masyvų indeksams
 
 // --------------   
-    KpCommonApp(const uchar *p_lpszProdName, int p_iProdVer = 0);
+    KpCommonApp(const KpStrPtr p_pszProdName, int p_iProdVer);
     virtual ~KpCommonApp(void);
 
-    virtual void Init(HINSTANCE p_hInstance, const uchar *p_lpszCmdLine, const void *p_pStackTop);  // pStackTop – caller stack top pointer,
+    virtual void Init(HINSTANCE p_hInstance, const KpStrPtr p_pszCmdLine, const void *p_pStackTop);  // pStackTop – caller stack top pointer,
     virtual void Close(void){}                                  // usually pointer to some local variable of the main() function
                                                                 // could be NULL
 #ifdef __WIN32__
@@ -52,12 +52,12 @@ public:
 #endif
 
    
-    void SetProd(const uchar *p_lpszProdName, int p_iProdVer); // sets value of KpError.m_lpszProdName[] and m_iProdVer
+    void SetProd(const KpStrPtr p_pszProdName, int p_iProdVer); // sets value of KpError.m_pszProdName[] and m_iProdVer
     
-    void GetAppName(uchar *p_lpszNameBuf);
+    void GetAppName(KpStrPtr p_pszNameBuf);
                      // gets filename of application currently running
-                     // at first call sets m_lpszAppName[]
-                     // lpszNameBuf[KP_MAX_FNAME_LEN + 1]
+                     // at first call sets m_pszAppName[]
+                     // pszNameBuf[KP_MAX_FNAME_LEN + 1]
 
     static void Pause(void); // panašiai kaip system("pause") laukia enterio iš stdin
 };

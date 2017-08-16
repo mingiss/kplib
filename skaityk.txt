@@ -1,2 +1,4 @@
+Čia nauja vien git repozitorija, atskirta nuo buvusios hg
+
 git clone /home/mingis/F/kp/src/kplib
 

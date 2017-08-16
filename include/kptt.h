@@ -1,6 +1,13 @@
 /* ----------------------------------------------------
  *  kptt.h
  *      Kpt style character codes, code table definitions
+ *
+ * Changelog:
+ *  2013-05-22  mp  shared kpadd.so
+ *  2013-07-15  mp  dvi2ht: u_strToUTF8()
+ *  2013-10-30  mp  luatex: kpadd: kp_get_cs_exp_str()
+ *  2017-05-22  mp  build on Linux Mint 18.1 Serena 64
+ *
  */
 
 
@@ -8,9 +15,9 @@
 #define KPTT_INCLUDED
 
 /* =================================================== */
-#define KPT_NoCodeTable   (-1)   /* No code table - value for undefined font table */
+#define KPT_NoCodeTable   (-1)   /* No code table – value for undefined font table */
                                  /*    entry                                       */
-#define KPT_UnknCodeTable (-2)   /* Unknown code table - value not used ??? */
+#define KPT_UnknCodeTable (-2)   /* Unknown code table – value not used ??? */
 #define KPT_UpCodeTable   (-3)   /* xml tags: codetable of the father tag should be inherited */
 
 #define TV_NO_CTBL             0
@@ -24,17 +31,17 @@
 
 #define KPT_FirstKptChar 0x80 /* C_AE */
 
-// start of private area - used for coding of unmapped Kpt characters
+// start of private area – used for coding of unmapped Kpt characters
 // code = KPT_UniPrivateStart + <Kpt code>
 #ifdef NO_LTCOD
-#define KPT_UniPrivateStart 0xE000 // Vy�io kod� nenaudojam - kaip seniau
+#define KPT_UniPrivateStart 0xE000 // Vyčio kodų nenaudojam – kaip seniau
 #else
-#define KPT_UniPrivateStart 0xE100 // prad�ia jau u�imta - Vytis accented lit. chars 0xE000..0xE01A
+#define KPT_UniPrivateStart 0xE100 // pradžia jau užimta – Vytis accented lit. chars 0xE000..0xE01A
 #endif
 // #define KPT_UniPrivateEnd 0xF900  // MS Word uses codes >= 0xF000
 #define KPT_UniPrivateEnd 0xEFFF
 
-// pasirinkimas tarp nauj� (Vytis) ir sen� (KPT_UniPrivateStart + <Kpt code>) lietuvi�k� akcentuot� raid�i� kod�
+// pasirinkimas tarp naujų (Vytis) ir senų (KPT_UniPrivateStart + <Kpt code>) lietuviškų akcentuotų raidžių kodų
 #ifdef NO_LTCOD
 #define CH_LTCOD(new_code, old_code) (old_code)
 #else
@@ -46,7 +53,7 @@
 // -----------------------
 // typedef unsigned short UniChar; // WCHAR
 #ifndef WIN32
-typedef short WCHAR;
+// typedef unsigned short WCHAR;
 #endif
 typedef WCHAR UniChar;
 
@@ -88,10 +95,10 @@ typedef enum
 
    EC_ASCII,      // plain ascii without diacrytics
 
-        EC_8_BIT,      // 8-bit encoding - code table number should be specifyed instead
+        EC_8_BIT,      // 8-bit encoding – code table number should be specifyed instead
                        // by encoding of XML indexes:
-                       //    if letter not found in target code table - accents schold be
-                       //    skipped first (KptNoAccTbl[]), if still not found - converted to
+                       //    if letter not found in target code table – accents schold be
+                       //    skipped first (KptNoAccTbl[]), if still not found – converted to
                        //    plain ASCII (KptToLatTbl[])
                        // instead of EC_8_BIT simply code table number 0..KPT_Ctnum could be used as EC_Types value
 
@@ -160,21 +167,21 @@ typedef enum
    C_Us,             //  31 /* 0x1f */
 
    C_Spc,            //  32 /* Space */
-   C_Excl,           //  33 /* !  Exclamation Mark (s/auktukas) */
-   C_Quote,          //  34 /* "  Quotation Mark (kabute%s) */
-   C_Numb,           //  35 /* #  Number Sign (Numerio zenklas) */
-   C_Doll,           //  36 /* $  Currency Sign (Pinigu zenklas) */
-   C_Perc,           //  37 /* %  Per Cent Sign (procento z/enklas) */
-   C_Amp,            //  38 /* &  Ampersand (Ampersandas) */
-   C_Apost,          //  39 /* '  Apostrophe (Apostrofa, apostrofas, kablelio formos) C_Acute; C_AcuteNcomb */
+   C_Excl,           //  33 /* !  Exclamation Mark (šauktukas) */
+   C_Quote,          //  34 /* "  Quotation Mark (kabutės) */
+   C_Numb,           //  35 /* #  Number Sign (numerio ženklas) */
+   C_Doll,           //  36 /* $  Currency Sign (pinigu ženklas) */
+   C_Perc,           //  37 /* %  Per Cent Sign (procento ženklas) */
+   C_Amp,            //  38 /* &  Ampersand (ampersandas) */
+   C_Apost,          //  39 /* '  Apostrophe (apostrofa, apostrofas, kablelio formos) C_Acute; C_AcuteNcomb */
    C_Lpar,           //  40 /* (  Left Parenthesis (kairysis skliaustas) */
-   C_Rpar,           //  41 /* )  Right Parenthesis (des/inysis skliaustas) */
-   C_Ast,            //  42 /* *  Asterisk (Zvaigzdute) */
+   C_Rpar,           //  41 /* )  Right Parenthesis (dešinysis skliaustas) */
+   C_Ast,            //  42 /* *  Asterisk (žvaigždutė) */
    C_Plus,           //  43 /* +  Plus Sign (pliusas) */
    C_Comma,          //  44 /* ,  Comma (kablelis) */
    C_Dash,           //  45 /* -  Dash, Hyphen, Minus Sign (minusas) */ // former C_Minus
-   C_Point,          //  46 /* .  Full Stop, Period, Point (tas/kas) */
-   C_Slash,          //  47 /* /  Slash, Solidus (Istrizas bruksnys) */
+   C_Point,          //  46 /* .  Full Stop, Period, Point (taškas) */
+   C_Slash,          //  47 /* /  Slash, Solidus (įstrižas brūkšnys) */
    C_0,              //  48 /* 0 */
    C_1,              //  49 /* 1 */
    C_2,              //  50 /* 2 */
@@ -185,14 +192,14 @@ typedef enum
    C_7,              //  55 /* 7 */
    C_8,              //  56 /* 8 */
    C_9,              //  57 /* 9 */
-   C_Colon,          //  58 /* :  Colon (dvitas/kis) */
-   C_Semic,          //  59 /* ;  Semi-colon (kabliatas/kis) */
-   C_Less,           //  60 /* <  Less than Sign (maz/iau) */
-   C_Eq,             //  61 /* =  Equals Sign (lygybe%s z/enklas) */
+   C_Colon,          //  58 /* :  Colon (dvitaškis) */
+   C_Semic,          //  59 /* ;  Semi-colon (kabliataškis) */
+   C_Less,           //  60 /* <  Less than Sign (mažiau) */
+   C_Eq,             //  61 /* =  Equals Sign (lygybės ženklas) */
    C_Great,          //  62 /* >  Greater than Sign (daugiau) */
    C_Quest,          //  63 /* ?  Question Mark (klaustukas) */
 
-   C_At,             //  64 /* @  Commercial At (Prekybinis zenklas "Pas") */
+   C_At,             //  64 /* @  Commercial At (Prekybinis ženklas "Pas") */
    C_A,              //  65 /* A */
    C_B,              //  66 /* B */
    C_C,              //  67 /* C */
@@ -219,9 +226,9 @@ typedef enum
    C_X,              //  88 /* X */
    C_Y,              //  89 /* Y */
    C_Z,              //  90 /* Z */
-   C_Lbrack,         //  91 /* [  Left Square Bracket (Kairysis lauztinis skliaustas) */
-   C_Lslash,         //  92 /* \  Reverse Solidus, Reverse Slash (Atvirkscias istrizas bruksnys) */
-   C_Rbrack,         //  93 /* ]  Right Square Bracket (Desinysis lauztinis skliaustas) */
+   C_Lbrack,         //  91 /* [  Left Square Bracket (Kairysis laužtinis skliaustas) */
+   C_Lslash,         //  92 /* \  Reverse Solidus, Reverse Slash (Atvirkščias įstrižas brūkšnys) */
+   C_Rbrack,         //  93 /* ]  Right Square Bracket (Dešinysis laužtinis skliaustas) */
    C_Circ,           //  94 /* ^  Circumflex Accent (Cirkumfleksas), standalone, nekombinacinis (diakritas) */
    C_Underl,         //  95 /* _  Underline (Pabraukimas) */
 
@@ -253,9 +260,9 @@ typedef enum
    C_y,              // 121 /* y */
    C_z,              // 122 /* z */
    C_Lcurl,          // 123 /* {  Left Curly Bracket (Kairysis riestinis skliaustas) */
-   C_Vertl,          // 124 /* |  Vertical Line (Vertikali Linija), C_v_b */
-   C_Rcurl,          // 125 /* }  Right Curly Bracket (Desinysis riestinis skliaustas) */
-   C_Tilde,          // 126 /* ~  Tilde (Overline) (Tilde, Bruksnys virsuje), standalone, net ne diakritas - TEX-e stambesnis ir per viduri; C_TildeNcomb; C_TildeAcc */
+   C_Vertl,          // 124 /* |  Vertical Line (Vertikali linija), C_v_b */
+   C_Rcurl,          // 125 /* }  Right Curly Bracket (Dešinysis riestinis skliaustas) */
+   C_Tilde,          // 126 /* ~  Tilde (Overline) (Tildė, Brukšnys viršuje), standalone, net ne diakritas – TEX-e stambesnis ir per vidurį; C_TildeNcomb; C_TildeAcc */
 
    C_Del,            // 127
 
@@ -390,10 +397,10 @@ typedef enum
 
                      // ----------------------------
                      /* All accents have no width (over the next letter) */
-                     /* more accents later - C_...Acc */
+                     /* more accents later – C_...Acc */
                      // kombinaciniai diakritai
 
-   C_Acute,          // 248 /* '  Acute (aku/tas, C_Apost, des/inysis kirtis) (zr. dar C_AcuteNcomb) */
+   C_Acute,          // 248 /* '  Acute (aku/tas, C_Apost, dešinysis kirtis) (zr. dar C_AcuteNcomb) */
    C_Dacut,          // 249 /* '' Double Acute */
    C_Ogon,           // 250 /* ,  Ogonek (nosine) */
    C_Adot,           // 251 /* .  Dot Above (. virsuje) */
@@ -578,7 +585,7 @@ typedef enum
    C_cent,           // 407 /* c/ */
 
    C_Para,           // 408 /* paragrafas, # engl. */
-   C_Pren,           // 409 /* paragraph end sign (pastraipos pabaiga, C_pi - pi) */
+   C_Pren,           // 409 /* paragraph end sign (pastraipos pabaiga, C_pi – pi) */
    C_Multipl,        // 410 /* x */
    C_Divide,         // 411 /* -:- */
    C_PlMin,          // 412 /* -+- */
@@ -590,26 +597,26 @@ typedef enum
    C_Half,           // 418 /* 1/2 */
    C_Quart,          // 419 /* 1/4 */
    C_34,             // 420 /* 3/4 */
-   C_Ldopang,        // 421 /* << - rusiska kabute */
-   C_Rdopang,        // 422 /* >> - rusiska kabute */
+   C_Ldopang,        // 421 /* << – rusiška kabutė */
+   C_Rdopang,        // 422 /* >> – rusiška kabutė */
    C_Lang,           // 423 /* < */
    C_Rang,           // 424 /* > */
    C_Dvertl,         // 425 /* | Koi-7-0 */
    C_Rminbr,         // 426 /* ^ Koi-7-0 ( not, neiginys, -| ) */
    C_Lminbr,         // 427 /* |- */
-   C_Lpoint,         // 428 /* mazas taskas vidury, daugybos zenklas */
-   C_Bpoint,         // 429 /* bullet, didelis taskas vidury */ // naudojamas homonim� identifikavimui (DOUBLE_ENTRIES_KPCHAR), tikram bullet'ui naudoti C_hBpoint
-   C_LBquote,        // 430 /* ,, (" left bellow, double comma, liet. kaire, 99 apacioje) */
-   C_LAquote,        // 431 /* `` (" left above, reversed double comma above, angl. kaire, liet. desine, 66 virsuj) */
-   C_Rquote,         // 432 /* '' (" right, double comma above, angl. desine, 99 virsuj) */
-   C_LBapost,        // 433 /* , (' left bellow, comma, liet. kaire, 9 apacioj) */
-   C_LAapost,        // 434 /* ` (' left above, C_Grave, reversed comma above, angl. kaire, liet. desine, 6 virsuj) */
-   C_Rapost,         // 435 /* ' (' right, C_Apost, comma above, angl. desine, 9 virsuj) */
+   C_Lpoint,         // 428 /* mažas taškas vidury, daugybos ženklas */
+   C_Bpoint,         // 429 /* bullet, didelis taškas vidury */ // naudojamas homonimų identifikavimui (DOUBLE_ENTRIES_KPCHAR), tikram bullet'ui naudoti C_hBpoint
+   C_LBquote,        // 430 /* ,, (" left bellow, double comma, liet. kairė, 99 apacioje) */
+   C_LAquote,        // 431 /* `` (" left above, reversed double comma above, angl. kairė, liet. dešinė, 66 viršuj) */
+   C_Rquote,         // 432 /* '' (" right, double comma above, angl. dešinė, 99 viršuj) */
+   C_LBapost,        // 433 /* , (' left bellow, comma, liet. kairė, 9 apačioj) */
+   C_LAapost,        // 434 /* ` (' left above, C_Grave, reversed comma above, angl. kairė, liet. dešinė, 6 viršuj) */
+   C_Rapost,         // 435 /* ' (' right, C_Apost, comma above, angl. dešinė, 9 viršuj) */
 
    C_Qst_Ov,         // 436 /* apverstas ? */
    C_Ex_Ov,          // 437 /* apverstas ! */
-   C_Dots,           // 438 /* ... daugtaskis, ellipsis */
-   C_Prom,           // 439 /* %o promiles */
+   C_Dots,           // 438 /* ... daugtaškis, ellipsis */
+   C_Prom,           // 439 /* %o promilės */
    C_TM,             // 440 /* TM, Trade Mark */
    C_CO,             // 441 /* (C) Copyright */
    C_RO,             // 442 /* (R) */
@@ -646,61 +653,61 @@ typedef enum
 
                      // ----------------------------
 
-   C_Each,           // 464 /* V - "kiekvienam" - apversta A raide */
-   C_Exists,         // 465 /* E - "egzistuoja" - apversta E raide */
+   C_Each,           // 464 /* V – "kiekvienam" – apversta A raide */
+   C_Exists,         // 465 /* E – "egzistuoja" – apversta E raide */
 
-   C_Aleph,          // 466 /* N - alefas */
+   C_Aleph,          // 466 /* N – alefas */
    C_Im,             // 467 /* C_I_Got */
    C_Re,             // 468 /* C_R_Got */
    C_wp,             // 469 /* C_p_Got */
 
-   C_le,             // 470 /* <= - maziau arba lygu */
-   C_ge,             // 471 /* >= - daugiau arba lygu */
-   C_ne,             // 472 /* =/= - nelygu */
+   C_le,             // 470 /* <= – mažiau arba lygu */
+   C_ge,             // 471 /* >= – daugiau arba lygu */
+   C_ne,             // 472 /* =/= – nelygu */
    C_ll,             // 473 /* << */
    C_gg,             // 474 /* >> */
-   C_sim,            // 475 /* ~ - panasu */
-   C_simeq,          // 476 /* ~- - panasu arba sutampa */
-   C_approx,         // 477 /* ~~ - apytiksliai lygu */
-   C_cong,           // 478 /* ~= - kongruentu */
-   C_equiv,          // 479 /* = - triguba lygybe - ekvivalentu */
+   C_sim,            // 475 /* ~ – panašu */
+   C_simeq,          // 476 /* ~- – panašu arba sutampa */
+   C_approx,         // 477 /* ~~ – apytiksliai lygu */
+   C_cong,           // 478 /* ~= – kongruentu */
+   C_equiv,          // 479 /* = – triguba lygybė – ekvivalentu */
 
    C_sqrt,           // 480 /* square root */
    C_int,            // 481 /* integralas */
    C_oint,           // 482 /* kreivinis integralas */
    C_Sum,            // 483 /* sum sign (C_Sigma) */
    C_Prod,           // 484 /* C_Pi */
-   C_O_times,        // 485 /* OX - O perbraukta kryzmai */
-   C_O_plus,         // 486 /* O+ - O perbraukta pliusu */
+   C_O_times,        // 485 /* OX – O perbraukta kryžmai */
+   C_O_plus,         // 486 /* O+ – O perbraukta pliusu */
 
-   C_infty,          // 487 /* infinity - begalybe */
+   C_infty,          // 487 /* infinity – begalybė */
    C_propto,         // 488 /* (C_alpha) */
    C_part,           // 489 /* partial (C_delta) */
    C_empty,          // 490 /* O/ (C_O_Slash) */
-   C_triangle,       // 491 /* lygiakrastis trikampis, ~C_Delta */
-   C_nabla,          // 492 /* V - C_Delta apversta, lygiasonis siauras trikampis */
+   C_triangle,       // 491 /* lygiakraštis trikampis, ~C_Delta */
+   C_nabla,          // 492 /* V – C_Delta apversta, lygiašonis siauras trikampis */
 
-   C_perp,           // 493 /* T apversta - statmena */
-   C_angle,          // 494 /* < - kampas (geom.) */
+   C_perp,           // 493 /* T apversta – statmena */
+   C_angle,          // 494 /* < – kampas (geom.) */
 
-   C_langle,         // 495 /* < - skliaustas !!! keisti i C_Lang */
-   C_rangle,         // 496 /* > - skliaustas !!! keisti i C_Rang */
+   C_langle,         // 495 /* < – skliaustas !!! keisti i C_Lang */
+   C_rangle,         // 496 /* > – skliaustas !!! keisti i C_Rang */
 
-   C_cap,            // 497 /* U apversta - pjuvis */
-   C_cup,            // 498 /* U - junginys */
+   C_cap,            // 497 /* U apversta – pjūvis */
+   C_cup,            // 498 /* U – junginys */
 
    C_vee,            // 499 /* V */
    C_wedge,          // 500 /* C_Lambda */
 
-   C_supset,         // 501 /* D - virsaibis */
-   C_supseteq,       // 502 /* D= - virsaibis arba sutampa */
-   C_subset,         // 503 /* C - poaibis */
-   C_subseteq,       // 504 /* C= - poaibis arba sutampa */
-   C_nsubset,        // 505 /* C/ - nepoaibis */
+   C_supset,         // 501 /* D – viršaibis */
+   C_supseteq,       // 502 /* D= – viršaibis arba sutampa */
+   C_subset,         // 503 /* C – poaibis */
+   C_subseteq,       // 504 /* C= – poaibis arba sutampa */
+   C_nsubset,        // 505 /* C/ – nepoaibis */
 
-   C_in,             // 506 /* C_epsilon_var - priklauso */
-   C_notin,          // 507 /* C_epsilon_var_Slash - nepriklauso */
-   C_ni,             // 508 /* C_epsilon_var apsuktas - apima */
+   C_in,             // 506 /* C_epsilon_var – priklauso */
+   C_notin,          // 507 /* C_epsilon_var_Slash – nepriklauso */
+   C_ni,             // 508 /* C_epsilon_var apsuktas – apima */
 
    C_leftarr,        // 509 /* <-- */
    C_rightarr,       // 510 /* --> */
@@ -729,14 +736,14 @@ typedef enum
    C_hyph,           // 528 /* hidden hyphenation sign ("\-" for TEX) */ // C_Dash
    C_break,          // 529 /* line break character, no \hfill */
 
-   C_a_Car,          // 530 /* av - laikinai, po to ismesti !!! */
+   C_a_Car,          // 530 /* av – laikinai, po to išmesti !!! */
 
-   C_euro,           // 531 /* C= euro piniginis vienetas !!! kelti prie pinigu */
+   C_euro,           // 531 /* C= euro piniginis vienetas !!! kelti prie pinigų */
 
-   C_deg,            // 532 /* degree - panasiai, kaip C_Ring, tik desineje */
-   C_micro,          // 533 /* mikro - panasiai, kaip C_my */
-   C_Ohm,            // 534 /* Ohm sign - panasiai, kaip C_Omega */
-   C_Angst,          // 535 /* Angstroem - C_A_Ring */
+   C_deg,            // 532 /* degree – panašiai, kaip C_Ring, tik dešinėje */
+   C_micro,          // 533 /* mikro – panašiai, kaip C_my */
+   C_Ohm,            // 534 /* Ohm sign – panašiai, kaip C_Omega */
+   C_Angst,          // 535 /* Angstroem – C_A_Ring */
 
    C_Horl,           // 536 /* horizontal line --- , C_h_b */
 
@@ -757,10 +764,10 @@ typedef enum
 
    C_MinPl,          // 548 /* -+ minus plus */
 
-   C_EnDash,         // 549 /* -- - vidutinio ilgio bruksnys */
-   C_EmDash,         // 550 /* --- - ilgas bruksnys */
+   C_EnDash,         // 549 /* -- – vidutinio ilgio brūkšnys */
+   C_EmDash,         // 550 /* --- – ilgas brukšnys */
 
-   C_Cdots,          // 551 /* ... - daugtaskis per viduri */
+   C_Cdots,          // 551 /* ... – daugtaškis per vidurį */
    C_WideTilde,      // 552 /* ~ didele tilde */
 
    C_QemSpc,         // 553 /* 1/4 m space */
@@ -909,7 +916,7 @@ typedef enum
    C_LigaUp,         // 655 // lankelis virs dvieju raidziu
    C_LigaLow,        // 656 // lankelis po dviem raidem
 
-   C_MidRing,        // 657 // mazas apskritimas viduryje (tusciaviduris bulletas - kaip C_Bpoint)
+   C_MidRing,        // 657 // mažas apskritimas viduryje (tuščiaviduris bulletas – kaip C_Bpoint)
 
                      // phonetic accents
 
@@ -921,8 +928,8 @@ typedef enum
    C_male,           // 661 // vyr. lytis, male sex, mars, o^
    C_female,         // 662 // mot. lytis, female sex, venus, o+
 
-   C_O_ring,         // 663 // Oo - mazas apskritimas O viduje
-   C_O_dot,          // 664 // O. - taskas O viduje
+   C_O_ring,         // 663 // Oo – mažas apskritimas O viduje
+   C_O_dot,          // 664 // O. – taškas O viduje
 
    C_BigRing,        // 665 // didelis apskritimas, C_O
 
@@ -936,8 +943,8 @@ typedef enum
                      // ----------------------------
                      // DOS frames
 
-   C_v_b,            // 670 // vert; ne DOS-e - C_Vertl
-   C_h_b,            // 671 // hor; ne DOS-e - C_Horl
+   C_v_b,            // 670 // vert; ne DOS-e – C_Vertl
+   C_h_b,            // 671 // hor; ne DOS-e – C_Horl
    C_vh_b,           // 672 // vert hor
    C_vl_b,           // 673 // vert left
    C_vr_b,           // 674 // vert right
@@ -985,31 +992,31 @@ typedef enum
    C_grblk,          // 712 // pilkas ---//--- (50% shaded)
    C_lgrblk,         // 713 // sviesiai pilkas ---//--- (25% shaded)
    C_uphblk,         // 714 // pilnaviduris staciakampis per puse laukelio virsuje
-   C_dnhblk,         // 715 // ---//--- apacioje
-   C_lthblk,         // 716 // ---//--- kaireje
-   C_rthblk,         // 717 // ---//--- desineje
+   C_dnhblk,         // 715 // ---//--- apačioje
+   C_lthblk,         // 716 // ---//--- kairėje
+   C_rthblk,         // 717 // ---//--- dešinėje
 
-   C_utrif,          // 718 // pilnaviduris lygiakrastis trikampis smaigaliu i virsu, MS Word UTF16
-   C_dtrif,          // 719 // pilnaviduris trikampis zemyn, MS Word UTF16
-   C_ltrif,          // 720 // pilnaviduris trikampis i kaire; MS Word UTF16, IExplorer ir Netscape C_ltri
-   C_rtrif,          // 721 // pilnaviduris trikampis i desine; MS Word UTF16, IExplorer ir Netscape C_rtri
+   C_utrif,          // 718 // pilnaviduris lygiakraštis trikampis smaigaliu į viršų, MS Word UTF16
+   C_dtrif,          // 719 // pilnaviduris trikampis žemyn, MS Word UTF16
+   C_ltrif,          // 720 // pilnaviduris trikampis į kairę; MS Word UTF16, IExplorer ir Netscape C_ltri
+   C_rtrif,          // 721 // pilnaviduris trikampis į dešinę; MS Word UTF16, IExplorer ir Netscape C_rtri
 
                      // ----------------------------
    C_ph_uu_sh,       // 722 // phonetics: semi-high back rounded; short u, short open u; inverted C_Omega
 
-   C_hhyph,          // 723 // hard hyphen - zodzio kelimas per prievarta "-\break" // C_hyph, C_Dash
+   C_hhyph,          // 723 // hard hyphen – žodžio kėlimas per prievartą "-\break" // C_hyph, C_Dash
    C_sbreak,         // 724 // soft break \lastwordinpar{5}{...} iki pastraipos (lizdo) pabaigos
-   C_hSpc,           // 725 // hard space - technical space after TEX commands - do not process
+   C_hSpc,           // 725 // hard space – technical space after TEX commands – do not process
    C_hbreak,         // 726 // break su \hfill, xmlsty keiciamas is C_Cr ("\r"), C_break
-   C_lSpc,           // 727 // last space - space, to be changed to C_NBSP after LAST_WORD_LEN
-   C_hlSpc,          // 728 // hard last space - C_hSpc, to be changed to C_NBSP after LAST_WORD_LEN
+   C_lSpc,           // 727 // last space – space, to be changed to C_NBSP after LAST_WORD_LEN
+   C_hlSpc,          // 728 // hard last space – C_hSpc, to be changed to C_NBSP after LAST_WORD_LEN
 
-   C_utrif_rtf,      // 729 // pilnaviduris lygiakrastis trikampis smaigaliu i virus, MS Word RTF
-   C_dtrif_rtf,      // 730 // pilnaviduris trikampis zemyn, MS Word RTF
-   C_ltrif_rtf,      // 731 // pilnaviduris trikampis i kaire, MS Word RTF
-   C_rtrif_rtf,      // 732 // pilnaviduris trikampis i desine, MS Word RTF
+   C_utrif_rtf,      // 729 // pilnaviduris lygiakraštis trikampis smaigaliu į viršų, MS Word RTF
+   C_dtrif_rtf,      // 730 // pilnaviduris trikampis žemyn, MS Word RTF
+   C_ltrif_rtf,      // 731 // pilnaviduris trikampis i kairę, MS Word RTF
+   C_rtrif_rtf,      // 732 // pilnaviduris trikampis i dešinę, MS Word RTF
 
-// erdvines rodykles - zr. mcm_src.48d mac_p.rtf lizdas 2231
+// erdvinės rodyklės – žr. mcm_src.48d mac_p.rtf lizdas 2231
    C_3DTopLightLeftArrowHead,    // 733
    C_3DBotLightLeftArrowHead,    // 734
    C_3DTopLightRightArrowHead,   // 735
@@ -1028,17 +1035,17 @@ typedef enum
                      // ---------------------------
                      // nekombinaciniai diakritai
 
-   C_AcuteNcomb,     // 744   // nekombinacinis desininis kirtis (C_Acute, C_Apost)
+   C_AcuteNcomb,     // 744   // nekombinacinis dešininis kirtis (C_Acute, C_Apost)
    C_CedilNcomb,     // 745   // nekombinacine cedilla (C_Cedil)
-   C_MacrNcomb,      // 746   // nekombinacinis bruksnys virsuje (C_Macr)
+   C_MacrNcomb,      // 746   // nekombinacinis brūkšnys viršuje (C_Macr)
 
                      // ---------------------------
 
-   C_DollNctrl,      // 747   // nevaldantis dolerio zenklas (C_Doll); TEX'e yra atitikmuo TX_SP_Doll
+   C_DollNctrl,      // 747   // nevaldantis dolerio ženklas (C_Doll); TEX'e yra atitikmuo TX_SP_Doll
 
    C_OgonNcomb,      // 748   // nekombinacinis nosines diakritas (C_Ogon)
 
-   C_No,             // 749   // rusiskas numerio zenklas No
+   C_No,             // 749   // rusiškas numerio ženklas No
 
                      // ---------------------------
                      // nekombinaciniai diakritai
@@ -1051,17 +1058,17 @@ typedef enum
 
    C_utri,           // 753   // tusciaviduris lygiakrastis trikampis smaigaliu i virsu
    C_dtri,           // 754   // tusciaviduris trikampis zemyn
-   C_ltri,           // 755   // tusciaviduris trikampis i kaire; MS Word UTF16, IExplorer ir Netscape pilnaviduris
-   C_rtri,           // 756   // tusciaviduris trikampis i desine; MS Word UTF16, IExplorer ir Netscape pilnaviduris
+   C_ltri,           // 755   // tusciaviduris trikampis į kairę; MS Word UTF16, IExplorer ir Netscape pilnaviduris
+   C_rtri,           // 756   // tusciaviduris trikampis į dešinę; MS Word UTF16, IExplorer ir Netscape pilnaviduris
 
 // ----------------------------
-   C_Oline,          // 757   // kombinacinis matematinis diakritas - bruksnys virs raides, C_Macr
+   C_Oline,          // 757   // kombinacinis matematinis diakritas – brukšnys virš raidės, C_Macr
 
    C_R_Oline,        // 758   // R su bruksniu, C_R_Macr
    C_X_Oline,        // 759   // X su bruksniu, C_X_Macr
 
-   C_leqslant,       // 760   /* <= - maziau arba lygu, lygybe lygiagreti su < */
-   C_geqslant,       // 761   /* >= - daugiau arba lygu, lygybe lygiagreti su > */
+   C_leqslant,       // 760   /* <= – mažiau arba lygu, lygybė lygiagreti su < */
+   C_geqslant,       // 761   /* >= – daugiau arba lygu, lygybė lygiagreti su > */
 
    C_i_Grave_Dotless, // 762 // C_i_Grave, // i`
    C_i_Acute_Dotless, // 763 // C_i_Acute, // i'
@@ -1094,9 +1101,9 @@ typedef enum
 
    C_bdiamond,       // 785 /* pilnaviduris rombas, C_Diamond */
 
-   C_DegCels,        // 786 /* degree Celsius - celsijaus laipsniai, C_deg C_C */
+   C_DegCels,        // 786 /* degree Celsius – celsijaus laipsniai, C_deg C_C */
 
-   C_hBpoint,        // 787 /* bullet, didelis taskas vidury */ // tiems atvejams, kai C_Bpoint naudojamas homonim� identifikavimui (DOUBLE_ENTRIES_KPCHAR) 
+   C_hBpoint,        // 787 /* bullet, didelis taskas vidury */ // tiems atvejams, kai C_Bpoint naudojamas homonimų identifikavimui (DOUBLE_ENTRIES_KPCHAR) 
 
 // ----------------------- old style cyrillic
    C_Fita_Cyr,       // 788
@@ -1104,7 +1111,7 @@ typedef enum
    C_Yat_Cyr,        // 790
    C_yat_Cyr,        // 791
 
-   C_checkmark,      // 792 // varnel� pa�ym�jimui
+   C_checkmark,      // 792 // varnelė pažymėjimui
 
                      // ----------------------------
                      // nekombinaciniai diakritai

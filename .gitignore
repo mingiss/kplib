@@ -26,4 +26,4 @@
 *.depend
 *~
 autom4te.cache/*
-
+*.suo

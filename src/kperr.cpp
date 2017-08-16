@@ -1,4 +1,4 @@
-﻿/* -----------------------------------------------
+/* -----------------------------------------------
  *
  * kperr.cpp
  *
@@ -61,7 +61,7 @@ using namespace std;
 
 
 // ------------------------------------ bendri kp programų pranešimai
-const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOfLangs_2] =
+const KpStrPtr KpErrorClass::m_pszaKpMessages[NumOfKpMessages_25][KpNumOfLangs_2] =
 {
     { KP_MSG_TITLE_EN,                    KP_MSG_TITLE_LT,                    KP_MSG_TITLE_PL_1250,                     KP_MSG_TITLE_PL_1257,                     KP_MSG_TITLE_RU,                    KP_MSG_TITLE_EN,                    }, // "Pranešimas"
     { KP_INPUT_TITLE_EN,                  KP_INPUT_TITLE_LT,                  KP_INPUT_TITLE_PL_1250,                   KP_INPUT_TITLE_PL_1257,                   KP_INPUT_TITLE_RU,                  KP_INPUT_TITLE_EN,                  }, // "Įvedimas"
@@ -88,7 +88,7 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
     { KP_MSG_WND_NOT_FOUND_EN,            KP_MSG_WND_NOT_FOUND_LT,            KP_MSG_WND_NOT_FOUND_PL_1250,             KP_MSG_WND_NOT_FOUND_PL_1257,             KP_MSG_WND_NOT_FOUND_RU,            KP_MSG_WND_NOT_FOUND_RU,            }, // "Langas nerastas"
     { KP_MSG_PID_NOT_FOUND_EN,            KP_MSG_PID_NOT_FOUND_LT,            KP_MSG_PID_NOT_FOUND_PL_1250,             KP_MSG_PID_NOT_FOUND_PL_1257,             KP_MSG_PID_NOT_FOUND_RU,            KP_MSG_PID_NOT_FOUND_RU,            }, // "Nerastas proceso identifikatorius"
     { KP_MSG_NO_SOCKET_EN,                KP_MSG_NO_SOCKET_LT,                KP_MSG_NO_SOCKET_PL_1250,                 KP_MSG_NO_SOCKET_PL_1257,                 KP_MSG_NO_SOCKET_RU,                KP_MSG_NO_SOCKET_RU,                }, // "Jungtis dar nesukurta"
-    { KP_MSG_SOCK_UNRESOLVED_EN,          KP_MSG_SOCK_UNRESOLVED_LT,          KP_MSG_SOCK_UNRESOLVED_PL_1250,           KP_MSG_SOCK_UNRESOLVED_PL_1257,           KP_MSG_SOCK_UNRESOLVED_RU,          KP_MSG_SOCK_UNRESOLVED_RU,          }, // "Tarnybines stoties adresas dar nesurastas"
+    { KP_MSG_SOCK_UNRESOLVED_EN,          KP_MSG_SOCK_UNRESOLVED_LT,          KP_MSG_SOCK_UNRESOLVED_PL_1250,           KP_MSG_SOCK_UNRESOLVED_PL_1257,           KP_MSG_SOCK_UNRESOLVED_RU,          KP_MSG_SOCK_UNRESOLVED_RU,          }, // "Tarnybinės stoties adresas dar nesurastas"
 
     { KP_MSG_ERR_OK_EN,                   KP_MSG_ERR_OK_LT,                   KP_MSG_ERR_OK_PL_1250,                    KP_MSG_ERR_OK_PL_1257,                    KP_MSG_ERR_OK_RU,                   KP_MSG_ERR_OK_RU,                   }, // "Operacija atlikta sėkmingai" // !!!
     { KP_MSG_INVALIDARG_EN,               KP_MSG_INVALIDARG_LT,               KP_MSG_INVALIDARG_PL_1250,                KP_MSG_INVALIDARG_PL_1257,                KP_MSG_INVALIDARG_RU,               KP_MSG_INVALIDARG_RU,               }, // "Neteisingi parametrai"
@@ -132,8 +132,8 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
 
     { KP_MSG_MSG_FORMAT_EN,               KP_MSG_MSG_FORMAT_LT,               KP_MSG_MSG_FORMAT_PL_1250,                KP_MSG_MSG_FORMAT_PL_1257,                KP_MSG_MSG_FORMAT_RU,               KP_MSG_MSG_FORMAT_RU,               }, // "Neteisingas pranešimo formatas"
     { KP_MSG_OBSOLETE_EN,                 KP_MSG_OBSOLETE_LT,                 KP_MSG_OBSOLETE_PL_1250,                  KP_MSG_OBSOLETE_PL_1257,                  KP_MSG_OBSOLETE_RU,                 KP_MSG_OBSOLETE_RU,                 }, // "Pasenusi funkcija"
-    { KP_MSG_ERROR_HELP_EN,               KP_MSG_ERROR_HELP_LT,               KP_MSG_ERROR_HELP_PL_1250,                KP_MSG_ERROR_HELP_PL_1257,                KP_MSG_ERROR_HELP_RU,               KP_MSG_ERROR_HELP_RU,               }, // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt, prie laiško prikabinkite failą %s"
-    { KP_MSG_ERROR_HELP_REST_EN,          KP_MSG_ERROR_HELP_REST_LT,          KP_MSG_ERROR_HELP_REST_PL_1250,           KP_MSG_ERROR_HELP_REST_PL_1257,           KP_MSG_ERROR_HELP_REST_RU,          KP_MSG_ERROR_HELP_REST_RU,          }, // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt, prie laiško prikabinkite failą %s"
+    { KP_MSG_ERROR_HELP_EN,               KP_MSG_ERROR_HELP_LT,               KP_MSG_ERROR_HELP_PL_1250,                KP_MSG_ERROR_HELP_PL_1257,                KP_MSG_ERROR_HELP_RU,               KP_MSG_ERROR_HELP_RU,               }, // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt"
+    { KP_MSG_ERROR_HELP_REST_EN,          KP_MSG_ERROR_HELP_REST_LT,          KP_MSG_ERROR_HELP_REST_PL_1250,           KP_MSG_ERROR_HELP_REST_PL_1257,           KP_MSG_ERROR_HELP_REST_RU,          KP_MSG_ERROR_HELP_REST_RU,          }, // "   Prie laiško prikabinkite failą %s"
     { KP_MSG_WSAEACCES_EN,                KP_MSG_WSAEACCES_LT,                KP_MSG_WSAEACCES_PL_1250,                 KP_MSG_WSAEACCES_PL_1257,                 KP_MSG_WSAEACCES_RU,                KP_MSG_WSAEACCES_RU,                }, // "Teisės nesuteiktos"
     { KP_MSG_WSAEADDRINUSE_EN,            KP_MSG_WSAEADDRINUSE_LT,            KP_MSG_WSAEADDRINUSE_PL_1250,             KP_MSG_WSAEADDRINUSE_PL_1257,             KP_MSG_WSAEADDRINUSE_RU,            KP_MSG_WSAEADDRINUSE_RU,            }, // "Adresas jau naudojamas"
     { KP_MSG_WSAEADDRNOTAVAIL_EN,         KP_MSG_WSAEADDRNOTAVAIL_LT,         KP_MSG_WSAEADDRNOTAVAIL_PL_1250,          KP_MSG_WSAEADDRNOTAVAIL_PL_1257,          KP_MSG_WSAEADDRNOTAVAIL_RU,         KP_MSG_WSAEADDRNOTAVAIL_RU,         }, // "Prašomas adresas negali būti priskirtas"
@@ -142,7 +142,7 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
     { KP_MSG_WSAECONNABORTED_EN,          KP_MSG_WSAECONNABORTED_LT,          KP_MSG_WSAECONNABORTED_PL_1250,           KP_MSG_WSAECONNABORTED_PL_1257,           KP_MSG_WSAECONNABORTED_RU,          KP_MSG_WSAECONNABORTED_RU,          }, // "Programa iššaukė ryšio nutraukimą"
     { KP_MSG_WSAECONNREFUSED_EN,          KP_MSG_WSAECONNREFUSED_LT,          KP_MSG_WSAECONNREFUSED_PL_1250,           KP_MSG_WSAECONNREFUSED_PL_1257,           KP_MSG_WSAECONNREFUSED_RU,          KP_MSG_WSAECONNREFUSED_RU,          }, // "Susijungimas atmestas"
     { KP_MSG_WSAECONNRESET_EN,            KP_MSG_WSAECONNRESET_LT,            KP_MSG_WSAECONNRESET_PL_1250,             KP_MSG_WSAECONNRESET_PL_1257,             KP_MSG_WSAECONNRESET_RU,            KP_MSG_WSAECONNRESET_RU,            }, // "Sujungimas nutrauktas"
-    { KP_MSG_WSAEDESTADDRREQ_EN,          KP_MSG_WSAEDESTADDRREQ_LT,          KP_MSG_WSAEDESTADDRREQ_PL_1250,           KP_MSG_WSAEDESTADDRREQ_PL_1257,           KP_MSG_WSAEDESTADDRREQ_RU,          KP_MSG_WSAEDESTADDRREQ_RU,          }, // "Būtinas kreities adresas"
+    { KP_MSG_WSAEDESTADDRREQ_EN,          KP_MSG_WSAEDESTADDRREQ_LT,          KP_MSG_WSAEDESTADDRREQ_PL_1250,           KP_MSG_WSAEDESTADDRREQ_PL_1257,           KP_MSG_WSAEDESTADDRREQ_RU,          KP_MSG_WSAEDESTADDRREQ_RU,          }, // "Būtinas kreipties adresas"
     { KP_MSG_WSAEFAULT_EN,                KP_MSG_WSAEFAULT_LT,                KP_MSG_WSAEFAULT_PL_1250,                 KP_MSG_WSAEFAULT_PL_1257,                 KP_MSG_WSAEFAULT_RU,                KP_MSG_WSAEFAULT_RU,                }, // "Neteisingas adresas"
     { KP_MSG_WSAEHOSTDOWN_EN,             KP_MSG_WSAEHOSTDOWN_LT,             KP_MSG_WSAEHOSTDOWN_PL_1250,              KP_MSG_WSAEHOSTDOWN_PL_1257,              KP_MSG_WSAEHOSTDOWN_RU,             KP_MSG_WSAEHOSTDOWN_RU,             }, // "Serveris laikinai neveikia"
     { KP_MSG_WSAEHOSTUNREACH_EN,          KP_MSG_WSAEHOSTUNREACH_LT,          KP_MSG_WSAEHOSTUNREACH_PL_1250,           KP_MSG_WSAEHOSTUNREACH_PL_1257,           KP_MSG_WSAEHOSTUNREACH_RU,          KP_MSG_WSAEHOSTUNREACH_RU,          }, // "Serveris nepasiekiamas"
@@ -166,7 +166,7 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
     { KP_MSG_WSAEPROTOTYPE_EN,            KP_MSG_WSAEPROTOTYPE_LT,            KP_MSG_WSAEPROTOTYPE_PL_1250,             KP_MSG_WSAEPROTOTYPE_PL_1257,             KP_MSG_WSAEPROTOTYPE_RU,            KP_MSG_WSAEPROTOTYPE_RU,            }, // "Neteisingas protokolo sujungimo tipas"
     { KP_MSG_WSAESHUTDOWN_EN,             KP_MSG_WSAESHUTDOWN_LT,             KP_MSG_WSAESHUTDOWN_PL_1250,              KP_MSG_WSAESHUTDOWN_PL_1257,              KP_MSG_WSAESHUTDOWN_RU,             KP_MSG_WSAESHUTDOWN_RU,             }, // "Siuntimas nebegalimas, sujungimas nutrauktas"
     { KP_MSG_WSAESOCKTNOSUPPORT_EN,       KP_MSG_WSAESOCKTNOSUPPORT_LT,       KP_MSG_WSAESOCKTNOSUPPORT_PL_1250,        KP_MSG_WSAESOCKTNOSUPPORT_PL_1257,        KP_MSG_WSAESOCKTNOSUPPORT_RU,       KP_MSG_WSAESOCKTNOSUPPORT_RU,       }, // "Sujungimo tipas nepalaikomas"
-    { KP_MSG_WSAETIMEDOUT_EN,             KP_MSG_WSAETIMEDOUT_LT,             KP_MSG_WSAETIMEDOUT_PL_1250,              KP_MSG_WSAETIMEDOUT_PL_1257,              KP_MSG_WSAETIMEDOUT_RU,             KP_MSG_WSAETIMEDOUT_RU,             }, // "Maksimalus sujungimo laukimo laikas viršytas"
+    { KP_MSG_WSAETIMEDOUT_EN,             KP_MSG_WSAETIMEDOUT_LT,             KP_MSG_WSAETIMEDOUT_PL_1250,              KP_MSG_WSAETIMEDOUT_PL_1257,              KP_MSG_WSAETIMEDOUT_RU,             KP_MSG_WSAETIMEDOUT_RU,             }, // "Viršytas maksimalus sujungimo laukimo laikas"
     { KP_MSG_WSATYPE_NOT_FOUND_EN,        KP_MSG_WSATYPE_NOT_FOUND_LT,        KP_MSG_WSATYPE_NOT_FOUND_PL_1250,         KP_MSG_WSATYPE_NOT_FOUND_PL_1257,         KP_MSG_WSATYPE_NOT_FOUND_RU,        KP_MSG_WSATYPE_NOT_FOUND_RU,        }, // "Klasės tipas nerastas"
     { KP_MSG_WSAEWOULDBLOCK_EN,           KP_MSG_WSAEWOULDBLOCK_LT,           KP_MSG_WSAEWOULDBLOCK_PL_1250,            KP_MSG_WSAEWOULDBLOCK_PL_1257,            KP_MSG_WSAEWOULDBLOCK_RU,           KP_MSG_WSAEWOULDBLOCK_RU,           }, // "Šaltinis laikinai nepasiekiamas"
     { KP_MSG_WSAHOST_NOT_FOUND_EN,        KP_MSG_WSAHOST_NOT_FOUND_LT,        KP_MSG_WSAHOST_NOT_FOUND_PL_1250,         KP_MSG_WSAHOST_NOT_FOUND_PL_1257,         KP_MSG_WSAHOST_NOT_FOUND_RU,        KP_MSG_WSAHOST_NOT_FOUND_RU,        }, // "Serveris nerastas"
@@ -218,7 +218,7 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
 
     { KP_MSG_NEG_ANSW_EN,                 KP_MSG_NEG_ANSW_LT,                 KP_MSG_NEG_ANSW_PL_1250,                  KP_MSG_NEG_ANSW_PL_1257,                  KP_MSG_NEG_ANSW_RU,                 KP_MSG_NEG_ANSW_RU,                 }, // "Neigiamas atsakymas"
 
-    { KP_MSG_UNABLE_TO_EXECUTE_EN,        KP_MSG_UNABLE_TO_EXECUTE_LT,        KP_MSG_UNABLE_TO_EXECUTE_PL_1250,         KP_MSG_UNABLE_TO_EXECUTE_PL_1257,         KP_MSG_UNABLE_TO_EXECUTE_RU,        KP_MSG_UNABLE_TO_EXECUTE_RU,        }, // "Komandos %s įvykdyti negaliu - patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+    { KP_MSG_UNABLE_TO_EXECUTE_EN,        KP_MSG_UNABLE_TO_EXECUTE_LT,        KP_MSG_UNABLE_TO_EXECUTE_PL_1250,         KP_MSG_UNABLE_TO_EXECUTE_PL_1257,         KP_MSG_UNABLE_TO_EXECUTE_RU,        KP_MSG_UNABLE_TO_EXECUTE_RU,        }, // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
     { KP_MSG_FLASH_PLAYER_INSTALL_EN,     KP_MSG_FLASH_PLAYER_INSTALL_LT,     KP_MSG_FLASH_PLAYER_INSTALL_PL_1250,      KP_MSG_FLASH_PLAYER_INSTALL_PL_1257,      KP_MSG_FLASH_PLAYER_INSTALL_RU,     KP_MSG_FLASH_PLAYER_INSTALL_RU,     }, // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
@@ -258,105 +258,109 @@ const unsigned char *KpErrorClass::m_lpszaKpMessages[NumOfKpMessages_25][KpNumOf
 
     { KP_MSG_UNHANDLED_EXCEPTION_EN,      KP_MSG_UNHANDLED_EXCEPTION_LT,      KP_MSG_UNHANDLED_EXCEPTION_PL_1250,       KP_MSG_UNHANDLED_EXCEPTION_PL_1257,       KP_MSG_UNHANDLED_EXCEPTION_RU,      KP_MSG_UNHANDLED_EXCEPTION_RU,      }, // "Neapdorojamas trūkis"
 
-	{ KP_MSG_DATA_FORMAT_EN,			KP_MSG_DATA_FORMAT_LT,				KP_MSG_DATA_FORMAT_PL_1250,					KP_MSG_DATA_FORMAT_PL_1257,				KP_MSG_DATA_FORMAT_RU,				KP_MSG_DATA_FORMAT_RU,				}, // "Neteisingas duomenų formatas"
-	{ KP_MSG_DBERROR_EN,				KP_MSG_DBERROR_LT,					KP_MSG_DBERROR_PL_1250,						KP_MSG_DBERROR_PL_1257,					KP_MSG_DBERROR_RU,					KP_MSG_DBERROR_RU,					}, // "Duomenų bazės klaida"
+    { KP_MSG_DATA_FORMAT_EN,              KP_MSG_DATA_FORMAT_LT,              KP_MSG_DATA_FORMAT_PL_1250,               KP_MSG_DATA_FORMAT_PL_1257,               KP_MSG_DATA_FORMAT_RU,              KP_MSG_DATA_FORMAT_RU,              }, // "Neteisingas duomenų formatas"
+    { KP_MSG_DBERROR_EN,                  KP_MSG_DBERROR_LT,                  KP_MSG_DBERROR_PL_1250,                   KP_MSG_DBERROR_PL_1257,                   KP_MSG_DBERROR_RU,                  KP_MSG_DBERROR_RU,                  }, // "Duomenų bazės klaida"
 };
 
 
 // ---------------------
+// KpException
+
+// ---------------------
 void KpException::Constructor
 (
-   HRESULT lhErrCode,
-   const uchar *lpszMsg,
-   LONG lWindowsErrorCode,
-   const uchar *lpszSourceFile,
-   int iSourceLine
+   HRESULT p_lhErrCode,
+   const KpStrPtr p_pszMsg,
+   LONG p_lWindowsErrorCode,
+   const KpStrPtr p_pszSourceFile,
+   int p_iSourceLine
 )
 {
-   m_lhErrCode = lhErrCode;
+   m_lhErrCode = p_lhErrCode;
 
-   m_lpszMsg[0] = Nul;
-   if (lpszMsg)
+   m_pszMsg[0] = Nul;
+   if (p_pszMsg)
    {
-      strncpy(m_lpszMsg, lpszMsg, KP_MAX_FILE_LIN_LEN);
-      m_lpszMsg[KP_MAX_FILE_LIN_LEN] = Nul;
+      strncpy(m_pszMsg, p_pszMsg, KP_MAX_FILE_LIN_LEN);
+      m_pszMsg[KP_MAX_FILE_LIN_LEN] = Nul;
    }
 
-   m_lWindowsErrorCode = lWindowsErrorCode;
+   m_lWindowsErrorCode = p_lWindowsErrorCode;
 
-   m_lpszSourceFile[0] = Nul;
-   if ((const uchar *)lpszSourceFile)
+   m_pszSourceFile[0] = Nul;
+   if ((const KpStrPtr)p_pszSourceFile)
    {
-      strncpy(m_lpszSourceFile, lpszSourceFile, KP_MAX_FNAME_LEN);
-      m_lpszSourceFile[KP_MAX_FNAME_LEN] = Nul;
+      strncpy(m_pszSourceFile, p_pszSourceFile, KP_MAX_FNAME_LEN);
+      m_pszSourceFile[KP_MAX_FNAME_LEN] = Nul;
    }
 
-   m_iSourceLine = iSourceLine;
+   m_iSourceLine = p_iSourceLine;
 }
 
 
 // ---------------------
-KpErrorClass::KpErrorClass(const uchar *lpszProdName, bool bOutMsg)
+// KpErrorClass
+
+// ---------------------
+KpErrorClass::KpErrorClass(const KpStrPtr p_pszProdName, bool p_bOutMsg)
 {
 //  m_iInsideOfStackDump = 0;
     m_iInsideOfPutLogMessage = 0;
 
     m_lhLastRetc = S_OK;
-    m_lpszLastMessageText[0] = Nul;
-    m_lpszLastSourceFile[0] = Nul;
+    m_pszLastMessageText[0] = Nul;
+    m_pszLastSourceFile[0] = Nul;
     m_iLastSourceLine = 0;
 
-    m_lpszProdName[0] = Nul;
+    m_pszProdName[0] = Nul;
 
-    KP_ASSERT(lpszProdName, E_INVALIDARG, null);
-    strncpy(m_lpszProdName, lpszProdName, KP_MAX_FNAME_LEN);
-    m_lpszProdName[KP_MAX_FNAME_LEN] = Nul;
-    
-    m_bOutMsg = bOutMsg;
+    KP_ASSERT(p_pszProdName, E_INVALIDARG, null);
+    strncpy(m_pszProdName, p_pszProdName, KP_MAX_FNAME_LEN);
+    m_pszProdName[KP_MAX_FNAME_LEN] = Nul;
+
+    m_bOutMsg = p_bOutMsg;
 }
-
-
 
 
 // ----------------------------------
-void KpErrorClass::GetProdName(uchar *lpszNameBuf)
+void KpErrorClass::GetProdName(KpStrPtr p_pszNameBuf)
 {
-    KP_ASSERT(lpszNameBuf, E_INVALIDARG, null);
-    strcpy(lpszNameBuf, m_lpszProdName);
+    KP_ASSERT(p_pszNameBuf, E_INVALIDARG, null);
+    strcpy(p_pszNameBuf, m_pszProdName);
 }
 
-const uchar *KpErrorClass::GetProdNamePtr(void)
+const KpStrPtr KpErrorClass::GetProdNamePtr(void)
 {
-return(m_lpszProdName);
+return(m_pszProdName);
 }
 
-const uchar *KpGetProdName(void)
+const KpStrPtr KpGetProdName(void)
 {
 return(KpError.GetProdNamePtr());
 }
 
 
 // ----------------------------------
-void KpErrorClass::SetProdName(const uchar *lpszNameBuf)
+void KpErrorClass::SetProdName(const KpStrPtr p_pszNameBuf)
 {
-    KP_ASSERT(lpszNameBuf, E_INVALIDARG, null);
-    KP_ASSERT(strlen(lpszNameBuf) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-    strcpy(m_lpszProdName, lpszNameBuf);
+    KP_ASSERT(p_pszNameBuf, E_INVALIDARG, null);
+    KP_ASSERT(strlen(p_pszNameBuf) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
+    strcpy(m_pszProdName, p_pszNameBuf);
 }
 
 
 // ---------------------
 void KpErrorClass::FormatErrorMessage
 (
-const HRESULT lhRetc,
-unsigned char *lpszMsg
+const HRESULT p_lhRetc,
+unsigned char *p_pszMsg
 )
 {
-   if (lpszMsg)
+   if (p_pszMsg)
    {
-const uchar *msgptr = (const uchar *)"";
+const KpStrPtr msgptr = (const KpStrPtr)"";
 
-      switch(lhRetc)
+      switch(p_lhRetc)
       {
          case S_OK:                 msgptr = KP_MSG_ERR_OK; break;
          case E_INVALIDARG:         msgptr = KP_MSG_INVALIDARG; break;
@@ -408,8 +412,8 @@ const uchar *msgptr = (const uchar *)"";
          case KP_E_DBERROR:         msgptr = KP_MSG_DBERROR; break;
       }
 
-      strncpy(lpszMsg, msgptr, KP_MAX_FILE_LIN_LEN);
-      lpszMsg[KP_MAX_FILE_LIN_LEN] = Nul;
+      strncpy(p_pszMsg, msgptr, KP_MAX_FILE_LIN_LEN);
+      p_pszMsg[KP_MAX_FILE_LIN_LEN] = Nul;
    }
 }
 
@@ -417,103 +421,103 @@ const uchar *msgptr = (const uchar *)"";
 // ---------------------
 HRESULT KpErrorClass::FormatSystemErrorMessage
 (
-long lWindowsErrorCode,
-uchar *lpszMsg,
-bool bFullFormat
+long p_lWindowsErrorCode,
+KpStrPtr p_pszMsg,
+bool p_bFullFormat
 )
 {
 HRESULT retc = S_OK;
-const uchar *pszMsg0 = null;
-uchar *pszMsg1 = null;
-const uchar *pszMsg = null;
-uchar *pnts;
+const KpStrPtr msg0 = null;
+KpStrPtr msg1 = null;
+const KpStrPtr msg = null;
+KpStrPtr pnts;
 uchar str_buf[MAX_LONG_DIGITS + 20];
     str_buf[0] = Nul;
 int ii;
 
-    KP_ASSERT(lpszMsg, E_INVALIDARG, null);
+    KP_ASSERT(p_pszMsg, E_INVALIDARG, null);
 
-    if (SUCCEEDED(retc)) lpszMsg[0] = Nul;
+    if (SUCCEEDED(retc)) p_pszMsg[0] = Nul;
 
-    if (lWindowsErrorCode)
+    if (p_lWindowsErrorCode)
     {
-        switch(lWindowsErrorCode)
+        switch(p_lWindowsErrorCode)
         {
 #ifdef __WIN32__
-        case WSAEACCES:               pszMsg0=KP_MSG_WSAEACCES; break;
-        case WSAEADDRINUSE:           pszMsg0=KP_MSG_WSAEADDRINUSE; break;
-        case WSAEADDRNOTAVAIL:        pszMsg0=KP_MSG_WSAEADDRNOTAVAIL; break;
-        case WSAEAFNOSUPPORT:         pszMsg0=KP_MSG_WSAEAFNOSUPPORT; break;
-        case WSAEALREADY:             pszMsg0=KP_MSG_WSAEALREADY; break;
-        case WSAECONNABORTED:         pszMsg0=KP_MSG_WSAECONNABORTED; break;
-        case WSAECONNREFUSED:         pszMsg0=KP_MSG_WSAECONNREFUSED; break;
-        case WSAECONNRESET:           pszMsg0=KP_MSG_WSAECONNRESET; break;
-        case WSAEDESTADDRREQ:         pszMsg0=KP_MSG_WSAEDESTADDRREQ; break;
-        case WSAEFAULT:               pszMsg0=KP_MSG_WSAEFAULT; break;
-        case WSAEHOSTDOWN:            pszMsg0=KP_MSG_WSAEHOSTDOWN; break;
-        case WSAEHOSTUNREACH:         pszMsg0=KP_MSG_WSAEHOSTUNREACH; break;
-        case WSAEINPROGRESS:          pszMsg0=KP_MSG_WSAEINPROGRESS; break;
-        case WSAEINTR:                pszMsg0=KP_MSG_WSAEINTR; break;
-        case WSAEINVAL:               pszMsg0=KP_MSG_WSAEINVAL; break;
-        case WSAEISCONN:              pszMsg0=KP_MSG_WSAEISCONN; break;
-        case WSAEMFILE:               pszMsg0=KP_MSG_WSAEMFILE; break;
-        case WSAEMSGSIZE:             pszMsg0=KP_MSG_WSAEMSGSIZE; break;
-        case WSAENETDOWN:             pszMsg0=KP_MSG_WSAENETDOWN; break;
-        case WSAENETRESET:            pszMsg0=KP_MSG_WSAENETRESET; break;
-        case WSAENETUNREACH:          pszMsg0=KP_MSG_WSAENETUNREACH; break;
-        case WSAENOBUFS:              pszMsg0=KP_MSG_WSAENOBUFS; break;
-        case WSAENOPROTOOPT:          pszMsg0=KP_MSG_WSAENOPROTOOPT; break;
-        case WSAENOTCONN:             pszMsg0=KP_MSG_WSAENOTCONN; break;
-        case WSAENOTSOCK:             pszMsg0=KP_MSG_WSAENOTSOCK; break;
-        case WSAEOPNOTSUPP:           pszMsg0=KP_MSG_WSAEOPNOTSUPP; break;
-        case WSAEPFNOSUPPORT:         pszMsg0=KP_MSG_WSAEPFNOSUPPORT; break;
-        case WSAEPROCLIM:             pszMsg0=KP_MSG_WSAEPROCLIM; break;
-        case WSAEPROTONOSUPPORT:      pszMsg0=KP_MSG_WSAEPROTONOSUPPORT; break;
-        case WSAEPROTOTYPE:           pszMsg0=KP_MSG_WSAEPROTOTYPE; break;
-        case WSAESHUTDOWN:            pszMsg0=KP_MSG_WSAESHUTDOWN; break;
-        case WSAESOCKTNOSUPPORT:      pszMsg0=KP_MSG_WSAESOCKTNOSUPPORT; break;
-        case WSAETIMEDOUT:            pszMsg0=KP_MSG_WSAETIMEDOUT; break;
-        case WSATYPE_NOT_FOUND:       pszMsg0=KP_MSG_WSATYPE_NOT_FOUND; break;
-        case WSAEWOULDBLOCK:          pszMsg0=KP_MSG_WSAEWOULDBLOCK; break;
-        case WSAHOST_NOT_FOUND:       pszMsg0=KP_MSG_WSAHOST_NOT_FOUND; break;
-        case WSA_INVALID_HANDLE:      pszMsg0=KP_MSG_WSA_INVALID_HANDLE; break;
-        case WSA_INVALID_PARAMETER:   pszMsg0=KP_MSG_WSA_INVALID_PARAMETER; break;
-//      case WSAINVALIDPROCTABLE:     pszMsg0=KP_MSG_WSAINVALIDPROCTABLE; break;
-//      case WSAINVALIDPROVIDER:      pszMsg0=KP_MSG_WSAINVALIDPROVIDER; break;
-        case WSA_IO_INCOMPLETE:       pszMsg0=KP_MSG_WSA_IO_INCOMPLETE; break;
-        case WSA_IO_PENDING:          pszMsg0=KP_MSG_WSA_IO_PENDING; break;
+        case WSAEACCES:               msg0=KP_MSG_WSAEACCES; break;
+        case WSAEADDRINUSE:           msg0=KP_MSG_WSAEADDRINUSE; break;
+        case WSAEADDRNOTAVAIL:        msg0=KP_MSG_WSAEADDRNOTAVAIL; break;
+        case WSAEAFNOSUPPORT:         msg0=KP_MSG_WSAEAFNOSUPPORT; break;
+        case WSAEALREADY:             msg0=KP_MSG_WSAEALREADY; break;
+        case WSAECONNABORTED:         msg0=KP_MSG_WSAECONNABORTED; break;
+        case WSAECONNREFUSED:         msg0=KP_MSG_WSAECONNREFUSED; break;
+        case WSAECONNRESET:           msg0=KP_MSG_WSAECONNRESET; break;
+        case WSAEDESTADDRREQ:         msg0=KP_MSG_WSAEDESTADDRREQ; break;
+        case WSAEFAULT:               msg0=KP_MSG_WSAEFAULT; break;
+        case WSAEHOSTDOWN:            msg0=KP_MSG_WSAEHOSTDOWN; break;
+        case WSAEHOSTUNREACH:         msg0=KP_MSG_WSAEHOSTUNREACH; break;
+        case WSAEINPROGRESS:          msg0=KP_MSG_WSAEINPROGRESS; break;
+        case WSAEINTR:                msg0=KP_MSG_WSAEINTR; break;
+        case WSAEINVAL:               msg0=KP_MSG_WSAEINVAL; break;
+        case WSAEISCONN:              msg0=KP_MSG_WSAEISCONN; break;
+        case WSAEMFILE:               msg0=KP_MSG_WSAEMFILE; break;
+        case WSAEMSGSIZE:             msg0=KP_MSG_WSAEMSGSIZE; break;
+        case WSAENETDOWN:             msg0=KP_MSG_WSAENETDOWN; break;
+        case WSAENETRESET:            msg0=KP_MSG_WSAENETRESET; break;
+        case WSAENETUNREACH:          msg0=KP_MSG_WSAENETUNREACH; break;
+        case WSAENOBUFS:              msg0=KP_MSG_WSAENOBUFS; break;
+        case WSAENOPROTOOPT:          msg0=KP_MSG_WSAENOPROTOOPT; break;
+        case WSAENOTCONN:             msg0=KP_MSG_WSAENOTCONN; break;
+        case WSAENOTSOCK:             msg0=KP_MSG_WSAENOTSOCK; break;
+        case WSAEOPNOTSUPP:           msg0=KP_MSG_WSAEOPNOTSUPP; break;
+        case WSAEPFNOSUPPORT:         msg0=KP_MSG_WSAEPFNOSUPPORT; break;
+        case WSAEPROCLIM:             msg0=KP_MSG_WSAEPROCLIM; break;
+        case WSAEPROTONOSUPPORT:      msg0=KP_MSG_WSAEPROTONOSUPPORT; break;
+        case WSAEPROTOTYPE:           msg0=KP_MSG_WSAEPROTOTYPE; break;
+        case WSAESHUTDOWN:            msg0=KP_MSG_WSAESHUTDOWN; break;
+        case WSAESOCKTNOSUPPORT:      msg0=KP_MSG_WSAESOCKTNOSUPPORT; break;
+        case WSAETIMEDOUT:            msg0=KP_MSG_WSAETIMEDOUT; break;
+        case WSATYPE_NOT_FOUND:       msg0=KP_MSG_WSATYPE_NOT_FOUND; break;
+        case WSAEWOULDBLOCK:          msg0=KP_MSG_WSAEWOULDBLOCK; break;
+        case WSAHOST_NOT_FOUND:       msg0=KP_MSG_WSAHOST_NOT_FOUND; break;
+        case WSA_INVALID_HANDLE:      msg0=KP_MSG_WSA_INVALID_HANDLE; break;
+        case WSA_INVALID_PARAMETER:   msg0=KP_MSG_WSA_INVALID_PARAMETER; break;
+//      case WSAINVALIDPROCTABLE:     msg0=KP_MSG_WSAINVALIDPROCTABLE; break;
+//      case WSAINVALIDPROVIDER:      msg0=KP_MSG_WSAINVALIDPROVIDER; break;
+        case WSA_IO_INCOMPLETE:       msg0=KP_MSG_WSA_IO_INCOMPLETE; break;
+        case WSA_IO_PENDING:          msg0=KP_MSG_WSA_IO_PENDING; break;
 // tas pat, kaip SE_ERR_OOM
-//      case WSA_NOT_ENOUGH_MEMORY:   pszMsg0=KP_MSG_WSA_NOT_ENOUGH_MEMORY; break;
-        case WSANOTINITIALISED:       pszMsg0=KP_MSG_WSANOTINITIALISED; break;
-        case WSANO_DATA:              pszMsg0=KP_MSG_WSANO_DATA; break;
-        case WSANO_RECOVERY:          pszMsg0=KP_MSG_WSANO_RECOVERY; break;
-//      case WSAPROVIDERFAILEDINIT:   pszMsg0=KP_MSG_WSAPROVIDERFAILEDINIT; break;
-        case WSASYSCALLFAILURE:       pszMsg0=KP_MSG_WSASYSCALLFAILURE; break;
-        case WSASYSNOTREADY:          pszMsg0=KP_MSG_WSASYSNOTREADY; break;
-        case WSATRY_AGAIN:            pszMsg0=KP_MSG_WSATRY_AGAIN; break;
-        case WSAVERNOTSUPPORTED:      pszMsg0=KP_MSG_WSAVERNOTSUPPORTED; break;
-        case WSAEDISCON:              pszMsg0=KP_MSG_WSAEDISCON; break;
-        case WSA_OPERATION_ABORTED:   pszMsg0=KP_MSG_WSA_OPERATION_ABORTED; break;
+//      case WSA_NOT_ENOUGH_MEMORY:   msg0=KP_MSG_WSA_NOT_ENOUGH_MEMORY; break;
+        case WSANOTINITIALISED:       msg0=KP_MSG_WSANOTINITIALISED; break;
+        case WSANO_DATA:              msg0=KP_MSG_WSANO_DATA; break;
+        case WSANO_RECOVERY:          msg0=KP_MSG_WSANO_RECOVERY; break;
+//      case WSAPROVIDERFAILEDINIT:   msg0=KP_MSG_WSAPROVIDERFAILEDINIT; break;
+        case WSASYSCALLFAILURE:       msg0=KP_MSG_WSASYSCALLFAILURE; break;
+        case WSASYSNOTREADY:          msg0=KP_MSG_WSASYSNOTREADY; break;
+        case WSATRY_AGAIN:            msg0=KP_MSG_WSATRY_AGAIN; break;
+        case WSAVERNOTSUPPORTED:      msg0=KP_MSG_WSAVERNOTSUPPORTED; break;
+        case WSAEDISCON:              msg0=KP_MSG_WSAEDISCON; break;
+        case WSA_OPERATION_ABORTED:   msg0=KP_MSG_WSA_OPERATION_ABORTED; break;
 
 //      switch((int)hErrorCode)
 //      {
-// !!! case 0:                      pszMsg0=KP_MSG_OUT_OF_MEM_RES; break;
-        case ERROR_FILE_NOT_FOUND:    pszMsg0=KP_MSG_ERROR_FILE_NOT_FOUND; break;
-        case ERROR_PATH_NOT_FOUND:    pszMsg0=KP_MSG_ERROR_PATH_NOT_FOUND; break;
-        case ERROR_BAD_FORMAT:        pszMsg0=KP_MSG_ERROR_BAD_FORMAT; break;
-        case SE_ERR_ACCESSDENIED:     pszMsg0=KP_MSG_SE_ERR_ACCESSDENIED; break;
-        case SE_ERR_ASSOCINCOMPLETE:  pszMsg0=KP_MSG_SE_ERR_ASSOCINCOMPLETE; break;
-        case SE_ERR_DDEBUSY:          pszMsg0=KP_MSG_SE_ERR_DDEBUSY; break;
-        case SE_ERR_DDEFAIL:          pszMsg0=KP_MSG_SE_ERR_DDEFAIL; break;
-        case SE_ERR_DDETIMEOUT:       pszMsg0=KP_MSG_SE_ERR_DDETIMEOUT; break;
-        case SE_ERR_DLLNOTFOUND:      pszMsg0=KP_MSG_SE_ERR_DLLNOTFOUND; break;
-//      case SE_ERR_FNF:              pszMsg1=KP_MSG_SE_ERR_FNF; break;
-        case SE_ERR_NOASSOC:          pszMsg0=KP_MSG_SE_ERR_NOASSOC; break;
-        case SE_ERR_OOM:              pszMsg0=KP_MSG_SE_ERR_OOM; break;
-//      case SE_ERR_PNF:              pszMsg0=KP_MSG_SE_ERR_PNF; break;
-        case SE_ERR_SHARE:            pszMsg0=KP_MSG_SE_ERR_SHARE; break;
+// !!! case 0:                      msg0=KP_MSG_OUT_OF_MEM_RES; break;
+        case ERROR_FILE_NOT_FOUND:    msg0=KP_MSG_ERROR_FILE_NOT_FOUND; break;
+        case ERROR_PATH_NOT_FOUND:    msg0=KP_MSG_ERROR_PATH_NOT_FOUND; break;
+        case ERROR_BAD_FORMAT:        msg0=KP_MSG_ERROR_BAD_FORMAT; break;
+        case SE_ERR_ACCESSDENIED:     msg0=KP_MSG_SE_ERR_ACCESSDENIED; break;
+        case SE_ERR_ASSOCINCOMPLETE:  msg0=KP_MSG_SE_ERR_ASSOCINCOMPLETE; break;
+        case SE_ERR_DDEBUSY:          msg0=KP_MSG_SE_ERR_DDEBUSY; break;
+        case SE_ERR_DDEFAIL:          msg0=KP_MSG_SE_ERR_DDEFAIL; break;
+        case SE_ERR_DDETIMEOUT:       msg0=KP_MSG_SE_ERR_DDETIMEOUT; break;
+        case SE_ERR_DLLNOTFOUND:      msg0=KP_MSG_SE_ERR_DLLNOTFOUND; break;
+//      case SE_ERR_FNF:              msg0=KP_MSG_SE_ERR_FNF; break;
+        case SE_ERR_NOASSOC:          msg0=KP_MSG_SE_ERR_NOASSOC; break;
+        case SE_ERR_OOM:              msg0=KP_MSG_SE_ERR_OOM; break;
+//      case SE_ERR_PNF:              msg0=KP_MSG_SE_ERR_PNF; break;
+        case SE_ERR_SHARE:            msg0=KP_MSG_SE_ERR_SHARE; break;
 
-// klaidos i­ GetAdaptersAddresses(), naudojama KpSocket::Bind()
+// klaidos iš­ GetAdaptersAddresses(), naudojama KpSocket::Bind()
 //      case ERROR_ADDRESS_NOT_ASSOCIATED:  "DHCP lease information was available."
 //      case ERROR_BUFFER_OVERFLOW:         "The buffer size indicated by the SizePointer parameter is too small to hold the adapter information or the AdapterAddresses parameter is NULL. The SizePointer parameter returned points to the required size of the buffer to hold the adapter information."
 //      case ERROR_INVALID_PARAMETER:       "One of the parameters is invalid. This error is returned for any of the following conditions: the SizePointer parameter is NULL, the Address parameter is not AF_INET, AF_INET6, or AF_UNSPEC, or the address information for the parameters requested is greater than ULONG_MAX."
@@ -523,148 +527,148 @@ int ii;
 // FindFirstFile(), FindNextFile(), FindClose()
 //      case ERROR_NO_MORE_FILES:
 #endif
-        default: pszMsg0 = null; break;
+        default: msg0 = null; break;
         }
 
-        pszMsg = null;
+        msg = null;
 #ifdef __WIN32__
 #ifdef UNICODE
 // TODO:
 #else
-        if ((pszMsg0 == null) || bFullFormat) if(FormatMessage(
+        if ((msg0 == null) || p_bFullFormat) if(FormatMessage(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_IGNORE_INSERTS |
             FORMAT_MESSAGE_FROM_SYSTEM,
-            NULL, lWindowsErrorCode, 0,
-            (char *)&pszMsg, 0, NULL) == 0)
+            NULL, p_lWindowsErrorCode, 0,
+            (char *)&msg, 0, NULL) == 0)
         {
-            pszMsg = null; // nesuformavo
+            msg = null; // nesuformavo
         }
 #endif
 #endif
-//      if ((pszMsg0 == null) && (pszMsg == null))
+//      if ((msg0 == null) && (msg == null))
         {
-            sprintf((char *)str_buf, " %ld", lWindowsErrorCode);
-//          pszMsg0 = str_buf;
+            sprintf((char *)str_buf, " %ld", p_lWindowsErrorCode);
+//          msg0 = str_buf;
         }
 
-    } // if (lWindowsErrorCode)
+    } // if (p_lWindowsErrorCode)
 
-    if ((pszMsg0 || pszMsg || str_buf[0]) && SUCCEEDED(retc))
+    if ((msg0 || msg || str_buf[0]) && SUCCEEDED(retc))
     {
         ii = 20;
-        if (pszMsg0) ii += strlen(pszMsg0);
-        if (pszMsg) ii += strlen(pszMsg);
+        if (msg0) ii += strlen(msg0);
+        if (msg) ii += strlen(msg);
         ii += strlen(str_buf);
 
-//      KP_NEWA(pszMsg1, unsigned char, ii + 1); // isvieciamas ir is KP_NEWA(), gali uzsiciklint
-        pszMsg1 = new uchar[ii + 1];
+//      KP_NEWA(msg1, unsigned char, ii + 1); // isvieciamas ir is KP_NEWA(), gali uzsiciklint
+        msg1 = new uchar[ii + 1];
 
-        if (pszMsg1 && SUCCEEDED(retc))
+        if (msg1 && SUCCEEDED(retc))
         {
-            pszMsg1[0] = Nul;
-            if (pszMsg0)
+            msg1[0] = Nul;
+            if (msg0)
             {
-                strcat(pszMsg1, pszMsg0);
-                if (pszMsg) strcat(pszMsg1, "; ");
+                strcat(msg1, msg0);
+                if (msg) strcat(msg1, "; ");
             }
 
-            if (pszMsg) strcat(pszMsg1, pszMsg);
+            if (msg) strcat(msg1, msg);
 
-            pnts = pszMsg1 + strlen(pszMsg1);
-            if (pnts > pszMsg1) if (*(--pnts) == Lf) *pnts = Nul;
-            if (pnts > pszMsg1) if (*(--pnts) == Cr) *pnts = Nul;
-            if (pnts > pszMsg1) if (*(--pnts) == '.') *pnts = Nul;
+            pnts = msg1 + strlen(msg1);
+            if (pnts > msg1) if (*(--pnts) == Lf) *pnts = Nul;
+            if (pnts > msg1) if (*(--pnts) == Cr) *pnts = Nul;
+            if (pnts > msg1) if (*(--pnts) == '.') *pnts = Nul;
 
-            if (pszMsg1[0] && str_buf[0]) strcat(pszMsg1, "; ");
-            strcat(pszMsg1, str_buf);
+            if (msg1[0] && str_buf[0]) strcat(msg1, "; ");
+            strcat(msg1, str_buf);
         }
     }
 
-    if (pszMsg1 && SUCCEEDED(retc))
+    if (msg1 && SUCCEEDED(retc))
     {
-        if (strlen(pszMsg1) > KP_MAX_FILE_LIN_LEN)
+        if (strlen(msg1) > KP_MAX_FILE_LIN_LEN)
         {
-            pszMsg1[KP_MAX_FILE_LIN_LEN] = Nul;
+            msg1[KP_MAX_FILE_LIN_LEN] = Nul;
             KP_WARNING(KP_E_BUFFER_OVERFLOW, null);
         }
-        strcpy(lpszMsg, pszMsg1);
+        strcpy(p_pszMsg, msg1);
     }
 
-//  KP_DELETEA(pszMsg1); // siaip iskvieciamas ir is KP_DELETE(), gali ir uzsiciklint
-    if (pszMsg1) delete [] pszMsg1;
-    pszMsg1 = null;
+//  KP_DELETEA(msg1); // šiaip iškviečiamas ir iš KP_DELETE(), gali ir užsiciklint
+    if (msg1) delete [] msg1;
+    msg1 = null;
 
 #ifdef __WIN32__
-    if (pszMsg!=null) LocalFree((HLOCAL)pszMsg);
+    if (msg!=null) LocalFree((HLOCAL)msg);
 #endif
 
 return(S_OK);
 }
 
 
-uchar *KpErrorClass::FormatSystemErrorMessage(long lWindowsErrorCode)
+KpStrPtr KpErrorClass::FormatSystemErrorMessage(long p_lWindowsErrorCode)
 {
 static uchar sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
-    FormatSystemErrorMessage(lWindowsErrorCode, sys_err_msg, True);
+    FormatSystemErrorMessage(p_lWindowsErrorCode, sys_err_msg, True);
 return(sys_err_msg);
 }
 
 
 // ------------------------------------
-const uchar *KpErrorClass::FormatErrorMessageHTTP(int p_iHTTP_RetCode)
+const KpStrPtr KpErrorClass::FormatErrorMessageHTTP(int p_iHTTP_RetCode)
 {
 static uchar out_buf[MAX_LONG_DIGITS + 100];
     sprintf((char *)out_buf, "HTTP status: %d", p_iHTTP_RetCode);
-const uchar *retv = out_buf;
+const KpStrPtr retv = out_buf;
 
     switch(p_iHTTP_RetCode)
     {
         case HTTP_ANSW_CONTINUE /* 100 */:
-            retv = (const uchar *)"Continue"; break;
-        case 101: retv = (const uchar *)"Switching Protocols"; break;
-        case HTTP_ANSW_OK /* 200 */: retv = (const uchar *)"OK"; break;
-        case 201: retv = (const uchar *)"Created"; break;
-        case 202: retv = (const uchar *)"Accepted"; break;
-        case 203: retv = (const uchar *)"Non-Authoritative Information"; break;
-        case 204: retv = (const uchar *)"No Content"; break;
-        case 205: retv = (const uchar *)"Reset Content"; break;
-        case 206: retv = (const uchar *)"Partial Content"; break;
-        case 300: retv = (const uchar *)"Multiple Choices"; break;
-        case 301: retv = (const uchar *)"Moved Permanently"; break;
-        case HTTP_ANSW_FOUND /* 302 */: retv = (const uchar *)"Found"; break;
-        case 303: retv = (const uchar *)"See Other"; break;
-        case 304: retv = (const uchar *)"Not Modified"; break;
-        case 305: retv = (const uchar *)"Use Proxy"; break;
-        case 307: retv = (const uchar *)"Temporary Redirect"; break;
-        case 400: retv = (const uchar *)"Bad Request"; break;
-        case 401: retv = (const uchar *)"Unauthorized"; break;
-        case 402: retv = (const uchar *)"Payment Required"; break;
-        case 403: retv = (const uchar *)"Forbidden"; break;
+            retv = (const KpStrPtr)"Continue"; break;
+        case 101: retv = (const KpStrPtr)"Switching Protocols"; break;
+        case HTTP_ANSW_OK /* 200 */: retv = (const KpStrPtr)"OK"; break;
+        case 201: retv = (const KpStrPtr)"Created"; break;
+        case 202: retv = (const KpStrPtr)"Accepted"; break;
+        case 203: retv = (const KpStrPtr)"Non-Authoritative Information"; break;
+        case 204: retv = (const KpStrPtr)"No Content"; break;
+        case 205: retv = (const KpStrPtr)"Reset Content"; break;
+        case 206: retv = (const KpStrPtr)"Partial Content"; break;
+        case 300: retv = (const KpStrPtr)"Multiple Choices"; break;
+        case 301: retv = (const KpStrPtr)"Moved Permanently"; break;
+        case HTTP_ANSW_FOUND /* 302 */: retv = (const KpStrPtr)"Found"; break;
+        case 303: retv = (const KpStrPtr)"See Other"; break;
+        case 304: retv = (const KpStrPtr)"Not Modified"; break;
+        case 305: retv = (const KpStrPtr)"Use Proxy"; break;
+        case 307: retv = (const KpStrPtr)"Temporary Redirect"; break;
+        case 400: retv = (const KpStrPtr)"Bad Request"; break;
+        case 401: retv = (const KpStrPtr)"Unauthorized"; break;
+        case 402: retv = (const KpStrPtr)"Payment Required"; break;
+        case 403: retv = (const KpStrPtr)"Forbidden"; break;
         case HTTP_ANSW_FILE_NOT_FOUND /* 404 */:
-            retv = (const uchar *)"Not Found"; break;
-        case 405: retv = (const uchar *)"Method Not Allowed"; break;
-        case 406: retv = (const uchar *)"Not Acceptable"; break;
-            // serveris negali i�si�sti failo u�koduoto n� vienu i� metod�,
-            // nurodyt� HTTP u�klausos lauke Accept-Encoding:
-        case 407: retv = (const uchar *)"Proxy Authentication Required"; break;
-        case 408: retv = (const uchar *)"Request Timeout"; break;
-        case 409: retv = (const uchar *)"Conflict"; break;
-        case 410: retv = (const uchar *)"Gone"; break;
-        case 411: retv = (const uchar *)"Length Required"; break;
-        case 412: retv = (const uchar *)"Precondition Failed"; break;
-        case 413: retv = (const uchar *)"Request Entity Too Large"; break;
-        case 414: retv = (const uchar *)"Request-URI Too Long"; break;
-        case 415: retv = (const uchar *)"Unsupported Media Type"; break;
+            retv = (const KpStrPtr)"Not Found"; break;
+        case 405: retv = (const KpStrPtr)"Method Not Allowed"; break;
+        case 406: retv = (const KpStrPtr)"Not Acceptable"; break;
+            // serveris negali išsiųsti failo, užkoduoto nė vienu iš metodų,
+            // nurodytų HTTP užklausos lauke Accept-Encoding:
+        case 407: retv = (const KpStrPtr)"Proxy Authentication Required"; break;
+        case 408: retv = (const KpStrPtr)"Request Timeout"; break;
+        case 409: retv = (const KpStrPtr)"Conflict"; break;
+        case 410: retv = (const KpStrPtr)"Gone"; break;
+        case 411: retv = (const KpStrPtr)"Length Required"; break;
+        case 412: retv = (const KpStrPtr)"Precondition Failed"; break;
+        case 413: retv = (const KpStrPtr)"Request Entity Too Large"; break;
+        case 414: retv = (const KpStrPtr)"Request-URI Too Long"; break;
+        case 415: retv = (const KpStrPtr)"Unsupported Media Type"; break;
         case 416: retv =
-            (const uchar *)"Requested Range Not Satisfiable"; break;
-        case 417: retv = (const uchar *)"Expectation Failed"; break;
-        case 500: retv = (const uchar *)"Internal Server Error"; break;
-        case 501: retv = (const uchar *)"Not Implemented"; break;
-        case 502: retv = (const uchar *)"Bad Gateway"; break;
-        case 503: retv = (const uchar *)"Service Unavailable"; break;
-        case 504: retv = (const uchar *)"Gateway Timeout"; break;
-        case 505: retv = (const uchar *)"HTTP Version Not Supported"; break;
+            (const KpStrPtr)"Requested Range Not Satisfiable"; break;
+        case 417: retv = (const KpStrPtr)"Expectation Failed"; break;
+        case 500: retv = (const KpStrPtr)"Internal Server Error"; break;
+        case 501: retv = (const KpStrPtr)"Not Implemented"; break;
+        case 502: retv = (const KpStrPtr)"Bad Gateway"; break;
+        case 503: retv = (const KpStrPtr)"Service Unavailable"; break;
+        case 504: retv = (const KpStrPtr)"Gateway Timeout"; break;
+        case 505: retv = (const KpStrPtr)"HTTP Version Not Supported"; break;
    }
 
 return (retv);
@@ -782,7 +786,7 @@ HRESULT retc = (p_iHTTP_RetCode == HTTP_ANSW_OK)?S_OK:KP_E_NEG_ANSW;
         case 300 /* Multiple Choices */:
                                             retc = S_OK; break;
 
-// �itais atvejais reik�t� �okti nuoroda, nurodyta headerio lauke Location:,
+// šitais atvejais reikėtų šokti nuoroda, nurodyta headerio lauke Location:,
 // kol kas nerealizuota (kliento gale)
         case 302 /* Found */ /* Moved Temporarily */:
         case 303 /* See Other */:
@@ -792,10 +796,10 @@ HRESULT retc = (p_iHTTP_RetCode == HTTP_ANSW_OK)?S_OK:KP_E_NEG_ANSW;
                                             retc = E_NOTIMPL; break;
 
         case 304 /* Not Modified */:
-            // atsakymas � s�lygin� GET u�klaus� � tu��ias atsakymas apie
-            //      nepasikeitus� fail� (tikriausiai, pasitikrinimui, ar reikia
-            //      perkrauti cache'int� fail�)
-            // a� toki� u�klaus� kol kas nesiun�iu, tai ir atsakymo tur�t�
+            // atsakymas į sąlyginę GET užklausą -- tuščias atsakymas apie
+            //      nepasikeitusį failą (tikriausiai, pasitikrinimui, ar reikia
+            //      perkrauti cache'intą failą)
+            // aš tokių užklausų kol kas nesiunčiu, tai ir atsakymo turėtų
             //      neateiti
                                             retc = KP_E_FILE_FORMAT; break;
 
@@ -878,89 +882,102 @@ return(retc);
 
 
 // ---------------------
-void KpErrorClass::SendDiagMsg(const uchar *lpszMessageText, bool bSevereError, const uchar *lpszAddMessage)
+void KpErrorClass::SendDiagMsg(const KpStrPtr p_pszMessageText, bool p_bSevereError, const KpStrPtr p_pszAddMessage)
 {
-// TODO:
 #ifdef KP_CONSOLE
 #if (!defined(KP_VERBOSE)) && (!defined(Debug))
-   // KP_VERBOSE ar Debug re�ime OutputErrorMessage() (PutLogMessage()) jau i�ved�
-   cerr << lpszMessageText << endl;
+   // KP_VERBOSE ar Debug režime OutputErrorMessage() (PutLogMessage()) jau išvedė
+// cerr /* cout */ << p_pszMessageText << endl;
+   fprintf(stderr, "%s\n", p_pszMessageText);
 #endif
 #else
+// TODO:
 // #error Not yet implemented
 #endif
 }
 
 // ---------------------
-void KpErrorClass::OutputErrorMessage(HRESULT lhRetc, const uchar *lpszMessageText,
-   bool bSevereError, const uchar *lpszSourceFile, int iSourceLine)
+void KpErrorClass::OutputErrorMessage(HRESULT p_lhRetc, const KpStrPtr p_pszFmt,
+   bool p_bSevereError, const KpStrPtr p_pszSourceFile, int p_iSourceLine, ...)
 {
-HRESULT retc = lhRetc;
-   if (retc == KP_S_DIAG_MSG) retc = S_OK;
+HRESULT retc = p_lhRetc;
+    if (retc == KP_S_DIAG_MSG) retc = S_OK;
 
 // -----------------------
 uchar msg_text[KP_MAX_FILE_LIN_LEN + 1];
-   msg_text[0] = Nul;
-   if (lpszMessageText)
-   {
-      strcpy(msg_text, ": ");
-int ll = strlen(msg_text);
-      strncpy(msg_text + ll, lpszMessageText, KP_MAX_FILE_LIN_LEN - ll);
-      msg_text[KP_MAX_FILE_LIN_LEN] = Nul;
-   }
+    msg_text[0] = Nul;
+    if (p_pszFmt)
+    {
+    KpStrPtr out_str = null;
+        KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(p_pszFmt) * 10 + 1000);
+
+        va_list argptr;
+        va_start(argptr, p_iSourceLine);
+        sprintf((char *)out_str, (const char *)p_pszFmt, argptr);
+
+        strcpy(msg_text, ": ");
+    int ll = strlen(msg_text);
+        strncpy(msg_text + ll, out_str, KP_MAX_FILE_LIN_LEN - ll);
+        msg_text[KP_MAX_FILE_LIN_LEN] = Nul;
+
+        KP_DELETEA(out_str);
+    }
 
 // -----------------------
-   if
-   (
-      (m_lhLastRetc != retc) ||
-      strcmp(m_lpszLastMessageText, msg_text) ||
-      strcmp(m_lpszLastSourceFile, lpszSourceFile) ||
-      (m_iLastSourceLine != iSourceLine)
-   )
-   {
-      m_lhLastRetc = lhRetc;
-      strncpy(m_lpszLastMessageText, msg_text, KP_MAX_FILE_LIN_LEN);
-      m_lpszLastMessageText[KP_MAX_FILE_LIN_LEN] = Nul;
-      strncpy(m_lpszLastSourceFile, lpszSourceFile, KP_MAX_FNAME_LEN);
-      m_lpszLastSourceFile[KP_MAX_FNAME_LEN] = Nul;
-      m_iLastSourceLine = iSourceLine;
+    if
+    (
+        (m_lhLastRetc != retc) ||
+        strcmp(m_pszLastMessageText, msg_text) ||
+        strcmp(m_pszLastSourceFile, p_pszSourceFile) ||
+        (m_iLastSourceLine != p_iSourceLine)
+    )
+    {
+        m_lhLastRetc = p_lhRetc;
+        strncpy(m_pszLastMessageText, msg_text, KP_MAX_FILE_LIN_LEN);
+        m_pszLastMessageText[KP_MAX_FILE_LIN_LEN] = Nul;
+        strncpy(m_pszLastSourceFile, p_pszSourceFile, KP_MAX_FNAME_LEN);
+        m_pszLastSourceFile[KP_MAX_FNAME_LEN] = Nul;
+        m_iLastSourceLine = p_iSourceLine;
 
 // -----------------------
-uchar out_text[KP_MAX_FILE_LIN_LEN * 2 + 1];
-      out_text[0] = Nul;
+    uchar out_text[KP_MAX_FILE_LIN_LEN * 2 + 1];
+        out_text[0] = Nul;
 
-      if (FAILED(retc))
-      {
-         strncpy(out_text, bSevereError?KP_MSG_ERROR:KP_MSG_WARNING, KP_MAX_FILE_LIN_LEN - 2);
-         out_text[KP_MAX_FILE_LIN_LEN - 2] = Nul;
-         strcat(out_text, ": ");
-      }
+        if (FAILED(retc))
+        {
+            strncpy(out_text, p_bSevereError?KP_MSG_ERROR:KP_MSG_WARNING, KP_MAX_FILE_LIN_LEN - 2);
+            out_text[KP_MAX_FILE_LIN_LEN - 2] = Nul;
+            strcat(out_text, ": ");
+        }
 
-      FormatErrorMessage(lhRetc, out_text + strlen(out_text));
+        FormatErrorMessage(p_lhRetc, out_text + strlen(out_text));
 
-int ll = strlen(out_text);
-      strncpy(out_text + ll, msg_text, KP_MAX_FILE_LIN_LEN - ll);
-      out_text[KP_MAX_FILE_LIN_LEN] = Nul;
+    int ll = strlen(out_text);
+        strncpy(out_text + ll, msg_text, KP_MAX_FILE_LIN_LEN - ll);
+        out_text[KP_MAX_FILE_LIN_LEN] = Nul;
 
-int msg_tail_pos = ll = strlen(out_text);
-      sprintf((char *)out_text + ll, (const char *)KP_MSG_FILE_LINE, lhRetc, lpszSourceFile, iSourceLine);
-      out_text[KP_MAX_FILE_LIN_LEN] = Nul;
+    int msg_tail_pos = ll = strlen(out_text);
+        sprintf((char *)out_text + ll, (const char *)KP_MSG_FILE_LINE, p_lhRetc, p_pszSourceFile, p_iSourceLine);
+        out_text[KP_MAX_FILE_LIN_LEN] = Nul;
 
 // ----------------------
-      PutLogMessage(out_text);
-//    if (bSevereError) StackDump();
+        PutLogMessage(out_text);
+//      if (bSevereError) StackDump();
 
 #ifndef Debug
-      out_text[msg_tail_pos] = Nul;
+//      out_text[msg_tail_pos] = Nul;
 #endif
-      if (bSevereError || (lhRetc == KP_S_DIAG_MSG))
-         SendDiagMsg(out_text, bSevereError, out_text + msg_tail_pos + 1);
+        if (p_bSevereError || (p_lhRetc == KP_S_DIAG_MSG))
+            SendDiagMsg(out_text, p_bSevereError, out_text + msg_tail_pos + 1);
 #if ((defined(KP_VERBOSE)) && (!defined(Debug)) && (defined(KP_CONSOLE)))
-      // Debug re�ime PutLogMessage() jau i�ved�
-      else
-         cerr << out_text << endl;
+        // Debug režime PutLogMessage() jau išvedė
+        else
+        {
+//          cerr /* cout */ << out_text << endl;
+            fprintf(stderr, "%s\n", out_text);
+        }
 #endif
-   }
+    }
 }
 
 
@@ -1007,13 +1024,13 @@ NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
 // --------------------
         if (ebp_buf && stack_top)
         {
-uchar *out_buf = null;
+        KpStrPtr out_buf = null;
             KP_NEWA(out_buf, uchar, KP_MAX_FILE_LIN_LEN + 1);
 
             strcpy(out_buf, "Stack call trace: ");
             while ((stack_ptr < stack_top - 4 /* 0x40 */) && (strlen(out_buf) <= (KP_MAX_FILE_LIN_LEN - MAX_LONG_HEX_DIGITS - 1)))
             {
-uchar hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
+            uchar hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
                 sprintf((char *)hex_buf, "%08x ", stack_ptr[1]);
                 strcat(out_buf, hex_buf);
                 stack_ptr = (const unsigned int *)(*stack_ptr);
@@ -1034,21 +1051,21 @@ uchar hex_buf[MAX_LONG_HEX_DIGITS + 1 + 1];
 
 
 // ----------------------------------------------
-void KpErrorClass::EncodeLogBuf(uchar *pBuffer, int iDataLen)
+void KpErrorClass::EncodeLogBuf(KpStrPtr p_pBuffer, int p_iDataLen)
 {
-   KP_ASSERT(pBuffer, E_INVALIDARG, null);
-   for (int ii = 0; ii < iDataLen; ii++) pBuffer[ii] ^= 0xAA;
+   KP_ASSERT(p_pBuffer, E_INVALIDARG, null);
+   for (int ii = 0; ii < p_iDataLen; ii++) p_pBuffer[ii] ^= 0xAA;
 }
 
 
 // ----------------------------------------------
-void KpErrorClass::GetLogFileName(uchar *lpszLogFNameBuf)
+void KpErrorClass::GetLogFileName(KpStrPtr p_pszLogFNameBuf)
 {
-    KP_ASSERT(lpszLogFNameBuf, E_INVALIDARG, null);
+    KP_ASSERT(p_pszLogFNameBuf, E_INVALIDARG, null);
 
-const uchar *temp_dir = null;
+const KpStrPtr temp_dir = null;
 #ifdef __WIN32__
-    temp_dir = (const uchar *)getenv("TEMP");
+    temp_dir = (const KpStrPtr)getenv("TEMP");
     KP_ASSERT(temp_dir, KP_E_SYSTEM_ERROR, null);
 #else
     temp_dir = KP_CUR_DIR_STR;
@@ -1064,24 +1081,24 @@ static uchar app_fname[KP_MAX_FNAME_LEN + 1];
 static uchar app_ftype[KP_MAX_FNAME_LEN + 1];
     KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
 
-const uchar *log_ftype = (const uchar *)".log";
+const KpStrPtr log_ftype = (const KpStrPtr)".log";
     KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
-    strcpy(lpszLogFNameBuf, temp_dir);
-    strcat(lpszLogFNameBuf, "/");
-    strcat(lpszLogFNameBuf, app_fname);
-    strcat(lpszLogFNameBuf, log_ftype);
+    strcpy(p_pszLogFNameBuf, temp_dir);
+    strcat(p_pszLogFNameBuf, "/");
+    strcat(p_pszLogFNameBuf, app_fname);
+    strcat(p_pszLogFNameBuf, log_ftype);
 }
 
 
 // ----------------------------------------------
-void KpErrorClass::PutLogMessage(const uchar *lpszFmt, va_list Args)
+void KpErrorClass::PutLogMessage(const KpStrPtr p_pszFmt, va_list Args)
 {
     if (m_iInsideOfPutLogMessage++ == 0)
     {
 // --------------------
 
-uchar *out_str = null;
-        KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(lpszFmt) * 10 + 1);
+    KpStrPtr out_str = null;
+        KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(p_pszFmt) * 10 + 1000);
 
 // --------------------
 time_t ltime;
@@ -1089,22 +1106,22 @@ time_t ltime;
 tm *tm_ptr = NULL;
         tm_ptr = gmtime(&ltime);
         KP_ASSERT(tm_ptr, KP_E_SYSTEM_ERROR, null);
-const uchar *prod_name = (const uchar *)"kperr";
-int prod_ver = 0;
-const uchar *prod_date = (const uchar *)"0000-00-00";
+    const KpStrPtr prod_name = (const KpStrPtr)"kperr";
+    int prod_ver = 0;
+    const KpStrPtr prod_date = (const KpStrPtr)"0000-00-00";
         if (KpApp)
         {
-            prod_name = m_lpszProdName;
+            prod_name = m_pszProdName;
             prod_ver = KpApp->m_iProdVer;
-            prod_date = KpApp->m_lpszProdDate;
+            prod_date = KpApp->m_pszProdDate;
         }
         sprintf((char *)out_str, "%04d.%02d.%02d %02d:%02d:%02d %s[%05d:%s] %ld ",
             1900 + tm_ptr->tm_year, 1 + tm_ptr->tm_mon, tm_ptr->tm_mday, tm_ptr->tm_hour + 2, tm_ptr->tm_min, tm_ptr->tm_sec,
             prod_name, prod_ver, prod_date, ltime);
 
 // --------------------
-        if (lpszFmt)
-            vsprintf((char *)out_str + strlen(out_str), (const char *)lpszFmt, Args);
+        if (pszFmt)
+            vsprintf((char *)out_str + strlen(out_str), (const char *)p_pszFmt, Args);
         strcat(out_str, "\n");
 
 #if (defined Debug) && (defined KP_CONSOLE)
@@ -1150,29 +1167,29 @@ FILE *log_file = NULL;
 
 
 // --------------------
-void KpErrorClass::Catch(const exception &KpExc)
+void KpErrorClass::Catch(const exception &p_KpExc)
 {
    try
    {
-      if (&KpExc == NULL)
+      if (&p_KpExc == NULL)
       {
          KP_ERROR(E_POINTER, null);
       }
       else
       {
-const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
+const KpException *exc = dynamic_cast<const KpException *>(&p_KpExc);
 
          if (exc == NULL)
          {
-            KP_ERROR(KP_E_UNHANDLED_EXCEPTION, KpExc.what());
+            KP_ERROR(KP_E_UNHANDLED_EXCEPTION, p_KpExc.what());
          }
          else
          {
-// TODO: perdaryt į KpError.OutputErrorMessage(KpExc.what(), True, null); (parametrai kaip SendDiagMsg)
-            if (exc->m_lpszMsg[0])
-               KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_lpszMsg, True, exc->m_lpszSourceFile, exc->m_iSourceLine);
+// TODO: perdaryt į KpError.OutputErrorMessage(p_KpExc.what(), True, null); (parametrai kaip SendDiagMsg)
+            if (exc->m_pszMsg[0])
+               KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_pszMsg, True, exc->m_pszSourceFile, exc->m_iSourceLine);
             else
-               KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_lWindowsErrorCode, True, exc->m_lpszSourceFile, exc->m_iSourceLine);
+               KpError.OutputErrorMessage(exc->m_lhErrCode, exc->m_lWindowsErrorCode, True, exc->m_pszSourceFile, exc->m_iSourceLine);
          }
       }
    }
@@ -1182,27 +1199,33 @@ const KpException *exc = dynamic_cast<const KpException *>(&KpExc);
    }
 }
 
+
 // --------------------------------------------------
 void KpOutputErrorMessage
 (
-    HRESULT lhRetc,
-    const uchar *lpszMessageText,
-    bool bSevereError,
-    const uchar *lpszSourceFile,
-    int iSourceLine
+    HRESULT p_lhRetc,
+    const KpStrPtr p_pszFmt,
+    bool p_bSevereError,
+    const KpStrPtr p_pszSourceFile,
+    int p_iSourceLine,
+    ...
 )
 {
-    KpError.OutputErrorMessage(lhRetc, lpszMessageText, bSevereError, lpszSourceFile, iSourceLine);
+va_list argptr;
+    va_start(argptr, p_iSourceLine);
+    KpError.OutputErrorMessage(p_lhRetc, p_pszFmt, p_bSevereError, p_pszSourceFile, p_iSourceLine, argptr);
 }
 
-uchar *KpFormatSystemErrorMessage(LONG lWindowsErrorCode)
+
+KpStrPtr KpFormatSystemErrorMessage(LONG p_lWindowsErrorCode)
 {
-return(KpError.FormatSystemErrorMessage(lWindowsErrorCode));
+return(KpError.FormatSystemErrorMessage(p_lWindowsErrorCode));
 }
 
-void KpPutLogMessage(const uchar *lpszFmt, ...)
+
+void KpPutLogMessage(const KpStrPtr p_pszFmt, ...)
 {
 va_list argptr;
-    va_start(argptr, lpszFmt);
-    KpError.PutLogMessage(lpszFmt, argptr);
+    va_start(argptr, p_pszFmt);
+    KpError.PutLogMessage(p_pszFmt, argptr);
 }
