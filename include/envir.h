@@ -1,14 +1,16 @@
 /* --------------------------------------------
- *  
+ *
  * envir.h
- *  
- *    local environment definitions
- * 
- * 2013-02-22  mp  initial creation
- *       
- */  
- 
- 
+ *
+ *  local environment definitions
+ *      should be copied to the main project directory and edited to conform project prerequisites
+ *
+ * Changelog:
+ *  2013-02-22  mp  initial creation
+ *
+ */
+
+
 // -----------------------------------------
 
 // #define Debug            // debug mode
@@ -17,7 +19,7 @@
 
 #define KP_CONSOLE          // console application
 // #define KP_WINDOWED      // windows application; 
-                            // could be defined together with KP_CONSOLE – for 
+                            // could be defined together with KP_CONSOLE – for
                             //      console applications opening additional
                             //      dialog windows
 

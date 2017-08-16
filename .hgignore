@@ -46,4 +46,7 @@ syntax: glob
 
 .dirstamp
 
+*.Po
+
 .git/*
+.gitignore

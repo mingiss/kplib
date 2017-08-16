@@ -1167,21 +1167,21 @@ FILE *log_file = NULL;
 
 
 // --------------------
-void KpErrorClass::Catch(const exception &p_KpExc)
+void KpErrorClass::Catch(const exception &p_rExc)
 {
    try
    {
-      if (&p_KpExc == NULL)
+      if (&p_rExc == NULL)
       {
          KP_ERROR(E_POINTER, null);
       }
       else
       {
-const KpException *exc = dynamic_cast<const KpException *>(&p_KpExc);
+const KpException *exc = dynamic_cast<const KpException *>(&p_rExc);
 
          if (exc == NULL)
          {
-            KP_ERROR(KP_E_UNHANDLED_EXCEPTION, p_KpExc.what());
+            KP_ERROR(KP_E_UNHANDLED_EXCEPTION, p_rExc.what());
          }
          else
          {
@@ -1193,9 +1193,9 @@ const KpException *exc = dynamic_cast<const KpException *>(&p_KpExc);
          }
       }
    }
-   catch(exception& Exc)
+   catch(exception& rExc)
    {
-      KP_ERROR(KP_E_UNHANDLED_EXCEPTION, Exc.what());
+      KP_ERROR(KP_E_UNHANDLED_EXCEPTION, rExc.what());
    }
 }
 

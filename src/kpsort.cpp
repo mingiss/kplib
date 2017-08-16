@@ -41,8 +41,12 @@ int iCharWeigths[C_CharArrSize44] =
 // --------------------------------------------------
 int GetKwrdIndex
 (
-   const unsigned char *p_lpszKeywrd,
-   const uchar * const *p_plpszKeytable,
+   const KpStrPtr p_pszKeywrd,
+   const KpStrPtr
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+       const    // gcc 5.4.0 throws an error: duplicate ‘const’
+#endif
+            *p_ppszKeytable,
    const int p_iTabSize,
    bool p_bCaseSens,
    bool p_bWholeWords
@@ -53,28 +57,28 @@ uchar kwd_str[KP_KWD_LEN + 1];
 int ii;
 int retv = TV_TG_NoKey;
 
-    KP_ASSERT(p_lpszKeywrd && p_plpszKeytable, E_INVALIDARG, null); 
-    KP_ASSERT(strlen(p_lpszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
+    KP_ASSERT(p_pszKeywrd && p_ppszKeytable, E_INVALIDARG, null); 
+    KP_ASSERT(strlen(p_pszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
 
     ix = 0;
     while
     (
         ((p_iTabSize < 0) || (ix < p_iTabSize)) &&
-        ((p_iTabSize >= 0) || p_plpszKeytable[ix]) &&
+        ((p_iTabSize >= 0) || p_ppszKeytable[ix]) &&
         (retv == TV_TG_NoKey)
     )
     {
-        strcpy(kwd_str, p_lpszKeywrd);
-        if (p_plpszKeytable[ix])
+        strcpy(kwd_str, p_pszKeywrd);
+        if (p_ppszKeytable[ix])
         {
             if (!p_bWholeWords)
             { 
-                ii = strlen(p_plpszKeytable[ix]);
+                ii = strlen(p_ppszKeytable[ix]);
                 KP_ASSERT(ii < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
                 kwd_str[ii] = Nul;
             }
 
-            if (UcStrCmp(kwd_str, p_plpszKeytable[ix], False, KP_LNG_ENG, p_bCaseSens, False) == 0)
+            if (UcStrCmp(kwd_str, p_ppszKeytable[ix], False, KP_LNG_ENG, p_bCaseSens, False) == 0)
                 retv = ix;
         }
          
@@ -86,8 +90,8 @@ return(retv);
 
 int GetKwrdIndexArr
 (
-   const unsigned char *p_lpszKeywrd,
-   const uchar *p_plpszKeytable,
+   const KpStrPtr p_pszKeywrd,
+   const KpStrPtr p_ppszKeytable,
    const int p_iTabSize,
    bool p_bCaseSens,
    bool p_bWholeWords,
@@ -98,10 +102,10 @@ int ix;
 uchar kwd_str[KP_KWD_LEN + 1];
 int ii;
 int retv = TV_TG_NoKey;
-const uchar *cur_kwd = p_plpszKeytable;
+const KpStrPtr cur_kwd = p_ppszKeytable;
 
-    KP_ASSERT(p_lpszKeywrd && p_plpszKeytable, E_INVALIDARG, null); 
-    KP_ASSERT(strlen(p_lpszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
+    KP_ASSERT(p_pszKeywrd && p_ppszKeytable, E_INVALIDARG, null); 
+    KP_ASSERT(strlen(p_pszKeywrd) < KP_KWD_LEN, KP_E_BUFFER_OVERFLOW, null);
     KP_ASSERT(p_iKeySize > 1, E_INVALIDARG, null);
 
     ix = 0;
@@ -112,7 +116,7 @@ const uchar *cur_kwd = p_plpszKeytable;
         (retv == TV_TG_NoKey)
     )
     {
-        strcpy(kwd_str, p_lpszKeywrd);
+        strcpy(kwd_str, p_pszKeywrd);
         if (*cur_kwd)
         {
             if (!p_bWholeWords)

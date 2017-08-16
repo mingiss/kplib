@@ -2,3 +2,8 @@
 
 git clone /home/mingis/F/kp/src/kplib
 
+Nuklonuota į
+    ~/F/kp/src/vtex/tex/luatex/src/src_kpadd/source/texk/kplib
+
+hg nuklonuotas repozitorijų merge'inimui į
+    ~/F/kp/src/vtex/tex/texlive/2017/src_kp_tex4ht/trunk/Build/source/libs/kplib
