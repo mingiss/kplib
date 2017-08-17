@@ -30,8 +30,6 @@
 
 // #define KP_ENCODE_LOG    // encode log file
 
-// #define DEV_EMAIL "tech@tev.lt"
-// #define DEV_EMAIL "pagalba@tev.lt"
 #define DEV_EMAIL "tex-dev@vtex.lt"
 
 // -------------------------------------
