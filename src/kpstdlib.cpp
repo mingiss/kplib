@@ -36,11 +36,11 @@ using namespace std;
 
 
 // ========================================= KpLib 
-KpErrorClass KpError((const KpStrPtr)"kplib", True);
+KpErrorClass KpError((const uchar *)"kplib", True);
 KpCommonApp *KpApp = NULL;
 KpCommonApp *KpAppAlloc = NULL; // pointer to locally here allocated KpApp 
 
-void KpInit(const KpStrPtr ProdName, const void *pStackTop)
+void KpInit(const uchar *ProdName, const void *pStackTop)
 {
     try
     {
@@ -51,7 +51,7 @@ void KpInit(const KpStrPtr ProdName, const void *pStackTop)
         }
         KpApp->Init(
 #ifdef __WIN32__
-            GetModuleHandle(NULL), (const KpStrPtr)GetCommandLine(),
+            GetModuleHandle(NULL), (const uchar *)GetCommandLine(),
 #else
 // TODO Linux: get cmd line
             0, ProdName,
@@ -166,10 +166,10 @@ return(retc);
 
 
 // ----------------------------------
-void I2BinStr(KpStrPtr p_lpszBinStrBuf, int p_iVal)
+void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal)
 {
     KP_ASSERT(p_lpszBinStrBuf, E_INVALIDARG, null);
-KpStrPtr pntd = p_lpszBinStrBuf + 16;
+uchar *pntd = p_lpszBinStrBuf + 16;
     *pntd = Nul;
 int val = p_iVal;     
     for (int ii = 0; ii < 16; ii++)

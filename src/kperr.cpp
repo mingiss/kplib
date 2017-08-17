@@ -61,7 +61,10 @@ using namespace std;
 
 
 // ------------------------------------ bendri kp programų pranešimai
-const KpStrPtr KpErrorClass::m_pszaKpMessages[NumOfKpMessages_25][KpNumOfLangs_2] =
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *KpErrorClass::m_pszaKpMessages[NumOfKpMessages_25][KpNumOfLangs_2] =
 {
     { KP_MSG_TITLE_EN,                    KP_MSG_TITLE_LT,                    KP_MSG_TITLE_PL_1250,                     KP_MSG_TITLE_PL_1257,                     KP_MSG_TITLE_RU,                    KP_MSG_TITLE_EN,                    }, // "Pranešimas"
     { KP_INPUT_TITLE_EN,                  KP_INPUT_TITLE_LT,                  KP_INPUT_TITLE_PL_1250,                   KP_INPUT_TITLE_PL_1257,                   KP_INPUT_TITLE_RU,                  KP_INPUT_TITLE_EN,                  }, // "Įvedimas"
@@ -270,9 +273,9 @@ const KpStrPtr KpErrorClass::m_pszaKpMessages[NumOfKpMessages_25][KpNumOfLangs_2
 void KpException::Constructor
 (
    HRESULT p_lhErrCode,
-   const KpStrPtr p_pszMsg,
+   const uchar *p_pszMsg,
    LONG p_lWindowsErrorCode,
-   const KpStrPtr p_pszSourceFile,
+   const uchar *p_pszSourceFile,
    int p_iSourceLine
 )
 {
@@ -288,7 +291,7 @@ void KpException::Constructor
    m_lWindowsErrorCode = p_lWindowsErrorCode;
 
    m_pszSourceFile[0] = Nul;
-   if ((const KpStrPtr)p_pszSourceFile)
+   if (p_pszSourceFile)
    {
       strncpy(m_pszSourceFile, p_pszSourceFile, KP_MAX_FNAME_LEN);
       m_pszSourceFile[KP_MAX_FNAME_LEN] = Nul;
@@ -302,7 +305,7 @@ void KpException::Constructor
 // KpErrorClass
 
 // ---------------------
-KpErrorClass::KpErrorClass(const KpStrPtr p_pszProdName, bool p_bOutMsg)
+KpErrorClass::KpErrorClass(const uchar *p_pszProdName, bool p_bOutMsg)
 {
 //  m_iInsideOfStackDump = 0;
     m_iInsideOfPutLogMessage = 0;
@@ -323,25 +326,25 @@ KpErrorClass::KpErrorClass(const KpStrPtr p_pszProdName, bool p_bOutMsg)
 
 
 // ----------------------------------
-void KpErrorClass::GetProdName(KpStrPtr p_pszNameBuf)
+void KpErrorClass::GetProdName(uchar *p_pszNameBuf)
 {
     KP_ASSERT(p_pszNameBuf, E_INVALIDARG, null);
     strcpy(p_pszNameBuf, m_pszProdName);
 }
 
-const KpStrPtr KpErrorClass::GetProdNamePtr(void)
+const uchar *KpErrorClass::GetProdNamePtr(void)
 {
 return(m_pszProdName);
 }
 
-const KpStrPtr KpGetProdName(void)
+const uchar *KpGetProdName(void)
 {
 return(KpError.GetProdNamePtr());
 }
 
 
 // ----------------------------------
-void KpErrorClass::SetProdName(const KpStrPtr p_pszNameBuf)
+void KpErrorClass::SetProdName(const uchar *p_pszNameBuf)
 {
     KP_ASSERT(p_pszNameBuf, E_INVALIDARG, null);
     KP_ASSERT(strlen(p_pszNameBuf) <= KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
@@ -358,7 +361,15 @@ unsigned char *p_pszMsg
 {
    if (p_pszMsg)
    {
-const KpStrPtr msgptr = (const KpStrPtr)"";
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+   const
+#endif
+        uchar *msgptr = (
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+            const
+#endif
+                uchar *)"";
 
       switch(p_lhRetc)
       {
@@ -422,15 +433,22 @@ const KpStrPtr msgptr = (const KpStrPtr)"";
 HRESULT KpErrorClass::FormatSystemErrorMessage
 (
 long p_lWindowsErrorCode,
-KpStrPtr p_pszMsg,
+uchar *p_pszMsg,
 bool p_bFullFormat
 )
 {
 HRESULT retc = S_OK;
-const KpStrPtr msg0 = null;
-KpStrPtr msg1 = null;
-const KpStrPtr msg = null;
-KpStrPtr pnts;
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *msg0 = null;
+uchar *msg1 = null;
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *msg = null;
+uchar *pnts;
 uchar str_buf[MAX_LONG_DIGITS + 20];
     str_buf[0] = Nul;
 int ii;
@@ -607,7 +625,7 @@ return(S_OK);
 }
 
 
-KpStrPtr KpErrorClass::FormatSystemErrorMessage(long p_lWindowsErrorCode)
+uchar *KpErrorClass::FormatSystemErrorMessage(long p_lWindowsErrorCode)
 {
 static uchar sys_err_msg[KP_MAX_FILE_LIN_LEN + 1];
     FormatSystemErrorMessage(p_lWindowsErrorCode, sys_err_msg, True);
@@ -616,59 +634,59 @@ return(sys_err_msg);
 
 
 // ------------------------------------
-const KpStrPtr KpErrorClass::FormatErrorMessageHTTP(int p_iHTTP_RetCode)
+const uchar *KpErrorClass::FormatErrorMessageHTTP(int p_iHTTP_RetCode)
 {
 static uchar out_buf[MAX_LONG_DIGITS + 100];
     sprintf((char *)out_buf, "HTTP status: %d", p_iHTTP_RetCode);
-const KpStrPtr retv = out_buf;
 
+MSG_TYPE retv = out_buf;
     switch(p_iHTTP_RetCode)
     {
         case HTTP_ANSW_CONTINUE /* 100 */:
-            retv = (const KpStrPtr)"Continue"; break;
-        case 101: retv = (const KpStrPtr)"Switching Protocols"; break;
-        case HTTP_ANSW_OK /* 200 */: retv = (const KpStrPtr)"OK"; break;
-        case 201: retv = (const KpStrPtr)"Created"; break;
-        case 202: retv = (const KpStrPtr)"Accepted"; break;
-        case 203: retv = (const KpStrPtr)"Non-Authoritative Information"; break;
-        case 204: retv = (const KpStrPtr)"No Content"; break;
-        case 205: retv = (const KpStrPtr)"Reset Content"; break;
-        case 206: retv = (const KpStrPtr)"Partial Content"; break;
-        case 300: retv = (const KpStrPtr)"Multiple Choices"; break;
-        case 301: retv = (const KpStrPtr)"Moved Permanently"; break;
-        case HTTP_ANSW_FOUND /* 302 */: retv = (const KpStrPtr)"Found"; break;
-        case 303: retv = (const KpStrPtr)"See Other"; break;
-        case 304: retv = (const KpStrPtr)"Not Modified"; break;
-        case 305: retv = (const KpStrPtr)"Use Proxy"; break;
-        case 307: retv = (const KpStrPtr)"Temporary Redirect"; break;
-        case 400: retv = (const KpStrPtr)"Bad Request"; break;
-        case 401: retv = (const KpStrPtr)"Unauthorized"; break;
-        case 402: retv = (const KpStrPtr)"Payment Required"; break;
-        case 403: retv = (const KpStrPtr)"Forbidden"; break;
+            retv = (MSG_TYPE)"Continue"; break;
+        case 101: retv = (MSG_TYPE)"Switching Protocols"; break;
+        case HTTP_ANSW_OK /* 200 */: retv = (MSG_TYPE)"OK"; break;
+        case 201: retv = (MSG_TYPE)"Created"; break;
+        case 202: retv = (MSG_TYPE)"Accepted"; break;
+        case 203: retv = (MSG_TYPE)"Non-Authoritative Information"; break;
+        case 204: retv = (MSG_TYPE)"No Content"; break;
+        case 205: retv = (MSG_TYPE)"Reset Content"; break;
+        case 206: retv = (MSG_TYPE)"Partial Content"; break;
+        case 300: retv = (MSG_TYPE)"Multiple Choices"; break;
+        case 301: retv = (MSG_TYPE)"Moved Permanently"; break;
+        case HTTP_ANSW_FOUND /* 302 */: retv = (MSG_TYPE)"Found"; break;
+        case 303: retv = (MSG_TYPE)"See Other"; break;
+        case 304: retv = (MSG_TYPE)"Not Modified"; break;
+        case 305: retv = (MSG_TYPE)"Use Proxy"; break;
+        case 307: retv = (MSG_TYPE)"Temporary Redirect"; break;
+        case 400: retv = (MSG_TYPE)"Bad Request"; break;
+        case 401: retv = (MSG_TYPE)"Unauthorized"; break;
+        case 402: retv = (MSG_TYPE)"Payment Required"; break;
+        case 403: retv = (MSG_TYPE)"Forbidden"; break;
         case HTTP_ANSW_FILE_NOT_FOUND /* 404 */:
-            retv = (const KpStrPtr)"Not Found"; break;
-        case 405: retv = (const KpStrPtr)"Method Not Allowed"; break;
-        case 406: retv = (const KpStrPtr)"Not Acceptable"; break;
+            retv = (MSG_TYPE)"Not Found"; break;
+        case 405: retv = (MSG_TYPE)"Method Not Allowed"; break;
+        case 406: retv = (MSG_TYPE)"Not Acceptable"; break;
             // serveris negali išsiųsti failo, užkoduoto nė vienu iš metodų,
             // nurodytų HTTP užklausos lauke Accept-Encoding:
-        case 407: retv = (const KpStrPtr)"Proxy Authentication Required"; break;
-        case 408: retv = (const KpStrPtr)"Request Timeout"; break;
-        case 409: retv = (const KpStrPtr)"Conflict"; break;
-        case 410: retv = (const KpStrPtr)"Gone"; break;
-        case 411: retv = (const KpStrPtr)"Length Required"; break;
-        case 412: retv = (const KpStrPtr)"Precondition Failed"; break;
-        case 413: retv = (const KpStrPtr)"Request Entity Too Large"; break;
-        case 414: retv = (const KpStrPtr)"Request-URI Too Long"; break;
-        case 415: retv = (const KpStrPtr)"Unsupported Media Type"; break;
+        case 407: retv = (MSG_TYPE)"Proxy Authentication Required"; break;
+        case 408: retv = (MSG_TYPE)"Request Timeout"; break;
+        case 409: retv = (MSG_TYPE)"Conflict"; break;
+        case 410: retv = (MSG_TYPE)"Gone"; break;
+        case 411: retv = (MSG_TYPE)"Length Required"; break;
+        case 412: retv = (MSG_TYPE)"Precondition Failed"; break;
+        case 413: retv = (MSG_TYPE)"Request Entity Too Large"; break;
+        case 414: retv = (MSG_TYPE)"Request-URI Too Long"; break;
+        case 415: retv = (MSG_TYPE)"Unsupported Media Type"; break;
         case 416: retv =
-            (const KpStrPtr)"Requested Range Not Satisfiable"; break;
-        case 417: retv = (const KpStrPtr)"Expectation Failed"; break;
-        case 500: retv = (const KpStrPtr)"Internal Server Error"; break;
-        case 501: retv = (const KpStrPtr)"Not Implemented"; break;
-        case 502: retv = (const KpStrPtr)"Bad Gateway"; break;
-        case 503: retv = (const KpStrPtr)"Service Unavailable"; break;
-        case 504: retv = (const KpStrPtr)"Gateway Timeout"; break;
-        case 505: retv = (const KpStrPtr)"HTTP Version Not Supported"; break;
+            (MSG_TYPE)"Requested Range Not Satisfiable"; break;
+        case 417: retv = (MSG_TYPE)"Expectation Failed"; break;
+        case 500: retv = (MSG_TYPE)"Internal Server Error"; break;
+        case 501: retv = (MSG_TYPE)"Not Implemented"; break;
+        case 502: retv = (MSG_TYPE)"Bad Gateway"; break;
+        case 503: retv = (MSG_TYPE)"Service Unavailable"; break;
+        case 504: retv = (MSG_TYPE)"Gateway Timeout"; break;
+        case 505: retv = (MSG_TYPE)"HTTP Version Not Supported"; break;
    }
 
 return (retv);
@@ -882,7 +900,7 @@ return(retc);
 
 
 // ---------------------
-void KpErrorClass::SendDiagMsg(const KpStrPtr p_pszMessageText, bool p_bSevereError, const KpStrPtr p_pszAddMessage)
+void KpErrorClass::SendDiagMsg(const uchar *p_pszMessageText, bool p_bSevereError, const uchar *p_pszAddMessage)
 {
 #ifdef KP_CONSOLE
 #if (!defined(KP_VERBOSE)) && (!defined(Debug))
@@ -897,8 +915,8 @@ void KpErrorClass::SendDiagMsg(const KpStrPtr p_pszMessageText, bool p_bSevereEr
 }
 
 // ---------------------
-void KpErrorClass::OutputErrorMessage(HRESULT p_lhRetc, const KpStrPtr p_pszFmt,
-   bool p_bSevereError, const KpStrPtr p_pszSourceFile, int p_iSourceLine, ...)
+void KpErrorClass::OutputErrorMessage(HRESULT p_lhRetc, const uchar *p_pszFmt,
+   bool p_bSevereError, const uchar *p_pszSourceFile, int p_iSourceLine, ...)
 {
 HRESULT retc = p_lhRetc;
     if (retc == KP_S_DIAG_MSG) retc = S_OK;
@@ -908,7 +926,7 @@ uchar msg_text[KP_MAX_FILE_LIN_LEN + 1];
     msg_text[0] = Nul;
     if (p_pszFmt)
     {
-    KpStrPtr out_str = null;
+    uchar *out_str = null;
         KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(p_pszFmt) * 10 + 1000);
 
         va_list argptr;
@@ -1024,7 +1042,7 @@ NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
 // --------------------
         if (ebp_buf && stack_top)
         {
-        KpStrPtr out_buf = null;
+        uchar *out_buf = null;
             KP_NEWA(out_buf, uchar, KP_MAX_FILE_LIN_LEN + 1);
 
             strcpy(out_buf, "Stack call trace: ");
@@ -1051,7 +1069,7 @@ NTSTATUS retw = STATUS_SEVERITY_SUCCESS;
 
 
 // ----------------------------------------------
-void KpErrorClass::EncodeLogBuf(KpStrPtr p_pBuffer, int p_iDataLen)
+void KpErrorClass::EncodeLogBuf(uchar *p_pBuffer, int p_iDataLen)
 {
    KP_ASSERT(p_pBuffer, E_INVALIDARG, null);
    for (int ii = 0; ii < p_iDataLen; ii++) p_pBuffer[ii] ^= 0xAA;
@@ -1059,16 +1077,16 @@ void KpErrorClass::EncodeLogBuf(KpStrPtr p_pBuffer, int p_iDataLen)
 
 
 // ----------------------------------------------
-void KpErrorClass::GetLogFileName(KpStrPtr p_pszLogFNameBuf)
+void KpErrorClass::GetLogFileName(uchar *p_pszLogFNameBuf)
 {
     KP_ASSERT(p_pszLogFNameBuf, E_INVALIDARG, null);
 
-const KpStrPtr temp_dir = null;
+MSG_TYPE temp_dir = null;
 #ifdef __WIN32__
-    temp_dir = (const KpStrPtr)getenv("TEMP");
+    temp_dir = (MSG_TYPE)getenv("TEMP");
     KP_ASSERT(temp_dir, KP_E_SYSTEM_ERROR, null);
 #else
-    temp_dir = KP_CUR_DIR_STR;
+    temp_dir = (MSG_TYPE)KP_CUR_DIR_STR;
 #endif
 
 static uchar app_name[KP_MAX_FNAME_LEN + 1];
@@ -1081,7 +1099,7 @@ static uchar app_fname[KP_MAX_FNAME_LEN + 1];
 static uchar app_ftype[KP_MAX_FNAME_LEN + 1];
     KpStdIo::TvFnameSplit(app_disk, app_path, app_fname, app_ftype, app_name);
 
-const KpStrPtr log_ftype = (const KpStrPtr)".log";
+const uchar *log_ftype = (MSG_TYPE)".log";
     KP_ASSERT(strlen(temp_dir) + 1 + strlen(app_fname) + strlen(log_ftype) < KP_MAX_FNAME_LEN, KP_E_BUFFER_OVERFLOW, null);
     strcpy(p_pszLogFNameBuf, temp_dir);
     strcat(p_pszLogFNameBuf, "/");
@@ -1091,13 +1109,13 @@ const KpStrPtr log_ftype = (const KpStrPtr)".log";
 
 
 // ----------------------------------------------
-void KpErrorClass::PutLogMessage(const KpStrPtr p_pszFmt, va_list Args)
+void KpErrorClass::PutLogMessage(const uchar *p_pszFmt, va_list Args)
 {
     if (m_iInsideOfPutLogMessage++ == 0)
     {
 // --------------------
 
-    KpStrPtr out_str = null;
+    uchar *out_str = null;
         KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(p_pszFmt) * 10 + 1000);
 
 // --------------------
@@ -1106,9 +1124,16 @@ time_t ltime;
 tm *tm_ptr = NULL;
         tm_ptr = gmtime(&ltime);
         KP_ASSERT(tm_ptr, KP_E_SYSTEM_ERROR, null);
-    const KpStrPtr prod_name = (const KpStrPtr)"kperr";
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+    const
+#endif
+        uchar *prod_name = (MSG_TYPE)"kperr";
     int prod_ver = 0;
-    const KpStrPtr prod_date = (const KpStrPtr)"0000-00-00";
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+    const
+#endif
+        uchar *prod_date = (MSG_TYPE)"0000-00-00";
         if (KpApp)
         {
             prod_name = m_pszProdName;
@@ -1120,7 +1145,7 @@ tm *tm_ptr = NULL;
             prod_name, prod_ver, prod_date, ltime);
 
 // --------------------
-        if (pszFmt)
+        if (p_pszFmt)
             vsprintf((char *)out_str + strlen(out_str), (const char *)p_pszFmt, Args);
         strcat(out_str, "\n");
 
@@ -1204,9 +1229,9 @@ const KpException *exc = dynamic_cast<const KpException *>(&p_rExc);
 void KpOutputErrorMessage
 (
     HRESULT p_lhRetc,
-    const KpStrPtr p_pszFmt,
+    const uchar *p_pszFmt,
     bool p_bSevereError,
-    const KpStrPtr p_pszSourceFile,
+    const uchar *p_pszSourceFile,
     int p_iSourceLine,
     ...
 )
@@ -1217,13 +1242,13 @@ va_list argptr;
 }
 
 
-KpStrPtr KpFormatSystemErrorMessage(LONG p_lWindowsErrorCode)
+uchar *KpFormatSystemErrorMessage(LONG p_lWindowsErrorCode)
 {
 return(KpError.FormatSystemErrorMessage(p_lWindowsErrorCode));
 }
 
 
-void KpPutLogMessage(const KpStrPtr p_pszFmt, ...)
+void KpPutLogMessage(const uchar *p_pszFmt, ...)
 {
 va_list argptr;
     va_start(argptr, p_pszFmt);

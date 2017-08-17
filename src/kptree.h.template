@@ -18,7 +18,7 @@ private:
     KpTreeRecType *m_lpRecord;
 
 public:
-    KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesioginį pointerį, po to trina listo elementą
+    KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
 private:
     KpTreeEntry<KpTreeRecType> *m_pPrevBrother;
     KpTreeEntry<KpTreeRecType> *m_pNextBrother;
@@ -59,7 +59,7 @@ public:
 
     KpTreeEntry<KpTreeRecType> *GetFather(void) const { return(m_pFather); };
 
-    // nustato tėvą ir visiems tolimesniems broliams
+    // nustato teva ir visiems tolimesniems broliams
     // pPrevBrother turi buti NULL
     // pFath cannnot be deleted after successfull SetFather()
     void SetFather0(KpTreeEntry<KpTreeRecType> *pFath); // recursive entry
@@ -73,14 +73,14 @@ public:
 
     KpTreeEntry<KpTreeRecType> *GetNextBrother(void) const { return(m_pNextBrother); }
     
-    // nustato sekantį brolį šiam mazgui (this)
+    // nustato sekantá brolá ðiam mazgui (this)
     // pNextBr cannnot be deleted after successfull SetNextBrother()
     // pNextBr->pFather turi sutapti su this->pFather
     void SetNextBrother(KpTreeEntry<KpTreeRecType> *pNextBr);  
 
-// TODO: panašiai, kaip ir DeleteKpTreeEntry, tik elementą trina, vietoj jo atkeldamas vaikus
-// TODO: elementą trina su visais broliais
-// tinka paprasto listo tvarkymui
+// TODO: panaðiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
+// TODO: elementà trina su visais broliais
+// tinka paprasto listo tvarkymui  
 // DeleteChild() papildymas
     static void DeleteKpTreeNode(KpTreeEntry<KpTreeRecType> **ppEntryPtr); 
 };

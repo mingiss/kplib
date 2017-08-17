@@ -1,18 +1,18 @@
 /* -----------------------------
  * kptree.h
  *      tree-like structure definition
- *
+ *      
  *  Changelog:
  *      2013-06-11  mp  initial creation
- *
- */
+ *       
+ */  
 
 
 #ifndef kptree_included
 #define kptree_included
 
 
-// abstrakti visų KpTree objektų motininė klasė
+// abstrakti visu KpTree objektu motinine klase
 class KpTreeRec
 {
 public:
@@ -26,7 +26,7 @@ private:
     KpTreeRec *m_lpRecord;
 
 public:
-    KpTreeEntry *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesioginį pointerį, po to trina listo elementą
+    KpTreeEntry *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
 private:
     KpTreeEntry *m_pPrevBrother;
     KpTreeEntry *m_pNextBrother;
@@ -39,10 +39,10 @@ public:
     KpTreeEntry(KpTreeRec *lpRecord, KpTreeEntry *pFath); 
 
    virtual ~KpTreeEntry();
-
+   
     // get record object pointer m_lpRecord
     KpTreeRec *GetValue(void){ return(m_lpRecord); } 
-
+    
 // ------------------------------
 // simply linear list methods
 
@@ -60,14 +60,14 @@ public:
 
     // uses the object *lpNode itself, don't delete it after return 
     void PutToEnd(KpTreeEntry *lpNode);
-
+    
 
 // ------------------------------
 // tree management methods
 
     KpTreeEntry *GetFather(void) const { return(m_pFather); };
 
-    // nustato tėvą ir visiems tolimesniems broliams
+    // nustato teva ir visiems tolimesniems broliams
     // pPrevBrother turi buti NULL
     // pFath cannnot be deleted after successfull SetFather()
     void SetFather0(KpTreeEntry *pFath); // recursive entry
@@ -80,21 +80,23 @@ public:
     void SetPrevBrother(KpTreeEntry *pPrevBr);
 
     KpTreeEntry *GetNextBrother(void) const { return(m_pNextBrother); }
-
+    
     // nustato sekantá brolá ðiam mazgui (this)
     // pNextBr cannnot be deleted after successfull SetNextBrother()
     // pNextBr->pFather turi sutapti su this->pFather
-    void SetNextBrother(KpTreeEntry *pNextBr);
+    void SetNextBrother(KpTreeEntry *pNextBr);  
+
 };
 
 
-// TODO: toliau viską kelti į KpTreeEntry klasės statinius metodus
+// TODO: toliau viskà kelti á KpTreeEntry klasës statinius metodus
 
-// TODO: panašiai, kaip ir DeleteKpTreeEntry, tik elementą trina, vietoj jo atkeldamas vaikus
-// TODO: elementą trina su visais broliais
+// TODO: panaðiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
+// TODO: elementà trina su visais broliais
 // tinka paprasto listo tvarkymui  
 // DeleteChild() papildymas
 extern void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr); 
 
 
 #endif // #ifndef kptree_included
+

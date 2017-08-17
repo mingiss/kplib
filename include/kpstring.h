@@ -13,9 +13,16 @@
 #ifndef KPSTRING_INCLUDED
 #define KPSTRING_INCLUDED
 
+#ifdef __cplusplus
+#include <vector>
+#endif
+#include "kpstdlib.h"
+#include "kptt.h"
+#include "kpctype.h"
+
 // -------------------------
 #ifndef null
-#define null ((const KpStrPtr)NULL) // null pointer to the string
+#define null ((/* const */ uchar *)NULL) // null pointer to the string
 #endif
 
 // #ifdef __GNUC__
@@ -27,8 +34,8 @@
  * Macros to call kp_append_...()
  * ret_buf and cur_buf_len should be locally defined using KP_DEF_BUF
  */
-#define KP_DEF_BUF int cur_buf_len = 1000; KpStrPtr ret_buf = malloc(cur_buf_len + 1); assert(ret_buf); ret_buf[0] = 0;
-#define KP_APPEND_STR(out_str) kp_append_str((const KpStrPtr)out_str, &ret_buf, &cur_buf_len)
+#define KP_DEF_BUF int cur_buf_len = 1000; uchar *ret_buf = malloc(cur_buf_len + 1); assert(ret_buf); ret_buf[0] = 0;
+#define KP_APPEND_STR(out_str) kp_append_str((const uchar *)out_str, &ret_buf, &cur_buf_len)
 #define KP_APPEND_STR_AND_FREE(out_str) kp_append_str_and_free(out_str, &ret_buf, &cur_buf_len)
 #define KP_APPEND_CHR(out_chr) kp_append_chr(out_chr, &ret_buf, &cur_buf_len)
 
@@ -37,13 +44,13 @@
  */
 
 /* safe strcat() – appends out_str to the string buffer *str_buf_ptr */ 
-extern void kp_append_str(const KpStrPtr out_str, KpStrPtr *str_buf_ptr, int *buf_len_ptr);
+extern void kp_append_str(const uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr);
 
 /* appends out_str to *str_buf_ptr and free()'s */
-extern void kp_append_str_and_free(KpStrPtr out_str, KpStrPtr *str_buf_ptr, int *buf_len_ptr);
+extern void kp_append_str_and_free(uchar *out_str, uchar **str_buf_ptr, int *buf_len_ptr);
 
 /* safely appends byte out_chr to the string buffer *str_buf_ptr */
-extern void kp_append_chr(const uchar out_chr, KpStrPtr *str_buf_ptr, int *buf_len_ptr);
+extern void kp_append_chr(const uchar out_chr, uchar **str_buf_ptr, int *buf_len_ptr);
 
 
 // -------------------------
@@ -51,33 +58,42 @@ extern void kp_append_chr(const uchar out_chr, KpStrPtr *str_buf_ptr, int *buf_l
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę?
-extern size_t strlen(const KpStrPtr src);
+extern size_t strlen(const uchar *src);
 
-extern KpStrPtr strcpy(KpStrPtr dest, const KpStrPtr src);
-extern KpStrPtr strcpy(KpStrPtr dest, const char *src);
+extern uchar *strcpy(uchar *dest, const uchar *src);
+extern uchar *strcpy(uchar *dest, const char *src);
 
-extern KpStrPtr strncpy(KpStrPtr dest, const KpStrPtr src, size_t nbytes);
+extern uchar *strncpy(uchar *dest, const uchar *src, size_t nbytes);
 
-extern KpStrPtr strcat(KpStrPtr dest, const KpStrPtr src);
-extern KpStrPtr strcat(KpStrPtr dest, const char *src);
+extern uchar *strcat(uchar *dest, const uchar *src);
+extern uchar *strcat(uchar *dest, const char *src);
 
-extern KpStrPtr strchr(KpStrPtr p_pszString, KpChar p_iCh);
-extern const KpStrPtr strchr(const KpStrPtr p_pszString, KpChar p_iCh);
+extern uchar *strchr(uchar *p_pszString, KpChar p_iCh);
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strchr(uchar *, KpChar)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+extern const uchar *strchr(const uchar *p_pszString, KpChar p_iCh);
+#endif
 
-extern KpStrPtr strstr(KpStrPtr p_pszString, const char *p_pszPattern);
-extern const KpStrPtr strstr(const KpStrPtr p_pszString, const char *p_pszPattern);
-extern KpStrPtr strstr(KpStrPtr p_pszString, const KpStrPtr p_pszPattern);
-extern const KpStrPtr strstr(const KpStrPtr p_pszString, const KpStrPtr p_pszPattern);
+extern uchar *strstr(uchar *p_pszString, const char *p_pszPattern);
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strstr(uchar *, const char*)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+extern const uchar *strstr(const uchar *p_pszString, const char *p_pszPattern);
+#endif
+extern uchar *strstr(uchar *p_pszString, const uchar *p_pszPattern);
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strstr(uchar *, uchar *)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+extern const uchar *strstr(const uchar *p_pszString, const uchar *p_pszPattern);
+#endif
 
-extern int strcmp(const KpStrPtr str1, const KpStrPtr str2);
-extern int strcmp(const KpStrPtr str1, const char *str2);
+extern int strcmp(const uchar *str1, const uchar *str2);
+extern int strcmp(const uchar *str1, const char *str2);
 
-extern int strncmp(const KpStrPtr str1, const KpStrPtr str2, size_t nbytes);
+extern int strncmp(const uchar *str1, const uchar *str2, size_t nbytes);
 
 #ifndef HAVE_STRLWR
 extern char *strlwr(char *str);
 #endif
-extern KpStrPtr strlwr(KpStrPtr str);
+extern uchar *strlwr(uchar *str);
 
 
 // ------------------------- string
@@ -85,15 +101,15 @@ class KpString : public string
 {
 public:
     KpString () : string() {}
-    KpString (const KpStrPtr lpszStr) : string((const char *)lpszStr) {}
+    KpString (const uchar *lpszStr) : string((const char *)lpszStr) {}
     KpString (string sStr) : string(sStr) {}
-    KpString& operator=(const KpStrPtr lpszRight) { string::operator=((const char *)lpszRight); return *this; }
+    KpString& operator=(const uchar *lpszRight) { string::operator=((const char *)lpszRight); return *this; }
     KpString& operator=(const string& sRight) { string::operator=(sRight); return *this; }
 
-    operator KpStrPtr() { return c_str(); }
+    operator uchar *() { return c_str(); }
     operator const char *() { return string::c_str(); }
 
-    KpStrPtr c_str() { return (KpStrPtr)string::c_str(); }
+    uchar *c_str() { return (uchar *)string::c_str(); }
 
     // trim from start
     static KpString &ltrim(KpString &s);
@@ -107,8 +123,8 @@ public:
     * @param[in] this – eilutė, kurią reikia suskaldyti
     * @param[out] saOutArr – suskaldytų eilučių masyvas
     */
-    void Split(const KpStrPtr pszDelim, vector<KpString>& saOutArr);
-    void Split(const char *pszDelim, vector<KpString>& saOutArr) { Split((const KpStrPtr)pszDelim, saOutArr); }
+    void Split(const uchar *pszDelim, vector<KpString>& saOutArr);
+    void Split(const char *pszDelim, vector<KpString>& saOutArr) { Split((const uchar *)pszDelim, saOutArr); }
 
     /* Apjungia stringų masyvą į vieną eilutę
     * @param[in] saStrArr – gabalai, kuriuos reikia apjungti
@@ -130,15 +146,14 @@ public:
 // 0: p_pszStr1 == p_pszStr2
 // 1: p_pszStr1 > p_pszStr2
 // -1: p_pszStr1 > p_pszStr2
-extern int UcStrCmp(const KpStrPtr p_pszStr1, const KpStrPtr p_pszStr2, bool p_bSkipSpc,
-    int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg);
+extern int UcStrCmp(const uchar *p_pszStr1, const uchar *p_pszStr2, bool p_bSkipSpc, int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg);
 
 // -------------------------
 // TODO: kelt į KpPlainStr klasę
-extern void KpStripTrailing(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs = pszSpcEol); // numeta tarpus gale // former CutTrailSpcs
-extern void KpStripLeading(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs = pszSpcEol); // numeta tarpus pradžioj
-extern void KpStrip(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs = pszSpcEol); // numeta tarpus pradžioj ir gale
-extern void KpStripAll(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs = pszSpcEol); // išmeta visus tarpus
+extern void KpStripTrailing(uchar *pszString, /* const */ uchar *pszSpcs = pszSpcEol); // numeta tarpus gale // former CutTrailSpcs
+extern void KpStripLeading(uchar *pszString, /* const */ uchar *pszSpcs = pszSpcEol); // numeta tarpus pradžioj
+extern void KpStrip(uchar *pszString, /* const */ uchar *pszSpcs = pszSpcEol); // numeta tarpus pradžioj ir gale
+extern void KpStripAll(uchar *pszString, /* const */ uchar *pszSpcs = pszSpcEol); // išmeta visus tarpus
 
 extern void KpObfuscate(uchar *p_lpszString); // keičia visus eol į tarpus
 

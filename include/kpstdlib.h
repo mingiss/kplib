@@ -54,7 +54,7 @@ typedef unsigned long DWORD;
 typedef unsigned char uchar;
 typedef unsigned char u_char;
 
-typedef uchar *KpStrPtr;
+// typedef uchar *KpStrPtr;
 
 // #ifndef _T
 #ifndef __WIN32__
@@ -64,7 +64,7 @@ typedef uchar *KpStrPtr;
 #define _T(str) L##str
 #define TCHAR wchar_t
 #else
-#define _T(str) ((const KpStrPtr)str)
+#define _T(str) ((const uchar *)str)
 #define TCHAR uchar
 #endif
 #endif
@@ -171,7 +171,7 @@ typedef enum
 #define PLAIN_C
 #endif
 
-extern PLAIN_C void KpInit(const KpStrPtr ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer,
+extern PLAIN_C void KpInit(const uchar *ProdName, const void *pStackTop);  // pStackTop – caller stack top pointer,
 extern PLAIN_C void KpClose(void);                  // usually pointer to some local variable of the main() function
                                                     // could be NULL
 
@@ -221,10 +221,6 @@ typedef char bool;
 #endif
 
 #ifndef __WIN32__
-#define DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
-DECLARE_HANDLE(HINSTANCE);
-typedef void* HANDLE;
-
 typedef unsigned short u_short;
 typedef unsigned int uint;
 typedef unsigned int* UINT_PTR;
@@ -268,18 +264,18 @@ typedef int (*ComparePtrFuncPtr)(const void *ppVal1, const void *ppVal2);
 #define KP_MAX_FILE_LIN_LEN 4096
 #ifdef __WIN32__
 #define KP_DIR_SEP '\\'
-#define KP_DIR_SEP_STR (const KpStrPtr)"\\"
+#define KP_DIR_SEP_STR (const uchar *)"\\"
 #define KP_DIR_SEP_STR_0 "\\"
-#define KP_EXE_EXT (const KpStrPtr)"exe"
+#define KP_EXE_EXT (const uchar *)"exe"
 #else
 #define KP_DIR_SEP '/'
-#define KP_DIR_SEP_STR (const KpStrPtr)"/"
+#define KP_DIR_SEP_STR (const uchar *)"/"
 #define KP_DIR_SEP_STR_0 "/"
-#define KP_EXE_EXT (const KpStrPtr)""
+#define KP_EXE_EXT (const uchar *)""
 #endif
 #define KP_EXT_SEP '.'
-#define KP_EXT_SEP_STR (const KpStrPtr)"."
-#define KP_CUR_DIR_STR (const KpStrPtr)"."
+#define KP_EXT_SEP_STR (const uchar *)"."
+#define KP_CUR_DIR_STR (const uchar *)"."
 
 // ========================================= malloc
 #ifdef __cplusplus
@@ -449,7 +445,7 @@ typedef unsigned long ulong;
 
 // formats p_iVal as 16 bytes binary string
 // p_lpszBinStrBuf[16 + 1]
-void I2BinStr(KpStrPtr p_lpszBinStrBuf, int p_iVal);  
+void I2BinStr(uchar *p_lpszBinStrBuf, int p_iVal);  
 
 double NormAngle(double p_dAngle); // sukiša kampą į intervalą [-pi, pi)
 
@@ -464,8 +460,13 @@ double NormAngle(double p_dAngle); // sukiša kampą į intervalą [-pi, pi)
 
 // ================================================== OS porting (Windows API <--> Linux)
 #ifndef __WIN32__
-typedef unsigned long HINSTANCE;
-typedef unsigned long HANDLE;
+// typedef unsigned long HINSTANCE;
+#define DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
+DECLARE_HANDLE(HINSTANCE);
+
+// typedef unsigned long HANDLE;
+typedef void* HANDLE;
+
 typedef void* LPSECURITY_ATTRIBUTES;
 #endif
 

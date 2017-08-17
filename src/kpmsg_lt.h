@@ -86,10 +86,10 @@
 #define KP_MSG_MSG_FORMAT_LT        ((const unsigned char *)"Neteisingas praneðimo formatas")
 #define KP_MSG_OBSOLETE_LT          ((const unsigned char *)"Pasenusi funkcija")
 
-// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu %s   Smulkesnë informacija faile %s")
-// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu %s, prie laiðko prikabinkite failà %s")
-// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu, adresu %s, prie laiðko prikabinkite failà %s")
-#define KP_MSG_ERROR_HELP_LT        ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu, adresu %s")
+// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu tech@tev.lt   Smulkesnë informacija faile %s")
+// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu tech@tev.lt, prie laiðko prikabinkite failà %s")
+// #define KP_MSG_ERROR_HELP_LT     ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu, adresu tech@tev.lt, prie laiðko prikabinkite failà %s")
+#define KP_MSG_ERROR_HELP_LT        ((const unsigned char *)".  Dël techninës pagalbos kreipkitës elektroniniu paðtu, adresu pagalba@tev.lt")
 #define KP_MSG_ERROR_HELP_REST_LT   ((const unsigned char *)"   Prie laiðko prikabinkite Jûsø darbalaukyje atsiradusá failà %s.")
 
 #define KP_MSG_WSAEACCES_LT               ((const unsigned char *)"Teisës nesuteiktos")
@@ -202,7 +202,7 @@
                                                                   "pateiktus laukus. Praneðimas apie kompiuterio konfigûracijà, produktà " \
                                                                   "bei klaidos pobûdá bus iðsiøstas internetu á produkto gamintojo tarnybinæ " \
                                                                   "stotá. Jei po kurio laiko su Jumis nebus susisiekta Jûsø nurodytu paðto " \
-                                                                  "adresu, kreipkitës adresu %s")
+                                                                  "adresu, kreipkitës adresu pagalba@tev.lt")
 #endif
 // #define KP_MSG_DIAG_MSG_EXPL_LT        ((const unsigned char *)"Jei norite nusiøsti diagnostiná praneðimà gamintojui, uþpildykite pateiktus laukus.")
 #define KP_MSG_DIAG_MSG_EXPL_LT           ((const unsigned char *)"Jei turite problemø naudodami ðá produktà, gamintojui galite nusiøsti diagnostiná praneðimà. Uþpildykite pateiktus laukus.")

@@ -12,6 +12,7 @@
 #ifndef KPCTYPE_INCLUDED
 #define KPCTYPE_INCLUDED
 
+#include "kperrno.h"
 
 // ---------------------------------------
 // predefined spec. character strings
@@ -29,23 +30,21 @@ extern uchar pszSpCharsSpcEol[]; // "/.,- \t\r\n"  // characters ignored by sort
 extern bool KpIsDigit(KpChar p_uiCh);
 
 // ----------------------
-extern HRESULT TestAllowed
-(
-const KpStrPtr p_pszCheckString,
-const KpStrPtr p_pszCharsAllowed
-);  // tests, whether p_pszCheckString contains
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+extern HRESULT TestAllowed(const uchar *p_pszCheckString, const uchar *p_pszCharsAllowed);
+    // tests, whether p_pszCheckString contains
     //    only characters from p_pszCharsAllowed
     // returns KP_E_UNKN_CHR in case of failure
 
 // ----------------------
-extern bool KpIsNumber(const KpStrPtr p_pszString);
+extern bool KpIsNumber(const uchar *p_pszString);
     // tests whether p_pszString is decimal integer number
 
-extern bool KpIsHexNum(const KpStrPtr p_pszHexString);
+extern bool KpIsHexNum(const uchar *p_pszHexString);
     // tests whether p_pszHexString is hex number
-extern bool KpIsOctNum(const KpStrPtr p_pszOctString);
+extern bool KpIsOctNum(const uchar *p_pszOctString);
     // tests whether p_pszOctString is octal number
-extern bool KpIsRomNum(const KpStrPtr p_pszString);
+extern bool KpIsRomNum(const uchar *p_pszString);
     // tests whether p_pszString is roman number
 
 #endif // #ifndef KPCTYPE_INCLUDED
