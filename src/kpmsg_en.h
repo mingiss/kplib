@@ -84,8 +84,8 @@
 #define KP_MSG_MSG_FORMAT_EN        ((const unsigned char *)"Illegal message format")
 #define KP_MSG_OBSOLETE_EN          ((const unsigned char *)"Obsolete function call")
 
-// #define KP_MSG_ERROR_HELP_EN     ((const unsigned char *)".  Technical support by e-mail tech@tev.lt   For further information look file %s")
-#define KP_MSG_ERROR_HELP_EN        ((const unsigned char *)".  Ask for technical support by e-mail at address pagalba@tev.lt")
+// #define KP_MSG_ERROR_HELP_EN     ((const unsigned char *)".  Technical support by e-mail %s   For further information look file %s")
+#define KP_MSG_ERROR_HELP_EN        ((const unsigned char *)".  Ask for technical support by e-mail at address %s")
 #define KP_MSG_ERROR_HELP_REST_EN   ((const unsigned char *)"   Attach file %s from your desktop to the message.")
 
 #define KP_MSG_WSAEACCES_EN         ((const unsigned char *)"Permission denied")
@@ -194,7 +194,7 @@
                                                                   "button \"Continue\". The message about computer configuration, product " \
                                                                   "and the error will be sent by internet to the server of the product " \
                                                                   "manufacturer. If you will not be contacted in certain period of time, " \
-                                                                  "ask for assistance by e-mail pagalba@tev.lt")
+                                                                  "ask for assistance by e-mail %s")
 #endif
 // #define KP_MSG_DIAG_MSG_EXPL_EN        ((const unsigned char *)"In order to send error report to the producer, you could fill following fields.")
 #define KP_MSG_DIAG_MSG_EXPL_EN           ((const unsigned char *)"In case you have problems by using this produkt, you can send error report to the producer. Fill in following fields.")

@@ -1,11 +1,11 @@
 /* -----------------------------
  * kptree.h
  *      tree-like structure definition
- *      
+ *
  *  Changelog:
  *      2013-06-11  mp  initial creation
- *       
- */  
+ *
+ */
 
 
 #ifndef KPTREE_INCLUDED
@@ -18,7 +18,7 @@ private:
     KpTreeRecType *m_lpRecord;
 
 public:
-    KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesiogini pointeri, po to trina listo elementa
+    KpTreeEntry<KpTreeRecType> *m_pFirstChild; // TeXtrcClass::FindFile() naudoja tiesioginį pointerį, po to trina listo elementą
 private:
     KpTreeEntry<KpTreeRecType> *m_pNextBrother;
     KpTreeEntry<KpTreeRecType> *m_pPrevBrother;
@@ -164,7 +164,7 @@ public:
         if (m_pNextBrother) m_pNextBrother->SetFather0(pFath);
     }
 
-    // papildomai prie SetFather0(): pPrevBrother turi buti NULL
+    // papildomai prie SetFather0(): pPrevBrother turi būti NULL
     void SetFather(KpTreeEntry<KpTreeRecType> *pFath)  // main entry
     {
         KP_ASSERT(m_pPrevBrother == NULL, KP_E_SYSTEM_ERROR, null);
@@ -240,7 +240,7 @@ public:
     //-----------------------------------
     // appends new child AFTER the last child of this
     //    pChild cannot be deleted after successfull AppendChild()
-    // nežiūrėdamas nustato pChild->pFather i this
+    // nežiūrėdamas nustato pChild->pFather į this
     void AppendChild(KpTreeEntry<KpTreeRecType> *pChild)
     {
     KpTreeEntry<KpTreeRecType> *cur_brother = NULL;

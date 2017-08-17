@@ -78,7 +78,7 @@ KP_MSG_NOTINST_DELETE_IX,           // "Produktas neįdiegtas arba jo diegimas s
 
 KP_MSG_MSG_FORMAT_IX,               // "Neteisingas pranešimo formatas"
 KP_MSG_OBSOLETE_IX,                 // "Pasenusi funkcija"
-KP_MSG_ERROR_HELP_IX,               // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt"
+KP_MSG_ERROR_HELP_IX,               // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu %s"
 KP_MSG_ERROR_HELP_REST_IX,          // "   Prie laiško prikabinkite failą %s"
 KP_MSG_WSAEACCES_IX,                // "Teisės nesuteiktos"
 KP_MSG_WSAEADDRINUSE_IX,            // "Adresas jau naudojamas"
@@ -177,7 +177,7 @@ KP_MSG_FILE_EXISTS_IX,              // "Failas %s jau yra, perrašyti?"
 
 KP_MSG_DIAG_MSG_IX,                 // "Formuojamas diagnostinis pranešimas"
 KP_MSG_DIAG_MSG_TITLE_IX,           // "Diagnostinis pranešimas"
-KP_MSG_DIAG_MSG_EXPL_IX,            // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+KP_MSG_DIAG_MSG_EXPL_IX,            // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 KP_MSG_DIAG_MSG_EMAIL_PROMPT_IX,    // "Jūsų e-pašto adresas:")
 KP_MSG_DIAG_MSG_COMMENTS_PROMPT_IX, // "Komentarai apie klaidos atsiradimo aplinkybes:")
 KP_MSG_DIAG_MSG_FILE_PROMPT_IX,     // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
@@ -282,7 +282,7 @@ NumOfKpMessages
 
 #define KP_MSG_MSG_FORMAT               KpErrorClass::m_pszaKpMessages[KP_MSG_MSG_FORMAT_IX             ][KpCommonApp::m_iMsgLangOff]  // "Neteisingas pranešimo formatas"
 #define KP_MSG_OBSOLETE                 KpErrorClass::m_pszaKpMessages[KP_MSG_OBSOLETE_IX               ][KpCommonApp::m_iMsgLangOff]  // "Pasenusi funkcija"
-#define KP_MSG_ERROR_HELP               KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_HELP_IX             ][KpCommonApp::m_iMsgLangOff]  // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt"
+#define KP_MSG_ERROR_HELP               KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_HELP_IX             ][KpCommonApp::m_iMsgLangOff]  // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu %s"
 #define KP_MSG_ERROR_HELP_REST ((const char *)KpErrorClass::m_pszaKpMessages[KP_MSG_ERROR_HELP_REST_IX  ][KpCommonApp::m_iMsgLangOff]) // "   Prie laiško prikabinkite failą %s"
 #define KP_MSG_WSAEACCES                KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEACCES_IX              ][KpCommonApp::m_iMsgLangOff]  // "Teisės nesuteiktos"
 #define KP_MSG_WSAEADDRINUSE            KpErrorClass::m_pszaKpMessages[KP_MSG_WSAEADDRINUSE_IX          ][KpCommonApp::m_iMsgLangOff]  // "Adresas jau naudojamas"
@@ -381,7 +381,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG                 KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_IX               ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE           KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_TITLE_IX         ][KpCommonApp::m_iMsgLangOff]  // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL            KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EXPL_IX          ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt"
+#define KP_MSG_DIAG_MSG_EXPL            KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EXPL_IX          ][KpCommonApp::m_iMsgLangOff]  // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s"
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT    KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_EMAIL_PROMPT_IX  ][KpCommonApp::m_iMsgLangOff]  // "Jūsų e-pašto adresas:"
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_COMMENTS_PROMPT_IX][KpCommonApp::m_iMsgLangOff] // "Komentarai apie klaidos atsiradimo aplinkybes:"
 #define KP_MSG_DIAG_MSG_FILE_PROMPT     KpErrorClass::m_pszaKpMessages[KP_MSG_DIAG_MSG_FILE_PROMPT_IX   ][KpCommonApp::m_iMsgLangOff]  // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):"
@@ -485,7 +485,7 @@ NumOfKpMessages
 #define KP_MSG_MSG_FORMAT_EN        ((const unsigned char *)"") // "Illegal message format")
 #define KP_MSG_OBSOLETE_EN          ((const unsigned char *)"") // "Obsolete function call")
 
-#define KP_MSG_ERROR_HELP_EN        ((const unsigned char *)"") // ".  Technical support by e-mail tech@tev.lt")
+#define KP_MSG_ERROR_HELP_EN        ((const unsigned char *)"") // ".  Technical support by e-mail %s")
 #define KP_MSG_ERROR_HELP_REST_EN   ((const unsigned char *)"") // "   For further information look file %s")
 
 #define KP_MSG_WSAEACCES_EN               ((const unsigned char *)"") // "Permission denied")
@@ -583,7 +583,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG_EN                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE_EN          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_EN           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+#define KP_MSG_DIAG_MSG_EXPL_EN           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT_EN   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_EN ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
 #define KP_MSG_DIAG_MSG_FILE_PROMPT_EN    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
@@ -689,7 +689,7 @@ NumOfKpMessages
 #define KP_MSG_MSG_FORMAT_LT        ((const unsigned char *)"") // "Neteisingas pranešimo formatas")
 #define KP_MSG_OBSOLETE_LT          ((const unsigned char *)"") // "Pasenusi funkcija")
 
-#define KP_MSG_ERROR_HELP_LT        ((const unsigned char *)"") // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu tech@tev.lt")
+#define KP_MSG_ERROR_HELP_LT        ((const unsigned char *)"") // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu %s")
 #define KP_MSG_ERROR_HELP_REST_LT   ((const unsigned char *)"") // "   Prie laiško prikabinkite failą %s")
 
 #define KP_MSG_WSAEACCES_LT               ((const unsigned char *)"") // "Teisės nesuteiktos")
@@ -789,7 +789,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG_LT                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE_LT          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_LT           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+#define KP_MSG_DIAG_MSG_EXPL_LT           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT_LT   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_LT ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
 #define KP_MSG_DIAG_MSG_FILE_PROMPT_LT    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
@@ -897,7 +897,7 @@ NumOfKpMessages
 
 #define KP_MSG_MSG_FORMAT_PL_1250         ((const unsigned char *)"") // "B³źdny format komunikatu")
 #define KP_MSG_OBSOLETE_PL_1250           ((const unsigned char *)"") // "Stara funkcja")
-#define KP_MSG_ERROR_HELP_PL_1250         ((const unsigned char *)"") // ".  Po pomoc techniczn¹ zwróę siź pod adres tech@tev.lt")
+#define KP_MSG_ERROR_HELP_PL_1250         ((const unsigned char *)"") // ".  Po pomoc techniczn¹ zwróę siź pod adres %s")
 #define KP_MSG_ERROR_HELP_REST_PL_1250    ((const unsigned char *)"") // "   Do listu za³¹cz plik %s")
 #define KP_MSG_WSAEACCES_PL_1250               ((const unsigned char *)"") // "Nie masz uprawnienia")
 #define KP_MSG_WSAEADDRINUSE_PL_1250           ((const unsigned char *)"") // "Adres jest juæ wykorzystany")
@@ -1012,7 +1012,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG_PL_1250                 ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE_PL_1250           ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_PL_1250            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+#define KP_MSG_DIAG_MSG_EXPL_PL_1250            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1250    ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1250 ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
 #define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1250     ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
@@ -1119,7 +1119,7 @@ NumOfKpMessages
 
 #define KP_MSG_MSG_FORMAT_PL_1257         ((const unsigned char *)"") // "Błędny format komunikatu")
 #define KP_MSG_OBSOLETE_PL_1257           ((const unsigned char *)"") // "Stara funkcja")
-#define KP_MSG_ERROR_HELP_PL_1257         ((const unsigned char *)"") // ".  Po pomoc techniczną zwróć się pod adres tech@tev.lt")
+#define KP_MSG_ERROR_HELP_PL_1257         ((const unsigned char *)"") // ".  Po pomoc techniczną zwróć się pod adres %s")
 #define KP_MSG_ERROR_HELP_REST_PL_1257    ((const unsigned char *)"") // "   Do listu załącz plik %s")
 #define KP_MSG_WSAEACCES_PL_1257               ((const unsigned char *)"") // "Nie masz uprawnienia")
 #define KP_MSG_WSAEADDRINUSE_PL_1257           ((const unsigned char *)"") // "Adres jest już wykorzystany")
@@ -1234,7 +1234,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG_PL_1257                 ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE_PL_1257           ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_PL_1257            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+#define KP_MSG_DIAG_MSG_EXPL_PL_1257            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1257    ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1257 ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
 #define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1257     ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
@@ -1339,7 +1339,7 @@ NumOfKpMessages
 #define KP_MSG_MSG_FORMAT_RU        ((const unsigned char *)"") // "Illegal message format")
 #define KP_MSG_OBSOLETE_RU          ((const unsigned char *)"") // "Obsolete function call")
 
-#define KP_MSG_ERROR_HELP_RU        ((const unsigned char *)"") // ".  Technical support by e-mail tech@tev.lt")
+#define KP_MSG_ERROR_HELP_RU        ((const unsigned char *)"") // ".  Technical support by e-mail %s")
 #define KP_MSG_ERROR_HELP_REST_RU   ((const unsigned char *)"") // "   For further information look file %s")
 
 #define KP_MSG_WSAEACCES_RU               ((const unsigned char *)"") // "Permission denied")
@@ -1439,7 +1439,7 @@ NumOfKpMessages
 
 #define KP_MSG_DIAG_MSG_RU                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
 #define KP_MSG_DIAG_MSG_TITLE_RU          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_RU           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu pagalba@tev.lt")
+#define KP_MSG_DIAG_MSG_EXPL_RU           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
 #define KP_MSG_DIAG_MSG_EMAIL_PROMPT_RU   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
 #define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_RU ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
 #define KP_MSG_DIAG_MSG_FILE_PROMPT_RU    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
