@@ -1,10 +1,10 @@
 /* ----------------------------------------------------
  *
  * kptree.h
- *  
+ *
  *    definitions of KpTreeEntry 
  *
- */   
+ */
 
 
 // ===============================================
@@ -73,7 +73,7 @@ class KpTreeEntry
 //    simply text representation of contents - for sorting and listing purposes
 //    (KpCreateListBox()
 public:
-   UCHAR /* void */ *m_lpRecord; // should be allocated as an array – destructor deletes it with delete []
+   UCHAR /* void */ *m_lpRecord; // should be allocated as an array â€“ destructor deletes it with delete []
 
    int m_iRecSize; // size of m_lpRecord in bytes
 
@@ -83,11 +83,11 @@ public:
 public:
     KpRecType m_iRecType;
 
-    // paprastas listas per ğitas rodykles, broliø tada nëra
+    // paprastas listas per Å¡itas rodykles, broliÅ³ tada nÄ—ra
     KpTreeEntry *m_pFirstChild; 
     KpTreeEntry *m_pFather;
 
-    // o èia jau medşio ğakos 
+    // o Ã¨ia jau medÃ¾io Ã°akos 
     KpTreeEntry *m_pPrevBrother;
     KpTreeEntry *m_pNextBrother;
 
@@ -107,7 +107,7 @@ public:
    KpTreeEntry(const UCHAR *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
    KpTreeEntry(const CHAR *lpszString, KpTreeEntry *pFath); // lpszString - text string to initialize
    KpTreeEntry(const KpChStr *pKpStr, KpTreeEntry *pFath); // iazKpStr - wide text string to initialize
-   void Constructor(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // *lpRecord po gráşimo galima sunaikinti
+   void Constructor(const void *lpRecord, int iSize, KpTreeEntry *pFath, KpRecType iRecType = KpRecType_Unknown); // *lpRecord po grÄ¯Å¾imo galima sunaikinti
 
    virtual ~KpTreeEntry();
 
@@ -141,10 +141,10 @@ public:
       // could be deleted after return
 
    void DeleteChild(void);
-      // ismeta viena vaika, anukus pastumia i vaiko vieta
+      // iÅ¡meta vienÄ… vaikÄ…, anÅ«kus pastumia Ä¯ vaiko vietÄ…
 
    void DeleteBrother(void);
-      // TODO: iğmesti pirmà brolá, tolesnius brolius pastumti vietoj jo
+      // TODO: iÅ¡mesti pirmÄ… brolÄ¯, tolesnius brolius pastumti vietoj jo
 
    KpRecType GetRecType(void) const { return(m_iRecType); } // get record type identifier m_iRecType
 
@@ -171,14 +171,14 @@ public:
 
    void CountEntries(int *piCnt, int iLevel = 0, KpTreeEntry *pCurGrandFather = NULL) /* const */;
    // counts number of list entries
-   // *piCnt ieinant turi buti inicializuotas i 0 - funkcija rekursine, tik inkrementuoja
+   // *piCnt Ä¯einant turi buti inicializuotas Ä¯ 0 - funkcija rekursinÄ—, tik inkrementuoja
    // iLevel: 0 - low level KP_LISTBOX, 1 - high
    // pCurGrandFather - top level node - for tree branches, NULL - whole tree
    // check <this> for existence before calling
 
    void GetEntryPtr(int *piSel, KpTreeEntry **ppEntryPtr, int iLevel, const KpTreeEntry *pCurGrandFather);
-   // *piSel - árağo numeris nuo ğaknies (pirma vaikai, po to broliai - kaip katalogø medşio ListBox'o vaizde
-   // *piSel áeinant turi bûti -1; gadinamas - naudojamas kaip darbinis kintamasis
+   // *piSel - Ä¯raÅ¡o numeris nuo Å¡aknies (pirma vaikai, po to broliai - kaip katalogÅ³ medÅ¾io ListBox'o vaizde
+   // *piSel Ä¯einant turi bÅ«ti -1; gadinamas - naudojamas kaip darbinis kintamasis
    // *ppEntryPtr==NULL - iSel exceeded real count of entries in pStartEntry
    // iLevel: 0 - low level KP_LISTBOX, 1 - high
    // pCurGrandFather - top level node - for tree branches, NULL - whole tree
@@ -194,8 +194,8 @@ public:
    // searches for list node corresponding to pPattern
    // NULL - node not found
    // pfCompare() - like strcmp(), TvStrCmpStrict_()
-   // ppFatherPtr gali buti NULL, naudojamas, kai reikia ismetineti irasus
-   // *ppFatherPtr==NULL - tevo nera (pats pirmas irasas atitiko pPattern)
+   // ppFatherPtr gali buti NULL, naudojamas, kai reikia iÅ¡metinÄ—ti Ä¯raÅ¡us
+   // *ppFatherPtr==NULL - tÄ—vo nÄ—ra (pats pirmas Ä¯raÅ¡as atitiko pPattern)
    // check <this> for existence before calling
 
    void Sort(CompareFuncPtr pfCompare /* int (*pfCompare)(const void *lpszStr1, const void *lpszStr2) */);
@@ -215,7 +215,7 @@ public:
    void SetFather0(KpTreeEntry *pFath);         // recursive entry
    void SetFather(KpTreeEntry *pFath);          // main entry
                                                    // pFath cannnot be deleted after successfull SetFather()
-                                                   // nustato teva ir visiems tolimesniems broliams
+                                                   // nustato tÄ—vÄ… ir visiems tolimesniems broliams
                                                    // pPrevBrother turi buti NULL
 
 
@@ -227,12 +227,12 @@ public:
                                                    // pPrevBr->pFather turi sutapti su this->pFather
 
    KpTreeEntry *GetNextBrother(void) const { return(m_pNextBrother); }
-   void SetNextBrother(KpTreeEntry *pNextBr);   // nustato sekantá brolá ğiam mazgui (this)
+   void SetNextBrother(KpTreeEntry *pNextBr);   // nustato sekantÄ¯ brolÄ¯ Å¡iam mazgui (this)
                                                    // pNextBr cannnot be deleted after successfull SetNextBrother()
                                                    // pNextBr->pFather turi sutapti su this->pFather
 
 
-   void ConnectBrother(KpTreeEntry *pNextBr);   // nustato sekantá brolá ğiam mazgui (this)
+   void ConnectBrother(KpTreeEntry *pNextBr);   // nustato sekantÄ¯ brolÄ¯ Å¡iam mazgui (this)
                                                    // pNextBr cannnot be deleted after successfull ConnectBrother()
                                                    // nustato pNextBr->m_pFather=this->m_pFather
 
@@ -259,23 +259,23 @@ public:
 
 // ---------------------------------
 // KpTextChk metodai
-   void Deselect(); // visus m_lpRecord->m_bChecked numeta á False
+   void Deselect(); // visus m_lpRecord->m_bChecked numeta Ä¯ False
 
 };
 
 
-// TODO: toliau viskà kelti á KpTreeEntry klasës statinius metodus
+// TODO: toliau viskÄ… kelti Ä¯ KpTreeEntry klasÄ—s statinius metodus
 
 extern void DeleteKpTreeEntry(KpTreeEntry *pEntryPtr); 
-    // iğtrina *pEntryPtr su visais vaikais, pastumdydamas brolius
-    // TODO: negerai, jeigu èia vyriausias tëvas – pamesim medşio ğaknies rodyklæ
-    // TODO: reikia perduot parametrà KpTreeEntry **ppEntryPtr ir atnaujint rodyklæ *ppEntryPtr->m_pNextBrother reikğme 
+    // iÃ°trina *pEntryPtr su visais vaikais, pastumdydamas brolius
+    // TODO: negerai, jeigu Äia vyriausias tÄ—vas â€“ pamesim medÅ¾io Å¡aknies rodyklÄ™
+    // TODO: reikia perduot parametrÃ  KpTreeEntry **ppEntryPtr ir atnaujint rodyklÄ™ *ppEntryPtr->m_pNextBrother reikÅ¡me
     // DeleteBrother() papildymas
 
 extern void DeleteKpTreeNode(KpTreeEntry **ppEntryPtr); 
-    // TODO: panağiai, kaip ir DeleteKpTreeEntry, tik elementà trina, vietoj jo atkeldamas vaikus
-    // TODO: elementà trina su visais broliais
-    // tinka paprasto listo tvarkymui  
+    // TODO: panaÅ¡iai, kaip ir DeleteKpTreeEntry, tik elementÄ… trina, vietoj jo atkeldamas vaikus
+    // TODO: elementÄ… trina su visais broliais
+    // tinka paprasto listo tvarkymui
     // DeleteChild() papildymas
 
 extern void ChangeKpTreeNodes(KpTreeEntry *pNode1, KpTreeEntry *pNode2);
@@ -289,9 +289,9 @@ extern void CopyKpTreeNode(KpTreeEntry *pNodeDst, /* const */ KpTreeEntry *pNode
 extern void CopyKpTreeNodeAllocate(KpTreeEntry *pNodeDst, /* const */ KpTreeEntry *pNodeSrc);
    // like CopyKpTreeNode(), but allocates new space for pNodeDst->m_lpRecord
 
-// ------------------- suskaièiuoja teksto eiluèiø sàrağo bendrà ilgá
-extern void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pCharList); // *pList – CHAR[] stringø sàrağas
-extern void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pKpCharList); // *pList – KpChStr stringø sàrağas
+// ------------------- suskaiÄiuoja teksto eiluÄiÅ³ sÄ…raÅ¡o bendrÄ… ilgÄ¯
+extern void CountStrListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pCharList); // *pList â€“ CHAR[] stringÅ³ sÄ…raÅ¡as
+extern void CountKpCharListFullLength(int *piFullContLen, /* const */ KpTreeEntry *pKpCharList); // *pList â€“ KpChStr stringÅ³ sÄ…raÅ¡as
 
 #endif // #ifndef kptree_included
 
