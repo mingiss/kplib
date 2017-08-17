@@ -50,3 +50,4 @@ syntax: glob
 
 .git/*
 .gitignore
+repo.txt
