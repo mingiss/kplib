@@ -29,3 +29,5 @@ repo.txt
 *~
 autom4te.cache/*
 *.suo
+*.Po
+.dirstamp
