@@ -1,4 +1,5 @@
 .hg*
+repo.txt
 *.o
 *.obj
 *.a
