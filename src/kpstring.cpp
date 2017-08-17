@@ -42,68 +42,79 @@ using namespace std;
 
 
 // -----------------------------
-size_t strlen(const KpStrPtr src){ return(strlen((const char *)src)); }
+size_t strlen(const uchar *src){ return(strlen((const char *)src)); }
 
-KpStrPtr strcpy(KpStrPtr dest, const KpStrPtr src)
-   { return ((KpStrPtr)strcpy((char *)dest, (const char *)src)); }
-KpStrPtr strcpy(KpStrPtr dest, const char *src)
-   { return ((KpStrPtr)strcpy((char *)dest, src)); }
+uchar *strcpy(uchar *dest, const uchar *src)
+   { return ((uchar *)strcpy((char *)dest, (const char *)src)); }
+uchar *strcpy(uchar *dest, const char *src)
+   { return ((uchar *)strcpy((char *)dest, src)); }
 
-KpStrPtr strncpy(KpStrPtr dest, const KpStrPtr src, size_t nbytes)
-   { return ((KpStrPtr)strncpy((char *)dest, (const char *)src, nbytes)); }
+uchar *strncpy(uchar *dest, const uchar *src, size_t nbytes)
+   { return ((uchar *)strncpy((char *)dest, (const char *)src, nbytes)); }
 
-KpStrPtr strcat(KpStrPtr dest, const KpStrPtr src)
-   { return ((KpStrPtr)strcat((char *)dest, (const char *)src)); }
-KpStrPtr strcat(KpStrPtr dest, const char *src)
-   { return ((KpStrPtr)strcat((char *)dest, src)); }
+uchar *strcat(uchar *dest, const uchar *src)
+   { return ((uchar *)strcat((char *)dest, (const char *)src)); }
+uchar *strcat(uchar *dest, const char *src)
+   { return ((uchar *)strcat((char *)dest, src)); }
 
-int strcmp(const KpStrPtr str1, const KpStrPtr str2)
+int strcmp(const uchar *str1, const uchar *str2)
    { return (strcmp((const char *)str1, (const char *)str2)); }
 
-int strcmp(const KpStrPtr str1, const char *str2)
+int strcmp(const uchar *str1, const char *str2)
    { return (strcmp((const char *)str1, str2)); }
 
-int strncmp(const KpStrPtr str1, const KpStrPtr str2, size_t nbytes)
+int strncmp(const uchar *str1, const uchar *str2, size_t nbytes)
    { return (strncmp((const char *)str1, (const char *)str2, nbytes)); }
 
 // --------------------------------------------------
-KpStrPtr strchr(KpStrPtr p_pszString, KpChar p_iCh)
-    { return((KpStrPtr)strchr((char *)p_pszString, p_iCh)); }
+uchar *strchr(uchar *p_pszString, KpChar p_iCh)
+{ return((uchar *)strchr((char *)p_pszString, p_iCh)); }
 
-const KpStrPtr strchr(const KpStrPtr p_pszString, KpChar p_iCh)
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strchr(uchar *, KpChar)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const uchar *strchr(const uchar *p_pszString, KpChar p_iCh)
 {
-const KpStrPtr str_ptr = p_pszString;
+const uchar *str_ptr = p_pszString;
 
     while (*str_ptr && (*str_ptr != p_iCh)) str_ptr++;
     if (*str_ptr == Nul) str_ptr = null;
 
 return(str_ptr);
 }
+#endif
 
 // --------------------------------------------------
-KpStrPtr strstr(KpStrPtr p_pszString, const char *p_pszPattern)
-    { return ((KpStrPtr)strstr((char *)p_pszString, p_pszPattern)); }
-    
-const KpStrPtr strstr(const KpStrPtr p_pszString, const char *p_pszPattern)
-    {
-        KP_ASSERT(p_pszString, E_INVALIDARG, null);
-    KpStrPtr str = null;
-        KP_NEWA(str, uchar, strlen(p_pszString) + 1);
-        strcpy(str, p_pszString);
+uchar *strstr(uchar *p_pszString, const char *p_pszPattern)
+{ return ((uchar *)strstr((char *)p_pszString, p_pszPattern)); }
 
-    const KpStrPtr retv = null;
-        retv = strstr(str, p_pszPattern);
-        if (retv) retv = p_pszString + (retv - str);
-        
-        KP_DELETEA(str);
-     return (retv); 
-     }
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strstr(uchar *, const char*)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const uchar *strstr(const uchar *p_pszString, const char *p_pszPattern)
+{
+    KP_ASSERT(p_pszString, E_INVALIDARG, null);
+uchar *str = null;
+    KP_NEWA(str, uchar, strlen(p_pszString) + 1);
+    strcpy(str, p_pszString);
 
-KpStrPtr strstr(KpStrPtr p_pszString, const KpStrPtr p_pszPattern)
-    { return(strstr(p_pszString, (const char *)p_pszPattern)); }
-    
-const KpStrPtr strstr(const KpStrPtr p_pszString, const KpStrPtr p_pszPattern)
-    { return(strstr(p_pszString, (const char *)p_pszPattern)); }
+const uchar *retv = null;
+
+    retv = strstr(str, p_pszPattern);
+    if (retv) retv = p_pszString + (retv - str);
+
+    KP_DELETEA(str);
+
+return (retv);
+}
+#endif
+
+uchar *strstr(uchar *p_pszString, const uchar *p_pszPattern)
+{ return(strstr(p_pszString, (const char *)p_pszPattern)); }
+
+// gcc 5.4.0 throws an error: ambiguating new declaration of ‘uchar* const strstr(uchar *, uchar *)’
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const uchar *strstr(const uchar *p_pszString, const uchar *p_pszPattern)
+{ return(strstr(p_pszString, (const char *)p_pszPattern)); }
+#endif
 
 // --------------------------------------------------
 #ifndef HAVE_STRLWR
@@ -112,7 +123,7 @@ char *strlwr(char *str)
 #ifdef __WIN32__
     return _strlwr(str);
 #else
-    KpStrPtr pstr = (KpStrPtr)str;
+    uchar *pstr = (uchar *)str;
     while (*pstr)
     {
         *pstr = tolower(*pstr);
@@ -124,14 +135,14 @@ char *strlwr(char *str)
 }
 #endif
 
-KpStrPtr strlwr(KpStrPtr str)
-    { return((KpStrPtr)strlwr((char *)str)); }
+uchar *strlwr(uchar *str)
+    { return((uchar *)strlwr((char *)str)); }
 
 
 // --------------------------------------------------
-void KpStripTrailing(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs)
+void KpStripTrailing(uchar *pszString, /* const */ uchar *pszSpcs)
 {
-KpStrPtr pnts = null;
+uchar *pnts = null;
 
     KP_ASSERT(pszString, E_INVALIDARG, null);
 
@@ -150,10 +161,10 @@ KpStrPtr pnts = null;
 }
 
 
-void KpStripLeading(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs)
+void KpStripLeading(uchar *pszString, /* const */ uchar *pszSpcs)
 {
-KpStrPtr pnts = null;
-KpStrPtr pntd = null;
+uchar *pnts = null;
+uchar *pntd = null;
 
     KP_ASSERT(pszString, E_INVALIDARG, null);
 
@@ -164,17 +175,17 @@ KpStrPtr pntd = null;
 }
 
 
-void KpStrip(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs)
+void KpStrip(uchar *pszString, /* const */ uchar *pszSpcs)
 {
     KpStripLeading(pszString, pszSpcs);
     KpStripTrailing(pszString, pszSpcs);
 }
 
 
-void KpStripAll(KpStrPtr pszString, /* const */ KpStrPtr pszSpcs)
+void KpStripAll(uchar *pszString, /* const */ uchar *pszSpcs)
 {
-KpStrPtr pnts = null;
-KpStrPtr pntd = null;
+uchar *pnts = null;
+uchar *pntd = null;
 
     KP_ASSERT(pszString, E_INVALIDARG, null);
 
@@ -189,12 +200,12 @@ KpStrPtr pntd = null;
 
 
 // --------------------------------------------------
-void KpObfuscate(KpStrPtr p_lpszString)
+void KpObfuscate(uchar *p_lpszString)
 {
     KP_ASSERT(p_lpszString, E_INVALIDARG, null);
 
-KpStrPtr pnts = p_lpszString;
-KpStrPtr pntd = p_lpszString;
+uchar *pnts = p_lpszString;
+uchar *pntd = p_lpszString;
 
     while (*pnts) switch (*pnts)
     {
@@ -208,19 +219,34 @@ KpStrPtr pntd = p_lpszString;
 
 
 // --------------------------------------------------
-int UcStrCmp(const KpStrPtr p_pszStr1, const KpStrPtr p_pszStr2, bool p_bSkipSpc,
-    int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg)
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+int UcStrCmp(const uchar *p_pszStr1, const uchar *p_pszStr2, bool p_bSkipSpc, int p_iSortLng, bool p_bCaseSens, bool p_bRoundFlg)
 {
 int retv = 0;
 // TODO: const KpChar *pnts1, *pnts2;
-const KpStrPtr pnts1, pnts2;
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *pnts1 = null;
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *pnts2 = null;
 int wgt1, wgt2;
 
     KP_ASSERT(p_pszStr1 && p_pszStr2, E_INVALIDARG, null);
 
 // TODO: convert p_pszStr1 and p_pszStr2 to KpChar*
-    pnts1 = p_pszStr1;
-    pnts2 = p_pszStr2;
+    pnts1 =
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszStr1;
+    pnts2 =
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszStr2;
 
     while (((*pnts1 != C_Nul) || (*pnts2 != C_Nul)) && (retv == 0))
     {
@@ -339,7 +365,7 @@ KpString &KpString::rtrim(KpString &s)
 return s;
 }
 
-void KpString::Split(const KpStrPtr pszDelim, vector<KpString> &saOutArr)
+void KpString::Split(const uchar *pszDelim, vector<KpString> &saOutArr)
 {
     KP_ASSERT(pszDelim, E_INVALIDARG, null);
 

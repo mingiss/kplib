@@ -40,10 +40,10 @@ public:
     static KpLang m_iMsgLangOff; // member, set by KpInitWindows() // nupjautas iki KpNumOfLangs, galima naudoti masyvų indeksams
 
 // --------------   
-    KpCommonApp(const KpStrPtr p_pszProdName, int p_iProdVer);
+    KpCommonApp(const uchar *p_pszProdName, int p_iProdVer);
     virtual ~KpCommonApp(void);
 
-    virtual void Init(HINSTANCE p_hInstance, const KpStrPtr p_pszCmdLine, const void *p_pStackTop);  // pStackTop – caller stack top pointer,
+    virtual void Init(HINSTANCE p_hInstance, const uchar *p_pszCmdLine, const void *p_pStackTop);  // pStackTop – caller stack top pointer,
     virtual void Close(void){}                                  // usually pointer to some local variable of the main() function
                                                                 // could be NULL
 #ifdef __WIN32__
@@ -52,9 +52,9 @@ public:
 #endif
 
    
-    void SetProd(const KpStrPtr p_pszProdName, int p_iProdVer); // sets value of KpError.m_pszProdName[] and m_iProdVer
+    void SetProd(const uchar *p_pszProdName, int p_iProdVer); // sets value of KpError.m_pszProdName[] and m_iProdVer
     
-    void GetAppName(KpStrPtr p_pszNameBuf);
+    void GetAppName(uchar *p_pszNameBuf);
                      // gets filename of application currently running
                      // at first call sets m_pszAppName[]
                      // pszNameBuf[KP_MAX_FNAME_LEN + 1]

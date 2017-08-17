@@ -21,8 +21,8 @@
 // #define KPSTDIO_FULL_LOG // former TEXTRC_FULL_LOG
 
 // ------------------------
-#define KP_LOG_EXT ((const KpStrPtr)".log")
-#define KPTRC_LOG_SUFF ((const KpStrPtr)".kptrc") // log file extension // former TEXTRC_LOG_EXT ".textrc"
+#define KP_LOG_EXT ((const uchar *)".log")
+#define KPTRC_LOG_SUFF ((const uchar *)".kptrc") // log file extension // former TEXTRC_LOG_EXT ".textrc"
 
 #define NO_FILE_DESC (-1) // illegal file descriptor value for open() 
 
@@ -81,11 +81,11 @@ intptr_t __cdecl _get_osfhandle(int _FileHandle);
 // --------------------------
 extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
 (
-    KpStrPtr p_pszDiskBuf,
-    KpStrPtr p_pszPathBuf,
-    KpStrPtr p_pszFNameBuf,
-    KpStrPtr p_pszFTypeBuf,
-    const KpStrPtr p_pszFullName
+    uchar *p_pszDiskBuf,
+    uchar *p_pszPathBuf,
+    uchar *p_pszFNameBuf,
+    uchar *p_pszFTypeBuf,
+    const uchar *p_pszFullName
 );
 
 // -------------------------------------- failų I/O traceris
@@ -118,14 +118,14 @@ extern PLAIN_C void FnameSplit // call to KpStdIo::TvFnameSplit()
 // #define KPADD_FGETC(fname, fmode) kpadd_fgetc(fname, fmode, __FILE__, __LINE__)
 
 // converts fopen() style mode string to open() style flags
-extern PLAIN_C KPADDSHARED int kpadd_fmode_to_flags(const KpStrPtr p_pszOpenMode);
+extern PLAIN_C KPADDSHARED int kpadd_fmode_to_flags(const uchar *p_pszOpenMode);
 // converts _wfopen() style mode string to open() style flags
 extern int kpadd_wfmode_to_flags(const WCHAR *p_pszOpenMode);
 // converts CreateFile() dwDesiredAccess parameter to open() style flags
 extern int kpadd_acc_to_flags(DWORD p_dwDesiredAccess);
 // creates fopen() style mode string from open() flags parameter
 // returned string should be free()'ed after use
-extern KpStrPtr kpadd_open_flags_to_str(int p_iFlags);
+extern uchar *kpadd_open_flags_to_str(int p_iFlags);
 
 // input failo atidarymo hookai; sukuria nauja KpFileDesc objektą ir 
 //      įtraukia i KpFileDescListPtr->m_pFileList
@@ -209,7 +209,7 @@ int m_iCurLine; // current line number 1..n
 int m_iCurLpos; // current line byte position
 
     KpFileDesc(void)  { InitMembers(); }
-    KpFileDesc(const KpStrPtr p_pszFileName, int p_iFlags,
+    KpFileDesc(const uchar *p_pszFileName, int p_iFlags,
         /* const */ FILE *p_pFile /* = NULL */, int p_iFileDesc /* = NO_FILE_DESC */, HANDLE p_hFile /* = 0 */);
     virtual void InitMembers(void);
 
@@ -220,10 +220,10 @@ int m_iCurLpos; // current line byte position
 
     // rašo pranešimą į m_pszLogFileName
 #ifdef KPSTDIO_FULL_LOG
-    void PutLogMessage(const KpStrPtr p_pszFmt, va_list p_Args);
+    void PutLogMessage(const uchar *p_pszFmt, va_list p_Args);
     void PutLogMessage(const char *p_pszFmt, va_list p_Args)
-        { PutLogMessage((const KpStrPtr)p_pszFmt, p_Args); }
-    void PutLogMessage(const KpStrPtr p_pszFmt, ...)
+        { PutLogMessage((const uchar *)p_pszFmt, p_Args); }
+    void PutLogMessage(const uchar *p_pszFmt, ...)
     {
 va_list argptr;
         va_start(argptr, p_pszFmt);
@@ -253,15 +253,15 @@ public:
     // kuria naują KpFileDesc (iš KpFileDesc paveldėtą) objektą pridėjimui prie m_pFileList
     // paveldėtos iš KpFileDescList klasės turi perimti šitą metodą, 
     //      jeigu m_pFileList nori naudoti kaip paveldėtų objektų sąrašą 
-    virtual KpFileDesc *KpFileDescFactory(const KpStrPtr p_pszFileName, int p_iFlags,
+    virtual KpFileDesc *KpFileDescFactory(const uchar *p_pszFileName, int p_iFlags,
         /* const */ FILE *p_pFile /* = NULL */, int p_iFileDesc /* = NO_FILE_DESC */, HANDLE p_hFile /* = 0 */);
 
     // įtraukia naują failą i m_pFileList
-    void RegNewFile(const KpStrPtr p_pszFileName, int p_iFlags,
+    void RegNewFile(const uchar *p_pszFileName, int p_iFlags,
         /* const */ FILE *p_pFile /* = NULL */, int p_iFileDesc /* = NO_FILE_DESC */, HANDLE p_hFile /* = 0 */);
     void RegNewFile(const char *p_pszFileName, int p_iFlags,
         /* const */ FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
-        { RegNewFile((const KpStrPtr)p_pszFileName, p_iFlags, p_pFile, p_iFileDesc, p_hFile); }
+        { RegNewFile((const uchar *)p_pszFileName, p_iFlags, p_pFile, p_iFileDesc, p_hFile); }
 
     // perrašo m_pFileList įrašą naujais duomenim
     // susiranda pagal p_pDescObj->m_pFile
@@ -285,10 +285,10 @@ public:
                                             
     // rašo pranešimą į p_pFile elemento m_pszLogFileName
 #ifdef KPSTDIO_FULL_LOG
-    void PutLogMessage(const FILE *p_pFile, const KpStrPtr p_pszFmt, va_list p_Args);
+    void PutLogMessage(const FILE *p_pFile, const uchar *p_pszFmt, va_list p_Args);
     void PutLogMessage(const FILE *p_pFile, const char *p_pszFmt, va_list p_Args)
-        { PutLogMessage(p_pFile, (const KpStrPtr)p_pszFmt, p_Args); }
-    void PutLogMessage(const FILE *p_pFile, const KpStrPtr p_pszFmt, ...)
+        { PutLogMessage(p_pFile, (const uchar *)p_pszFmt, p_Args); }
+    void PutLogMessage(const FILE *p_pFile, const uchar *p_pszFmt, ...)
     {
 va_list argptr;
         va_start(argptr, p_pszFmt);
@@ -316,11 +316,11 @@ class KpStdIo
 public:
    static void TvFnameSplit          // splits p_pszFullName to file name and file
    (                                 //    type parts p_pszFNameBuf, p_pszFTypeBuf.
-      KpStrPtr p_pszDiskBuf,            // p_pszDiskBuf, p_pszPathBuf and p_pszFNameBuf
-      KpStrPtr p_pszPathBuf,            //    must be not shorter than
-      KpStrPtr p_pszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_pszFTypeBuf
-      KpStrPtr p_pszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
-      const KpStrPtr p_pszFullName
+      uchar *p_pszDiskBuf,            // p_pszDiskBuf, p_pszPathBuf and p_pszFNameBuf
+      uchar *p_pszPathBuf,            //    must be not shorter than
+      uchar *p_pszFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_pszFTypeBuf
+      uchar *p_pszFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
+      const uchar *p_pszFullName
    );
 
    static void TvFnameSplit          // splits p_lpszFullName to file name and file

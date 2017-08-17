@@ -6,6 +6,13 @@
 #ifndef KPMSG_INCLUDED
 #define KPMSG_INCLUDED
 
+
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+#define MSG_TYPE const uchar *
+#else
+#define MSG_TYPE uchar *
+#endif
+
 // --------------------------------------- common kp messages
 enum
 {
@@ -415,203 +422,203 @@ NumOfKpMessages
 // --------------------------------
 #if FALSE // ((MsgLang != KpLangNo_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangEn_p))
 
-#define KP_MSG_TITLE_EN             ((const unsigned char *)"") // "Message")
-#define KP_INPUT_TITLE_EN           ((const unsigned char *)"") // "Input"
+#define KP_MSG_TITLE_EN             ((MSG_TYPE)"") // "Message")
+#define KP_INPUT_TITLE_EN           ((MSG_TYPE)"") // "Input"
 
-#define KP_MSG_YES_EN               ((const unsigned char *)"") // "Yes")
+#define KP_MSG_YES_EN               ((MSG_TYPE)"") // "Yes")
 #define KP_MSG_TAIP_EN              KP_MSG_YES
-#define KP_MSG_NO_EN                ((const unsigned char *)"") // "No")
+#define KP_MSG_NO_EN                ((MSG_TYPE)"") // "No")
 #define KP_MSG_NE_EN                KP_MSG_NO
-#define KP_MSG_OK_EN                ((const unsigned char *)"") // "OK")
+#define KP_MSG_OK_EN                ((MSG_TYPE)"") // "OK")
 #define KP_MSG_GERAI_EN             KP_MSG_OK
-#define KP_MSG_CANCEL_EN            ((const unsigned char *)"") // "Cancel")
+#define KP_MSG_CANCEL_EN            ((MSG_TYPE)"") // "Cancel")
 #define KP_MSG_ATSAUKTI_EN          KP_MSG_CANCEL
-#define KP_MSG_TESTI_EN             ((const unsigned char *)"") // "Continue")
-#define KP_MSG_BAIGTI_EN            ((const unsigned char *)"") // "Finish")
-#define KP_MSG_PAMIRSAU_SLAPTAZODI_EN ((const unsigned char *)"") // "Forgot password")
+#define KP_MSG_TESTI_EN             ((MSG_TYPE)"") // "Continue")
+#define KP_MSG_BAIGTI_EN            ((MSG_TYPE)"") // "Finish")
+#define KP_MSG_PAMIRSAU_SLAPTAZODI_EN ((MSG_TYPE)"") // "Forgot password")
 
-#define KP_MSG_ERROR_EN             ((const unsigned char *)"") // "Error")
-#define KP_MSG_WARNING_EN           ((const unsigned char *)"") // "Warning")
-#define KP_MSG_FILE_LINE_EN         ((const unsigned char *)"") // ", file:%s, line:%d")
-#define KP_MSG_ENTRY_ID_EN          ((const unsigned char *)"") // ", Entry Id:%ld")
-#define KP_MSG_ENTRY_EN             ((const unsigned char *)"") // ", Entry: %s")
+#define KP_MSG_ERROR_EN             ((MSG_TYPE)"") // "Error")
+#define KP_MSG_WARNING_EN           ((MSG_TYPE)"") // "Warning")
+#define KP_MSG_FILE_LINE_EN         ((MSG_TYPE)"") // ", file:%s, line:%d")
+#define KP_MSG_ENTRY_ID_EN          ((MSG_TYPE)"") // ", Entry Id:%ld")
+#define KP_MSG_ENTRY_EN             ((MSG_TYPE)"") // ", Entry: %s")
 
-#define KP_MSG_NO_STANDARD_PROG_EN  ((const unsigned char *)"") // "Standard program not set to open given file type")
-#define KP_MSG_WND_NOT_FOUND_EN     ((const unsigned char *)"") // "Window not found")
-#define KP_MSG_PID_NOT_FOUND_EN     ((const unsigned char *)"") // "PID not found")
-#define KP_MSG_NO_SOCKET_EN         ((const unsigned char *)"") // "Socket not created yet")
-#define KP_MSG_SOCK_UNRESOLVED_EN   ((const unsigned char *)"") // "Server address not resolved yet")
+#define KP_MSG_NO_STANDARD_PROG_EN  ((MSG_TYPE)"") // "Standard program not set to open given file type")
+#define KP_MSG_WND_NOT_FOUND_EN     ((MSG_TYPE)"") // "Window not found")
+#define KP_MSG_PID_NOT_FOUND_EN     ((MSG_TYPE)"") // "PID not found")
+#define KP_MSG_NO_SOCKET_EN         ((MSG_TYPE)"") // "Socket not created yet")
+#define KP_MSG_SOCK_UNRESOLVED_EN   ((MSG_TYPE)"") // "Server address not resolved yet")
 
-#define KP_MSG_ERR_OK_EN            ((const unsigned char *)"") // "Operation ended successfully")
-#define KP_MSG_INVALIDARG_EN        ((const unsigned char *)"") // "Invalid parameter")
-#define KP_MSG_NOTIMPL_EN           ((const unsigned char *)"") // "Feature not implemented yet")
-#define KP_MSG_UNEXPECTED_EN        ((const unsigned char *)"") // "Unexpected interface call") // Interface call result: Unexpected error
-#define KP_MSG_FERROR_EN            ((const unsigned char *)"") // "File I/O error")
-#define KP_MSG_SYSTEM_ERROR_EN      ((const unsigned char *)"") // "Internal error")
-#define KP_MSG_EOF_EN               ((const unsigned char *)"") // "Unexpected end of input file")
-#define KP_MSG_FILE_FORMAT_EN       ((const unsigned char *)"") // "Unexpected input file format")
-#define KP_MSG_FILE_NOT_FOUND_EN    ((const unsigned char *)"") // "File not found")
-#define KP_MSG_DIR_ERROR_EN         ((const unsigned char *)"") // "Unable to create file")
-#define KP_MSG_OUTOFMEM_EN          ((const unsigned char *)"") // "Out of memory")
-#define KP_MSG_NO_FILE_EN           ((const unsigned char *)"") // "No file open")
-#define KP_MSG_DOUBLE_UNGET_EN      ((const unsigned char *)"") // "Double unget")
-#define KP_MSG_UNKN_CHR_EN          ((const unsigned char *)"") // "Unknown character")
-#define KP_MSG_COMMAND_ERROR_EN     ((const unsigned char *)"") // "External error")
-#define KP_MSG_BUFFER_OVERFLOW_EN   ((const unsigned char *)"") // "Buffer overflow")
-#define KP_MSG_FONT_UNDEF_EN        ((const unsigned char *)"") // "Font undefined")
-#define KP_MSG_KWD_NOT_FOUND_EN     ((const unsigned char *)"") // "Keyword not found")
-#define KP_MSG_UNKNOWN_SYSTEM_EN    ((const unsigned char *)"") // "Unknown OS version")
-#define KP_MSG_ILL_CODE_EN          ((const unsigned char *)"") // "Illegal registration code")
-#define KP_MSG_CANCELLED_EN         ((const unsigned char *)"") // "Job cancelled")
-#define KP_MSG_DOUBLE_CALL_EN       ((const unsigned char *)"") // "Double call")
-#define KP_MSG_TIMEOUT_EN           ((const unsigned char *)"") // "Timeout")
-#define KP_MSG_OBJ_NOT_FOUND_EN     ((const unsigned char *)"") // "Object not found")
-#define KP_MSG_NO_CONN_EN           ((const unsigned char *)"") // "No connection")
+#define KP_MSG_ERR_OK_EN            ((MSG_TYPE)"") // "Operation ended successfully")
+#define KP_MSG_INVALIDARG_EN        ((MSG_TYPE)"") // "Invalid parameter")
+#define KP_MSG_NOTIMPL_EN           ((MSG_TYPE)"") // "Feature not implemented yet")
+#define KP_MSG_UNEXPECTED_EN        ((MSG_TYPE)"") // "Unexpected interface call") // Interface call result: Unexpected error
+#define KP_MSG_FERROR_EN            ((MSG_TYPE)"") // "File I/O error")
+#define KP_MSG_SYSTEM_ERROR_EN      ((MSG_TYPE)"") // "Internal error")
+#define KP_MSG_EOF_EN               ((MSG_TYPE)"") // "Unexpected end of input file")
+#define KP_MSG_FILE_FORMAT_EN       ((MSG_TYPE)"") // "Unexpected input file format")
+#define KP_MSG_FILE_NOT_FOUND_EN    ((MSG_TYPE)"") // "File not found")
+#define KP_MSG_DIR_ERROR_EN         ((MSG_TYPE)"") // "Unable to create file")
+#define KP_MSG_OUTOFMEM_EN          ((MSG_TYPE)"") // "Out of memory")
+#define KP_MSG_NO_FILE_EN           ((MSG_TYPE)"") // "No file open")
+#define KP_MSG_DOUBLE_UNGET_EN      ((MSG_TYPE)"") // "Double unget")
+#define KP_MSG_UNKN_CHR_EN          ((MSG_TYPE)"") // "Unknown character")
+#define KP_MSG_COMMAND_ERROR_EN     ((MSG_TYPE)"") // "External error")
+#define KP_MSG_BUFFER_OVERFLOW_EN   ((MSG_TYPE)"") // "Buffer overflow")
+#define KP_MSG_FONT_UNDEF_EN        ((MSG_TYPE)"") // "Font undefined")
+#define KP_MSG_KWD_NOT_FOUND_EN     ((MSG_TYPE)"") // "Keyword not found")
+#define KP_MSG_UNKNOWN_SYSTEM_EN    ((MSG_TYPE)"") // "Unknown OS version")
+#define KP_MSG_ILL_CODE_EN          ((MSG_TYPE)"") // "Illegal registration code")
+#define KP_MSG_CANCELLED_EN         ((MSG_TYPE)"") // "Job cancelled")
+#define KP_MSG_DOUBLE_CALL_EN       ((MSG_TYPE)"") // "Double call")
+#define KP_MSG_TIMEOUT_EN           ((MSG_TYPE)"") // "Timeout")
+#define KP_MSG_OBJ_NOT_FOUND_EN     ((MSG_TYPE)"") // "Object not found")
+#define KP_MSG_NO_CONN_EN           ((MSG_TYPE)"") // "No connection")
 
-#define KP_MSG_TRANS_ERR_EN         ((const unsigned char *)"") // "Transfer error")
-#define KP_MSG_TRANS_ERR_1_EN       ((const unsigned char *)"") // "Transfer error, repeat the download procedure, please"
+#define KP_MSG_TRANS_ERR_EN         ((MSG_TYPE)"") // "Transfer error")
+#define KP_MSG_TRANS_ERR_1_EN       ((MSG_TYPE)"") // "Transfer error, repeat the download procedure, please"
 
-#define KP_MSG_REFUSED_EN           ((const unsigned char *)"") // "Registration refused")
-#define KP_MSG_ACCESS_DENIED_EN     ((const unsigned char *)"") // "Access denied")
-#define KP_MSG_ILLEGAL_CHARACTER_EN ((const unsigned char *)"") // "Unexpected character")
-#define KP_MSG_DIV_ZERO_EN          ((const unsigned char *)"") // "Division by zero")
-#define KP_MSG_ILLMATHARG_EN        ((const unsigned char *)"") // "Illegal math argument")
-#define KP_MSG_ILLFUNC_EN           ((const unsigned char *)"") // "Illegal function call")
+#define KP_MSG_REFUSED_EN           ((MSG_TYPE)"") // "Registration refused")
+#define KP_MSG_ACCESS_DENIED_EN     ((MSG_TYPE)"") // "Access denied")
+#define KP_MSG_ILLEGAL_CHARACTER_EN ((MSG_TYPE)"") // "Unexpected character")
+#define KP_MSG_DIV_ZERO_EN          ((MSG_TYPE)"") // "Division by zero")
+#define KP_MSG_ILLMATHARG_EN        ((MSG_TYPE)"") // "Illegal math argument")
+#define KP_MSG_ILLFUNC_EN           ((MSG_TYPE)"") // "Illegal function call")
 
-#define KP_MSG_NOTINST_EN           ((const unsigned char *)"") // "Program not yet installed or installation is damaged, repeat the installation procedure again, please")
-#define KP_MSG_NOTINST_S_EN         ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE_EN    ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_EN           ((MSG_TYPE)"") // "Program not yet installed or installation is damaged, repeat the installation procedure again, please")
+#define KP_MSG_NOTINST_S_EN         ((MSG_TYPE)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE_EN    ((MSG_TYPE)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_MSG_FORMAT_EN        ((const unsigned char *)"") // "Illegal message format")
-#define KP_MSG_OBSOLETE_EN          ((const unsigned char *)"") // "Obsolete function call")
+#define KP_MSG_MSG_FORMAT_EN        ((MSG_TYPE)"") // "Illegal message format")
+#define KP_MSG_OBSOLETE_EN          ((MSG_TYPE)"") // "Obsolete function call")
 
-#define KP_MSG_ERROR_HELP_EN        ((const unsigned char *)"") // ".  Technical support by e-mail %s")
-#define KP_MSG_ERROR_HELP_REST_EN   ((const unsigned char *)"") // "   For further information look file %s")
+#define KP_MSG_ERROR_HELP_EN        ((MSG_TYPE)"") // ".  Technical support by e-mail %s")
+#define KP_MSG_ERROR_HELP_REST_EN   ((MSG_TYPE)"") // "   For further information look file %s")
 
-#define KP_MSG_WSAEACCES_EN               ((const unsigned char *)"") // "Permission denied")
-#define KP_MSG_WSAEADDRINUSE_EN           ((const unsigned char *)"") // "Address already in use")
-#define KP_MSG_WSAEADDRNOTAVAIL_EN        ((const unsigned char *)"") // "Cannot assign requested address")
-#define KP_MSG_WSAEAFNOSUPPORT_EN         ((const unsigned char *)"") // "Address family not supported by protocol family")
-#define KP_MSG_WSAEALREADY_EN             ((const unsigned char *)"") // "Operation already in progress")
-#define KP_MSG_WSAECONNABORTED_EN         ((const unsigned char *)"") // "Software caused connection abort")
-#define KP_MSG_WSAECONNREFUSED_EN         ((const unsigned char *)"") // "Connection refused")
-#define KP_MSG_WSAECONNRESET_EN           ((const unsigned char *)"") // "Connection reset by peer")
-#define KP_MSG_WSAEDESTADDRREQ_EN         ((const unsigned char *)"") // "Destination address required")
-#define KP_MSG_WSAEFAULT_EN               ((const unsigned char *)"") // "Bad address")
-#define KP_MSG_WSAEHOSTDOWN_EN            ((const unsigned char *)"") // "Host is down")
-#define KP_MSG_WSAEHOSTUNREACH_EN         ((const unsigned char *)"") // "No route to host")
-#define KP_MSG_WSAEINPROGRESS_EN          ((const unsigned char *)"") // "Operation now in progress")
-#define KP_MSG_WSAEINTR_EN                ((const unsigned char *)"") // "Interrupted function call")
-#define KP_MSG_WSAEINVAL_EN               ((const unsigned char *)"") // "Invalid argument")
-#define KP_MSG_WSAEISCONN_EN              ((const unsigned char *)"") // "Socket is already connected")
-#define KP_MSG_WSAEMFILE_EN               ((const unsigned char *)"") // "Too many open files")
-#define KP_MSG_WSAEMSGSIZE_EN             ((const unsigned char *)"") // "Message too long")
-#define KP_MSG_WSAENETDOWN_EN             ((const unsigned char *)"") // "Network is down")
-#define KP_MSG_WSAENETRESET_EN            ((const unsigned char *)"") // "Network dropped connection on reset")
-#define KP_MSG_WSAENETUNREACH_EN          ((const unsigned char *)"") // "Network is unreachable")
-#define KP_MSG_WSAENOBUFS_EN              ((const unsigned char *)"") // "No buffer space available")
-#define KP_MSG_WSAENOPROTOOPT_EN          ((const unsigned char *)"") // "Bad protocol option")
-#define KP_MSG_WSAENOTCONN_EN             ((const unsigned char *)"") // "Socket is not connected")
-#define KP_MSG_WSAENOTSOCK_EN             ((const unsigned char *)"") // "Socket operation on non-socket")
-#define KP_MSG_WSAEOPNOTSUPP_EN           ((const unsigned char *)"") // "Operation not supported")
-#define KP_MSG_WSAEPFNOSUPPORT_EN         ((const unsigned char *)"") // "Protocol family not supported")
-#define KP_MSG_WSAEPROCLIM_EN             ((const unsigned char *)"") // "Too many processes")
-#define KP_MSG_WSAEPROTONOSUPPORT_EN      ((const unsigned char *)"") // "Protocol not supported")
-#define KP_MSG_WSAEPROTOTYPE_EN           ((const unsigned char *)"") // "Protocol wrong type for socket")
-#define KP_MSG_WSAESHUTDOWN_EN            ((const unsigned char *)"") // "Cannot send after socket shutdown")
-#define KP_MSG_WSAESOCKTNOSUPPORT_EN      ((const unsigned char *)"") // "Socket type not supported")
-#define KP_MSG_WSAETIMEDOUT_EN            ((const unsigned char *)"") // "Connection timed out")
-#define KP_MSG_WSATYPE_NOT_FOUND_EN       ((const unsigned char *)"") // "class type not found")
-#define KP_MSG_WSAEWOULDBLOCK_EN          ((const unsigned char *)"") // "Resource temporarily unavailable")
-#define KP_MSG_WSAHOST_NOT_FOUND_EN       ((const unsigned char *)"") // "Host not found")
-#define KP_MSG_WSA_INVALID_HANDLE_EN      ((const unsigned char *)"") // "Specified event object handle is invalid")
-#define KP_MSG_WSA_INVALID_PARAMETER_EN   ((const unsigned char *)"") // "One or more parameters are invalid")
-#define KP_MSG_WSAINVALIDPROCTABLE_EN     ((const unsigned char *)"") // "Invalid procedure table from service provider")
-#define KP_MSG_WSAINVALIDPROVIDER_EN      ((const unsigned char *)"") // "Invalid service provider version number")
-#define KP_MSG_WSA_IO_INCOMPLETE_EN       ((const unsigned char *)"") // "Overlapped I/O event object not in signaled state")
-#define KP_MSG_WSA_IO_PENDING_EN          ((const unsigned char *)"") // "Overlapped operations will complete later")
+#define KP_MSG_WSAEACCES_EN               ((MSG_TYPE)"") // "Permission denied")
+#define KP_MSG_WSAEADDRINUSE_EN           ((MSG_TYPE)"") // "Address already in use")
+#define KP_MSG_WSAEADDRNOTAVAIL_EN        ((MSG_TYPE)"") // "Cannot assign requested address")
+#define KP_MSG_WSAEAFNOSUPPORT_EN         ((MSG_TYPE)"") // "Address family not supported by protocol family")
+#define KP_MSG_WSAEALREADY_EN             ((MSG_TYPE)"") // "Operation already in progress")
+#define KP_MSG_WSAECONNABORTED_EN         ((MSG_TYPE)"") // "Software caused connection abort")
+#define KP_MSG_WSAECONNREFUSED_EN         ((MSG_TYPE)"") // "Connection refused")
+#define KP_MSG_WSAECONNRESET_EN           ((MSG_TYPE)"") // "Connection reset by peer")
+#define KP_MSG_WSAEDESTADDRREQ_EN         ((MSG_TYPE)"") // "Destination address required")
+#define KP_MSG_WSAEFAULT_EN               ((MSG_TYPE)"") // "Bad address")
+#define KP_MSG_WSAEHOSTDOWN_EN            ((MSG_TYPE)"") // "Host is down")
+#define KP_MSG_WSAEHOSTUNREACH_EN         ((MSG_TYPE)"") // "No route to host")
+#define KP_MSG_WSAEINPROGRESS_EN          ((MSG_TYPE)"") // "Operation now in progress")
+#define KP_MSG_WSAEINTR_EN                ((MSG_TYPE)"") // "Interrupted function call")
+#define KP_MSG_WSAEINVAL_EN               ((MSG_TYPE)"") // "Invalid argument")
+#define KP_MSG_WSAEISCONN_EN              ((MSG_TYPE)"") // "Socket is already connected")
+#define KP_MSG_WSAEMFILE_EN               ((MSG_TYPE)"") // "Too many open files")
+#define KP_MSG_WSAEMSGSIZE_EN             ((MSG_TYPE)"") // "Message too long")
+#define KP_MSG_WSAENETDOWN_EN             ((MSG_TYPE)"") // "Network is down")
+#define KP_MSG_WSAENETRESET_EN            ((MSG_TYPE)"") // "Network dropped connection on reset")
+#define KP_MSG_WSAENETUNREACH_EN          ((MSG_TYPE)"") // "Network is unreachable")
+#define KP_MSG_WSAENOBUFS_EN              ((MSG_TYPE)"") // "No buffer space available")
+#define KP_MSG_WSAENOPROTOOPT_EN          ((MSG_TYPE)"") // "Bad protocol option")
+#define KP_MSG_WSAENOTCONN_EN             ((MSG_TYPE)"") // "Socket is not connected")
+#define KP_MSG_WSAENOTSOCK_EN             ((MSG_TYPE)"") // "Socket operation on non-socket")
+#define KP_MSG_WSAEOPNOTSUPP_EN           ((MSG_TYPE)"") // "Operation not supported")
+#define KP_MSG_WSAEPFNOSUPPORT_EN         ((MSG_TYPE)"") // "Protocol family not supported")
+#define KP_MSG_WSAEPROCLIM_EN             ((MSG_TYPE)"") // "Too many processes")
+#define KP_MSG_WSAEPROTONOSUPPORT_EN      ((MSG_TYPE)"") // "Protocol not supported")
+#define KP_MSG_WSAEPROTOTYPE_EN           ((MSG_TYPE)"") // "Protocol wrong type for socket")
+#define KP_MSG_WSAESHUTDOWN_EN            ((MSG_TYPE)"") // "Cannot send after socket shutdown")
+#define KP_MSG_WSAESOCKTNOSUPPORT_EN      ((MSG_TYPE)"") // "Socket type not supported")
+#define KP_MSG_WSAETIMEDOUT_EN            ((MSG_TYPE)"") // "Connection timed out")
+#define KP_MSG_WSATYPE_NOT_FOUND_EN       ((MSG_TYPE)"") // "class type not found")
+#define KP_MSG_WSAEWOULDBLOCK_EN          ((MSG_TYPE)"") // "Resource temporarily unavailable")
+#define KP_MSG_WSAHOST_NOT_FOUND_EN       ((MSG_TYPE)"") // "Host not found")
+#define KP_MSG_WSA_INVALID_HANDLE_EN      ((MSG_TYPE)"") // "Specified event object handle is invalid")
+#define KP_MSG_WSA_INVALID_PARAMETER_EN   ((MSG_TYPE)"") // "One or more parameters are invalid")
+#define KP_MSG_WSAINVALIDPROCTABLE_EN     ((MSG_TYPE)"") // "Invalid procedure table from service provider")
+#define KP_MSG_WSAINVALIDPROVIDER_EN      ((MSG_TYPE)"") // "Invalid service provider version number")
+#define KP_MSG_WSA_IO_INCOMPLETE_EN       ((MSG_TYPE)"") // "Overlapped I/O event object not in signaled state")
+#define KP_MSG_WSA_IO_PENDING_EN          ((MSG_TYPE)"") // "Overlapped operations will complete later")
 
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_EN   ((const unsigned char *)"") // "Insufficient memory available")
-#define KP_MSG_WSANOTINITIALISED_EN       ((const unsigned char *)"") // "Successful WSAStartup not yet performed")
-#define KP_MSG_WSANO_DATA_EN              ((const unsigned char *)"") // "Valid name, no data record of requested type")
-#define KP_MSG_WSANO_RECOVERY_EN          ((const unsigned char *)"") // "this is a non-recoverable error")
-#define KP_MSG_WSAPROVIDERFAILEDINIT_EN   ((const unsigned char *)"") // "Unable to initialize a service provider")
-#define KP_MSG_WSASYSCALLFAILURE_EN       ((const unsigned char *)"") // "System call failure")
-#define KP_MSG_WSASYSNOTREADY_EN          ((const unsigned char *)"") // "Network subsystem is unavailable")
-#define KP_MSG_WSATRY_AGAIN_EN            ((const unsigned char *)"") // "Non-authoritative host not found")
-#define KP_MSG_WSAVERNOTSUPPORTED_EN      ((const unsigned char *)"") // "WINSOCK.DLL version out of range")
-#define KP_MSG_WSAEDISCON_EN              ((const unsigned char *)"") // "Graceful shutdown in progress")
-#define KP_MSG_WSA_OPERATION_ABORTED_EN   ((const unsigned char *)"") // "Overlapped operation aborted")
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_EN   ((MSG_TYPE)"") // "Insufficient memory available")
+#define KP_MSG_WSANOTINITIALISED_EN       ((MSG_TYPE)"") // "Successful WSAStartup not yet performed")
+#define KP_MSG_WSANO_DATA_EN              ((MSG_TYPE)"") // "Valid name, no data record of requested type")
+#define KP_MSG_WSANO_RECOVERY_EN          ((MSG_TYPE)"") // "this is a non-recoverable error")
+#define KP_MSG_WSAPROVIDERFAILEDINIT_EN   ((MSG_TYPE)"") // "Unable to initialize a service provider")
+#define KP_MSG_WSASYSCALLFAILURE_EN       ((MSG_TYPE)"") // "System call failure")
+#define KP_MSG_WSASYSNOTREADY_EN          ((MSG_TYPE)"") // "Network subsystem is unavailable")
+#define KP_MSG_WSATRY_AGAIN_EN            ((MSG_TYPE)"") // "Non-authoritative host not found")
+#define KP_MSG_WSAVERNOTSUPPORTED_EN      ((MSG_TYPE)"") // "WINSOCK.DLL version out of range")
+#define KP_MSG_WSAEDISCON_EN              ((MSG_TYPE)"") // "Graceful shutdown in progress")
+#define KP_MSG_WSA_OPERATION_ABORTED_EN   ((MSG_TYPE)"") // "Overlapped operation aborted")
 
-#define KP_MSG_OUT_OF_MEM_RES_EN          ((const unsigned char *)"") // "The operating system is out of memory or resources")
-#define KP_MSG_ERROR_FILE_NOT_FOUND_EN    ((const unsigned char *)"") // "The file specified was not found")
-#define KP_MSG_ERROR_PATH_NOT_FOUND_EN    ((const unsigned char *)"") // "The path specified was not found")
-#define KP_MSG_ERROR_BAD_FORMAT_EN        ((const unsigned char *)"") // "The .exe file is invalid (non-Win32(r) .exe or error in .exe image)")
-#define KP_MSG_SE_ERR_ACCESSDENIED_EN     ((const unsigned char *)"") // "The operating system denied access to the specified file")
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_EN  ((const unsigned char *)"") // "The file name association is incomplete or invalid")
-#define KP_MSG_SE_ERR_DDEBUSY_EN          ((const unsigned char *)"") // "The DDE transaction could not be completed because other DDE transactions were being processed")
-#define KP_MSG_SE_ERR_DDEFAIL_EN          ((const unsigned char *)"") // "The DDE transaction failed")
-#define KP_MSG_SE_ERR_DDETIMEOUT_EN       ((const unsigned char *)"") // "The DDE transaction could not be completed because the request timed out")
-#define KP_MSG_SE_ERR_DLLNOTFOUND_EN      ((const unsigned char *)"") // "The specified dynamic-link library was not found")
-#define KP_MSG_SE_ERR_FNF_EN              ((const unsigned char *)"") // "The specified file was not found")
-#define KP_MSG_SE_ERR_NOASSOC_EN          ((const unsigned char *)"") // "There is no application associated with the given file name extension")
-#define KP_MSG_SE_ERR_OOM_EN              ((const unsigned char *)"") // "There was not enough memory to complete the operation")
-#define KP_MSG_SE_ERR_PNF_EN              ((const unsigned char *)"") // "The specified path was not found")
-#define KP_MSG_SE_ERR_SHARE_EN            ((const unsigned char *)"") // "A sharing violation occurred")
+#define KP_MSG_OUT_OF_MEM_RES_EN          ((MSG_TYPE)"") // "The operating system is out of memory or resources")
+#define KP_MSG_ERROR_FILE_NOT_FOUND_EN    ((MSG_TYPE)"") // "The file specified was not found")
+#define KP_MSG_ERROR_PATH_NOT_FOUND_EN    ((MSG_TYPE)"") // "The path specified was not found")
+#define KP_MSG_ERROR_BAD_FORMAT_EN        ((MSG_TYPE)"") // "The .exe file is invalid (non-Win32(r) .exe or error in .exe image)")
+#define KP_MSG_SE_ERR_ACCESSDENIED_EN     ((MSG_TYPE)"") // "The operating system denied access to the specified file")
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_EN  ((MSG_TYPE)"") // "The file name association is incomplete or invalid")
+#define KP_MSG_SE_ERR_DDEBUSY_EN          ((MSG_TYPE)"") // "The DDE transaction could not be completed because other DDE transactions were being processed")
+#define KP_MSG_SE_ERR_DDEFAIL_EN          ((MSG_TYPE)"") // "The DDE transaction failed")
+#define KP_MSG_SE_ERR_DDETIMEOUT_EN       ((MSG_TYPE)"") // "The DDE transaction could not be completed because the request timed out")
+#define KP_MSG_SE_ERR_DLLNOTFOUND_EN      ((MSG_TYPE)"") // "The specified dynamic-link library was not found")
+#define KP_MSG_SE_ERR_FNF_EN              ((MSG_TYPE)"") // "The specified file was not found")
+#define KP_MSG_SE_ERR_NOASSOC_EN          ((MSG_TYPE)"") // "There is no application associated with the given file name extension")
+#define KP_MSG_SE_ERR_OOM_EN              ((MSG_TYPE)"") // "There was not enough memory to complete the operation")
+#define KP_MSG_SE_ERR_PNF_EN              ((MSG_TYPE)"") // "The specified path was not found")
+#define KP_MSG_SE_ERR_SHARE_EN            ((MSG_TYPE)"") // "A sharing violation occurred")
 
-#define KP_MSG_FIRST_TIME_ADMIN_EN        ((const unsigned char *)"") // "Starting the program first time administrator\n rights are necessary. Run the program again as privileged user.")
+#define KP_MSG_FIRST_TIME_ADMIN_EN        ((MSG_TYPE)"") // "Starting the program first time administrator\n rights are necessary. Run the program again as privileged user.")
 #define KP_MSG_NOW_NOT_ADMIN_EN           KP_MSG_NOT_ADMIN
-#define KP_MSG_NOT_ADMIN_EN               ((const unsigned char *)"") // "Run the program again as ordinary user")
-#define KP_MSG_COPY_FILE_ACCESS_DENIED_EN ((const unsigned char *)"") // "Unsuccessfull file copy operation, run the program again as privileged user")
+#define KP_MSG_NOT_ADMIN_EN               ((MSG_TYPE)"") // "Run the program again as ordinary user")
+#define KP_MSG_COPY_FILE_ACCESS_DENIED_EN ((MSG_TYPE)"") // "Unsuccessfull file copy operation, run the program again as privileged user")
 
-#define KP_PROGRESS_TITLE_EN              ((const unsigned char *)"") // "Wait...")
-#define KP_MSG_DELETING_FILE_EN           ((const unsigned char *)"") // "Deleting file %s.%s...")
-#define KP_MSG_COPYING_EN                 ((const unsigned char *)"") // "Copying file...")
-#define KP_MSG_COPYING_FILE_EN            ((const unsigned char *)"") // "Copying file %s.%s...")
-#define KP_MSG_COPYING_DIR_EN             ((const unsigned char *)"") // "Copying folder %s.%s...")
+#define KP_PROGRESS_TITLE_EN              ((MSG_TYPE)"") // "Wait...")
+#define KP_MSG_DELETING_FILE_EN           ((MSG_TYPE)"") // "Deleting file %s.%s...")
+#define KP_MSG_COPYING_EN                 ((MSG_TYPE)"") // "Copying file...")
+#define KP_MSG_COPYING_FILE_EN            ((MSG_TYPE)"") // "Copying file %s.%s...")
+#define KP_MSG_COPYING_DIR_EN             ((MSG_TYPE)"") // "Copying folder %s.%s...")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_EN       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_EN       ((MSG_TYPE)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
-#define KP_MSG_FLASH_PLAYER_INSTALL_EN    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+#define KP_MSG_FLASH_PLAYER_INSTALL_EN    ((MSG_TYPE)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
-#define KP_MSG_FILE_CHANGED_EN            ((const unsigned char *)"") // "Failas pasikeitė"
+#define KP_MSG_FILE_CHANGED_EN            ((MSG_TYPE)"") // "Failas pasikeitė"
 
-#define KP_MSG_ALL_FILES_EN               ((const unsigned char *)"") // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS_EN                 ((const unsigned char *)"") // "Įrašyti kaip"
+#define KP_MSG_ALL_FILES_EN               ((MSG_TYPE)"") // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS_EN                 ((MSG_TYPE)"") // "Įrašyti kaip"
 
-#define KP_MSG_FILE_EXISTS_EN             ((const unsigned char *)"") // "Failas %s jau yra, perrašyti?"
+#define KP_MSG_FILE_EXISTS_EN             ((MSG_TYPE)"") // "Failas %s jau yra, perrašyti?"
 
-#define KP_MSG_DIAG_MSG_EN                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE_EN          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_EN           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_EN   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_EN ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
-#define KP_MSG_DIAG_MSG_FILE_PROMPT_EN    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
+#define KP_MSG_DIAG_MSG_EN                ((MSG_TYPE)"") // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE_EN          ((MSG_TYPE)"") // "Diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL_EN           ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_EN   ((MSG_TYPE)"") // "Jūsų e-pašto adresas:")
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_EN ((MSG_TYPE)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
+#define KP_MSG_DIAG_MSG_FILE_PROMPT_EN    ((MSG_TYPE)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
 
-#define KP_MSG_BAD_EMAIL_ADDRESS_EN       ((const unsigned char *)"") // "Neteisingas e-pašto adresas"
+#define KP_MSG_BAD_EMAIL_ADDRESS_EN       ((MSG_TYPE)"") // "Neteisingas e-pašto adresas"
 
-#define KP_MSG_DIAG_MSG_SEL_FILE_EN       ((const unsigned char *)"") // "Pasirinkite siunčiamą failą"
+#define KP_MSG_DIAG_MSG_SEL_FILE_EN       ((MSG_TYPE)"") // "Pasirinkite siunčiamą failą"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED_EN      ((const unsigned char *)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_DIAG_MSG_SUCCEEDED_EN      ((MSG_TYPE)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
 
-#define KP_MSG_DIAG_MSG_EXPL1_EN          ((const unsigned char *)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI_EN                  ((const unsigned char *)"") // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2_EN          ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_DIAG_MSG_EXPL1_EN          ((MSG_TYPE)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI_EN                  ((MSG_TYPE)"") // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2_EN          ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
 
-#define KP_MSG_DOWNLOADING_EN             ((const unsigned char *)"") // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE_EN        ((const unsigned char *)"") // "Siunčiamas failas %s.%s..."
+#define KP_MSG_DOWNLOADING_EN             ((MSG_TYPE)"") // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE_EN        ((MSG_TYPE)"") // "Siunčiamas failas %s.%s..."
 
-#define KP_MSG_FIREWALL_EN                ((const unsigned char *)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_FIREWALL_EN                ((MSG_TYPE)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
 
-#define KP_MSG_POINTER_EN                 ((const unsigned char *)"") // "Bloga rodyklė"
+#define KP_MSG_POINTER_EN                 ((MSG_TYPE)"") // "Bloga rodyklė"
 
-#define KP_MSG_LOG_STARTED_EN             ((const unsigned char *)"") // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE_EN              ((const unsigned char *)"") // "%s: Pranešimų žurnalas"
+#define KP_MSG_LOG_STARTED_EN             ((MSG_TYPE)"") // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE_EN              ((MSG_TYPE)"") // "%s: Pranešimų žurnalas"
 
-#define KP_MSG_UNHANDLED_EXCEPTION_EN     ((const unsigned char *)"") // "Neapdorojamas trūkis"
+#define KP_MSG_UNHANDLED_EXCEPTION_EN     ((MSG_TYPE)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_EN,            ((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_EN,                ((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_EN,            ((MSG_TYPE)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_EN,                ((MSG_TYPE)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangNo_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangEn_p))
 
@@ -619,205 +626,205 @@ NumOfKpMessages
 // --------------------------------
 #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangLt_p))
 
-#define KP_MSG_TITLE_LT             ((const unsigned char *)"") // "Pranešimas"
-#define KP_INPUT_TITLE_LT           ((const unsigned char *)"") // "Įvedimas"
+#define KP_MSG_TITLE_LT             ((MSG_TYPE)"") // "Pranešimas"
+#define KP_INPUT_TITLE_LT           ((MSG_TYPE)"") // "Įvedimas"
 
-#define KP_MSG_TAIP_LT              ((const unsigned char *)"") // "Taip")
+#define KP_MSG_TAIP_LT              ((MSG_TYPE)"") // "Taip")
 #define KP_MSG_YES_LT               KP_MSG_TAIP
-#define KP_MSG_NE_LT                ((const unsigned char *)"") // "Ne")
+#define KP_MSG_NE_LT                ((MSG_TYPE)"") // "Ne")
 #define KP_MSG_NO_LT                KP_MSG_NE
-#define KP_MSG_GERAI_LT             ((const unsigned char *)"") // "Gerai")
+#define KP_MSG_GERAI_LT             ((MSG_TYPE)"") // "Gerai")
 #define KP_MSG_OK_LT                KP_MSG_GERAI
-#define KP_MSG_ATSAUKTI_LT          ((const unsigned char *)"") // "Atšaukti")
+#define KP_MSG_ATSAUKTI_LT          ((MSG_TYPE)"") // "Atšaukti")
 #define KP_MSG_CANCEL_LT            KP_MSG_ATSAUKTI
-#define KP_MSG_TESTI_LT             ((const unsigned char *)"") // "Toliau")
-#define KP_MSG_BAIGTI_LT            ((const unsigned char *)"") // "Baigti")
-#define KP_MSG_PAMIRSAU_SLAPTAZODI_LT ((const unsigned char *)"") // "Pamiršau slaptažodį")
+#define KP_MSG_TESTI_LT             ((MSG_TYPE)"") // "Toliau")
+#define KP_MSG_BAIGTI_LT            ((MSG_TYPE)"") // "Baigti")
+#define KP_MSG_PAMIRSAU_SLAPTAZODI_LT ((MSG_TYPE)"") // "Pamiršau slaptažodį")
 
-#define KP_MSG_ERROR_LT             ((const unsigned char *)"") // "Klaida")
-#define KP_MSG_WARNING_LT           ((const unsigned char *)"") // "Perspėjimas")
-#define KP_MSG_FILE_LINE_LT         ((const unsigned char *)"") // ", failas:%s, eilutė:%d")
-#define KP_MSG_ENTRY_ID_LT          ((const unsigned char *)"") // ", Įrašo nr.:%ld")
-#define KP_MSG_ENTRY_LT             ((const unsigned char *)"") // ", Įrašas: %s")
+#define KP_MSG_ERROR_LT             ((MSG_TYPE)"") // "Klaida")
+#define KP_MSG_WARNING_LT           ((MSG_TYPE)"") // "Perspėjimas")
+#define KP_MSG_FILE_LINE_LT         ((MSG_TYPE)"") // ", failas:%s, eilutė:%d")
+#define KP_MSG_ENTRY_ID_LT          ((MSG_TYPE)"") // ", Įrašo nr.:%ld")
+#define KP_MSG_ENTRY_LT             ((MSG_TYPE)"") // ", Įrašas: %s")
 
-#define KP_MSG_NO_STANDARD_PROG_LT  ((const unsigned char *)"") // "Nerasta programa skirta atverti šio tipo failus")
-#define KP_MSG_WND_NOT_FOUND_LT     ((const unsigned char *)"") // "Langas nerastas")
-#define KP_MSG_PID_NOT_FOUND_LT     ((const unsigned char *)"") // "Nerastas proceso identifikatorius")
-#define KP_MSG_NO_SOCKET_LT         ((const unsigned char *)"") // "Jungtis dar nesukurta")
-#define KP_MSG_SOCK_UNRESOLVED_LT   ((const unsigned char *)"") // "Tarnybinės stoties adresas dar nesurastas")
+#define KP_MSG_NO_STANDARD_PROG_LT  ((MSG_TYPE)"") // "Nerasta programa skirta atverti šio tipo failus")
+#define KP_MSG_WND_NOT_FOUND_LT     ((MSG_TYPE)"") // "Langas nerastas")
+#define KP_MSG_PID_NOT_FOUND_LT     ((MSG_TYPE)"") // "Nerastas proceso identifikatorius")
+#define KP_MSG_NO_SOCKET_LT         ((MSG_TYPE)"") // "Jungtis dar nesukurta")
+#define KP_MSG_SOCK_UNRESOLVED_LT   ((MSG_TYPE)"") // "Tarnybinės stoties adresas dar nesurastas")
 
-#define KP_MSG_ERR_OK_LT            ((const unsigned char *)"") // "Operacija atlikta sėkmingai") // !!!
-#define KP_MSG_INVALIDARG_LT        ((const unsigned char *)"") // "Neteisingi parametrai")
-#define KP_MSG_NOTIMPL_LT           ((const unsigned char *)"") // "Funkcija dar nerealizuota")
-#define KP_MSG_UNEXPECTED_LT        ((const unsigned char *)"") // "Netikėtas kreipinys į sąsają")
-#define KP_MSG_FERROR_LT            ((const unsigned char *)"") // "Failo skaitymo/rašymo klaida")
-#define KP_MSG_SYSTEM_ERROR_LT      ((const unsigned char *)"") // "Klaida sistemoje")
-#define KP_MSG_EOF_LT               ((const unsigned char *)"") // "Neteisinga failo pabaiga")
-#define KP_MSG_FILE_FORMAT_LT       ((const unsigned char *)"") // "Neteisingas failo formatas")
-#define KP_MSG_FILE_NOT_FOUND_LT    ((const unsigned char *)"") // "Failas nerastas")
-#define KP_MSG_DIR_ERROR_LT         ((const unsigned char *)"") // "Nepavyko atverti/sukurti failo")
-#define KP_MSG_OUTOFMEM_LT          ((const unsigned char *)"") // "Trūksta atminties")
-#define KP_MSG_NO_FILE_LT           ((const unsigned char *)"") // "Failas neatvertas")
-#define KP_MSG_DOUBLE_UNGET_LT      ((const unsigned char *)"") // "Dvigubas įvedimo grąžinimas")
-#define KP_MSG_UNKN_CHR_LT          ((const unsigned char *)"") // "Neatpažintas simbolis")
-#define KP_MSG_COMMAND_ERROR_LT     ((const unsigned char *)"") // "Išorinė klaida")
-#define KP_MSG_BUFFER_OVERFLOW_LT   ((const unsigned char *)"") // "Persipildė buferis")
-#define KP_MSG_FONT_UNDEF_LT        ((const unsigned char *)"") // "Neapibrėžtas šriftas")
-#define KP_MSG_KWD_NOT_FOUND_LT     ((const unsigned char *)"") // "Raktinis žodis nerastas")
-#define KP_MSG_UNKNOWN_SYSTEM_LT    ((const unsigned char *)"") // "Operacinė sistema neatpažinta")
-#define KP_MSG_ILL_CODE_LT          ((const unsigned char *)"") // "Klaidingas registracijos kodas")
-#define KP_MSG_CANCELLED_LT         ((const unsigned char *)"") // "Operacija nutraukta")
-#define KP_MSG_DOUBLE_CALL_LT       ((const unsigned char *)"") // "Dvigubas iškvietimas")
-#define KP_MSG_TIMEOUT_LT           ((const unsigned char *)"") // "Viršytas laukimo laikas")
-#define KP_MSG_OBJ_NOT_FOUND_LT     ((const unsigned char *)"") // "Objektas nerastas")
-#define KP_MSG_NO_CONN_LT           ((const unsigned char *)"") // "Nėra ryšio")
+#define KP_MSG_ERR_OK_LT            ((MSG_TYPE)"") // "Operacija atlikta sėkmingai") // !!!
+#define KP_MSG_INVALIDARG_LT        ((MSG_TYPE)"") // "Neteisingi parametrai")
+#define KP_MSG_NOTIMPL_LT           ((MSG_TYPE)"") // "Funkcija dar nerealizuota")
+#define KP_MSG_UNEXPECTED_LT        ((MSG_TYPE)"") // "Netikėtas kreipinys į sąsają")
+#define KP_MSG_FERROR_LT            ((MSG_TYPE)"") // "Failo skaitymo/rašymo klaida")
+#define KP_MSG_SYSTEM_ERROR_LT      ((MSG_TYPE)"") // "Klaida sistemoje")
+#define KP_MSG_EOF_LT               ((MSG_TYPE)"") // "Neteisinga failo pabaiga")
+#define KP_MSG_FILE_FORMAT_LT       ((MSG_TYPE)"") // "Neteisingas failo formatas")
+#define KP_MSG_FILE_NOT_FOUND_LT    ((MSG_TYPE)"") // "Failas nerastas")
+#define KP_MSG_DIR_ERROR_LT         ((MSG_TYPE)"") // "Nepavyko atverti/sukurti failo")
+#define KP_MSG_OUTOFMEM_LT          ((MSG_TYPE)"") // "Trūksta atminties")
+#define KP_MSG_NO_FILE_LT           ((MSG_TYPE)"") // "Failas neatvertas")
+#define KP_MSG_DOUBLE_UNGET_LT      ((MSG_TYPE)"") // "Dvigubas įvedimo grąžinimas")
+#define KP_MSG_UNKN_CHR_LT          ((MSG_TYPE)"") // "Neatpažintas simbolis")
+#define KP_MSG_COMMAND_ERROR_LT     ((MSG_TYPE)"") // "Išorinė klaida")
+#define KP_MSG_BUFFER_OVERFLOW_LT   ((MSG_TYPE)"") // "Persipildė buferis")
+#define KP_MSG_FONT_UNDEF_LT        ((MSG_TYPE)"") // "Neapibrėžtas šriftas")
+#define KP_MSG_KWD_NOT_FOUND_LT     ((MSG_TYPE)"") // "Raktinis žodis nerastas")
+#define KP_MSG_UNKNOWN_SYSTEM_LT    ((MSG_TYPE)"") // "Operacinė sistema neatpažinta")
+#define KP_MSG_ILL_CODE_LT          ((MSG_TYPE)"") // "Klaidingas registracijos kodas")
+#define KP_MSG_CANCELLED_LT         ((MSG_TYPE)"") // "Operacija nutraukta")
+#define KP_MSG_DOUBLE_CALL_LT       ((MSG_TYPE)"") // "Dvigubas iškvietimas")
+#define KP_MSG_TIMEOUT_LT           ((MSG_TYPE)"") // "Viršytas laukimo laikas")
+#define KP_MSG_OBJ_NOT_FOUND_LT     ((MSG_TYPE)"") // "Objektas nerastas")
+#define KP_MSG_NO_CONN_LT           ((MSG_TYPE)"") // "Nėra ryšio")
 
-#define KP_MSG_TRANS_ERR_LT         ((const unsigned char *)"") // "Perdavimo klaida")
-#define KP_MSG_TRANS_ERR_1_LT       ((const unsigned char *)"") // "Ryšio klaida, pakartokite siuntimo procedūrą"
+#define KP_MSG_TRANS_ERR_LT         ((MSG_TYPE)"") // "Perdavimo klaida")
+#define KP_MSG_TRANS_ERR_1_LT       ((MSG_TYPE)"") // "Ryšio klaida, pakartokite siuntimo procedūrą"
 
-#define KP_MSG_REFUSED_LT           ((const unsigned char *)"") // "Registracija atmesta")
-#define KP_MSG_ACCESS_DENIED_LT     ((const unsigned char *)"") // "Neleista prisijungti")
-#define KP_MSG_ILLEGAL_CHARACTER_LT ((const unsigned char *)"") // "Neleistinas simbolis")
-#define KP_MSG_DIV_ZERO_LT          ((const unsigned char *)"") // "Dalyba iš nulio")
-#define KP_MSG_ILLMATHARG_LT        ((const unsigned char *)"") // "Neleistinas matematinės funkcijos argumentas") // "Šaknis iš neigiamo skaičiaus"
-#define KP_MSG_ILLFUNC_LT           ((const unsigned char *)"") // "Neleistina operacija") // illegal function call (at the moment)
+#define KP_MSG_REFUSED_LT           ((MSG_TYPE)"") // "Registracija atmesta")
+#define KP_MSG_ACCESS_DENIED_LT     ((MSG_TYPE)"") // "Neleista prisijungti")
+#define KP_MSG_ILLEGAL_CHARACTER_LT ((MSG_TYPE)"") // "Neleistinas simbolis")
+#define KP_MSG_DIV_ZERO_LT          ((MSG_TYPE)"") // "Dalyba iš nulio")
+#define KP_MSG_ILLMATHARG_LT        ((MSG_TYPE)"") // "Neleistinas matematinės funkcijos argumentas") // "Šaknis iš neigiamo skaičiaus"
+#define KP_MSG_ILLFUNC_LT           ((MSG_TYPE)"") // "Neleistina operacija") // illegal function call (at the moment)
 
-#define KP_MSG_NOTINST_LT           ((const unsigned char *)"") // "Programa neįdiegta arba diegimas sugedo, pakartokite diegimo procedūrą")
-#define KP_MSG_NOTINST_S_LT         ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE_LT    ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_LT           ((MSG_TYPE)"") // "Programa neįdiegta arba diegimas sugedo, pakartokite diegimo procedūrą")
+#define KP_MSG_NOTINST_S_LT         ((MSG_TYPE)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE_LT    ((MSG_TYPE)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_MSG_FORMAT_LT        ((const unsigned char *)"") // "Neteisingas pranešimo formatas")
-#define KP_MSG_OBSOLETE_LT          ((const unsigned char *)"") // "Pasenusi funkcija")
+#define KP_MSG_MSG_FORMAT_LT        ((MSG_TYPE)"") // "Neteisingas pranešimo formatas")
+#define KP_MSG_OBSOLETE_LT          ((MSG_TYPE)"") // "Pasenusi funkcija")
 
-#define KP_MSG_ERROR_HELP_LT        ((const unsigned char *)"") // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu %s")
-#define KP_MSG_ERROR_HELP_REST_LT   ((const unsigned char *)"") // "   Prie laiško prikabinkite failą %s")
+#define KP_MSG_ERROR_HELP_LT        ((MSG_TYPE)"") // ".  Dėl techninės pagalbos kreipkitės elektroniniu paštu, adresu %s")
+#define KP_MSG_ERROR_HELP_REST_LT   ((MSG_TYPE)"") // "   Prie laiško prikabinkite failą %s")
 
-#define KP_MSG_WSAEACCES_LT               ((const unsigned char *)"") // "Teisės nesuteiktos")
-#define KP_MSG_WSAEADDRINUSE_LT           ((const unsigned char *)"") // "Adresas jau naudojamas")
-#define KP_MSG_WSAEADDRNOTAVAIL_LT        ((const unsigned char *)"") // "Prašomas adresas negali būti priskirtas")
-#define KP_MSG_WSAEAFNOSUPPORT_LT         ((const unsigned char *)"") // "Adresų šeimos grupė nepalaikoma protokolo")
-#define KP_MSG_WSAEALREADY_LT             ((const unsigned char *)"") // "Operacija jau vykdoma")
-#define KP_MSG_WSAECONNABORTED_LT         ((const unsigned char *)"") // "Programa iššaukė ryšio nutraukimą")
-#define KP_MSG_WSAECONNREFUSED_LT         ((const unsigned char *)"") // "Susijungimas atmestas")
-#define KP_MSG_WSAECONNRESET_LT           ((const unsigned char *)"") // "Sujungimas nutrauktas")
-#define KP_MSG_WSAEDESTADDRREQ_LT         ((const unsigned char *)"") // "Būtinas kreities adresas")
-#define KP_MSG_WSAEFAULT_LT               ((const unsigned char *)"") // "Neteisingas adresas")
-#define KP_MSG_WSAEHOSTDOWN_LT            ((const unsigned char *)"") // "Serveris laikinai neveikia")
-#define KP_MSG_WSAEHOSTUNREACH_LT         ((const unsigned char *)"") // "Serveris nepasiekiamas")
-#define KP_MSG_WSAEINPROGRESS_LT          ((const unsigned char *)"") // "Operacija vykdoma")
-#define KP_MSG_WSAEINTR_LT                ((const unsigned char *)"") // "Funkcija nutraukta")
-#define KP_MSG_WSAEINVAL_LT               ((const unsigned char *)"") // "Neteisingi parametrai")
-#define KP_MSG_WSAEISCONN_LT              ((const unsigned char *)"") // "Susijungimas jau įvykęs")
-#define KP_MSG_WSAEMFILE_LT               ((const unsigned char *)"") // "Perdaug atvertų failų")
-#define KP_MSG_WSAEMSGSIZE_LT             ((const unsigned char *)"") // "Perdaug ilgas pranešimas")
-#define KP_MSG_WSAENETDOWN_LT             ((const unsigned char *)"") // "Tinklas neveikia")
-#define KP_MSG_WSAENETRESET_LT            ((const unsigned char *)"") // "Atsijungė nuo tinklo")
-#define KP_MSG_WSAENETUNREACH_LT          ((const unsigned char *)"") // "Tinklas nepasiekiamas")
-#define KP_MSG_WSAENOBUFS_LT              ((const unsigned char *)"") // "Trūksta vietos buferyje")
-#define KP_MSG_WSAENOPROTOOPT_LT          ((const unsigned char *)"") // "Neteisinga protokolo parinktis")
-#define KP_MSG_WSAENOTCONN_LT             ((const unsigned char *)"") // "Sujungimas nepavyko")
-#define KP_MSG_WSAENOTSOCK_LT             ((const unsigned char *)"") // "Socket operation on non-socket")
-#define KP_MSG_WSAEOPNOTSUPP_LT           ((const unsigned char *)"") // "Operacija negali būti atlikta")
-#define KP_MSG_WSAEPFNOSUPPORT_LT         ((const unsigned char *)"") // "Protokolo šeima nepalaikoma")
-#define KP_MSG_WSAEPROCLIM_LT             ((const unsigned char *)"") // "Perdaug procesų")
-#define KP_MSG_WSAEPROTONOSUPPORT_LT      ((const unsigned char *)"") // "Protokolas nepalaikomas")
-#define KP_MSG_WSAEPROTOTYPE_LT           ((const unsigned char *)"") // "Neteisingas protokolo sujungimo tipas")
-#define KP_MSG_WSAESHUTDOWN_LT            ((const unsigned char *)"") // "Siuntimas nebegalimas, sujungimas nutrauktas")
-#define KP_MSG_WSAESOCKTNOSUPPORT_LT      ((const unsigned char *)"") // "Sujungimo tipas nepalaikomas")
-#define KP_MSG_WSAETIMEDOUT_LT            ((const unsigned char *)"") // "Maksimalus sujungimo laukimo laikas viršytas")
-#define KP_MSG_WSATYPE_NOT_FOUND_LT       ((const unsigned char *)"") // "Klasės tipas nerastas")
-#define KP_MSG_WSAEWOULDBLOCK_LT          ((const unsigned char *)"") // "Šaltinis laikinai nepasiekiamas")
-#define KP_MSG_WSAHOST_NOT_FOUND_LT       ((const unsigned char *)"") // "Serveris nerastas")
-#define KP_MSG_WSA_INVALID_HANDLE_LT      ((const unsigned char *)"") // "Klaidingas objekto valdiklis") // "Klaidingas pasirinkto įvykio objekto valdiklis"
-#define KP_MSG_WSA_INVALID_PARAMETER_LT   ((const unsigned char *)"") // "Neteisingi parametrai") // "Neteisingi vienas ar daugiau parametrų"
-#define KP_MSG_WSAINVALIDPROCTABLE_LT     ((const unsigned char *)"") // "Klaidinga procedūrų lentelė")
-#define KP_MSG_WSAINVALIDPROVIDER_LT      ((const unsigned char *)"") // "Neteisingas tiekėjo kodas")
-#define KP_MSG_WSA_IO_INCOMPLETE_LT       ((const unsigned char *)"") // "Persikloja įvesties/išvesties įvykiai")
-#define KP_MSG_WSA_IO_PENDING_LT          ((const unsigned char *)"") // "Persiklojančios operacijos bus atliktos vėliau")
+#define KP_MSG_WSAEACCES_LT               ((MSG_TYPE)"") // "Teisės nesuteiktos")
+#define KP_MSG_WSAEADDRINUSE_LT           ((MSG_TYPE)"") // "Adresas jau naudojamas")
+#define KP_MSG_WSAEADDRNOTAVAIL_LT        ((MSG_TYPE)"") // "Prašomas adresas negali būti priskirtas")
+#define KP_MSG_WSAEAFNOSUPPORT_LT         ((MSG_TYPE)"") // "Adresų šeimos grupė nepalaikoma protokolo")
+#define KP_MSG_WSAEALREADY_LT             ((MSG_TYPE)"") // "Operacija jau vykdoma")
+#define KP_MSG_WSAECONNABORTED_LT         ((MSG_TYPE)"") // "Programa iššaukė ryšio nutraukimą")
+#define KP_MSG_WSAECONNREFUSED_LT         ((MSG_TYPE)"") // "Susijungimas atmestas")
+#define KP_MSG_WSAECONNRESET_LT           ((MSG_TYPE)"") // "Sujungimas nutrauktas")
+#define KP_MSG_WSAEDESTADDRREQ_LT         ((MSG_TYPE)"") // "Būtinas kreities adresas")
+#define KP_MSG_WSAEFAULT_LT               ((MSG_TYPE)"") // "Neteisingas adresas")
+#define KP_MSG_WSAEHOSTDOWN_LT            ((MSG_TYPE)"") // "Serveris laikinai neveikia")
+#define KP_MSG_WSAEHOSTUNREACH_LT         ((MSG_TYPE)"") // "Serveris nepasiekiamas")
+#define KP_MSG_WSAEINPROGRESS_LT          ((MSG_TYPE)"") // "Operacija vykdoma")
+#define KP_MSG_WSAEINTR_LT                ((MSG_TYPE)"") // "Funkcija nutraukta")
+#define KP_MSG_WSAEINVAL_LT               ((MSG_TYPE)"") // "Neteisingi parametrai")
+#define KP_MSG_WSAEISCONN_LT              ((MSG_TYPE)"") // "Susijungimas jau įvykęs")
+#define KP_MSG_WSAEMFILE_LT               ((MSG_TYPE)"") // "Perdaug atvertų failų")
+#define KP_MSG_WSAEMSGSIZE_LT             ((MSG_TYPE)"") // "Perdaug ilgas pranešimas")
+#define KP_MSG_WSAENETDOWN_LT             ((MSG_TYPE)"") // "Tinklas neveikia")
+#define KP_MSG_WSAENETRESET_LT            ((MSG_TYPE)"") // "Atsijungė nuo tinklo")
+#define KP_MSG_WSAENETUNREACH_LT          ((MSG_TYPE)"") // "Tinklas nepasiekiamas")
+#define KP_MSG_WSAENOBUFS_LT              ((MSG_TYPE)"") // "Trūksta vietos buferyje")
+#define KP_MSG_WSAENOPROTOOPT_LT          ((MSG_TYPE)"") // "Neteisinga protokolo parinktis")
+#define KP_MSG_WSAENOTCONN_LT             ((MSG_TYPE)"") // "Sujungimas nepavyko")
+#define KP_MSG_WSAENOTSOCK_LT             ((MSG_TYPE)"") // "Socket operation on non-socket")
+#define KP_MSG_WSAEOPNOTSUPP_LT           ((MSG_TYPE)"") // "Operacija negali būti atlikta")
+#define KP_MSG_WSAEPFNOSUPPORT_LT         ((MSG_TYPE)"") // "Protokolo šeima nepalaikoma")
+#define KP_MSG_WSAEPROCLIM_LT             ((MSG_TYPE)"") // "Perdaug procesų")
+#define KP_MSG_WSAEPROTONOSUPPORT_LT      ((MSG_TYPE)"") // "Protokolas nepalaikomas")
+#define KP_MSG_WSAEPROTOTYPE_LT           ((MSG_TYPE)"") // "Neteisingas protokolo sujungimo tipas")
+#define KP_MSG_WSAESHUTDOWN_LT            ((MSG_TYPE)"") // "Siuntimas nebegalimas, sujungimas nutrauktas")
+#define KP_MSG_WSAESOCKTNOSUPPORT_LT      ((MSG_TYPE)"") // "Sujungimo tipas nepalaikomas")
+#define KP_MSG_WSAETIMEDOUT_LT            ((MSG_TYPE)"") // "Maksimalus sujungimo laukimo laikas viršytas")
+#define KP_MSG_WSATYPE_NOT_FOUND_LT       ((MSG_TYPE)"") // "Klasės tipas nerastas")
+#define KP_MSG_WSAEWOULDBLOCK_LT          ((MSG_TYPE)"") // "Šaltinis laikinai nepasiekiamas")
+#define KP_MSG_WSAHOST_NOT_FOUND_LT       ((MSG_TYPE)"") // "Serveris nerastas")
+#define KP_MSG_WSA_INVALID_HANDLE_LT      ((MSG_TYPE)"") // "Klaidingas objekto valdiklis") // "Klaidingas pasirinkto įvykio objekto valdiklis"
+#define KP_MSG_WSA_INVALID_PARAMETER_LT   ((MSG_TYPE)"") // "Neteisingi parametrai") // "Neteisingi vienas ar daugiau parametrų"
+#define KP_MSG_WSAINVALIDPROCTABLE_LT     ((MSG_TYPE)"") // "Klaidinga procedūrų lentelė")
+#define KP_MSG_WSAINVALIDPROVIDER_LT      ((MSG_TYPE)"") // "Neteisingas tiekėjo kodas")
+#define KP_MSG_WSA_IO_INCOMPLETE_LT       ((MSG_TYPE)"") // "Persikloja įvesties/išvesties įvykiai")
+#define KP_MSG_WSA_IO_PENDING_LT          ((MSG_TYPE)"") // "Persiklojančios operacijos bus atliktos vėliau")
 
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_LT   ((const unsigned char *)"") // "Nepakanka atminties")
-#define KP_MSG_WSANOTINITIALISED_LT       ((const unsigned char *)"") // "Tinklo posistemis neaktyvuotas")
-#define KP_MSG_WSANO_DATA_LT              ((const unsigned char *)"") // "Vardas teisingas, tačiau nėra reikiamo tipo duomenų")
-#define KP_MSG_WSANO_RECOVERY_LT          ((const unsigned char *)"") // "Nepataisoma klaida")
-#define KP_MSG_WSAPROVIDERFAILEDINIT_LT   ((const unsigned char *)"") // "Negalima inicializuoti paslaugos tiekėjo")
-#define KP_MSG_WSASYSCALLFAILURE_LT       ((const unsigned char *)"") // "Sistemos kreipinio klaida")
-#define KP_MSG_WSASYSNOTREADY_LT          ((const unsigned char *)"") // "Tinklo posistemė nepasiekiama")
-#define KP_MSG_WSATRY_AGAIN_LT            ((const unsigned char *)"") // "Neautorizuotas serveris nerastas")
-#define KP_MSG_WSAVERNOTSUPPORTED_LT      ((const unsigned char *)"") // "Netinka WINSOCK.DLL versija")
-#define KP_MSG_WSAEDISCON_LT              ((const unsigned char *)"") // "Pradėtas tvarkingas išjungimas") // ((const unsigned char *)"Pradėtas gracingas išjungimas")
-#define KP_MSG_WSA_OPERATION_ABORTED_LT   ((const unsigned char *)"") // "Persiklojanti operacija nutraukta")
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_LT   ((MSG_TYPE)"") // "Nepakanka atminties")
+#define KP_MSG_WSANOTINITIALISED_LT       ((MSG_TYPE)"") // "Tinklo posistemis neaktyvuotas")
+#define KP_MSG_WSANO_DATA_LT              ((MSG_TYPE)"") // "Vardas teisingas, tačiau nėra reikiamo tipo duomenų")
+#define KP_MSG_WSANO_RECOVERY_LT          ((MSG_TYPE)"") // "Nepataisoma klaida")
+#define KP_MSG_WSAPROVIDERFAILEDINIT_LT   ((MSG_TYPE)"") // "Negalima inicializuoti paslaugos tiekėjo")
+#define KP_MSG_WSASYSCALLFAILURE_LT       ((MSG_TYPE)"") // "Sistemos kreipinio klaida")
+#define KP_MSG_WSASYSNOTREADY_LT          ((MSG_TYPE)"") // "Tinklo posistemė nepasiekiama")
+#define KP_MSG_WSATRY_AGAIN_LT            ((MSG_TYPE)"") // "Neautorizuotas serveris nerastas")
+#define KP_MSG_WSAVERNOTSUPPORTED_LT      ((MSG_TYPE)"") // "Netinka WINSOCK.DLL versija")
+#define KP_MSG_WSAEDISCON_LT              ((MSG_TYPE)"") // "Pradėtas tvarkingas išjungimas") // ((MSG_TYPE)"Pradėtas gracingas išjungimas")
+#define KP_MSG_WSA_OPERATION_ABORTED_LT   ((MSG_TYPE)"") // "Persiklojanti operacija nutraukta")
 
-#define KP_MSG_OUT_OF_MEM_RES_LT          ((const unsigned char *)"") // "Operacinei sistemai trūksta atminties")
-#define KP_MSG_ERROR_FILE_NOT_FOUND_LT    ((const unsigned char *)"") // "Nurodytas failas nerastas")
-#define KP_MSG_ERROR_PATH_NOT_FOUND_LT    ((const unsigned char *)"") // "Nurodytas kelias iki failų nerastas")
-#define KP_MSG_ERROR_BAD_FORMAT_LT        ((const unsigned char *)"") // "Pasirinktas .exe failas sugadintas")
-#define KP_MSG_SE_ERR_ACCESSDENIED_LT     ((const unsigned char *)"") // "Operacinė sistema uždraudė prisijungimą prie reikiamų failų")
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_LT  ((const unsigned char *)"") // "Failo sąryšis su programa nepilnas arba neteisingas")
-#define KP_MSG_SE_ERR_DDEBUSY_LT          ((const unsigned char *)"") // "DDE transakcija negali būti baigta, nes kitos DDE transakcijos dar vykdomos")
-#define KP_MSG_SE_ERR_DDEFAIL_LT          ((const unsigned char *)"") // "DDE transakcija nutraukta")
-#define KP_MSG_SE_ERR_DDETIMEOUT_LT       ((const unsigned char *)"") // "DDE transakcija negali būti baigta, nes neužteko nurodyto laukimo laiko")
-#define KP_MSG_SE_ERR_DLLNOTFOUND_LT      ((const unsigned char *)"") // "Nurodyta dinaminė biblioteka nerasta")
-#define KP_MSG_SE_ERR_FNF_LT              ((const unsigned char *)"") // "Nurodytas failas nerastas")
-#define KP_MSG_SE_ERR_NOASSOC_LT          ((const unsigned char *)"") // "Nerasta programa skirta atverti šio tipo failus")
-#define KP_MSG_SE_ERR_OOM_LT              ((const unsigned char *)"") // "Nepakanka atminties atlikti operacijai")
-#define KP_MSG_SE_ERR_PNF_LT              ((const unsigned char *)"") // "Nurodytas kelias nerastas")
-#define KP_MSG_SE_ERR_SHARE_LT            ((const unsigned char *)"") // "Dalijimosi klaida")
+#define KP_MSG_OUT_OF_MEM_RES_LT          ((MSG_TYPE)"") // "Operacinei sistemai trūksta atminties")
+#define KP_MSG_ERROR_FILE_NOT_FOUND_LT    ((MSG_TYPE)"") // "Nurodytas failas nerastas")
+#define KP_MSG_ERROR_PATH_NOT_FOUND_LT    ((MSG_TYPE)"") // "Nurodytas kelias iki failų nerastas")
+#define KP_MSG_ERROR_BAD_FORMAT_LT        ((MSG_TYPE)"") // "Pasirinktas .exe failas sugadintas")
+#define KP_MSG_SE_ERR_ACCESSDENIED_LT     ((MSG_TYPE)"") // "Operacinė sistema uždraudė prisijungimą prie reikiamų failų")
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_LT  ((MSG_TYPE)"") // "Failo sąryšis su programa nepilnas arba neteisingas")
+#define KP_MSG_SE_ERR_DDEBUSY_LT          ((MSG_TYPE)"") // "DDE transakcija negali būti baigta, nes kitos DDE transakcijos dar vykdomos")
+#define KP_MSG_SE_ERR_DDEFAIL_LT          ((MSG_TYPE)"") // "DDE transakcija nutraukta")
+#define KP_MSG_SE_ERR_DDETIMEOUT_LT       ((MSG_TYPE)"") // "DDE transakcija negali būti baigta, nes neužteko nurodyto laukimo laiko")
+#define KP_MSG_SE_ERR_DLLNOTFOUND_LT      ((MSG_TYPE)"") // "Nurodyta dinaminė biblioteka nerasta")
+#define KP_MSG_SE_ERR_FNF_LT              ((MSG_TYPE)"") // "Nurodytas failas nerastas")
+#define KP_MSG_SE_ERR_NOASSOC_LT          ((MSG_TYPE)"") // "Nerasta programa skirta atverti šio tipo failus")
+#define KP_MSG_SE_ERR_OOM_LT              ((MSG_TYPE)"") // "Nepakanka atminties atlikti operacijai")
+#define KP_MSG_SE_ERR_PNF_LT              ((MSG_TYPE)"") // "Nurodytas kelias nerastas")
+#define KP_MSG_SE_ERR_SHARE_LT            ((MSG_TYPE)"") // "Dalijimosi klaida")
 
-#define KP_MSG_FIRST_TIME_ADMIN_LT        ((const unsigned char *)"") // "Programą paleidžiant pirmą kartą, reikalingos\n administratoriaus teisės. Paleiskite programą iš naujo administratoriaus teisėmis.")
-#define KP_MSG_NOW_NOT_ADMIN_LT           KP_MSG_NOT_ADMIN_LT // ((const unsigned char *)"") // "Dabar programą paleiskite dar kartą paprasto vartotojo teisėmis")
-#define KP_MSG_NOT_ADMIN_LT               ((const unsigned char *)"") // "Programą paleiskite iš naujo paprasto vartotojo teisėmis")
-#define KP_MSG_COPY_FILE_ACCESS_DENIED_LT ((const unsigned char *)"") // "Failo nukopijuoti nepavyko, programą paleiskite iš naujo administratoriaus teisėmis")
+#define KP_MSG_FIRST_TIME_ADMIN_LT        ((MSG_TYPE)"") // "Programą paleidžiant pirmą kartą, reikalingos\n administratoriaus teisės. Paleiskite programą iš naujo administratoriaus teisėmis.")
+#define KP_MSG_NOW_NOT_ADMIN_LT           KP_MSG_NOT_ADMIN_LT // ((MSG_TYPE)"") // "Dabar programą paleiskite dar kartą paprasto vartotojo teisėmis")
+#define KP_MSG_NOT_ADMIN_LT               ((MSG_TYPE)"") // "Programą paleiskite iš naujo paprasto vartotojo teisėmis")
+#define KP_MSG_COPY_FILE_ACCESS_DENIED_LT ((MSG_TYPE)"") // "Failo nukopijuoti nepavyko, programą paleiskite iš naujo administratoriaus teisėmis")
 
-#define KP_PROGRESS_TITLE_LT              ((const unsigned char *)"") // "Palaukite...")
-#define KP_MSG_DELETING_FILE_LT           ((const unsigned char *)"") // "Naikinamas failas %s.%s...")
-#define KP_MSG_COPYING_LT                 ((const unsigned char *)"") // "Kopijuojamas failas...")
-#define KP_MSG_COPYING_FILE_LT            ((const unsigned char *)"") // "Kopijuojamas failas %s.%s...")
-#define KP_MSG_COPYING_DIR_LT             ((const unsigned char *)"") // "Kopijuojamas aplankas %s.%s...")
+#define KP_PROGRESS_TITLE_LT              ((MSG_TYPE)"") // "Palaukite...")
+#define KP_MSG_DELETING_FILE_LT           ((MSG_TYPE)"") // "Naikinamas failas %s.%s...")
+#define KP_MSG_COPYING_LT                 ((MSG_TYPE)"") // "Kopijuojamas failas...")
+#define KP_MSG_COPYING_FILE_LT            ((MSG_TYPE)"") // "Kopijuojamas failas %s.%s...")
+#define KP_MSG_COPYING_DIR_LT             ((MSG_TYPE)"") // "Kopijuojamas aplankas %s.%s...")
 
-#define KP_MSG_NEG_ANSW_LT                ((const unsigned char *)"") // "Neigiamas atsakymas")
+#define KP_MSG_NEG_ANSW_LT                ((MSG_TYPE)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_LT       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_LT       ((MSG_TYPE)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
-#define KP_MSG_FLASH_PLAYER_INSTALL_LT    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+#define KP_MSG_FLASH_PLAYER_INSTALL_LT    ((MSG_TYPE)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
-#define KP_MSG_FILE_CHANGED_LT            ((const unsigned char *)"") // "Failas pasikeitė"
+#define KP_MSG_FILE_CHANGED_LT            ((MSG_TYPE)"") // "Failas pasikeitė"
 
-#define KP_MSG_ALL_FILES_LT               ((const unsigned char *)"") // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS_LT                 ((const unsigned char *)"") // "Įrašyti kaip"
+#define KP_MSG_ALL_FILES_LT               ((MSG_TYPE)"") // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS_LT                 ((MSG_TYPE)"") // "Įrašyti kaip"
 
-#define KP_MSG_FILE_EXISTS_LT             ((const unsigned char *)"") // "Failas %s jau yra, perrašyti?"
+#define KP_MSG_FILE_EXISTS_LT             ((MSG_TYPE)"") // "Failas %s jau yra, perrašyti?"
 
-#define KP_MSG_DIAG_MSG_LT                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE_LT          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_LT           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_LT   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_LT ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
-#define KP_MSG_DIAG_MSG_FILE_PROMPT_LT    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
+#define KP_MSG_DIAG_MSG_LT                ((MSG_TYPE)"") // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE_LT          ((MSG_TYPE)"") // "Diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL_LT           ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_LT   ((MSG_TYPE)"") // "Jūsų e-pašto adresas:")
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_LT ((MSG_TYPE)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
+#define KP_MSG_DIAG_MSG_FILE_PROMPT_LT    ((MSG_TYPE)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
 
-#define KP_MSG_BAD_EMAIL_ADDRESS_LT       ((const unsigned char *)"") // "Neteisingas e-pašto adresas"
+#define KP_MSG_BAD_EMAIL_ADDRESS_LT       ((MSG_TYPE)"") // "Neteisingas e-pašto adresas"
 
-#define KP_MSG_DIAG_MSG_SEL_FILE_LT       ((const unsigned char *)"") // "Pasirinkite siunčiamą failą"
+#define KP_MSG_DIAG_MSG_SEL_FILE_LT       ((MSG_TYPE)"") // "Pasirinkite siunčiamą failą"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED_LT      ((const unsigned char *)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_DIAG_MSG_SUCCEEDED_LT      ((MSG_TYPE)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
 
-#define KP_MSG_DIAG_MSG_EXPL1_LT          ((const unsigned char *)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI_LT                  ((const unsigned char *)"") // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2_LT          ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_DIAG_MSG_EXPL1_LT          ((MSG_TYPE)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI_LT                  ((MSG_TYPE)"") // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2_LT          ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
 
-#define KP_MSG_DOWNLOADING_LT             ((const unsigned char *)"") // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE_LT        ((const unsigned char *)"") // "Siunčiamas failas %s.%s..."
+#define KP_MSG_DOWNLOADING_LT             ((MSG_TYPE)"") // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE_LT        ((MSG_TYPE)"") // "Siunčiamas failas %s.%s..."
 
-#define KP_MSG_FIREWALL_LT                ((const unsigned char *)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_FIREWALL_LT                ((MSG_TYPE)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
 
-#define KP_MSG_POINTER_LT                 ((const unsigned char *)"") // "Bloga rodyklė"
+#define KP_MSG_POINTER_LT                 ((MSG_TYPE)"") // "Bloga rodyklė"
 
-#define KP_MSG_LOG_STARTED_LT             ((const unsigned char *)"") // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE_LT              ((const unsigned char *)"") // "%s: Pranešimų žurnalas"
+#define KP_MSG_LOG_STARTED_LT             ((MSG_TYPE)"") // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE_LT              ((MSG_TYPE)"") // "%s: Pranešimų žurnalas"
 
-#define KP_MSG_UNHANDLED_EXCEPTION_LT     ((const unsigned char *)"") // "Neapdorojamas trūkis"
+#define KP_MSG_UNHANDLED_EXCEPTION_LT     ((MSG_TYPE)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_LT             ((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_LT                 ((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_LT             ((MSG_TYPE)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_LT                 ((MSG_TYPE)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangLt_p))
 
@@ -825,649 +832,649 @@ NumOfKpMessages
 // --------------------------------
 #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1250_p))
 
-#define KP_MSG_TITLE_PL_1250              ((const unsigned char *)"") // "Komunikat")
-#define KP_INPUT_TITLE_PL_1250            ((const unsigned char *)"") // "Wprowadzanie"
+#define KP_MSG_TITLE_PL_1250              ((MSG_TYPE)"") // "Komunikat")
+#define KP_INPUT_TITLE_PL_1250            ((MSG_TYPE)"") // "Wprowadzanie"
 
-#define KP_MSG_TAIP_PL_1250               ((const unsigned char *)"") // "Tak")
+#define KP_MSG_TAIP_PL_1250               ((MSG_TYPE)"") // "Tak")
 #define KP_MSG_YES_PL_1250                KP_MSG_TAIP
-#define KP_MSG_NE_PL_1250                 ((const unsigned char *)"") // "Nie")
+#define KP_MSG_NE_PL_1250                 ((MSG_TYPE)"") // "Nie")
 #define KP_MSG_NO_PL_1250                 KP_MSG_NE
-#define KP_MSG_GERAI_PL_1250              ((const unsigned char *)"") // "Dobrze")
+#define KP_MSG_GERAI_PL_1250              ((MSG_TYPE)"") // "Dobrze")
 #define KP_MSG_OK_PL_1250                 KP_MSG_GERAI
-#define KP_MSG_ATSAUKTI_PL_1250           ((const unsigned char *)"") // "Odwo³aj")
+#define KP_MSG_ATSAUKTI_PL_1250           ((MSG_TYPE)"") // "Odwo³aj")
 #define KP_MSG_CANCEL_PL_1250             KP_MSG_ATSAUKTI
-#define KP_MSG_TESTI_PL_1250              ((const unsigned char *)"") // "Dalej")
-#define KP_MSG_BAIGTI_PL_1250             ((const unsigned char *)"") // "Zakończ")
-#define KP_MSG_PAMIRSAU_SLAPTAZODI_PL_1250 ((const unsigned char *)"") // "Zapomnia³em has³o")
+#define KP_MSG_TESTI_PL_1250              ((MSG_TYPE)"") // "Dalej")
+#define KP_MSG_BAIGTI_PL_1250             ((MSG_TYPE)"") // "Zakończ")
+#define KP_MSG_PAMIRSAU_SLAPTAZODI_PL_1250 ((MSG_TYPE)"") // "Zapomnia³em has³o")
 
-#define KP_MSG_ERROR_PL_1250              ((const unsigned char *)"") // "B³¹d")
-#define KP_MSG_WARNING_PL_1250            ((const unsigned char *)"") // "Ostrzeæenie")
-#define KP_MSG_FILE_LINE_PL_1250          ((const unsigned char *)"") // ", plik:%s, linijka:%d")
-#define KP_MSG_ENTRY_ID_PL_1250           ((const unsigned char *)"") // ", Nr. wpisu:%ld")
-#define KP_MSG_ENTRY_PL_1250              ((const unsigned char *)"") // ", Wpis: %s")
+#define KP_MSG_ERROR_PL_1250              ((MSG_TYPE)"") // "B³¹d")
+#define KP_MSG_WARNING_PL_1250            ((MSG_TYPE)"") // "Ostrzeæenie")
+#define KP_MSG_FILE_LINE_PL_1250          ((MSG_TYPE)"") // ", plik:%s, linijka:%d")
+#define KP_MSG_ENTRY_ID_PL_1250           ((MSG_TYPE)"") // ", Nr. wpisu:%ld")
+#define KP_MSG_ENTRY_PL_1250              ((MSG_TYPE)"") // ", Wpis: %s")
 
-#define KP_MSG_NO_STANDARD_PROG_PL_1250   ((const unsigned char *)"") // "Nie znaleziono programu do otwierania plików tego typu")
-#define KP_MSG_WND_NOT_FOUND_PL_1250      ((const unsigned char *)"") // "Nie znaleziono okna")
-#define KP_MSG_PID_NOT_FOUND_PL_1250      ((const unsigned char *)"") // "Nie znaleziono indentyfikatora procesu")
-#define KP_MSG_NO_SOCKET_PL_1250          ((const unsigned char *)"") // "Wiź jeszcze nie stworzona")
-#define KP_MSG_SOCK_UNRESOLVED_PL_1250    ((const unsigned char *)"") // "Nie znaleziono adresu stacji s³uæbowej")
+#define KP_MSG_NO_STANDARD_PROG_PL_1250   ((MSG_TYPE)"") // "Nie znaleziono programu do otwierania plików tego typu")
+#define KP_MSG_WND_NOT_FOUND_PL_1250      ((MSG_TYPE)"") // "Nie znaleziono okna")
+#define KP_MSG_PID_NOT_FOUND_PL_1250      ((MSG_TYPE)"") // "Nie znaleziono indentyfikatora procesu")
+#define KP_MSG_NO_SOCKET_PL_1250          ((MSG_TYPE)"") // "Wiź jeszcze nie stworzona")
+#define KP_MSG_SOCK_UNRESOLVED_PL_1250    ((MSG_TYPE)"") // "Nie znaleziono adresu stacji s³uæbowej")
 
-#define KP_MSG_ERR_OK_PL_1250             ((const unsigned char *)"") // "Operacja wykonana")
-#define KP_MSG_INVALIDARG_PL_1250         ((const unsigned char *)"") // "B³źdne parametry")
-#define KP_MSG_NOTIMPL_PL_1250            ((const unsigned char *)"") // "W³aciwoę jeszcze nie zrealizowana")
-#define KP_MSG_UNEXPECTED_PL_1250         ((const unsigned char *)"") // "Nieoczekiwny zwrot do interfejsu")
-#define KP_MSG_FERROR_PL_1250             ((const unsigned char *)"") // "B³¹d sczytywania/zapisywania pliku")
-#define KP_MSG_SYSTEM_ERROR_PL_1250       ((const unsigned char *)"") // "B³¹d systemu")
-#define KP_MSG_EOF_PL_1250                ((const unsigned char *)"") // "Nieprawid³owe zakończenie pliku")
-#define KP_MSG_FILE_FORMAT_PL_1250        ((const unsigned char *)"") // "Nieprawid³owy format pliku")
-#define KP_MSG_FILE_NOT_FOUND_PL_1250     ((const unsigned char *)"") // "Nie znaleziono pliku")
-#define KP_MSG_DIR_ERROR_PL_1250          ((const unsigned char *)"") // "Nie uda³o siź otworzyę/stworzyę pliku")
-#define KP_MSG_OUTOFMEM_PL_1250           ((const unsigned char *)"") // "Niewystarcza pamiźci")
-#define KP_MSG_NO_FILE_PL_1250            ((const unsigned char *)"") // "Nie otworzono pliku")
-#define KP_MSG_DOUBLE_UNGET_PL_1250       ((const unsigned char *)"") // "Podwójny unget")
-#define KP_MSG_UNKN_CHR_PL_1250           ((const unsigned char *)"") // "Nierozpoznano symbol")
-#define KP_MSG_COMMAND_ERROR_PL_1250      ((const unsigned char *)"") // "B³¹d zewnźtrzny")
+#define KP_MSG_ERR_OK_PL_1250             ((MSG_TYPE)"") // "Operacja wykonana")
+#define KP_MSG_INVALIDARG_PL_1250         ((MSG_TYPE)"") // "B³źdne parametry")
+#define KP_MSG_NOTIMPL_PL_1250            ((MSG_TYPE)"") // "W³aciwoę jeszcze nie zrealizowana")
+#define KP_MSG_UNEXPECTED_PL_1250         ((MSG_TYPE)"") // "Nieoczekiwny zwrot do interfejsu")
+#define KP_MSG_FERROR_PL_1250             ((MSG_TYPE)"") // "B³¹d sczytywania/zapisywania pliku")
+#define KP_MSG_SYSTEM_ERROR_PL_1250       ((MSG_TYPE)"") // "B³¹d systemu")
+#define KP_MSG_EOF_PL_1250                ((MSG_TYPE)"") // "Nieprawid³owe zakończenie pliku")
+#define KP_MSG_FILE_FORMAT_PL_1250        ((MSG_TYPE)"") // "Nieprawid³owy format pliku")
+#define KP_MSG_FILE_NOT_FOUND_PL_1250     ((MSG_TYPE)"") // "Nie znaleziono pliku")
+#define KP_MSG_DIR_ERROR_PL_1250          ((MSG_TYPE)"") // "Nie uda³o siź otworzyę/stworzyę pliku")
+#define KP_MSG_OUTOFMEM_PL_1250           ((MSG_TYPE)"") // "Niewystarcza pamiźci")
+#define KP_MSG_NO_FILE_PL_1250            ((MSG_TYPE)"") // "Nie otworzono pliku")
+#define KP_MSG_DOUBLE_UNGET_PL_1250       ((MSG_TYPE)"") // "Podwójny unget")
+#define KP_MSG_UNKN_CHR_PL_1250           ((MSG_TYPE)"") // "Nierozpoznano symbol")
+#define KP_MSG_COMMAND_ERROR_PL_1250      ((MSG_TYPE)"") // "B³¹d zewnźtrzny")
 
-#define KP_MSG_BUFFER_OVERFLOW_PL_1250    ((const unsigned char *)"") // "Przepe³niony bufor")
-#define KP_MSG_FONT_UNDEF_PL_1250         ((const unsigned char *)"") // "Nieokrelono szryft")
-#define KP_MSG_KWD_NOT_FOUND_PL_1250      ((const unsigned char *)"") // "Nie znaleziono kluczowego s³owa")
-#define KP_MSG_UNKNOWN_SYSTEM_PL_1250     ((const unsigned char *)"") // "Nie rozpoznano systemu operacyjnego")
-#define KP_MSG_ILL_CODE_PL_1250           ((const unsigned char *)"") // "B³źdny kod rejestracji")
+#define KP_MSG_BUFFER_OVERFLOW_PL_1250    ((MSG_TYPE)"") // "Przepe³niony bufor")
+#define KP_MSG_FONT_UNDEF_PL_1250         ((MSG_TYPE)"") // "Nieokrelono szryft")
+#define KP_MSG_KWD_NOT_FOUND_PL_1250      ((MSG_TYPE)"") // "Nie znaleziono kluczowego s³owa")
+#define KP_MSG_UNKNOWN_SYSTEM_PL_1250     ((MSG_TYPE)"") // "Nie rozpoznano systemu operacyjnego")
+#define KP_MSG_ILL_CODE_PL_1250           ((MSG_TYPE)"") // "B³źdny kod rejestracji")
 
-#define KP_MSG_CANCELLED_PL_1250          ((const unsigned char *)"") // "Przerwano operacjź")
-#define KP_MSG_DOUBLE_CALL_PL_1250        ((const unsigned char *)"") // "Podwójne wywo³anie")
-#define KP_MSG_TIMEOUT_PL_1250            ((const unsigned char *)"") // "Przekroczono czas oczekiwania")
-#define KP_MSG_OBJ_NOT_FOUND_PL_1250      ((const unsigned char *)"") // "Nie znaleziono objektu")
+#define KP_MSG_CANCELLED_PL_1250          ((MSG_TYPE)"") // "Przerwano operacjź")
+#define KP_MSG_DOUBLE_CALL_PL_1250        ((MSG_TYPE)"") // "Podwójne wywo³anie")
+#define KP_MSG_TIMEOUT_PL_1250            ((MSG_TYPE)"") // "Przekroczono czas oczekiwania")
+#define KP_MSG_OBJ_NOT_FOUND_PL_1250      ((MSG_TYPE)"") // "Nie znaleziono objektu")
 
-#define KP_MSG_NO_CONN_PL_1250            ((const unsigned char *)"") // "Nie ma ³¹cznoci")
+#define KP_MSG_NO_CONN_PL_1250            ((MSG_TYPE)"") // "Nie ma ³¹cznoci")
 
-#define KP_MSG_TRANS_ERR_PL_1250          ((const unsigned char *)"") // "B³¹d przekazu")
-#define KP_MSG_TRANS_ERR_1_PL_1250        ((const unsigned char *)"") // "B³¹d przekazu. Zapuszczaj wysy³anie ponownie"
+#define KP_MSG_TRANS_ERR_PL_1250          ((MSG_TYPE)"") // "B³¹d przekazu")
+#define KP_MSG_TRANS_ERR_1_PL_1250        ((MSG_TYPE)"") // "B³¹d przekazu. Zapuszczaj wysy³anie ponownie"
 
-#define KP_MSG_REFUSED_PL_1250            ((const unsigned char *)"") // "Odrzucono rejestracjź")
-#define KP_MSG_ACCESS_DENIED_PL_1250      ((const unsigned char *)"") // "£¹cznoę niedozwolona")
-#define KP_MSG_ILLEGAL_CHARACTER_PL_1250  ((const unsigned char *)"") // "Niedopuszczalny symbol")
-#define KP_MSG_DIV_ZERO_PL_1250           ((const unsigned char *)"") // "Dzielenie przez zero")
-#define KP_MSG_ILLMATHARG_PL_1250         ((const unsigned char *)"") // "Niedopuszczalny argument matematycznej funkcji")
-#define KP_MSG_ILLFUNC_PL_1250            ((const unsigned char *)"") // "Niedopuszczalna operacja")
+#define KP_MSG_REFUSED_PL_1250            ((MSG_TYPE)"") // "Odrzucono rejestracjź")
+#define KP_MSG_ACCESS_DENIED_PL_1250      ((MSG_TYPE)"") // "£¹cznoę niedozwolona")
+#define KP_MSG_ILLEGAL_CHARACTER_PL_1250  ((MSG_TYPE)"") // "Niedopuszczalny symbol")
+#define KP_MSG_DIV_ZERO_PL_1250           ((MSG_TYPE)"") // "Dzielenie przez zero")
+#define KP_MSG_ILLMATHARG_PL_1250         ((MSG_TYPE)"") // "Niedopuszczalny argument matematycznej funkcji")
+#define KP_MSG_ILLFUNC_PL_1250            ((MSG_TYPE)"") // "Niedopuszczalna operacja")
 
-#define KP_MSG_NOTINST_PL_1250            ((const unsigned char *)"") // "Program nie zainstalowany lub zepsuta instalacja. Zainstaluj ponownie")
-#define KP_MSG_NOTINST_S_PL_1250          ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE_PL_1250     ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_PL_1250            ((MSG_TYPE)"") // "Program nie zainstalowany lub zepsuta instalacja. Zainstaluj ponownie")
+#define KP_MSG_NOTINST_S_PL_1250          ((MSG_TYPE)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE_PL_1250     ((MSG_TYPE)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_MSG_FORMAT_PL_1250         ((const unsigned char *)"") // "B³źdny format komunikatu")
-#define KP_MSG_OBSOLETE_PL_1250           ((const unsigned char *)"") // "Stara funkcja")
-#define KP_MSG_ERROR_HELP_PL_1250         ((const unsigned char *)"") // ".  Po pomoc techniczn¹ zwróę siź pod adres %s")
-#define KP_MSG_ERROR_HELP_REST_PL_1250    ((const unsigned char *)"") // "   Do listu za³¹cz plik %s")
-#define KP_MSG_WSAEACCES_PL_1250               ((const unsigned char *)"") // "Nie masz uprawnienia")
-#define KP_MSG_WSAEADDRINUSE_PL_1250           ((const unsigned char *)"") // "Adres jest juæ wykorzystany")
-#define KP_MSG_WSAEADDRNOTAVAIL_PL_1250        ((const unsigned char *)"") // "Wskazany adres nie moæe byę przy³¹czony")
-#define KP_MSG_WSAEAFNOSUPPORT_PL_1250         ((const unsigned char *)"") // "Grupa adresów nie podtrzymywana przez protokó³")
-#define KP_MSG_WSAEALREADY_PL_1250             ((const unsigned char *)"") // "Operacja juæ jest wykonywana")
-#define KP_MSG_WSAECONNABORTED_PL_1250         ((const unsigned char *)"") // "Program wywo³a³ rozerwanie po³¹czenia")
-#define KP_MSG_WSAECONNREFUSED_PL_1250         ((const unsigned char *)"") // "Po³¹czenie zosta³o odrzucone")
+#define KP_MSG_MSG_FORMAT_PL_1250         ((MSG_TYPE)"") // "B³źdny format komunikatu")
+#define KP_MSG_OBSOLETE_PL_1250           ((MSG_TYPE)"") // "Stara funkcja")
+#define KP_MSG_ERROR_HELP_PL_1250         ((MSG_TYPE)"") // ".  Po pomoc techniczn¹ zwróę siź pod adres %s")
+#define KP_MSG_ERROR_HELP_REST_PL_1250    ((MSG_TYPE)"") // "   Do listu za³¹cz plik %s")
+#define KP_MSG_WSAEACCES_PL_1250               ((MSG_TYPE)"") // "Nie masz uprawnienia")
+#define KP_MSG_WSAEADDRINUSE_PL_1250           ((MSG_TYPE)"") // "Adres jest juæ wykorzystany")
+#define KP_MSG_WSAEADDRNOTAVAIL_PL_1250        ((MSG_TYPE)"") // "Wskazany adres nie moæe byę przy³¹czony")
+#define KP_MSG_WSAEAFNOSUPPORT_PL_1250         ((MSG_TYPE)"") // "Grupa adresów nie podtrzymywana przez protokó³")
+#define KP_MSG_WSAEALREADY_PL_1250             ((MSG_TYPE)"") // "Operacja juæ jest wykonywana")
+#define KP_MSG_WSAECONNABORTED_PL_1250         ((MSG_TYPE)"") // "Program wywo³a³ rozerwanie po³¹czenia")
+#define KP_MSG_WSAECONNREFUSED_PL_1250         ((MSG_TYPE)"") // "Po³¹czenie zosta³o odrzucone")
 
-#define KP_MSG_WSAECONNRESET_PL_1250           ((const unsigned char *)"") // "Po³¹czenie zosta³o rozerwane")
-#define KP_MSG_WSAEDESTADDRREQ_PL_1250         ((const unsigned char *)"") // "Wymagany jest adres")
-#define KP_MSG_WSAEFAULT_PL_1250               ((const unsigned char *)"") // "B³źdny adres")
+#define KP_MSG_WSAECONNRESET_PL_1250           ((MSG_TYPE)"") // "Po³¹czenie zosta³o rozerwane")
+#define KP_MSG_WSAEDESTADDRREQ_PL_1250         ((MSG_TYPE)"") // "Wymagany jest adres")
+#define KP_MSG_WSAEFAULT_PL_1250               ((MSG_TYPE)"") // "B³źdny adres")
 
-#define KP_MSG_WSAEHOSTDOWN_PL_1250            ((const unsigned char *)"") // "Serwer czasowo niedostźpny")
-#define KP_MSG_WSAEHOSTUNREACH_PL_1250         ((const unsigned char *)"") // "Serwer jest nieosi¹galny")
-#define KP_MSG_WSAEINPROGRESS_PL_1250          ((const unsigned char *)"") // "Operacja jest wykonywana")
-#define KP_MSG_WSAEINTR_PL_1250                ((const unsigned char *)"") // "Funkcja zosta³a przerwana")
+#define KP_MSG_WSAEHOSTDOWN_PL_1250            ((MSG_TYPE)"") // "Serwer czasowo niedostźpny")
+#define KP_MSG_WSAEHOSTUNREACH_PL_1250         ((MSG_TYPE)"") // "Serwer jest nieosi¹galny")
+#define KP_MSG_WSAEINPROGRESS_PL_1250          ((MSG_TYPE)"") // "Operacja jest wykonywana")
+#define KP_MSG_WSAEINTR_PL_1250                ((MSG_TYPE)"") // "Funkcja zosta³a przerwana")
 
-#define KP_MSG_WSAEINVAL_PL_1250               ((const unsigned char *)"") // "B³źdne parametry")
-#define KP_MSG_WSAEISCONN_PL_1250              ((const unsigned char *)"") // "Po³¹czenie juæ jest nawi¹zane")
-#define KP_MSG_WSAEMFILE_PL_1250               ((const unsigned char *)"") // "Otworzono za duæo plików")
+#define KP_MSG_WSAEINVAL_PL_1250               ((MSG_TYPE)"") // "B³źdne parametry")
+#define KP_MSG_WSAEISCONN_PL_1250              ((MSG_TYPE)"") // "Po³¹czenie juæ jest nawi¹zane")
+#define KP_MSG_WSAEMFILE_PL_1250               ((MSG_TYPE)"") // "Otworzono za duæo plików")
 
-#define KP_MSG_WSAEMSGSIZE_PL_1250             ((const unsigned char *)"") // "Zbyt d³ugi komunikat")
-#define KP_MSG_WSAENETDOWN_PL_1250             ((const unsigned char *)"") // "Sieę nie dzia³a")
-#define KP_MSG_WSAENETRESET_PL_1250            ((const unsigned char *)"") // "Od³¹czono siź od sieci")
+#define KP_MSG_WSAEMSGSIZE_PL_1250             ((MSG_TYPE)"") // "Zbyt d³ugi komunikat")
+#define KP_MSG_WSAENETDOWN_PL_1250             ((MSG_TYPE)"") // "Sieę nie dzia³a")
+#define KP_MSG_WSAENETRESET_PL_1250            ((MSG_TYPE)"") // "Od³¹czono siź od sieci")
 
-#define KP_MSG_WSAENETUNREACH_PL_1250          ((const unsigned char *)"") // "Sieę nieosi¹galna")
-#define KP_MSG_WSAENOBUFS_PL_1250              ((const unsigned char *)"") // "Brakuje miejsca w buforze")
-#define KP_MSG_WSAENOPROTOOPT_PL_1250          ((const unsigned char *)"") // "B³źdne opcje protoko³u")
+#define KP_MSG_WSAENETUNREACH_PL_1250          ((MSG_TYPE)"") // "Sieę nieosi¹galna")
+#define KP_MSG_WSAENOBUFS_PL_1250              ((MSG_TYPE)"") // "Brakuje miejsca w buforze")
+#define KP_MSG_WSAENOPROTOOPT_PL_1250          ((MSG_TYPE)"") // "B³źdne opcje protoko³u")
 
-#define KP_MSG_WSAENOTCONN_PL_1250             ((const unsigned char *)"") // "Nieudane po³¹czenie")
-#define KP_MSG_WSAENOTSOCK_PL_1250             ((const unsigned char *)"") // "Socket operation on non-socket")
-#define KP_MSG_WSAEOPNOTSUPP_PL_1250           ((const unsigned char *)"") // "Operacja nie moæe byę wykonana")
+#define KP_MSG_WSAENOTCONN_PL_1250             ((MSG_TYPE)"") // "Nieudane po³¹czenie")
+#define KP_MSG_WSAENOTSOCK_PL_1250             ((MSG_TYPE)"") // "Socket operation on non-socket")
+#define KP_MSG_WSAEOPNOTSUPP_PL_1250           ((MSG_TYPE)"") // "Operacja nie moæe byę wykonana")
 
-#define KP_MSG_WSAEPFNOSUPPORT_PL_1250         ((const unsigned char *)"") // "Niepodtrzymywana rodzina protoko³ów")
-#define KP_MSG_WSAEPROCLIM_PL_1250             ((const unsigned char *)"") // "Zbyt duæo procesów")
-#define KP_MSG_WSAEPROTONOSUPPORT_PL_1250      ((const unsigned char *)"") // "Protokó³ nie jest podtrzymywany")
+#define KP_MSG_WSAEPFNOSUPPORT_PL_1250         ((MSG_TYPE)"") // "Niepodtrzymywana rodzina protoko³ów")
+#define KP_MSG_WSAEPROCLIM_PL_1250             ((MSG_TYPE)"") // "Zbyt duæo procesów")
+#define KP_MSG_WSAEPROTONOSUPPORT_PL_1250      ((MSG_TYPE)"") // "Protokó³ nie jest podtrzymywany")
 
-#define KP_MSG_WSAEPROTOTYPE_PL_1250           ((const unsigned char *)"") // "Nieprawid³owy typ po³¹czenia protoko³u")
-#define KP_MSG_WSAESHUTDOWN_PL_1250            ((const unsigned char *)"") // "Wysy³anie niemoæliwe, po³¹czenie zerwane")
-#define KP_MSG_WSAESOCKTNOSUPPORT_PL_1250      ((const unsigned char *)"") // "Typ po³¹czenia niepodtrzymywany")
-#define KP_MSG_WSAETIMEDOUT_PL_1250            ((const unsigned char *)"") // "Przewyæszono maksymalny czas oczekiwania po³¹czenia")
+#define KP_MSG_WSAEPROTOTYPE_PL_1250           ((MSG_TYPE)"") // "Nieprawid³owy typ po³¹czenia protoko³u")
+#define KP_MSG_WSAESHUTDOWN_PL_1250            ((MSG_TYPE)"") // "Wysy³anie niemoæliwe, po³¹czenie zerwane")
+#define KP_MSG_WSAESOCKTNOSUPPORT_PL_1250      ((MSG_TYPE)"") // "Typ po³¹czenia niepodtrzymywany")
+#define KP_MSG_WSAETIMEDOUT_PL_1250            ((MSG_TYPE)"") // "Przewyæszono maksymalny czas oczekiwania po³¹czenia")
 
-#define KP_MSG_WSATYPE_NOT_FOUND_PL_1250       ((const unsigned char *)"") // "Nie znaleziono typ klasy")
-#define KP_MSG_WSAEWOULDBLOCK_PL_1250          ((const unsigned char *)"") // "¸ród³o czasowo niedostźpne")
-#define KP_MSG_WSAHOST_NOT_FOUND_PL_1250       ((const unsigned char *)"") // "Nie znaleziono serweru")
-#define KP_MSG_WSA_INVALID_HANDLE_PL_1250      ((const unsigned char *)"") // "B³źdny kontroler objektu")
-#define KP_MSG_WSA_INVALID_PARAMETER_PL_1250   ((const unsigned char *)"") // "B³źdne parametry")
-#define KP_MSG_WSAINVALIDPROCTABLE_PL_1250     ((const unsigned char *)"") // "B³źdna tablica procedur")
-#define KP_MSG_WSAINVALIDPROVIDER_PL_1250      ((const unsigned char *)"") // "B³źdny kod dostawcy")
-#define KP_MSG_WSA_IO_INCOMPLETE_PL_1250       ((const unsigned char *)"") // "Nak³adaj¹ siź zdarzenia wprowdzania/wyprowadzania")
-#define KP_MSG_WSA_IO_PENDING_PL_1250          ((const unsigned char *)"") // "Nak³adaj¹ce siź operacje bźd¹ wykonane póniej")
+#define KP_MSG_WSATYPE_NOT_FOUND_PL_1250       ((MSG_TYPE)"") // "Nie znaleziono typ klasy")
+#define KP_MSG_WSAEWOULDBLOCK_PL_1250          ((MSG_TYPE)"") // "¸ród³o czasowo niedostźpne")
+#define KP_MSG_WSAHOST_NOT_FOUND_PL_1250       ((MSG_TYPE)"") // "Nie znaleziono serweru")
+#define KP_MSG_WSA_INVALID_HANDLE_PL_1250      ((MSG_TYPE)"") // "B³źdny kontroler objektu")
+#define KP_MSG_WSA_INVALID_PARAMETER_PL_1250   ((MSG_TYPE)"") // "B³źdne parametry")
+#define KP_MSG_WSAINVALIDPROCTABLE_PL_1250     ((MSG_TYPE)"") // "B³źdna tablica procedur")
+#define KP_MSG_WSAINVALIDPROVIDER_PL_1250      ((MSG_TYPE)"") // "B³źdny kod dostawcy")
+#define KP_MSG_WSA_IO_INCOMPLETE_PL_1250       ((MSG_TYPE)"") // "Nak³adaj¹ siź zdarzenia wprowdzania/wyprowadzania")
+#define KP_MSG_WSA_IO_PENDING_PL_1250          ((MSG_TYPE)"") // "Nak³adaj¹ce siź operacje bźd¹ wykonane póniej")
 
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_PL_1250   ((const unsigned char *)"") // "Brak pamiźci")
-#define KP_MSG_WSANOTINITIALISED_PL_1250       ((const unsigned char *)"") // "Podsystem sieci nieaktywowany")
-#define KP_MSG_WSANO_DATA_PL_1250              ((const unsigned char *)"") // "Nie ma danych wymaganego typu")
-#define KP_MSG_WSANO_RECOVERY_PL_1250          ((const unsigned char *)"") // "Nienaprawialny b³¹d")
-#define KP_MSG_WSAPROVIDERFAILEDINIT_PL_1250   ((const unsigned char *)"") // "Nie moæliwa jest inicjacja dostawcy us³ugi")
-#define KP_MSG_WSASYSCALLFAILURE_PL_1250       ((const unsigned char *)"") // "B³źdny zwrot systemu")
-#define KP_MSG_WSASYSNOTREADY_PL_1250          ((const unsigned char *)"") // "Podsystem sieci nieosi¹galny")
-#define KP_MSG_WSATRY_AGAIN_PL_1250            ((const unsigned char *)"") // "Nieautoryzowany serwer nie znaleziony")
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_PL_1250   ((MSG_TYPE)"") // "Brak pamiźci")
+#define KP_MSG_WSANOTINITIALISED_PL_1250       ((MSG_TYPE)"") // "Podsystem sieci nieaktywowany")
+#define KP_MSG_WSANO_DATA_PL_1250              ((MSG_TYPE)"") // "Nie ma danych wymaganego typu")
+#define KP_MSG_WSANO_RECOVERY_PL_1250          ((MSG_TYPE)"") // "Nienaprawialny b³¹d")
+#define KP_MSG_WSAPROVIDERFAILEDINIT_PL_1250   ((MSG_TYPE)"") // "Nie moæliwa jest inicjacja dostawcy us³ugi")
+#define KP_MSG_WSASYSCALLFAILURE_PL_1250       ((MSG_TYPE)"") // "B³źdny zwrot systemu")
+#define KP_MSG_WSASYSNOTREADY_PL_1250          ((MSG_TYPE)"") // "Podsystem sieci nieosi¹galny")
+#define KP_MSG_WSATRY_AGAIN_PL_1250            ((MSG_TYPE)"") // "Nieautoryzowany serwer nie znaleziony")
 
-#define KP_MSG_WSAVERNOTSUPPORTED_PL_1250      ((const unsigned char *)"") // "B³źdna wersja WINSOCK.DLL")
-#define KP_MSG_WSAEDISCON_PL_1250              ((const unsigned char *)"") // "Rozpoczźto porz¹dne wy³¹czanie")
-#define KP_MSG_WSA_OPERATION_ABORTED_PL_1250   ((const unsigned char *)"") // "Nak³adaj¹ca siź operacja przerwana")
+#define KP_MSG_WSAVERNOTSUPPORTED_PL_1250      ((MSG_TYPE)"") // "B³źdna wersja WINSOCK.DLL")
+#define KP_MSG_WSAEDISCON_PL_1250              ((MSG_TYPE)"") // "Rozpoczźto porz¹dne wy³¹czanie")
+#define KP_MSG_WSA_OPERATION_ABORTED_PL_1250   ((MSG_TYPE)"") // "Nak³adaj¹ca siź operacja przerwana")
 
-#define KP_MSG_OUT_OF_MEM_RES_PL_1250          ((const unsigned char *)"") // "Brak pamiźci systemu operacyjnego")
-#define KP_MSG_ERROR_FILE_NOT_FOUND_PL_1250    ((const unsigned char *)"") // "Nie znaleziono wskazanego pliku")
-#define KP_MSG_ERROR_PATH_NOT_FOUND_PL_1250    ((const unsigned char *)"") // "Nie znaleziono wskazanej cieæki do pliku")
-#define KP_MSG_ERROR_BAD_FORMAT_PL_1250        ((const unsigned char *)"") // "Wybrany plik .exe jest zepsuty")
-#define KP_MSG_SE_ERR_ACCESSDENIED_PL_1250     ((const unsigned char *)"") // "System operacyjny zabroni³ ³¹cznoci z potrzebnymi plikami")
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_PL_1250  ((const unsigned char *)"") // "Wiź pliku z programem jest niepe³na lub b³źdna")
-#define KP_MSG_SE_ERR_DDEBUSY_PL_1250          ((const unsigned char *)"") // "DDE transakcja nie moæe byę zakończona, bo inne DDE transakcje s¹ jeszcze wykonywane")
-#define KP_MSG_SE_ERR_DDEFAIL_PL_1250          ((const unsigned char *)"") // "DDE transakcja przerwana")
-#define KP_MSG_SE_ERR_DDETIMEOUT_PL_1250       ((const unsigned char *)"") // "DDE transakcja nie moæe byę zakończona, bo zabrak³o wskazanego czasu oczekiwania")
-#define KP_MSG_SE_ERR_DLLNOTFOUND_PL_1250      ((const unsigned char *)"") // "Nie znaleziono wskazanej biblioteki dynamicznej")
-#define KP_MSG_SE_ERR_FNF_PL_1250              ((const unsigned char *)"") // "Nie znaleziono wskazanego pliku")
-#define KP_MSG_SE_ERR_NOASSOC_PL_1250          ((const unsigned char *)"") // "Nie znaleziono programu do otwarcia plików danego typu")
+#define KP_MSG_OUT_OF_MEM_RES_PL_1250          ((MSG_TYPE)"") // "Brak pamiźci systemu operacyjnego")
+#define KP_MSG_ERROR_FILE_NOT_FOUND_PL_1250    ((MSG_TYPE)"") // "Nie znaleziono wskazanego pliku")
+#define KP_MSG_ERROR_PATH_NOT_FOUND_PL_1250    ((MSG_TYPE)"") // "Nie znaleziono wskazanej cieæki do pliku")
+#define KP_MSG_ERROR_BAD_FORMAT_PL_1250        ((MSG_TYPE)"") // "Wybrany plik .exe jest zepsuty")
+#define KP_MSG_SE_ERR_ACCESSDENIED_PL_1250     ((MSG_TYPE)"") // "System operacyjny zabroni³ ³¹cznoci z potrzebnymi plikami")
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_PL_1250  ((MSG_TYPE)"") // "Wiź pliku z programem jest niepe³na lub b³źdna")
+#define KP_MSG_SE_ERR_DDEBUSY_PL_1250          ((MSG_TYPE)"") // "DDE transakcja nie moæe byę zakończona, bo inne DDE transakcje s¹ jeszcze wykonywane")
+#define KP_MSG_SE_ERR_DDEFAIL_PL_1250          ((MSG_TYPE)"") // "DDE transakcja przerwana")
+#define KP_MSG_SE_ERR_DDETIMEOUT_PL_1250       ((MSG_TYPE)"") // "DDE transakcja nie moæe byę zakończona, bo zabrak³o wskazanego czasu oczekiwania")
+#define KP_MSG_SE_ERR_DLLNOTFOUND_PL_1250      ((MSG_TYPE)"") // "Nie znaleziono wskazanej biblioteki dynamicznej")
+#define KP_MSG_SE_ERR_FNF_PL_1250              ((MSG_TYPE)"") // "Nie znaleziono wskazanego pliku")
+#define KP_MSG_SE_ERR_NOASSOC_PL_1250          ((MSG_TYPE)"") // "Nie znaleziono programu do otwarcia plików danego typu")
 
-#define KP_MSG_SE_ERR_OOM_PL_1250              ((const unsigned char *)"") // "Brak pamiźci do wykonania operacji")
-#define KP_MSG_SE_ERR_PNF_PL_1250              ((const unsigned char *)"") // "Nie znaleziono wskazanej cieæki")
-#define KP_MSG_SE_ERR_SHARE_PL_1250            ((const unsigned char *)"") // "B³¹d podzia³u")
+#define KP_MSG_SE_ERR_OOM_PL_1250              ((MSG_TYPE)"") // "Brak pamiźci do wykonania operacji")
+#define KP_MSG_SE_ERR_PNF_PL_1250              ((MSG_TYPE)"") // "Nie znaleziono wskazanej cieæki")
+#define KP_MSG_SE_ERR_SHARE_PL_1250            ((MSG_TYPE)"") // "B³¹d podzia³u")
 
-#define KP_MSG_FIRST_TIME_ADMIN_PL_1250        ((const unsigned char *)"") // "Zapuszczaj¹c program poraz pierwszy wymagane s¹ uprawnienia administratora. Zapuę program ponownie z uprawnieniami administratora.")
+#define KP_MSG_FIRST_TIME_ADMIN_PL_1250        ((MSG_TYPE)"") // "Zapuszczaj¹c program poraz pierwszy wymagane s¹ uprawnienia administratora. Zapuę program ponownie z uprawnieniami administratora.")
 
 #define KP_MSG_NOW_NOT_ADMIN_PL_1250           KP_MSG_NOT_ADMIN_PL_1250
-#define KP_MSG_NOT_ADMIN_PL_1250               ((const unsigned char *)"") // "Zapuę program ponownie z uprawnieniami zwyk³ego uæytkownika")
+#define KP_MSG_NOT_ADMIN_PL_1250               ((MSG_TYPE)"") // "Zapuę program ponownie z uprawnieniami zwyk³ego uæytkownika")
 
-#define KP_MSG_COPY_FILE_ACCESS_DENIED_PL_1250 ((const unsigned char *)"") // "Nie uda³o siź skopiowaę pliku. Zapuę program ponownie z uprawnieniami administratora.")
+#define KP_MSG_COPY_FILE_ACCESS_DENIED_PL_1250 ((MSG_TYPE)"") // "Nie uda³o siź skopiowaę pliku. Zapuę program ponownie z uprawnieniami administratora.")
 
 
-#define KP_PROGRESS_TITLE_PL_1250               ((const unsigned char *)"") // "Zaczekaj...")
-#define KP_MSG_DELETING_FILE_PL_1250            ((const unsigned char *)"") // "Kasuje siź plik %s.%s...")
+#define KP_PROGRESS_TITLE_PL_1250               ((MSG_TYPE)"") // "Zaczekaj...")
+#define KP_MSG_DELETING_FILE_PL_1250            ((MSG_TYPE)"") // "Kasuje siź plik %s.%s...")
 
-#define KP_MSG_COPYING_PL_1250                  ((const unsigned char *)"") // "Kopiuje siź plik...")
+#define KP_MSG_COPYING_PL_1250                  ((MSG_TYPE)"") // "Kopiuje siź plik...")
 
-#define KP_MSG_COPYING_DIR_PL_1250              ((const unsigned char *)"") // "Kopiuje siź katalog %s.%s...")
-#define KP_MSG_COPYING_FILE_PL_1250             ((const unsigned char *)"") // "Kopiuje siź plik %s.%s...")
+#define KP_MSG_COPYING_DIR_PL_1250              ((MSG_TYPE)"") // "Kopiuje siź katalog %s.%s...")
+#define KP_MSG_COPYING_FILE_PL_1250             ((MSG_TYPE)"") // "Kopiuje siź plik %s.%s...")
 
-#define KP_MSG_NEG_ANSW_PL_1250                 ((const unsigned char *)"") // "Neigiamas atsakymas")
+#define KP_MSG_NEG_ANSW_PL_1250                 ((MSG_TYPE)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_PL_1250        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_PL_1250        ((MSG_TYPE)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
-#define KP_MSG_FLASH_PLAYER_INSTALL_PL_1250     ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+#define KP_MSG_FLASH_PLAYER_INSTALL_PL_1250     ((MSG_TYPE)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
-#define KP_MSG_FILE_CHANGED_PL_1250             ((const unsigned char *)"") // "Failas pasikeitė"
+#define KP_MSG_FILE_CHANGED_PL_1250             ((MSG_TYPE)"") // "Failas pasikeitė"
 
-#define KP_MSG_ALL_FILES_PL_1250                ((const unsigned char *)"") // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS_PL_1250                  ((const unsigned char *)"") // "Įrašyti kaip"
+#define KP_MSG_ALL_FILES_PL_1250                ((MSG_TYPE)"") // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS_PL_1250                  ((MSG_TYPE)"") // "Įrašyti kaip"
 
-#define KP_MSG_FILE_EXISTS_PL_1250              ((const unsigned char *)"") // "Failas %s jau yra, perrašyti?"
+#define KP_MSG_FILE_EXISTS_PL_1250              ((MSG_TYPE)"") // "Failas %s jau yra, perrašyti?"
 
-#define KP_MSG_DIAG_MSG_PL_1250                 ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE_PL_1250           ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_PL_1250            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1250    ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1250 ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
-#define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1250     ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
+#define KP_MSG_DIAG_MSG_PL_1250                 ((MSG_TYPE)"") // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE_PL_1250           ((MSG_TYPE)"") // "Diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL_PL_1250            ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1250    ((MSG_TYPE)"") // "Jūsų e-pašto adresas:")
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1250 ((MSG_TYPE)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
+#define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1250     ((MSG_TYPE)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
 
-#define KP_MSG_BAD_EMAIL_ADDRESS_PL_1250        ((const unsigned char *)"") // "Neteisingas e-pašto adresas"
+#define KP_MSG_BAD_EMAIL_ADDRESS_PL_1250        ((MSG_TYPE)"") // "Neteisingas e-pašto adresas"
 
-#define KP_MSG_DIAG_MSG_SEL_FILE_PL_1250        ((const unsigned char *)"") // "Pasirinkite siunčiamą failą"
+#define KP_MSG_DIAG_MSG_SEL_FILE_PL_1250        ((MSG_TYPE)"") // "Pasirinkite siunčiamą failą"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED_PL_1250       ((const unsigned char *)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_DIAG_MSG_SUCCEEDED_PL_1250       ((MSG_TYPE)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
 
-#define KP_MSG_DIAG_MSG_EXPL1_PL_1250           ((const unsigned char *)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI_PL_1250                   ((const unsigned char *)"") // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2_PL_1250           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_DIAG_MSG_EXPL1_PL_1250           ((MSG_TYPE)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI_PL_1250                   ((MSG_TYPE)"") // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2_PL_1250           ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
 
-#define KP_MSG_DOWNLOADING_PL_1250              ((const unsigned char *)"") // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE_PL_1250         ((const unsigned char *)"") // "Siunčiamas failas %s.%s..."
+#define KP_MSG_DOWNLOADING_PL_1250              ((MSG_TYPE)"") // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE_PL_1250         ((MSG_TYPE)"") // "Siunčiamas failas %s.%s..."
 
-#define KP_MSG_FIREWALL_PL_1250                 ((const unsigned char *)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_FIREWALL_PL_1250                 ((MSG_TYPE)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
 
-#define KP_MSG_POINTER_PL_1250                  ((const unsigned char *)"") // "Bloga rodyklė"
+#define KP_MSG_POINTER_PL_1250                  ((MSG_TYPE)"") // "Bloga rodyklė"
 
-#define KP_MSG_LOG_STARTED_PL_1250              ((const unsigned char *)"") // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE_PL_1250               ((const unsigned char *)"") // "%s: Pranešimų žurnalas"
+#define KP_MSG_LOG_STARTED_PL_1250              ((MSG_TYPE)"") // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE_PL_1250               ((MSG_TYPE)"") // "%s: Pranešimų žurnalas"
 
-#define KP_MSG_UNHANDLED_EXCEPTION_PL_1250      ((const unsigned char *)"") // "Neapdorojamas trūkis"
+#define KP_MSG_UNHANDLED_EXCEPTION_PL_1250      ((MSG_TYPE)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_PL_1250              ((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_PL_1250                  ((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_PL_1250              ((MSG_TYPE)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_PL_1250                  ((MSG_TYPE)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1250_p))
 
 // --------------------------------
 #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1257_p))
 
-#define KP_MSG_TITLE_PL_1257              ((const unsigned char *)"") // "Komunikat")
-#define KP_INPUT_TITLE_PL_1257            ((const unsigned char *)"") // "Wprowadzanie"
+#define KP_MSG_TITLE_PL_1257              ((MSG_TYPE)"") // "Komunikat")
+#define KP_INPUT_TITLE_PL_1257            ((MSG_TYPE)"") // "Wprowadzanie"
 
-#define KP_MSG_TAIP_PL_1257               ((const unsigned char *)"") // "Tak")
+#define KP_MSG_TAIP_PL_1257               ((MSG_TYPE)"") // "Tak")
 #define KP_MSG_YES_PL_1257                KP_MSG_TAIP
-#define KP_MSG_NE_PL_1257                 ((const unsigned char *)"") // "Nie")
+#define KP_MSG_NE_PL_1257                 ((MSG_TYPE)"") // "Nie")
 #define KP_MSG_NO_PL_1257                 KP_MSG_NE
-#define KP_MSG_GERAI_PL_1257              ((const unsigned char *)"") // "Dobrze")
+#define KP_MSG_GERAI_PL_1257              ((MSG_TYPE)"") // "Dobrze")
 #define KP_MSG_OK_PL_1257                 KP_MSG_GERAI
-#define KP_MSG_ATSAUKTI_PL_1257           ((const unsigned char *)"") // "Odwołaj")
+#define KP_MSG_ATSAUKTI_PL_1257           ((MSG_TYPE)"") // "Odwołaj")
 #define KP_MSG_CANCEL_PL_1257             KP_MSG_ATSAUKTI
-#define KP_MSG_TESTI_PL_1257              ((const unsigned char *)"") // "Dalej")
-#define KP_MSG_BAIGTI_PL_1257             ((const unsigned char *)"") // "Zakończ")
-#define KP_MSG_PAMIRSAU_SLAPTAZODI_PL_1257 ((const unsigned char *)"") // "Zapomniałem hasło")
+#define KP_MSG_TESTI_PL_1257              ((MSG_TYPE)"") // "Dalej")
+#define KP_MSG_BAIGTI_PL_1257             ((MSG_TYPE)"") // "Zakończ")
+#define KP_MSG_PAMIRSAU_SLAPTAZODI_PL_1257 ((MSG_TYPE)"") // "Zapomniałem hasło")
 
-#define KP_MSG_ERROR_PL_1257              ((const unsigned char *)"") // "Błąd")
-#define KP_MSG_WARNING_PL_1257            ((const unsigned char *)"") // "Ostrzeżenie")
-#define KP_MSG_FILE_LINE_PL_1257          ((const unsigned char *)"") // ", plik:%s, linijka:%d")
-#define KP_MSG_ENTRY_ID_PL_1257           ((const unsigned char *)"") // ", Nr. wpisu:%ld")
-#define KP_MSG_ENTRY_PL_1257              ((const unsigned char *)"") // ", Wpis: %s")
+#define KP_MSG_ERROR_PL_1257              ((MSG_TYPE)"") // "Błąd")
+#define KP_MSG_WARNING_PL_1257            ((MSG_TYPE)"") // "Ostrzeżenie")
+#define KP_MSG_FILE_LINE_PL_1257          ((MSG_TYPE)"") // ", plik:%s, linijka:%d")
+#define KP_MSG_ENTRY_ID_PL_1257           ((MSG_TYPE)"") // ", Nr. wpisu:%ld")
+#define KP_MSG_ENTRY_PL_1257              ((MSG_TYPE)"") // ", Wpis: %s")
 
-#define KP_MSG_NO_STANDARD_PROG_PL_1257   ((const unsigned char *)"") // "Nie znaleziono programu do otwierania plików tego typu")
-#define KP_MSG_WND_NOT_FOUND_PL_1257      ((const unsigned char *)"") // "Nie znaleziono okna")
-#define KP_MSG_PID_NOT_FOUND_PL_1257      ((const unsigned char *)"") // "Nie znaleziono indentyfikatora procesu")
-#define KP_MSG_NO_SOCKET_PL_1257          ((const unsigned char *)"") // "Więź jeszcze nie stworzona")
-#define KP_MSG_SOCK_UNRESOLVED_PL_1257    ((const unsigned char *)"") // "Nie znaleziono adresu stacji służbowej")
+#define KP_MSG_NO_STANDARD_PROG_PL_1257   ((MSG_TYPE)"") // "Nie znaleziono programu do otwierania plików tego typu")
+#define KP_MSG_WND_NOT_FOUND_PL_1257      ((MSG_TYPE)"") // "Nie znaleziono okna")
+#define KP_MSG_PID_NOT_FOUND_PL_1257      ((MSG_TYPE)"") // "Nie znaleziono indentyfikatora procesu")
+#define KP_MSG_NO_SOCKET_PL_1257          ((MSG_TYPE)"") // "Więź jeszcze nie stworzona")
+#define KP_MSG_SOCK_UNRESOLVED_PL_1257    ((MSG_TYPE)"") // "Nie znaleziono adresu stacji służbowej")
 
-#define KP_MSG_ERR_OK_PL_1257             ((const unsigned char *)"") // "Operacja wykonana")
-#define KP_MSG_INVALIDARG_PL_1257         ((const unsigned char *)"") // "Błędne parametry")
-#define KP_MSG_NOTIMPL_PL_1257            ((const unsigned char *)"") // "Właściwość jeszcze nie zrealizowana")
-#define KP_MSG_UNEXPECTED_PL_1257         ((const unsigned char *)"") // "Nieoczekiwny zwrot do interfejsu")
-#define KP_MSG_FERROR_PL_1257             ((const unsigned char *)"") // "Błąd sczytywania/zapisywania pliku")
-#define KP_MSG_SYSTEM_ERROR_PL_1257       ((const unsigned char *)"") // "Błąd systemu")
-#define KP_MSG_EOF_PL_1257                ((const unsigned char *)"") // "Nieprawidłowe zakończenie pliku")
-#define KP_MSG_FILE_FORMAT_PL_1257        ((const unsigned char *)"") // "Nieprawidłowy format pliku")
-#define KP_MSG_FILE_NOT_FOUND_PL_1257     ((const unsigned char *)"") // "Nie znaleziono pliku")
-#define KP_MSG_DIR_ERROR_PL_1257          ((const unsigned char *)"") // "Nie udało się otworzyć/stworzyć pliku")
-#define KP_MSG_OUTOFMEM_PL_1257           ((const unsigned char *)"") // "Niewystarcza pamięci")
-#define KP_MSG_NO_FILE_PL_1257            ((const unsigned char *)"") // "Nie otworzono pliku")
-#define KP_MSG_DOUBLE_UNGET_PL_1257       ((const unsigned char *)"") // "Podwójny unget")
-#define KP_MSG_UNKN_CHR_PL_1257           ((const unsigned char *)"") // "Nierozpoznano symbol")
-#define KP_MSG_COMMAND_ERROR_PL_1257      ((const unsigned char *)"") // "Błąd zewnętrzny")
+#define KP_MSG_ERR_OK_PL_1257             ((MSG_TYPE)"") // "Operacja wykonana")
+#define KP_MSG_INVALIDARG_PL_1257         ((MSG_TYPE)"") // "Błędne parametry")
+#define KP_MSG_NOTIMPL_PL_1257            ((MSG_TYPE)"") // "Właściwość jeszcze nie zrealizowana")
+#define KP_MSG_UNEXPECTED_PL_1257         ((MSG_TYPE)"") // "Nieoczekiwny zwrot do interfejsu")
+#define KP_MSG_FERROR_PL_1257             ((MSG_TYPE)"") // "Błąd sczytywania/zapisywania pliku")
+#define KP_MSG_SYSTEM_ERROR_PL_1257       ((MSG_TYPE)"") // "Błąd systemu")
+#define KP_MSG_EOF_PL_1257                ((MSG_TYPE)"") // "Nieprawidłowe zakończenie pliku")
+#define KP_MSG_FILE_FORMAT_PL_1257        ((MSG_TYPE)"") // "Nieprawidłowy format pliku")
+#define KP_MSG_FILE_NOT_FOUND_PL_1257     ((MSG_TYPE)"") // "Nie znaleziono pliku")
+#define KP_MSG_DIR_ERROR_PL_1257          ((MSG_TYPE)"") // "Nie udało się otworzyć/stworzyć pliku")
+#define KP_MSG_OUTOFMEM_PL_1257           ((MSG_TYPE)"") // "Niewystarcza pamięci")
+#define KP_MSG_NO_FILE_PL_1257            ((MSG_TYPE)"") // "Nie otworzono pliku")
+#define KP_MSG_DOUBLE_UNGET_PL_1257       ((MSG_TYPE)"") // "Podwójny unget")
+#define KP_MSG_UNKN_CHR_PL_1257           ((MSG_TYPE)"") // "Nierozpoznano symbol")
+#define KP_MSG_COMMAND_ERROR_PL_1257      ((MSG_TYPE)"") // "Błąd zewnętrzny")
 
-#define KP_MSG_BUFFER_OVERFLOW_PL_1257    ((const unsigned char *)"") // "Przepełniony bufor")
-#define KP_MSG_FONT_UNDEF_PL_1257         ((const unsigned char *)"") // "Nieokreślono szryft")
-#define KP_MSG_KWD_NOT_FOUND_PL_1257      ((const unsigned char *)"") // "Nie znaleziono kluczowego słowa")
-#define KP_MSG_UNKNOWN_SYSTEM_PL_1257     ((const unsigned char *)"") // "Nie rozpoznano systemu operacyjnego")
-#define KP_MSG_ILL_CODE_PL_1257           ((const unsigned char *)"") // "Błędny kod rejestracji")
+#define KP_MSG_BUFFER_OVERFLOW_PL_1257    ((MSG_TYPE)"") // "Przepełniony bufor")
+#define KP_MSG_FONT_UNDEF_PL_1257         ((MSG_TYPE)"") // "Nieokreślono szryft")
+#define KP_MSG_KWD_NOT_FOUND_PL_1257      ((MSG_TYPE)"") // "Nie znaleziono kluczowego słowa")
+#define KP_MSG_UNKNOWN_SYSTEM_PL_1257     ((MSG_TYPE)"") // "Nie rozpoznano systemu operacyjnego")
+#define KP_MSG_ILL_CODE_PL_1257           ((MSG_TYPE)"") // "Błędny kod rejestracji")
 
-#define KP_MSG_CANCELLED_PL_1257          ((const unsigned char *)"") // "Przerwano operację")
-#define KP_MSG_DOUBLE_CALL_PL_1257        ((const unsigned char *)"") // "Podwójne wywołanie")
-#define KP_MSG_TIMEOUT_PL_1257            ((const unsigned char *)"") // "Przekroczono czas oczekiwania")
-#define KP_MSG_OBJ_NOT_FOUND_PL_1257      ((const unsigned char *)"") // "Nie znaleziono objektu")
+#define KP_MSG_CANCELLED_PL_1257          ((MSG_TYPE)"") // "Przerwano operację")
+#define KP_MSG_DOUBLE_CALL_PL_1257        ((MSG_TYPE)"") // "Podwójne wywołanie")
+#define KP_MSG_TIMEOUT_PL_1257            ((MSG_TYPE)"") // "Przekroczono czas oczekiwania")
+#define KP_MSG_OBJ_NOT_FOUND_PL_1257      ((MSG_TYPE)"") // "Nie znaleziono objektu")
 
-#define KP_MSG_NO_CONN_PL_1257            ((const unsigned char *)"") // "Nie ma łączności")
+#define KP_MSG_NO_CONN_PL_1257            ((MSG_TYPE)"") // "Nie ma łączności")
 
-#define KP_MSG_TRANS_ERR_PL_1257          ((const unsigned char *)"") // "Błąd przekazu")
-#define KP_MSG_TRANS_ERR_1_PL_1257        ((const unsigned char *)"") // "Błąd przekazu. Zapuszczaj wysyłanie ponownie"
+#define KP_MSG_TRANS_ERR_PL_1257          ((MSG_TYPE)"") // "Błąd przekazu")
+#define KP_MSG_TRANS_ERR_1_PL_1257        ((MSG_TYPE)"") // "Błąd przekazu. Zapuszczaj wysyłanie ponownie"
 
-#define KP_MSG_REFUSED_PL_1257            ((const unsigned char *)"") // "Odrzucono rejestrację")
-#define KP_MSG_ACCESS_DENIED_PL_1257      ((const unsigned char *)"") // "Łączność niedozwolona")
-#define KP_MSG_ILLEGAL_CHARACTER_PL_1257  ((const unsigned char *)"") // "Niedopuszczalny symbol")
-#define KP_MSG_DIV_ZERO_PL_1257           ((const unsigned char *)"") // "Dzielenie przez zero")
-#define KP_MSG_ILLMATHARG_PL_1257         ((const unsigned char *)"") // "Niedopuszczalny argument matematycznej funkcji")
-#define KP_MSG_ILLFUNC_PL_1257            ((const unsigned char *)"") // "Niedopuszczalna operacja")
+#define KP_MSG_REFUSED_PL_1257            ((MSG_TYPE)"") // "Odrzucono rejestrację")
+#define KP_MSG_ACCESS_DENIED_PL_1257      ((MSG_TYPE)"") // "Łączność niedozwolona")
+#define KP_MSG_ILLEGAL_CHARACTER_PL_1257  ((MSG_TYPE)"") // "Niedopuszczalny symbol")
+#define KP_MSG_DIV_ZERO_PL_1257           ((MSG_TYPE)"") // "Dzielenie przez zero")
+#define KP_MSG_ILLMATHARG_PL_1257         ((MSG_TYPE)"") // "Niedopuszczalny argument matematycznej funkcji")
+#define KP_MSG_ILLFUNC_PL_1257            ((MSG_TYPE)"") // "Niedopuszczalna operacja")
 
-#define KP_MSG_NOTINST_PL_1257            ((const unsigned char *)"") // "Program nie zainstalowany lub zepsuta instalacja. Zainstaluj ponownie")
-#define KP_MSG_NOTINST_S_PL_1257          ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE_PL_1257     ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_PL_1257            ((MSG_TYPE)"") // "Program nie zainstalowany lub zepsuta instalacja. Zainstaluj ponownie")
+#define KP_MSG_NOTINST_S_PL_1257          ((MSG_TYPE)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE_PL_1257     ((MSG_TYPE)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_MSG_FORMAT_PL_1257         ((const unsigned char *)"") // "Błędny format komunikatu")
-#define KP_MSG_OBSOLETE_PL_1257           ((const unsigned char *)"") // "Stara funkcja")
-#define KP_MSG_ERROR_HELP_PL_1257         ((const unsigned char *)"") // ".  Po pomoc techniczną zwróć się pod adres %s")
-#define KP_MSG_ERROR_HELP_REST_PL_1257    ((const unsigned char *)"") // "   Do listu załącz plik %s")
-#define KP_MSG_WSAEACCES_PL_1257               ((const unsigned char *)"") // "Nie masz uprawnienia")
-#define KP_MSG_WSAEADDRINUSE_PL_1257           ((const unsigned char *)"") // "Adres jest już wykorzystany")
-#define KP_MSG_WSAEADDRNOTAVAIL_PL_1257        ((const unsigned char *)"") // "Wskazany adres nie może być przyłączony")
-#define KP_MSG_WSAEAFNOSUPPORT_PL_1257         ((const unsigned char *)"") // "Grupa adresów nie podtrzymywana przez protokół")
-#define KP_MSG_WSAEALREADY_PL_1257             ((const unsigned char *)"") // "Operacja już jest wykonywana")
-#define KP_MSG_WSAECONNABORTED_PL_1257         ((const unsigned char *)"") // "Program wywołał rozerwanie połączenia")
-#define KP_MSG_WSAECONNREFUSED_PL_1257         ((const unsigned char *)"") // "Połączenie zostało odrzucone")
+#define KP_MSG_MSG_FORMAT_PL_1257         ((MSG_TYPE)"") // "Błędny format komunikatu")
+#define KP_MSG_OBSOLETE_PL_1257           ((MSG_TYPE)"") // "Stara funkcja")
+#define KP_MSG_ERROR_HELP_PL_1257         ((MSG_TYPE)"") // ".  Po pomoc techniczną zwróć się pod adres %s")
+#define KP_MSG_ERROR_HELP_REST_PL_1257    ((MSG_TYPE)"") // "   Do listu załącz plik %s")
+#define KP_MSG_WSAEACCES_PL_1257               ((MSG_TYPE)"") // "Nie masz uprawnienia")
+#define KP_MSG_WSAEADDRINUSE_PL_1257           ((MSG_TYPE)"") // "Adres jest już wykorzystany")
+#define KP_MSG_WSAEADDRNOTAVAIL_PL_1257        ((MSG_TYPE)"") // "Wskazany adres nie może być przyłączony")
+#define KP_MSG_WSAEAFNOSUPPORT_PL_1257         ((MSG_TYPE)"") // "Grupa adresów nie podtrzymywana przez protokół")
+#define KP_MSG_WSAEALREADY_PL_1257             ((MSG_TYPE)"") // "Operacja już jest wykonywana")
+#define KP_MSG_WSAECONNABORTED_PL_1257         ((MSG_TYPE)"") // "Program wywołał rozerwanie połączenia")
+#define KP_MSG_WSAECONNREFUSED_PL_1257         ((MSG_TYPE)"") // "Połączenie zostało odrzucone")
 
-#define KP_MSG_WSAECONNRESET_PL_1257           ((const unsigned char *)"") // "Połączenie zostało rozerwane")
-#define KP_MSG_WSAEDESTADDRREQ_PL_1257         ((const unsigned char *)"") // "Wymagany jest adres")
-#define KP_MSG_WSAEFAULT_PL_1257               ((const unsigned char *)"") // "Błędny adres")
+#define KP_MSG_WSAECONNRESET_PL_1257           ((MSG_TYPE)"") // "Połączenie zostało rozerwane")
+#define KP_MSG_WSAEDESTADDRREQ_PL_1257         ((MSG_TYPE)"") // "Wymagany jest adres")
+#define KP_MSG_WSAEFAULT_PL_1257               ((MSG_TYPE)"") // "Błędny adres")
 
-#define KP_MSG_WSAEHOSTDOWN_PL_1257            ((const unsigned char *)"") // "Serwer czasowo niedostępny")
-#define KP_MSG_WSAEHOSTUNREACH_PL_1257         ((const unsigned char *)"") // "Serwer jest nieosiągalny")
-#define KP_MSG_WSAEINPROGRESS_PL_1257          ((const unsigned char *)"") // "Operacja jest wykonywana")
-#define KP_MSG_WSAEINTR_PL_1257                ((const unsigned char *)"") // "Funkcja została przerwana")
+#define KP_MSG_WSAEHOSTDOWN_PL_1257            ((MSG_TYPE)"") // "Serwer czasowo niedostępny")
+#define KP_MSG_WSAEHOSTUNREACH_PL_1257         ((MSG_TYPE)"") // "Serwer jest nieosiągalny")
+#define KP_MSG_WSAEINPROGRESS_PL_1257          ((MSG_TYPE)"") // "Operacja jest wykonywana")
+#define KP_MSG_WSAEINTR_PL_1257                ((MSG_TYPE)"") // "Funkcja została przerwana")
 
-#define KP_MSG_WSAEINVAL_PL_1257               ((const unsigned char *)"") // "Błędne parametry")
-#define KP_MSG_WSAEISCONN_PL_1257              ((const unsigned char *)"") // "Połączenie już jest nawiązane")
-#define KP_MSG_WSAEMFILE_PL_1257               ((const unsigned char *)"") // "Otworzono za dużo plików")
+#define KP_MSG_WSAEINVAL_PL_1257               ((MSG_TYPE)"") // "Błędne parametry")
+#define KP_MSG_WSAEISCONN_PL_1257              ((MSG_TYPE)"") // "Połączenie już jest nawiązane")
+#define KP_MSG_WSAEMFILE_PL_1257               ((MSG_TYPE)"") // "Otworzono za dużo plików")
 
-#define KP_MSG_WSAEMSGSIZE_PL_1257             ((const unsigned char *)"") // "Zbyt długi komunikat")
-#define KP_MSG_WSAENETDOWN_PL_1257             ((const unsigned char *)"") // "Sieć nie działa")
-#define KP_MSG_WSAENETRESET_PL_1257            ((const unsigned char *)"") // "Odłączono się od sieci")
+#define KP_MSG_WSAEMSGSIZE_PL_1257             ((MSG_TYPE)"") // "Zbyt długi komunikat")
+#define KP_MSG_WSAENETDOWN_PL_1257             ((MSG_TYPE)"") // "Sieć nie działa")
+#define KP_MSG_WSAENETRESET_PL_1257            ((MSG_TYPE)"") // "Odłączono się od sieci")
 
-#define KP_MSG_WSAENETUNREACH_PL_1257          ((const unsigned char *)"") // "Sieć nieosiągalna")
-#define KP_MSG_WSAENOBUFS_PL_1257              ((const unsigned char *)"") // "Brakuje miejsca w buforze")
-#define KP_MSG_WSAENOPROTOOPT_PL_1257          ((const unsigned char *)"") // "Błędne opcje protokołu")
+#define KP_MSG_WSAENETUNREACH_PL_1257          ((MSG_TYPE)"") // "Sieć nieosiągalna")
+#define KP_MSG_WSAENOBUFS_PL_1257              ((MSG_TYPE)"") // "Brakuje miejsca w buforze")
+#define KP_MSG_WSAENOPROTOOPT_PL_1257          ((MSG_TYPE)"") // "Błędne opcje protokołu")
 
-#define KP_MSG_WSAENOTCONN_PL_1257             ((const unsigned char *)"") // "Nieudane połączenie")
-#define KP_MSG_WSAENOTSOCK_PL_1257             ((const unsigned char *)"") // "Socket operation on non-socket")
-#define KP_MSG_WSAEOPNOTSUPP_PL_1257           ((const unsigned char *)"") // "Operacja nie może być wykonana")
+#define KP_MSG_WSAENOTCONN_PL_1257             ((MSG_TYPE)"") // "Nieudane połączenie")
+#define KP_MSG_WSAENOTSOCK_PL_1257             ((MSG_TYPE)"") // "Socket operation on non-socket")
+#define KP_MSG_WSAEOPNOTSUPP_PL_1257           ((MSG_TYPE)"") // "Operacja nie może być wykonana")
 
-#define KP_MSG_WSAEPFNOSUPPORT_PL_1257         ((const unsigned char *)"") // "Niepodtrzymywana rodzina protokołów")
-#define KP_MSG_WSAEPROCLIM_PL_1257             ((const unsigned char *)"") // "Zbyt dużo procesów")
-#define KP_MSG_WSAEPROTONOSUPPORT_PL_1257      ((const unsigned char *)"") // "Protokół nie jest podtrzymywany")
+#define KP_MSG_WSAEPFNOSUPPORT_PL_1257         ((MSG_TYPE)"") // "Niepodtrzymywana rodzina protokołów")
+#define KP_MSG_WSAEPROCLIM_PL_1257             ((MSG_TYPE)"") // "Zbyt dużo procesów")
+#define KP_MSG_WSAEPROTONOSUPPORT_PL_1257      ((MSG_TYPE)"") // "Protokół nie jest podtrzymywany")
 
-#define KP_MSG_WSAEPROTOTYPE_PL_1257           ((const unsigned char *)"") // "Nieprawidłowy typ połączenia protokołu")
-#define KP_MSG_WSAESHUTDOWN_PL_1257            ((const unsigned char *)"") // "Wysyłanie niemożliwe, połączenie zerwane")
-#define KP_MSG_WSAESOCKTNOSUPPORT_PL_1257      ((const unsigned char *)"") // "Typ połączenia niepodtrzymywany")
-#define KP_MSG_WSAETIMEDOUT_PL_1257            ((const unsigned char *)"") // "Przewyższono maksymalny czas oczekiwania połączenia")
+#define KP_MSG_WSAEPROTOTYPE_PL_1257           ((MSG_TYPE)"") // "Nieprawidłowy typ połączenia protokołu")
+#define KP_MSG_WSAESHUTDOWN_PL_1257            ((MSG_TYPE)"") // "Wysyłanie niemożliwe, połączenie zerwane")
+#define KP_MSG_WSAESOCKTNOSUPPORT_PL_1257      ((MSG_TYPE)"") // "Typ połączenia niepodtrzymywany")
+#define KP_MSG_WSAETIMEDOUT_PL_1257            ((MSG_TYPE)"") // "Przewyższono maksymalny czas oczekiwania połączenia")
 
-#define KP_MSG_WSATYPE_NOT_FOUND_PL_1257       ((const unsigned char *)"") // "Nie znaleziono typ klasy")
-#define KP_MSG_WSAEWOULDBLOCK_PL_1257          ((const unsigned char *)"") // "Źródło czasowo niedostępne")
-#define KP_MSG_WSAHOST_NOT_FOUND_PL_1257       ((const unsigned char *)"") // "Nie znaleziono serweru")
-#define KP_MSG_WSA_INVALID_HANDLE_PL_1257      ((const unsigned char *)"") // "Błędny kontroler objektu")
-#define KP_MSG_WSA_INVALID_PARAMETER_PL_1257   ((const unsigned char *)"") // "Błędne parametry")
-#define KP_MSG_WSAINVALIDPROCTABLE_PL_1257     ((const unsigned char *)"") // "Błędna tablica procedur")
-#define KP_MSG_WSAINVALIDPROVIDER_PL_1257      ((const unsigned char *)"") // "Błędny kod dostawcy")
-#define KP_MSG_WSA_IO_INCOMPLETE_PL_1257       ((const unsigned char *)"") // "Nakładają się zdarzenia wprowdzania/wyprowadzania")
-#define KP_MSG_WSA_IO_PENDING_PL_1257          ((const unsigned char *)"") // "Nakładające się operacje będą wykonane później")
+#define KP_MSG_WSATYPE_NOT_FOUND_PL_1257       ((MSG_TYPE)"") // "Nie znaleziono typ klasy")
+#define KP_MSG_WSAEWOULDBLOCK_PL_1257          ((MSG_TYPE)"") // "Źródło czasowo niedostępne")
+#define KP_MSG_WSAHOST_NOT_FOUND_PL_1257       ((MSG_TYPE)"") // "Nie znaleziono serweru")
+#define KP_MSG_WSA_INVALID_HANDLE_PL_1257      ((MSG_TYPE)"") // "Błędny kontroler objektu")
+#define KP_MSG_WSA_INVALID_PARAMETER_PL_1257   ((MSG_TYPE)"") // "Błędne parametry")
+#define KP_MSG_WSAINVALIDPROCTABLE_PL_1257     ((MSG_TYPE)"") // "Błędna tablica procedur")
+#define KP_MSG_WSAINVALIDPROVIDER_PL_1257      ((MSG_TYPE)"") // "Błędny kod dostawcy")
+#define KP_MSG_WSA_IO_INCOMPLETE_PL_1257       ((MSG_TYPE)"") // "Nakładają się zdarzenia wprowdzania/wyprowadzania")
+#define KP_MSG_WSA_IO_PENDING_PL_1257          ((MSG_TYPE)"") // "Nakładające się operacje będą wykonane później")
 
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_PL_1257   ((const unsigned char *)"") // "Brak pamięci")
-#define KP_MSG_WSANOTINITIALISED_PL_1257       ((const unsigned char *)"") // "Podsystem sieci nieaktywowany")
-#define KP_MSG_WSANO_DATA_PL_1257              ((const unsigned char *)"") // "Nie ma danych wymaganego typu")
-#define KP_MSG_WSANO_RECOVERY_PL_1257          ((const unsigned char *)"") // "Nienaprawialny błąd")
-#define KP_MSG_WSAPROVIDERFAILEDINIT_PL_1257   ((const unsigned char *)"") // "Nie możliwa jest inicjacja dostawcy usługi")
-#define KP_MSG_WSASYSCALLFAILURE_PL_1257       ((const unsigned char *)"") // "Błędny zwrot systemu")
-#define KP_MSG_WSASYSNOTREADY_PL_1257          ((const unsigned char *)"") // "Podsystem sieci nieosiągalny")
-#define KP_MSG_WSATRY_AGAIN_PL_1257            ((const unsigned char *)"") // "Nieautoryzowany serwer nie znaleziony")
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_PL_1257   ((MSG_TYPE)"") // "Brak pamięci")
+#define KP_MSG_WSANOTINITIALISED_PL_1257       ((MSG_TYPE)"") // "Podsystem sieci nieaktywowany")
+#define KP_MSG_WSANO_DATA_PL_1257              ((MSG_TYPE)"") // "Nie ma danych wymaganego typu")
+#define KP_MSG_WSANO_RECOVERY_PL_1257          ((MSG_TYPE)"") // "Nienaprawialny błąd")
+#define KP_MSG_WSAPROVIDERFAILEDINIT_PL_1257   ((MSG_TYPE)"") // "Nie możliwa jest inicjacja dostawcy usługi")
+#define KP_MSG_WSASYSCALLFAILURE_PL_1257       ((MSG_TYPE)"") // "Błędny zwrot systemu")
+#define KP_MSG_WSASYSNOTREADY_PL_1257          ((MSG_TYPE)"") // "Podsystem sieci nieosiągalny")
+#define KP_MSG_WSATRY_AGAIN_PL_1257            ((MSG_TYPE)"") // "Nieautoryzowany serwer nie znaleziony")
 
-#define KP_MSG_WSAVERNOTSUPPORTED_PL_1257      ((const unsigned char *)"") // "Błędna wersja WINSOCK.DLL")
-#define KP_MSG_WSAEDISCON_PL_1257              ((const unsigned char *)"") // "Rozpoczęto porządne wyłączanie")
-#define KP_MSG_WSA_OPERATION_ABORTED_PL_1257   ((const unsigned char *)"") // "Nakładająca się operacja przerwana")
+#define KP_MSG_WSAVERNOTSUPPORTED_PL_1257      ((MSG_TYPE)"") // "Błędna wersja WINSOCK.DLL")
+#define KP_MSG_WSAEDISCON_PL_1257              ((MSG_TYPE)"") // "Rozpoczęto porządne wyłączanie")
+#define KP_MSG_WSA_OPERATION_ABORTED_PL_1257   ((MSG_TYPE)"") // "Nakładająca się operacja przerwana")
 
-#define KP_MSG_OUT_OF_MEM_RES_PL_1257          ((const unsigned char *)"") // "Brak pamięci systemu operacyjnego")
-#define KP_MSG_ERROR_FILE_NOT_FOUND_PL_1257    ((const unsigned char *)"") // "Nie znaleziono wskazanego pliku")
-#define KP_MSG_ERROR_PATH_NOT_FOUND_PL_1257    ((const unsigned char *)"") // "Nie znaleziono wskazanej ścieżki do pliku")
-#define KP_MSG_ERROR_BAD_FORMAT_PL_1257        ((const unsigned char *)"") // "Wybrany plik .exe jest zepsuty")
-#define KP_MSG_SE_ERR_ACCESSDENIED_PL_1257     ((const unsigned char *)"") // "System operacyjny zabronił łączności z potrzebnymi plikami")
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_PL_1257  ((const unsigned char *)"") // "Więź pliku z programem jest niepełna lub błędna")
-#define KP_MSG_SE_ERR_DDEBUSY_PL_1257          ((const unsigned char *)"") // "DDE transakcja nie może być zakończona, bo inne DDE transakcje są jeszcze wykonywane")
-#define KP_MSG_SE_ERR_DDEFAIL_PL_1257          ((const unsigned char *)"") // "DDE transakcja przerwana")
-#define KP_MSG_SE_ERR_DDETIMEOUT_PL_1257       ((const unsigned char *)"") // "DDE transakcja nie może być zakończona, bo zabrakło wskazanego czasu oczekiwania")
-#define KP_MSG_SE_ERR_DLLNOTFOUND_PL_1257      ((const unsigned char *)"") // "Nie znaleziono wskazanej biblioteki dynamicznej")
-#define KP_MSG_SE_ERR_FNF_PL_1257              ((const unsigned char *)"") // "Nie znaleziono wskazanego pliku")
-#define KP_MSG_SE_ERR_NOASSOC_PL_1257          ((const unsigned char *)"") // "Nie znaleziono programu do otwarcia plików danego typu")
+#define KP_MSG_OUT_OF_MEM_RES_PL_1257          ((MSG_TYPE)"") // "Brak pamięci systemu operacyjnego")
+#define KP_MSG_ERROR_FILE_NOT_FOUND_PL_1257    ((MSG_TYPE)"") // "Nie znaleziono wskazanego pliku")
+#define KP_MSG_ERROR_PATH_NOT_FOUND_PL_1257    ((MSG_TYPE)"") // "Nie znaleziono wskazanej ścieżki do pliku")
+#define KP_MSG_ERROR_BAD_FORMAT_PL_1257        ((MSG_TYPE)"") // "Wybrany plik .exe jest zepsuty")
+#define KP_MSG_SE_ERR_ACCESSDENIED_PL_1257     ((MSG_TYPE)"") // "System operacyjny zabronił łączności z potrzebnymi plikami")
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_PL_1257  ((MSG_TYPE)"") // "Więź pliku z programem jest niepełna lub błędna")
+#define KP_MSG_SE_ERR_DDEBUSY_PL_1257          ((MSG_TYPE)"") // "DDE transakcja nie może być zakończona, bo inne DDE transakcje są jeszcze wykonywane")
+#define KP_MSG_SE_ERR_DDEFAIL_PL_1257          ((MSG_TYPE)"") // "DDE transakcja przerwana")
+#define KP_MSG_SE_ERR_DDETIMEOUT_PL_1257       ((MSG_TYPE)"") // "DDE transakcja nie może być zakończona, bo zabrakło wskazanego czasu oczekiwania")
+#define KP_MSG_SE_ERR_DLLNOTFOUND_PL_1257      ((MSG_TYPE)"") // "Nie znaleziono wskazanej biblioteki dynamicznej")
+#define KP_MSG_SE_ERR_FNF_PL_1257              ((MSG_TYPE)"") // "Nie znaleziono wskazanego pliku")
+#define KP_MSG_SE_ERR_NOASSOC_PL_1257          ((MSG_TYPE)"") // "Nie znaleziono programu do otwarcia plików danego typu")
 
-#define KP_MSG_SE_ERR_OOM_PL_1257              ((const unsigned char *)"") // "Brak pamięci do wykonania operacji")
-#define KP_MSG_SE_ERR_PNF_PL_1257              ((const unsigned char *)"") // "Nie znaleziono wskazanej ścieżki")
-#define KP_MSG_SE_ERR_SHARE_PL_1257            ((const unsigned char *)"") // "Błąd podziału")
+#define KP_MSG_SE_ERR_OOM_PL_1257              ((MSG_TYPE)"") // "Brak pamięci do wykonania operacji")
+#define KP_MSG_SE_ERR_PNF_PL_1257              ((MSG_TYPE)"") // "Nie znaleziono wskazanej ścieżki")
+#define KP_MSG_SE_ERR_SHARE_PL_1257            ((MSG_TYPE)"") // "Błąd podziału")
 
-#define KP_MSG_FIRST_TIME_ADMIN_PL_1257        ((const unsigned char *)"") // "Zapuszczając program poraz pierwszy wymagane są uprawnienia administratora. Zapuść program ponownie z uprawnieniami administratora.")
+#define KP_MSG_FIRST_TIME_ADMIN_PL_1257        ((MSG_TYPE)"") // "Zapuszczając program poraz pierwszy wymagane są uprawnienia administratora. Zapuść program ponownie z uprawnieniami administratora.")
 
 #define KP_MSG_NOW_NOT_ADMIN_PL_1257           KP_MSG_NOT_ADMIN_PL_1257
-#define KP_MSG_NOT_ADMIN_PL_1257               ((const unsigned char *)"") // "Zapuść program ponownie z uprawnieniami zwykłego użytkownika")
+#define KP_MSG_NOT_ADMIN_PL_1257               ((MSG_TYPE)"") // "Zapuść program ponownie z uprawnieniami zwykłego użytkownika")
 
-#define KP_MSG_COPY_FILE_ACCESS_DENIED_PL_1257 ((const unsigned char *)"") // "Nie udało się skopiować pliku. Zapuść program ponownie z uprawnieniami administratora.")
+#define KP_MSG_COPY_FILE_ACCESS_DENIED_PL_1257 ((MSG_TYPE)"") // "Nie udało się skopiować pliku. Zapuść program ponownie z uprawnieniami administratora.")
 
 
-#define KP_PROGRESS_TITLE_PL_1257               ((const unsigned char *)"") // "Zaczekaj...")
-#define KP_MSG_DELETING_FILE_PL_1257            ((const unsigned char *)"") // "Kasuje się plik %s.%s...")
+#define KP_PROGRESS_TITLE_PL_1257               ((MSG_TYPE)"") // "Zaczekaj...")
+#define KP_MSG_DELETING_FILE_PL_1257            ((MSG_TYPE)"") // "Kasuje się plik %s.%s...")
 
-#define KP_MSG_COPYING_PL_1257                  ((const unsigned char *)"") // "Kopiuje się plik...")
+#define KP_MSG_COPYING_PL_1257                  ((MSG_TYPE)"") // "Kopiuje się plik...")
 
-#define KP_MSG_COPYING_DIR_PL_1257              ((const unsigned char *)"") // "Kopiuje się katalog %s.%s...")
-#define KP_MSG_COPYING_FILE_PL_1257             ((const unsigned char *)"") // "Kopiuje się plik %s.%s...")
+#define KP_MSG_COPYING_DIR_PL_1257              ((MSG_TYPE)"") // "Kopiuje się katalog %s.%s...")
+#define KP_MSG_COPYING_FILE_PL_1257             ((MSG_TYPE)"") // "Kopiuje się plik %s.%s...")
 
-#define KP_MSG_NEG_ANSW_PL_1257                 ((const unsigned char *)"") // "Neigiamas atsakymas")
+#define KP_MSG_NEG_ANSW_PL_1257                 ((MSG_TYPE)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_PL_1257        ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_PL_1257        ((MSG_TYPE)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
-#define KP_MSG_FLASH_PLAYER_INSTALL_PL_1257     ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+#define KP_MSG_FLASH_PLAYER_INSTALL_PL_1257     ((MSG_TYPE)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
-#define KP_MSG_FILE_CHANGED_PL_1257             ((const unsigned char *)"") // "Failas pasikeitė"
+#define KP_MSG_FILE_CHANGED_PL_1257             ((MSG_TYPE)"") // "Failas pasikeitė"
 
-#define KP_MSG_ALL_FILES_PL_1257                ((const unsigned char *)"") // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS_PL_1257                  ((const unsigned char *)"") // "Įrašyti kaip"
+#define KP_MSG_ALL_FILES_PL_1257                ((MSG_TYPE)"") // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS_PL_1257                  ((MSG_TYPE)"") // "Įrašyti kaip"
 
-#define KP_MSG_FILE_EXISTS_PL_1257              ((const unsigned char *)"") // "Failas %s jau yra, perrašyti?"
+#define KP_MSG_FILE_EXISTS_PL_1257              ((MSG_TYPE)"") // "Failas %s jau yra, perrašyti?"
 
-#define KP_MSG_DIAG_MSG_PL_1257                 ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE_PL_1257           ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_PL_1257            ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1257    ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1257 ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
-#define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1257     ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
+#define KP_MSG_DIAG_MSG_PL_1257                 ((MSG_TYPE)"") // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE_PL_1257           ((MSG_TYPE)"") // "Diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL_PL_1257            ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_PL_1257    ((MSG_TYPE)"") // "Jūsų e-pašto adresas:")
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_PL_1257 ((MSG_TYPE)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
+#define KP_MSG_DIAG_MSG_FILE_PROMPT_PL_1257     ((MSG_TYPE)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
 
-#define KP_MSG_BAD_EMAIL_ADDRESS_PL_1257        ((const unsigned char *)"") // "Neteisingas e-pašto adresas"
+#define KP_MSG_BAD_EMAIL_ADDRESS_PL_1257        ((MSG_TYPE)"") // "Neteisingas e-pašto adresas"
 
-#define KP_MSG_DIAG_MSG_SEL_FILE_PL_1257        ((const unsigned char *)"") // "Pasirinkite siunčiamą failą"
+#define KP_MSG_DIAG_MSG_SEL_FILE_PL_1257        ((MSG_TYPE)"") // "Pasirinkite siunčiamą failą"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED_PL_1257       ((const unsigned char *)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_DIAG_MSG_SUCCEEDED_PL_1257       ((MSG_TYPE)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
 
-#define KP_MSG_DIAG_MSG_EXPL1_PL_1257           ((const unsigned char *)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI_PL_1257                   ((const unsigned char *)"") // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2_PL_1257           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_DIAG_MSG_EXPL1_PL_1257           ((MSG_TYPE)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI_PL_1257                   ((MSG_TYPE)"") // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2_PL_1257           ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
 
-#define KP_MSG_DOWNLOADING_PL_1257              ((const unsigned char *)"") // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE_PL_1257         ((const unsigned char *)"") // "Siunčiamas failas %s.%s..."
+#define KP_MSG_DOWNLOADING_PL_1257              ((MSG_TYPE)"") // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE_PL_1257         ((MSG_TYPE)"") // "Siunčiamas failas %s.%s..."
 
-#define KP_MSG_FIREWALL_PL_1257                 ((const unsigned char *)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_FIREWALL_PL_1257                 ((MSG_TYPE)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
 
-#define KP_MSG_POINTER_PL_1257                  ((const unsigned char *)"") // "Bloga rodyklė"
+#define KP_MSG_POINTER_PL_1257                  ((MSG_TYPE)"") // "Bloga rodyklė"
 
-#define KP_MSG_LOG_STARTED_PL_1257              ((const unsigned char *)"") // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE_PL_1257               ((const unsigned char *)"") // "%s: Pranešimų žurnalas"
+#define KP_MSG_LOG_STARTED_PL_1257              ((MSG_TYPE)"") // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE_PL_1257               ((MSG_TYPE)"") // "%s: Pranešimų žurnalas"
 
-#define KP_MSG_UNHANDLED_EXCEPTION_PL_1257      ((const unsigned char *)"") // "Neapdorojamas trūkis"
+#define KP_MSG_UNHANDLED_EXCEPTION_PL_1257      ((MSG_TYPE)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_PL_1257              ((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_PL_1257                  ((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_PL_1257              ((MSG_TYPE)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_PL_1257                  ((MSG_TYPE)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangPl_p) && (MsgLang != KpLangSel_p) && (MsgLang != KpLangPl_1257_p))
 
 // --------------------------------------------
 #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangRu_p) && (MsgLang != KpLangRu_1251_p) && (MsgLang != KpLangRu_0_p))
 
-#define KP_MSG_TITLE_RU             ((const unsigned char *)"") // "Message")
-#define KP_INPUT_TITLE_RU           ((const unsigned char *)"") // "Input"
+#define KP_MSG_TITLE_RU             ((MSG_TYPE)"") // "Message")
+#define KP_INPUT_TITLE_RU           ((MSG_TYPE)"") // "Input"
 
-#define KP_MSG_YES_RU               ((const unsigned char *)"") // "Yes")
+#define KP_MSG_YES_RU               ((MSG_TYPE)"") // "Yes")
 #define KP_MSG_TAIP_RU              KP_MSG_YES
-#define KP_MSG_NO_RU                ((const unsigned char *)"") // "No")
+#define KP_MSG_NO_RU                ((MSG_TYPE)"") // "No")
 #define KP_MSG_NE_RU                KP_MSG_NO
-#define KP_MSG_OK_RU                ((const unsigned char *)"") // "OK")
+#define KP_MSG_OK_RU                ((MSG_TYPE)"") // "OK")
 #define KP_MSG_GERAI_RU             KP_MSG_OK
-#define KP_MSG_CANCEL_RU            ((const unsigned char *)"") // "Cancel")
+#define KP_MSG_CANCEL_RU            ((MSG_TYPE)"") // "Cancel")
 #define KP_MSG_ATSAUKTI_RU          KP_MSG_CANCEL
-#define KP_MSG_TESTI_RU             ((const unsigned char *)"") // "Continue")
-#define KP_MSG_BAIGTI_RU            ((const unsigned char *)"") // "Finish")
-#define KP_MSG_PAMIRSAU_SLAPTAZODI_RU ((const unsigned char *)"") // "Forgot password")
+#define KP_MSG_TESTI_RU             ((MSG_TYPE)"") // "Continue")
+#define KP_MSG_BAIGTI_RU            ((MSG_TYPE)"") // "Finish")
+#define KP_MSG_PAMIRSAU_SLAPTAZODI_RU ((MSG_TYPE)"") // "Forgot password")
 
-#define KP_MSG_ERROR_RU             ((const unsigned char *)"") // "Error")
-#define KP_MSG_WARNING_RU           ((const unsigned char *)"") // "Warning")
-#define KP_MSG_FILE_LINE_RU         ((const unsigned char *)"") // ", file:%s, line:%d")
-#define KP_MSG_ENTRY_ID_RU          ((const unsigned char *)"") // ", Entry Id:%ld")
-#define KP_MSG_ENTRY_RU             ((const unsigned char *)"") // ", Entry: %s")
+#define KP_MSG_ERROR_RU             ((MSG_TYPE)"") // "Error")
+#define KP_MSG_WARNING_RU           ((MSG_TYPE)"") // "Warning")
+#define KP_MSG_FILE_LINE_RU         ((MSG_TYPE)"") // ", file:%s, line:%d")
+#define KP_MSG_ENTRY_ID_RU          ((MSG_TYPE)"") // ", Entry Id:%ld")
+#define KP_MSG_ENTRY_RU             ((MSG_TYPE)"") // ", Entry: %s")
 
-#define KP_MSG_NO_STANDARD_PROG_RU  ((const unsigned char *)"") // "Standard program not set to open given file type")
-#define KP_MSG_WND_NOT_FOUND_RU     ((const unsigned char *)"") // "Window not found")
-#define KP_MSG_PID_NOT_FOUND_RU     ((const unsigned char *)"") // "PID not found")
-#define KP_MSG_NO_SOCKET_RU         ((const unsigned char *)"") // "Socket not created yet")
-#define KP_MSG_SOCK_UNRESOLVED_RU   ((const unsigned char *)"") // "Server address not resolved yet")
+#define KP_MSG_NO_STANDARD_PROG_RU  ((MSG_TYPE)"") // "Standard program not set to open given file type")
+#define KP_MSG_WND_NOT_FOUND_RU     ((MSG_TYPE)"") // "Window not found")
+#define KP_MSG_PID_NOT_FOUND_RU     ((MSG_TYPE)"") // "PID not found")
+#define KP_MSG_NO_SOCKET_RU         ((MSG_TYPE)"") // "Socket not created yet")
+#define KP_MSG_SOCK_UNRESOLVED_RU   ((MSG_TYPE)"") // "Server address not resolved yet")
 
-#define KP_MSG_ERR_OK_RU            ((const unsigned char *)"") // "Operation ended successfully")
-#define KP_MSG_INVALIDARG_RU        ((const unsigned char *)"") // "Invalid parameter")
-#define KP_MSG_NOTIMPL_RU           ((const unsigned char *)"") // "Feature not implemented yet")
-#define KP_MSG_UNEXPECTED_RU        ((const unsigned char *)"") // "Unexpected interface call") // Interface call result: Unexpected error
-#define KP_MSG_FERROR_RU            ((const unsigned char *)"") // "File I/O error")
-#define KP_MSG_SYSTEM_ERROR_RU      ((const unsigned char *)"") // "Internal error")
-#define KP_MSG_EOF_RU               ((const unsigned char *)"") // "Unexpected end of input file")
-#define KP_MSG_FILE_FORMAT_RU       ((const unsigned char *)"") // "Unexpected input file format")
-#define KP_MSG_FILE_NOT_FOUND_RU    ((const unsigned char *)"") // "File not found")
-#define KP_MSG_DIR_ERROR_RU         ((const unsigned char *)"") // "Unable to create file")
-#define KP_MSG_OUTOFMEM_RU          ((const unsigned char *)"") // "Out of memory")
-#define KP_MSG_NO_FILE_RU           ((const unsigned char *)"") // "No file open")
-#define KP_MSG_DOUBLE_UNGET_RU      ((const unsigned char *)"") // "Double unget")
-#define KP_MSG_UNKN_CHR_RU          ((const unsigned char *)"") // "Unknown character")
-#define KP_MSG_COMMAND_ERROR_RU     ((const unsigned char *)"") // "External error")
-#define KP_MSG_BUFFER_OVERFLOW_RU   ((const unsigned char *)"") // "Buffer overflow")
-#define KP_MSG_FONT_UNDEF_RU        ((const unsigned char *)"") // "Font undefined")
-#define KP_MSG_KWD_NOT_FOUND_RU     ((const unsigned char *)"") // "Keyword not found")
-#define KP_MSG_UNKNOWN_SYSTEM_RU    ((const unsigned char *)"") // "Unknown OS version")
-#define KP_MSG_ILL_CODE_RU          ((const unsigned char *)"") // "Illegal registration code")
-#define KP_MSG_CANCELLED_RU         ((const unsigned char *)"") // "Job cancelled")
-#define KP_MSG_DOUBLE_CALL_RU       ((const unsigned char *)"") // "Double call")
-#define KP_MSG_TIMEOUT_RU           ((const unsigned char *)"") // "Timeout")
-#define KP_MSG_OBJ_NOT_FOUND_RU     ((const unsigned char *)"") // "Object not found")
-#define KP_MSG_NO_CONN_RU           ((const unsigned char *)"") // "No connection")
+#define KP_MSG_ERR_OK_RU            ((MSG_TYPE)"") // "Operation ended successfully")
+#define KP_MSG_INVALIDARG_RU        ((MSG_TYPE)"") // "Invalid parameter")
+#define KP_MSG_NOTIMPL_RU           ((MSG_TYPE)"") // "Feature not implemented yet")
+#define KP_MSG_UNEXPECTED_RU        ((MSG_TYPE)"") // "Unexpected interface call") // Interface call result: Unexpected error
+#define KP_MSG_FERROR_RU            ((MSG_TYPE)"") // "File I/O error")
+#define KP_MSG_SYSTEM_ERROR_RU      ((MSG_TYPE)"") // "Internal error")
+#define KP_MSG_EOF_RU               ((MSG_TYPE)"") // "Unexpected end of input file")
+#define KP_MSG_FILE_FORMAT_RU       ((MSG_TYPE)"") // "Unexpected input file format")
+#define KP_MSG_FILE_NOT_FOUND_RU    ((MSG_TYPE)"") // "File not found")
+#define KP_MSG_DIR_ERROR_RU         ((MSG_TYPE)"") // "Unable to create file")
+#define KP_MSG_OUTOFMEM_RU          ((MSG_TYPE)"") // "Out of memory")
+#define KP_MSG_NO_FILE_RU           ((MSG_TYPE)"") // "No file open")
+#define KP_MSG_DOUBLE_UNGET_RU      ((MSG_TYPE)"") // "Double unget")
+#define KP_MSG_UNKN_CHR_RU          ((MSG_TYPE)"") // "Unknown character")
+#define KP_MSG_COMMAND_ERROR_RU     ((MSG_TYPE)"") // "External error")
+#define KP_MSG_BUFFER_OVERFLOW_RU   ((MSG_TYPE)"") // "Buffer overflow")
+#define KP_MSG_FONT_UNDEF_RU        ((MSG_TYPE)"") // "Font undefined")
+#define KP_MSG_KWD_NOT_FOUND_RU     ((MSG_TYPE)"") // "Keyword not found")
+#define KP_MSG_UNKNOWN_SYSTEM_RU    ((MSG_TYPE)"") // "Unknown OS version")
+#define KP_MSG_ILL_CODE_RU          ((MSG_TYPE)"") // "Illegal registration code")
+#define KP_MSG_CANCELLED_RU         ((MSG_TYPE)"") // "Job cancelled")
+#define KP_MSG_DOUBLE_CALL_RU       ((MSG_TYPE)"") // "Double call")
+#define KP_MSG_TIMEOUT_RU           ((MSG_TYPE)"") // "Timeout")
+#define KP_MSG_OBJ_NOT_FOUND_RU     ((MSG_TYPE)"") // "Object not found")
+#define KP_MSG_NO_CONN_RU           ((MSG_TYPE)"") // "No connection")
 
-#define KP_MSG_TRANS_ERR_RU         ((const unsigned char *)"") // "Transfer error")
-#define KP_MSG_TRANS_ERR_1_RU       ((const unsigned char *)"") // "Transfer error, repeat the download procedure, please"
+#define KP_MSG_TRANS_ERR_RU         ((MSG_TYPE)"") // "Transfer error")
+#define KP_MSG_TRANS_ERR_1_RU       ((MSG_TYPE)"") // "Transfer error, repeat the download procedure, please"
 
-#define KP_MSG_REFUSED_RU           ((const unsigned char *)"") // "Registration refused")
-#define KP_MSG_ACCESS_DENIED_RU     ((const unsigned char *)"") // "Access denied")
-#define KP_MSG_ILLEGAL_CHARACTER_RU ((const unsigned char *)"") // "Unexpected character")
-#define KP_MSG_DIV_ZERO_RU          ((const unsigned char *)"") // "Division by zero")
-#define KP_MSG_ILLMATHARG_RU        ((const unsigned char *)"") // "Illegal math argument")
-#define KP_MSG_ILLFUNC_RU           ((const unsigned char *)"") // "Illegal function call")
+#define KP_MSG_REFUSED_RU           ((MSG_TYPE)"") // "Registration refused")
+#define KP_MSG_ACCESS_DENIED_RU     ((MSG_TYPE)"") // "Access denied")
+#define KP_MSG_ILLEGAL_CHARACTER_RU ((MSG_TYPE)"") // "Unexpected character")
+#define KP_MSG_DIV_ZERO_RU          ((MSG_TYPE)"") // "Division by zero")
+#define KP_MSG_ILLMATHARG_RU        ((MSG_TYPE)"") // "Illegal math argument")
+#define KP_MSG_ILLFUNC_RU           ((MSG_TYPE)"") // "Illegal function call")
 
-#define KP_MSG_NOTINST_RU           ((const unsigned char *)"") // "Program not yet installed or installation is damaged, repeat the installation procedure again, please")
-#define KP_MSG_NOTINST_S_RU         ((const unsigned char *)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
-#define KP_MSG_NOTINST_DELETE_RU    ((const unsigned char *)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_RU           ((MSG_TYPE)"") // "Program not yet installed or installation is damaged, repeat the installation procedure again, please")
+#define KP_MSG_NOTINST_S_RU         ((MSG_TYPE)"") // "Produktas „%s“ neįdiegtas arba jo diegimas sugedo, pakartokite diegimo procedūrą"
+#define KP_MSG_NOTINST_DELETE_RU    ((MSG_TYPE)"") // "Produktas neįdiegtas arba jo diegimas sugedo, produktą panaikinkite ir pakartokite diegimo procedūrą"
 
-#define KP_MSG_MSG_FORMAT_RU        ((const unsigned char *)"") // "Illegal message format")
-#define KP_MSG_OBSOLETE_RU          ((const unsigned char *)"") // "Obsolete function call")
+#define KP_MSG_MSG_FORMAT_RU        ((MSG_TYPE)"") // "Illegal message format")
+#define KP_MSG_OBSOLETE_RU          ((MSG_TYPE)"") // "Obsolete function call")
 
-#define KP_MSG_ERROR_HELP_RU        ((const unsigned char *)"") // ".  Technical support by e-mail %s")
-#define KP_MSG_ERROR_HELP_REST_RU   ((const unsigned char *)"") // "   For further information look file %s")
+#define KP_MSG_ERROR_HELP_RU        ((MSG_TYPE)"") // ".  Technical support by e-mail %s")
+#define KP_MSG_ERROR_HELP_REST_RU   ((MSG_TYPE)"") // "   For further information look file %s")
 
-#define KP_MSG_WSAEACCES_RU               ((const unsigned char *)"") // "Permission denied")
-#define KP_MSG_WSAEADDRINUSE_RU           ((const unsigned char *)"") // "Address already in use")
-#define KP_MSG_WSAEADDRNOTAVAIL_RU        ((const unsigned char *)"") // "Cannot assign requested address")
-#define KP_MSG_WSAEAFNOSUPPORT_RU         ((const unsigned char *)"") // "Address family not supported by protocol family")
-#define KP_MSG_WSAEALREADY_RU             ((const unsigned char *)"") // "Operation already in progress")
-#define KP_MSG_WSAECONNABORTED_RU         ((const unsigned char *)"") // "Software caused connection abort")
-#define KP_MSG_WSAECONNREFUSED_RU         ((const unsigned char *)"") // "Connection refused")
-#define KP_MSG_WSAECONNRESET_RU           ((const unsigned char *)"") // "Connection reset by peer")
-#define KP_MSG_WSAEDESTADDRREQ_RU         ((const unsigned char *)"") // "Destination address required")
-#define KP_MSG_WSAEFAULT_RU               ((const unsigned char *)"") // "Bad address")
-#define KP_MSG_WSAEHOSTDOWN_RU            ((const unsigned char *)"") // "Host is down")
-#define KP_MSG_WSAEHOSTUNREACH_RU         ((const unsigned char *)"") // "No route to host")
-#define KP_MSG_WSAEINPROGRESS_RU          ((const unsigned char *)"") // "Operation now in progress")
-#define KP_MSG_WSAEINTR_RU                ((const unsigned char *)"") // "Interrupted function call")
-#define KP_MSG_WSAEINVAL_RU               ((const unsigned char *)"") // "Invalid argument")
-#define KP_MSG_WSAEISCONN_RU              ((const unsigned char *)"") // "Socket is already connected")
-#define KP_MSG_WSAEMFILE_RU               ((const unsigned char *)"") // "Too many open files")
-#define KP_MSG_WSAEMSGSIZE_RU             ((const unsigned char *)"") // "Message too long")
-#define KP_MSG_WSAENETDOWN_RU             ((const unsigned char *)"") // "Network is down")
-#define KP_MSG_WSAENETRESET_RU            ((const unsigned char *)"") // "Network dropped connection on reset")
-#define KP_MSG_WSAENETUNREACH_RU          ((const unsigned char *)"") // "Network is unreachable")
-#define KP_MSG_WSAENOBUFS_RU              ((const unsigned char *)"") // "No buffer space available")
-#define KP_MSG_WSAENOPROTOOPT_RU          ((const unsigned char *)"") // "Bad protocol option")
-#define KP_MSG_WSAENOTCONN_RU             ((const unsigned char *)"") // "Socket is not connected")
-#define KP_MSG_WSAENOTSOCK_RU             ((const unsigned char *)"") // "Socket operation on non-socket")
-#define KP_MSG_WSAEOPNOTSUPP_RU           ((const unsigned char *)"") // "Operation not supported")
-#define KP_MSG_WSAEPFNOSUPPORT_RU         ((const unsigned char *)"") // "Protocol family not supported")
-#define KP_MSG_WSAEPROCLIM_RU             ((const unsigned char *)"") // "Too many processes")
-#define KP_MSG_WSAEPROTONOSUPPORT_RU      ((const unsigned char *)"") // "Protocol not supported")
-#define KP_MSG_WSAEPROTOTYPE_RU           ((const unsigned char *)"") // "Protocol wrong type for socket")
-#define KP_MSG_WSAESHUTDOWN_RU            ((const unsigned char *)"") // "Cannot send after socket shutdown")
-#define KP_MSG_WSAESOCKTNOSUPPORT_RU      ((const unsigned char *)"") // "Socket type not supported")
-#define KP_MSG_WSAETIMEDOUT_RU            ((const unsigned char *)"") // "Connection timed out")
-#define KP_MSG_WSATYPE_NOT_FOUND_RU       ((const unsigned char *)"") // "class type not found")
-#define KP_MSG_WSAEWOULDBLOCK_RU          ((const unsigned char *)"") // "Resource temporarily unavailable")
-#define KP_MSG_WSAHOST_NOT_FOUND_RU       ((const unsigned char *)"") // "Host not found")
-#define KP_MSG_WSA_INVALID_HANDLE_RU      ((const unsigned char *)"") // "Specified event object handle is invalid")
-#define KP_MSG_WSA_INVALID_PARAMETER_RU   ((const unsigned char *)"") // "One or more parameters are invalid")
-#define KP_MSG_WSAINVALIDPROCTABLE_RU     ((const unsigned char *)"") // "Invalid procedure table from service provider")
-#define KP_MSG_WSAINVALIDPROVIDER_RU      ((const unsigned char *)"") // "Invalid service provider version number")
-#define KP_MSG_WSA_IO_INCOMPLETE_RU       ((const unsigned char *)"") // "Overlapped I/O event object not in signaled state")
-#define KP_MSG_WSA_IO_PENDING_RU          ((const unsigned char *)"") // "Overlapped operations will complete later")
+#define KP_MSG_WSAEACCES_RU               ((MSG_TYPE)"") // "Permission denied")
+#define KP_MSG_WSAEADDRINUSE_RU           ((MSG_TYPE)"") // "Address already in use")
+#define KP_MSG_WSAEADDRNOTAVAIL_RU        ((MSG_TYPE)"") // "Cannot assign requested address")
+#define KP_MSG_WSAEAFNOSUPPORT_RU         ((MSG_TYPE)"") // "Address family not supported by protocol family")
+#define KP_MSG_WSAEALREADY_RU             ((MSG_TYPE)"") // "Operation already in progress")
+#define KP_MSG_WSAECONNABORTED_RU         ((MSG_TYPE)"") // "Software caused connection abort")
+#define KP_MSG_WSAECONNREFUSED_RU         ((MSG_TYPE)"") // "Connection refused")
+#define KP_MSG_WSAECONNRESET_RU           ((MSG_TYPE)"") // "Connection reset by peer")
+#define KP_MSG_WSAEDESTADDRREQ_RU         ((MSG_TYPE)"") // "Destination address required")
+#define KP_MSG_WSAEFAULT_RU               ((MSG_TYPE)"") // "Bad address")
+#define KP_MSG_WSAEHOSTDOWN_RU            ((MSG_TYPE)"") // "Host is down")
+#define KP_MSG_WSAEHOSTUNREACH_RU         ((MSG_TYPE)"") // "No route to host")
+#define KP_MSG_WSAEINPROGRESS_RU          ((MSG_TYPE)"") // "Operation now in progress")
+#define KP_MSG_WSAEINTR_RU                ((MSG_TYPE)"") // "Interrupted function call")
+#define KP_MSG_WSAEINVAL_RU               ((MSG_TYPE)"") // "Invalid argument")
+#define KP_MSG_WSAEISCONN_RU              ((MSG_TYPE)"") // "Socket is already connected")
+#define KP_MSG_WSAEMFILE_RU               ((MSG_TYPE)"") // "Too many open files")
+#define KP_MSG_WSAEMSGSIZE_RU             ((MSG_TYPE)"") // "Message too long")
+#define KP_MSG_WSAENETDOWN_RU             ((MSG_TYPE)"") // "Network is down")
+#define KP_MSG_WSAENETRESET_RU            ((MSG_TYPE)"") // "Network dropped connection on reset")
+#define KP_MSG_WSAENETUNREACH_RU          ((MSG_TYPE)"") // "Network is unreachable")
+#define KP_MSG_WSAENOBUFS_RU              ((MSG_TYPE)"") // "No buffer space available")
+#define KP_MSG_WSAENOPROTOOPT_RU          ((MSG_TYPE)"") // "Bad protocol option")
+#define KP_MSG_WSAENOTCONN_RU             ((MSG_TYPE)"") // "Socket is not connected")
+#define KP_MSG_WSAENOTSOCK_RU             ((MSG_TYPE)"") // "Socket operation on non-socket")
+#define KP_MSG_WSAEOPNOTSUPP_RU           ((MSG_TYPE)"") // "Operation not supported")
+#define KP_MSG_WSAEPFNOSUPPORT_RU         ((MSG_TYPE)"") // "Protocol family not supported")
+#define KP_MSG_WSAEPROCLIM_RU             ((MSG_TYPE)"") // "Too many processes")
+#define KP_MSG_WSAEPROTONOSUPPORT_RU      ((MSG_TYPE)"") // "Protocol not supported")
+#define KP_MSG_WSAEPROTOTYPE_RU           ((MSG_TYPE)"") // "Protocol wrong type for socket")
+#define KP_MSG_WSAESHUTDOWN_RU            ((MSG_TYPE)"") // "Cannot send after socket shutdown")
+#define KP_MSG_WSAESOCKTNOSUPPORT_RU      ((MSG_TYPE)"") // "Socket type not supported")
+#define KP_MSG_WSAETIMEDOUT_RU            ((MSG_TYPE)"") // "Connection timed out")
+#define KP_MSG_WSATYPE_NOT_FOUND_RU       ((MSG_TYPE)"") // "class type not found")
+#define KP_MSG_WSAEWOULDBLOCK_RU          ((MSG_TYPE)"") // "Resource temporarily unavailable")
+#define KP_MSG_WSAHOST_NOT_FOUND_RU       ((MSG_TYPE)"") // "Host not found")
+#define KP_MSG_WSA_INVALID_HANDLE_RU      ((MSG_TYPE)"") // "Specified event object handle is invalid")
+#define KP_MSG_WSA_INVALID_PARAMETER_RU   ((MSG_TYPE)"") // "One or more parameters are invalid")
+#define KP_MSG_WSAINVALIDPROCTABLE_RU     ((MSG_TYPE)"") // "Invalid procedure table from service provider")
+#define KP_MSG_WSAINVALIDPROVIDER_RU      ((MSG_TYPE)"") // "Invalid service provider version number")
+#define KP_MSG_WSA_IO_INCOMPLETE_RU       ((MSG_TYPE)"") // "Overlapped I/O event object not in signaled state")
+#define KP_MSG_WSA_IO_PENDING_RU          ((MSG_TYPE)"") // "Overlapped operations will complete later")
 
-#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_RU   ((const unsigned char *)"") // "Insufficient memory available")
-#define KP_MSG_WSANOTINITIALISED_RU       ((const unsigned char *)"") // "Successful WSAStartup not yet performed")
-#define KP_MSG_WSANO_DATA_RU              ((const unsigned char *)"") // "Valid name, no data record of requested type")
-#define KP_MSG_WSANO_RECOVERY_RU          ((const unsigned char *)"") // "this is a non-recoverable error")
-#define KP_MSG_WSAPROVIDERFAILEDINIT_RU   ((const unsigned char *)"") // "Unable to initialize a service provider")
-#define KP_MSG_WSASYSCALLFAILURE_RU       ((const unsigned char *)"") // "System call failure")
-#define KP_MSG_WSASYSNOTREADY_RU          ((const unsigned char *)"") // "Network subsystem is unavailable")
-#define KP_MSG_WSATRY_AGAIN_RU            ((const unsigned char *)"") // "Non-authoritative host not found")
-#define KP_MSG_WSAVERNOTSUPPORTED_RU      ((const unsigned char *)"") // "WINSOCK.DLL version out of range")
-#define KP_MSG_WSAEDISCON_RU              ((const unsigned char *)"") // "Graceful shutdown in progress")
-#define KP_MSG_WSA_OPERATION_ABORTED_RU   ((const unsigned char *)"") // "Overlapped operation aborted")
+#define KP_MSG_WSA_NOT_ENOUGH_MEMORY_RU   ((MSG_TYPE)"") // "Insufficient memory available")
+#define KP_MSG_WSANOTINITIALISED_RU       ((MSG_TYPE)"") // "Successful WSAStartup not yet performed")
+#define KP_MSG_WSANO_DATA_RU              ((MSG_TYPE)"") // "Valid name, no data record of requested type")
+#define KP_MSG_WSANO_RECOVERY_RU          ((MSG_TYPE)"") // "this is a non-recoverable error")
+#define KP_MSG_WSAPROVIDERFAILEDINIT_RU   ((MSG_TYPE)"") // "Unable to initialize a service provider")
+#define KP_MSG_WSASYSCALLFAILURE_RU       ((MSG_TYPE)"") // "System call failure")
+#define KP_MSG_WSASYSNOTREADY_RU          ((MSG_TYPE)"") // "Network subsystem is unavailable")
+#define KP_MSG_WSATRY_AGAIN_RU            ((MSG_TYPE)"") // "Non-authoritative host not found")
+#define KP_MSG_WSAVERNOTSUPPORTED_RU      ((MSG_TYPE)"") // "WINSOCK.DLL version out of range")
+#define KP_MSG_WSAEDISCON_RU              ((MSG_TYPE)"") // "Graceful shutdown in progress")
+#define KP_MSG_WSA_OPERATION_ABORTED_RU   ((MSG_TYPE)"") // "Overlapped operation aborted")
 
-#define KP_MSG_OUT_OF_MEM_RES_RU          ((const unsigned char *)"") // "The operating system is out of memory or resources")
-#define KP_MSG_ERROR_FILE_NOT_FOUND_RU    ((const unsigned char *)"") // "The file specified was not found")
-#define KP_MSG_ERROR_PATH_NOT_FOUND_RU    ((const unsigned char *)"") // "The path specified was not found")
-#define KP_MSG_ERROR_BAD_FORMAT_RU        ((const unsigned char *)"") // "The .exe file is invalid (non-Win32(r) .exe or error in .exe image)")
-#define KP_MSG_SE_ERR_ACCESSDENIED_RU     ((const unsigned char *)"") // "The operating system denied access to the specified file")
-#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_RU  ((const unsigned char *)"") // "The file name association is incomplete or invalid")
-#define KP_MSG_SE_ERR_DDEBUSY_RU          ((const unsigned char *)"") // "The DDE transaction could not be completed because other DDE transactions were being processed")
-#define KP_MSG_SE_ERR_DDEFAIL_RU          ((const unsigned char *)"") // "The DDE transaction failed")
-#define KP_MSG_SE_ERR_DDETIMEOUT_RU       ((const unsigned char *)"") // "The DDE transaction could not be completed because the request timed out")
-#define KP_MSG_SE_ERR_DLLNOTFOUND_RU      ((const unsigned char *)"") // "The specified dynamic-link library was not found")
-#define KP_MSG_SE_ERR_FNF_RU              ((const unsigned char *)"") // "The specified file was not found")
-#define KP_MSG_SE_ERR_NOASSOC_RU          ((const unsigned char *)"") // "There is no application associated with the given file name extension")
-#define KP_MSG_SE_ERR_OOM_RU              ((const unsigned char *)"") // "There was not enough memory to complete the operation")
-#define KP_MSG_SE_ERR_PNF_RU              ((const unsigned char *)"") // "The specified path was not found")
-#define KP_MSG_SE_ERR_SHARE_RU            ((const unsigned char *)"") // "A sharing violation occurred")
+#define KP_MSG_OUT_OF_MEM_RES_RU          ((MSG_TYPE)"") // "The operating system is out of memory or resources")
+#define KP_MSG_ERROR_FILE_NOT_FOUND_RU    ((MSG_TYPE)"") // "The file specified was not found")
+#define KP_MSG_ERROR_PATH_NOT_FOUND_RU    ((MSG_TYPE)"") // "The path specified was not found")
+#define KP_MSG_ERROR_BAD_FORMAT_RU        ((MSG_TYPE)"") // "The .exe file is invalid (non-Win32(r) .exe or error in .exe image)")
+#define KP_MSG_SE_ERR_ACCESSDENIED_RU     ((MSG_TYPE)"") // "The operating system denied access to the specified file")
+#define KP_MSG_SE_ERR_ASSOCINCOMPLETE_RU  ((MSG_TYPE)"") // "The file name association is incomplete or invalid")
+#define KP_MSG_SE_ERR_DDEBUSY_RU          ((MSG_TYPE)"") // "The DDE transaction could not be completed because other DDE transactions were being processed")
+#define KP_MSG_SE_ERR_DDEFAIL_RU          ((MSG_TYPE)"") // "The DDE transaction failed")
+#define KP_MSG_SE_ERR_DDETIMEOUT_RU       ((MSG_TYPE)"") // "The DDE transaction could not be completed because the request timed out")
+#define KP_MSG_SE_ERR_DLLNOTFOUND_RU      ((MSG_TYPE)"") // "The specified dynamic-link library was not found")
+#define KP_MSG_SE_ERR_FNF_RU              ((MSG_TYPE)"") // "The specified file was not found")
+#define KP_MSG_SE_ERR_NOASSOC_RU          ((MSG_TYPE)"") // "There is no application associated with the given file name extension")
+#define KP_MSG_SE_ERR_OOM_RU              ((MSG_TYPE)"") // "There was not enough memory to complete the operation")
+#define KP_MSG_SE_ERR_PNF_RU              ((MSG_TYPE)"") // "The specified path was not found")
+#define KP_MSG_SE_ERR_SHARE_RU            ((MSG_TYPE)"") // "A sharing violation occurred")
 
-#define KP_MSG_FIRST_TIME_ADMIN_RU        ((const unsigned char *)"") // "Starting the program first time administrator\n rights are necessary. Run the program again as privileged user.")
+#define KP_MSG_FIRST_TIME_ADMIN_RU        ((MSG_TYPE)"") // "Starting the program first time administrator\n rights are necessary. Run the program again as privileged user.")
 #define KP_MSG_NOW_NOT_ADMIN_RU           KP_MSG_NOT_ADMIN
-#define KP_MSG_NOT_ADMIN_RU               ((const unsigned char *)"") // "Run the program again as ordinary user")
-#define KP_MSG_COPY_FILE_ACCESS_DENIED_RU ((const unsigned char *)"") // "Unsuccessfull file copy operation, run the program again as privileged user")
+#define KP_MSG_NOT_ADMIN_RU               ((MSG_TYPE)"") // "Run the program again as ordinary user")
+#define KP_MSG_COPY_FILE_ACCESS_DENIED_RU ((MSG_TYPE)"") // "Unsuccessfull file copy operation, run the program again as privileged user")
 
-#define KP_PROGRESS_TITLE_RU              ((const unsigned char *)"") // "Wait...")
-#define KP_MSG_DELETING_FILE_RU           ((const unsigned char *)"") // "Deleting file %s.%s...")
-#define KP_MSG_COPYING_RU                 ((const unsigned char *)"") // "Copying file...")
-#define KP_MSG_COPYING_FILE_RU            ((const unsigned char *)"") // "Copying file %s.%s...")
-#define KP_MSG_COPYING_DIR_RU             ((const unsigned char *)"") // "Copying folder %s.%s...")
+#define KP_PROGRESS_TITLE_RU              ((MSG_TYPE)"") // "Wait...")
+#define KP_MSG_DELETING_FILE_RU           ((MSG_TYPE)"") // "Deleting file %s.%s...")
+#define KP_MSG_COPYING_RU                 ((MSG_TYPE)"") // "Copying file...")
+#define KP_MSG_COPYING_FILE_RU            ((MSG_TYPE)"") // "Copying file %s.%s...")
+#define KP_MSG_COPYING_DIR_RU             ((MSG_TYPE)"") // "Copying folder %s.%s...")
 
-#define KP_MSG_NEG_ANSW_RU                ((const unsigned char *)"") // "Neigiamas atsakymas")
+#define KP_MSG_NEG_ANSW_RU                ((MSG_TYPE)"") // "Neigiamas atsakymas")
 
-#define KP_MSG_UNABLE_TO_EXECUTE_RU       ((const unsigned char *)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
+#define KP_MSG_UNABLE_TO_EXECUTE_RU       ((MSG_TYPE)"") // "Komandos %s įvykdyti negaliu – patikrinkite, ar teisingai įdiegėte visus sistemos komponentus"
 
-#define KP_MSG_FLASH_PLAYER_INSTALL_RU    ((const unsigned char *)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
+#define KP_MSG_FLASH_PLAYER_INSTALL_RU    ((MSG_TYPE)"") // "Dabar bus įdiegtas Macromedia Flash grotuvas. Vykdykite tolesnius diegimo programos nurodymus."
 
-#define KP_MSG_FILE_CHANGED_RU            ((const unsigned char *)"") // "Failas pasikeitė"
+#define KP_MSG_FILE_CHANGED_RU            ((MSG_TYPE)"") // "Failas pasikeitė"
 
-#define KP_MSG_ALL_FILES_RU               ((const unsigned char *)"") // "Visi failai (*.*)"
-#define KP_MSG_SAVE_AS_RU                 ((const unsigned char *)"") // "Įrašyti kaip"
+#define KP_MSG_ALL_FILES_RU               ((MSG_TYPE)"") // "Visi failai (*.*)"
+#define KP_MSG_SAVE_AS_RU                 ((MSG_TYPE)"") // "Įrašyti kaip"
 
-#define KP_MSG_FILE_EXISTS_RU             ((const unsigned char *)"") // "Failas %s jau yra, perrašyti?"
+#define KP_MSG_FILE_EXISTS_RU             ((MSG_TYPE)"") // "Failas %s jau yra, perrašyti?"
 
-#define KP_MSG_DIAG_MSG_RU                ((const unsigned char *)"") // "Formuojamas diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_TITLE_RU          ((const unsigned char *)"") // "Diagnostinis pranešimas"
-#define KP_MSG_DIAG_MSG_EXPL_RU           ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
-#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_RU   ((const unsigned char *)"") // "Jūsų e-pašto adresas:")
-#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_RU ((const unsigned char *)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
-#define KP_MSG_DIAG_MSG_FILE_PROMPT_RU    ((const unsigned char *)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
+#define KP_MSG_DIAG_MSG_RU                ((MSG_TYPE)"") // "Formuojamas diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_TITLE_RU          ((MSG_TYPE)"") // "Diagnostinis pranešimas"
+#define KP_MSG_DIAG_MSG_EXPL_RU           ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite pateiktus laukus. Pranešimas apie kompiuterio konfigūraciją, produktą bei klaidos pobūdį bus išsiųstas internetu į produkto gamintojo tarnybinę stotį. Jei po kurio laiko su Jumis nebus susisiekta Jūsų nurodytu pašto adresu, kreipkitės adresu %s")
+#define KP_MSG_DIAG_MSG_EMAIL_PROMPT_RU   ((MSG_TYPE)"") // "Jūsų e-pašto adresas:")
+#define KP_MSG_DIAG_MSG_COMMENTS_PROMPT_RU ((MSG_TYPE)"") // "Komentarai apie klaidos atsiradimo aplinkybes:")
+#define KP_MSG_DIAG_MSG_FILE_PROMPT_RU    ((MSG_TYPE)"") // "Papildomas failas, kurį norėtumėte nusiųsti (pvz., ekrano kopijos paveikslėlis):")
 
-#define KP_MSG_BAD_EMAIL_ADDRESS_RU       ((const unsigned char *)"") // "Neteisingas e-pašto adresas"
+#define KP_MSG_BAD_EMAIL_ADDRESS_RU       ((MSG_TYPE)"") // "Neteisingas e-pašto adresas"
 
-#define KP_MSG_DIAG_MSG_SEL_FILE_RU       ((const unsigned char *)"") // "Pasirinkite siunčiamą failą"
+#define KP_MSG_DIAG_MSG_SEL_FILE_RU       ((MSG_TYPE)"") // "Pasirinkite siunčiamą failą"
 
-#define KP_MSG_DIAG_MSG_SUCCEEDED_RU      ((const unsigned char *)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
+#define KP_MSG_DIAG_MSG_SUCCEEDED_RU      ((MSG_TYPE)"") // "Diagnostinis pranešimas nusiųstas sėkmingai"
 
-#define KP_MSG_DIAG_MSG_EXPL1_RU          ((const unsigned char *)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
-#define KP_MSG_SIUSTI_RU                  ((const unsigned char *)"") // "Siųsti"
-#define KP_MSG_DIAG_MSG_EXPL2_RU          ((const unsigned char *)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
+#define KP_MSG_DIAG_MSG_EXPL1_RU          ((MSG_TYPE)"") // "Jei norite siųsti diagnostinį pranešimą, spragtelėkite „Siųsti“, jei ne – „Atšaukti“."
+#define KP_MSG_SIUSTI_RU                  ((MSG_TYPE)"") // "Siųsti"
+#define KP_MSG_DIAG_MSG_EXPL2_RU          ((MSG_TYPE)"") // "Jei norite nusiųsti diagnostinį pranešimą gamintojui, užpildykite Jūsų e-pašto adreso lauką ir spragtelėkite mygtuką „Siųsti“."
 
-#define KP_MSG_DOWNLOADING_RU             ((const unsigned char *)"") // "Siunčiamas failas..."
-#define KP_MSG_DOWNLOADING_FILE_RU        ((const unsigned char *)"") // "Siunčiamas failas %s.%s..."
+#define KP_MSG_DOWNLOADING_RU             ((MSG_TYPE)"") // "Siunčiamas failas..."
+#define KP_MSG_DOWNLOADING_FILE_RU        ((MSG_TYPE)"") // "Siunčiamas failas %s.%s..."
 
-#define KP_MSG_FIREWALL_RU                ((const unsigned char *)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
+#define KP_MSG_FIREWALL_RU                ((MSG_TYPE)"") // "Neleista prisijungti prie interneto. Patikrinkite Jūsų ugniasienės parinktis – pabandykite įtraukti %s į sąrašą programų, kurioms leidžiama kreiptis į internetą."
 
-#define KP_MSG_POINTER_RU                 ((const unsigned char *)"") // "Bloga rodyklė"
+#define KP_MSG_POINTER_RU                 ((MSG_TYPE)"") // "Bloga rodyklė"
 
-#define KP_MSG_LOG_STARTED_RU             ((const unsigned char *)"") // "Žurnalas išvedamas ir į failą %s"
-#define KP_MSG_CONS_TITLE_RU              ((const unsigned char *)"") // "%s: Pranešimų žurnalas"
+#define KP_MSG_LOG_STARTED_RU             ((MSG_TYPE)"") // "Žurnalas išvedamas ir į failą %s"
+#define KP_MSG_CONS_TITLE_RU              ((MSG_TYPE)"") // "%s: Pranešimų žurnalas"
 
-#define KP_MSG_UNHANDLED_EXCEPTION_RU     ((const unsigned char *)"") // "Neapdorojamas trūkis"
+#define KP_MSG_UNHANDLED_EXCEPTION_RU     ((MSG_TYPE)"") // "Neapdorojamas trūkis"
 
-#define KP_MSG_DATA_FORMAT_RU             ((const unsigned char *)"") // "Neteisingas duomenų formatas"
-#define KP_MSG_DBERROR_RU                 ((const unsigned char *)"") // "Duomenų bazės klaida"
+#define KP_MSG_DATA_FORMAT_RU             ((MSG_TYPE)"") // "Neteisingas duomenų formatas"
+#define KP_MSG_DBERROR_RU                 ((MSG_TYPE)"") // "Duomenų bazės klaida"
 
 #endif // #if ((MsgLang != KpLangSel_p) && (MsgLang != KpLangRu_p) && (MsgLang != KpLangRu_1251_p) && (MsgLang != KpLangRu_0_p))
 

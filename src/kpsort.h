@@ -33,32 +33,36 @@ extern int iCharWeigths[C_CharSize0];        // sort order definition
 //    returns TV_TG_NoKey (-1) if not found
 extern int GetKwrdIndex
 (
-const uchar *p_lpszKeywrd,
-const uchar * const *p_plpszKeytable,         
+const uchar *p_pszKeywrd,
+const uchar *
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+   const    // gcc 5.4.0 throws an error: duplicate ‘const’
+#endif
+      *p_ppszKeytable,
                         //      array of pointers to all
-                        //      keywords - null terminated strings, 
+                        //      keywords -- null terminated strings,
                         //      not longer than KP_KWD_LEN bytes each;
-const int p_iTabSize,   //  number of elements in p_plpszKeytable[]
-                        //  if p_iTabSize <0, then end of keyword table
+const int p_iTabSize,   //  number of elements in p_ppszKeytable[]
+                        //  if p_iTabSize < 0, then end of keyword table
                         //      is marked by NULL pointer,
-                        //  if p_iTabSize >=0, then all p_iTabSize records
+                        //  if p_iTabSize >= 0, then all p_iTabSize records
                         //      will be tested, regardless if they are NULL
                         //      or not.
 bool p_bCaseSens,       //  case sensitivity flag
-bool p_bWholeWords      //  search for p_lpszKeywrd as whole word,
+bool p_bWholeWords      //  search for p_pszKeywrd as whole word,
 );                      //      otherwise - only starting characters up to keyword length currently checked
 
 
 extern int GetKwrdIndexArr
 (
-const uchar *p_lpszKeywrd,
-const uchar *p_plpszKeytable, // const uchar p_plpszKeytable[][p_iKeySize]   
-const int p_iTabSize,   //  number of elements in p_plpszKeytable[]
-                        //  if p_iTabSize <0, then end of keyword table
-                        //      is marked by empty strint "" (p_plpszKeytable[ix][0] == Nul),
+const uchar *p_pszKeywrd,
+const uchar *p_ppszKeytable, // const uchar p_ppszKeytable[][p_iKeySize]
+const int p_iTabSize,   //  number of elements in p_ppszKeytable[]
+                        //  if p_iTabSize < 0, then end of keyword table
+                        //      is marked by empty strint "" (p_ppszKeytable[ix][0] == Nul),
 bool p_bCaseSens,
 bool p_bWholeWords,
-int p_iKeySize          //  size of one p_plpszKeytable[] element                        
+int p_iKeySize          //  size of one p_ppszKeytable[] element
 );
 
 #endif // #ifndef KPSORT_INCLUDED

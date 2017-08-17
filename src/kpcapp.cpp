@@ -58,7 +58,7 @@ KpLang KpCommonApp::m_iMsgLangOff = KpLangEn;
 
 
 // ----------------------------------
-KpCommonApp::KpCommonApp(const KpStrPtr p_pszProdName, int p_iProdVer)
+KpCommonApp::KpCommonApp(const uchar *p_pszProdName, int p_iProdVer)
 {
     m_iMsgLangOff = KpLangEn;
 #ifdef __WIN32__
@@ -93,7 +93,7 @@ KpCommonApp::~KpCommonApp(void){}
 
 
 // ----------------------------------
-void KpCommonApp::Init(HINSTANCE p_hInstance, const KpStrPtr p_pszCmdLine, const void *p_pStackTop)
+void KpCommonApp::Init(HINSTANCE p_hInstance, const uchar *p_pszCmdLine, const void *p_pStackTop)
 {
 #ifdef __WIN32__
     KpInitWindows(p_hInstance);
@@ -112,7 +112,7 @@ static uchar log_fname[KP_MAX_FNAME_LEN + 1];
 
 
 // ----------------------------------
-void KpCommonApp::SetProd(const KpStrPtr p_pszProdName, int p_iProdVer)
+void KpCommonApp::SetProd(const uchar *p_pszProdName, int p_iProdVer)
 {
     KP_ASSERT(p_pszProdName, E_INVALIDARG, null);
     KpError.SetProdName(p_pszProdName);
@@ -121,7 +121,7 @@ void KpCommonApp::SetProd(const KpStrPtr p_pszProdName, int p_iProdVer)
 
 
 // ----------------------------------
-void KpCommonApp::GetAppName(KpStrPtr p_pszNameBuf)
+void KpCommonApp::GetAppName(uchar *p_pszNameBuf)
 {
     KP_ASSERT(p_pszNameBuf, E_INVALIDARG, null);
 
@@ -129,7 +129,7 @@ void KpCommonApp::GetAppName(KpStrPtr p_pszNameBuf)
         strcpy(p_pszNameBuf, m_pszAppName); // tik pirmą kartą būna teisingas kelias, paskui nustatau SetCurrentDirectory() ir santykinis kelias išsiderina
     else
     {
-    KpStrPtr pnts = m_pszCmdLine;
+    uchar *pnts = m_pszCmdLine;
 
     static uchar name_buf_tmp[KP_MAX_FNAME_LEN + 1];
         if (*pnts != '\"')
@@ -137,7 +137,7 @@ void KpCommonApp::GetAppName(KpStrPtr p_pszNameBuf)
             strncpy(name_buf_tmp, pnts, KP_MAX_FNAME_LEN);
             name_buf_tmp[KP_MAX_FNAME_LEN] = Nul;
             
-            pnts = const_cast<KpStrPtr>(strchr(name_buf_tmp, Spc));
+            pnts = const_cast<uchar *>(strchr(name_buf_tmp, Spc));
         }
         else
         {

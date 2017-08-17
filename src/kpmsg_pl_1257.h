@@ -85,8 +85,8 @@
 #define KP_MSG_MSG_FORMAT_PL_1257         ((const unsigned char *)"Bùædny format komunikatu")
 #define KP_MSG_OBSOLETE_PL_1257           ((const unsigned char *)"Stara funkcja")
                                             
-// #define KP_MSG_ERROR_HELP_PL_1257      ((const unsigned char *)".  Po pomoc technicznà zwróã siæ pod adres %s. Do listu zaùàcz plik %s")
-#define KP_MSG_ERROR_HELP_PL_1257         ((const unsigned char *)".  Po pomoc technicznà zwróã siæ pod adres %s")
+// #define KP_MSG_ERROR_HELP_PL_1257      ((const unsigned char *)".  Po pomoc technicznà zwróã siæ pod adres tech@tev.lt. Do listu zaùàcz plik %s")
+#define KP_MSG_ERROR_HELP_PL_1257         ((const unsigned char *)".  Po pomoc technicznà zwróã siæ pod adres pagalba@tev.lt")
 #define KP_MSG_ERROR_HELP_REST_PL_1257    ((const unsigned char *)"   Do listu zaùàcz plik %s z Twego pulpitu.")
                                              
 #define KP_MSG_WSAEACCES_PL_1257               ((const unsigned char *)"Nie masz uprawnienia")
@@ -212,7 +212,7 @@
                                                                         "pola. Wiadomoúã o konfiguracji komputera, produkcie oraz naturze bùædu " \
                                                                         "bædzie wysùana na serwer producenta. Jeýeli w krótkim czasie nie otrzymasz " \
                                                                         "odpowiedzi na swój podany e-mail, skontatuj siæ z producentem piszàc na " \
-                                                                        "adres %s")
+                                                                        "adres pagalba@tev.lt")
 #endif
 #define KP_MSG_DIAG_MSG_EXPL_PL_1257            ((const unsigned char *)"Jeúli chcesz producentowi wysùaã wiadomoúã diagnostycznà, wypeùnij dane pola.")
 

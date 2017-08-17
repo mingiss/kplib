@@ -44,11 +44,11 @@ using namespace std;
 
 void FnameSplit
 (
-    KpStrPtr p_pszDiskBuf,
-    KpStrPtr p_pszPathBuf,
-    KpStrPtr p_pszFNameBuf,
-    KpStrPtr p_pszFTypeBuf,
-    const KpStrPtr p_pszFullName
+    uchar *p_pszDiskBuf,
+    uchar *p_pszPathBuf,
+    uchar *p_pszFNameBuf,
+    uchar *p_pszFTypeBuf,
+    const uchar *p_pszFullName
 )
 {
     KpStdIo::TvFnameSplit(p_pszDiskBuf, p_pszPathBuf, p_pszFNameBuf, p_pszFTypeBuf, p_pszFullName);
@@ -81,11 +81,11 @@ uchar ftype[KP_MAX_FNAME_LEN + 1];
 
 void KpStdIo::TvFnameSplit
 (
-KpStrPtr p_pszDiskBuf,
-KpStrPtr p_pszPathBuf,
-KpStrPtr p_pszFNameBuf,
-KpStrPtr p_pszFTypeBuf,
-const KpStrPtr p_pszFullName
+uchar *p_pszDiskBuf,
+uchar *p_pszPathBuf,
+uchar *p_pszFNameBuf,
+uchar *p_pszFTypeBuf,
+const uchar *p_pszFullName
 )
 {
     KP_ASSERT(p_pszDiskBuf && p_pszPathBuf && p_pszFNameBuf &&
@@ -96,11 +96,11 @@ const KpStrPtr p_pszFullName
 uchar str_buf[KP_MAX_FNAME_LEN + 1];
     strcpy(str_buf, p_pszFullName);
 
-KpStrPtr disk_ptr;
-KpStrPtr path_ptr;
-KpStrPtr fnam_ptr;
-KpStrPtr typ_ptr;
-KpStrPtr pnts;
+uchar *disk_ptr;
+uchar *path_ptr;
+uchar *fnam_ptr;
+uchar *typ_ptr;
+uchar *pnts;
     disk_ptr = pnts = path_ptr = fnam_ptr = typ_ptr = str_buf;
 
     do
@@ -112,7 +112,7 @@ KpStrPtr pnts;
     } while (*pnts);
 
 // type
-    if (typ_ptr <= fnam_ptr) typ_ptr=(KpStrPtr)"";
+    if (typ_ptr <= fnam_ptr) typ_ptr=(uchar *)"";
     else *(typ_ptr++) = Nul;
 
     KP_ASSERT(strlen(typ_ptr) < KP_MAX_FTYPE_LEN, KP_E_BUFFER_OVERFLOW, null);
@@ -166,18 +166,18 @@ return 0;
 #endif
 
 // --------------------------------------
-KpStrPtr fgetss(KpStrPtr buf, int maxnum, FILE *fil)
+uchar *fgetss(uchar *buf, int maxnum, FILE *fil)
 {
-KpStrPtr retstr, pntc;
+uchar *retstr, *pntc;
 
     retstr = NULL;
     fgets((char *)buf, maxnum, fil);
     if ((!feof(fil)) && (!ferror(fil)))
     {
-        pntc = (KpStrPtr)strchr((const char *)buf, Cr);
+        pntc = strchr(buf, Cr);
         if (pntc)
             *pntc = Nul;
-        pntc = (KpStrPtr)strchr((const char *)buf, Lf);
+        pntc = strchr(buf, Lf);
         if (pntc)
             *pntc=Nul;
         retstr = buf;
@@ -189,18 +189,34 @@ return(retstr);
 // -------------------------------------- File I/O traceris
 // *KpFileDescListPtr metodų PLAIN_C wrapperiai
 
-int kpadd_fmode_to_flags(const KpStrPtr p_pszOpenMode)
+int kpadd_fmode_to_flags(const uchar *p_pszOpenMode)
 {
     KP_ASSERT(p_pszOpenMode, E_INVALIDARG, null);
 int fflags = 0;
-    if (strchr(p_pszOpenMode, 'r')) fflags |= _O_RDONLY;
-    if (strchr(p_pszOpenMode, 'w'))
+    if (strchr(
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszOpenMode, 'r')) fflags |= _O_RDONLY;
+    if (strchr(
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszOpenMode, 'w'))
     {
         if (fflags & _O_RDONLY) fflags = (fflags & ~_O_RDONLY) | _O_RDWR | _O_CREAT;
         else fflags |= _O_WRONLY | _O_CREAT;
     }
-    if (strchr(p_pszOpenMode, 'a')) fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
-    if (strchr(p_pszOpenMode, 'b')) fflags |= _O_BINARY;
+    if (strchr(
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszOpenMode, 'a')) fflags = (fflags & ~(_O_RDONLY | _O_RDWR | _O_CREAT)) | _O_WRONLY | _O_APPEND;
+    if (strchr(
+#if (__GNUC__ == 5) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszOpenMode, 'b')) fflags |= _O_BINARY;
     else fflags |= _O_TEXT;
 
 return(fflags);
@@ -241,9 +257,9 @@ return(fflags);
 }
 
 
-KpStrPtr kpadd_open_flags_to_str(int p_iFlags)
+uchar *kpadd_open_flags_to_str(int p_iFlags)
 {
-KpStrPtr fmode = null;
+uchar *fmode = null;
     KP_NEWA(fmode, uchar, 20);
     fmode[0] = Nul;
 
@@ -266,14 +282,14 @@ FILE *ret_file = NULL;
         KP_ASSERT(p_pszFname, E_INVALIDARG, null);
         KP_ASSERT(p_pszOpenMode, E_INVALIDARG, null);
 
-    KpStrPtr fmode = null;
+    uchar *fmode = null;
         KP_NEWA(fmode, uchar, strlen(p_pszOpenMode) + 10);
         strcpy(fmode, p_pszOpenMode);
         if(strchr(fmode, 'b') == null) strcat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai
 
         ret_file = fopen(p_pszFname, (const char *)fmode);
 
-    int fflags = kpadd_fmode_to_flags((const KpStrPtr)p_pszOpenMode);
+    int fflags = kpadd_fmode_to_flags((const uchar *)p_pszOpenMode);
         kpadd_fopen_chkin(p_pszFname, fflags, ret_file, NO_FILE_DESC, 0, p_pszSrcFile, p_iSrcLine);
 
         KP_DELETEA(fmode);
@@ -326,14 +342,14 @@ FILE *ret_file = NULL;
         KP_ASSERT(p_pszFname, E_INVALIDARG, null);
         KP_ASSERT(p_pszOpenMode, E_INVALIDARG, null);
 
-    KpStrPtr fmode = null;
+    uchar *fmode = null;
         KP_NEWA(fmode, uchar, strlen(p_pszOpenMode) + 10);
         strcpy(fmode, p_pszOpenMode);
         if(strchr(fmode, 'b') == null) strcat(fmode, "b"); // atidarinėjam visada binary mode, į tekstą vers I/O wrapperiai
 
         ret_file = fdopen(p_iFileDesc, (const char *)fmode);
 
-    int fflags = kpadd_fmode_to_flags((const KpStrPtr)p_pszOpenMode);
+    int fflags = kpadd_fmode_to_flags((const uchar *)p_pszOpenMode);
         kpadd_fopen_chkin(p_pszFname, fflags, ret_file, p_iFileDesc, 0, p_pszSrcFile, p_iSrcLine);
 
         KP_DELETEA(fmode);
@@ -468,7 +484,7 @@ void kpadd_fopen_chkin(const char *p_pszFname, int p_iFlags,
     {
         KP_ASSERT(KpFileDescListPtr, E_POINTER, null);
 
-        KpFileDescListPtr->RegNewFile((const KpStrPtr)p_pszFname, p_iFlags,
+        KpFileDescListPtr->RegNewFile((const uchar *)p_pszFname, p_iFlags,
             p_pFile, p_iFileDesc, p_hFile);
 #ifdef KPSTDIO_FULL_LOG
         KpFileDescListPtr->PutLogMessage(p_pFile, "Opened: %s", p_pszFname);
@@ -548,7 +564,7 @@ void kpadd_fclose_chkin(const FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile,
 
 uchar str_buf[KP_MAX_FILE_LIN_LEN + 1];
         sprintf((char *)str_buf, ".... kpstdio: kpadd_fclose_chkin(%lx, %d, %lx); file: %s line: %d\n",
-            (unsigned long)p_pFile, p_iFileDesc, p_hFile, p_pszSrcFile, p_iSrcLine);
+            (unsigned long)p_pFile, p_iFileDesc, (unsigned long)p_hFile, p_pszSrcFile, p_iSrcLine);
 
 #ifdef KPSTDIO_FULL_LOG
         KpFileDescListPtr->PutLogMessage(p_pFile, "Closed");
@@ -592,7 +608,7 @@ printf(".... kpstdio: KpFileDesc::InitMembers(%lx)\n", (unsigned long)this);
 }
 
 
-KpFileDesc::KpFileDesc(const KpStrPtr p_pszFileName, int p_iFlags,
+KpFileDesc::KpFileDesc(const uchar *p_pszFileName, int p_iFlags,
     /* const */ FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
 {
     InitMembers();
@@ -668,9 +684,9 @@ void KpFileDesc::PullData(const KpFileDesc *p_pDescObj)
 
 // -----------------------------------------
 #ifdef KPSTDIO_FULL_LOG
-void KpFileDesc::PutLogMessage(const KpStrPtr p_pszFmt, va_list p_Args)
+void KpFileDesc::PutLogMessage(const uchar *p_pszFmt, va_list p_Args)
 {
-KpStrPtr out_str = null;
+uchar *out_str = null;
     KP_NEWA(out_str, uchar, KP_MAX_FILE_LIN_LEN + strlen(p_pszFmt) * 10 + 1);
     vsprintf((char *)out_str, (const char *)p_pszFmt, p_Args);
     strcat(out_str, "\n");
@@ -728,7 +744,7 @@ KpFileDesc *desc_ptr = cur_entry->GetValue();
 
 
 // -----------------------------------------
-KpFileDesc *KpFileDescList::KpFileDescFactory(const KpStrPtr p_pszFileName, int p_iFlags,
+KpFileDesc *KpFileDescList::KpFileDescFactory(const uchar *p_pszFileName, int p_iFlags,
     /* const */ FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
 {
 #ifdef Debug
@@ -744,7 +760,7 @@ return(desc_obj_ptr);
 
 
 // -----------------------------------------
-void KpFileDescList::RegNewFile(const KpStrPtr p_pszFileName, int p_iFlags,
+void KpFileDescList::RegNewFile(const uchar *p_pszFileName, int p_iFlags,
     /* const */ FILE *p_pFile, int p_iFileDesc, HANDLE p_hFile)
 {
 HRESULT retc = S_OK;
@@ -907,7 +923,7 @@ KpTreeEntry<KpFileDesc> *cur_entry = m_pFileList;
 
 // -----------------------------------------
 #ifdef KPSTDIO_FULL_LOG
-void KpFileDescList::PutLogMessage(const FILE *p_pFile, const KpStrPtr p_pszFmt, va_list p_Args)
+void KpFileDescList::PutLogMessage(const FILE *p_pFile, const uchar *p_pszFmt, va_list p_Args)
 {
 HRESULT retc = S_OK;
 uchar out_str[MAX_LONG_HEX_DIGITS + 10];

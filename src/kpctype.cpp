@@ -68,20 +68,29 @@ return(retv);
 
 
 // --------------------------------------------------
-HRESULT TestAllowed
-(
-const KpStrPtr p_pszCheckString,
-const KpStrPtr p_pszCharsAllowed
-)
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+HRESULT TestAllowed(const uchar *p_pszCheckString, const uchar *p_pszCharsAllowed)
 {
 HRESULT retc = S_OK;
 
     KP_ASSERT(p_pszCheckString, E_INVALIDARG, null);
     KP_ASSERT(p_pszCharsAllowed, E_INVALIDARG, null);
 
-const KpStrPtr pntc = p_pszCheckString;
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *pntc =
+#if (__GNUC__ == 5) || (__GNUC_MINOR__ == 4) || (__GNUC_PATCHLEVEL__ == 0)
+        (uchar *)
+#endif
+            p_pszCheckString;
+
     while ((*pntc) && SUCCEEDED(retc))
-        if (strchr(p_pszCharsAllowed, *pntc++) == NULL)
+        if (strchr(
+#if (__GNUC__ == 5) || (__GNUC_MINOR__ == 4) || (__GNUC_PATCHLEVEL__ == 0)
+                (uchar *)
+#endif
+                    p_pszCharsAllowed, *pntc++) == NULL)
             retc = KP_E_UNKN_CHR;
 
 return(retc);
@@ -89,18 +98,23 @@ return(retc);
 
 
 // ----------------------------
-bool KpIsNumber(const KpStrPtr p_pszString)
+bool KpIsNumber(const uchar *p_pszString)
 {
 bool retv = True;
 
     KP_ASSERT(p_pszString, E_INVALIDARG, null);
 
-KpStrPtr buf = null;
+uchar *buf = null;
     KP_NEWA(buf, uchar, strlen(p_pszString) + 1);
     strcpy(buf, p_pszString);
     KpStripLeading(buf);
 
-const KpStrPtr pntc = buf;
+// gcc 5.4.0 does not distinguish between a pointer to const and const pointer
+#if (__GNUC__ != 5) || (__GNUC_MINOR__ != 4) || (__GNUC_PATCHLEVEL__ != 0)
+const
+#endif
+    uchar *pntc = buf;
+
     if (*pntc == Nul) retv = False;
     else
         while ((*pntc) && retv)
@@ -116,19 +130,19 @@ return(retv);
 }
 
 
-bool KpIsHexNum(const KpStrPtr p_pszHexString)
+bool KpIsHexNum(const uchar *p_pszHexString)
 {
-return (SUCCEEDED(TestAllowed(p_pszHexString, (const KpStrPtr)"0123456789ABCDEFabcdef")));
+return (SUCCEEDED(TestAllowed(p_pszHexString, (const uchar *)"0123456789ABCDEFabcdef")));
 }
 
 
-bool KpIsOctNum(const KpStrPtr p_pszOctString)
+bool KpIsOctNum(const uchar *p_pszOctString)
 {
-return (SUCCEEDED(TestAllowed(p_pszOctString, (const KpStrPtr)"01234567")));
+return (SUCCEEDED(TestAllowed(p_pszOctString, (const uchar *)"01234567")));
 }
 
 
-bool KpIsRomNum(const KpStrPtr p_pszRomanString)
+bool KpIsRomNum(const uchar *p_pszRomanString)
 {
-return (SUCCEEDED(TestAllowed(p_pszRomanString, (const KpStrPtr)"IVXLCM")));
+return (SUCCEEDED(TestAllowed(p_pszRomanString, (const uchar *)"IVXLCM")));
 }
