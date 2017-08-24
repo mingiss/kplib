@@ -34,9 +34,25 @@
 // #define DEV_EMAIL "pagalba@tev.lt"
 #define DEV_EMAIL "tex-dev@vtex.lt"
 
+// #define MSVC_EXPRESS     // MSVC Express compiler used -- lack of standard libraries -- libuser32.a, for instance
+
 // -------------------------------------
-#ifdef _MSC_VER
-#ifdef _WIN32
+#if defined(WIN32) || defined(_WIN32)
+#ifndef __WIN32__
 #define __WIN32__
 #endif
+#endif
+
+#ifdef _MSC_VER 
+// #define _X86_
+#endif
+
+#ifdef WIN32
+#define HAVE_STRLWR 1
+#define HAVE__GET_OSFHANDLE 1
+#endif
+
+#ifdef _MSC_VER 
+#define HAVE__ACCESS 1
+#define HAVE__OPEN 1
 #endif
