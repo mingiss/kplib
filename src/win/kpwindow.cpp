@@ -8,8 +8,8 @@
  *
  */
 
-
 #include "envir.h"
+#include "kpstdlib.h"
 
 #ifdef __WIN32__
 
@@ -26,7 +26,6 @@ using namespace std;
 
 #include "res_com.h"
 #include "kperrno.h"
-#include "kpstdlib.h"
 #include "kptt.h"
 #include "kpctype.h"
 #include "kpstring.h"
@@ -47,6 +46,8 @@ int KpCommonApp::m_iWndBorderWdt = KPW_WND_BORDER_WDT_INI;
 
 void KpCommonApp::InitWindowPars(void)
 {
+#ifndef MSVC_EXPRESS
+
 WNDCLASSEX wcx;
 HWND test_wnd = NULL;
 RECT cli_rect;
@@ -168,6 +169,8 @@ HMENU menu = NULL;
 
     if (test_wnd) ::DestroyWindow(test_wnd);
     test_wnd=NULL;
+
+#endif // #ifndef MSVC_EXPRESS
 }
 
 
@@ -188,13 +191,15 @@ void KpCommonApp::KpInitWindows(HINSTANCE p_hInstance)
 #ifndef KP_CONSOLE
 #error Not a console application
 #endif
-    // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 ið MSYS,
-    //      nëra MinGW 4.4.1 ið CodeBlocks 10.05
+    // TODO: GetConsoleWindow() veikia tik su MinGW 4.6.2 iÅ¡ MSYS,
+    //      nÄ—ra MinGW 4.4.1 iÅ¡ CodeBlocks 10.05
         m_hWndParent = GetConsoleWindow(); // = HWND_DESKTOP; 
         KP_ASSERT(m_hWndParent, KP_E_SYSTEM_ERROR,
             "Not a console application, "
             "proper instance handle should be provided");
+#ifndef _WIN64
         m_hInstance = (HINSTANCE)GetWindowLong(m_hWndParent, GWL_HINSTANCE);
+#endif
 // printf("KpCommonApp::KpInitWindows(): %lx %lx\n", m_hInstance,
 //                                                      m_hWndParent);
 
@@ -324,7 +329,7 @@ void KpDrawRect(HDC p_hDC, int p_iX1, int p_iY1, int p_iX2, int p_iY2,
 
 // ----------------------------
 extern HRESULT KpMsgOut(const unsigned char *p_lpszOutStr,
-                            LPCTSTR p_lpszIconID, KpMsgTypes p_iMsgType)
+                            LPCTSTR /* p_lpszIconID */, KpMsgTypes /* p_iMsgType */)
 {
 #ifdef KP_WINDOWED
 // TODO:
