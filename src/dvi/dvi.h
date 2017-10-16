@@ -94,23 +94,230 @@ typedef char String[MAXSTRLEN+1];
 
 // ---------------------------
 // DVI commands
+/*
+tex4ht-c.tex:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Op Codes of Dvi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\<insert rule + move op\><<<
+132 >>>
+
+
+
+\<insert rule + nomove op\><<<
+137 >>>
+
+\<no op\><<<
+138 >>>
+
+\<start page op\><<<
+139 >>>
+
+\<end page op\><<<
+140 >>>
+
+\<sv loc op\><<<
+141 >>>
+
+\<retrieve loc op\><<<
+142 >>>
+
+\<mv hor 1-byte\><<<
+143 >>>
+
+\<mv hor 2-byte\><<<
+144 >>>
+
+\<mv hor 3-byte\><<<
+145 >>>
+
+\<mv hor 4-byte\><<<
+146 >>>
+
+\<mv hor dist dx.1\><<<
+147 >>>
+
+\<dx.1 store and mv hor 1-byte\><<<
+148 >>>
+
+\<dx.1 store and mv hor 2-byte\><<<
+149 >>>
+
+\<dx.1 store and mv hor 3-byte\><<<
+150 >>>
+
+\<dx.1 store and mv hor 4-byte\><<<
+151 >>>
+
+\<mv hor dist dx.2\><<<
+152 >>>
+
+\<dx.2 store and mv hor 1-byte\><<<
+153  >>>
+
+\<dx.2 store and mv hor 2-byte\><<<
+154  >>>
+
+\<dx.2 store and mv hor 3-byte\><<<
+155 >>>
+
+\<dx.2 store and mv hor 4-byte\><<<
+156 >>>
+
+\<mv ver 1-byte\><<<
+157 >>>
+
+\<mv ver 2-byte\><<<
+158 >>>
+
+\<mv ver 3-byte\><<<
+159 >>>
+
+\<mv ver 4-byte\><<<
+160 >>>
+
+\<mv ver dist dy.1\><<<
+161 >>>
+
+\<dy.1 store and mv ver 1-byte\><<<
+162 >>>
+
+\<dy.1 store and mv ver 2-byte\><<<
+163  >>>
+
+\<dy.1 store and mv ver 3-byte\><<<
+164 >>>
+
+\<dy.1 store and mv ver 4-byte\><<<
+165 >>>
+
+\<mv ver dist dy.2\><<<
+166  >>>
+
+\<dy.2 store and mv ver 1-byte\><<<
+167 >>>
+
+\<dy.2 store and mv ver 2-byte\><<<
+168 >>>
+
+\<dy.2 store and mv ver 3-byte\><<<
+169 >>>
+
+\<dy.2 store and mv ver 4-byte\><<<
+170 >>>
+
+
+\<font 0\><<<
+171  >>>
+
+\<eof op\><<<
+223 >>>
+
+\<font 63\><<<
+234  >>>
+
+\<number of direct fonts\><<<
+63 >>>
+
+\<font 1-byte\><<<
+235  >>>
+
+\<font 2-bytes\><<<
+236  >>>
+
+\<font 3-bytes\><<<
+237  >>>
+
+\<font int\><<<
+238  >>>
+
+\<special 1\><<<
+239 >>>
+\<special 2\><<<
+240 >>>
+\<special 3\><<<
+241 >>>
+\<special 4\><<<
+242 >>>
+
+
+\<def 1 byte font\><<<
+243 >>>
+
+\<def 2 byte font\><<<
+244 >>>
+
+\<def 3 byte font\><<<
+245 >>>
+
+\<def 4 byte font\><<<
+246 >>>
+
+\<start preamble op\><<<
+247 >>>
+
+\<begin-postamble op\><<<
+248 >>>
+
+\<end-postamble op\><<<
+249 >>>
+
+
+
+
+\<start of preamble op\><<<
+247 >>>
+
+
+
+The ops 250--255 have no meaning in dvi.
+
+
+
+\<xdv-pic-file op\><<<
+251 
+>>>
+
+
+
+\<xdv-native-font-def op\><<<
+252 
+>>>
+
+
+
+\<xdv-glyph-array op\><<<
+253 
+>>>
+
+
+\<xdv-glyph-string op\><<<
+254 
+>>>
+*/
+
+
 typedef enum
 {
     // typeset a character and move right
     // opcode - DVI_set_char -- character code 
-    DVI_set_char,   // 0...127     set_char_i         
+    DVI_set_char,   // 0...127     set_char_i
         DVI_set_char_last = 127,
-           
+
     // typeset a character and move right
     //  c -- character code
-    DVI_set,        // 128     set1     c[1]     
+    DVI_set,        // 128     set1     c[1]
                     // 129     set2     c[2]
                     // 130     set3     c[3]
                     // 131     set4     c[4]
-        DVI_set_last = 131,                
+        DVI_set_last = 131,
 
     DVI_set_rule,   // 132     set_rule     a[4], b[4]     typeset a rule and move right
-    
+
     // typeset a character
     // not move
     //  c -- character code
