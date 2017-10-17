@@ -1,24 +1,24 @@
 /*
  * kpfrtyp.cpp
- *  
+ *
  *    FreeType kp addons
  *
  *  2013-10-21  mp  Initial creation
- *   
- */   
+ *
+ */
 
 #include "envir.h"
 
+#include <sstream>
 #ifdef __WIN32__
 #include <windows.h>
 #endif
 
+using namespace std;
+
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-using namespace std;
-
-#include "kperrno.h"
 #include "kpstdlib.h"
 #include "kpfrtyp.h"
 
@@ -28,15 +28,14 @@ HRESULT KpFreeType::GetKpErrCode(FT_Error p_iError)
 {
 HRESULT retc = S_OK;
 
-    switch (p_iError)
+    switch (FT_ERROR_BASE(p_iError))
     {
-    case KP_FT_Err_NoError:                     // "error undefined"
-    
+    case FT_Err_Unknown_Error:                  // "unknown error"
     case FT_Err_Ok:                             // "no error" 
     case FT_Err_Ignore:                         // "ignore"
-        retc = S_OK; 
+        retc = S_OK;
         break;
-    
+
     case FT_Err_Unknown_File_Format:            // "unknown file format"
     case FT_Err_Invalid_File_Format:            // "broken file"
     case FT_Err_Invalid_Version:                // "invalid FreeType version"
@@ -89,12 +88,12 @@ HRESULT retc = S_OK;
     case FT_Err_Corrupted_Font_Header:          // "Font header corrupted or missing fields"
     case FT_Err_Corrupted_Font_Glyphs:          // "Font glyphs corrupted or missing fields"
 
-    case KP_FT_Err_TooManyGlyphs:               // "too many glyphs"
-    case KP_FT_Err_TooManyTypefaces:            // "too many typefaces"
-    case KP_FT_Err_TooManyCharMaps:             // "too many charmaps"
-        retc = KP_E_FILE_FORMAT;                        
-        break;                                          
-                                                        
+    case FT_Err_Too_Many_Glyphs:                // "too many glyphs"
+    case FT_Err_Too_Many_Typefaces:             // "too many typefaces"
+    case FT_Err_Too_Many_Char_Maps:             // "too many charmaps"
+        retc = KP_E_FILE_FORMAT;
+        break;
+
     case FT_Err_Invalid_Argument:               // "invalid argument"
     case FT_Err_Too_Few_Arguments:              // "too few arguments"
     case FT_Err_Code_Overflow:                  // "code overflow"
@@ -107,11 +106,11 @@ HRESULT retc = S_OK;
     case FT_Err_Syntax_Error:                   // "opcode syntax error"
         retc = E_INVALIDARG;
         break;
-    
+
     case FT_Err_Unimplemented_Feature:          // "unimplemented feature"
         retc = E_NOTIMPL;
         break;
-    
+
     case FT_Err_Array_Too_Large:                // "array allocation size too large"
     case FT_Err_Raster_Overflow:                // "raster overflow"
     case FT_Err_Glyph_Too_Big:                  // "glyph to big for hinting"
@@ -122,7 +121,7 @@ HRESULT retc = S_OK;
     case FT_Err_Invalid_Character_Code:         // "invalid character code"
         retc = KP_E_UNKN_CHR;
         break;
-        
+
     case FT_Err_Out_Of_Memory:                  // "out of memory"
     case FT_Err_Too_Many_Caches:                // "too many registered caches"
     case FT_Err_Stack_Overflow:                 // "stack overflow"
@@ -167,11 +166,11 @@ HRESULT retc = S_OK;
     case FT_Err_Raster_Corrupted:               // "raster corrupted"
     case FT_Err_Raster_Negative_Height:         // "negative height while rastering"
         retc = KP_E_SYSTEM_ERROR;                       
-        break;                                          
+        break;
 
-    default:                                            
-        retc = KP_E_UNHANDLED_EXCEPTION;                       
-        break;                                          
+    default:
+        retc = KP_E_UNHANDLED_EXCEPTION;
+        break;
     }
 
 return(retc);
@@ -180,57 +179,57 @@ return(retc);
 
 FT_Error KpFreeType::GetFtErrCode(HRESULT p_lKpErr)
 {
-FT_Error retv = FT_Err_Ok;
+FT_Error retv = FT_ERR_CODE(Ok);
 
     switch (p_lKpErr)
     {
     case S_OK:
-        retv = FT_Err_Ok;
+        retv = FT_ERR_CODE(Ok);
         break;
         
     case E_NOTIMPL:
-        retv = FT_Err_Unimplemented_Feature;
+        retv = FT_ERR_CODE(Unimplemented_Feature);
         break;
 
     case E_INVALIDARG:
-        retv = FT_Err_Invalid_Argument;
+        retv = FT_ERR_CODE(Invalid_Argument);
         break;
 
     case KP_E_FILE_FORMAT:
-        retv = FT_Err_Unknown_File_Format;
+        retv = FT_ERR_CODE(Unknown_File_Format);
         break;
 
     case KP_E_DIV_ZERO:
-        retv = FT_Err_Divide_By_Zero;
+        retv = FT_ERR_CODE(Divide_By_Zero);
         break;
 
     case E_OUTOFMEMORY:
-        retv = FT_Err_Out_Of_Memory;
+        retv = FT_ERR_CODE(Out_Of_Memory);
         break;
 
     case KP_E_BUFFER_OVERFLOW:
-        retv = FT_Err_Array_Too_Large;
+        retv = FT_ERR_CODE(Array_Too_Large);
         break;
 
     case KP_E_DIR_ERROR:
     case KP_E_FILE_NOT_FOUND:
-        retv = FT_Err_Cannot_Open_Stream;
+        retv = FT_ERR_CODE(Cannot_Open_Stream);
         break;
 
     case KP_E_EOF:
-        retv = FT_Err_ENDF_In_Exec_Stream;
+        retv = FT_ERR_CODE(ENDF_In_Exec_Stream);
         break;
 
     case KP_E_KWD_NOT_FOUND:
-        retv = FT_Err_No_Unicode_Glyph_Name;
+        retv = FT_ERR_CODE(No_Unicode_Glyph_Name);
         break;
 
     case KP_E_UNKN_CHR:
-        retv = FT_Err_Invalid_Character_Code;
+        retv = FT_ERR_CODE(Invalid_Character_Code);
         break;
 
     case KP_E_TIMEOUT:
-        retv = FT_Err_Execution_Too_Long;
+        retv = FT_ERR_CODE(Execution_Too_Long);
         break;
 
     case E_UNEXPECTED:
@@ -274,35 +273,53 @@ FT_Error retv = FT_Err_Ok;
     case KP_S_DONE:
     case KP_E_EXPIRED:
     case KP_E_UNHANDLED_EXCEPTION:
-        retv = KP_FT_Err_UnknownFtError;
-        break;
-
     default:
-        retv = KP_FT_Err_UnknownFtError;
+        retv = FT_ERR_CODE(Unknown_Error);
         break;
     }
-    
-return(retv);    
-}  
+
+return(retv);
+}
 
 
 // ---------------------------
-#define FT_ERRORDEF_(name, code, msg) case FT_Err_##name: ret_msg = (const uchar *)msg; break;
-#define FT_NOERRORDEF_(name, code, msg) FT_ERRORDEF_(name, code, msg)
+#undef FTMODERR_H_
+#undef FT_MODERRDEF
+#define FT_MODERRDEF(modname, mod, msg) case FT_Mod_Err_##modname: ret_msg = msg; break;
+#define FT_ERRORDEF_(basename, base, msg) case FT_Err_##basename: ret_msg += msg; break;
+#define FT_NOERRORDEF_(name, base, msg) FT_ERRORDEF_(name, base, msg)
 
 const uchar *KpFreeType::GetFtErrMsg(FT_Error p_iError)
 {
-const uchar *ret_msg = (const uchar *)"unknown FreeType error";
+static string ret_msg;
 
+    ret_msg = "";
+
+// TODO: error: duplicate case value
+/*
     switch (p_iError)
     {
-#include "fterrdef.h"
+#include FT_MODULE_ERRORS_H
+#include "kpft_moderr.h"
 
-    case KP_FT_Err_TooManyGlyphs:       ret_msg = (const uchar *)"kpfrtyp: too many glyphs"; break;
-    case KP_FT_Err_TooManyTypefaces:    ret_msg = (const uchar *)"kpfrtyp: too many typefaces"; break;
-    case KP_FT_Err_TooManyCharMaps:     ret_msg = (const uchar *)"too many charmaps"; break;
-    case KP_FT_Err_UnknownFtError:      ret_msg = (const uchar *)"unknown error"; break;
+    default: ret_msg = "freetype"; break;
+    }
+    ret_msg += ": ";
+*/
+
+    switch (FT_ERROR_BASE(p_iError))
+    {
+#include FT_ERROR_DEFINITIONS_H
+#include "kpft_errdef.h"
+    default:
+        {
+            ret_msg += "unknown error: ";
+            stringstream ostr;
+            ostr << hex << p_iError;
+            ret_msg += ostr.str();
+        }
+        break;
     }
 
-return(ret_msg);
+return((const uchar *)ret_msg.c_str());
 }
