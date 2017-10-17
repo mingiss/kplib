@@ -10,22 +10,47 @@
 #ifndef KPFRTYP_INCLUDED
 #define KPFRTYP_INCLUDED
 
+#include "kperrno.h"
+
 // -------------------------- FreeImage papildymai
+// copied from freetype2/freetype-src/include/freetype/fterrors.h
+#define FT_ERRORDEF(fullname, code, msg) fullname = code,
+// #define FT_ERR_BASE FT_ERR_MOD(FT_ERR_MOD_NAME) // not an error base code, rather a module part of an error code actually
+#define FT_ERR_BASE 0
+#define FT_ERR_PREFIX FT_Err_
+#define FT_ERRORDEF_(basename, base, msg) FT_ERRORDEF(FT_ERR_CAT(FT_ERR_PREFIX, basename), base + FT_ERR_BASE, msg)
+#define FT_NOERRORDEF_(basename, base, msg) FT_ERRORDEF(FT_ERR_CAT(FT_ERR_PREFIX, basename), base, msg)
 
-typedef enum
+// #include FT_ERRORS_H
+enum
 {
-KP_FT_Err_NoError = -1,
-KP_FT_Err_FirstKpError = 0x1000,
+// #include FT_ERROR_DEFINITIONS_H
+#include "kpft_errdef.h" // TODO: try to define as an FT_ERROR_END_LIST and use fterrors.h
+};
 
-KP_FT_Err_TooManyGlyphs = KP_FT_Err_FirstKpError,   // "too many glyphs"
-KP_FT_Err_TooManyTypefaces,                         // "too many typefaces"
-KP_FT_Err_TooManyCharMaps,                          // "too many charmaps"
-KP_FT_Err_UnknownFtError,                           // "unknown error"
+// TODO: define fterrors.h and kpft_errdef.h errors as belonging to module KpFrTyp as well
 
-KP_FT_Err_LastKpErr
-} KP_FT_Error;
+#undef FT_ERRORDEF_
+#undef FT_NOERRORDEF_
+#undef FT_ERR_PREFIX
 
-#define KP_FT_NumOfKpErrs (KP_FT_Err_LastKpErr - KP_FT_Err_FirstKpError)
+// -------------------------------------
+#define FT_CONFIG_OPTION_USE_MODULE_ERRORS 1 // TODO: move to config.h
+#define FT_ERR_MOD_NAME KpFrTyp
+
+// TODO: these actually should be moved to freetype2/freetype-src/include/freetype/fttypes.h
+#define FT_ERR_PREFIX FT_ERR_MOD_NAME ## _
+#define FT_ERR_MOD_CAT(modname) FT_Mod_Err_ ## modname
+#define FT_ERR_MOD(modname) FT_ERR_MOD_CAT(modname)
+#define FT_ERR_CODE(base) (FT_ERR_MOD(FT_ERR_MOD_NAME) | FT_Err_ ## base) // module and base to combined error code // TODO: define as belonging to current module
+
+#include FT_MODULE_ERRORS_H
+#define FT_MODERRDEF(modname, mod, msg) FT_ERR_MOD(modname) = mod,
+enum
+{
+#include "kpft_moderr.h"
+};
+#undef FT_MODERRDEF
 
 class KpFreeType
 {
