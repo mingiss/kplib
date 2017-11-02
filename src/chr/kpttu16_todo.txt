@@ -1,0 +1,11 @@
+Atsikelt PS pavadinimus iš kp/src/vtex/pdf/pschars/pschars.lua
+    tik tuos, kurie yra čia; kitus ten pažymėt, kaip papildomus
+    pschars.cpp generavimo utilitą (papildyt kp/source/kpt/KPTTUCD.CPP)
+
+Suvest Unicode pavadinimus
+
+Atsikelt TeX makrokomandų pavadinimus iš kp/source/Tev/tex/tvtexc.cpp, kad jį būtų galima generuoti
+    tvtexc.cpp generavimo utilitą (papildyt kp/source/kpt/KPTTUCD.CPP)
+
+Atsinaujint Kpttuc.cpp generavimo utilitą kp/source/kpt/KPTTUCD.CPP
+    papildyt tikrinimu, ar nepasistūmė kptt.h atžvilgiu

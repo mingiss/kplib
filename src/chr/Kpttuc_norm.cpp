@@ -29,138 +29,138 @@
 // -----------------------
 UniChar iaUniChars[C_CharArrSize37] =
 {
-  C_Nul,     /* 0x00 */
-  C_Soh,     /* 0x01 */
-  C_Stx,     /* 0x02 */
-  C_Etx,     /* 0x03 */
-  C_Eot,     /* 0x04 */
-  C_Enq,     /* 0x05 */
-  C_Ack,     /* 0x06 */
-  C_Bel,     /* 0x07 */
-  C_Bs,      /* 0x08 */
-  C_Ht,      /* 0x09 */
-  C_Lf,      /* 0x0a */
-  C_Vt,      /* 0x0b */
-  C_Ff,      /* 0x0c */
-  C_Cr,      /* 0x0d */
-  C_So,      /* 0x0e */
-  C_Si,      /* 0x0f */
-  C_Dle,     /* 0x10 */
-  C_Dc1,     /* 0x11 */
-  C_Dc2,     /* 0x12 */
-  C_Dc3,     /* 0x13 */
-  C_Dc4,     /* 0x14 */
-  C_Nak,     /* 0x15 */
-  C_Syn,     /* 0x16 */
-  C_Etb,     /* 0x17 */
-  C_Can,     /* 0x18 */
-  C_Em,      /* 0x19 */
-  C_Sub,     /* 0x1a */
-  C_Esc,     /* 0x1b */
-  C_Fs,      /* 0x1c */
-  C_Gs,      /* 0x1d */
-  C_Rs,      /* 0x1e */
-  C_Us,      /* 0x1f */
+  0x0000, // C_Nul
+  0x0001, // C_Soh
+  0x0002, // C_Stx
+  0x0003, // C_Etx
+  0x0004, // C_Eot
+  0x0005, // C_Enq
+  0x0006, // C_Ack
+  0x0007, // C_Bel
+  0x0008, // C_Bs
+  0x0009, // C_Ht
+  0x000A, // C_Lf
+  0x000B, // C_Vt
+  0x000C, // C_Ff
+  0x000D, // C_Cr
+  0x000E, // C_So
+  0x000F, // C_Si
+  0x0010, // C_Dle
+  0x0011, // C_Dc1
+  0x0012, // C_Dc2
+  0x0013, // C_Dc3
+  0x0014, // C_Dc4
+  0x0015, // C_Nak
+  0x0016, // C_Syn
+  0x0017, // C_Etb
+  0x0018, // C_Can
+  0x0019, // C_Em
+  0x001A, // C_Sub
+  0x001B, // C_Esc
+  0x001C, // C_Fs
+  0x001D, // C_Gs
+  0x001E, // C_Rs
+  0x001F, // C_Us
 
-  C_Spc,     /* Space */
-  C_Excl,    /* !  Exclamation Mark (s/auktukas) */
-  C_Quote,   /* "  Quotation Mark (kabute%s) */
-  C_Numb,    /* #  Number Sign (Numerio zenklas) */
-  C_Doll,    /* $  Currency Sign (Pinigu zenklas) */
-  C_Perc,    /* %  Per Cent Sign (procento z/enklas) */
-  C_Amp,     /* &  Ampersand (Ampersandas) */
-  C_Apost,   /* '  Apostrophe (Apostrofa, apostrofas, kablelio formos) */
-  C_Lpar,    /* (  Left Parenthesis (kairysis skliaustas) */
-  C_Rpar,    /* )  Right Parenthesis (des/inysis skliaustas) */
-  C_Ast,     /* *  Asterisk (Zvaigzdute) */
-  C_Plus,    /* +  Plus Sign (pliusas) */
-  C_Comma,   /* ,  Comma (kablelis) */
-  C_Dash,    /* -  Dash, Hyphen, Minus Sign (minusas) */
-  C_Point,   /* .  Full Stop, Period, Point (tas/kas) */
-  C_Slash,   /* /  Slash, Solidus (Istrizas bruksnys) */
-  C_0,       /* 0 */
-  C_1,       /* 1 */
-  C_2,       /* 2 */
-  C_3,       /* 3 */
-  C_4,       /* 4 */
-  C_5,       /* 5 */
-  C_6,       /* 6 */
-  C_7,       /* 7 */
-  C_8,       /* 8 */
-  C_9,       /* 9 */
-  C_Colon,   /* :  Colon (dvitas/kis) */
-  C_Semic,   /* ;  Semi-colon (kabliatas/kis) */
-  C_Less,    /* <  Less than Sign (maz/iau) */
-  C_Eq,      /* =  Equals Sign (lygybe%s z/enklas) */
-  C_Great,   /* >  Greater than Sign (daugiau) */
-  C_Quest,   /* ?  Question Mark (klaustukas) */
+  0x0020, // C_Spc,     /* Space */
+  0x0021, // C_Excl,    /* !  Exclamation Mark (s/auktukas) */
+  0x0022, // C_Quote,   /* "  Quotation Mark (kabute%s) */
+  0x0023, // C_Numb,    /* #  Number Sign (Numerio zenklas) */
+  0x0024, // C_Doll,    /* $  Currency Sign (Pinigu zenklas) */
+  0x0025, // C_Perc,    /* %  Per Cent Sign (procento z/enklas) */
+  0x0026, // C_Amp,     /* &  Ampersand (Ampersandas) */
+  0x0027, // C_Apost,   /* '  Apostrophe (Apostrofa, apostrofas, kablelio formos) */
+  0x0028, // C_Lpar,    /* (  Left Parenthesis (kairysis skliaustas) */
+  0x0029, // C_Rpar,    /* )  Right Parenthesis (des/inysis skliaustas) */
+  0x002A, // C_Ast,     /* *  Asterisk (Zvaigzdute) */
+  0x002B, // C_Plus,    /* +  Plus Sign (pliusas) */
+  0x002C, // C_Comma,   /* ,  Comma (kablelis) */
+  0x002D, // C_Dash,    /* -  Dash, Hyphen, Minus Sign (minusas) */
+  0x002E, // C_Point,   /* .  Full Stop, Period, Point (tas/kas) */
+  0x002F, // C_Slash,   /* /  Slash, Solidus (Istrizas bruksnys) */
+  0x0030, // C_0,       /* 0 */
+  0x0031, // C_1,       /* 1 */
+  0x0032, // C_2,       /* 2 */
+  0x0033, // C_3,       /* 3 */
+  0x0034, // C_4,       /* 4 */
+  0x0035, // C_5,       /* 5 */
+  0x0036, // C_6,       /* 6 */
+  0x0037, // C_7,       /* 7 */
+  0x0038, // C_8,       /* 8 */
+  0x0039, // C_9,       /* 9 */
+  0x003A, // C_Colon,   /* :  Colon (dvitas/kis) */
+  0x003B, // C_Semic,   /* ;  Semi-colon (kabliatas/kis) */
+  0x003C, // C_Less,    /* <  Less than Sign (maz/iau) */
+  0x003D, // C_Eq,      /* =  Equals Sign (lygybe%s z/enklas) */
+  0x003E, // C_Great,   /* >  Greater than Sign (daugiau) */
+  0x003F, // C_Quest,   /* ?  Question Mark (klaustukas) */
 
-  C_At,      /* @  Commercial At (Prekybinis zenklas "Pas") */
-  C_A,       /* A */
-  C_B,       /* B */
-  C_C,       /* C */
-  C_D,       /* D */
-  C_E,       /* E */
-  C_F,       /* F */
-  C_G,       /* G */
-  C_H,       /* H */
-  C_I,       /* I */
-  C_J,       /* J */
-  C_K,       /* K */
-  C_L,       /* L */
-  C_M,       /* M */
-  C_N,       /* N */
-  C_O,       /* O */
-  C_P,       /* P */
-  C_Q,       /* Q */
-  C_R,       /* R */
-  C_S,       /* S */
-  C_T,       /* T */
-  C_U,       /* U */
-  C_V,       /* V */
-  C_W,       /* W */
-  C_X,       /* X */
-  C_Y,       /* Y */
-  C_Z,       /* Z */
-  C_Lbrack,  /* [  Left Square Bracket (Kairysis lauztinis skliaustas) */
-  C_Lslash,  /* \  Reverse Solidus, Reverse Slash (Atvirkscias istrizas bruksnys) */
-  C_Rbrack,  /* ]  Right Square Bracket (Desinysis lauztinis skliaustas) */
-  C_Circ,    /* ^  Circumflex Accent (Cirkumfleksas), standalone */
-  C_Underl,  /* _  Underline (Pabraukimas) */
+  0x0040, // C_At,      /* @  Commercial At (Prekybinis zenklas "Pas") */
+  0x0041, // C_A,       /* A */
+  0x0042, // C_B,       /* B */
+  0x0043, // C_C,       /* C */
+  0x0044, // C_D,       /* D */
+  0x0045, // C_E,       /* E */
+  0x0046, // C_F,       /* F */
+  0x0047, // C_G,       /* G */
+  0x0048, // C_H,       /* H */
+  0x0049, // C_I,       /* I */
+  0x004A, // C_J,       /* J */
+  0x004B, // C_K,       /* K */
+  0x004C, // C_L,       /* L */
+  0x004D, // C_M,       /* M */
+  0x004E, // C_N,       /* N */
+  0x004F, // C_O,       /* O */
+  0x0050, // C_P,       /* P */
+  0x0051, // C_Q,       /* Q */
+  0x0052, // C_R,       /* R */
+  0x0053, // C_S,       /* S */
+  0x0054, // C_T,       /* T */
+  0x0055, // C_U,       /* U */
+  0x0056, // C_V,       /* V */
+  0x0057, // C_W,       /* W */
+  0x0058, // C_X,       /* X */
+  0x0059, // C_Y,       /* Y */
+  0x005A, // C_Z,       /* Z */
+  0x005B, // C_Lbrack,  /* [  Left Square Bracket (Kairysis lauztinis skliaustas) */
+  0x005C, // C_Lslash,  /* \  Reverse Solidus, Reverse Slash (Atvirkscias istrizas bruksnys) */
+  0x005D, // C_Rbrack,  /* ]  Right Square Bracket (Desinysis lauztinis skliaustas) */
+  0x005E, // C_Circ,    /* ^  Circumflex Accent (Cirkumfleksas), standalone */
+  0x005F, // C_Underl,  /* _  Underline (Pabraukimas) */
 
-  C_Grave,   /* `  Grave Accent (gravis), standalone */
-  C_a,       /* a */
-  C_b,       /* b */
-  C_c,       /* c */
-  C_d,       /* d */
-  C_e,       /* e */
-  C_f,       /* f */
-  C_g,       /* g */
-  C_h,       /* h */
-  C_i,       /* i */
-  C_j,       /* j */
-  C_k,       /* k */
-  C_l,       /* l */
-  C_m,       /* m */
-  C_n,       /* n */
-  C_o,       /* o */
-  C_p,       /* p */
-  C_q,       /* q */
-  C_r,       /* r */
-  C_s,       /* s */
-  C_t,       /* t */
-  C_u,       /* u */
-  C_v,       /* v */
-  C_w,       /* w */
-  C_x,       /* x */
-  C_y,       /* y */
-  C_z,       /* z */
-  C_Lcurl,   /* {  Left Curly Bracket (Kairysis riestinis skliaustas) */
-  C_Vertl,   /* |  Vertical Line (Vertikali Linija) */
-  C_Rcurl,   /* }  Right Curly Bracket (Desinysis riestinis skliaustas) */
-  C_Tilde,   /* ~  Tilde (Overline) (Tilde, Bruksnys virsuje), standalone */
+  0x0060, // C_Grave,   /* `  Grave Accent (gravis), standalone */
+  0x0061, // C_a,       /* a */
+  0x0062, // C_b,       /* b */
+  0x0063, // C_c,       /* c */
+  0x0064, // C_d,       /* d */
+  0x0065, // C_e,       /* e */
+  0x0066, // C_f,       /* f */
+  0x0067, // C_g,       /* g */
+  0x0068, // C_h,       /* h */
+  0x0069, // C_i,       /* i */
+  0x006A, // C_j,       /* j */
+  0x006B, // C_k,       /* k */
+  0x006C, // C_l,       /* l */
+  0x006D, // C_m,       /* m */
+  0x006E, // C_n,       /* n */
+  0x006F, // C_o,       /* o */
+  0x0070, // C_p,       /* p */
+  0x0071, // C_q,       /* q */
+  0x0072, // C_r,       /* r */
+  0x0073, // C_s,       /* s */
+  0x0074, // C_t,       /* t */
+  0x0075, // C_u,       /* u */
+  0x0076, // C_v,       /* v */
+  0x0077, // C_w,       /* w */
+  0x0078, // C_x,       /* x */
+  0x0079, // C_y,       /* y */
+  0x007A, // C_z,       /* z */
+  0x007B, // C_Lcurl,   /* {  Left Curly Bracket (Kairysis riestinis skliaustas) */
+  0x007C, // C_Vertl,   /* |  Vertical Line (Vertikali Linija) */
+  0x007D, // C_Rcurl,   /* }  Right Curly Bracket (Desinysis riestinis skliaustas) */
+  0x007E, // C_Tilde,   /* ~  Tilde (Overline) (Tilde, Bruksnys virsuje), standalone */
 
-  C_Del,
+  0x007F, // C_Del,
 
   0x00C6, // C_AE,
   0x00E6, // C_ae,
@@ -354,15 +354,15 @@ UniChar iaUniChars[C_CharArrSize37] =
   0x016B, // C_u_Macr,  /* u_ */
 
   0x00C4, // C_A_Diaer, /* A.. */
-  0x00E4, // C_a_Diaer, /* a.. */
+  0x00E4, // C_a_Diaer,     'LATIN SMALL LETTER A WITH DIAERESIS'   /* a.. */
   0x00CB, // C_E_Diaer, /* E.. */
-  0x00EB, // C_e_Diaer, /* e.. */
+  0x00EB, // C_e_Diaer,     'LATIN SMALL LETTER E WITH DIAERESIS'   /* e.. */
   0x00CF, // C_I_Diaer, /* I.. */
   0x00EF, // C_i_Diaer, /* i.. */
   0x00D6, // C_O_Diaer, /* O.. */
-  0x00F6, // C_o_Diaer, /* o.. */
+  0x00F6, // C_o_Diaer,     'LATIN SMALL LETTER O WITH DIAERESIS'   /* o.. */
   0x00DC, // C_U_Diaer, /* U.. */
-  0x00FC, // C_u_Diaer, /* u.. */
+  0x00FC, // C_u_Diaer,     'LATIN SMALL LETTER U WITH DIAERESIS'   /* u.. */
   0x0178, // C_Y_Diaer, /* Y.. */
   0x00FF, // C_y_Diaer, /* y.. */
 
@@ -901,7 +901,7 @@ UniChar iaUniChars[C_CharArrSize37] =
    C_Nul,  // C_3DLeftLightDownArrowHead
    C_Nul,  // C_3DRightLightDownArrowHead
 
-   0x2212, // C_MinusMath
+   0x2212, // C_MinusMath           'MINUS SIGN'
 
    0x200B, // C_ZeroWidthSpace
 
