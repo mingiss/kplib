@@ -12,6 +12,10 @@
 #define KPERR_INCLUDED
 
 #include <stdlib.h>
+#include <kperrno.h>
+#include <kpmsg.h>
+#include <kpstdlib.h>
+#include <kpstring.h>
 
 // ---------------------------------------- assertions
 // KP_ASSERT[W[0]](bool p_bCond, HRESULT p_lhErrCode, uchar *p_pszMsg);
@@ -164,6 +168,7 @@ public:
     bool m_bOutMsg;
 
     KpErrorClass(const uchar *p_pszProdName, bool p_bOutMsg);
+    KpErrorClass(const char *p_pszProdName, bool p_bOutMsg) { KpErrorClass((const uchar *)p_pszProdName, p_bOutMsg); }
 
     void SetProdName(const uchar *p_pszNameBuf); // p_pszNameBuf[KP_MAX_FNAME_LEN + 1]
     void GetProdName(uchar *p_pszNameBuf); // p_pszNameBuf[KP_MAX_FNAME_LEN + 1]

@@ -10,6 +10,7 @@
 #ifndef KPFRTYP_INCLUDED
 #define KPFRTYP_INCLUDED
 
+#include "kpstdlib.h"
 #include "kperrno.h"
 
 // -------------------------- FreeImage papildymai
