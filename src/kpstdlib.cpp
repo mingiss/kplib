@@ -39,7 +39,7 @@ using namespace std;
 
 
 // ========================================= KpLib 
-KpErrorClass KpError((const uchar *)"kplib", True);
+KpErrorClass KpError("kplib", True);
 KpCommonApp *KpApp = NULL;
 KpCommonApp *KpAppAlloc = NULL; // pointer to locally here allocated KpApp 
 
