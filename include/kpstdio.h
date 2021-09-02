@@ -338,12 +338,21 @@ public:
    );
 
    static void TvFnameSplit          // splits p_lpszFullName to file name and file
-   (                                 //    type parts p_lpszFNameBuf, p_lpszFTypeBuf.
-      KpString& sDiskBuf,            // p_lpszDiskBuf, p_lpszPathBuf and p_lpszFNameBuf
-      KpString& sPathBuf,            //    must be not shorter than
-      KpString& sFNameBuf,           //    KP_MAX_FNAME_LEN + 1 bytes, p_lpszFTypeBuf
-      KpString& sFTypeBuf,           //    - not shorter than KP_MAX_FTYPE_LEN + 1
-      KpString sFullName      
+   (                                 //    type parts sFNameBuf, sFTypeBuf.
+      KpString& sDiskBuf,
+      KpString& sPathBuf,
+      KpString& sFNameBuf,
+      KpString& sFTypeBuf,
+      const uchar *p_pszFullName
+   );
+
+   static void TvFnameSplit          // splits sFullName to file name and file
+   (                                 //    type parts sFNameBuf, sFTypeBuf.
+      KpString& sDiskBuf,
+      KpString& sPathBuf,
+      KpString& sFNameBuf,
+      KpString& sFTypeBuf,
+      KpString sFullName
    );
 };
 

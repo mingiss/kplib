@@ -71,11 +71,24 @@ KpString sFullName
 )
 {
     // TODO: perdaryt per KpString::Split()
+    TvFnameSplit(sDiskBuf, sPathBuf, sFNameBuf, sFTypeBuf, sFullName.c_str());
+}
+
+void KpStdIo::TvFnameSplit
+(
+KpString& sDiskBuf,
+KpString& sPathBuf,
+KpString& sFNameBuf,
+KpString& sFTypeBuf,
+const uchar *p_pszFullName
+)
+{
+    // TODO: perdaryt per KpString::Split()
 uchar disk[KP_MAX_FNAME_LEN + 1];
 uchar path[KP_MAX_FNAME_LEN + 1];
 uchar fname[KP_MAX_FNAME_LEN + 1];
 uchar ftype[KP_MAX_FNAME_LEN + 1];
-    TvFnameSplit(disk, path, fname, ftype, sFullName.c_str());
+    TvFnameSplit(disk, path, fname, ftype, p_pszFullName);
     sDiskBuf = disk;
     sPathBuf = path;
     sFNameBuf = fname;
