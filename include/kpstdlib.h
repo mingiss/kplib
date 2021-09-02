@@ -38,6 +38,10 @@
 #endif
 #endif
 
+#ifdef __WIN32__
+#include <windows.h>
+#endif
+
 #ifdef __cplusplus
 using namespace std;
 #endif
@@ -470,6 +474,7 @@ typedef unsigned int uint;
 typedef unsigned long ulong;
 
 #define MAX_UCHAR 0xFF
+// gcc clones
 #if (!defined(__WIN32__)) || defined(__MINGW32__)
 #define MAX_SHRT 0x7FFF // 32767 // SHRT_MAX
 #ifndef MAX_INT
