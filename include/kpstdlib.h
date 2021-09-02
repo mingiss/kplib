@@ -243,11 +243,12 @@ typedef char bool;
 #define True ((bool)TRUE)
 #define False ((bool)FALSE)
 
-#if defined(__MINGW32__) && (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__ <= 40401) // existed until mingw 4.4.1
-#define va_list __VALIST 
+#if defined(__MINGW32__) && (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__ <= 40401) // existed until mingw gcc v.4.4.1
+#define va_list __VALIST
 #else
-#   ifdef __GNUC__
-#define va_list __gnuc_va_list 
+// #   ifdef __GNUC__
+#   if defined(__MINGW32__) && (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__ < 80100) // va_list already defined in mingw gcc v.8.1.0 and later
+#define va_list __gnuc_va_list
 #   endif
 #endif
 #ifndef va_start
