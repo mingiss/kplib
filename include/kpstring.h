@@ -112,10 +112,10 @@ public:
     KpString& operator=(const uchar *lpszRight) { string::operator=((const char *)lpszRight); return *this; }
     KpString& operator=(const string& sRight) { string::operator=(sRight); return *this; }
 
-    operator uchar *() { return c_str(); }
+    operator const uchar *() { return c_str(); }
     operator const char *() { return string::c_str(); }
 
-    uchar *c_str() { return (uchar *)string::c_str(); }
+    const uchar *c_str() { return (uchar *)string::c_str(); }
 
     // trim from start
     static KpString &ltrim(KpString &s);
