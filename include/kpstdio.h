@@ -352,7 +352,7 @@ public:
       KpString& sPathBuf,
       KpString& sFNameBuf,
       KpString& sFTypeBuf,
-      KpString sFullName
+      const KpString& sFullName
    );
 };
 
