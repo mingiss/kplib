@@ -67,11 +67,41 @@ KpString& sDiskBuf,
 KpString& sPathBuf,
 KpString& sFNameBuf,
 KpString& sFTypeBuf,
-const KpString& sFullName
+/* const */ KpString& sFullName
 )
 {
-    // TODO: perdaryt per KpString::Split()
-    TvFnameSplit(sDiskBuf, sPathBuf, sFNameBuf, sFTypeBuf, sFullName.c_str());
+    vector<KpString> full_name_elems;
+    sFullName.Split("\\", full_name_elems);
+    vector<KpString> name_type_elems;
+    // TODO: perdaryt per iteratorių
+    int last_ix = full_name_elems.size() - 1;
+    full_name_elems[last_ix].Split("/", name_type_elems);
+    KpString name_type = name_type_elems[name_type_elems.size() - 1];
+
+    name_type_elems.pop_back();
+    KpString delim("/");
+    if (name_type_elems.size())
+        full_name_elems[last_ix] = delim.Join(name_type_elems);
+    else
+        full_name_elems.pop_back();
+
+    delim = "\\";
+    KpString full_path = delim.Join(full_name_elems);
+
+    full_path.Split(":", full_name_elems);
+    sDiskBuf = full_name_elems[0] + ":";
+
+    full_name_elems.erase(full_name_elems.begin());
+    delim = ":";
+    sPathBuf = delim.Join(full_name_elems);
+
+    name_type.Split(".", name_type_elems);
+    // TODO: perdaryt per iteratorių
+    sFTypeBuf = name_type_elems[name_type_elems.size() - 1];
+
+    name_type_elems.pop_back();
+    delim = ".";
+    sFNameBuf = delim.Join(name_type_elems);
 }
 
 void KpStdIo::TvFnameSplit

@@ -409,10 +409,11 @@ void KpString::Split(const uchar *pszDelim, vector<KpString> &saOutArr)
 
 KpString KpString::Join(const vector<KpString> &saStrArr)
 {
-    size_t len = saStrArr.size();
+    // size_t does not work for an empty array
+    int /* size_t */ len = saStrArr.size();
     KpString ret_str;
 
-    for (size_t ii = 0; ii < len - 1; ii++) ret_str += saStrArr[ii] + *this;
+    for (int /* size_t */ ii = 0; ii < len - 1; ii++) ret_str += saStrArr[ii] + *this;
     if (len > 0) ret_str += saStrArr[len - 1];
 
 return ret_str;
