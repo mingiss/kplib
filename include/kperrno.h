@@ -577,7 +577,7 @@ A reserved policy element was found in the QoS provider-specific buffer.
 #define KP_E_DIR_ERROR        (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x04))
 // file error
 #define KP_E_FERROR           (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x05))
-// internal error
+// internal error (E_INTERNAL_ERROR)
 #define KP_E_SYSTEM_ERROR     (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x06))
 // unexpected end of input file
 #define KP_E_EOF              (MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0x200 + 0x100 +  0x07))

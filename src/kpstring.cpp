@@ -405,16 +405,23 @@ void KpString::Split(const uchar *pszDelim, vector<KpString> &saOutArr)
         }
 
     } while (tmp_str.length() > 0);
+
+    KP_ASSERT(saOutArr.size(), KP_E_SYSTEM_ERROR, "KpString split to an empty vector");
 }
 
 KpString KpString::Join(const vector<KpString> &saStrArr)
 {
-    // size_t does not work for an empty array
-    int /* size_t */ len = saStrArr.size();
     KpString ret_str;
+    vector<KpString>::const_iterator end_it(saStrArr.cend());
+    vector<KpString>::const_iterator last_it(--end_it);
 
-    for (int /* size_t */ ii = 0; ii < len - 1; ii++) ret_str += saStrArr[ii] + *this;
-    if (len > 0) ret_str += saStrArr[len - 1];
+    for (vector<KpString>::const_iterator elem_it(saStrArr.cbegin()); elem_it != end_it; elem_it++)
+    {
+        if (elem_it == last_it) // (distance(elem_it, end_it) == 1)
+            break;
+        ret_str += *elem_it + *this;
+    }
+    if (saStrArr.size()) ret_str += *last_it;
 
 return ret_str;
 }
