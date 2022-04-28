@@ -366,6 +366,7 @@ return(chr_cnt);
 // -------------------------
 // KpString
 
+#ifndef _MSC_VER
 KpString &KpString::ltrim(KpString &s)
 {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
@@ -377,6 +378,7 @@ KpString &KpString::rtrim(KpString &s)
     s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
 return s;
 }
+#endif
 
 void KpString::Split(const uchar *pszDelim, vector<KpString> &saOutArr)
 {
@@ -417,3 +419,22 @@ KpString KpString::Join(const vector<KpString> &saStrArr)
 
 return ret_str;
 }
+
+#ifdef AFX_DATA // #ifdef _AFXDLL
+// https://www.arclab.com/en/kb/cppmfc/convert-cstring-unicode-utf-16le-to-utf-8-and-reverse.html
+CStringA ConvertUnicodeToUTF8(const CStringW& uni)
+{
+    if (uni.IsEmpty()) return ""; // nothing to do
+    CStringA utf8;
+    int cc=0;
+    // get length (cc) of the new multibyte string excluding the \0 terminator first
+    if ((cc = WideCharToMultiByte(CP_UTF8, 0, uni, -1, NULL, 0, 0, 0) - 1) > 0)
+    {
+        // convert
+        char *buf = utf8.GetBuffer(cc);
+        if (buf) WideCharToMultiByte(CP_UTF8, 0, uni, -1, buf, cc, 0, 0);
+        utf8.ReleaseBuffer();
+    }
+    return utf8;
+}
+#endif
